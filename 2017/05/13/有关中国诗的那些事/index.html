@@ -318,20 +318,30 @@
 
 
 
-<section class="comments" id="comments">
-    <div id="disqus_thread"></div>
+
+
+
+
+
+
+    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
     <script>
-    var disqus_shortname = 'lyxblog';
-    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    var cloudTieConfig = {
+        url: '//litten.me/2017/05/13/有关中国诗的那些事/index.html',
+        sourceId: '有关中国诗的那些事',
+        productKey: '6b62488066cd427da29f5448ff453de2',
+        target: 'cloud-tie-wrapper',
+        pcFiles: [
+            '/css/cloudTie/pc.css?v=1.6.7',
+            '/js/cloudTie/pc.min.js?v=1.6.7',
+        ],
+        mobileFiles: [
+            '/css/cloudTie/mobile.css?v=1.6.7',
+            '/js/cloudTie/mobile.min.js?v=1.6.7'
+        ]
+    };
     </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-
-
-
-
-
-
+    <script src="/js/cloudTie/loader.min.js?v=1.6.7"></script>
 
 
 
