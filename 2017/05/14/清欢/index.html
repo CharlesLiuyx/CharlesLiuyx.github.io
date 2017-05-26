@@ -342,27 +342,25 @@
 
 
 
-    <div id="cloud-tie-wrapper" class="comments cloud-tie-wrapper"></div>
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
     <script>
-    var cloudTieConfig = {
-        url: '//litten.me/2017/05/14/清欢/index.html',
-        sourceId: '清欢',
-        productKey: '6b62488066cd427da29f5448ff453de2',
-        target: 'cloud-tie-wrapper',
-        pcFiles: [
-            '/css/cloudTie/pc.css?v=1.6.7',
-            '/js/cloudTie/pc.min.js?v=1.6.7',
-        ],
-        mobileFiles: [
-            '/css/cloudTie/mobile.css?v=1.6.7',
-            '/js/cloudTie/mobile.min.js?v=1.6.7'
-        ]
-    };
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
     </script>
-    <script src="/js/cloudTie/loader.min.js?v=1.6.7"></script>
-
-
-
+</section>
 
 
 
