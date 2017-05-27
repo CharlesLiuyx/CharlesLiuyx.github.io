@@ -25,17 +25,17 @@
     
     
     <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
-    <meta name="description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+    <meta name="description" content="问题分析围棋问题，棋盘19  19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用$\vec s$描述此时*棋盘的状态">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AlphaGo运行原理解析">
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
-<meta property="og:updated_time" content="2017-05-27T19:04:46.000Z">
+<meta property="og:description" content="问题分析围棋问题，棋盘19  19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用$\vec s$描述此时*棋盘的状态">
+<meta property="og:updated_time" content="2017-05-27T20:07:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo运行原理解析">
-<meta name="twitter:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta name="twitter:description" content="问题分析围棋问题，棋盘19  19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用$\vec s$描述此时*棋盘的状态">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -125,7 +125,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -163,6 +163,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-AlphaGo运行原理解析"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -186,14 +193,15 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
+            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘19 <em> 19 = 361 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用$\vec s$<strong>描述</strong>此时<em>*棋盘的状态</em></em></p>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-27T19:04:46.000Z" itemprop="dateUpdated">2017-05-27 12:04:46</time>
+    最后更新时间：<time datetime="2017-05-27T20:07:07.000Z" itemprop="dateUpdated">2017-05-27 13:07:07</time>
 </span><br>
 
 
@@ -367,7 +375,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
