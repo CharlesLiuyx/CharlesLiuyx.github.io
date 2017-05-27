@@ -18,23 +18,30 @@
     
     
     
-    <title>SH.SF Blog | 万古长空，一朝风月</title>
+    <title>AlphaGo运行原理解析 | SH.SF Blog | 万古长空，一朝风月</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-    <meta name="description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+    <meta name="keywords" content="">
+    <meta name="description" content="欢迎使用 Cmd Markdown 编辑阅读器 标签: Markdown我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：   整理知识，学习笔记 发布日记，杂文，所见所想 撰写发布技术文稿（代码支持） 撰写发布学术论文（LaTe">
 <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SH.SF Blog">
-<meta property="og:url" content="/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlphaGo运行原理解析">
+<meta property="og:url" content="/2017/05/27/Cmd Markdown 编辑阅读器/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta property="og:description" content="欢迎使用 Cmd Markdown 编辑阅读器 标签: Markdown我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：   整理知识，学习笔记 发布日记，杂文，所见所想 撰写发布技术文稿（代码支持） 撰写发布学术论文（LaTe">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/logo.png">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/toolbar-editor.png">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/toolbar-manager.jpg">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/toolbar-reader.jpg">
+<meta property="og:image" content="https://www.zybuluo.com/static/img/file-list.png">
+<meta property="og:updated_time" content="2017-05-27T21:39:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SH.SF Blog">
-<meta name="twitter:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta name="twitter:title" content="AlphaGo运行原理解析">
+<meta name="twitter:description" content="欢迎使用 Cmd Markdown 编辑阅读器 标签: Markdown我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，Cmd Markdown 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：   整理知识，学习笔记 发布日记，杂文，所见所想 撰写发布技术文稿（代码支持） 撰写发布学术论文（LaTe">
+<meta name="twitter:image" content="https://www.zybuluo.com/static/img/logo.png">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -46,7 +53,7 @@
 <body>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -65,7 +72,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 Home
@@ -118,7 +125,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">SH.SF Blog</div>
+        <div class="flex-col header-title ellipsis">AlphaGo运行原理解析</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,13 +144,17 @@
         
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">SH.SF Blog</h1>
+        <h1 class="title">AlphaGo运行原理解析</h1>
         <h5 class="subtitle">
             
-                万古长空，一朝风月
+                <time datetime="2017-05-27T18:51:22.000Z" itemprop="datePublished" class="page-time">
+  2017-05-27
+</time>
+
+
             
         </h5>
     </div>
@@ -153,96 +164,38 @@
 
 </header>
 
+
 <div class="container body-wrap">
-
-    <ul class="post-list">
     
-        <li class="post-list-item fade">
-            <article id="post-AlphaGo运行原理解析"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
-
-
-
-        
-
-    </div>
-
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#欢迎使用-Cmd-Markdown-编辑阅读器"><span class="post-toc-number">1.</span> <span class="post-toc-text">欢迎使用 Cmd Markdown 编辑阅读器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Windows-Mac-Linux-全平台客户端"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">Windows/Mac/Linux 全平台客户端</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是-Markdown"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是 Markdown</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-制作一份待办事宜-Todo-列表"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">1. 制作一份待办事宜 Todo 列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-书写一个质能守恒公式-LaTeX-e-mc-2"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">2. 书写一个质能守恒公式[^LaTeX] $e=mc^2$</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-高亮一段代码-code"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">3. 高亮一段代码[^code]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-高效绘制-流程图"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">4. 高效绘制 流程图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-高效绘制-序列图"><span class="post-toc-number">1.1.5.</span> <span class="post-toc-text">5. 高效绘制 序列图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-高效绘制-甘特图"><span class="post-toc-number">1.1.6.</span> <span class="post-toc-text">6. 高效绘制 甘特图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-绘制表格"><span class="post-toc-number">1.1.7.</span> <span class="post-toc-text">7. 绘制表格</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-更详细语法说明"><span class="post-toc-number">1.1.8.</span> <span class="post-toc-text">8. 更详细语法说明</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是-Cmd-Markdown"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">什么是 Cmd Markdown</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-实时同步预览"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">1. 实时同步预览</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-编辑工具栏"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">2. 编辑工具栏</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-编辑模式"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">3. 编辑模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-实时的云端文稿"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">4. 实时的云端文稿</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-离线模式"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">5. 离线模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-管理工具栏"><span class="post-toc-number">1.2.6.</span> <span class="post-toc-text">6. 管理工具栏</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-阅读工具栏"><span class="post-toc-number">1.2.7.</span> <span class="post-toc-text">7. 阅读工具栏</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-阅读模式"><span class="post-toc-number">1.2.8.</span> <span class="post-toc-text">8. 阅读模式</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-标签、分类和搜索"><span class="post-toc-number">1.2.9.</span> <span class="post-toc-text">9. 标签、分类和搜索</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-文稿发布和分享"><span class="post-toc-number">1.2.10.</span> <span class="post-toc-text">10. 文稿发布和分享</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
     
+<article id="post-Cmd Markdown 编辑阅读器"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">AlphaGo运行原理解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
+
+            
 
 
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/27/AlphaGo运行原理解析/">AlphaGo运行原理解析</a>
-    </h3>
-  
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
 
+            
 
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为$ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1.2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
-<p>有以上定义，我们就把围棋问题转化为</p>
-<blockquote>
-<p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
-</blockquote>
-<p>接下来的问题是，如何解决这样一个问题呢？</p>
-<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）</p>
-
-    
-
-        <a href="/2017/05/27/AlphaGo运行原理解析/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-Cmd Markdown 编辑阅读器"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/27/Cmd Markdown 编辑阅读器/">AlphaGo运行原理解析</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h1 id="欢迎使用-Cmd-Markdown-编辑阅读器"><a href="#欢迎使用-Cmd-Markdown-编辑阅读器" class="headerlink" title="欢迎使用 Cmd Markdown 编辑阅读器"></a>欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="欢迎使用-Cmd-Markdown-编辑阅读器"><a href="#欢迎使用-Cmd-Markdown-编辑阅读器" class="headerlink" title="欢迎使用 Cmd Markdown 编辑阅读器"></a>欢迎使用 Cmd Markdown 编辑阅读器</h1><hr>
 <p>标签: Markdown<br>我们理解您需要更便捷更高效的工具记录思想，整理笔记、知识，并将其中承载的价值传播给他人，<strong>Cmd Markdown</strong> 是我们给出的答案 —— 我们为记录思想和分享知识提供更专业的工具。 您可以使用 Cmd Markdown：</p>
 <blockquote>
 <ul>
@@ -357,165 +310,171 @@
 <p>[^LaTeX]: 支持 <strong>LaTeX</strong> 编辑显示支持，例如：$\sum_{i=1}^n a_i=0$， 访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax</a> 参考更多使用方法。</p>
 <p>[^code]: 代码高亮功能支持包括 Java, Python, JavaScript 在内的，<strong>四十一</strong>种主流编程语言。</p>
 
-    
+        </div>
 
-        <a href="/2017/05/27/Cmd Markdown 编辑阅读器/" class="post-more waves-effect waves-button">
-            Continue reading...
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-05-27T21:39:28.000Z" itemprop="dateUpdated">2017-05-27 14:39:28</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="SH.SF">
+            SH.SF
         </a>
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-清欢"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-14 09:26:55" datetime="2017-05-14T16:26:55.000Z"  itemprop="datePublished">2017-05-14</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/14/清欢/">清欢 - 林清玄</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>少年时代读到苏轼的一阕词，非常喜欢，到现在还能背诵：</p>
-<blockquote>
-<p>细雨斜风作晓寒，淡烟疏柳媚晴滩，入淮清洛渐漫漫。<br> 雪沫乳花浮午盏，蓼茸蒿笋试春盘，人间有味是清欢。</p>
+    </footer>
 </blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
 
-        <a href="/2017/05/14/清欢/" class="post-more waves-effect waves-button">
-            Continue reading...
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/Cmd Markdown 编辑阅读器/&title=《AlphaGo运行原理解析》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-English-abbreviation"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-13 17:29:00" datetime="2017-05-14T00:29:00.000Z"  itemprop="datePublished">2017-05-13</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/13/English-abbreviation/">English-abbreviation</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>一些常用的英语缩写的总结</p>
-    
-
-        <a href="/2017/05/13/English-abbreviation/" class="post-more waves-effect waves-button">
-            Continue reading...
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英语积累/">英语积累</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-有关中国诗的那些事"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-13 16:40:00" datetime="2017-05-13T23:40:00.000Z"  itemprop="datePublished">2017-05-13</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/13/有关中国诗的那些事/">有关中国诗的那些事</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>没有沉淀，文字永远上不了档次。难得空闲，读了些诗，有些感受。</p>
-<h3 id="韦应物"><a href="#韦应物" class="headerlink" title="韦应物"></a>韦应物</h3>
-    
-
-        <a href="/2017/05/13/有关中国诗的那些事/" class="post-more waves-effect waves-button">
-            Continue reading...
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/Cmd Markdown 编辑阅读器/&title=《AlphaGo运行原理解析》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/Cmd Markdown 编辑阅读器/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AlphaGo运行原理解析》 — SH.SF Blog&url=/2017/05/27/Cmd Markdown 编辑阅读器/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/Cmd Markdown 编辑阅读器/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
     </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
 
     
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/05/27/AlphaGo运行原理解析/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">AlphaGo运行原理解析</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/14/清欢/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">清欢 - 林清玄</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
 
 </div>
 
@@ -556,7 +515,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/&title=SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/Cmd Markdown 编辑阅读器/&title=《AlphaGo运行原理解析》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -566,22 +525,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/&title=SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/Cmd Markdown 编辑阅读器/&title=《AlphaGo运行原理解析》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/Cmd Markdown 编辑阅读器/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SH.SF Blog&url=/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AlphaGo运行原理解析》 — SH.SF Blog&url=/2017/05/27/Cmd Markdown 编辑阅读器/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/Cmd Markdown 编辑阅读器/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -592,7 +551,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH4AAAB+CAAAAADHSPpUAAAA90lEQVR42u3aMQ7EIAxE0dz/0qTdIqAZMyGw+lRIAR6NhQ25Lrm1n+Z+DTR4+Bf4NmzuGH08PPwOfC8ixv1e4ClrwsOfxSskPPz/8W4fHn5n3k2klCAM53rw8FFer4JrwRar7+HhQ3wz28zch9Xg4T/i9YBJXarCw+/Djz8o6ZfCGBkfPPxCPvXa5c6Ch1/P6wdJb+la4NnnGDx8lJ+/GB0D0tbh4ZfztZIYHv50vpZsKaEYvt+Fh3+Br5UQ47nG5uDhP+Xd34ZqgQcPfy6vHCrGpSo8/CG8PmbqCRkefgmvJFuph7RimQEPH+X1KthNs2KbgIdP8jcG95AIc0hGzAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByElEQVR42u3aSW7DMBAEQP//084DHCvdHIo2guJJ8CIWdRjMoscjXs+X9frt9e+Tf21buLi4Y+7zciXcd3e7/vz6/m/3wsXFPch9t3H+m+v/Xgey4v64uLhfyW1TnOQAuLi4/4O7VvB8LJDh4uIucZPiJ09ikvLp9loNFxd3wM27lPdd39LfxcXFXeI+y9WmMpMm6S/3x8XFPcLNA8quQUibvuDi4p7n5q2NItCUqUxxJFxc3CPcSfsy36Ztr0QeXFzc27h7m55r/Y3iwLi4uEe4a7fbdd22V3Bxcc9w5yfL2yX5qOaP/g0uLu7N3Emrog1MbTOljru4uLhHuG2Yyxsi+bhl9FoGLi7uErcdhyShZ368t7vg4uIe4ebFTIuYj1oX+ze4uLibuPkAY576rA1mol4OLi7uDdz29Yi2HpmMcut3QHBxcTdx84bm2ooyrLUUBxcXdyt3vmUbqtrPH5OnhYuLu8RtA0pSqCSpUj5oWQt/uLi4c+5a8Gqbp8kjiB4NLi7uQW67cTEK3ZW44OLifjG3TVY2D2VxcXG/kpsPS/LgVYxwcHFxD3KT4icpUZLSKCmrcHFxP8udVxztBm2rFBcX9yD3B3HlcbA83Z0fAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
@@ -600,7 +559,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 

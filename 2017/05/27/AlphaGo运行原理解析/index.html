@@ -25,17 +25,17 @@
     
     
     <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
-    <meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec S$ 下，">
+    <meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec s$ 下，">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AlphaGo运行原理解析">
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec S$ 下，">
-<meta property="og:updated_time" content="2017-05-27T21:03:10.000Z">
+<meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec s$ 下，">
+<meta property="og:updated_time" content="2017-05-27T21:39:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo运行原理解析">
-<meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec S$ 下，">
+<meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为$ \vec s$ （state首字母）$$\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}$$假设状态 $\vec s$ 下，">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a></li></ol>
         </nav>
     </aside>
     
@@ -193,11 +193,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为$ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}<br>$$<br>假设状态 $\vec S$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1.2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong></p>
+            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为$ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1.2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
 <p>有以上定义，我们就把围棋问题转化为</p>
 <blockquote>
 <p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
 </blockquote>
+<p>接下来的问题是，如何解决这样一个问题呢？</p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）</p>
 
         </div>
 
@@ -205,7 +207,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-27T21:03:10.000Z" itemprop="dateUpdated">2017-05-27 14:03:10</time>
+    Last updated: <time datetime="2017-05-27T21:39:32.000Z" itemprop="dateUpdated">2017-05-27 14:39:32</time>
 </span><br>
 
 
@@ -288,9 +290,9 @@
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2017/05/14/清欢/" id="post-next" class="post-nav-link">
+      <a href="/2017/05/27/Cmd Markdown 编辑阅读器/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">清欢 - 林清玄</h4>
+        <h4 class="title">AlphaGo运行原理解析</h4>
       </a>
     </div>
   
