@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-27T18:33:34.000Z</updated>
+  <updated>2017-05-27T18:36:52.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="/2017/05/27/testImage/"/>
     <id>/2017/05/27/testImage/</id>
     <published>2017-05-27T08:40:01.000Z</published>
-    <updated>2017-05-27T18:33:34.000Z</updated>
+    <updated>2017-05-27T18:36:52.000Z</updated>
     
-    <content type="html"><![CDATA[<center><img src="/2017/05/27/testImage/bigdata.png" width="50%" height="50%"></center>]]></content>
+    <content type="html"><![CDATA[<center><img src="/2017/05/27/testImage/bigdata.png" width="50%" height="50%" alt="Big Data"></center>]]></content>
     
     <summary type="html">
     
-      &lt;center&gt;&lt;img src=&quot;/2017/05/27/testImage/bigdata.png&quot; width=&quot;50%&quot; height=&quot;50%&quot;&gt;&lt;/center&gt;
+      &lt;center&gt;&lt;img src=&quot;/2017/05/27/testImage/bigdata.png&quot; width=&quot;50%&quot; height=&quot;50%&quot; alt=&quot;Big Data&quot;&gt;&lt;/center&gt;
     
     </summary>
     
