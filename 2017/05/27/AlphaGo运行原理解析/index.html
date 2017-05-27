@@ -18,22 +18,23 @@
     
     
     
-    <title>Tags: 英语积累 | SH.SF Blog | 万古长空，一朝风月</title>
+    <title>AlphaGo运行原理解析 | SH.SF Blog | 万古长空，一朝风月</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+    <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
     <meta name="description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
-<meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SH.SF Blog">
-<meta property="og:url" content="/tags/英语积累/index.html">
+<meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlphaGo运行原理解析">
+<meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
 <meta property="og:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta property="og:updated_time" content="2017-05-27T19:04:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SH.SF Blog">
+<meta name="twitter:title" content="AlphaGo运行原理解析">
 <meta name="twitter:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
@@ -46,7 +47,7 @@
 <body>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -79,7 +80,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
@@ -118,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Tags: 英语积累</div>
+        <div class="flex-col header-title ellipsis">AlphaGo运行原理解析</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,97 +138,217 @@
         
     </div>
 </header>
-<header class="content-header tags-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Tags: 英语积累</h1>
+        <h1 class="title">AlphaGo运行原理解析</h1>
         <h5 class="subtitle">
+            
+                <time datetime="2017-05-27T18:51:22.000Z" itemprop="datePublished" class="page-time">
+  2017-05-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
             
         </h5>
     </div>
 
     
-<div class="tabs-bar container">
-    <nav class="tags-list">
-        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
-            ">All</a>
-        
-
-            <a href="/tags/AlphaGo/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">AlphaGo</a>
-
-        
-
-            <a href="/tags/CNN/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">CNN</a>
-
-        
-
-            <a href="/tags/MCTS/" style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">MCTS</a>
-
-        
-
-            <a href="/tags/Deep-Learning/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">Deep Learning</a>
-
-        
-
-            <a href="/tags/英语积累/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">英语积累</a>
-
-        
-
-            <a href="/tags/随笔/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">随笔</a>
-
-        
-    </nav>
-    <!-- PC show more-->
-    <div class="tags-list-more">
-        <a href="javascript:;" onclick="BLOG.tabBar(this)" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
-    </div>
-</div>
-
 
 
 </header>
 
-<div class="container body-wrap fade">
+
+<div class="container body-wrap">
     
-            <div class="waterfall">
-          
+<article id="post-AlphaGo运行原理解析"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
-            <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-05-13 17:29:00" datetime="2017-05-14T00:29:00.000Z"  itemprop="datePublished">2017-05-13</time>
+    <div class="post-card">
+        <h1 class="post-card-title">AlphaGo运行原理解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
 
-      
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
 
 
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-05-27T19:04:46.000Z" itemprop="dateUpdated">2017-05-27 12:04:46</time>
+</span><br>
+
+
+        
     </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="SH.SF">
+            SH.SF
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
     
 
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《AlphaGo运行原理解析》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《AlphaGo运行原理解析》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AlphaGo运行原理解析》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
 
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/13/English-abbreviation/">English-abbreviation</a>
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/27/testImage/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">testImage</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
     </h3>
-  
-
-
-
-    
-    <div class="post-footer">
+    <ul class="reward-items">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英语积累/">英语积累</a></li></ul>
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
-    </div>
-    
-  </article>
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
 </div>
 
-        
-            </div>
-        
-    
-</div>
 
+
+</div>
 
         <footer class="footer">
     <div class="top">
@@ -266,7 +387,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/tags/英语积累/&title=SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《AlphaGo运行原理解析》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -276,22 +397,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/tags/英语积累/&title=SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《AlphaGo运行原理解析》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/tags/英语积累/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SH.SF Blog&url=/tags/英语积累/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AlphaGo运行原理解析》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/tags/英语积累/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -302,7 +423,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABXUlEQVR42u3aQQ7DIAwAwfz/0/RaqcVdO7RS7eUURYkzOQDGcF24raf2en/35O6tY02WrEasFbbdM4RL4mzpsmSNZO166O6a4OI4HwyyZMkC4eIhQJYsWb8fIHjSLEuWrJjFw/FFbPxLx3J5WbJasHhV5/71V+pbsmT9OWslGy/v8kHhzVdkyRrG4h04nlazP4A2b2TJGsMiaWsclFCyy11ZsmSR0NnCEI+WHm9kyWrEunOkgCMShSRZskay4iT47JL1wIk/WbLascgGCZloTxWk0B6sLFlNWXzhml6I4q1QNDTIkjWYVZvID7wlS9ZIFu/efFKv5cOyZE1jFY8C8Om2tkUqS9YwVu1cXDZFzl7LkjWTxYs+fNquLWtRBiFLVmsWOTTADx9kxyFUY5YlS9aNAwTZRFyWLFm8eESWqbXpX5asyaxaJyfbnzyCLFmTWcWkFn8yWwKWJWsY6wEVt5LKuL7iFQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABz0lEQVR42u3awa7CMAwEQP7/p/uuSDzK2m5SkCYnBKWdXlaOnccjXsfTev3m9dfna87v+VixcHFxx9zjdJ1zkzu8e438Dri4uHdxz4PmPKSix7y5Mjfg4uJ+PzcvhpJ74uLi/jq3F3C3BRkuLu6Am2x+kqg6Z1WLJFxc3Lu4eeGy7vOS/i4uLm6LexRX0vRMSp/m03Fxcbdw80DJBy15MVR9Li4u7h7uVUHW2xrlAXdxiYOLixtwqwenqkey8mLow2dcXNwt3OSiZNuTt0onpRIuLu4ebj60SF4pibPe4AQXF3cnNz9CUd32VAelhbjExcXdwu2VL9WjG/lwpdBaxcXFXcD9sCuKY653n2bi4uLiLuZOZrO9b3pjmNFMGBcXt19dFNqmeSNjMmqNajFcXNxl3MlRqt42KR+9RJMfXFzc7dz51mhSPJWDDBcX91JuL6Sqw9fkBaISBxcXdxn3KK68bZq0QavNEVxc3D3caqBUj2X0iqd5/OHi4s65+RGKfCyab5PKQYaLi7uRu2K4Mi9c/vkXLi7uV3InzdDq610QZLi4uFu480Nao5EMLi7uRm7e1Kg2UqtHtS5ri+Di4g64vdlsL5LmEYmLi7uY+wdKTrlot5QJZwAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
@@ -310,7 +431,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
