@@ -25,17 +25,17 @@
     
     
     <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
-    <meta name="description" content="问题分析围棋问题，棋盘 $1919=361$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时*棋盘的状态">
+    <meta name="description" content="问题分析围棋问题，棋盘 $1919=36$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec S$ 描述此时*棋盘的状态">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AlphaGo运行原理解析">
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="问题分析围棋问题，棋盘 $1919=361$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时*棋盘的状态">
-<meta property="og:updated_time" content="2017-05-27T20:10:17.000Z">
+<meta property="og:description" content="问题分析围棋问题，棋盘 $1919=36$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec S$ 描述此时*棋盘的状态">
+<meta property="og:updated_time" content="2017-05-27T20:13:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlphaGo运行原理解析">
-<meta name="twitter:description" content="问题分析围棋问题，棋盘 $1919=361$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时*棋盘的状态">
+<meta name="twitter:description" content="问题分析围棋问题，棋盘 $1919=36$ 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec S$ 描述此时*棋盘的状态">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -193,7 +193,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 $19<em>19=361$ 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<em>*棋盘的状态</em></em></p>
+            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 $19<em>19=36$ 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec S$ <strong>描述</strong>此时<em>*棋盘的状态</em></em></p>
 
         </div>
 
@@ -201,7 +201,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-27T20:10:17.000Z" itemprop="dateUpdated">2017-05-27 13:10:17</time>
+    Last updated: <time datetime="2017-05-27T20:13:57.000Z" itemprop="dateUpdated">2017-05-27 13:13:57</time>
 </span><br>
 
 
