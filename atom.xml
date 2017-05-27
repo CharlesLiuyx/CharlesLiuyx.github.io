@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-27T03:38:26.000Z</updated>
+  <updated>2017-05-27T09:05:54.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>testImage</title>
+    <link href="/2017/05/27/testImage/"/>
+    <id>/2017/05/27/testImage/</id>
+    <published>2017-05-27T08:40:01.000Z</published>
+    <updated>2017-05-27T09:05:54.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/27/testImage/bigdata.png" alt="logo" title="">
+                </div>
+                <div class="image-caption">logo</div>
+            </figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;figure class=&quot;image-bubble&quot;&gt;
+                &lt;div class=&quot;img-lightbox&quot;&gt;
+                    &lt;div class=&quot;overlay&quot;&gt;&lt;/div&gt;
+                   
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>清欢 - 林清玄</title>
