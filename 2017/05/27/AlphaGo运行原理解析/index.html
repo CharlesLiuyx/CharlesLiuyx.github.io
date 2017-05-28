@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-28T09:20:24.000Z">
+<meta property="og:updated_time" content="2017-05-28T09:24:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出了解AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析 围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -258,7 +258,7 @@
 </ul>
 <p>那么问题就来了，如果这一盘赢了，那意味着这一连串的下法至少比对面那个二逼要明智一些，毕竟我最后赢了，那么我把这次落子方法 $(\vec s_0, \vec a_0)$ 记下来，并把它的分值变化：<br>$$<br>\text{新分数} = \text{初始分数} + r \tag{2-2}<br>$$<br>同理，可以把之后所有随机出来的落子方法 $(\vec s_i, \vec a_i)$ 都应用2-2公式，即都加<code>1</code>分。之后开始第二次模拟，这一次，我们对棋盘不是一无所知了，至少在  $\vec s_0$ 状态我们知道落子方法  $\vec a_0$ 的分值是2，其他都是1，我们使用这个数据的方法是：在这次<strong>随机</strong>中，<strong>我们随机到  $\vec a_0$ 状态的概率要比其他方法高一点</strong>。</p>
 <p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。</p>
-<p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。这种过程在论文里被称为<code>**Rollout**</code></p>
+<p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。这种过程在论文里被称为<strong>Rollout</strong></p>
 <p>蒙特卡洛搜索树的方法十分的深刻精巧，充满的创造力，它有一些很有意思的特点：</p>
 <ul>
 <li>没有任何人工决策的<code>if else</code>逻辑，完全依照规则本身，通过不断的想象（随机）来进行自我对弈，最后提升这一步的质量。有意思的是，其实这也是遵照了人类下棋的思维模式，人类中，水平越高的棋手，算的棋越多，只是人类对于每一个落子的判断能力更加强大，思考中的棋路，也比<strong>随机</strong>方式有效的多，但是机器胜在人多。<em>注意，这一个特点也为之后的提高提供了思路</em>。</li>
@@ -391,7 +391,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-28T09:20:24.000Z" itemprop="dateUpdated">2017-05-28 02:20:24</time>
+    Last updated: <time datetime="2017-05-28T09:24:37.000Z" itemprop="dateUpdated">2017-05-28 02:24:37</time>
 </span><br>
 
 
