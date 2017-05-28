@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-27T21:58:17.000Z</updated>
+  <updated>2017-05-28T03:09:06.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,22 +20,58 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-27T21:58:17.000Z</updated>
+    <updated>2017-05-28T03:09:06.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为$ \vec s$ （state首字母）</p>
+    <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
-<p>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1.2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
-<p>有以上定义，我们就把围棋问题转化为</p>
+<p>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1.1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）。<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1.2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
+<p>有以上定义，我们就把围棋问题转化为。</p>
 <blockquote>
 <p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
 </blockquote>
 <p>接下来的问题是，如何解决这样一个问题呢？</p>
-<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）</p>
+<p>先上论文！干货第一</p>
+<p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="external">Mastering the game of Go with deep neural networks and tree search</a></p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
+<h2 id="深度卷积神经网络"><a href="#深度卷积神经网络" class="headerlink" title="深度卷积神经网络"></a>深度卷积神经网络</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
+<p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）</p>
+<p>大致可以理解为：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
+                </div>
+                <div class="image-caption">CNN例子</div>
+            </figure>
+<p>对一副图像进行处理，给定很多样本进行训练，使得最后的神经网络可以获得指定（<strong>具有分类效果</strong>）的输出。</p>
+<p>比如，根据上图可以观察到（这是一个已经训练好的神经网络），最右侧的<strong>输出</strong>是<code>[0.01 , 0.04 , 0.94 , 0.02]</code>，其中第三个值<code>0.94</code>代表的是boat，接近1，所以我们判断这幅图片中有船这个物体（类似的，如果使用这幅图像进行训练，那么<strong>指定</strong>输出应该是[0, 0, 1, 0]，因为图中只有船这个物体）。</p>
+<p>总而言之，<strong><code>CNN</code>可以帮助我们提取出图像中有实际含义的特征</strong>，那么这和围棋又有什么关系呢？我们来看看Deepmind团队是怎么运用<code>CNN</code>来解决围棋问题。</p>
+<h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
+<p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行$ \vec a$的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
+<p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>，48是这个位置的其他信息，比如气之类的，激励函数用的tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
+<p>使用训练的结果，我们可以得到一个神经网络用来计算对于每一个当前棋盘状态 $ \vec s$ ，所对应的落子向量 $ \vec a$ 的概率分布（之所以是概率分布，是因为，计算好的神经网络，输出一般是一个0-1之间的浮点数，越接近1的点表示在这个位置越接近人类的风格，也可以等同于作为人类概率最大的落点）。<br>$$<br>\vec a=f(\vec s) \tag{2.1}<br>$$<br>根据公式2.1，我们记<code>f()</code>为<code>P_human()</code>，计算出来的直观结果，对应到棋盘上如下图，可以看到，红色的区域的值有60%，次大值位于右方，是35%（此图来自于AlphaGo论文）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/05/27/AlphaGo运行原理解析/Users/charlesliuyx/Github/lyxblog/source/_posts/AlphaGo运行原理解析/Policy" alt="Policy Network" title="Network.png">
+                </div>
+                <div class="image-caption">Network.png</div>
+            </figure>
+<h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone[1,5]</code>。</p>
+<p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把<code>P_human</code>和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
+<p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
+<p><strong>干货论文送上</strong> MCTS</p>
+<p><a href="https://github.com/papers-we-love/papers-we-love/blob/5a54fa883a813e81b1e54bfed9669fc8961dedb4/artificial_intelligence/efficient-selectivity-and-backup-operators-in-monte-carlo-tree-search.pdf" target="_blank" rel="external">Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search</a></p>
+<h2 id="MCTS-蒙特卡洛搜索树"><a href="#MCTS-蒙特卡洛搜索树" class="headerlink" title="MCTS 蒙特卡洛搜索树"></a>MCTS 蒙特卡洛搜索树</h2><p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种大智若愚的方法，它的基本思想是：</p>
+<ul>
+<li>面对一个空白棋盘 $\vec s_0$，最初我们对棋盘一无所知，假设所有落子的方法<strong>分值</strong>都相等，设为<code>1</code></li>
+<li>之后，<strong>【随机】</strong>从<code>361</code>种方法中选一种走法 $\vec a_0$，在这一步后，棋盘状态变为 $\vec s_1$</li>
+</ul>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;问题分析&quot;&gt;&lt;a href=&quot;#问题分析&quot; class=&quot;headerlink&quot; title=&quot;问题分析&quot;&gt;&lt;/a&gt;问题分析&lt;/h1&gt;&lt;p&gt;围棋问题，棋盘 &lt;code&gt;19 * 19 = 361&lt;/code&gt; 个交叉点可供落子，每个点三种状态，白（用&lt;code&gt;1&lt;/code&gt;表示），黑（用&lt;code&gt;-1&lt;/code&gt;表示），无子（用&lt;code&gt;0&lt;/code&gt;表示），用 $\vec s$ &lt;strong&gt;描述&lt;/strong&gt;此时&lt;strong&gt;棋盘的状态&lt;/strong&gt;，即棋盘的&lt;strong&gt;状态向量&lt;/strong&gt;记为$ \vec s$ （state首字母）&lt;/p&gt;
+      &lt;h1 id=&quot;问题分析&quot;&gt;&lt;a href=&quot;#问题分析&quot; class=&quot;headerlink&quot; title=&quot;问题分析&quot;&gt;&lt;/a&gt;问题分析&lt;/h1&gt;&lt;p&gt;围棋问题，棋盘 &lt;code&gt;19 * 19 = 361&lt;/code&gt; 个交叉点可供落子，每个点三种状态，白（用&lt;code&gt;1&lt;/code&gt;表示），黑（用&lt;code&gt;-1&lt;/code&gt;表示），无子（用&lt;code&gt;0&lt;/code&gt;表示），用 $\vec s$ &lt;strong&gt;描述&lt;/strong&gt;此时&lt;strong&gt;棋盘的状态&lt;/strong&gt;，即棋盘的&lt;strong&gt;状态向量&lt;/strong&gt;记为 $ \vec s$ （state首字母）。&lt;/p&gt;
     
     </summary>
     
