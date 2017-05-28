@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-28T08:33:18.000Z">
+<meta property="og:updated_time" content="2017-05-28T09:13:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出了解AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -135,7 +135,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -176,7 +176,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深度卷积神经网络"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">深度卷积神经网络</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积神经网络解决围棋问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">深度卷积神经网络解决围棋问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积网络策略的棋力"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">深度卷积网络策略的棋力</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS-蒙特卡洛搜索树"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">MCTS 蒙特卡洛搜索树</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#强化学习（Reinforcement-learning）”左右互搏-自我进化“"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">强化学习（Reinforcement learning）”左右互搏 自我进化“</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是强化学习"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">什么是强化学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用强化学习增强棋力"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">利用强化学习增强棋力</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">自对弈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算局部评价函数"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">计算局部评价函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">AlphaGo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">详解AlphaGo VS 樊麾 对局走下某一步的计算过程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四局的神之一手"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">第四局的神之一手</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#柯洁面对的AlphaGo-2-0"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">柯洁面对的AlphaGo 2.0</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对未来的展望"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">对未来的展望</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深度卷积神经网络——策略函数（Policy-Network）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">深度卷积神经网络——策略函数（Policy Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积神经网络解决围棋问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">深度卷积神经网络解决围棋问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积网络策略的棋力"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">深度卷积网络策略的棋力</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS-蒙特卡洛搜索树——Rollout"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">MCTS 蒙特卡洛搜索树——Rollout</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#强化学习（Reinforcement-learning）”左右互搏-自我进化“"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">强化学习（Reinforcement learning）”左右互搏 自我进化“</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是强化学习"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">什么是强化学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用强化学习增强棋力"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">利用强化学习增强棋力</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">自对弈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算局部评价函数"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">计算局部评价函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">AlphaGo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">详解AlphaGo VS 樊麾 对局走下某一步的计算过程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第四局的神之一手"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">第四局的神之一手</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#柯洁面对的AlphaGo-2-0"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">柯洁面对的AlphaGo 2.0</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对未来的展望"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">对未来的展望</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -214,7 +214,7 @@
 <p>先上论文！干货第一</p>
 <p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="external">Mastering the game of Go with deep neural networks and tree search</a></p>
 <h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
-<h2 id="深度卷积神经网络"><a href="#深度卷积神经网络" class="headerlink" title="深度卷积神经网络"></a>深度卷积神经网络</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
+<h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
 <p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）</p>
 <p>大致可以理解为：</p>
 <figure class="image-bubble">
@@ -243,7 +243,7 @@
 <p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
 <p><strong>干货论文送上</strong> MCTS</p>
 <p><a href="https://github.com/papers-we-love/papers-we-love/blob/5a54fa883a813e81b1e54bfed9669fc8961dedb4/artificial_intelligence/efficient-selectivity-and-backup-operators-in-monte-carlo-tree-search.pdf" target="_blank" rel="external">Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search</a></p>
-<h2 id="MCTS-蒙特卡洛搜索树"><a href="#MCTS-蒙特卡洛搜索树" class="headerlink" title="MCTS 蒙特卡洛搜索树"></a>MCTS 蒙特卡洛搜索树</h2><p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种<em>大智若愚</em>的方法，它的基本思想是：</p>
+<h2 id="MCTS-蒙特卡洛搜索树——Rollout"><a href="#MCTS-蒙特卡洛搜索树——Rollout" class="headerlink" title="MCTS 蒙特卡洛搜索树——Rollout"></a>MCTS 蒙特卡洛搜索树——Rollout</h2><p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种<em>大智若愚</em>的方法，它的基本思想是：</p>
 <p>首先模拟一盘对决，使用的思路很简单，<strong>随机</strong></p>
 <ul>
 <li>面对一个空白棋盘 $\vec s_0$，最初我们对棋盘一无所知，假设所有落子的方法<strong>分值</strong>都相等，设为<code>1</code></li>
@@ -252,7 +252,7 @@
 </ul>
 <p>那么问题就来了，如果这一盘赢了，那意味着这一连串的下法至少比对面那个二逼要明智一些，毕竟我最后赢了，那么我把这次落子方法 $(\vec s_0, \vec a_0)$ 记下来，并把它的分值变化：<br>$$<br>\text{新分数} = \text{初始分数} + r \tag{2-2}<br>$$<br>同理，可以把之后所有随机出来的落子方法 $(\vec s_i, \vec a_i)$ 都应用2-2公式，即都加<code>1</code>分。之后开始第二次模拟，这一次，我们对棋盘不是一无所知了，至少在  $\vec s_0$ 状态我们知道落子方法  $\vec a_0$ 的分值是2，其他都是1，我们使用这个数据的方法是：在这次<strong>随机</strong>中，<strong>我们随机到  $\vec a_0$ 状态的概率要比其他方法高一点</strong>。</p>
 <p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。</p>
-<p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。</p>
+<p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。这种过程在论文里被称为<code>**Rollout**</code></p>
 <p>蒙特卡洛搜索树的方法十分的深刻精巧，充满的创造力，它有一些很有意思的特点：</p>
 <ul>
 <li>没有任何人工决策的<code>if else</code>逻辑，完全依照规则本身，通过不断的想象（随机）来进行自我对弈，最后提升这一步的质量。有意思的是，其实这也是遵照了人类下棋的思维模式，人类中，水平越高的棋手，算的棋越多，只是人类对于每一个落子的判断能力更加强大，思考中的棋路，也比<strong>随机</strong>方式有效的多，但是机器胜在人多。<em>注意，这一个特点也为之后的提高提供了思路</em>。</li>
@@ -307,7 +307,7 @@
 <p>使用<code>P_human_plus</code>和<code>P_human</code>进行对弈，发现<code>P_human_plus</code>胜率80%，自对弈的方法被证明是有效的。（这里有一个想法，我在之前，一直加粗随机，之所以自对弈有效，就是因为整过MCTS过程中从来没有放弃过<strong>随机</strong>，如此一来，大量的计算，就更可能覆盖到更多的可能性，对提高棋力可以产生有效的作用，同时，因为概率的问题，不断的自我对弈肯定造成下棋的路数集中，后面也会有体现）</p>
 <p>但是事实并没有那么美好，<code>Aja Huang</code>发现，使用<code>P_human_plus</code>来代替<code>P_human</code>进行MCTS反而<strong>棋力会下降</strong>。</p>
 <p><code>Aja Huang</code>认为是<code>P_human_plus</code>走棋的路数太集中，而MCTS需要更加发散的选择才能有更好的效果。</p>
-<h3 id="计算局部评价函数"><a href="#计算局部评价函数" class="headerlink" title="计算局部评价函数"></a>计算局部评价函数</h3><p>既然<code>P_human_plus</code>效果不佳，那么只能使用局部评价函数 $v(\vec s)$ ，使用$v(\vec s)$可以让我们在MCTS的过程中不走完全局就发现<strong>已经必败</strong>，剪枝的效果十分明显</p>
+<h3 id="计算局部评价函数"><a href="#计算局部评价函数" class="headerlink" title="计算局部评价函数"></a>计算局部评价函数</h3><p>既然<code>P_human_plus</code>效果不佳，那么只能使用局部评价函数 $v(\vec s)$ ，此函数的功能就是，<strong>量化评估围棋局面</strong>使用$v(\vec s)$可以让我们在MCTS的过程中不走完全局就发现<strong>已经必败</strong>，剪枝的效果十分明显</p>
 <p>考虑到<code>P_human_plus</code>的下法太过集中，<code>Aja Huang</code>的策略是在训练 $v(\vec s)$ 时的策略是：</p>
 <ul>
 <li>开局先用<code>P_human</code>走<code>L</code>步，有利于生成更多局面</li>
@@ -333,7 +333,7 @@
 <li>到第<code>L</code>步后，改用<code>P_human_fast</code>把剩下的棋局走完，同时调用 $v(\vec s_L)$，评估局面的获胜概率</li>
 <li>按照如下规则更新整个树的分数</li>
 </ul>
-<p>$$<br>\text{新分数} = \text{调整后的初始分} + 0.5<em>\text{通过模拟得到的赢棋概率} + 0.5</em>\text{局面评估分} \tag {3-1}<br>$$</p>
+<p>$$<br>\text{新分数} = \text{调整后的初始分} + 0.5*\text{通过模拟得到的赢棋概率} + 0.5*\text{局面评估分} \tag {3-1}<br>$$</p>
 <ul>
 <li>前两项和原来一样<ul>
 <li>如果待更新的节点就是叶子节点，局面评估分就是 $v(\vec s_L)$ </li>
@@ -382,6 +382,10 @@
 <p>游戏AI是一个最容易想到的领域，只要能抽象出Action和State，那么这一套解决问题的方式就可以举一反三，让每一个1V1领域的游戏AI非常强大，至于合作领域的AI可能需要更大的计算量去计算，对于实际问题来说获得这样的AI有多大的经济价值值得推敲。</p>
 <p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来不愿意见到的。</p>
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
+<p>Reference </p>
+<p>知乎Tao Lei大神的回答</p>
+<p>知乎袁行远大声的回答</p>
+<p>其他文章中引用的论文</p>
 
         </div>
 
@@ -389,7 +393,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-28T08:33:18.000Z" itemprop="dateUpdated">2017-05-28 01:33:18</time>
+    最后更新时间：<time datetime="2017-05-28T09:13:47.000Z" itemprop="dateUpdated">2017-05-28 02:13:47</time>
 </span><br>
 
 
@@ -563,7 +567,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
