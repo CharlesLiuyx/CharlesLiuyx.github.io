@@ -25,13 +25,13 @@
     
     
     <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
-    <meta name="description" content="问题分析 围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
+    <meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出了解AlphaGo如何下棋">
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="问题分析 围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
+<meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/RL.png">
@@ -41,10 +41,10 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-28T09:24:37.000Z">
+<meta property="og:updated_time" content="2017-05-28T10:00:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出了解AlphaGo如何下棋">
-<meta name="twitter:description" content="问题分析 围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
+<meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="twitter:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
@@ -135,7 +135,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -203,8 +203,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><hr>
-<p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
+            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
 <p>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1-1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）。<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1-2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
 <p>有以上定义，我们就把围棋问题转化为。</p>
@@ -214,10 +213,8 @@
 <p>接下来的问题是，如何解决这样一个问题呢？</p>
 <p>先上论文！干货第一</p>
 <p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="external">Mastering the game of Go with deep neural networks and tree search</a></p>
-<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><hr>
-<p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
-<h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><hr>
-<p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
+<h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，OK，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
+<h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
 <p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）</p>
 <p>大致可以理解为：</p>
 <figure class="image-bubble">
@@ -230,8 +227,7 @@
 <p>对一副图像进行处理，给定很多样本进行训练，使得最后的神经网络可以获得指定（<strong>具有分类效果</strong>）的输出。</p>
 <p>比如，根据上图可以观察到（这是一个已经训练好的神经网络），最右侧的<strong>输出</strong>是<code>[0.01 , 0.04 , 0.94 , 0.02]</code>，其中第三个值<code>0.94</code>代表的是boat，接近1，所以我们判断这幅图片中有船这个物体（类似的，如果使用这幅图像进行训练，那么<strong>指定</strong>输出应该是[0, 0, 1, 0]，因为图中只有船这个物体）。</p>
 <p>总而言之，<strong><code>CNN</code>可以帮助我们提取出图像中有实际含义的特征</strong>，那么这和围棋又有什么关系呢？我们来看看Deepmind团队是怎么运用<code>CNN</code>来解决围棋问题。</p>
-<h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><hr>
-<p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
+<h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
 <p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行$ \vec a$的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
 <p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>，48是这个位置的其他信息，比如气之类的，激励函数用的tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
 <p>使用训练的结果，我们可以得到一个神经网络用来计算对于每一个当前棋盘状态 $ \vec s$ ，所对应的落子向量 $ \vec a$ 的概率分布（之所以是概率分布，是因为，计算好的神经网络，输出一般是一个0-1之间的浮点数，越接近1的点表示在这个位置越接近人类的风格，也可以等同于作为人类概率最大的落点。<br>$$<br>\vec a=f(\vec s) \tag{2-1}<br>$$<br>根据公式2.1，我们记<code>f()</code>为<code>P_human</code>，计算出来的直观结果，对应到棋盘上如下图，可以看到，红色的区域的值有60%，次大值位于右方，是35%（此图来自于AlphaGo论文）</p>
@@ -242,14 +238,12 @@
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
-<h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><hr>
-<p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone[1,5]</code>。</p>
+<h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone[1,5]</code>。</p>
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把<code>P_human</code>和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
 <p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
 <p><strong>干货论文送上</strong> MCTS</p>
 <p><a href="https://github.com/papers-we-love/papers-we-love/blob/5a54fa883a813e81b1e54bfed9669fc8961dedb4/artificial_intelligence/efficient-selectivity-and-backup-operators-in-monte-carlo-tree-search.pdf" target="_blank" rel="external">Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search</a></p>
-<h2 id="MCTS-蒙特卡洛搜索树——Rollout"><a href="#MCTS-蒙特卡洛搜索树——Rollout" class="headerlink" title="MCTS 蒙特卡洛搜索树——Rollout"></a>MCTS 蒙特卡洛搜索树——Rollout</h2><hr>
-<p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种<em>大智若愚</em>的方法，它的基本思想是：</p>
+<h2 id="MCTS-蒙特卡洛搜索树——Rollout"><a href="#MCTS-蒙特卡洛搜索树——Rollout" class="headerlink" title="MCTS 蒙特卡洛搜索树——Rollout"></a>MCTS 蒙特卡洛搜索树——Rollout</h2><p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种<em>大智若愚</em>的方法，它的基本思想是：</p>
 <p>首先模拟一盘对决，使用的思路很简单，<strong>随机</strong></p>
 <ul>
 <li>面对一个空白棋盘 $\vec s_0$，最初我们对棋盘一无所知，假设所有落子的方法<strong>分值</strong>都相等，设为<code>1</code></li>
@@ -271,10 +265,8 @@
 <p>更多的，策略是，先以<code>P_human</code>开局，走前面大概20步，之后再使用<code>P_human_fast</code>走完剩下的到最后。兼顾速度和准确性。</p>
 <p>综合了深度卷积神经网络和MCTS两种方案，此时的围棋程序已经可以战胜所有其他电脑，虽然和其他人类职业选手还有一定的差距。</p>
 <p>2015年2月，<code>Aja Huang</code>在Deepmind的同事在顶级学术期刊nature上发表的文章 <a href="http://gnusha.org/~nmz787/pdf/Human-level_control_through_deep_reinforcement_learning.pdf" target="_blank" rel="external">Human-level control through deep reinforcement learning</a> 用神经网络打游戏。这篇文章，给AlphaGo提供的了新的方向</p>
-<h2 id="强化学习（Reinforcement-learning）”左右互搏-自我进化“"><a href="#强化学习（Reinforcement-learning）”左右互搏-自我进化“" class="headerlink" title="强化学习（Reinforcement learning）”左右互搏 自我进化“"></a>强化学习（Reinforcement learning）”左右互搏 自我进化“</h2><hr>
-<p>首先说说这篇论文干了一件什么事情，Deepmind团队的大牛们使用强化学习的方法在红白机上打通了200多个游戏，大多数得分都要比人好。</p>
-<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><hr>
-<p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="external">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="external">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。</p>
+<h2 id="强化学习（Reinforcement-learning）”左右互搏-自我进化“"><a href="#强化学习（Reinforcement-learning）”左右互搏-自我进化“" class="headerlink" title="强化学习（Reinforcement learning）”左右互搏 自我进化“"></a>强化学习（Reinforcement learning）”左右互搏 自我进化“</h2><p>首先说说这篇论文干了一件什么事情，Deepmind团队的大牛们使用强化学习的方法在红白机上打通了200多个游戏，大多数得分都要比人好。</p>
+<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="external">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="external">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。</p>
 <p>对于强化学习（Reinforcement learning），它是机器学习的一个分支，特别善於控制一只能够在某个环境下<strong>自主行动</strong>的个体 (autonomous <strong>agent</strong>)，透过和<strong>环境</strong>之间的互动，例如 sensory perception 和 rewards，而不断改进它的 <strong>行为</strong>。</p>
 <p>比如，吃豆人游戏，自主行动的个体就是控制的吃豆人，环境就是迷宫，奖励就是吃到的豆子，行为就是上下左右的操作。</p>
 <p>强化学习的输入是</p>
@@ -297,11 +289,15 @@
                 <div class="image-caption">打墙游戏的评价函数图</div>
             </figure>
 <p>我们可以发现，强化学习的基本思路和MCTS后异曲同工之妙，也是在对游戏完全没有了解的情况，通过不断的训练（进行多盘对弈，和获得进行行动后的分数反馈）来进行训练，和自我提升。</p>
-<h3 id="利用强化学习增强棋力"><a href="#利用强化学习增强棋力" class="headerlink" title="利用强化学习增强棋力"></a>利用强化学习增强棋力</h3><hr>
-<p>参考这种思路，<code>Aja Huang</code>给围棋也设计了一个评价函数 $v(\vec s)$ ，在利用<code>P_human</code>走了开局的20步后，不需要搜索到底，<strong>如果有一个 $v(\vec s_i)$ （i为当前状态）可以直接判断是否能赢，得到最后的结果<code>r</code></strong>，可以从效率上进一步增加MCTS的威力。</p>
+<h3 id="利用强化学习增强棋力"><a href="#利用强化学习增强棋力" class="headerlink" title="利用强化学习增强棋力"></a>利用强化学习增强棋力</h3><p>参考这种思路，<code>Aja Huang</code>给围棋也设计了一个评价函数 $v(\vec s)$ ，在利用<code>P_human</code>走了开局的20步后，不需要搜索到底，<strong>如果有一个 $v(\vec s_i)$ （i为当前状态）可以直接判断是否能赢，得到最后的结果<code>r</code></strong>，可以从效率上进一步增加MCTS的威力。</p>
 <p>很可惜的，现有的人类棋谱不足以得出这个评价函数。所以<code>Aja Huang</code>决定用<strong>机器和机器对弈</strong>的方法来创造新的对局，也就是讲起AlphaGo的左右互搏。</p>
-<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><hr>
-<p><img src="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构"></p>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
+                </div>
+                <div class="image-caption">神经网络的训练过程和结构</div>
+            </figure>
 <ul>
 <li>先用<code>P_human</code>和<code>P_human</code>对弈，比如1万盘，得到1万个新棋谱，加入到训练集中，训练出<code>P_human_1</code>。</li>
 <li>使用<code>P_human_1</code>和<code>P_human_1</code>对弈，得到另1万个新棋谱，加入训练集，训练出<code>P_human_2</code>。</li>
@@ -311,8 +307,7 @@
 <p>使用<code>P_human_plus</code>和<code>P_human</code>进行对弈，发现<code>P_human_plus</code>胜率80%，自对弈的方法被证明是有效的。（这里有一个想法，我在之前，一直加粗随机，之所以自对弈有效，就是因为整过MCTS过程中从来没有放弃过<strong>随机</strong>，如此一来，大量的计算，就更可能覆盖到更多的可能性，对提高棋力可以产生有效的作用，同时，因为概率的问题，不断的自我对弈肯定造成下棋的路数集中，后面也会有体现）</p>
 <p>但是事实并没有那么美好，<code>Aja Huang</code>发现，使用<code>P_human_plus</code>来代替<code>P_human</code>进行MCTS反而<strong>棋力会下降</strong>。</p>
 <p><code>Aja Huang</code>认为是<code>P_human_plus</code>走棋的路数太集中，而MCTS需要更加发散的选择才能有更好的效果。</p>
-<h3 id="计算局部评价函数——Value-Network"><a href="#计算局部评价函数——Value-Network" class="headerlink" title="计算局部评价函数——Value Network"></a>计算局部评价函数——Value Network</h3><hr>
-<p>既然<code>P_human_plus</code>效果不佳，那么只能使用局部评价函数 $v(\vec s)$ ，此函数的功能就是，<strong>量化评估围棋局面</strong>使用$v(\vec s)$可以让我们在MCTS的过程中不走完全局就发现<strong>已经必败</strong>，剪枝的效果十分明显</p>
+<h3 id="计算局部评价函数——Value-Network"><a href="#计算局部评价函数——Value-Network" class="headerlink" title="计算局部评价函数——Value Network"></a>计算局部评价函数——Value Network</h3><p>既然<code>P_human_plus</code>效果不佳，那么只能使用局部评价函数 $v(\vec s)$ ，此函数的功能就是，<strong>量化评估围棋局面</strong>使用$v(\vec s)$可以让我们在MCTS的过程中不走完全局就发现<strong>已经必败</strong>，剪枝的效果十分明显</p>
 <p>考虑到<code>P_human_plus</code>的下法太过集中，<code>Aja Huang</code>的策略是在训练 $v(\vec s)$ 时的策略是：</p>
 <ul>
 <li>开局先用<code>P_human</code>走<code>L</code>步，有利于生成更多局面</li>
@@ -325,8 +320,13 @@
 <p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用<code>P_human_plus</code>来走棋，我方赢棋的概率。实验表明，仅仅使用<code>P_human</code>来训练$v(\vec s)$效果不如<code>P_human_plus</code>，强化学习是确实有效的。</p>
 <p>总结，<strong>强化学习的<code>P_human_plus</code>主要是用来获得 $v(\vec s)$ 局部评估函数</strong></p>
 <p>走到这里，我们已经拥有<code>P_human</code>，MCTS，$v(\vec s)$，有了这些我们距离AlphaGo已经不远了</p>
-<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><hr>
-<p><img src="/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解"></p>
+<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
+                </div>
+                <div class="image-caption">MTCS流程图解</div>
+            </figure>
 <p><code>Aja Huang</code>使用MCTS框架融合局面评估函数 $v(\vec s)$ 的策略是：</p>
 <ul>
 <li>使用<code>P_human</code>作为初始分开局，每局选择分数最高的方案落子</li>
@@ -341,8 +341,13 @@
 </li>
 </ul>
 <p>如果 $v(\vec s)$ 是表示大局观，<code>P_human_fast</code>表示快速演算，那么上面的方法就是二者的并重，并且<code>Aja Huang</code>团队已经用实验证明0.5 0.5的权重对阵其他权重有95%的胜率</p>
-<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><hr>
-<p><img src="/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1"></p>
+<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
+                </div>
+                <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
+            </figure>
 <p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下其他落子点的胜率</p>
 <p><code>b图</code>MCTS中使用局部评估函数加上<code>P_human</code>得出的结果（公式2-4）</p>
 <p><code>c图</code>MCTS中使用<code>P_human</code>（复合算法）和<code>P_human_fast</code>走子走到底的结果</p>
@@ -356,8 +361,7 @@
 <p><code>d图</code>深度卷积神经网络计算出来的结果</p>
 <p><code>e图</code>使用公式3-1计算出的落子概率</p>
 <p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白，红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后两房下一步落子的地方。白色方框是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo的计算过程）</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><hr>
-<p>围棋是一个NP问题，要穷举的话，解空间是不可测度的。现代优化算法的经典之处就在于，对于围棋的规则来说，在某一个状态，必定有一个或几个较优解，整个AlphaGo就是想方设法的去找这个最优解，<strong>利用局面评估函数来对MCTS进行剪枝的思想十分精巧</strong>。利用上面的3个算法的组合，结合庞大的并行运算能力，还有<code>Aja Huang</code>团队的辛苦付出，造就了AlphaGo的奇迹。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>围棋是一个NP问题，要穷举的话，解空间是不可测度的。现代优化算法的经典之处就在于，对于围棋的规则来说，在某一个状态，必定有一个或几个较优解，整个AlphaGo就是想方设法的去找这个最优解，<strong>利用局面评估函数来对MCTS进行剪枝的思想十分精巧</strong>。利用上面的3个算法的组合，结合庞大的并行运算能力，还有<code>Aja Huang</code>团队的辛苦付出，造就了AlphaGo的奇迹。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -367,16 +371,13 @@
             </figure>
 <p>上图显示了各种算法的棋力，Rollout是走棋计算，也就是<code>P_human_fast</code>，Value Network是$v(\vec s)$ 局面评估函数，Policy Network 是结合<code>P_human_plus</code>和<code>P_human</code>后计算的胜率网络（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰围棋为叩门砖打开了机器学习自我进化的大门</strong></p>
-<h2 id="第四局的神之一手"><a href="#第四局的神之一手" class="headerlink" title="第四局的神之一手"></a>第四局的神之一手</h2><hr>
-<p>由上面的分析可以分析得到，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，或者说是在MCTS搜索树的空间之外，AlphaGo利用已有的数据没办法进行非常高效的计算，没有台下大量的数据学习，来建立一个基本覆盖所有状态 $\vec s$ 的局面评估函数是很重要的，另一方面，利用已有的数据来训练<code>P_human_plus</code>，使得这个函数越来越强大，才能覆盖到更多的情况。</p>
+<h2 id="第四局的神之一手"><a href="#第四局的神之一手" class="headerlink" title="第四局的神之一手"></a>第四局的神之一手</h2><p>由上面的分析可以分析得到，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，或者说是在MCTS搜索树的空间之外，AlphaGo利用已有的数据没办法进行非常高效的计算，没有台下大量的数据学习，来建立一个基本覆盖所有状态 $\vec s$ 的局面评估函数是很重要的，另一方面，利用已有的数据来训练<code>P_human_plus</code>，使得这个函数越来越强大，才能覆盖到更多的情况。</p>
 <p><strong>总结来说，AlphaGo依靠的是正式对局外的大量计算，无论是局部评估函数，还是<code>P_human_plus</code>都十分依赖大量的计算。</strong>很明显，随着时间的推移，AlphaGo在对局过程需要的时间越来越固定，不需要在对局时进行太多的MCTS搜索就能获得AlphaGo的下一手位置，可以预见，MCTS的搜索深度不会太深，当计算量十分庞大的时候，依赖更多是那个120层的Policy Network。</p>
-<h2 id="柯洁面对的AlphaGo-2-0"><a href="#柯洁面对的AlphaGo-2-0" class="headerlink" title="柯洁面对的AlphaGo 2.0"></a>柯洁面对的AlphaGo 2.0</h2><hr>
-<p>这几天的三盘对局，感觉到AlphaGo在这一年内进行巨大的计算。</p>
+<h2 id="柯洁面对的AlphaGo-2-0"><a href="#柯洁面对的AlphaGo-2-0" class="headerlink" title="柯洁面对的AlphaGo 2.0"></a>柯洁面对的AlphaGo 2.0</h2><p>这几天的三盘对局，感觉到AlphaGo在这一年内进行巨大的计算。</p>
 <p>局部评估函数和Policy Network愈发强大，愈加的接近于”围棋之神“。</p>
 <p>对于围棋这个策略单步游戏，是绝对存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，放佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
 <p>人类的每一次失误都会使局部评估函数往胜率移动一点，这一点是十分可怕的，因为算法本身的优越性，大局观对于AlphaGo的逻辑来说本身就是一种骨子的基因（因为AlphaGo每次MCTS计算都会计算到接近分出胜负），所谓大局观，不就是这种<strong>走一步看N步的能力</strong>嘛</p>
-<h2 id="对未来的展望"><a href="#对未来的展望" class="headerlink" title="对未来的展望"></a>对未来的展望</h2><hr>
-<p>珍贵的并不是攻克了围棋问题本身，<strong>而是这种解决问题的基本模式</strong>，可以推而广之到很多领域。</p>
+<h2 id="对未来的展望"><a href="#对未来的展望" class="headerlink" title="对未来的展望"></a>对未来的展望</h2><p>珍贵的并不是攻克了围棋问题本身，<strong>而是这种解决问题的基本模式</strong>，可以推而广之到很多领域。</p>
 <p>游戏AI是一个最容易想到的领域，只要能抽象出Action和State，那么这一套解决问题的方式就可以举一反三，让每一个1V1领域的游戏AI非常强大，至于合作领域的AI可能需要更大的计算量去计算，对于实际问题来说获得这样的AI有多大的经济价值值得推敲。</p>
 <p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来不愿意见到的。</p>
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
@@ -391,7 +392,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-28T09:24:37.000Z" itemprop="dateUpdated">2017-05-28 02:24:37</time>
+    最后更新时间：<time datetime="2017-05-28T10:00:51.000Z" itemprop="dateUpdated">2017-05-28 03:00:51</time>
 </span><br>
 
 
@@ -434,8 +435,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析
-围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -566,7 +566,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -596,8 +596,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析
-围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
