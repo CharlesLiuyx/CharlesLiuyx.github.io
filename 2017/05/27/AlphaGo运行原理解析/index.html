@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-28T10:45:20.000Z">
+<meta property="og:updated_time" content="2017-05-28T10:47:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出了解AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -229,7 +229,7 @@
 <p>总而言之，<strong><code>CNN</code>可以帮助我们提取出图像中有实际含义的特征</strong>，那么这和围棋又有什么关系呢？我们来看看Deepmind团队是怎么运用<code>CNN</code>来解决围棋问题。</p>
 <h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
 <p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行$ \vec a$的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
-<p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>，48是这个位置的其他信息，比如气之类的，激励函数用的tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
+<p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>（48是这个位置的其他信息，比如气等信息，激励函数用的 tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
 <p>使用训练的结果，我们可以得到一个神经网络用来计算对于每一个当前棋盘状态 $ \vec s$ ，所对应的落子向量 $ \vec a$ 的概率分布（之所以是概率分布，是因为，计算好的神经网络，输出一般是一个0-1之间的浮点数，越接近1的点表示在这个位置越接近人类的风格，也可以等同于作为人类概率最大的落点。<br>$$<br>\vec a=f(\vec s) \tag{2-1}<br>$$<br>根据公式2.1，我们记<code>f()</code>为<code>P_human</code>，论文中也叫做<code>Policy Network</code>，也称策略函数。表示的含义是</p>
 <blockquote>
 <p>在 状态 $\vec s$ 下，进行哪一个落子 $\vec a$ 是<strong>最接近人类风格的</strong></p>
@@ -416,7 +416,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-28T10:45:20.000Z" itemprop="dateUpdated">2017-05-28 03:45:20</time>
+    Last updated: <time datetime="2017-05-28T10:47:24.000Z" itemprop="dateUpdated">2017-05-28 03:47:24</time>
 </span><br>
 
 
