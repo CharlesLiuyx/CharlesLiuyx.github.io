@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-29T19:05:39.000Z</updated>
+  <updated>2017-05-29T19:24:29.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-29T19:05:39.000Z</updated>
+    <updated>2017-05-29T19:24:29.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
@@ -230,7 +230,7 @@
 </blockquote>
 <p>或许，模仿人类，是机器学习最终的归途，至于应用领域方面</p>
 <p>游戏AI是一个最容易想到的领域，只要能抽象出Action和State，那么这一套解决问题的方式就可以举一反三，让每一个1V1领域的游戏AI非常强大，至于合作领域的AI可能需要更大的计算量去计算，对于实际问题来说获得这样的AI有多大的经济价值值得推敲。</p>
-<p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来不愿意见到的。</p>
+<p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来的初衷相背离的。</p>
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
 <p>Reference </p>
 <p>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">Tao Lei大神的回答</a></p>
