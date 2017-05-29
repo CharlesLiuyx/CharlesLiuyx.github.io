@@ -18,7 +18,7 @@
     
     
     
-    <title>深入浅出了解AlphaGo如何下棋 | SH.SF Blog | 万古长空，一朝风月</title>
+    <title>深入浅出看懂AlphaGo如何下棋 | SH.SF Blog | 万古长空，一朝风月</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -28,7 +28,7 @@
     <meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入浅出了解AlphaGo如何下棋">
+<meta property="og:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
 <meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -41,9 +41,9 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-28T10:47:24.000Z">
+<meta property="og:updated_time" content="2017-05-29T19:05:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入浅出了解AlphaGo如何下棋">
+<meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="twitter:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
     
@@ -129,13 +129,13 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">深入浅出了解AlphaGo如何下棋</div>
+        <div class="flex-col header-title ellipsis">深入浅出看懂AlphaGo如何下棋</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="搜尋">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -151,7 +151,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">深入浅出了解AlphaGo如何下棋</h1>
+        <h1 class="title">深入浅出看懂AlphaGo如何下棋</h1>
         <h5 class="subtitle">
             
                 <time datetime="2017-05-27T18:51:22.000Z" itemprop="datePublished" class="page-time">
@@ -184,7 +184,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">深入浅出了解AlphaGo如何下棋</h1>
+        <h1 class="post-card-title">深入浅出看懂AlphaGo如何下棋</h1>
         <div class="post-meta">
             <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
 
@@ -228,7 +228,7 @@
 <p>比如，根据上图可以观察到（这是一个已经训练好的神经网络），最右侧的<strong>输出</strong>是<code>[0.01 , 0.04 , 0.94 , 0.02]</code>，其中第三个值<code>0.94</code>代表的是boat，接近1，所以我们判断这幅图片中有船这个物体（类似的，如果使用这幅图像进行训练，那么<strong>指定</strong>输出应该是[0, 0, 1, 0]，因为图中只有船这个物体）。</p>
 <p>总而言之，<strong><code>CNN</code>可以帮助我们提取出图像中有实际含义的特征</strong>，那么这和围棋又有什么关系呢？我们来看看Deepmind团队是怎么运用<code>CNN</code>来解决围棋问题。</p>
 <h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
-<p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行$ \vec a$的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
+<p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行 $ \vec a$ 的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
 <p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>（48是这个位置的其他信息，比如气等信息，激励函数用的 tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
 <p>使用训练的结果，我们可以得到一个神经网络用来计算对于每一个当前棋盘状态 $ \vec s$ ，所对应的落子向量 $ \vec a$ 的概率分布（之所以是概率分布，是因为，计算好的神经网络，输出一般是一个0-1之间的浮点数，越接近1的点表示在这个位置越接近人类的风格，也可以等同于作为人类概率最大的落点。<br>$$<br>\vec a=f(\vec s) \tag{2-1}<br>$$<br>根据公式2.1，我们记<code>f()</code>为<code>P_human</code>，论文中也叫做<code>Policy Network</code>，也称策略函数。表示的含义是</p>
 <blockquote>
@@ -242,7 +242,7 @@
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
-<h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone[1,5]</code>。</p>
+<h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone</code>。</p>
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把<code>P_human</code>和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
 <p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
 <p><strong>干货论文送上</strong> MCTS</p>
@@ -255,7 +255,10 @@
 <li>重复以上步骤直到 $\vec s_n$并且双方分出胜负，此时便完整的模拟完了一盘棋，我们假设一个变量<code>r</code>，胜利记为1，失败则为0</li>
 </ul>
 <p>那么问题就来了，如果这一盘赢了，那意味着这一连串的下法至少比对面那个二逼要明智一些，毕竟我最后赢了，那么我把这次落子方法 $(\vec s_0, \vec a_0)$ 记下来，并把它的分值变化：<br>$$<br>\text{新分数} = \text{初始分数} + r \tag{2-2}<br>$$<br>同理，可以把之后所有随机出来的落子方法 $(\vec s_i, \vec a_i)$ 都应用2-2公式，即都加<code>1</code>分。之后开始第二次模拟，这一次，我们对棋盘不是一无所知了，至少在  $\vec s_0$ 状态我们知道落子方法  $\vec a_0$ 的分值是2，其他都是1，我们使用这个数据的方法是：在这次<strong>随机</strong>中，<strong>我们随机到  $\vec a_0$ 状态的概率要比其他方法高一点</strong>。</p>
-<p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。</p>
+<p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。<br>$$<br>score(\vec s) = \begin{pmatrix}<br>     r<em>{11} &amp; r</em>{12}  &amp; \cdots &amp; r<em>{1n} \<br>     r</em>{21} &amp; r<em>{22}  &amp; \cdots &amp; r</em>{2n}\<br>     \vdots  &amp; \vdots &amp; \ddots &amp; \vdots \<br>     r<em>{n1} &amp; r</em>{n2}  &amp; \cdots &amp; nr_{nn}<br>     \end{pmatrix}<br>$$</p>
+<blockquote>
+<p>如上述公式所述，<code>n=19</code>，每一个状态 $\vec s$ 都有一个对应的每个落子点的分数，只要训练的样本足够多，那么可以覆盖到的 $\vec s$ 状态就越多，漏洞就越来越小（可以思考李世石的神之一手，是否触及到了AlphaGo1.0的软肋呢？即没有考虑到的状态 $\vec s$ ）</p>
+</blockquote>
 <p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。这种过程在论文里被称为<strong>Rollout</strong></p>
 <p>蒙特卡洛搜索树的方法十分的深刻精巧，充满的创造力，它有一些很有意思的特点：</p>
 <ul>
@@ -384,12 +387,17 @@
             </figure>
 <p>上图显示了各种算法的棋力，Rollout是走棋计算，也就是<code>P_human_fast</code>，Value Network是$v(\vec s)$ 局面评估函数，Policy Network 是结合<code>P_human_plus</code>和<code>P_human</code>后计算的胜率网络（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰围棋为叩门砖打开了机器学习自我进化的大门</strong></p>
-<h2 id="第四局的神之一手"><a href="#第四局的神之一手" class="headerlink" title="第四局的神之一手"></a>第四局的神之一手</h2><p>由上面的分析可以分析得到，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，或者说是在MCTS搜索树的空间之外，AlphaGo利用已有的数据没办法进行非常高效的计算，没有台下大量的数据学习，来建立一个基本覆盖所有状态 $\vec s$ 的局面评估函数是很重要的，另一方面，利用已有的数据来训练<code>P_human_plus</code>，使得这个函数越来越强大，才能覆盖到更多的情况。</p>
-<p><strong>总结来说，AlphaGo依靠的是正式对局外的大量计算，无论是局部评估函数，还是<code>P_human_plus</code>都十分依赖大量的计算。</strong>很明显，随着时间的推移，AlphaGo在对局过程需要的时间越来越固定，不需要在对局时进行太多的MCTS搜索就能获得AlphaGo的下一手位置，可以预见，MCTS的搜索深度不会太深，当计算量十分庞大的时候，依赖更多是那个120层的Policy Network。</p>
+<h2 id="第四局的神之一手"><a href="#第四局的神之一手" class="headerlink" title="第四局的神之一手"></a>第四局的神之一手</h2><p>根据Deepmind团队给出的数据可以知道，当年的AphaGo的搜索空间，自对弈深度并不完美。所以Deepmind团队有意的在代码逻辑上让其<strong>避免打劫</strong>，或者说避免<strong>劫争</strong>，例如，有两个选择，一个胜率60%但需要打劫，另一个55%但不需要打劫，AlphaGo1.0会选择后者。</p>
+<p>那么什么是打劫呢？解释这几个和”劫“有关的围棋术语是：</p>
+<p><code>打劫</code>围棋术语，一方制造事端，和另一方讨价还价的行为。<br><code>劫材</code>可以用来做价格谈判的筹码。通常是走一手没戏，但对手若不予置理，再走第二手会出棋的局部。<br><code>寻劫</code>通过目数计算，寻找一些有价值的局部制造事端强迫对手应答。通常价值至少需要和打劫的地方相当或者小不太多，否则对方很容易消劫。<br><code>利用劫</code>劫胜可杀死对方或者得到利益，劫败也应该让对方付出代价，除非双方劫材大小和数量相差悬殊。</p>
+<p>通俗的说是，我在这一片已经处于劣势，我换一个战场，发动进攻，你应不应？可能在另外战场的角力中对这边战场的局势产生影响。可以类比于，五子棋中的冲四。</p>
+<p>回到算法本身的，猜测，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，或者说是在MCTS搜索树的空间之外，AlphaGo利用已有的数据没办法进行非常高效的计算，没有台下大量的数据学习，来建立一个基本覆盖所有状态 $\vec s$ 的局面评估函数是很重要的，另一方面，利用已有的数据来训练<code>P_human_plus</code>，使得这个函数越来越强大，才能覆盖到更多的情况。</p>
+<p><strong>总结来说，AlphaGo依靠的是对局外的大量计算，无论是局部评估函数，还是<code>P_human_plus</code>都十分依赖<font color="‘red’">对局外</font>的大量的计算。</strong>随着时间的推移，AlphaGo在对局过程需要的时间越来越固定，不需要在对局时进行太多的MCTS搜索就能获得AlphaGo的下一手位置，可以预见，MCTS的搜索深度不会太深。当计算量十分庞大的时候，依赖更多是那个120层的Policy Network。</p>
+<p>从柯洁的第二盘可以发现，他已经努力的制造在中腹引入多方战斗的带劫争的复杂棋局，十分精彩。可惜，AlphaGo2.0貌似已经完善了自己的阿特留斯之踵。当真无敌，说到这里，我们来谈谈AlphaGo2.0</p>
 <h2 id="柯洁面对的AlphaGo-2-0"><a href="#柯洁面对的AlphaGo-2-0" class="headerlink" title="柯洁面对的AlphaGo 2.0"></a>柯洁面对的AlphaGo 2.0</h2><p>这几天的三盘对局，感觉到AlphaGo在这一年内进行了极为深度的训练。</p>
 <p><strong>局面函数</strong>和<strong>策略函数</strong>愈发强大，愈加的接近于”围棋之神“。</p>
-<p>随着Google TPU的发布，跑在<code>TPU阵列</code>上的AlphaGo如虎添翼，MCTS的走子演算效率更高，速度更快</p>
-<p>对于围棋这个策略单步游戏，是绝对存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，放佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
+<p>随着Google TPU的发布，跑在<code>TPU阵列</code>上的AlphaGo如虎添翼，MCTS的走子演算效率更高，速度更快，关于TPU的设计思路和原理可以参考 <a href="https://arxiv.org/pdf/1704.04760.pdf" target="_blank" rel="external">In-Datacenter Performance Analysis of a Tensor Processor</a></p>
+<p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，放佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
 <p>人类的每一次失误都会使局部评估函数往胜率移动一点，这一点是十分可怕的，因为算法本身的优越性，<strong>大局观</strong>对于AlphaGo的逻辑来说本身就是一种骨子的基因</p>
 <ul>
 <li>一是因为AlphaGo每次MCTS计算都会计算到接近分出胜负，具有<strong>前瞻性</strong></li>
@@ -406,9 +414,10 @@
 <p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来不愿意见到的。</p>
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
 <p>Reference </p>
-<p>知乎Tao Lei大神的回答</p>
-<p>知乎袁行远大声的回答</p>
-<p>其他文章中引用的论文</p>
+<p>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">Tao Lei大神的回答</a></p>
+<p>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">袁行远大神的回答</a></p>
+<p>知乎<a href="https://www.zhihu.com/question/28655005/answer/61142081" target="_blank" rel="external">有关围棋打劫的回答</a></p>
+<p>其他文章中引用的论文，链接已经给出</p>
 
         </div>
 
@@ -416,7 +425,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-28T10:47:24.000Z" itemprop="dateUpdated">2017-05-28 03:47:24</time>
+    最後更新時間：<time datetime="2017-05-29T19:05:39.000Z" itemprop="dateUpdated">2017-05-29 12:05:39</time>
 </span><br>
 
 
@@ -449,7 +458,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -459,7 +468,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -469,7 +478,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -590,7 +599,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>本部落格係採用<a rel="license" href="https://creativecommons.org/licenses/by/4.0/deed.zh_TW">創用 CC 姓名標示 4.0 國際 授權條款授權</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -610,7 +619,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -620,7 +629,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -630,7 +639,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出了解AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
