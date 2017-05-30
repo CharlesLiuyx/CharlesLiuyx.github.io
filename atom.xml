@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-30T08:40:56.000Z</updated>
+  <updated>2017-05-30T08:50:45.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-30T08:40:56.000Z</updated>
+    <updated>2017-05-30T08:50:45.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
@@ -61,6 +61,7 @@
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
+<p>还记得刚刚举得船图的例子嘛？可以类比一下，机器发现现在的状态 $ \vec s$ 和之前的某一种类型有些类似，输出是一个<code>1*361</code>的向量，其中有几个值比较大（接近1就是100%），那么就用这个值当做下一个 $ \vec a$ 的位置。不幸的，这种训练方法有很大的局限的，可以直观想到的是，如果对战平台上数据本身就都是<code>俗手</code>，那不是训练出来一个很蠢的神经网络嘛？棋力如何呢？</p>
 <h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone</code>。</p>
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把<code>P_human</code>和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
 <p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
