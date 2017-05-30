@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-30T08:38:38.000Z">
+<meta property="og:updated_time" content="2017-05-30T08:40:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -135,7 +135,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -386,7 +386,7 @@
                 <div class="image-caption">最终棋力结果</div>
             </figure>
 <p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合<code>P_human_plus</code>和<code>P_human</code>后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
-<p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰”围棋“为叩门砖打开了机器学习自我进化的大门</strong></p>
+<p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰【围棋】为叩门砖打开了机器学习自我进化的大门</strong></p>
 <h2 id="李世石-VS-AlphaGo-1-0——第四局的神之一手"><a href="#李世石-VS-AlphaGo-1-0——第四局的神之一手" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局的神之一手"></a>李世石 VS AlphaGo 1.0——第四局的神之一手</h2><p>根据Deepmind团队给出的数据可以知道，一年前，AphaGo1.0的搜索空间，自对弈深度并不完美。所以Deepmind团队有意的在代码逻辑上让其<strong>避免打劫</strong>，或者说避免<strong>劫争</strong>，例如，有两个选择，一个胜率60%但需要打劫，另一个55%但不需要打劫，AlphaGo1.0会选择后者。</p>
 <p>那么什么是打劫呢？解释这几个和”劫“有关的围棋术语是：</p>
 <p><code>打劫</code>围棋术语，一方制造事端，和另一方讨价还价的行为。<br><code>劫材</code>可以用来做价格谈判的筹码。通常是走一手没戏，但对手若不予置理，再走第二手会出棋的局部。<br><code>寻劫</code>通过目数计算，寻找一些有价值的局部制造事端强迫对手应答。通常价值至少需要和打劫的地方相当或者小不太多，否则对方很容易消劫。<br><code>利用劫</code>劫胜可杀死对方或者得到利益，劫败也应该让对方付出代价，除非双方劫材大小和数量相差悬殊。</p>
@@ -430,7 +430,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-30T08:38:38.000Z" itemprop="dateUpdated">2017-05-30 01:38:38</time>
+    最后更新时间：<time datetime="2017-05-30T08:40:56.000Z" itemprop="dateUpdated">2017-05-30 01:40:56</time>
 </span><br>
 
 
@@ -604,7 +604,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
