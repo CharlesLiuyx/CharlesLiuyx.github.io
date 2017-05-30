@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-30T06:17:56.000Z</updated>
+  <updated>2017-05-30T08:38:38.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-30T06:17:56.000Z</updated>
+    <updated>2017-05-30T08:38:38.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
@@ -221,7 +221,7 @@
 <p><strong>局面函数</strong>和<strong>策略函数</strong>愈发强大，愈加的接近于”围棋之神“。</p>
 <p>随着Google TPU的发布，跑在<code>TPU阵列</code>上的AlphaGo如虎添翼，MCTS的走子演算效率更高，速度更快（加速的其实就是<code>P_human（_plus）</code>的落子速度）。</p>
 <p>关于TPU的设计思路和原理可以参考 <a href="https://arxiv.org/pdf/1704.04760.pdf" target="_blank" rel="external">In-Datacenter Performance Analysis of a Tensor Processor</a></p>
-<p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，放佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
+<p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，仿佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
 <p>人类的每一次失误都会使局部评估函数往胜率移动一点，这一点是十分可怕的，因为算法本身的优越性，<strong>大局观</strong>对于AlphaGo的逻辑来说本身就是一种骨子的基因</p>
 <ul>
 <li>一是因为AlphaGo每次MCTS计算都会计算到接近分出胜负，具有<strong>前瞻性</strong></li>

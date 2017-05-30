@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-30T06:17:56.000Z">
+<meta property="og:updated_time" content="2017-05-30T08:38:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -135,7 +135,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -402,7 +402,7 @@
 <p><strong>局面函数</strong>和<strong>策略函数</strong>愈发强大，愈加的接近于”围棋之神“。</p>
 <p>随着Google TPU的发布，跑在<code>TPU阵列</code>上的AlphaGo如虎添翼，MCTS的走子演算效率更高，速度更快（加速的其实就是<code>P_human（_plus）</code>的落子速度）。</p>
 <p>关于TPU的设计思路和原理可以参考 <a href="https://arxiv.org/pdf/1704.04760.pdf" target="_blank" rel="external">In-Datacenter Performance Analysis of a Tensor Processor</a></p>
-<p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，放佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
+<p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，仿佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
 <p>人类的每一次失误都会使局部评估函数往胜率移动一点，这一点是十分可怕的，因为算法本身的优越性，<strong>大局观</strong>对于AlphaGo的逻辑来说本身就是一种骨子的基因</p>
 <ul>
 <li>一是因为AlphaGo每次MCTS计算都会计算到接近分出胜负，具有<strong>前瞻性</strong></li>
@@ -430,7 +430,7 @@
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-05-30T06:17:56.000Z" itemprop="dateUpdated">2017-05-29 23:17:56</time>
+    Last updated: <time datetime="2017-05-30T08:38:38.000Z" itemprop="dateUpdated">2017-05-30 01:38:38</time>
 </span><br>
 
 
@@ -604,7 +604,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
