@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-30T06:12:47.000Z</updated>
+  <updated>2017-05-30T06:17:56.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-30T06:12:47.000Z</updated>
+    <updated>2017-05-30T06:17:56.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
@@ -34,7 +34,7 @@
 <p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="external">Mastering the game of Go with deep neural networks and tree search</a></p>
 <h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
 <h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
-<p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）</p>
+<p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）（5.29更新，原地址已经恢复，原地址的排版更好，估计之前那个博主在进行博客的整理）</p>
 <p>大致可以理解为：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
