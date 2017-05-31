@@ -41,7 +41,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:updated_time" content="2017-05-31T05:02:56.000Z">
+<meta property="og:updated_time" content="2017-05-31T05:03:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -373,7 +373,7 @@
 <p><code>d图</code>深度卷积神经网络使用<strong>策略函数</strong>计算出来的结果</p>
 <p><code>e图</code>使用公式3-1和相关流程计算出的落子概率</p>
 <p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白。红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后两房下一步落子的地方。白色方框是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo也在进行计算）</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于<strong>状态数有限</strong>和<strong>不存在随机性</strong>，象棋和五子棋这类游戏理论上可以由终局自底向上的推算出每一个局面的神符情况，从而得到最优策略。例如五子棋就被验证为<strong>先手必胜</strong>。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于<strong>状态数有限</strong>和<strong>不存在随机性</strong>，象棋和五子棋这类游戏理论上可以由终局自底向上的推算出每一个局面的胜负情况，从而得到最优策略。例如五子棋就被验证为<strong>先手必胜</strong>。</p>
 <p>AlphaGo的MCTS属于<strong>启发式搜索算法</strong></p>
 <blockquote>
 <p>由当前局面开始，尝试看起来<u>可靠的行动</u>，达到终局或一定步数后停止，根据后续<u>局面的优劣</u>反馈，选择最有行动。通俗来说，就是”手下一招子，心想三步棋“</p>
@@ -431,7 +431,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-05-31T05:02:56.000Z" itemprop="dateUpdated">2017-05-30 22:02:56</time>
+    Last updated: <time datetime="2017-05-31T05:03:39.000Z" itemprop="dateUpdated">2017-05-30 22:03:39</time>
 </span><br>
 
 
