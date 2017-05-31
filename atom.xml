@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-05-30T21:10:00.000Z</updated>
+  <updated>2017-05-31T04:58:57.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
     <published>2017-05-27T18:51:22.000Z</published>
-    <updated>2017-05-30T21:10:00.000Z</updated>
+    <updated>2017-05-31T04:58:57.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
@@ -141,7 +141,7 @@
 <li>开局先用<code>P_human</code>走<code>L</code>步，有利于生成更多局面</li>
 <li>即使如此，<code>Aja Huang</code>还是觉得局面不够多样，为了进一步扩大搜索空间，在<code>L+1</code>步时，完全随机一个 $\vec a$ 落子，记下这个状态 $v(\vec s_{L+1})$ </li>
 <li>之后使用<code>P_human_plus</code>来进行对弈，直到结束时获得结果<code>r</code>，如此不断对弈，由于<code>L</code>也是一个随机数，我们可以得到，<strong>开局、中盘、官子</strong>等不同阶段的很多局面 $\vec s$，和这些局面对应的结果<code>r</code></li>
-<li><p>有了这些训练样本 $\rangle \vec s,r\langle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
+<li><p>有了这些训练样本 $\langle \vec s,r\rangle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
 <p><img src="/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
 </li>
 </ul>
