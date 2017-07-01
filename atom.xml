@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-06-30T16:47:47.000Z</updated>
+  <updated>2017-07-01T04:50:37.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,9 +20,11 @@
     <link href="/2017/07/01/LeetcodeNote/"/>
     <id>/2017/07/01/LeetcodeNote/</id>
     <published>2017-07-01T07:18:41.000Z</published>
-    <updated>2017-06-30T16:47:47.000Z</updated>
+    <updated>2017-07-01T04:50:37.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="线"><a href="#线" class="headerlink" title="线"></a>线</h1><h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h3><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="基本模板"><a href="#基本模板" class="headerlink" title="基本模板"></a>基本模板</h2><ul>
+    <content type="html"><![CDATA[<p>算法培训课程基本模型汇总笔记</p>
+<a id="more"></a>
+<h1 id="线"><a href="#线" class="headerlink" title="线"></a>线</h1><h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h3><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="基本模板"><a href="#基本模板" class="headerlink" title="基本模板"></a>基本模板</h2><ul>
 <li>Draw/Equation -&gt; Tree shape</li>
 <li>Define TreeNode <ul>
 <li>本点信息必然是辅助变量，计入TreeNode</li>
@@ -39,7 +41,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;线&quot;&gt;&lt;a href=&quot;#线&quot; class=&quot;headerlink&quot; title=&quot;线&quot;&gt;&lt;/a&gt;线&lt;/h1&gt;&lt;h2 id=&quot;基本模型&quot;&gt;&lt;a href=&quot;#基本模型&quot; class=&quot;headerlink&quot; title=&quot;基本模型&quot;&gt;&lt;/a&gt;基本模型&lt;/h2&gt;&lt;h
+      &lt;p&gt;算法培训课程基本模型汇总笔记&lt;/p&gt;
     
     </summary>
     
@@ -55,11 +57,12 @@
     <link href="/2017/06/17/%E5%B9%95%E5%B8%83-%E5%85%A8%E5%B9%B3%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%B7%A5%E5%85%B7/"/>
     <id>/2017/06/17/幕布-全平台笔记思维导图工具/</id>
     <published>2017-06-17T17:30:47.000Z</published>
-    <updated>2017-06-30T13:00:41.000Z</updated>
+    <updated>2017-07-01T04:50:11.000Z</updated>
     
     <content type="html"><![CDATA[<p>利益相关：幕布深度使用用户</p>
 <p>向大家强烈自来水一款从知乎上了解到的<strong>效率神器</strong>：<strong><a href="www.mubu.com">幕布</a></strong>，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）</p>
 <p><strong>幕布</strong>是一款<strong>思维管理工具</strong>，可以用来<strong>做笔记</strong>，<strong>梳理思路</strong>，<strong>做待办事项</strong>等等等等。</p>
+<a id="more"></a>
 <p>人类的记忆是有缺陷的，计算机能帮助人进行记忆。我们可以记住大方向的条目，再借助一个<strong>笔记软件</strong>来唤起我们的记忆。<strong>树形结构</strong>是一种极为高效的模式及手段。</p>
 <p>笔记软件很多，思维导图软件很多，但是<strong>能同时满足</strong>以下几点的我找了很久都没有找到，直到遇到<strong>幕布</strong>。如果你和我也有同样的需求，真心的希望这款优秀的软件能帮助到你，提高的你的日常效率，让每一次阅读，每一个计划都高效落地</p>
 <h2 id="UI简约，专注于层次输入本身"><a href="#UI简约，专注于层次输入本身" class="headerlink" title="UI简约，专注于层次输入本身"></a>UI简约，专注于层次输入本身</h2><p>幕布的官网是这样的：</p>
@@ -157,7 +160,8 @@
     <summary type="html">
     
       &lt;p&gt;利益相关：幕布深度使用用户&lt;/p&gt;
-&lt;p&gt;向大家强烈自来水一款从知乎上了解到的&lt;strong&gt;效率神器&lt;/strong&gt;：&lt;strong&gt;&lt;a href=&quot;www.mubu.com&quot;&gt;幕布&lt;/a&gt;&lt;/strong&gt;，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生
+&lt;p&gt;向大家强烈自来水一款从知乎上了解到的&lt;strong&gt;效率神器&lt;/strong&gt;：&lt;strong&gt;&lt;a href=&quot;www.mubu.com&quot;&gt;幕布&lt;/a&gt;&lt;/strong&gt;，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;幕布&lt;/strong&gt;是一款&lt;strong&gt;思维管理工具&lt;/strong&gt;，可以用来&lt;strong&gt;做笔记&lt;/strong&gt;，&lt;strong&gt;梳理思路&lt;/strong&gt;，&lt;strong&gt;做待办事项&lt;/strong&gt;等等等等。&lt;/p&gt;
     
     </summary>
     
