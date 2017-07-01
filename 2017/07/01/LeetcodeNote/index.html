@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>LeetcodeNote | SH.SF Blog | 万古长空，一朝风月</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="算法,Leetcode">
+    <meta name="description" content="线基本模型数学归纳法树基本模板 Draw/Equation -&amp;gt; Tree shape Define TreeNode  本点信息必然是辅助变量，计入TreeNode 孩子信息决定TreeNode的形状 任何第一次走的节点，如果不能走，一定要画出来打一把叉    Binary Search123456789101112131415Public int func(T[] array, V ta">
+<meta name="keywords" content="算法,Leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetcodeNote">
+<meta property="og:url" content="/2017/07/01/LeetcodeNote/index.html">
+<meta property="og:site_name" content="SH.SF Blog">
+<meta property="og:description" content="线基本模型数学归纳法树基本模板 Draw/Equation -&amp;gt; Tree shape Define TreeNode  本点信息必然是辅助变量，计入TreeNode 孩子信息决定TreeNode的形状 任何第一次走的节点，如果不能走，一定要画出来打一把叉    Binary Search123456789101112131415Public int func(T[] array, V ta">
+<meta property="og:updated_time" content="2017-06-30T16:47:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetcodeNote">
+<meta name="twitter:description" content="线基本模型数学归纳法树基本模板 Draw/Equation -&amp;gt; Tree shape Define TreeNode  本点信息必然是辅助变量，计入TreeNode 孩子信息决定TreeNode的形状 任何第一次走的节点，如果不能走，一定要画出来打一把叉    Binary Search123456789101112131415Public int func(T[] array, V ta">
+    
+        <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <script>window.lazyScripts=[]</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">SH.SF</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">LeetcodeNote</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">LeetcodeNote</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-07-01T07:18:41.000Z" itemprop="datePublished" class="page-time">
+  2017-07-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线"><span class="post-toc-number">1.</span> <span class="post-toc-text">线</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模型"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">基本模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学归纳法"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">数学归纳法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#树"><span class="post-toc-number">2.</span> <span class="post-toc-text">树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模板"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基本模板</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Binary-Search"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">Binary Search</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Bottom-up-Recursion"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">Bottom up - Recursion</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DFS"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">DFS</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BFS"><span class="post-toc-number">2.1.4.</span> <span class="post-toc-text">BFS</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#图"><span class="post-toc-number">3.</span> <span class="post-toc-text">图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模板-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">基本模板</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-LeetcodeNote"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">LeetcodeNote</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-07-01 00:18:41" datetime="2017-07-01T07:18:41.000Z"  itemprop="datePublished">2017-07-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="线"><a href="#线" class="headerlink" title="线"></a>线</h1><h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h3><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="基本模板"><a href="#基本模板" class="headerlink" title="基本模板"></a>基本模板</h2><ul>
+<li>Draw/Equation -&gt; Tree shape</li>
+<li>Define TreeNode <ul>
+<li>本点信息必然是辅助变量，计入TreeNode</li>
+<li>孩子信息决定TreeNode的形状</li>
+<li>任何第一次走的节点，如果不能走，一定要画出来打一把叉</li>
+</ul>
+</li>
+</ul>
+<h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public <span class="keyword">int</span> <span class="title">func</span><span class="params">(T[] array, V tartget )</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> end array.length - <span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span> ( start &lt;= end )&#123;</div><div class="line">		<span class="keyword">int</span> mid = start + (end - start)/<span class="number">2</span>;</div><div class="line">		<span class="keyword">if</span> ( f(a[mid]) &lt;= target )&#123;</div><div class="line">			pos = mid;</div><div class="line">			start = mid + <span class="number">1</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			end = mid - <span class="number">1</span>;</div><div class="line">	   &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> pos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Bottom-up-Recursion"><a href="#Bottom-up-Recursion" class="headerlink" title="Bottom up - Recursion"></a>Bottom up - Recursion</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public &lt;T_P&gt; func(T_v_1, v1 …)&#123;</div><div class="line">	checkhastreeNode();</div><div class="line">	return helper(root(T_v_1, v_1, …))</div><div class="line">&#125;</div><div class="line"></div><div class="line">private &lt;T_P&gt; helper(T_v_1, v1, …)&#123;</div><div class="line">	resultchildfirst = helper(childFirst);</div><div class="line">	…</div><div class="line">	resultchildlast = helper(childLast);</div><div class="line">	</div><div class="line">	-&gt; result by childs</div><div class="line">	generate cur node's result;</div><div class="line">	</div><div class="line">	return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DFSTree</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> Type_R <span class="title">func</span><span class="params">(T_1, e1, T_2, e2)</span></span>&#123;</div><div class="line">		checkrootexists();</div><div class="line">		</div><div class="line">		TreeNode[] array = <span class="keyword">new</span> TreeNode[TREE_HEIGHT];</div><div class="line">		</div><div class="line">		Stack&lt;TreeNode&gt; stack = Stack&lt;&gt;();</div><div class="line">		stack.push(root);</div><div class="line">		<span class="keyword">while</span> (!stack.Empty())&#123;</div><div class="line">			TreeNode curNode = stack.pop();</div><div class="line">			</div><div class="line">			Operation at node;</div><div class="line">			</div><div class="line">			stack.push(childLast);</div><div class="line">			…</div><div class="line">			stack.push(childFirst);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">		T_V_1 field_1;</div><div class="line">		…</div><div class="line">		T_V_q field_q;</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> _height;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BFS</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> TypeR <span class="title">func</span><span class="params">(T_1 v_1, T_p, v_p)</span> </span>&#123;</div><div class="line">		checkexistroot();</div><div class="line">		</div><div class="line">		Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">		queue.add(root);</div><div class="line">		</div><div class="line">		<span class="keyword">while</span> ( !queue.isEmpty() )&#123;</div><div class="line">		</div><div class="line">			<span class="keyword">int</span> size = queue.size();</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">int</span> I = <span class="number">0</span>; I &lt; size; i++ )&#123;</div><div class="line">			TreeNode node = queue.remove();</div><div class="line">			</div><div class="line">			op at node;</div><div class="line">			</div><div class="line">			queue.add(childFirst);</div><div class="line">			…</div><div class="line">			queue.add(childLast);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			update var_l,…,var_k <span class="keyword">for</span> next level</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">		T_1 field_1;</div><div class="line">		…</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="基本模板-1"><a href="#基本模板-1" class="headerlink" title="基本模板"></a>基本模板</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-06-30T16:47:47.000Z" itemprop="dateUpdated">2017-06-30 09:47:47</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="">
+            <img src="/img/avatar.jpg" alt="SH.SF">
+            SH.SF
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/07/01/LeetcodeNote/&title=《LeetcodeNote》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/07/01/LeetcodeNote/&title=《LeetcodeNote》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/07/01/LeetcodeNote/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LeetcodeNote》 — SH.SF Blog&url=/2017/07/01/LeetcodeNote/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/07/01/LeetcodeNote/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/06/17/幕布-全平台笔记思维导图工具/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">幕布-全平台笔记思维导图工具</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>SH.SF &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/07/01/LeetcodeNote/&title=《LeetcodeNote》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/07/01/LeetcodeNote/&title=《LeetcodeNote》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/07/01/LeetcodeNote/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《LeetcodeNote》 — SH.SF Blog&url=/2017/07/01/LeetcodeNote/&via=" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/07/01/LeetcodeNote/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABX0lEQVR42u3aSw6DMBAEUe5/aSJlFSnBVHvMIp7yCkV8XhY09niOA4/zPT6P+S+fvy8esmRtxDqH45vF7zP+Szd0WbJaskgoXCH4teR8WbJkkc/zOCxIQMiSJaseEOmnXZYsWZxFHnMVEClr8VxelqwtWHOFpLnjx+tbsmT9Iessj7QEjO4pS1YzFikJVYpEZAMGxYQsWVuzyGs/XnDyawnrJrdkydqUVWkp4Lh020aWrG6s+stPCk8E9yO3ZMlqwyLRwM+pNwkd6SNlyWrAmouJNA4uP9uyZDVj8Qeki896I4IsWX1YfOrMF7eLJ82yZDVjEWJw67CcJEtWT9ZcKwB57XkDX7DnI0vWpiw++Ic5nSjHFFmyNmXNhULaABRPrGXJasniZaO0SWhyo0WWLFkFViVcHgwIWbI2YlVa8dJlsCxZPVm8qa7SkMeLSrJkdWOlhaRVy9QFRFmydmC9AOub5FyM26cLAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.7" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '在看什么呢';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

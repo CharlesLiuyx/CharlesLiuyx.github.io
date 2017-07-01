@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-06-30T05:45:48.000Z</updated>
+  <updated>2017-06-30T16:47:47.000Z</updated>
   <id>/</id>
   
   <author>
@@ -16,11 +16,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetcodeNote</title>
+    <link href="/2017/07/01/LeetcodeNote/"/>
+    <id>/2017/07/01/LeetcodeNote/</id>
+    <published>2017-07-01T07:18:41.000Z</published>
+    <updated>2017-06-30T16:47:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="线"><a href="#线" class="headerlink" title="线"></a>线</h1><h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h3><h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="基本模板"><a href="#基本模板" class="headerlink" title="基本模板"></a>基本模板</h2><ul>
+<li>Draw/Equation -&gt; Tree shape</li>
+<li>Define TreeNode <ul>
+<li>本点信息必然是辅助变量，计入TreeNode</li>
+<li>孩子信息决定TreeNode的形状</li>
+<li>任何第一次走的节点，如果不能走，一定要画出来打一把叉</li>
+</ul>
+</li>
+</ul>
+<h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function">Public <span class="keyword">int</span> <span class="title">func</span><span class="params">(T[] array, V tartget )</span></span>&#123;</div><div class="line">	<span class="keyword">int</span> pos = -<span class="number">1</span>;</div><div class="line">	<span class="keyword">int</span> start = <span class="number">0</span>;</div><div class="line">	<span class="keyword">int</span> end array.length - <span class="number">1</span>;</div><div class="line">	<span class="keyword">while</span> ( start &lt;= end )&#123;</div><div class="line">		<span class="keyword">int</span> mid = start + (end - start)/<span class="number">2</span>;</div><div class="line">		<span class="keyword">if</span> ( f(a[mid]) &lt;= target )&#123;</div><div class="line">			pos = mid;</div><div class="line">			start = mid + <span class="number">1</span>;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			end = mid - <span class="number">1</span>;</div><div class="line">	   &#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> pos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Bottom-up-Recursion"><a href="#Bottom-up-Recursion" class="headerlink" title="Bottom up - Recursion"></a>Bottom up - Recursion</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public &lt;T_P&gt; func(T_v_1, v1 …)&#123;</div><div class="line">	checkhastreeNode();</div><div class="line">	return helper(root(T_v_1, v_1, …))</div><div class="line">&#125;</div><div class="line"></div><div class="line">private &lt;T_P&gt; helper(T_v_1, v1, …)&#123;</div><div class="line">	resultchildfirst = helper(childFirst);</div><div class="line">	…</div><div class="line">	resultchildlast = helper(childLast);</div><div class="line">	</div><div class="line">	-&gt; result by childs</div><div class="line">	generate cur node's result;</div><div class="line">	</div><div class="line">	return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DFSTree</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> Type_R <span class="title">func</span><span class="params">(T_1, e1, T_2, e2)</span></span>&#123;</div><div class="line">		checkrootexists();</div><div class="line">		</div><div class="line">		TreeNode[] array = <span class="keyword">new</span> TreeNode[TREE_HEIGHT];</div><div class="line">		</div><div class="line">		Stack&lt;TreeNode&gt; stack = Stack&lt;&gt;();</div><div class="line">		stack.push(root);</div><div class="line">		<span class="keyword">while</span> (!stack.Empty())&#123;</div><div class="line">			TreeNode curNode = stack.pop();</div><div class="line">			</div><div class="line">			Operation at node;</div><div class="line">			</div><div class="line">			stack.push(childLast);</div><div class="line">			…</div><div class="line">			stack.push(childFirst);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">		T_V_1 field_1;</div><div class="line">		…</div><div class="line">		T_V_q field_q;</div><div class="line">		</div><div class="line">		<span class="keyword">int</span> _height;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h3 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BFS</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> TypeR <span class="title">func</span><span class="params">(T_1 v_1, T_p, v_p)</span> </span>&#123;</div><div class="line">		checkexistroot();</div><div class="line">		</div><div class="line">		Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</div><div class="line">		queue.add(root);</div><div class="line">		</div><div class="line">		<span class="keyword">while</span> ( !queue.isEmpty() )&#123;</div><div class="line">		</div><div class="line">			<span class="keyword">int</span> size = queue.size();</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">int</span> I = <span class="number">0</span>; I &lt; size; i++ )&#123;</div><div class="line">			TreeNode node = queue.remove();</div><div class="line">			</div><div class="line">			op at node;</div><div class="line">			</div><div class="line">			queue.add(childFirst);</div><div class="line">			…</div><div class="line">			queue.add(childLast);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			update var_l,…,var_k <span class="keyword">for</span> next level</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		<span class="keyword">return</span> result;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</div><div class="line">		T_1 field_1;</div><div class="line">		…</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="基本模板-1"><a href="#基本模板-1" class="headerlink" title="基本模板"></a>基本模板</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;线&quot;&gt;&lt;a href=&quot;#线&quot; class=&quot;headerlink&quot; title=&quot;线&quot;&gt;&lt;/a&gt;线&lt;/h1&gt;&lt;h2 id=&quot;基本模型&quot;&gt;&lt;a href=&quot;#基本模型&quot; class=&quot;headerlink&quot; title=&quot;基本模型&quot;&gt;&lt;/a&gt;基本模型&lt;/h2&gt;&lt;h
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="Leetcode" scheme="/tags/Leetcode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>幕布-全平台笔记思维导图工具</title>
     <link href="/2017/06/17/%E5%B9%95%E5%B8%83-%E5%85%A8%E5%B9%B3%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%B7%A5%E5%85%B7/"/>
     <id>/2017/06/17/幕布-全平台笔记思维导图工具/</id>
-    <published>2017-06-17T02:30:47.000Z</published>
-    <updated>2017-06-30T05:45:48.000Z</updated>
+    <published>2017-06-17T17:30:47.000Z</published>
+    <updated>2017-06-30T13:00:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>利益相关：幕布深度使用用户</p>
 <p>向大家强烈自来水一款从知乎上了解到的<strong>效率神器</strong>：<strong><a href="www.mubu.com">幕布</a></strong>，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）</p>
@@ -31,7 +66,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/MainPage.png" alt="幕布官网" title="">
+                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/MainPage.webp" alt="幕布官网" title="">
                 </div>
                 <div class="image-caption">幕布官网</div>
             </figure>
@@ -64,7 +99,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mindmaps.gi" alt="幕布快捷键页面" title="">
+                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mindmaps.gif" alt="幕布快捷键页面" title="">
                 </div>
                 <div class="image-caption">幕布快捷键页面</div>
             </figure>
@@ -87,7 +122,7 @@
 <li>经典的<strong>单句</strong>和<strong>例子</strong>（中英文）</li>
 </ul>
 <p>另一方面，因为幕布的全平台特性，我会用碎片化的时间利用电脑端的幕布来进行背诵（TED的演讲内容对于<strong>积累对应领域的英文表达方式</strong>有很大的帮助）</p>
-<h2 id="程序架构设计和Presentation"><a href="#程序架构设计和Presentation" class="headerlink" title="程序架构设计和Presentation"></a>程序架构设计和Presentation</h2><p>编程前先走流程和功能设计是我平时的习惯，这里有一个很简单的Server-Client模式的练习设计用法：设计程序功能，直接一键思维导图展示，PPT完全不用做了，非常愉悦</p>
+<h2 id="程序设计和Presentation"><a href="#程序设计和Presentation" class="headerlink" title="程序设计和Presentation"></a>程序设计和Presentation</h2><p>编程前先走流程和功能设计是我平时的习惯，这里有一个很简单的Server-Client模式的练习设计用法：设计程序功能，直接一键思维导图展示，PPT完全不用做了，非常愉悦</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -137,7 +172,7 @@
     <title>深入浅出看懂AlphaGo如何下棋</title>
     <link href="/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/"/>
     <id>/2017/05/27/AlphaGo运行原理解析/</id>
-    <published>2017-05-27T03:51:22.000Z</published>
+    <published>2017-05-27T18:51:22.000Z</published>
     <updated>2017-06-11T08:47:54.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
@@ -394,7 +429,7 @@
     <title>清欢 - 林清玄</title>
     <link href="/2017/05/14/%E6%B8%85%E6%AC%A2/"/>
     <id>/2017/05/14/清欢/</id>
-    <published>2017-05-14T01:26:55.000Z</published>
+    <published>2017-05-14T16:26:55.000Z</published>
     <updated>2017-05-27T03:38:26.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>少年时代读到苏轼的一阕词，非常喜欢，到现在还能背诵：</p>
@@ -457,7 +492,7 @@
     <title>English-abbreviation</title>
     <link href="/2017/05/13/English-abbreviation/"/>
     <id>/2017/05/13/English-abbreviation/</id>
-    <published>2017-05-13T09:29:00.000Z</published>
+    <published>2017-05-14T00:29:00.000Z</published>
     <updated>2017-05-26T05:35:55.000Z</updated>
     
     <content type="html"><![CDATA[<p>一些常用的英语缩写的总结</p>
@@ -537,7 +572,7 @@
     <title>有关中国诗的那些事</title>
     <link href="/2017/05/13/%E6%9C%89%E5%85%B3%E4%B8%AD%E5%9B%BD%E8%AF%97%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B/"/>
     <id>/2017/05/13/有关中国诗的那些事/</id>
-    <published>2017-05-13T08:40:00.000Z</published>
+    <published>2017-05-13T23:40:00.000Z</published>
     <updated>2017-05-26T05:34:51.000Z</updated>
     
     <content type="html"><![CDATA[<p>没有沉淀，文字永远上不了档次。难得空闲，读了些诗，有些感受。</p>
