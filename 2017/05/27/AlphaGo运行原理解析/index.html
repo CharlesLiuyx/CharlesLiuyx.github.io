@@ -32,21 +32,21 @@
 <meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
 <meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/CNN.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/PolicyNetwork.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/RL.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/RLArchitecture.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/Value%20Network.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/MCTS.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/Result1.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/Result2.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:image" content="/27/AlphaGo运行原理解析/78.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/RL.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Value%20Network.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/MCTS.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
+<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/78.png">
 <meta property="og:updated_time" content="2017-06-11T08:47:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
-<meta name="twitter:image" content="/27/AlphaGo运行原理解析/CNN.png">
+<meta name="twitter:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -221,7 +221,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
                 </div>
                 <div class="image-caption">CNN例子</div>
             </figure>
@@ -239,7 +239,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
@@ -294,7 +294,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
                 </div>
                 <div class="image-caption">打墙游戏的评价函数图</div>
             </figure>
@@ -305,7 +305,7 @@
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
                 </div>
                 <div class="image-caption">神经网络的训练过程和结构</div>
             </figure>
@@ -324,7 +324,7 @@
 <li>即使如此，<code>Aja Huang</code>还是觉得局面不够多样，为了进一步扩大搜索空间，在<code>L+1</code>步时，完全随机一个 $\vec a$ 落子，记下这个状态 $v(\vec s_{L+1})$ </li>
 <li>之后使用<code>P_human_plus</code>来进行对弈，直到结束时获得结果<code>r</code>，如此不断对弈，由于<code>L</code>也是一个随机数，我们可以得到，<strong>开局、中盘、官子</strong>等不同阶段的很多局面 $\vec s$，和这些局面对应的结果<code>r</code></li>
 <li><p>有了这些训练样本 $\langle \vec s,r\rangle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
-<p><img src="/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
+<p><img src="/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
 </li>
 </ul>
 <p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用<code>P_human_plus</code>来走棋，我方赢棋的概率。实验表明，仅仅使用<code>P_human</code>来训练$v(\vec s)$效果不如<code>P_human_plus</code>，强化学习是确实有效的。</p>
@@ -336,7 +336,7 @@
 <h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
                 </div>
                 <div class="image-caption">MTCS流程图解</div>
             </figure>
@@ -357,7 +357,7 @@
 <h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
             </figure>
@@ -367,7 +367,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
             </figure>
@@ -383,7 +383,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
                 </div>
                 <div class="image-caption">最终棋力结果</div>
             </figure>
@@ -392,7 +392,7 @@
 <h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
+                    <img src="/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
                 </div>
                 <div class="image-caption">李世石78手</div>
             </figure>
