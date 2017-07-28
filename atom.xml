@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>SH.SF Blog</title>
-  <subtitle>万古长空，一朝风月</subtitle>
+  <subtitle>人间有味是清欢</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-07-01T04:53:12.000Z</updated>
+  <updated>2017-07-28T03:41:15.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>到底什么是比特币</title>
+    <link href="/2017/07/26/%E5%88%B0%E5%BA%95%E4%BB%80%E4%B9%88%E6%98%AF%E6%AF%94%E7%89%B9%E5%B8%81/"/>
+    <id>/2017/07/26/到底什么是比特币/</id>
+    <published>2017-07-26T07:11:31.000Z</published>
+    <updated>2017-07-28T03:41:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>其实</p>
+<p><a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;其实&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.zhihu.com/question/22076666&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;江卓尔 知乎回答&lt;/a&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="BTcoin" scheme="/tags/BTcoin/"/>
+    
+      <category term="Blockchain" scheme="/tags/Blockchain/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetcodeNote</title>
@@ -57,10 +83,10 @@
     <link href="/2017/06/17/%E5%B9%95%E5%B8%83-%E5%85%A8%E5%B9%B3%E5%8F%B0%E7%AC%94%E8%AE%B0%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E5%B7%A5%E5%85%B7/"/>
     <id>/2017/06/17/幕布-全平台笔记思维导图工具/</id>
     <published>2017-06-17T17:30:47.000Z</published>
-    <updated>2017-07-01T18:17:39.000Z</updated>
+    <updated>2017-07-02T06:28:33.000Z</updated>
     
     <content type="html"><![CDATA[<p>利益相关：幕布深度使用用户</p>
-<p>向大家强烈自来水一款从知乎上了解到的<strong>效率神器</strong>：<strong><a href="www.mubu.com">幕布</a></strong>，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）</p>
+<p>向大家强烈自来水一款从知乎上了解到的<strong>效率神器</strong>：<strong><a href="https://mubu.com/inv/121749" target="_blank" rel="external">幕布</a></strong>，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）</p>
 <p><strong>幕布</strong>是一款<strong>思维管理工具</strong>，可以用来<strong>做笔记</strong>，<strong>梳理思路</strong>，<strong>做待办事项</strong>等等等等。</p>
 <a id="more"></a>
 <p>人类的记忆是有缺陷的，计算机能帮助人进行记忆。我们可以记住大方向的条目，再借助一个<strong>笔记软件</strong>来唤起我们的记忆。<strong>树形结构</strong>是一种极为高效的模式及手段。</p>
@@ -69,7 +95,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/MainPage.webp" alt="幕布官网" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/MainPage.webp" alt="幕布官网" title="">
                 </div>
                 <div class="image-caption">幕布官网</div>
             </figure>
@@ -77,7 +103,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/EditPage.png" alt="幕布编辑界面" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/EditPage.png" alt="幕布编辑界面" title="">
                 </div>
                 <div class="image-caption">幕布编辑界面</div>
             </figure>
@@ -85,7 +111,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/ShortCut.png" alt="幕布快捷键页面" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/ShortCut.png" alt="幕布快捷键页面" title="">
                 </div>
                 <div class="image-caption">幕布快捷键页面</div>
             </figure>
@@ -94,7 +120,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Platform.png" alt="幕布全平台" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/Platform.png" alt="幕布全平台" title="">
                 </div>
                 <div class="image-caption">幕布全平台</div>
             </figure>
@@ -102,7 +128,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mindmaps.gif" alt="幕布快捷键页面" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/mindmaps.gif" alt="幕布快捷键页面" title="">
                 </div>
                 <div class="image-caption">幕布快捷键页面</div>
             </figure>
@@ -130,16 +156,16 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/progd.png" alt="程序Feature" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/progd.png" alt="程序Feature" title="">
                 </div>
                 <div class="image-caption">程序Feature</div>
             </figure>
-<p><img src="/2017/06/17/幕布-全平台笔记思维导图工具/progp.png" alt="程序演示"></p>
+<p><img src="/17/幕布-全平台笔记思维导图工具/progp.png" alt="程序演示"></p>
 <h2 id="Dota2-Wiki"><a href="#Dota2-Wiki" class="headerlink" title="Dota2 Wiki"></a>Dota2 Wiki</h2><p>在国外我发现Dota2维基十分的给力，作为Dota2玩家有一些施法距离，施法机制等有时候需要查看（进阶），但是使用网站一方面内容太多，国内访问实在太慢了，而且<strong>搜索功能</strong>也做的不好，至于我做了什么事情，各位看gif自行感受</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/dota.gif" alt="Dota2" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/dota.gif" alt="Dota2" title="">
                 </div>
                 <div class="image-caption">Dota2</div>
             </figure>
@@ -148,14 +174,14 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Final1.png" alt="期末复习笔记总览" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/Final1.png" alt="期末复习笔记总览" title="">
                 </div>
                 <div class="image-caption">期末复习笔记总览</div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Final2.png" alt="期末复习笔记具体内容" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/Final2.png" alt="期末复习笔记具体内容" title="">
                 </div>
                 <div class="image-caption">期末复习笔记具体内容</div>
             </figure>
@@ -163,14 +189,14 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mubuchoice.png" alt="幕布精选" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/mubuchoice.png" alt="幕布精选" title="">
                 </div>
                 <div class="image-caption">幕布精选</div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mubureward.png" alt="幕布精选打赏功能" title="">
+                    <img src="/17/幕布-全平台笔记思维导图工具/mubureward.png" alt="幕布精选打赏功能" title="">
                 </div>
                 <div class="image-caption">幕布精选打赏功能</div>
             </figure>
@@ -191,7 +217,7 @@
     <summary type="html">
     
       &lt;p&gt;利益相关：幕布深度使用用户&lt;/p&gt;
-&lt;p&gt;向大家强烈自来水一款从知乎上了解到的&lt;strong&gt;效率神器&lt;/strong&gt;：&lt;strong&gt;&lt;a href=&quot;www.mubu.com&quot;&gt;幕布&lt;/a&gt;&lt;/strong&gt;，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）&lt;/p&gt;
+&lt;p&gt;向大家强烈自来水一款从知乎上了解到的&lt;strong&gt;效率神器&lt;/strong&gt;：&lt;strong&gt;&lt;a href=&quot;https://mubu.com/inv/121749&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;幕布&lt;/a&gt;&lt;/strong&gt;，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;幕布&lt;/strong&gt;是一款&lt;strong&gt;思维管理工具&lt;/strong&gt;，可以用来&lt;strong&gt;做笔记&lt;/strong&gt;，&lt;strong&gt;梳理思路&lt;/strong&gt;，&lt;strong&gt;做待办事项&lt;/strong&gt;等等等等。&lt;/p&gt;
     
     </summary>
@@ -227,7 +253,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
+                    <img src="/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
                 </div>
                 <div class="image-caption">CNN例子</div>
             </figure>
@@ -245,7 +271,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
+                    <img src="/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
@@ -263,7 +289,7 @@
 <li>重复以上步骤直到 $\vec s_n$并且双方分出胜负，此时便完整的模拟完了一盘棋，我们假设一个变量<code>r</code>，胜利记为1，失败则为0</li>
 </ul>
 <p>那么问题就来了，如果这一盘赢了，那意味着这一连串的下法至少比对面那个二逼要明智一些，毕竟我最后赢了，那么我把这次落子方法 $(\vec s_0, \vec a_0)$ 记下来，并把它的分值变化：<br>$$<br>\text{新分数} = \text{初始分数} + r \tag{2-2}<br>$$<br>同理，可以把之后所有随机出来的落子方法 $(\vec s_i, \vec a_i)$ 都应用2-2公式，即都加<code>1</code>分。之后开始第二次模拟，这一次，我们对棋盘不是一无所知了，至少在  $\vec s_0$ 状态我们知道落子方法  $\vec a_0$ 的分值是2，其他都是1，我们使用这个数据的方法是：在这次<strong>随机</strong>中，<strong>我们随机到  $\vec a_0$ 状态的概率要比其他方法高一点</strong>。</p>
-<p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。<br>$$<br>score(\vec s) = \begin{pmatrix}<br>     r_{11} &amp; r_{12}  &amp; \cdots &amp; r_{1n} \\<br>     r_{21} &amp; r_{22}  &amp; \cdots &amp; r_{2n}\\<br>     \vdots  &amp; \vdots &amp; \ddots &amp; \vdots \\<br>     r_{n1} &amp; r_{n2}  &amp; \cdots &amp; r_{nn}<br>     \end{pmatrix}<br>$$</p>
+<p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。<br>$$<br>score(\vec s) = \begin{pmatrix}<br>     r<em>{11} &amp; r</em>{12}  &amp; \cdots &amp; r<em>{1n} \<br>     r</em>{21} &amp; r<em>{22}  &amp; \cdots &amp; r</em>{2n}\<br>     \vdots  &amp; \vdots &amp; \ddots &amp; \vdots \<br>     r<em>{n1} &amp; r</em>{n2}  &amp; \cdots &amp; r_{nn}<br>     \end{pmatrix}<br>$$</p>
 <blockquote>
 <p>如上述公式所述，<code>n=19</code>，每一个状态 $\vec s$ 都有一个对应的每个落子点的分数，只要模拟量足够多，那么可以覆盖到的 $\vec s$ 状态就越多，漏洞就越来越小（可以思考李世石的神之一手，是否触及到了AlphaGo1.0的软肋呢？即没有考虑到的状态 $\vec s$ ）</p>
 </blockquote>
@@ -300,7 +326,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
+                    <img src="/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
                 </div>
                 <div class="image-caption">打墙游戏的评价函数图</div>
             </figure>
@@ -311,7 +337,7 @@
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
+                    <img src="/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
                 </div>
                 <div class="image-caption">神经网络的训练过程和结构</div>
             </figure>
@@ -330,7 +356,7 @@
 <li>即使如此，<code>Aja Huang</code>还是觉得局面不够多样，为了进一步扩大搜索空间，在<code>L+1</code>步时，完全随机一个 $\vec a$ 落子，记下这个状态 $v(\vec s_{L+1})$ </li>
 <li>之后使用<code>P_human_plus</code>来进行对弈，直到结束时获得结果<code>r</code>，如此不断对弈，由于<code>L</code>也是一个随机数，我们可以得到，<strong>开局、中盘、官子</strong>等不同阶段的很多局面 $\vec s$，和这些局面对应的结果<code>r</code></li>
 <li><p>有了这些训练样本 $\langle \vec s,r\rangle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
-<p><img src="/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
+<p><img src="/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
 </li>
 </ul>
 <p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用<code>P_human_plus</code>来走棋，我方赢棋的概率。实验表明，仅仅使用<code>P_human</code>来训练$v(\vec s)$效果不如<code>P_human_plus</code>，强化学习是确实有效的。</p>
@@ -342,7 +368,7 @@
 <h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
+                    <img src="/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
                 </div>
                 <div class="image-caption">MTCS流程图解</div>
             </figure>
@@ -363,7 +389,7 @@
 <h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
+                    <img src="/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
             </figure>
@@ -373,7 +399,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
+                    <img src="/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
             </figure>
@@ -389,7 +415,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
+                    <img src="/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
                 </div>
                 <div class="image-caption">最终棋力结果</div>
             </figure>
@@ -398,7 +424,7 @@
 <h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
+                    <img src="/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
                 </div>
                 <div class="image-caption">李世石78手</div>
             </figure>
