@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-07-28T03:41:15.000Z</updated>
+  <updated>2017-07-30T07:16:31.000Z</updated>
   <id>/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PDF复制粘贴去除多余的回车符</title>
+    <link href="/2017/07/29/PDF%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%8E%BB%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E5%9B%9E%E8%BD%A6%E7%AC%A6/"/>
+    <id>/2017/07/29/PDF复制粘贴去除多余的回车符/</id>
+    <published>2017-07-30T06:03:08.000Z</published>
+    <updated>2017-07-30T07:16:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用<a href="https://www.alfredapp.com/" target="_blank" rel="external">Alfred</a> + workflow来对剪切板操作来解决，或者用<a href="https://www.boastr.net/" target="_blank" rel="external">BetterTouchTool</a>的自带个性化功能来尝试。只是一个思路，没有在Mac系统尝试</p>
+<ul>
+<li>下载 <a href="https://autohotkey.com/download/" target="_blank" rel="external">Autohotkey</a> ，安装（这一步都卡住那估计救不了了）</li>
+<li>桌面右键 ➜ 新建 ➜ 创建新的AutoHotkey Script</li>
+<li>右键创建的文件 ➜ 选择 Edit Script 出来一个记事本</li>
+<li>编辑记事本文件，在已经有的内容下直接加上</li>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#IfWinActive <span class="keyword">ahk_class</span> classFoxitReader</div><div class="line"><span class="symbol">^c::</span> </div><div class="line">    old := <span class="built_in">ClipboardAll</span></div><div class="line">    <span class="built_in">clipboard</span> := <span class="string">""</span></div><div class="line">    send ^c</div><div class="line">    clipwait <span class="number">0.1</span></div><div class="line">    if <span class="built_in">clipboard</span> = </div><div class="line">        <span class="built_in">clipboard</span> := old</div><div class="line">    else &#123;</div><div class="line">        tmp := RegExReplace(<span class="built_in">clipboard</span>, <span class="string">"(\S.*?)\R(.*?\S)"</span>, <span class="string">"$1 $2"</span>)</div><div class="line">        <span class="built_in">clipboard</span> := tmp</div><div class="line">        StringReplace <span class="built_in">clipboard</span>, <span class="built_in">clipboard</span>, % <span class="string">"  "</span>, % <span class="string">" "</span>, <span class="literal">A</span></div><div class="line">        clipwait <span class="number">0.1</span></div><div class="line">        &#125;</div><div class="line">    old := <span class="string">""</span></div><div class="line">    tmp := <span class="string">""</span></div><div class="line"><span class="keyword">return</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有个问题 <code>IfWinActive ahk_class classFoxitReader</code> 第一行的<code>classFoxitReader</code> 是指的你用什么程序打开PDF </p>
+<p>如果是FoxitReader就是<code>classFoxitReader</code> 如果是Acrobat Adobe就是<code>AcrobatSDIWindow</code></p>
+<p>可以用Autohotkey中的  <a href="https://autohotkey.com/docs/commands/WinGetClass.htm" target="_blank" rel="external">WinGetClass</a> 来获得某一个窗口的<code>ahk_class</code></p>
+</blockquote>
+<ul>
+<li>保存退出</li>
+<li>桌面上双击你刚刚编辑的文件，可以看到右下角出现了一个<code>H</code>形状的图标</li>
+</ul>
+<p>大功告成，这时候你再试试去PDF文档里面<code>ctrl + c</code>就没有回车符了（当然，段落还是无法区分的），也不一定，这一段既然是脚本语言，那就有无限的可能性，就看你的算法实现能力了对吧！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用&lt;a href=&quot;https://www.alfredapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alfred&lt;/a&gt; + workflow来对剪切板操作来解决，或者
+    
+    </summary>
+    
+    
+      <category term="Tools" scheme="/tags/Tools/"/>
+    
+      <category term="Autohotkey" scheme="/tags/Autohotkey/"/>
+    
+  </entry>
   
   <entry>
     <title>到底什么是比特币</title>
