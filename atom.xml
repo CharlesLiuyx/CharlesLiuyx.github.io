@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2017-07-30T07:16:31.000Z</updated>
+  <updated>2017-07-30T07:24:57.000Z</updated>
   <id>/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="/2017/07/29/PDF%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%8E%BB%E9%99%A4%E5%A4%9A%E4%BD%99%E7%9A%84%E5%9B%9E%E8%BD%A6%E7%AC%A6/"/>
     <id>/2017/07/29/PDF复制粘贴去除多余的回车符/</id>
     <published>2017-07-30T06:03:08.000Z</published>
-    <updated>2017-07-30T07:16:31.000Z</updated>
+    <updated>2017-07-30T07:24:57.000Z</updated>
     
     <content type="html"><![CDATA[<p>直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用<a href="https://www.alfredapp.com/" target="_blank" rel="external">Alfred</a> + workflow来对剪切板操作来解决，或者用<a href="https://www.boastr.net/" target="_blank" rel="external">BetterTouchTool</a>的自带个性化功能来尝试。只是一个思路，没有在Mac系统尝试</p>
+<a id="more"></a> 
 <ul>
 <li>下载 <a href="https://autohotkey.com/download/" target="_blank" rel="external">Autohotkey</a> ，安装（这一步都卡住那估计救不了了）</li>
 <li>桌面右键 ➜ 新建 ➜ 创建新的AutoHotkey Script</li>
@@ -44,7 +45,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用&lt;a href=&quot;https://www.alfredapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alfred&lt;/a&gt; + workflow来对剪切板操作来解决，或者
+      &lt;p&gt;直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用&lt;a href=&quot;https://www.alfredapp.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alfred&lt;/a&gt; + workflow来对剪切板操作来解决，或者用&lt;a href=&quot;https://www.boastr.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BetterTouchTool&lt;/a&gt;的自带个性化功能来尝试。只是一个思路，没有在Mac系统尝试&lt;/p&gt;
     
     </summary>
     
