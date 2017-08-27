@@ -29,24 +29,24 @@
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo如何下棋">
-<meta property="og:url" content="/2017/05/27/AlphaGo运行原理解析/index.html">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
 <meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/RL.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Value%20Network.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/MCTS.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result1.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
-<meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/78.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Value%20Network.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png">
 <meta property="og:updated_time" content="2017-08-27T02:49:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
-<meta name="twitter:image" content="/2017/05/27/AlphaGo运行原理解析/CNN.png">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -448,7 +448,7 @@
         
     </div>
     <footer>
-        <a href="">
+        <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="SH.SF">
             SH.SF
         </a>
@@ -474,7 +474,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -484,22 +484,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -642,7 +642,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -652,22 +652,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=/2017/05/27/AlphaGo运行原理解析/&via=" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — SH.SF Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -678,7 +678,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABz0lEQVR42u3awa7CMAwEQP7/p/uuSDzK2m5SkCYnBKWdXlaOnccjXsfTev3m9dfna87v+VixcHFxx9zjdJ1zkzu8e438Dri4uHdxz4PmPKSix7y5Mjfg4uJ+PzcvhpJ74uLi/jq3F3C3BRkuLu6Am2x+kqg6Z1WLJFxc3Lu4eeGy7vOS/i4uLm6LexRX0vRMSp/m03Fxcbdw80DJBy15MVR9Li4u7h7uVUHW2xrlAXdxiYOLixtwqwenqkey8mLow2dcXNwt3OSiZNuTt0onpRIuLu4ebj60SF4pibPe4AQXF3cnNz9CUd32VAelhbjExcXdwu2VL9WjG/lwpdBaxcXFXcD9sCuKY653n2bi4uLiLuZOZrO9b3pjmNFMGBcXt19dFNqmeSNjMmqNajFcXNxl3MlRqt42KR+9RJMfXFzc7dz51mhSPJWDDBcX91JuL6Sqw9fkBaISBxcXdxn3KK68bZq0QavNEVxc3D3caqBUj2X0iqd5/OHi4s65+RGKfCyab5PKQYaLi7uRu2K4Mi9c/vkXLi7uV3InzdDq610QZLi4uFu480Nao5EMLi7uRm7e1Kg2UqtHtS5ri+Di4g64vdlsL5LmEYmLi7uY+wdKTrlot5QJZwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3awWrDMBAE0P7/T6fXQogzo5WMC8+n4CaSnwqRMrs/P/H1+nN9uv/+nld8JTN+eueGCw8PD2/w6MmDThbleoHe33P9OlosPDw8vGO8Tw93PfT8IZLt5HqWLxY8PDy8x/CSESZj5lQ8PDy85/PyqOJ6tLVoAw8PD+85vHboNrDIx28XaFvWgoeHh9fVmzYche98faS+h4eHhzeuql9/4c4/NWlNiObFw8PDO8Brj7Pt9PPGrDYsxsPDwzvNawPTSRNA3nSVhLPXd/Dw8PDO8fJtoF2CXeW0PKItogo8PDy8TbxdG0Byv13WZEv4MgseHh7eJt78cDxpCGgPyvUuh4eHh3eA10a0k6aoybKubUh4eHh4p3lJqJr8dY09L4DVvxXw8PDwlngtZi1U3YVJnjPa8fDw8PDGvPawm5f/1+KJvNj25Q4eHh7eAV5b7sqDiXsi4+h4jYeHh7eVlz/opJyf30nauYpiGx4eHt6NvOQrOAfnj7U2YxFG4OHh4Y157QTtNjBpL5hHunh4eHgneLsOuHnxrB2z3WDw8PDw7uS1h+b2U0mRbNcRv+7SwsPDw4t5p8v5bamsDYujufDw8PC28iatom1Ba340rxcaDw8P7wBvrey0FhBMymZrC4GHh4d3Jy+PDPLP5mfdZDOofzHg4eHh3chrv8rbSCIPHdq4BA8PD+9OXjJQXppa24omhTc8PDy8c7xXebXRatEgNSjFffwn4eHh4R3gTY6ta8Wz/PXkoI+Hh4d3mteW5/MR9rYU5Mta7H54eHh4A17SNJC3aq2FFLtiCDw8PLz/wsvbDvKGgIQUFcDw8PDwHsCbkNoHzQPiYofBw8PDG/PmgcJaMSwpcbVgPDw8vNO8+Q/+vJCfx8T5kXrDhYeHh5fyfgF6frtgcHzf7gAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
