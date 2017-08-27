@@ -42,7 +42,7 @@
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/Result.png">
 <meta property="og:image" content="/2017/05/27/AlphaGo运行原理解析/78.png">
-<meta property="og:updated_time" content="2017-08-27T02:33:29.000Z">
+<meta property="og:updated_time" content="2017-08-27T02:35:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -258,9 +258,9 @@
 </ul>
 <p>那么问题就来了，如果这一盘赢了，那意味着这一连串的下法至少比对面那个二逼要明智一些，毕竟我最后赢了，那么我把这次落子方法 $(\vec s_0, \vec a_0)$ 记下来，并把它的分值变化：<br>$$<br>\text{新分数} = \text{初始分数} + r \tag{2-2}<br>$$<br>同理，可以把之后所有随机出来的落子方法 $(\vec s_i, \vec a_i)$ 都应用2-2公式，即都加<code>1</code>分。之后开始第二次模拟，这一次，我们对棋盘不是一无所知了，至少在  $\vec s_0$ 状态我们知道落子方法  $\vec a_0$ 的分值是2，其他都是1，我们使用这个数据的方法是：在这次<strong>随机</strong>中，<strong>我们随机到  $\vec a_0$ 状态的概率要比其他方法高一点</strong>。</p>
 <p>之后，我们不断重复以上步骤，这样，那些看起来不错（以最后的胜负来作为判断依据）的落子方案的分数就会越来越高，并且这些落子方案也是比较有前途的，会被更多的选择。</p>
-<p>$$<br>score(\vec s) = \begin{pmatrix}<br>r<em>{11} &amp; r</em>{12}  &amp; \cdots &amp; r<em>{1n} \<br>r</em>{21} &amp; r<em>{22}  &amp; \cdots &amp; r</em>{2n}\<br>\vdots  &amp; \vdots &amp; \ddots &amp; \vdots \<br>r<em>{n1} &amp; r</em>{n2}  &amp; \cdots &amp; r_{nn}<br>\end{pmatrix}<br>$$<br>如上述公式所述</p>
+<p>$$<br>score(\vec s) = \begin{pmatrix}<br>r<em>{11} &amp; r</em>{12}  &amp; \cdots &amp; r<em>{1n} \<br>r</em>{21} &amp; r<em>{22}  &amp; \cdots &amp; r</em>{2n}\<br>\vdots  &amp; \vdots &amp; \ddots &amp; \vdots \<br>r<em>{n1} &amp; r</em>{n2}  &amp; \cdots &amp; r_{nn}<br>\end{pmatrix}<br>$$</p>
 <blockquote>
-<p><code>n=19</code>，每一个状态 $\vec s$ 都有一个对应的每个落子点的分数，只要模拟量足够多，那么可以覆盖到的 $\vec s$ 状态就越多，漏洞就越来越小（可以思考李世石的神之一手，是否触及到了AlphaGo1.0的软肋呢？即没有考虑到的状态 $\vec s$ ）</p>
+<p>如上述公式所述，<code>n=19</code>，每一个状态 $\vec s$ 都有一个对应的每个落子点的分数，只要模拟量足够多，那么可以覆盖到的 $\vec s$ 状态就越多，漏洞就越来越小（可以思考李世石的神之一手，是否触及到了AlphaGo1.0的软肋呢？即没有考虑到的状态 $\vec s$ ）</p>
 </blockquote>
 <p>最后，当进行了10万盘棋后，在此状态选择那个<strong>分数最高</strong>的方案落子，此时，才真正下了<strong>这步棋</strong>。这种过程在论文里被称为<strong>Rollout</strong></p>
 <p>蒙特卡洛搜索树的方法十分的深刻精巧，充满的创造力，它有一些很有意思的特点：</p>
@@ -441,7 +441,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-08-27T02:33:29.000Z" itemprop="dateUpdated">2017-08-26 19:33:29</time>
+    Last updated: <time datetime="2017-08-27T02:35:24.000Z" itemprop="dateUpdated">2017-08-26 19:35:24</time>
 </span><br>
 
 
