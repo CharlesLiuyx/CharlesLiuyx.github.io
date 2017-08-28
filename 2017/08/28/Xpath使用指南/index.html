@@ -18,23 +18,24 @@
     
     
     
-    <title>SH.SF Blog | 人间有味是清欢</title>
+    <title>Xpath使用指南 | SH.SF Blog | 人间有味是清欢</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-    <meta name="description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
-<meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SH.SF Blog">
-<meta property="og:url" content="https://charlesliuyx.github.io/index.html">
+    <meta name="keywords" content="crawl">
+    <meta name="description" content="XPath 相关例子Note例子1123456789101112131415from lxml import etreesample1 = &quot;&quot;&quot;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;title&amp;gt;My page&amp;lt;/title&amp;gt;  &amp;lt;/head&amp;gt;  &amp;lt;body&amp;gt;    &amp;lt;h2&amp;gt;Welcome to my &amp;lt;a">
+<meta name="keywords" content="crawl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Xpath使用指南">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/index.html">
 <meta property="og:site_name" content="SH.SF Blog">
-<meta property="og:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta property="og:description" content="XPath 相关例子Note例子1123456789101112131415from lxml import etreesample1 = &quot;&quot;&quot;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;title&amp;gt;My page&amp;lt;/title&amp;gt;  &amp;lt;/head&amp;gt;  &amp;lt;body&amp;gt;    &amp;lt;h2&amp;gt;Welcome to my &amp;lt;a">
+<meta property="og:updated_time" content="2017-08-28T19:01:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SH.SF Blog">
-<meta name="twitter:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta name="twitter:title" content="Xpath使用指南">
+<meta name="twitter:description" content="XPath 相关例子Note例子1123456789101112131415from lxml import etreesample1 = &quot;&quot;&quot;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;title&amp;gt;My page&amp;lt;/title&amp;gt;  &amp;lt;/head&amp;gt;  &amp;lt;body&amp;gt;    &amp;lt;h2&amp;gt;Welcome to my &amp;lt;a">
     
         <link rel="alternate" type="application/atom+xml" title="SH.SF Blog" href="/atom.xml">
     
@@ -46,7 +47,7 @@
 <body>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -65,7 +66,7 @@
     <div class="scroll-wrap flex-col">
       <ul class="nav">
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/"  >
                 <i class="icon icon-lg icon-home"></i>
                 Home
@@ -118,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">SH.SF Blog</div>
+        <div class="flex-col header-title ellipsis">Xpath使用指南</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,13 +138,17 @@
         
     </div>
 </header>
-<header class="content-header index-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">SH.SF Blog</h1>
+        <h1 class="title">Xpath使用指南</h1>
         <h5 class="subtitle">
             
-                人间有味是清欢
+                <time datetime="2017-08-28T19:00:33.000Z" itemprop="datePublished" class="page-time">
+  2017-08-28
+</time>
+
+
             
         </h5>
     </div>
@@ -153,40 +158,38 @@
 
 </header>
 
+
 <div class="container body-wrap">
-
-    <ul class="post-list">
     
-        <li class="post-list-item fade">
-            <article id="post-Xpath使用指南"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-08-28 12:00:33" datetime="2017-08-28T19:00:33.000Z"  itemprop="datePublished">2017-08-28</time>
-
-        
-
-
-        
-
-    </div>
-
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XPath-相关例子Note"><span class="post-toc-number">1.</span> <span class="post-toc-text">XPath 相关例子Note</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#例子1"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">例子1</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#例子2"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">例子2</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#例子3"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">例子3</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
     
+<article id="post-Xpath使用指南"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Xpath使用指南</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-08-28 12:00:33" datetime="2017-08-28T19:00:33.000Z"  itemprop="datePublished">2017-08-28</time>
+
+            
 
 
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/08/28/Xpath使用指南/">Xpath使用指南</a>
-    </h3>
-  
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
 
+            
 
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h1 id="XPath-相关例子Note"><a href="#XPath-相关例子Note" class="headerlink" title="XPath 相关例子Note"></a>XPath 相关例子Note</h1><h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line">sample1 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getxpath</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="keyword">return</span> etree.HTML(html)</div><div class="line">s1 = getxpath(sample1)</div></pre></td></tr></table></figure>
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="XPath-相关例子Note"><a href="#XPath-相关例子Note" class="headerlink" title="XPath 相关例子Note"></a>XPath 相关例子Note</h1><h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line">sample1 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getxpath</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="keyword">return</span> etree.HTML(html)</div><div class="line">s1 = getxpath(sample1)</div></pre></td></tr></table></figure>
 <p><code>//</code>绝对路径 <code>text()</code> 获取内容中的文字信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//title/text()'</span>)</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;My page&apos;]</div></pre></td></tr></table></figure>
@@ -266,369 +269,165 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s4.xpath((<span class="string">'//*[contains(@class,"content")]/text()'</span>))</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</div></pre></td></tr></table></figure>
 
-    
+        </div>
 
-        <a href="/2017/08/28/Xpath使用指南/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
+        <blockquote class="post-copyright">
+    <div class="content">
         
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-28T19:01:53.000Z" itemprop="dateUpdated">2017-08-28 12:01:53</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="SH.SF">
+            SH.SF
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crawl/">crawl</a></li></ul>
 
-    </div>
-    
-</article>
 
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-PDF复制粘贴去除多余的回车符"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-07-29 23:03:08" datetime="2017-07-30T06:03:08.000Z"  itemprop="datePublished">2017-07-29</time>
-
-        
-
-
-        
-
-    </div>
-
+            
+<div class="page-share-wrap">
     
 
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/07/29/PDF复制粘贴去除多余的回车符/">PDF复制粘贴去除多余的回车符</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>直接上解决步骤，但是只能适用于Windows平台，Mac这边可以尝试用<a href="https://www.alfredapp.com/" target="_blank" rel="external">Alfred</a> + workflow来对剪切板操作来解决，或者用<a href="https://www.boastr.net/" target="_blank" rel="external">BetterTouchTool</a>的自带个性化功能来尝试。只是一个思路，没有在Mac系统尝试</p>
-    
-
-        <a href="/2017/07/29/PDF复制粘贴去除多余的回车符/" class="post-more waves-effect waves-button">
-            阅读全文…
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&title=《Xpath使用指南》 — SH.SF Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Autohotkey/">Autohotkey</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tools/">Tools</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-到底什么是比特币"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-07-26 00:11:31" datetime="2017-07-26T07:11:31.000Z"  itemprop="datePublished">2017-07-26</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/07/26/到底什么是比特币/">到底什么是比特币</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>其实</p>
-<p><a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a></p>
-
-    
-
-        <a href="/2017/07/26/到底什么是比特币/" class="post-more waves-effect waves-button">
-            阅读全文…
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BTcoin/">BTcoin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-LeetcodeNote"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-07-01 00:18:41" datetime="2017-07-01T07:18:41.000Z"  itemprop="datePublished">2017-07-01</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/07/01/LeetcodeNote/">LeetcodeNote</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>算法培训课程基本模型汇总笔记</p>
-    
-
-        <a href="/2017/07/01/LeetcodeNote/" class="post-more waves-effect waves-button">
-            阅读全文…
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&title=《Xpath使用指南》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-幕布-全平台笔记思维导图工具"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-06-17 10:30:47" datetime="2017-06-17T17:30:47.000Z"  itemprop="datePublished">2017-06-17</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/06/17/幕布-全平台笔记思维导图工具/">幕布-全平台笔记思维导图工具</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>利益相关：幕布深度使用用户</p>
-<p>向大家强烈自来水一款从知乎上了解到的<strong>效率神器</strong>：<strong><a href="https://mubu.com/inv/121749" target="_blank" rel="external">幕布</a></strong>，简直相见恨晚，自从它4月正式上线后就一直使用，对我的日常生活、学习和计划帮助巨大（个人情况：硕士CE在读，ML方向，效率至上主义者，简约UI风格拥护者）</p>
-<p><strong>幕布</strong>是一款<strong>思维管理工具</strong>，可以用来<strong>做笔记</strong>，<strong>梳理思路</strong>，<strong>做待办事项</strong>等等等等。</p>
-    
-
-        <a href="/2017/06/17/幕布-全平台笔记思维导图工具/" class="post-more waves-effect waves-button">
-            阅读全文…
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/幕布/">幕布</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/效率工具/">效率工具</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-AlphaGo运行原理解析"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
-
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/27/AlphaGo运行原理解析/">深入浅出看懂AlphaGo如何下棋</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
-    
-
-        <a href="/2017/05/27/AlphaGo运行原理解析/" class="post-more waves-effect waves-button">
-            阅读全文…
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Xpath使用指南》 — SH.SF Blog&url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-清欢"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-14 09:26:55" datetime="2017-05-14T16:26:55.000Z"  itemprop="datePublished">2017-05-14</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/14/清欢/">清欢 - 林清玄</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>少年时代读到苏轼的一阕词，非常喜欢，到现在还能背诵：</p>
-<blockquote>
-<p>细雨斜风作晓寒，淡烟疏柳媚晴滩，入淮清洛渐漫漫。<br> 雪沫乳花浮午盏，蓼茸蒿笋试春盘，人间有味是清欢。</p>
-</blockquote>
-    
-
-        <a href="/2017/05/14/清欢/" class="post-more waves-effect waves-button">
-            阅读全文…
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-English-abbreviation"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-05-13 17:29:00" datetime="2017-05-14T00:29:00.000Z"  itemprop="datePublished">2017-05-13</time>
-
-        
-
-
-        
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/05/13/English-abbreviation/">English-abbreviation</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        <p>一些常用的英语缩写的总结</p>
-    
-
-        <a href="/2017/05/13/English-abbreviation/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/英语积累/">英语积累</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
+      </li>
     </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
 
     
-<nav id="page-nav">
-    <div class="inner">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页</a>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/07/29/PDF复制粘贴去除多余的回车符/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PDF复制粘贴去除多余的回车符</h4>
+      </a>
     </div>
+  
 </nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 
 </div>
@@ -670,7 +469,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/&title=SH.SF Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&title=《Xpath使用指南》 — SH.SF Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -680,22 +479,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/&title=SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&title=《Xpath使用指南》 — SH.SF Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=SH.SF Blog&url=https://charlesliuyx.github.io/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Xpath使用指南》 — SH.SF Blog&url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -706,7 +505,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAB1UlEQVR42u3aS27DMBAEUd3/0vI2QEypuikyClBcGQotvngx4HyOA6/z1xr9dfTkev/DS65cudPc83L93EOOTN/ADXLlyt3PHUWM61DFw1n6tuFzuXLlvpLbodM9cuXK/S9c/i0StuTKlft+Lkl+nipzkMvQA7maXLlyJ7j8gHWfl9R35cqVW3HPaqXhqQteX86VK1fuFm4adPg1iCRLZTlVrly5f8rtWrD8DeUAh1y5chdzgzJlWCSd/zmOp1hy5coNufxa0wWmrrAydSOTK1fuNDdNYPgBXan0Zo9cuXK3cNObAymYpk/iXE2uXLmLubxlQgoZaYOEt3XlypW7k5se3+0kcxTxlUiuXLmLuV2Kwpumadn0JpDJlSt3MZcHlLSlOj+2NQxhcuXKXcxF9RJc/uApTUeXK1fuHu51YZQ0WromKyl8DJuscuXKXcwtuy5pdsXLoGS8Q65cuYu5Z7iC3wDsQVNjXZdGrly5E1y+yMEpoiuvyJUrdw+3S3vSES7+TlQckStX7hbuTPOVDF11RdWb8Qu5cuW+gNuFpy6tGp4rV67cl3HTRgj/Z4LAJ1eu3I3cLvlJLzr8CoWarHLlyl3GTYexCJqPc8VzZHLlyl3L/QAPRWzDoHTpWgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aS3ICMRAEUe5/6fGWDUNW9eAISamVw2DoN4u2+vN64XO9nfffkHeST+7+Nj4yZMhYlnHdHv6eLtD7BxR8rwwZMg5gkK8nr5KkTLIlj02GDBky7hkkUaZXQBkyZMj4BSMNlxfAMmTIkJEWsZMG2eSi+XAtLkOGjAUZXfv+f37+yXxDhgwZSzGu8HRtMv45ZVQyZMjYmsETXHdZJMF1CVeGDBmnMcgaRHdIyUqCCy6LMmTIOIDB22HzBa/JcAIth8mQIWMLxn0i6wJ9akgZfI4MGTIOYEwGkPNWHSlxvzT4ZMiQsTVjEigPq2vboeba/HnLkCFjEQZvkJHis2uuTS6IMmTI2JvRjSTTMeQkUJTQZciQcQwjbd/zK12a1uNrogwZMrZmzNv9PMnygrZctpAhQ8YBjK5k5esXpAGXpvvgv4cMGTKWZaSlY3qJ7IKOo5IhQ8ZhjG480I0KeFMP7YzIkCFjU8akEE1XuEjKRhPXT0lZhgwZBzD4BtmFT5qmu+GoDBkyzmGkqZCXoPwqyRN3OY+VIUPG4oxuMasbiwaDSV5Cy5AhY1PGFZ60MTcBBwMDGTJkbM2YJLvJQkaX1tPCWIYMGTsx0gWI7gmlDyJ+3jJkyDiAMSlZ+QUxHYLyaGXIkCGDB9RdE/kKmgwZMmSkxWQ31OzGpV/StAwZMg5g8NUuvuT67CN4rN0mQ4aMBRld6ZimV84rF1hlyJCxJ+MPI1C8KiBO4YcAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 
@@ -714,7 +513,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-07-30T07:24:57.000Z</updated>
+  <updated>2017-08-28T19:01:53.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Xpath使用指南</title>
+    <link href="https://charlesliuyx.github.io/2017/08/28/Xpath%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
+    <id>https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/</id>
+    <published>2017-08-28T19:00:33.000Z</published>
+    <updated>2017-08-28T19:01:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="XPath-相关例子Note"><a href="#XPath-相关例子Note" class="headerlink" title="XPath 相关例子Note"></a>XPath 相关例子Note</h1><h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line">sample1 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getxpath</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="keyword">return</span> etree.HTML(html)</div><div class="line">s1 = getxpath(sample1)</div></pre></td></tr></table></figure>
+<p><code>//</code>绝对路径 <code>text()</code> 获取内容中的文字信息</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//title/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;My page&apos;]</div></pre></td></tr></table></figure>
+<p><code>/</code> 相对路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'/html/head/title/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;My page&apos;]</div></pre></td></tr></table></figure>
+<p>获取属性<code>src</code>的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//h2/a/@src'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;x&apos;]</div></pre></td></tr></table></figure>
+<p>获取所有属性<code>href</code>的值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//@href'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;#&apos;]</div></pre></td></tr></table></figure>
+<p>获取网页中的<strong>所有文本</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[&apos;\n  &apos;,</div><div class="line"> &apos;\n    &apos;,</div><div class="line"> &apos;My page&apos;,</div><div class="line"> &apos;\n  &apos;,</div><div class="line"> &apos;\n  &apos;,</div><div class="line"> &apos;\n    &apos;,</div><div class="line"> &apos;Welcome to my &apos;,</div><div class="line"> &apos;page&apos;,</div><div class="line"> &apos;\n    &apos;,</div><div class="line"> &apos;This is the first paragraph.&apos;,</div><div class="line"> &apos;\n    &apos;,</div><div class="line"> &apos;\n  &apos;,</div><div class="line"> &apos;\n&apos;]</div></pre></td></tr></table></figure>
+<p>获取网页中的<strong>所有注释</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//comment()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&lt;!-- this is the end --&gt;]</div></pre></td></tr></table></figure>
+<h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sample2 = <span class="string">"""</span></div><div class="line">&lt;html&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">      &lt;li&gt;Quote 1&lt;/li&gt;</div><div class="line">      &lt;li&gt;Quote 2 with &lt;a href="..."&gt;link&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;li&gt;Quote 3 with &lt;a href="..."&gt;another link&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;li&gt;&lt;h2&gt;Quote 4 title&lt;/h2&gt;Something here.&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line">s2 = getxpath(sample2)</div></pre></td></tr></table></figure>
+<p>获取所有<code>li</code>中的文本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 1&apos;, &apos;Quote 2 with &apos;, &apos;Quote 3 with &apos;, &apos;Something here.&apos;]</div></pre></td></tr></table></figure>
+<p>获取第一个 第二个<code>li</code>中的文本，两种写法均可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[position() = 1]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 1&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[1]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 1&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[position() = 2]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 2 with &apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[2]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 2 with &apos;]</div></pre></td></tr></table></figure>
+<p>奇数 偶数 最后一个</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[position() mod2 = 1]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 1&apos;, &apos;Quote 3 with &apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[position() mod2 = 0]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 2 with &apos;, &apos;Something here.&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[last()]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Something here.&apos;]</div></pre></td></tr></table></figure>
+<p><code>li</code>下面<code>a</code>中的文本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[a]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 2 with &apos;, &apos;Quote 3 with &apos;]</div></pre></td></tr></table></figure>
+<p><code>li</code>下<code>a</code>或者<code>h2</code>的文本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//li[a or h2]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Quote 2 with &apos;, &apos;Quote 3 with &apos;, &apos;Something here.&apos;]</div></pre></td></tr></table></figure>
+<p>使用 | 同时获取 a 和 h2 中的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s2.xpath(<span class="string">'//a/text()|//h2/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;link&apos;, &apos;another link&apos;, &apos;Quote 4 title&apos;]</div></pre></td></tr></table></figure>
+<h3 id="例子3"><a href="#例子3" class="headerlink" title="例子3"></a>例子3</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sample3 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;ul&gt;</div><div class="line">      &lt;li id="begin"&gt;&lt;a href="https://scrapy.org"&gt;Scrapy&lt;/a&gt;begin&lt;/li&gt;</div><div class="line">      &lt;li&gt;&lt;a href="https://scrapinghub.com"&gt;Scrapinghub&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;li&gt;&lt;a href="https://blog.scrapinghub.com"&gt;Scrapinghub Blog&lt;/a&gt;&lt;/li&gt;</div><div class="line">      &lt;li id="end"&gt;&lt;a href="http://quotes.toscrape.com"&gt;Quotes To Scrape&lt;/a&gt;end&lt;/li&gt;</div><div class="line">      &lt;li data-xxxx="end" abc="abc"&gt;&lt;a href="http://quotes.toscrape.com"&gt;Quotes To Scrape&lt;/a&gt;end&lt;/li&gt;</div><div class="line">    &lt;/ul&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line">s3 = getxpath(sample3)</div></pre></td></tr></table></figure>
+<p>获取 <code>a</code> 标签下 <code>href</code> 以https开始的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//a[starts-with(@href, "https")]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Scrapy&apos;, &apos;Scrapinghub&apos;, &apos;Scrapinghub Blog&apos;]</div></pre></td></tr></table></figure>
+<p>获取 <code>href</code>=<a href="https://scrapy.org" target="_blank" rel="external">https://scrapy.org</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//li/a[@href="https://scrapy.org"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Scrapy&apos;]</div></pre></td></tr></table></figure>
+<p>获取 <code>id</code> = begin</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//li[@id="begin"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;begin&apos;]</div></pre></td></tr></table></figure>
+<p>获取<code>text</code> = Scrapinghub</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//li/a[text()="Scrapinghub"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;Scrapinghub&apos;]</div></pre></td></tr></table></figure>
+<p>获取某个标签下 某个参数 = xx</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//li[@data-xxxx="end"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;end&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s3.xpath(<span class="string">'//li[@abc="abc"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;end&apos;]</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">sample4 = <span class="string">u"""</span></div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;p class="test"&gt;</div><div class="line">    编程语言&lt;a href="#"&gt;python&lt;/a&gt;</div><div class="line">    &lt;img src="#" alt="test"/&gt;javascript</div><div class="line">    &lt;a href="#"&gt;&lt;strong&gt;C#&lt;/strong&gt;JAVA&lt;/a&gt;</div><div class="line">    &lt;/p&gt;</div><div class="line">    &lt;p class="content-a"&gt;a&lt;/p&gt;</div><div class="line">    &lt;p class="content-b"&gt;b&lt;/p&gt;</div><div class="line">    &lt;p class="content-c"&gt;c&lt;/p&gt;</div><div class="line">    &lt;p class="content-d"&gt;d&lt;/p&gt;</div><div class="line">    &lt;p class="econtent-e"&gt;e&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line">s4 = etree.HTML(sample4)</div></pre></td></tr></table></figure>
+<p>获取 <code>class</code> = test 标签中的<strong>所有</strong>文字</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s4.xpath(<span class="string">'//p[@class="test"]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;\n    编程语言&apos;, &apos;\n    &apos;, &apos;javascript\n    &apos;, &apos;\n    &apos;]</div></pre></td></tr></table></figure>
+<p>使用<code>String</code>来获得文字段； <code>strip()</code> 移除字符串收尾字符，默认为空格</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">print</span> (s4.xpath(<span class="string">'string(//p[@class="test"])'</span>).strip())</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">编程语言python</div><div class="line">    javascript</div><div class="line">    C#JAVA</div></pre></td></tr></table></figure>
+<p>获取所有<code>class</code>属性中<strong>以content开始</strong>的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s4.xpath(<span class="string">'//p[starts-with(@class,"content")]/text()'</span>)</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;]</div></pre></td></tr></table></figure>
+<p>获取所有<code>class</code>属性中<strong>包含</strong>content的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s4.xpath((<span class="string">'//*[contains(@class,"content")]/text()'</span>))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;]</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;XPath-相关例子Note&quot;&gt;&lt;a href=&quot;#XPath-相关例子Note&quot; class=&quot;headerlink&quot; title=&quot;XPath 相关例子Note&quot;&gt;&lt;/a&gt;XPath 相关例子Note&lt;/h1&gt;&lt;h3 id=&quot;例子1&quot;&gt;&lt;a href=&quot;#例子
+    
+    </summary>
+    
+    
+      <category term="crawl" scheme="https://charlesliuyx.github.io/tags/crawl/"/>
+    
+  </entry>
   
   <entry>
     <title>PDF复制粘贴去除多余的回车符</title>
@@ -136,7 +235,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/MainPage.webp" alt="幕布官网" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/MainPage.webp" alt="幕布官网" title="">
                 </div>
                 <div class="image-caption">幕布官网</div>
             </figure>
@@ -144,7 +243,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/EditPage.png" alt="幕布编辑界面" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/EditPage.png" alt="幕布编辑界面" title="">
                 </div>
                 <div class="image-caption">幕布编辑界面</div>
             </figure>
@@ -152,7 +251,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/ShortCut.png" alt="幕布快捷键页面" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/ShortCut.png" alt="幕布快捷键页面" title="">
                 </div>
                 <div class="image-caption">幕布快捷键页面</div>
             </figure>
@@ -161,7 +260,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Platform.png" alt="幕布全平台" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/Platform.png" alt="幕布全平台" title="">
                 </div>
                 <div class="image-caption">幕布全平台</div>
             </figure>
@@ -169,7 +268,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mindmaps.gif" alt="幕布快捷键页面" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/mindmaps.gif" alt="幕布快捷键页面" title="">
                 </div>
                 <div class="image-caption">幕布快捷键页面</div>
             </figure>
@@ -197,16 +296,16 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/progd.png" alt="程序Feature" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/progd.png" alt="程序Feature" title="">
                 </div>
                 <div class="image-caption">程序Feature</div>
             </figure>
-<p><img src="/2017/06/17/幕布-全平台笔记思维导图工具/progp.png" alt="程序演示"></p>
+<p><img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/progp.png" alt="程序演示"></p>
 <h2 id="Dota2-Wiki"><a href="#Dota2-Wiki" class="headerlink" title="Dota2 Wiki"></a>Dota2 Wiki</h2><p>在国外我发现Dota2维基十分的给力，作为Dota2玩家有一些施法距离，施法机制等有时候需要查看（进阶），但是使用网站一方面内容太多，国内访问实在太慢了，而且<strong>搜索功能</strong>也做的不好，至于我做了什么事情，各位看gif自行感受</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/dota.gif" alt="Dota2" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/dota.gif" alt="Dota2" title="">
                 </div>
                 <div class="image-caption">Dota2</div>
             </figure>
@@ -215,14 +314,14 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Final1.png" alt="期末复习笔记总览" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/Final1.png" alt="期末复习笔记总览" title="">
                 </div>
                 <div class="image-caption">期末复习笔记总览</div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/Final2.png" alt="期末复习笔记具体内容" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/Final2.png" alt="期末复习笔记具体内容" title="">
                 </div>
                 <div class="image-caption">期末复习笔记具体内容</div>
             </figure>
@@ -230,14 +329,14 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mubuchoice.png" alt="幕布精选" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/mubuchoice.png" alt="幕布精选" title="">
                 </div>
                 <div class="image-caption">幕布精选</div>
             </figure>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/06/17/幕布-全平台笔记思维导图工具/mubureward.png" alt="幕布精选打赏功能" title="">
+                    <img src="//charlesliuyx.github.io/2017/06/17/幕布-全平台笔记思维导图工具/mubureward.png" alt="幕布精选打赏功能" title="">
                 </div>
                 <div class="image-caption">幕布精选打赏功能</div>
             </figure>
@@ -294,7 +393,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
                 </div>
                 <div class="image-caption">CNN例子</div>
             </figure>
@@ -312,7 +411,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
                 </div>
                 <div class="image-caption">Policy Network</div>
             </figure>
@@ -368,7 +467,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
                 </div>
                 <div class="image-caption">打墙游戏的评价函数图</div>
             </figure>
@@ -379,7 +478,7 @@
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
                 </div>
                 <div class="image-caption">神经网络的训练过程和结构</div>
             </figure>
@@ -398,7 +497,7 @@
 <li>即使如此，<code>Aja Huang</code>还是觉得局面不够多样，为了进一步扩大搜索空间，在<code>L+1</code>步时，完全随机一个 $\vec a$ 落子，记下这个状态 $v(\vec s_{L+1})$ </li>
 <li>之后使用<code>P_human_plus</code>来进行对弈，直到结束时获得结果<code>r</code>，如此不断对弈，由于<code>L</code>也是一个随机数，我们可以得到，<strong>开局、中盘、官子</strong>等不同阶段的很多局面 $\vec s$，和这些局面对应的结果<code>r</code></li>
 <li><p>有了这些训练样本 $\langle \vec s,r\rangle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
-<p><img src="/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
 </li>
 </ul>
 <p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用<code>P_human_plus</code>来走棋，我方赢棋的概率。实验表明，仅仅使用<code>P_human</code>来训练$v(\vec s)$效果不如<code>P_human_plus</code>，强化学习是确实有效的。</p>
@@ -410,7 +509,7 @@
 <h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
                 </div>
                 <div class="image-caption">MTCS流程图解</div>
             </figure>
@@ -431,7 +530,7 @@
 <h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
             </figure>
@@ -441,7 +540,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
             </figure>
@@ -457,7 +556,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
                 </div>
                 <div class="image-caption">最终棋力结果</div>
             </figure>
@@ -466,7 +565,7 @@
 <h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
+                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
                 </div>
                 <div class="image-caption">李世石78手</div>
             </figure>
