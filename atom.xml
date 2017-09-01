@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>SH.SF Blog</title>
-  <subtitle>人间有味是清欢</subtitle>
+  <title>尼孟尼克 Blog</title>
+  <subtitle>Stay Hungry, Stay Foolish</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
@@ -9,7 +9,7 @@
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
-    <name>SH.SF</name>
+    <name>Nimonic</name>
     <email>297106826@qq.com</email>
   </author>
   
