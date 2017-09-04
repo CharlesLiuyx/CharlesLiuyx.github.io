@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-04T07:21:50.000Z</updated>
+  <updated>2017-09-04T07:24:06.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -16,16 +16,24 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Regression学习笔记</title>
+    <title>【理论】Logistic Regression学习笔记</title>
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-04T07:21:50.000Z</updated>
+    <updated>2017-09-04T07:24:06.000Z</updated>
     
     <summary type="html">
     
     </summary>
     
+    
+      <category term="BitTiger" scheme="https://charlesliuyx.github.io/tags/BitTiger/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Model" scheme="https://charlesliuyx.github.io/tags/Model/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
