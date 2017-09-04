@@ -18,22 +18,23 @@
     
     
     
-    <title>Tags: Blockchain | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
+    <title>Regression学习笔记 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
+    <meta name="keywords" content="">
     <meta name="description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
 <meta name="keywords" content="Machine Learning,js,jquery,javascript,html5,开发者,程序猿,极客,编程,代码,开源,IT网站,Developer,Programmer,Coder,Geek,html,css,css3,用户体验">
-<meta property="og:type" content="website">
-<meta property="og:title" content="尼孟尼克 Blog">
-<meta property="og:url" content="https://charlesliuyx.github.io/tags/Blockchain/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Regression学习笔记">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
+<meta property="og:updated_time" content="2017-09-04T07:21:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="尼孟尼克 Blog">
+<meta name="twitter:title" content="Regression学习笔记">
 <meta name="twitter:description" content="毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
@@ -46,7 +47,7 @@
 <body>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-    <aside id="menu"  >
+    <aside id="menu" class="hide" >
   <div class="inner flex-row-vertical">
     <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
         <i class="icon icon-lg icon-close"></i>
@@ -79,7 +80,7 @@
               </a>
             </li>
         
-            <li class="waves-block waves-effect active">
+            <li class="waves-block waves-effect">
               <a href="/tags"  >
                 <i class="icon icon-lg icon-tags"></i>
                 Tags
@@ -118,7 +119,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Tags: Blockchain</div>
+        <div class="flex-col header-title ellipsis">Regression学习笔记</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -137,133 +138,211 @@
         
     </div>
 </header>
-<header class="content-header tags-header">
+<header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Tags: Blockchain</h1>
+        <h1 class="title">Regression学习笔记</h1>
         <h5 class="subtitle">
+            
+                <time datetime="2017-09-04T07:21:50.000Z" itemprop="datePublished" class="page-time">
+  2017-09-04
+</time>
+
+
             
         </h5>
     </div>
 
     
-<div class="tabs-bar container">
-    <nav class="tags-list">
-        <a href="/tags" style="-webkit-order:-1;order:-1" class="tags-list-item waves-effect waves-button waves-light
-            ">全部</a>
-        
-
-            <a href="/tags/英语积累/" style="-webkit-order:8;order:8" class="tags-list-item waves-effect waves-button waves-light">英语积累</a>
-
-        
-
-            <a href="/tags/算法/" style="-webkit-order:9;order:9" class="tags-list-item waves-effect waves-button waves-light">算法</a>
-
-        
-
-            <a href="/tags/Leetcode/" style="-webkit-order:10;order:10" class="tags-list-item waves-effect waves-button waves-light">Leetcode</a>
-
-        
-
-            <a href="/tags/AlphaGo/" style="-webkit-order:11;order:11" class="tags-list-item waves-effect waves-button waves-light">AlphaGo</a>
-
-        
-
-            <a href="/tags/CNN/" style="-webkit-order:12;order:12" class="tags-list-item waves-effect waves-button waves-light">CNN</a>
-
-        
-
-            <a href="/tags/MCTS/" style="-webkit-order:13;order:13" class="tags-list-item waves-effect waves-button waves-light">MCTS</a>
-
-        
-
-            <a href="/tags/Deep-Learning/" style="-webkit-order:14;order:14" class="tags-list-item waves-effect waves-button waves-light">Deep Learning</a>
-
-        
-
-            <a href="/tags/BTcoin/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">BTcoin</a>
-
-        
-
-            <a href="/tags/Blockchain/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">Blockchain</a>
-
-        
-
-            <a href="/tags/Tools/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">Tools</a>
-
-        
-
-            <a href="/tags/Autohotkey/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">Autohotkey</a>
-
-        
-
-            <a href="/tags/效率工具/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">效率工具</a>
-
-        
-
-            <a href="/tags/幕布/" style="-webkit-order:5;order:5" class="tags-list-item waves-effect waves-button waves-light">幕布</a>
-
-        
-
-            <a href="/tags/crawl/" style="-webkit-order:6;order:6" class="tags-list-item waves-effect waves-button waves-light">crawl</a>
-
-        
-
-            <a href="/tags/随笔/" style="-webkit-order:7;order:7" class="tags-list-item waves-effect waves-button waves-light">随笔</a>
-
-        
-    </nav>
-    <!-- PC show more-->
-    <div class="tags-list-more">
-        <a href="javascript:;" onclick="BLOG.tabBar(this)" class="action tags-list-item waves-effect waves-circle waves-light"><i class="icon icon-ellipsis-h"></i></a>
-    </div>
-</div>
-
 
 
 </header>
 
-<div class="container body-wrap fade">
+
+<div class="container body-wrap">
     
-            <div class="waterfall">
-          
+<article id="logistic-LogisticRegression学习笔记"
+  class="post-article article-type-logistic fade" itemprop="blogPost">
 
-            <div class="waterfall-item">
-  <article class="article-card archive-article">
-    <div class="post-meta">
-      <time class="post-time" title="2017-07-26 00:11:31" datetime="2017-07-26T07:11:31.000Z"  itemprop="datePublished">2017-07-26</time>
+    <div class="post-card">
+        <h1 class="post-card-title">Regression学习笔记</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-04 00:21:50" datetime="2017-09-04T07:21:50.000Z"  itemprop="datePublished">2017-09-04</time>
 
-      
+            
 
 
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最後更新時間：<time datetime="2017-09-04T07:21:50.000Z" itemprop="dateUpdated">2017-09-04 00:21:50</time>
+</span><br>
+
+
+        
     </div>
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="Nimonic">
+            Nimonic
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
     
 
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《Regression学习笔记》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《Regression学习笔记》 — 尼孟尼克 Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Regression学习笔记》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
 
   
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/07/26/到底什么是比特币/">到底什么是比特币</a>
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/28/Xpath使用指南/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Xpath使用指南</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
     </h3>
-  
-
-
-
-    
-    <div class="post-footer">
+    <ul class="reward-items">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BTcoin/">BTcoin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Blockchain/">Blockchain</a></li></ul>
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
-    </div>
-    
-  </article>
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
 </div>
 
-        
-            </div>
-        
-    
-</div>
 
+
+</div>
 
         <footer class="footer">
     <div class="top">
@@ -302,7 +381,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/tags/Blockchain/&title=尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《Regression学习笔记》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -312,22 +391,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/tags/Blockchain/&title=尼孟尼克 Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《Regression学习笔记》 — 尼孟尼克 Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/tags/Blockchain/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=尼孟尼克 Blog&url=https://charlesliuyx.github.io/tags/Blockchain/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Regression学习笔记》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/tags/Blockchain/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -338,7 +417,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQXKDMBBEUd//0uQAKeTfLZIqNJ+VyybAY9GRZubzwcf16+DnkPPvvnn4kCFDxmsZ1/IgDPIrf/T1fW+pMmTIGMC4S7C7c0iwkpjeCWsZMmTIIJcjsUheQXpfGTJkyEgZOxtgvkyUIUOGDLKJJXi+NeVLw4f34jJkyHghg4fm/3/+k/6GDBkyXsW4wqMrvfFyW/lUMmTIOJrBA64rpXFYGrgyZMiYw9iP2p145Q2DL9/IkCFjDCO9AY/F9SvbH/iQIUPGBEY6MNGFafc60K8yZMg4mtE1HbvPfLtLIhj1Y2XIkHEEg5fP0vL9Uy0ENFohQ4aMAYy0HIbyu3oR5aiHDBkyxjD4Ai5tW6axHmepDBkyjmZ0m9huacgXjiVAhgwZhzLSYhkfg0hj+oFhCxkyZBzKSEcl0mZk2mzoXpkMGTImMPY3n+kVtgJ0vUCUIUPGcQz+x3FbsWowpAU4GTJkTGCkAxDdqpOEMo/+W6QMGTIGMHjgkm3nzrjYOtC/BK4MGTKOZuyMWaSlui4nv5wpQ4aMAQx+y50CXHffYFpEhgwZxzGu8OBb3PSxtq4pQ4aMoxldy7C7HH8sMpxRwmTIkPFaRhey3Rvizcv4lcmQIWMAowu+nW1t9x8A7cVlyJAxnsG3mrzZsD4zKLrJkCFDRrWA2x+zQGNqMmTIGMDgY168iNZdh5fkZMiQMYexX8visdu1JNOhNBkyZBzE+AE52SLgtHKy2wAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACxElEQVR42u3awU7rQAwFUP7/p0FixYIk1/aYFulkVb2WdE6eNONe++Mjvj6/r5+vf/7L1Wfu73b1+avvur/n6MLDw8NrLf3qul9u8lfJ0ifvPjwCPDw8vDVechhUj5Dq5n7/jfnjxsPDw3sf3uQYmBToeHh4eP+Xd5Y6CTjw8PDw3oGXL/e+aE6WWy2yk/UcyFrw8PDwYl6vAfba1+v9PTw8PLxWVz3ZdpOi+X7LTlpuzXXi4eHhLfDuy99ei6u3oZ8a2Ir+AA8PD2/Aq0YG1Zj1bMMs/2/45dzDw8PDW+D1gtpJDjAZ8EoKcTw8PLw9Xi+0zRtjk8Nm0jzDw8PD2+AlN00GpJLSuTcQUB3Jeggm8PDw8Ma86phUtYVfXVBe1kfv4uHh4S3w5gdDtSDOS+38MS2W1Hh4eHhxGz4piHubey8WSR5Z1N/Dw8PDG/OqP/V7zarkwU0OgyiSwMPDwzvEq/687xXWvdfVT15mLXh4eHhHefnBkGzZk8bYnHS5Zjw8PLw1Xq/d1duyq9FtEm1ErS88PDy8Ma/XiMoj17zUnvTuHn4x4OHh4R3lTbb7avyaLHqjNMfDw8P7e151XKBKTaLhU2U3Hh4e3lleEhPkm34eCif36Q1y4eHh4W3weudGvnHnxXpy5xz/kLXg4eHhDXjV6KG3xSfh76n74+Hh4f0Nr1p/Jg2wvNGVfEuThIeHh7fGywcC5sME1eX2vhcPDw/vtbx8I74vzfMDJnm3UJTj4eHhHeV9Fq9elHCqkVYt2fHw8PA2eNXBgnzTTxZULcero1p4eHh4e7zquFW1YVZddD4oEB08eHh4eGu8/DCobtO9Mr0aRuDh4eG9My/ZsnshbDWkiAa28PDw8F7Ky8vcarNq/vgewgg8PDy8BV4SRuSYfIm94ruQRuPh4eEt8EaDTUF8UA0d5iEIHh4e3hrvC3xb5Cl4dTrHAAAAAElFTkSuQmCC" alt="微信分享二维码">
 </div>
 
 
@@ -346,7 +425,7 @@
 
     <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 <script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 

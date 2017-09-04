@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-08-28T19:07:15.000Z</updated>
+  <updated>2017-09-04T07:21:50.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Regression学习笔记</title>
+    <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
+    <published>2017-09-04T07:21:50.000Z</published>
+    <updated>2017-09-04T07:21:50.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Xpath使用指南</title>
