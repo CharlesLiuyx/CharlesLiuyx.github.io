@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-05T18:27:29.000Z</updated>
+  <updated>2017-09-05T18:30:43.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,13 +20,38 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/testHtmlRaw/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/testHtmlRaw/</id>
     <published>2017-09-05T18:24:49.000Z</published>
-    <updated>2017-09-05T18:27:29.000Z</updated>
+    <updated>2017-09-05T18:30:43.000Z</updated>
     
-    <content type="html"><![CDATA[<html><br><head><br>    <meta charset="UTF-8"><br>    <title>公益404</title><br></head><br><body><br><h1>404 Page Not Found</h1><br><br><br><script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8"><br></script><br><br><br></body><br></html>]]></content>
+    <content type="html"><![CDATA[
+
+<html>
+<head>
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+    <title>公益404</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><h1>404 Page Not Found</h1>
+<br>
+<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8">
+</script>
+<br><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
+
+
+
+]]></content>
     
     <summary type="html">
     
-      &lt;html&gt;&lt;br&gt;&lt;head&gt;&lt;br&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;&lt;br&gt;    &lt;title&gt;公益404&lt;/title&gt;&lt;br&gt;&lt;/head&gt;&lt;br&gt;&lt;body&gt;&lt;br&gt;&lt;h1&gt;404 Page Not Found&lt;/h1&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;s
+      
+
+&lt;html&gt;
+&lt;head&gt;
+
+    &lt;!-- hexo-inject:begin --&gt;&lt;!-- hexo-inject:end --&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;公益404&lt;/title&gt;&lt;!-- hexo-inject:begin
     
     </summary>
     
