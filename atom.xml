@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-05T18:30:43.000Z</updated>
+  <updated>2017-09-05T18:33:38.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -16,56 +16,14 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>testHtmlRaw</title>
-    <link href="https://charlesliuyx.github.io/2017/09/05/testHtmlRaw/"/>
-    <id>https://charlesliuyx.github.io/2017/09/05/testHtmlRaw/</id>
-    <published>2017-09-05T18:24:49.000Z</published>
-    <updated>2017-09-05T18:30:43.000Z</updated>
-    
-    <content type="html"><![CDATA[
-
-<html>
-<head>
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-    <title>公益404</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
-<body>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><h1>404 Page Not Found</h1>
-<br>
-<script type="text/javascript" src="http://www.qq.com/404/search_children.js" charset="utf-8">
-</script>
-<br><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</body>
-</html>
-
-
-
-]]></content>
-    
-    <summary type="html">
-    
-      
-
-&lt;html&gt;
-&lt;head&gt;
-
-    &lt;!-- hexo-inject:begin --&gt;&lt;!-- hexo-inject:end --&gt;&lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;公益404&lt;/title&gt;&lt;!-- hexo-inject:begin
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>【理论】Logistic Regression学习笔记</title>
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-05T08:36:16.000Z</updated>
+    <updated>2017-09-05T18:33:38.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+<a id="more"></a>
 <h2 id="什么是【Logit】"><a href="#什么是【Logit】" class="headerlink" title="什么是【Logit】"></a>什么是【Logit】</h2><h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
 <blockquote>
@@ -85,7 +43,7 @@
             </figure></p>
 <p>这个 $\theta(P)$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变</p>
 <h4 id="方案-如何解决这个问题"><a href="#方案-如何解决这个问题" class="headerlink" title="方案 - 如何解决这个问题"></a>方案 - 如何解决这个问题</h4><p>为了建立因变量 $P$ 与自变量 $\mathbf X$ 之间的<strong>合理变动关系</strong>，一个很自然的假设就是<strong>线性关系</strong>，也就是：<br>$$<br>P = \mathbf X’  \boldsymbol{\beta}<br>$$<br>其中 $\boldsymbol \beta = (\beta_1,\beta_1,\ldots,\beta_p)$ 表示每一个不同因素对最终概率 $P$ 产生的影响（这个也可以写作，权重weight）</p>
-<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logisttic回归模型</code></p>
+<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logisttc回归模型</code></p>
 <h3 id="生态学角度"><a href="#生态学角度" class="headerlink" title="生态学角度"></a>生态学角度</h3><p>可以换一个角度来解读这个问题的前世今生</p>
 <p>1798年的时候一个叫Malthus的英国牧师发现<strong>人口的变化率</strong>和<strong>人口的数目</strong>成正比，需要用数学的手法建立一个公式来表征这个现象，则，使用 $N(t)$ 这个函数来表示<code>t</code>时刻某个地区的<strong>总人口数</strong>（根据<strong>成正比</strong>）<br>$$<br>\frac{dN(t)}{dt} = {rN(t)}<br>$$</p>
 <blockquote>
@@ -103,7 +61,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;What-Why-什么是与为什么Logistic-Regression&quot;&gt;&lt;a href=&quot;#What-Why-什么是与为什么Logistic-Regression&quot; class=&quot;headerlink&quot; title=&quot;[What Why]什么是与为什么Logis
+      &lt;h1 id=&quot;What-Why-什么是与为什么Logistic-Regression&quot;&gt;&lt;a href=&quot;#What-Why-什么是与为什么Logistic-Regression&quot; class=&quot;headerlink&quot; title=&quot;[What Why]什么是与为什么Logistic Regression&quot;&gt;&lt;/a&gt;[What Why]什么是与为什么Logistic Regression&lt;/h1&gt;&lt;h2 id=&quot;什么是【回归（Regression）】&quot;&gt;&lt;a href=&quot;#什么是【回归（Regression）】&quot; class=&quot;headerlink&quot; title=&quot;什么是【回归（Regression）】&quot;&gt;&lt;/a&gt;什么是【回归（Regression）】&lt;/h2&gt;&lt;p&gt;回归（Regression）是一项模拟技术，用来从&lt;strong&gt;一个或多个解释变量&lt;/strong&gt;中&lt;u&gt;预测&lt;/u&gt;&lt;strong&gt;输出变量的值&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     

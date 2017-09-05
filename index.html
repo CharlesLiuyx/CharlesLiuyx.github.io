@@ -158,10 +158,6 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            [object Promise]
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-LogisticRegression学习笔记"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -191,40 +187,6 @@
 
     
         <h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
-<h2 id="什么是【Logit】"><a href="#什么是【Logit】" class="headerlink" title="什么是【Logit】"></a>什么是【Logit】</h2><h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
-<p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
-<blockquote>
-<p>即输出变量只有<strong>两个值</strong>得预测技术</p>
-</blockquote>
-<h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
-<p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
-<blockquote>
-<p>比如，<u>农药的用量</u>和<u>杀死害虫的概率</u>之间，在农药用量在很小的范围内增长的时候，因为药效不够，杀死害虫的概率增长很慢。</p>
-</blockquote>
-<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png" alt="可视化" title="">
-                </div>
-                <div class="image-caption">可视化</div>
-            </figure></p>
-<p>这个 $\theta(P)$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变</p>
-<h4 id="方案-如何解决这个问题"><a href="#方案-如何解决这个问题" class="headerlink" title="方案 - 如何解决这个问题"></a>方案 - 如何解决这个问题</h4><p>为了建立因变量 $P$ 与自变量 $\mathbf X$ 之间的<strong>合理变动关系</strong>，一个很自然的假设就是<strong>线性关系</strong>，也就是：<br>$$<br>P = \mathbf X’  \boldsymbol{\beta}<br>$$<br>其中 $\boldsymbol \beta = (\beta_1,\beta_1,\ldots,\beta_p)$ 表示每一个不同因素对最终概率 $P$ 产生的影响（这个也可以写作，权重weight）</p>
-<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logisttic回归模型</code></p>
-<h3 id="生态学角度"><a href="#生态学角度" class="headerlink" title="生态学角度"></a>生态学角度</h3><p>可以换一个角度来解读这个问题的前世今生</p>
-<p>1798年的时候一个叫Malthus的英国牧师发现<strong>人口的变化率</strong>和<strong>人口的数目</strong>成正比，需要用数学的手法建立一个公式来表征这个现象，则，使用 $N(t)$ 这个函数来表示<code>t</code>时刻某个地区的<strong>总人口数</strong>（根据<strong>成正比</strong>）<br>$$<br>\frac{dN(t)}{dt} = {rN(t)}<br>$$</p>
-<blockquote>
-<p>其中，<code>r</code>是常数，表示 $N(t)$ 的变化率</p>
-</blockquote>
-<p>直接解出这个方程<br>$$<br>N(t) = N_0e^{rt}<br>$$<br>这很明显是一个指数增长函数，其实也是种群增长的函数表示</p>
-<p>但是问题也是很明显的：种群因为<strong>环境容量</strong>的限制一定是<strong>不能无限增长的</strong>，即，这个模型非常不靠谱，需要重新设计模型来复合现实中的情况。Pierre-François Verhulst 在1838年提出，<strong>构造一个函数</strong><br>$$<br>\frac{dN(t)}{dt} = {rN(t)}\left(1 - \frac{N(t)}{K}\right)<br>$$</p>
-<blockquote>
-<p>K是一个常数，表示系统的容量（capacity）</p>
-</blockquote>
-<p>令 $f(t) = \frac{N(t)}{K}$ ，在方程两边同时除以 $K$ ，上述方程变为：<br>$$<br>\frac{df(t)}{dt} = rf(1 - f)<br>$$<br>这也是<code>Logistic方程</code>的一般形式</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
-<p>并且<code>Logistic回归模型</code>的本质是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
-<h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2>
     
 
         <a href="/2017/09/04/LogisticRegression学习笔记/" class="post-more waves-effect waves-button">
@@ -523,6 +485,56 @@
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-清欢"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-05-14 09:26:55" datetime="2017-05-14T16:26:55.000Z"  itemprop="datePublished">2017-05-14</time>
+
+        
+
+
+        
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/05/14/清欢/">清欢 - 林清玄</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        <h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><p>少年时代读到苏轼的一阕词，非常喜欢，到现在还能背诵：</p>
+<blockquote>
+<p>细雨斜风作晓寒，淡烟疏柳媚晴滩，入淮清洛渐漫漫。<br> 雪沫乳花浮午盏，蓼茸蒿笋试春盘，人间有味是清欢。</p>
+</blockquote>
+    
+
+        <a href="/2017/05/14/清欢/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
 
     </div>
     
