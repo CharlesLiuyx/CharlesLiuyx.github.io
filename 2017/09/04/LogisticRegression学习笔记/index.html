@@ -25,18 +25,18 @@
     
     
     <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
-    <meta name="description" content="Column 1         Column 2                     Row 1 Data 1         Row 1 Data 2                   Row 2 Data 1         Row 2 Data 2              [What Why]什么是与为什么Logistic Regre">
+    <meta name="description" content="[What Why]什么是与为什么Logistic Regression什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值">
 <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【理论】Logistic Regression学习笔记">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
-<meta property="og:description" content="Column 1         Column 2                     Row 1 Data 1         Row 1 Data 2                   Row 2 Data 1         Row 2 Data 2              [What Why]什么是与为什么Logistic Regre">
+<meta property="og:description" content="[What Why]什么是与为什么Logistic Regression什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-09-05T21:55:02.000Z">
+<meta property="og:updated_time" content="2017-09-05T21:59:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【理论】Logistic Regression学习笔记">
-<meta name="twitter:description" content="Column 1         Column 2                     Row 1 Data 1         Row 1 Data 2                   Row 2 Data 1         Row 2 Data 2              [What Why]什么是与为什么Logistic Regre">
+<meta name="twitter:description" content="[What Why]什么是与为什么Logistic Regression什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
@@ -191,45 +191,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-
-<!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-
-<!--第二步：添加如下 HTML 代码-->
-<table id="table_id_example" class="display">
-<thead>
-    <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Row 1 Data 1</td>
-        <td>Row 1 Data 2</td>
-    </tr>
-    <tr>
-        <td>Row 2 Data 1</td>
-        <td>Row 2 Data 2</td>
-    </tr>
-</tbody>
-</table>
-
-<!--第三步：初始化Datatables-->
-<script type="text/javascript">
-<!--
-$(document).ready( function () {
-$('#table_id_example').DataTable();
-} );
-//-->
-</script>
-
-<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+            <h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <a id="more"></a>
 <h2 id="什么是【Logit】"><a href="#什么是【Logit】" class="headerlink" title="什么是【Logit】"></a>什么是【Logit】</h2><h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
@@ -271,7 +233,7 @@ $('#table_id_example').DataTable();
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-05T21:55:02.000Z" itemprop="dateUpdated">2017-09-05 14:55:02</time>
+    Last updated: <time datetime="2017-09-05T21:59:09.000Z" itemprop="dateUpdated">2017-09-05 14:59:09</time>
 </span><br>
 
 
@@ -314,25 +276,7 @@ $('#table_id_example').DataTable();
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=
-
-
-
-
-
-
-
-
-
-
-    
-        Column 1
-        Column 2
-    
-
-
-    
-        Row 1 D..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=[What Why]什么是与为什么Logistic Regression什么是【回归（Regression）】回归（Regression）是一项模拟技术，..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -493,25 +437,7 @@ $('#table_id_example').DataTable();
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=
-
-
-
-
-
-
-
-
-
-
-    
-        Column 1
-        Column 2
-    
-
-
-    
-        Row 1 D..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=[What Why]什么是与为什么Logistic Regression什么是【回归（Regression）】回归（Regression）是一项模拟技术，..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

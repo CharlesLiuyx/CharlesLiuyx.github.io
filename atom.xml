@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-05T21:55:02.000Z</updated>
+  <updated>2017-09-05T21:59:09.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,47 +20,9 @@
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-05T21:55:02.000Z</updated>
+    <updated>2017-09-05T21:59:09.000Z</updated>
     
-    <content type="html"><![CDATA[
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
-
-<!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
-
-<!--第二步：添加如下 HTML 代码-->
-<table id="table_id_example" class="display">
-<thead>
-    <tr>
-        <th>Column 1</th>
-        <th>Column 2</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Row 1 Data 1</td>
-        <td>Row 1 Data 2</td>
-    </tr>
-    <tr>
-        <td>Row 2 Data 1</td>
-        <td>Row 2 Data 2</td>
-    </tr>
-</tbody>
-</table>
-
-<!--第三步：初始化Datatables-->
-<script type="text/javascript">
-<!--
-$(document).ready( function () {
-$('#table_id_example').DataTable();
-} );
-//-->
-</script>
-
-<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+    <content type="html"><![CDATA[<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <a id="more"></a>
 <h2 id="什么是【Logit】"><a href="#什么是【Logit】" class="headerlink" title="什么是【Logit】"></a>什么是【Logit】</h2><h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
@@ -99,44 +61,7 @@ $('#table_id_example').DataTable();
     
     <summary type="html">
     
-      &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css&quot;&gt;
-
-&lt;!-- jQuery --&gt;
-&lt;script type=&quot;text/javascript&quot; charset=&quot;utf8&quot; src=&quot;http://code.jquery.com/jquery-1.10.2.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- DataTables --&gt;
-&lt;script type=&quot;text/javascript&quot; charset=&quot;utf8&quot; src=&quot;http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js&quot;&gt;&lt;/script&gt;
-
-&lt;!--第二步：添加如下 HTML 代码--&gt;
-&lt;table id=&quot;table_id_example&quot; class=&quot;display&quot;&gt;
-&lt;thead&gt;
-    &lt;tr&gt;
-        &lt;th&gt;Column 1&lt;/th&gt;
-        &lt;th&gt;Column 2&lt;/th&gt;
-    &lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-    &lt;tr&gt;
-        &lt;td&gt;Row 1 Data 1&lt;/td&gt;
-        &lt;td&gt;Row 1 Data 2&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;Row 2 Data 1&lt;/td&gt;
-        &lt;td&gt;Row 2 Data 2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;!--第三步：初始化Datatables--&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-&lt;!--
-$(document).ready( function () {
-$(&#39;#table_id_example&#39;).DataTable();
-} );
-//--&gt;
-&lt;/script&gt;
-
-&lt;h1 id=&quot;What-Why-什么是与为什么Logistic-Regression&quot;&gt;&lt;a href=&quot;#What-Why-什么是与为什么Logistic-Regression&quot; class=&quot;headerlink&quot; title=&quot;[What Why]什么是与为什么Logistic Regression&quot;&gt;&lt;/a&gt;[What Why]什么是与为什么Logistic Regression&lt;/h1&gt;&lt;h2 id=&quot;什么是【回归（Regression）】&quot;&gt;&lt;a href=&quot;#什么是【回归（Regression）】&quot; class=&quot;headerlink&quot; title=&quot;什么是【回归（Regression）】&quot;&gt;&lt;/a&gt;什么是【回归（Regression）】&lt;/h2&gt;&lt;p&gt;回归（Regression）是一项模拟技术，用来从&lt;strong&gt;一个或多个解释变量&lt;/strong&gt;中&lt;u&gt;预测&lt;/u&gt;&lt;strong&gt;输出变量的值&lt;/strong&gt;&lt;/p&gt;
+      &lt;h1 id=&quot;What-Why-什么是与为什么Logistic-Regression&quot;&gt;&lt;a href=&quot;#What-Why-什么是与为什么Logistic-Regression&quot; class=&quot;headerlink&quot; title=&quot;[What Why]什么是与为什么Logistic Regression&quot;&gt;&lt;/a&gt;[What Why]什么是与为什么Logistic Regression&lt;/h1&gt;&lt;h2 id=&quot;什么是【回归（Regression）】&quot;&gt;&lt;a href=&quot;#什么是【回归（Regression）】&quot; class=&quot;headerlink&quot; title=&quot;什么是【回归（Regression）】&quot;&gt;&lt;/a&gt;什么是【回归（Regression）】&lt;/h2&gt;&lt;p&gt;回归（Regression）是一项模拟技术，用来从&lt;strong&gt;一个或多个解释变量&lt;/strong&gt;中&lt;u&gt;预测&lt;/u&gt;&lt;strong&gt;输出变量的值&lt;/strong&gt;&lt;/p&gt;
     
     </summary>
     
