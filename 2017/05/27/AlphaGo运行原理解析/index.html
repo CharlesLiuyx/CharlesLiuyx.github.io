@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png">
-<meta property="og:updated_time" content="2017-09-06T02:26:21.000Z">
+<meta property="og:updated_time" content="2017-09-06T02:32:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -282,10 +282,10 @@ $$
 <li>MCTS是<strong>完全可并行</strong>的算法</li>
 </ul>
 <p><code>Aja Huang</code>很快意识到这种方法的缺陷在哪里：初始策略（或者说<strong>随机的落子方式</strong>）太过简单。就如同上面第一条特点所说，人类对每种  $\vec s$ （棋型）都要更强的判断能力，那么我们是否可以用 $P_{human}(\vec s)$ 来代替随机呢？</p>
-<p><code>Aja Huang</code>改进了MCTS，每一步不使用随机，而是现根据 $P<em>{human}(\vec s)$ 计算得到  $\vec a$ 可能的概率分布，以这儿概率为准来挑选下一个  $\vec a$。一次棋局下完之后，新分数按照下面的方式来更新<br>$$<br>\text{新分数} = \text{调整后的初始分} + \text{通过模拟的赢棋概率} \tag{2-3}<br>$$<br>如果某一步被随机到很多次，就应该主要依据模拟得到的概率而非 $P</em>{human}(\vec s)$ ，就是说当盘数不断的增加，模拟得到的结果可能会好于 $P_{human}(\vec s)$ 得到的结果。</p>
-<p>所以 $P_{human}(\vec s)$ 的初始分会被打个折扣，这也是公式2-3中的调整后的初始分的由来<br>$$<br>\text{调整后的初始分} = \frac{\text{P<em>human}}{(\text{被随机到的次数} + 1)} \tag{2-4}<br>$$<br>如此一来，就在整张地图上利用 $P</em>{human}(\vec s)$ 快速定位了比较好的落子方案，也增加了其他位置的概率。实际操作中发现，此方案不可行，因为计算这个 $P_{human}(\vec s)$ <strong>太慢了太慢了</strong></p>
-<p>一次 $P<em>{human}(\vec s)$ 的计算需要<code>3ms</code>，随机算法<code>1us</code>，慢了3000倍，所以，<code>Aja huang</code>训练了一个简化版本的 $P</em>{human-fast}(\vec s)$ ，把神经网络层数、输入特征减少，耗时下降到<code>2us</code>，基本满足了要求。</p>
-<p>更多的，策略是，先以 $P<em>{human}(\vec s)$ 开局，走前面大概20步，之后再使用 $P</em>{human-fast}(\vec s)$ 走完剩下的到最后。兼顾速度和准确性。</p>
+<p><code>Aja Huang</code>改进了MCTS，每一步不使用随机，而是现根据 $P_{human}(\vec s)​$ 计算得到  $\vec a​$ 可能的概率分布，以这儿概率为准来挑选下一个  $\vec a​$。一次棋局下完之后，新分数按照下面的方式来更新<br>$$<br>\text{新分数} = \text{调整后的初始分} + \text{通过模拟的赢棋概率} \tag{2-3}<br>$$<br>如果某一步被随机到很多次，就应该主要依据模拟得到的概率而非 $P<em>{human}(\vec s)$ ，就是说当盘数不断的增加，模拟得到的结果可能会好于 $P</em>{human}(\vec s)$ 得到的结果。</p>
+<p>所以 $P_{human}(\vec s)$ 的初始分会被打个折扣，这也是公式2-3中的调整后的初始分的由来<br>$$<br>\text{调整后的初始分} = \frac{\text{P<em>human}}{(\text{被随机到的次数} + 1)} \tag{2-4}<br>$$<br>如此一来，就在整张地图上利用 $P\</em>{human}(\vec s)$ 快速定位了比较好的落子方案，也增加了其他位置的概率。实际操作中发现，此方案不可行，因为计算这个 $P_{human}(\vec s)$ <strong>太慢了太慢了</strong></p>
+<p>一次 $P_{human}(\vec s)$ 的计算需要<code>3ms</code>，随机算法<code>1us</code>，慢了3000倍，所以，<code>Aja huang</code>训练了一个简化版本的 $P_{human-fast}(\vec s)$ ，把神经网络层数、输入特征减少，耗时下降到<code>2us</code>，基本满足了要求。</p>
+<p>更多的，策略是，先以 $P_{human}(\vec s)$ 开局，走前面大概20步，之后再使用 $P_{human-fast}(\vec s)$ 走完剩下的到最后。兼顾速度和准确性。</p>
 <p>综合了深度卷积神经网络和MCTS两种方案，此时的围棋程序已经可以战胜所有其他电脑，虽然和其他人类职业选手还有一定的差距。</p>
 <p>2015年2月，<code>Aja Huang</code>在Deepmind的同事在顶级学术期刊nature上发表的文章 <a href="http://gnusha.org/~nmz787/pdf/Human-level_control_through_deep_reinforcement_learning.pdf" target="_blank" rel="external">Human-level control through deep reinforcement learning</a> 用神经网络打游戏。这篇文章，给AlphaGo提供的了新的方向</p>
 <h2 id="强化学习——局面函数（Value-Network）"><a href="#强化学习——局面函数（Value-Network）" class="headerlink" title="强化学习——局面函数（Value Network）"></a>强化学习——局面函数（Value Network）</h2><p>强化学习（Reinforcement learning）用来实现<strong>左右互搏和自我进化</strong>，首先说说这篇论文干了一件什么事情，Deepmind团队的大牛们使用强化学习的方法在红白机上打通了200多个游戏，大多数得分都要比人好。</p>
@@ -323,13 +323,13 @@ $$
                 <div class="image-caption">神经网络的训练过程和结构</div>
             </figure>
 <ul>
-<li>先用 $P<em>{human}(\vec s)$ 和 $P</em>{human}(\vec s)$ 对弈，比如1万盘，得到1万个新棋谱，加入到训练集中，训练出 $P_{human-1}(\vec s)$ 。</li>
-<li>使用$P<em>{human-1}(\vec s)$和$P</em>{human-1}(\vec s)$对弈，得到另1万个新棋谱，加入训练集，训练出$P_{human-2}(\vec s)$。</li>
-<li>同理，进行多次的类似训练，训练出$P<em>{human-n}(\vec s)$，给最后的新策略命名为$P</em>{human-plus}(\vec s)$</li>
+<li>先用 $P_{human}(\vec s)$ 和 $P_{human}(\vec s)$ 对弈，比如1万盘，得到1万个新棋谱，加入到训练集中，训练出 $P_{human-1}(\vec s)$ 。</li>
+<li>使用$P_{human-1}(\vec s)$和$P_{human-1}(\vec s)$对弈，得到另1万个新棋谱，加入训练集，训练出$P_{human-2}(\vec s)$。</li>
+<li>同理，进行多次的类似训练，训练出$P_{human-n}(\vec s)$，给最后的新策略命名为$P_{human-plus}(\vec s)$</li>
 </ul>
-<p>（感觉一下，这个$P<em>{human-plus}(\vec s)$ 应该挺强力的！这里回顾一下$P</em>{human}(\vec s)$是什么：是一个函数，$\vec a=f(\vec s)$ 可以计算出当前 $\vec s$ 下的落子 $\vec a$ 的分布概率）</p>
-<p>使用$P<em>{human-plus}(\vec s)$和$P</em>{human}(\vec s)$进行对弈，发现$P_{human-plus}(\vec s)$胜率80%，自对弈的方法被证明是有效的。（这里有一个想法，我在之前，一直加粗随机，之所以自对弈有效，就是因为整过MCTS过程中从来没有放弃过<strong>随机</strong>，如此一来，大量的计算，就更可能覆盖到更多的可能性，对提高棋力可以产生有效的作用，同时，因为概率的问题，不断的自我对弈肯定造成下棋的路数集中，后面也会有体现）</p>
-<p>但是事实并没有那么美好，<code>Aja Huang</code>发现，使用$P<em>{human-plus}(\vec s)$来代替$P</em>{human}(\vec s)$进行MCTS反而<strong>棋力会下降</strong>。</p>
+<p>（感觉一下，这个$P_{human-plus}(\vec s)$ 应该挺强力的！这里回顾一下$P_{human}(\vec s)$是什么：是一个函数，$\vec a=f(\vec s)$ 可以计算出当前 $\vec s$ 下的落子 $\vec a$ 的分布概率）</p>
+<p>使用$P_{human-plus}(\vec s)$和$P_{human}(\vec s)$进行对弈，发现$P_{human-plus}(\vec s)$胜率80%，自对弈的方法被证明是有效的。（这里有一个想法，我在之前，一直加粗随机，之所以自对弈有效，就是因为整过MCTS过程中从来没有放弃过<strong>随机</strong>，如此一来，大量的计算，就更可能覆盖到更多的可能性，对提高棋力可以产生有效的作用，同时，因为概率的问题，不断的自我对弈肯定造成下棋的路数集中，后面也会有体现）</p>
+<p>但是事实并没有那么美好，<code>Aja Huang</code>发现，使用$P_{human-plus}(\vec s)$来代替$P_{human}(\vec s)$进行MCTS反而<strong>棋力会下降</strong>。</p>
 <p><code>Aja Huang</code>认为是$P_{human-plus}(\vec s)$走棋的路数太集中，而MCTS需要更加发散的选择才能有更好的效果。</p>
 <h3 id="计算局部评价函数（Value-Network）"><a href="#计算局部评价函数（Value-Network）" class="headerlink" title="计算局部评价函数（Value Network）"></a>计算局部评价函数（Value Network）</h3><p>考虑到$P_{human-plus}(\vec s)$的下法太过集中，<code>Aja Huang</code>计算 $v(\vec s)$ 的策略是：</p>
 <ul>
@@ -340,7 +340,7 @@ $$
 <p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Value Network.png" alt="Value Network"> </p>
 </li>
 </ul>
-<p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用$P<em>{human-plus}(\vec s)$来走棋，我方赢棋的概率。实验表明，仅仅使用$P</em>{human}(\vec s)$来训练$v(\vec s)$效果不如$P_{human-plus}(\vec s)$，强化学习是确实有效的。</p>
+<p>如上图所示，$v(\vec s)$ 可以给出下一步落在棋盘上任意位置后，如果双方都用$P_{human-plus}(\vec s)$来走棋，我方赢棋的概率。实验表明，仅仅使用$P_{human}(\vec s)$来训练$v(\vec s)$效果不如$P_{human-plus}(\vec s)$，强化学习是确实有效的。</p>
 <p>总结，<strong>强化学习的$P_{human-plus}(\vec s)$主要是用来获得 $v(\vec s)$ 局部评估函数</strong>。表示的含义是</p>
 <blockquote>
 <p>在状态 $\vec s$ 下，<strong>局面的优劣程度，或者说此时的胜率是多少</strong></p>
@@ -376,7 +376,7 @@ $$
             </figure>
 <p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下其他落子点的胜率</p>
 <p><code>b图</code>MCTS中使用局部评估函数加上$P_{human}(\vec s)$得出的结果（公式2-4）</p>
-<p><code>c图</code>MCTS中使用$P<em>{human}(\vec s)$（复合算法）和$P</em>{human-fast}(\vec s)$走子走到底的结果</p>
+<p><code>c图</code>MCTS中使用$P_{human}(\vec s)$（复合算法）和$P_{human-fast}(\vec s)$走子走到底的结果</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -400,7 +400,7 @@ $$
                 </div>
                 <div class="image-caption">最终棋力结果</div>
             </figure>
-<p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合$P<em>{human-plus}(\vec s)$和$P</em>{human}(\vec s)$后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
+<p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合$P_{human-plus}(\vec s)$和$P_{human}(\vec s)$后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰【围棋】为叩门砖打开了机器学习自我进化的大门</strong></p>
 <h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
                 <div class="img-lightbox">
@@ -453,7 +453,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-06T02:26:21.000Z" itemprop="dateUpdated">2017-09-05 19:26:21</time>
+    Last updated: <time datetime="2017-09-06T02:32:57.000Z" itemprop="dateUpdated">2017-09-05 19:32:57</time>
 </span><br>
 
 
