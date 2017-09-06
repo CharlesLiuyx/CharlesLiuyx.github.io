@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="金钱击杀英雄奖励获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8） 连杀奖励 = 60 * （连杀数 - 2）[大于0]">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png">
-<meta property="og:updated_time" content="2017-09-06T10:18:12.000Z">
+<meta property="og:updated_time" content="2017-09-06T22:30:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dota2机制总结">
 <meta name="twitter:description" content="金钱击杀英雄奖励获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8） 连杀奖励 = 60 * （连杀数 - 2）[大于0]">
@@ -127,7 +127,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#金钱"><span class="post-toc-number">1.</span> <span class="post-toc-text">金钱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#击杀英雄奖励"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">击杀英雄奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#助攻奖励"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">助攻奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Roshan"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Roshan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#死亡掉钱"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">死亡掉钱</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#复活"><span class="post-toc-number">2.</span> <span class="post-toc-text">复活</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复活时间"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">复活时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#买活花费"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">买活花费</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#放弃比赛"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">放弃比赛</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物理攻击"><span class="post-toc-number">3.</span> <span class="post-toc-text">物理攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最终攻击伤害"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">最终攻击伤害</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击类型"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">攻击类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伤害调整"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">伤害调整</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#护甲"><span class="post-toc-number">4.</span> <span class="post-toc-text">护甲</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白字护甲"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">白字护甲</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲值倍数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">护甲值倍数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伤害倍数和护甲值的相关曲线"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">伤害倍数和护甲值的相关曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有效生命值-（EHP）"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">有效生命值 （EHP）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物品被动效果叠加"><span class="post-toc-number">5.</span> <span class="post-toc-text">物品被动效果叠加</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#金钱"><span class="post-toc-number">1.</span> <span class="post-toc-text">金钱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#击杀英雄奖励"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">击杀英雄奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#助攻奖励"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">助攻奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Roshan"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Roshan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#死亡掉钱"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">死亡掉钱</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#复活"><span class="post-toc-number">2.</span> <span class="post-toc-text">复活</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复活时间"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">复活时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#买活花费"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">买活花费</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#放弃比赛"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">放弃比赛</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物理攻击"><span class="post-toc-number">3.</span> <span class="post-toc-text">物理攻击</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最终攻击伤害"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">最终攻击伤害</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击类型"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">攻击类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伤害调整"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">伤害调整</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#攻击速度"><span class="post-toc-number">4.</span> <span class="post-toc-text">攻击速度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础攻击间隔-BAT"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">基础攻击间隔 BAT</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击速度-ISA"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">攻击速度 ISA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#增加攻击速度技能列表"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">增加攻击速度技能列表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#降低攻击速度技能"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">降低攻击速度技能</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#护甲"><span class="post-toc-number">5.</span> <span class="post-toc-text">护甲</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白字护甲"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">白字护甲</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲值倍数"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">护甲值倍数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲值倍数倍数和护甲值的相关曲线"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">护甲值倍数倍数和护甲值的相关曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有效生命值-（EHP）"><span class="post-toc-number">5.4.</span> <span class="post-toc-text">有效生命值 （EHP）</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#移动速度"><span class="post-toc-number">6.</span> <span class="post-toc-text">移动速度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叠加"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">叠加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#公式"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">公式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物品被动效果叠加"><span class="post-toc-number">7.</span> <span class="post-toc-text">物品被动效果叠加</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#独立叠加"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">独立叠加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#乘法叠加"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">乘法叠加</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#魔法抗性"><span class="post-toc-number">7.2.1.</span> <span class="post-toc-text">魔法抗性</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -625,25 +625,245 @@
 </tr>
 </tbody>
 </table>
-<h1 id="护甲"><a href="#护甲" class="headerlink" title="护甲"></a>护甲</h1><h2 id="白字护甲"><a href="#白字护甲" class="headerlink" title="白字护甲"></a>白字护甲</h2><p>$$<br>白字护甲 = 基础护甲 + ( \frac{敏捷}{7})<br>$$</p>
-<h2 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>伤害倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
-<h2 id="伤害倍数和护甲值的相关曲线"><a href="#伤害倍数和护甲值的相关曲线" class="headerlink" title="伤害倍数和护甲值的相关曲线"></a>伤害倍数和护甲值的相关曲线</h2><figure class="image-bubble">
+<h1 id="攻击速度"><a href="#攻击速度" class="headerlink" title="攻击速度"></a>攻击速度</h1><h2 id="基础攻击间隔-BAT"><a href="#基础攻击间隔-BAT" class="headerlink" title="基础攻击间隔 BAT"></a>基础攻击间隔 BAT</h2><p>英雄在没有额外攻速加成的情况下每两次攻击间的<strong>时间间隔</strong></p>
+<h2 id="攻击速度-ISA"><a href="#攻击速度-ISA" class="headerlink" title="攻击速度 ISA"></a>攻击速度 ISA</h2><ul>
+<li>面板中英雄增加的攻击速度</li>
+<li>由装备获得的攻击速度加成</li>
+<li>每个英雄基础100点基础攻速</li>
+</ul>
+<p>##攻击速度计算公式</p>
+<p>$$<br>每秒攻击的次数 = \frac{(100 + IAS) × 0.01} {BAT}<br>$$</p>
+<p>$$<br>每次攻击的时间 = \frac{1}{每秒攻击的次数}<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">攻击速度</th>
+<th style="text-align:center">效果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">-80</td>
+<td style="text-align:center">五分之一BAT时间来攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">-75</td>
+<td style="text-align:center">四分之一BAT时间来攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">-66</td>
+<td style="text-align:center">三分之一BAT时间来攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">-50</td>
+<td style="text-align:center">二分之一BAT时间来攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">+00</td>
+<td style="text-align:center">正常状态</td>
+</tr>
+<tr>
+<td style="text-align:center">+100 * n</td>
+<td style="text-align:center">（1+n）倍攻击速度</td>
+</tr>
+</tbody>
+</table>
+<h2 id="增加攻击速度技能列表"><a href="#增加攻击速度技能列表" class="headerlink" title="增加攻击速度技能列表"></a>增加攻击速度技能列表</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">技能</th>
+<th style="text-align:center">增加数值</th>
+<th style="text-align:center">持续时间s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">魔霭诅咒</td>
+<td style="text-align:center">10/20/30/40</td>
+<td style="text-align:center">4.5</td>
+</tr>
+<tr>
+<td style="text-align:center">雷肤兽 - 暴怒</td>
+<td style="text-align:center">75</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">雷肤兽 - 战鼓光环</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">天穹守望者 - 磁场</td>
+<td style="text-align:center">50/60/70/80</td>
+<td style="text-align:center">3.5/4.5/5.5/6.5</td>
+</tr>
+<tr>
+<td style="text-align:center">淘汰之刃</td>
+<td style="text-align:center">30</td>
+<td style="text-align:center">6 A帐10 成功淘汰</td>
+</tr>
+<tr>
+<td style="text-align:center">野性之心</td>
+<td style="text-align:center">15/25/35/45</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">扫射</td>
+<td style="text-align:center">130 天赋 +70</td>
+<td style="text-align:center">4/6/8/10</td>
+</tr>
+<tr>
+<td style="text-align:center">熊怪 - 迅捷光环</td>
+<td style="text-align:center">15</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">飓风之力</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">狂战士之血</td>
+<td style="text-align:center">220/260/300/340</td>
+<td style="text-align:center">剩下10%生命值最高</td>
+</tr>
+<tr>
+<td style="text-align:center">灵动迅捷</td>
+<td style="text-align:center">10/25/40/55/70/85/100/A115</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">卡尔 - 雷</td>
+<td style="text-align:center">2/4/6/8/10/12/14 * 3</td>
+<td style="text-align:center">开关</td>
+</tr>
+<tr>
+<td style="text-align:center">过载</td>
+<td style="text-align:center">40/50/60/70</td>
+<td style="text-align:center">开关</td>
+</tr>
+<tr>
+<td style="text-align:center">强攻</td>
+<td style="text-align:center">65/90/115/140</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">狂暴</td>
+<td style="text-align:center">50/60/70/80</td>
+<td style="text-align:center">3/4/5/6</td>
+</tr>
+<tr>
+<td style="text-align:center">炽魂</td>
+<td style="text-align:center">每层40/55/70/85(天赋 75/90/105/120)</td>
+<td style="text-align:center">10 最高3层</td>
+</tr>
+<tr>
+<td style="text-align:center">德鲁伊 - 狂猛</td>
+<td style="text-align:center">10/20/30/40</td>
+<td style="text-align:center">18/22/26/30</td>
+</tr>
+<tr>
+<td style="text-align:center">跳跃</td>
+<td style="text-align:center">16/32/48/64 (天赋 +100)</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">死灵射手光环</td>
+<td style="text-align:center">5/7/9</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">暗夜猎影</td>
+<td style="text-align:center">45/60/75/90</td>
+<td style="text-align:center">夜晚</td>
+</tr>
+<tr>
+<td style="text-align:center">嗜血术</td>
+<td style="text-align:center">30/40/50/60 (天赋 +40)</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">幻影突袭</td>
+<td style="text-align:center">130</td>
+<td style="text-align:center">4s or 4次攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">战斗专注</td>
+<td style="text-align:center">60/120/180</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">热血战魂</td>
+<td style="text-align:center">15/20/25/30 (105/140/175/210)</td>
+<td style="text-align:center">每次攻击同个目标</td>
+</tr>
+<tr>
+<td style="text-align:center">超强力量</td>
+<td style="text-align:center">400</td>
+<td style="text-align:center">15 or 3/4/5/6次攻击</td>
+</tr>
+<tr>
+<td style="text-align:center">黄泉颤抖</td>
+<td style="text-align:center">64</td>
+<td style="text-align:center">3/4/5/6</td>
+</tr>
+<tr>
+<td style="text-align:center">集中火力</td>
+<td style="text-align:center">500</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center">寒冬诅咒</td>
+<td style="text-align:center">70</td>
+<td style="text-align:center">3.25/4/4.75</td>
+</tr>
+</tbody>
+</table>
+<h2 id="降低攻击速度技能"><a href="#降低攻击速度技能" class="headerlink" title="降低攻击速度技能"></a>降低攻击速度技能</h2><p>比较有效果的降低攻速的技能</p>
+<p>烈火精灵，不可侵犯，蝮蛇突袭，重生，黄泉颤抖，小狼-致残，冰封魔印，雷霆一击，袁术咆哮，冰霜新星，液态火，石化凝视，夜魔虚空，冰眼，豪猪，冰火交加，毒龙法球，全能光环</p>
+<h1 id="护甲"><a href="#护甲" class="headerlink" title="护甲"></a>护甲</h1><h2 id="白字护甲"><a href="#白字护甲" class="headerlink" title="白字护甲"></a>白字护甲</h2><p>$$<br>敏捷 = 基础敏捷 + (等级 - 1) * 敏捷成长<br>$$</p>
+<p>$$<br>白字护甲 = 基础护甲 + ( \frac{敏捷}{7})<br>$$</p>
+<h2 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>护甲值倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
+<h2 id="护甲值倍数倍数和护甲值的相关曲线"><a href="#护甲值倍数倍数和护甲值的相关曲线" class="headerlink" title="护甲值倍数倍数和护甲值的相关曲线"></a>护甲值倍数倍数和护甲值的相关曲线</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="//charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png" alt="相关曲线" title="">
                 </div>
                 <div class="image-caption">相关曲线</div>
             </figure>
-<p>纵坐标是伤害倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
-<h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 伤害倍数</p>
-<h1 id="物品被动效果叠加"><a href="#物品被动效果叠加" class="headerlink" title="物品被动效果叠加"></a>物品被动效果叠加</h1>
+<p>纵坐标是护甲值倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
+<h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 护甲值倍数</p>
+<h1 id="移动速度"><a href="#移动速度" class="headerlink" title="移动速度"></a>移动速度</h1><h2 id="叠加"><a href="#叠加" class="headerlink" title="叠加"></a>叠加</h2><p>相似的装备提供的移动速度不叠加，除了风帐</p>
+<p>多个鞋类物品不叠加</p>
+<p>夜叉 散夜对剑 幻影斧不叠加</p>
+<p>多个战鼓或风灵之纹不叠加</p>
+<p><u>风灵之纹和战鼓鞋类物品叠加</u></p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>移动速度 = （基础移动速度 + 具体移动速度加成） * （1 + 百分比移动速度加成和减速的和）</p>
+<h1 id="物品被动效果叠加"><a href="#物品被动效果叠加" class="headerlink" title="物品被动效果叠加"></a>物品被动效果叠加</h1><h2 id="独立叠加"><a href="#独立叠加" class="headerlink" title="独立叠加"></a>独立叠加</h2><ul>
+<li>攻击力</li>
+<li>属性加成</li>
+<li>魔法值/生命值</li>
+<li>生命恢复速率/魔法恢复速率（基础速率 * 加成倍数）</li>
+<li>攻击速度加成</li>
+<li>护甲加成</li>
+<li>分裂区域</li>
+<li>移动速度加成</li>
+</ul>
+<h2 id="乘法叠加"><a href="#乘法叠加" class="headerlink" title="乘法叠加"></a>乘法叠加</h2><p>出现边缘递减效应<br>$$<br>加成 = 1 - (1-x) \times (1-y) \times (1-z) \times \ldots<br>$$<br>其中 $x y z$ 都表示一个百分比</p>
+<h3 id="魔法抗性"><a href="#魔法抗性" class="headerlink" title="魔法抗性"></a>魔法抗性</h3><p>魔法抗性乘法叠加</p>
+<ul>
+<li>一个100点魔法伤害的技能</li>
+<li>英雄本身25%魔法抗性，伤害变为 100 * （1 - 25%） = 75</li>
+<li>再装备挑战头巾，再降低30%，伤害变为 75 * （1 - 30%） = 52.5</li>
+</ul>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-06T10:18:12.000Z" itemprop="dateUpdated">2017-09-06 03:18:12</time>
+    Last updated: <time datetime="2017-09-06T22:30:26.000Z" itemprop="dateUpdated">2017-09-06 15:30:26</time>
 </span><br>
 
 
@@ -818,7 +1038,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
