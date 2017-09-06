@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="版本信息：更新到7.06f 金钱击杀英雄奖励获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8） 连杀奖励 = 60 * （连杀数 - 2）[大于0]">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png">
-<meta property="og:updated_time" content="2017-09-06T22:34:15.000Z">
+<meta property="og:updated_time" content="2017-09-06T23:22:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dota2机制总结">
 <meta name="twitter:description" content="版本信息：更新到7.06f 金钱击杀英雄奖励获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8） 连杀奖励 = 60 * （连杀数 - 2）[大于0]">
@@ -238,7 +238,7 @@
 </ul>
 <h2 id="买活花费"><a href="#买活花费" class="headerlink" title="买活花费"></a>买活花费</h2><p>买活金钱 = 100 + (英雄等级 <em> 英雄等级 </em> 1.5) + (游戏时间(s) * 0.25 )</p>
 <h2 id="放弃比赛"><a href="#放弃比赛" class="headerlink" title="放弃比赛"></a>放弃比赛</h2><p>掉线<strong>超过5分钟后</strong>，所有金钱被队友平分</p>
-<h1 id="物理攻击"><a href="#物理攻击" class="headerlink" title="物理攻击"></a>物理攻击</h1><h2 id="最终攻击伤害"><a href="#最终攻击伤害" class="headerlink" title="最终攻击伤害"></a>最终攻击伤害</h2><p>最终攻击伤害 = { [主要攻击力 × (1 + Σ 百分比攻击力加成) + 固定值百分比加成] <em> 致命一击倍数 - 被格挡伤害 } </em> 护甲值倍数 <em> 护甲类型倍数 </em> 一般伤害倍数</p>
+<h1 id="物理攻击"><a href="#物理攻击" class="headerlink" title="物理攻击"></a>物理攻击</h1><h2 id="最终攻击伤害"><a href="#最终攻击伤害" class="headerlink" title="最终攻击伤害"></a>最终攻击伤害</h2><p>$$<br>最终攻击伤害 = \ { [主要攻击力 × (1 + \sum 百分比攻击力加成) + 固定值百分比加成] \times 致命一击倍数 - 被格挡伤害 }\ \times 护甲值倍数 \times 护甲类型倍数 \times 一般伤害倍数<br>$$</p>
 <p>###主要攻击力 </p>
 <p>主要攻击力 = 基础攻击力 + 主属性</p>
 <p>###百分比攻击力加成</p>
@@ -864,7 +864,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-06T22:34:15.000Z" itemprop="dateUpdated">2017-09-06 15:34:15</time>
+    Last updated: <time datetime="2017-09-06T23:22:39.000Z" itemprop="dateUpdated">2017-09-06 16:22:39</time>
 </span><br>
 
 
