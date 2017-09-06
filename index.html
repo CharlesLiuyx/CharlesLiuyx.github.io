@@ -124,7 +124,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -188,499 +188,10 @@
     
         <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
 <p>连杀奖励 = 60 * （连杀数 - 2）[大于0]</p>
-<h2 id="助攻奖励"><a href="#助攻奖励" class="headerlink" title="助攻奖励"></a>助攻奖励</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">助攻英雄数</th>
-<th>获得金钱</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td>[140 + (5 × 被击杀者等级) + (0.0375 × 被击杀者净收入 × 净收入因子) + (100  × 团队净收入之差 / 4000)]</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td>[70 + (4 × 被击杀者等级) + (0.0375 × 被击杀者净收入 × 净收入因子) + (75 × 团队净收入之差 / 4000)]</td>
-</tr>
-<tr>
-<td style="text-align:center">3</td>
-<td>[35 + (3 × 被击杀者等级) + (0.0375 × 被击杀者净收入 × 净收入因子) + (50 × 团队净收入之差 / 4000)]</td>
-</tr>
-<tr>
-<td style="text-align:center">4</td>
-<td>[25 + (2 × 被击杀者等级) + (0.03 × 被击杀者净收入 × 净收入因子) + (35 Gold symbol.png × 团队净收入之差 / 4000)]</td>
-</tr>
-<tr>
-<td style="text-align:center">5</td>
-<td>[20 + (1 × 被击杀者等级) + (0.0225 × 被击杀者净收入 × 净收入因子) + (25 × 团队净收入之差 / 4000)]</td>
-</tr>
-</tbody>
-</table>
-<p>净收入因子 = (敌方队伍净收入 / 友方队伍净收入) - 1，最小值为0，最大值为1</p>
-<p>还需要 × [1.2 - 0.1 × (被击杀者净收入排名 -1)] × [净收入排名因子]</p>
-<h2 id="Roshan"><a href="#Roshan" class="headerlink" title="Roshan"></a>Roshan</h2><p>200 团队奖励</p>
-<p>150 - 400 击杀奖励</p>
-<h2 id="死亡掉钱"><a href="#死亡掉钱" class="headerlink" title="死亡掉钱"></a>死亡掉钱</h2><p>损失不可靠金钱 = 50 + 财产总和 ÷ 40</p>
-<p>5千经济 ➜ 175；1万经济 ➜ 290；2万经济 ➜ 550</p>
-<h1 id="复活"><a href="#复活" class="headerlink" title="复活"></a>复活</h1><h2 id="复活时间"><a href="#复活时间" class="headerlink" title="复活时间"></a>复活时间</h2><ul>
-<li>每级增加2秒</li>
-<li>每到6级的倍数增加10秒</li>
-<li>18级后每级增加4秒</li>
-</ul>
-<h2 id="买活花费"><a href="#买活花费" class="headerlink" title="买活花费"></a>买活花费</h2><p>买活金钱 = 100 + (英雄等级 <em> 英雄等级 </em> 1.5) + (游戏时间(s) * 0.25 )</p>
-<h2 id="放弃比赛"><a href="#放弃比赛" class="headerlink" title="放弃比赛"></a>放弃比赛</h2><p>掉线<strong>超过5分钟后</strong>，所有金钱被队友平分</p>
-<h1 id="物理攻击"><a href="#物理攻击" class="headerlink" title="物理攻击"></a>物理攻击</h1><h2 id="最终攻击伤害"><a href="#最终攻击伤害" class="headerlink" title="最终攻击伤害"></a>最终攻击伤害</h2><p>最终攻击伤害 =<br>{ [主要攻击力 × (1 + Σ 百分比攻击力加成) + 固定值百分比加成]<br>× 致命一击倍数 - 被格挡伤害 }<br>× 护甲值倍数 × 护甲类型倍数<br>× 一般伤害倍数</p>
-<ul>
-<li>主要攻击力 = 基础攻击力 + 主属性</li>
-<li>百分比攻击力加成</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">技能</th>
-<th style="text-align:center">加成数值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">头狼光环</td>
-<td style="text-align:center">30%</td>
-</tr>
-<tr>
-<td style="text-align:center">强化图腾</td>
-<td style="text-align:center">100%/200%/300%/400%</td>
-</tr>
-<tr>
-<td style="text-align:center">野性驱使</td>
-<td style="text-align:center">15%/26%/37%/48%（只影响狼人控制的单位）</td>
-</tr>
-<tr>
-<td style="text-align:center">授予力量</td>
-<td style="text-align:center">20%/30%/40%/50% ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="30%/40%/50%/60%">
-                </div>
-                <div class="image-caption">30%/40%/50%/60%</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">神之力量</td>
-<td style="text-align:center">80%/120%/160% (友军A帐: 75%/100%/125%)</td>
-</tr>
-<tr>
-<td style="text-align:center">复仇光环</td>
-<td style="text-align:center">12%/20%/28%/36% ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="32%/40%/48%/56%">
-                </div>
-                <div class="image-caption">32%/40%/48%/56%</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">祭品光环</td>
-<td style="text-align:center">15%</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>固定值百分比加成</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">技能</th>
-<th style="text-align:center">加成数值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">臂章-邪恶之力</td>
-<td style="text-align:center">31</td>
-</tr>
-<tr>
-<td style="text-align:center">嗜血渴望</td>
-<td style="text-align:center"><strong>最高</strong>攻击力加成/英雄: 16/24/32/40</td>
-</tr>
-<tr>
-<td style="text-align:center">战意</td>
-<td style="text-align:center">最高叠加层数: 5/7/9 每层攻击力加成: 18/24/30</td>
-</tr>
-<tr>
-<td style="text-align:center">极度饥渴</td>
-<td style="text-align:center">60/100/140</td>
-</tr>
-<tr>
-<td style="text-align:center">死亡契约</td>
-<td style="text-align:center">基于目标最大生命值的攻击力加成: 5%/7%/9%</td>
-</tr>
-<tr>
-<td style="text-align:center">精准光环</td>
-<td style="text-align:center">敏捷  20%/26%/32%/38% ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)26%/32%/38%/44%" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="">
-                </div>
-                <div class="image-caption">Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">星体游魂</td>
-<td style="text-align:center">小兵6/9/12/15 英雄 12/24/36/48 ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="92/104/116/128">
-                </div>
-                <div class="image-caption">92/104/116/128</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">灵动迅捷</td>
-<td style="text-align:center">10/25/40/55/70/85/100 A帐115</td>
-</tr>
-<tr>
-<td style="text-align:center">卡尔-火</td>
-<td style="text-align:center">4/8/12/16/20/24/28 * 3</td>
-</tr>
-<tr>
-<td style="text-align:center">决斗</td>
-<td style="text-align:center">10/14/18 ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)50/54/58" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="">
-                </div>
-                <div class="image-caption">Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">战斗嚎叫</td>
-<td style="text-align:center">70/100/130</td>
-</tr>
-<tr>
-<td style="text-align:center">月之祝福</td>
-<td style="text-align:center">14/22/30/38</td>
-</tr>
-<tr>
-<td style="text-align:center">嚎叫</td>
-<td style="text-align:center">英雄 10/15/20/25 非英雄  4/6/8/10 夜晚翻倍</td>
-</tr>
-<tr>
-<td style="text-align:center">静电连接</td>
-<td style="text-align:center">每秒偷取 7/14/21/28 ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)21/28/35/42" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="">
-                </div>
-                <div class="image-caption">Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)</div>
-            </figure></td>
-</tr>
-<tr>
-<td style="text-align:center">支配死灵</td>
-<td style="text-align:center">最大灵魂数: 18/24/30/36 (A帐 22/30/38/46)</td>
-</tr>
-<tr>
-<td style="text-align:center">折光</td>
-<td style="text-align:center"><strong>攻击次数</strong>: 3/4/5/6 ([<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://dota2-zh.gamepedia.com/%E5%A4%A9%E8%B5%8B)" alt="Talent tree symbol.png](https://dota2.gamepedia.com/media/dota2.gamepedia.com/thumb/c/cd/Talent_tree_symbol.png/16px-Talent_tree_symbol.png?version=e3bc8b884229319b475de0171100e152)" title="6/7/8/9">
-                </div>
-                <div class="image-caption">6/7/8/9</div>
-            </figure><strong>攻击力加成</strong>: 20/40/60/80</td>
-</tr>
-<tr>
-<td style="text-align:center">魔化</td>
-<td style="text-align:center">20/40/60/80</td>
-</tr>
-<tr>
-<td style="text-align:center">长大</td>
-<td style="text-align:center">50/100/150 加主要攻击力</td>
-</tr>
-<tr>
-<td style="text-align:center">衰退光环</td>
-<td style="text-align:center">英雄死亡 30/35/40/45 小兵死亡 5</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>致命一击倍数</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">致命一击来源</th>
-<th style="text-align:center">几率%</th>
-<th style="text-align:center">伤害%</th>
-<th style="text-align:center">DPS期望%</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">头狼 - 致命一击</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">200</td>
-<td style="text-align:center">20</td>
-</tr>
-<tr>
-<td style="text-align:center">血棘 - 致命一击</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">175</td>
-<td style="text-align:center">15</td>
-</tr>
-<tr>
-<td style="text-align:center">酒仙 - 醉拳</td>
-<td style="text-align:center">10/15/20/25</td>
-<td style="text-align:center">230</td>
-<td style="text-align:center">13/19.5/26/32.5</td>
-</tr>
-<tr>
-<td style="text-align:center">混沌一击</td>
-<td style="text-align:center">12</td>
-<td style="text-align:center">125/175/225/275</td>
-<td style="text-align:center">3/9/15/21</td>
-</tr>
-<tr>
-<td style="text-align:center">水晶剑 - 致命一击</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">175</td>
-<td style="text-align:center">15</td>
-</tr>
-<tr>
-<td style="text-align:center">大炮 - 致命一击</td>
-<td style="text-align:center">30</td>
-<td style="text-align:center">235</td>
-<td style="text-align:center">40.5</td>
-</tr>
-<tr>
-<td style="text-align:center">剑舞</td>
-<td style="text-align:center">20/25/30/35</td>
-<td style="text-align:center">200%</td>
-<td style="text-align:center">20/25/30/35</td>
-</tr>
-<tr>
-<td style="text-align:center">狼人 - 变身</td>
-<td style="text-align:center">40</td>
-<td style="text-align:center">160/180/200</td>
-<td style="text-align:center">24/32/40</td>
-</tr>
-<tr>
-<td style="text-align:center">恩赐解脱</td>
-<td style="text-align:center">15</td>
-<td style="text-align:center">230/340/450</td>
-<td style="text-align:center">19.5/36/52.5</td>
-</tr>
-<tr>
-<td style="text-align:center">殊死一搏</td>
-<td style="text-align:center">15</td>
-<td style="text-align:center">英雄 150/200/250/300</td>
-<td style="text-align:center">7.5/15/22.5/30</td>
-</tr>
-<tr>
-<td style="text-align:center">血棘 - 灵魂撕裂</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">140</td>
-<td style="text-align:center">140</td>
-</tr>
-<tr>
-<td style="text-align:center">忍术</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">150/175/200/225</td>
-<td style="text-align:center">12/10/8/6 天赋 -5</td>
-</tr>
-<tr>
-<td style="text-align:center">棒击大地</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">150/175/200/225 天赋+100</td>
-<td style="text-align:center">触发条件</td>
-</tr>
-<tr>
-<td style="text-align:center">暗杀</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">A帐 280</td>
-<td style="text-align:center">距离内所有敌人</td>
-</tr>
-<tr>
-<td style="text-align:center">海象神拳</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">350/A帐500</td>
-<td style="text-align:center">冷却 36/24/12</td>
-</tr>
-</tbody>
-</table>
-<p>游戏中出现的红字代表的是减少前的物理伤害</p>
-<ul>
-<li>被格挡伤害</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">伤害格挡来源</th>
-<th style="text-align:center">几率%</th>
-<th style="text-align:center">格挡伤害</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">圆盾</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">近战16 远程8</td>
-</tr>
-<tr>
-<td style="text-align:center">穷鬼盾</td>
-<td style="text-align:center">英雄100 非英雄50</td>
-<td style="text-align:center">近战20 远程10</td>
-</tr>
-<tr>
-<td style="text-align:center">先锋盾</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">近战70 远程35</td>
-</tr>
-<tr>
-<td style="text-align:center">赤红甲 - 坚盾</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">60</td>
-</tr>
-<tr>
-<td style="text-align:center">海妖外壳</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">12/24/36/48</td>
-</tr>
-</tbody>
-</table>
-<p>伤害格挡不格挡物理伤害技能，守卫的攻击也不格挡</p>
-<ul>
-<li>护甲值倍数见<strong>护甲</strong></li>
-<li>护甲类型倍数 - 英雄打英雄100%</li>
-<li>一般伤害倍数 - 见伤害调整</li>
-</ul>
-<h2 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h2><p>基础打英雄护甲75%伤害</p>
-<p>穿刺打英雄护甲50%伤害，基础护甲（小兵护甲）150%伤害</p>
-<h2 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h2><p>除了<strong>回光返照，幽灵船，魔法护盾</strong>之外，伤害减免和加深的叠加为<strong>加法叠加</strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">技能</th>
-<th style="text-align:center">来源</th>
-<th style="text-align:center">数值%</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">血之狂暴</td>
-<td style="text-align:center">加深接受输出</td>
-<td style="text-align:center">25/30/35/40 远处 减半</td>
-</tr>
-<tr>
-<td style="text-align:center">赎罪</td>
-<td style="text-align:center">加深接受</td>
-<td style="text-align:center">18/24/30/36</td>
-</tr>
-<tr>
-<td style="text-align:center">灵魂猎手</td>
-<td style="text-align:center">加深接受</td>
-<td style="text-align:center">20/30/40/50</td>
-</tr>
-<tr>
-<td style="text-align:center">守卫冲刺</td>
-<td style="text-align:center">加深接受</td>
-<td style="text-align:center">15</td>
-</tr>
-<tr>
-<td style="text-align:center">血肉傀儡</td>
-<td style="text-align:center">加深接受</td>
-<td style="text-align:center">20/25/30 200范围内最高</td>
-</tr>
-<tr>
-<td style="text-align:center">回光返照</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">0 全免 4/5/6 A帐+1</td>
-</tr>
-<tr>
-<td style="text-align:center">刚毛后背</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">背后 16/24/32/40 侧面 减半</td>
-</tr>
-<tr>
-<td style="text-align:center">奔袭冲撞</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">A帐 40 持续4秒</td>
-</tr>
-<tr>
-<td style="text-align:center">过载</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">5/10/15/20</td>
-</tr>
-<tr>
-<td style="text-align:center">幽灵船</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">40/45/50 持续10秒</td>
-</tr>
-<tr>
-<td style="text-align:center">决斗</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">A帐 100 持续6/7/8秒</td>
-</tr>
-<tr>
-<td style="text-align:center">魔法护盾</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">60 1.6/1.9/2.2/2.5</td>
-</tr>
-<tr>
-<td style="text-align:center">钻地</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">40</td>
-</tr>
-<tr>
-<td style="text-align:center">折射</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">10/14/18/22</td>
-</tr>
-<tr>
-<td style="text-align:center">激怒</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">80 持续4秒</td>
-</tr>
-<tr>
-<td style="text-align:center">陵卫斗篷</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">4层 8/12/16/20 冷却6/5/4/3</td>
-</tr>
-<tr>
-<td style="text-align:center">寒冬诅咒</td>
-<td style="text-align:center">减免接受</td>
-<td style="text-align:center">100 3.25/4/4.75</td>
-</tr>
-<tr>
-<td style="text-align:center">战斗饥渴</td>
-<td style="text-align:center">降低输出</td>
-<td style="text-align:center">A帐 30 持续10秒</td>
-</tr>
-<tr>
-<td style="text-align:center">白银之锋</td>
-<td style="text-align:center">降低输出</td>
-<td style="text-align:center">50 持续5秒</td>
-</tr>
-</tbody>
-</table>
-<h1 id="护甲"><a href="#护甲" class="headerlink" title="护甲"></a>护甲</h1><h2 id="白字护甲"><a href="#白字护甲" class="headerlink" title="白字护甲"></a>白字护甲</h2><p>$$<br>白字护甲 = 基础护甲 + ( \frac{敏捷}{7})<br>$$</p>
-<h2 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>伤害倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
-<h2 id="伤害倍数和护甲值的相关曲线"><a href="#伤害倍数和护甲值的相关曲线" class="headerlink" title="伤害倍数和护甲值的相关曲线"></a>伤害倍数和护甲值的相关曲线</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png" alt="相关曲线" title="">
-                </div>
-                <div class="image-caption">相关曲线</div>
-            </figure>
-<p>纵坐标是伤害倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
-<h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 伤害倍数</p>
-<h1 id="物品被动效果叠加"><a href="#物品被动效果叠加" class="headerlink" title="物品被动效果叠加"></a>物品被动效果叠加</h1>
     
 
         <a href="/2017/09/05/Dota2机制总结/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -727,7 +238,7 @@
     
 
         <a href="/2017/09/04/LogisticRegression学习笔记/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -774,7 +285,7 @@
     
 
         <a href="/2017/08/28/Xpath使用指南/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -821,7 +332,7 @@
     
 
         <a href="/2017/07/29/PDF复制粘贴去除多余的回车符/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -870,7 +381,7 @@
     
 
         <a href="/2017/07/26/到底什么是比特币/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -917,7 +428,7 @@
     
 
         <a href="/2017/07/01/LeetcodeNote/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -966,7 +477,7 @@
     
 
         <a href="/2017/06/17/幕布-全平台笔记思维导图工具/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -1015,7 +526,7 @@
     
 
         <a href="/2017/05/27/AlphaGo运行原理解析/" class="post-more waves-effect waves-button">
-            阅读全文…
+            Continue reading...
         </a>
     </div>
     
@@ -1058,7 +569,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
