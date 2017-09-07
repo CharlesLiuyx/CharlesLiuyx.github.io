@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-07T04:16:29.000Z</updated>
+  <updated>2017-09-07T04:21:44.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</id>
     <published>2017-09-06T06:50:56.000Z</published>
-    <updated>2017-09-07T04:16:29.000Z</updated>
+    <updated>2017-09-07T04:21:44.000Z</updated>
     
     <content type="html"><![CDATA[<p>版本信息：更新到7.06f</p>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -301,11 +301,8 @@ $$
 </tr>
 </tbody>
 </table>
-<p>游戏中出现的红字代表的是减少前的物理伤害</p>
-<ul>
-<li>被格挡伤害</li>
-</ul>
-<table>
+<p>游戏中出现的<strong>红字代表的是减少前的物理伤害</strong></p>
+<h3 id="被格挡伤害"><a href="#被格挡伤害" class="headerlink" title="被格挡伤害"></a>被格挡伤害</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">伤害格挡来源</th>
