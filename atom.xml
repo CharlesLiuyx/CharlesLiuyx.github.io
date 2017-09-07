@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-07T04:21:44.000Z</updated>
+  <updated>2017-09-07T09:03:06.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</id>
     <published>2017-09-06T06:50:56.000Z</published>
-    <updated>2017-09-07T04:21:44.000Z</updated>
+    <updated>2017-09-07T09:03:06.000Z</updated>
     
     <content type="html"><![CDATA[<p>版本信息：更新到7.06f</p>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -659,6 +659,16 @@ $$
             </figure>
 <p>纵坐标是护甲值倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
 <h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 护甲值倍数</p>
+
+$$
+实时有效物理生命值 = 当前生命值 \div (1 - \frac{0.06 \times 当前总护甲值}{1 + 0.06 \times |当前总护甲值| })
+$$
+
+$$
+实时有效魔法生命值 = 当前生命值 \div (0.75 \times (1 - 装备提供抗性_1) \times \ldots \times (1 - 装备提供抗性_n))
+$$
+
+
 <h2 id="护甲调整"><a href="#护甲调整" class="headerlink" title="护甲调整"></a>护甲调整</h2><h3 id="增加护甲的技能"><a href="#增加护甲的技能" class="headerlink" title="增加护甲的技能"></a>增加护甲的技能</h3><table>
 <thead>
 <tr>
