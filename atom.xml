@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-06T23:25:01.000Z</updated>
+  <updated>2017-09-07T04:16:29.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</id>
     <published>2017-09-06T06:50:56.000Z</published>
-    <updated>2017-09-06T23:25:01.000Z</updated>
+    <updated>2017-09-07T04:16:29.000Z</updated>
     
     <content type="html"><![CDATA[<p>版本信息：更新到7.06f</p>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -662,6 +662,170 @@ $$
             </figure>
 <p>纵坐标是护甲值倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
 <h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 护甲值倍数</p>
+<h2 id="护甲调整"><a href="#护甲调整" class="headerlink" title="护甲调整"></a>护甲调整</h2><h3 id="增加护甲的技能"><a href="#增加护甲的技能" class="headerlink" title="增加护甲的技能"></a>增加护甲的技能</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">技能</th>
+<th style="text-align:center">加成数值</th>
+<th style="text-align:center">持续时间s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">黑龙 - 龙肤光环</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">狂战士怒吼</td>
+<td style="text-align:center">40</td>
+<td style="text-align:center">2/2.4/2.8/3.2</td>
+</tr>
+<tr>
+<td style="text-align:center">编织</td>
+<td style="text-align:center">0.75/1.0/1.25 每秒  18/24/30</td>
+<td style="text-align:center">24</td>
+</tr>
+<tr>
+<td style="text-align:center">龙族血统</td>
+<td style="text-align:center">3/6/9/12(天赋 翻倍)</td>
+<td style="text-align:center">永久</td>
+</tr>
+<tr>
+<td style="text-align:center">霜冻护甲</td>
+<td style="text-align:center">3/5/7/9</td>
+<td style="text-align:center">40</td>
+</tr>
+<tr>
+<td style="text-align:center">战斗嚎叫</td>
+<td style="text-align:center">10/15/20</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">变形术</td>
+<td style="text-align:center">4/6/8</td>
+<td style="text-align:center">变形状态</td>
+</tr>
+<tr>
+<td style="text-align:center">寒冰盔甲</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">45</td>
+</tr>
+<tr>
+<td style="text-align:center">战吼</td>
+<td style="text-align:center">5/10/15/20</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">活性护甲</td>
+<td style="text-align:center">5/10/15/20 每层 1/1.2/1.4/1.6</td>
+<td style="text-align:center">10/13/16/19</td>
+</tr>
+<tr>
+<td style="text-align:center">崎岖外表</td>
+<td style="text-align:center">3/4/5/6</td>
+<td style="text-align:center">永久</td>
+</tr>
+<tr>
+<td style="text-align:center">巨魔 - 狂战士之怒</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">切换</td>
+</tr>
+</tbody>
+</table>
+<h3 id="减低护甲的技能"><a href="#减低护甲的技能" class="headerlink" title="减低护甲的技能"></a>减低护甲的技能</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">技能</th>
+<th style="text-align:center">降低数值</th>
+<th style="text-align:center">持续时间s</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">酸性喷雾</td>
+<td style="text-align:center">4/5/6/7 (天赋 +4)</td>
+<td style="text-align:center">16</td>
+</tr>
+<tr>
+<td style="text-align:center">远古 - 亵渎</td>
+<td style="text-align:center">50%</td>
+<td style="text-align:center">6</td>
+</tr>
+<tr>
+<td style="text-align:center">粘稠鼻液</td>
+<td style="text-align:center">1/1.4/1.8/2.2 最高层数4(8)</td>
+<td style="text-align:center">英雄5 小兵10</td>
+</tr>
+<tr>
+<td style="text-align:center">实相裂隙</td>
+<td style="text-align:center">3/4/5/6</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">编织</td>
+<td style="text-align:center">0.75/1/1.25每秒 (18/24/30)</td>
+<td style="text-align:center">24</td>
+</tr>
+<tr>
+<td style="text-align:center">自然秩序</td>
+<td style="text-align:center">基础护甲：40%/60%/80%/100%</td>
+<td style="text-align:center">光环范围 275</td>
+</tr>
+<tr>
+<td style="text-align:center">火人 - 攻击</td>
+<td style="text-align:center">每次1点 上限10</td>
+<td style="text-align:center">5 击中刷新时间</td>
+</tr>
+<tr>
+<td style="text-align:center">激流</td>
+<td style="text-align:center">2/3/4/5</td>
+<td style="text-align:center">8 范围 320</td>
+</tr>
+<tr>
+<td style="text-align:center">风暴之眼</td>
+<td style="text-align:center">0.7/0.6/0.5 (天赋 -0.1) 打击1次1点</td>
+<td style="text-align:center">30</td>
+</tr>
+<tr>
+<td style="text-align:center">魔王降临</td>
+<td style="text-align:center">3/4/5/6</td>
+<td style="text-align:center">光环范围 900</td>
+</tr>
+<tr>
+<td style="text-align:center">侵蚀雾霭</td>
+<td style="text-align:center">10/15/20</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">隐匿</td>
+<td style="text-align:center">2/4/6/8</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">巨浪</td>
+<td style="text-align:center">3/4/5/6 (天赋 +5)</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">死亡旋风</td>
+<td style="text-align:center">敏捷损失 * 0.14</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">恐怖波动</td>
+<td style="text-align:center">3/4/5/6 1400距离 300范围</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">虫群</td>
+<td style="text-align:center">1.4/1.25/1.1/0.95 攻击一次1点</td>
+<td style="text-align:center">16</td>
+</tr>
+</tbody>
+</table>
+<h3 id="护甲相关装备"><a href="#护甲相关装备" class="headerlink" title="护甲相关装备"></a>护甲相关装备</h3><p>强袭 +5 玄冥盾牌系列 +2  勋章 +7 天鹰 +2 炎阳纹章 +10 祭品 +4 </p>
+<p>黯灭 -7 勋章 -7 炎阳纹章 -10 强袭 -5 枯萎之石 -2 疯脸 -5</p>
 <h1 id="移动速度"><a href="#移动速度" class="headerlink" title="移动速度"></a>移动速度</h1><h2 id="叠加"><a href="#叠加" class="headerlink" title="叠加"></a>叠加</h2><p>相似的装备提供的移动速度不叠加，除了风帐</p>
 <p>多个鞋类物品不叠加</p>
 <p>夜叉 散夜对剑 幻影斧不叠加</p>
@@ -707,11 +871,11 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-06T03:05:44.000Z</updated>
+    <updated>2017-09-07T00:22:21.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <a id="more"></a>
-<h2 id="什么是【Logit】"><a href="#什么是【Logit】" class="headerlink" title="什么是【Logit】"></a>什么是【Logit】</h2><h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
+<h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
 <blockquote>
 <p>即输出变量只有<strong>两个值</strong>得预测技术</p>
@@ -748,7 +912,7 @@ $$
 </blockquote>
 <p>令 $f(t) = \frac{N(t)}{K}$ ，在方程两边同时除以 $K$ ，上述方程变为：<br>$$<br>\frac{df(t)}{dt} = rf(1 - f)<br>$$<br>这也是<code>Logistic方程</code>的一般形式</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
-<p>并且<code>Logistic回归模型</code>的本质是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
+<p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
 <h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2>]]></content>
     
     <summary type="html">
