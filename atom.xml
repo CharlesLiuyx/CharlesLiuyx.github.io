@@ -884,7 +884,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-07T00:22:21.000Z</updated>
+    <updated>2017-09-08T00:59:01.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <a id="more"></a>
@@ -898,7 +898,7 @@ $$
 <blockquote>
 <p>比如，<u>农药的用量</u>和<u>杀死害虫的概率</u>之间，在农药用量在很小的范围内增长的时候，因为药效不够，杀死害虫的概率增长很慢。</p>
 </blockquote>
-<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><figure class="image-bubble">
+<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）c<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
                     <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png" alt="可视化" title="">
@@ -912,7 +912,7 @@ $$
 <p>和统计学角度相同，我们的目的是依旧是完成一个<strong>二分类任务</strong>，输出标记 $y \in {0,1}$ ，而线性回归模型产生的预测值 $z = \boldsymbol w^{T}\boldsymbol x + b$ 是实值，于是，我们需要把 z 转换为0/1值，最理想的是<code>单位阶跃函数</code>（unit-step function z &gt; 0➜y=1，z&lt;0➜y=1）</p>
 <p>单单位阶跃函数<strong>不连续</strong>，不能微分，积分，求逆，于是我们希望找到能在一定程度上近似单位阶跃函数的<code>替代函数（surrogate function）</code>，并希望它单调可微，答案很明显，就是<code>对数几率函数（logistic function）</code><br>$$<br>y = \frac{1}{1+e^{-z}}<br>$$</p>
 <p>z 为预测值，y 为输出</p>
-<p><code>对数几率函数</code>是一种<code>Sigmoid函数</code></p>
+<p><code>对数几率函数</code>是一种<code>Sigmoid函数</code>，将$z = \boldsymbol w^{T}\boldsymbol x + b$ 带入上面的</p>
 <h3 id="生态学角度"><a href="#生态学角度" class="headerlink" title="生态学角度"></a>生态学角度</h3><p>可以换一个角度来解读这个问题的前世今生</p>
 <p>1798年的时候一个叫Malthus的英国牧师发现<strong>人口的变化率</strong>和<strong>人口的数目</strong>成正比，需要用数学的手法建立一个公式来表征这个现象，则，使用 $N(t)$ 这个函数来表示<code>t</code>时刻某个地区的<strong>总人口数</strong>（根据<strong>成正比</strong>）<br>$$<br>\frac{dN(t)}{dt} = {rN(t)}<br>$$</p>
 <blockquote>
