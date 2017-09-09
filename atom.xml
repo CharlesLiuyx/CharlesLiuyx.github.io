@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-07T19:02:07.000Z</updated>
+  <updated>2017-09-09T18:17:36.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</id>
     <published>2017-09-06T06:50:56.000Z</published>
-    <updated>2017-09-07T19:02:07.000Z</updated>
+    <updated>2017-09-09T18:17:36.000Z</updated>
     
     <content type="html"><![CDATA[<p>版本信息：更新到7.06f</p>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -71,11 +71,11 @@
 <h2 id="放弃比赛"><a href="#放弃比赛" class="headerlink" title="放弃比赛"></a>放弃比赛</h2><p>掉线<strong>超过5分钟后</strong>，所有金钱被队友平分</p>
 <h1 id="物理攻击"><a href="#物理攻击" class="headerlink" title="物理攻击"></a>物理攻击</h1><h2 id="最终攻击伤害"><a href="#最终攻击伤害" class="headerlink" title="最终攻击伤害"></a>最终攻击伤害</h2>
 $$
-最终攻击伤害 = \\ \{ [主要攻击力 × (1 + \sum 百分比攻击力加成) + 固定值百分比加成] \times 致命一击倍数 - 被格挡伤害 \}\\ \times 护甲值倍数 \times 护甲类型倍数 \times 一般伤害倍数
+最终攻击伤害 = \\ \{ [\text {MD} × (1 + \sum \text {PBD}) + \text {FBD}] \times \text {CSM} - \text {BD} \}\\ \times \text {AVM} \times \text {ATM} \times \text {GDM}
 $$
 
-<h3 id="主要攻击力"><a href="#主要攻击力" class="headerlink" title="主要攻击力"></a>主要攻击力</h3><p>主要攻击力 = 基础攻击力 + 主属性</p>
-<h3 id="百分比攻击力加成"><a href="#百分比攻击力加成" class="headerlink" title="百分比攻击力加成"></a>百分比攻击力加成</h3><table>
+<h3 id="MD-Main-Damage-主要攻击力"><a href="#MD-Main-Damage-主要攻击力" class="headerlink" title="MD(Main Damage) 主要攻击力"></a>MD(Main Damage) 主要攻击力</h3><p>主要攻击力 = 基础攻击力 + 主属性</p>
+<h3 id="PBD-Percentage-bonus-damage-百分比攻击力加成"><a href="#PBD-Percentage-bonus-damage-百分比攻击力加成" class="headerlink" title="PBD(Percentage bonus damage) 百分比攻击力加成"></a>PBD(Percentage bonus damage) 百分比攻击力加成</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">技能</th>
@@ -113,7 +113,7 @@ $$
 </tr>
 </tbody>
 </table>
-<h3 id="固定值百分比加成"><a href="#固定值百分比加成" class="headerlink" title="固定值百分比加成"></a>固定值百分比加成</h3><table>
+<h3 id="FBD-Flat-Bonus-Damage-固定值百分比加成"><a href="#FBD-Flat-Bonus-Damage-固定值百分比加成" class="headerlink" title="FBD(Flat Bonus Damage) 固定值百分比加成"></a>FBD(Flat Bonus Damage) 固定值百分比加成</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">技能</th>
@@ -199,7 +199,7 @@ $$
 </tr>
 </tbody>
 </table>
-<h3 id="致命一击倍数"><a href="#致命一击倍数" class="headerlink" title="致命一击倍数"></a>致命一击倍数</h3><table>
+<h3 id="CSM-Critical-Strike-Multiplier-致命一击倍数"><a href="#CSM-Critical-Strike-Multiplier-致命一击倍数" class="headerlink" title="CSM(Critical Strike Multiplier) 致命一击倍数"></a>CSM(Critical Strike Multiplier) 致命一击倍数</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">致命一击来源</th>
@@ -302,7 +302,7 @@ $$
 </tbody>
 </table>
 <p>游戏中出现的<strong>红字代表的是减少前的物理伤害</strong></p>
-<h3 id="被格挡伤害"><a href="#被格挡伤害" class="headerlink" title="被格挡伤害"></a>被格挡伤害</h3><table>
+<h3 id="BD-Blocked-Damage-被格挡伤害"><a href="#BD-Blocked-Damage-被格挡伤害" class="headerlink" title="BD(Blocked Damage) 被格挡伤害"></a>BD(Blocked Damage) 被格挡伤害</h3><table>
 <thead>
 <tr>
 <th style="text-align:center">伤害格挡来源</th>
@@ -339,9 +339,9 @@ $$
 </tbody>
 </table>
 <p>伤害格挡不格挡物理伤害技能，守卫的攻击也不格挡</p>
-<h3 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h3><p>见<strong>护甲</strong></p>
-<h3 id="护甲类型倍数"><a href="#护甲类型倍数" class="headerlink" title="护甲类型倍数"></a>护甲类型倍数</h3><p>见<strong>攻击类型</strong>，英雄打英雄100%</p>
-<h3 id="一般伤害倍数"><a href="#一般伤害倍数" class="headerlink" title="一般伤害倍数"></a>一般伤害倍数</h3><p>见<strong>伤害调整</strong></p>
+<h3 id="AVM-Armor-Value-Multiplier-护甲值倍数"><a href="#AVM-Armor-Value-Multiplier-护甲值倍数" class="headerlink" title="AVM(Armor Value Multiplier) 护甲值倍数"></a>AVM(Armor Value Multiplier) 护甲值倍数</h3><p>见<strong>护甲</strong></p>
+<h3 id="ATM-Armor-Type-Multiplier-护甲类型倍数"><a href="#ATM-Armor-Type-Multiplier-护甲类型倍数" class="headerlink" title="ATM(Armor Type Multiplier) 护甲类型倍数"></a>ATM(Armor Type Multiplier) 护甲类型倍数</h3><p>见<strong>攻击类型</strong>，英雄打英雄100%</p>
+<h3 id="GDM-General-Damage-Multipliers-一般伤害倍数"><a href="#GDM-General-Damage-Multipliers-一般伤害倍数" class="headerlink" title="GDM(General Damage Multipliers) 一般伤害倍数"></a>GDM(General Damage Multipliers) 一般伤害倍数</h3><p>见<strong>伤害调整</strong></p>
 <h2 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h2><p>基础打英雄护甲75%伤害</p>
 <p>穿刺打英雄护甲50%伤害，基础护甲（小兵护甲）150%伤害</p>
 <h2 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h2><p>除了<strong>回光返照，幽灵船，魔法护盾</strong>之外，伤害减免和加深的叠加为<strong>加法叠加</strong></p>
@@ -655,7 +655,7 @@ $$
 <p>烈火精灵，不可侵犯，蝮蛇突袭，重生，黄泉颤抖，小狼-致残，冰封魔印，雷霆一击，袁术咆哮，冰霜新星，液态火，石化凝视，夜魔虚空，冰眼，豪猪，冰火交加，毒龙法球，全能光环</p>
 <h1 id="护甲"><a href="#护甲" class="headerlink" title="护甲"></a>护甲</h1><h2 id="白字护甲"><a href="#白字护甲" class="headerlink" title="白字护甲"></a>白字护甲</h2><p>$$<br>敏捷 = 基础敏捷 + (等级 - 1) * 敏捷成长<br>$$</p>
 <p>$$<br>白字护甲 = 基础护甲 + ( \frac{敏捷}{7})<br>$$</p>
-<h2 id="护甲值倍数-1"><a href="#护甲值倍数-1" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>护甲值倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
+<h2 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>护甲值倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
 <h2 id="护甲值倍数倍数和护甲值的相关曲线"><a href="#护甲值倍数倍数和护甲值的相关曲线" class="headerlink" title="护甲值倍数倍数和护甲值的相关曲线"></a>护甲值倍数倍数和护甲值的相关曲线</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
