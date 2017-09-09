@@ -884,15 +884,48 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-08T00:59:01.000Z</updated>
+    <updated>2017-09-08T22:01:24.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="What-Why-什么是与为什么Logistic-Regression"><a href="#What-Why-什么是与为什么Logistic-Regression" class="headerlink" title="[What Why]什么是与为什么Logistic Regression"></a>[What Why]什么是与为什么Logistic Regression</h1><h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
-<a id="more"></a>
-<h2 id="什么是【Logistic-Regression】"><a href="#什么是【Logistic-Regression】" class="headerlink" title="什么是【Logistic Regression】"></a>什么是【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
+    <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+<h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
+<a id="more"></a>
 <blockquote>
 <p>即输出变量只有<strong>两个值</strong>得预测技术</p>
 </blockquote>
+<p>下文中将会从不同的角度</p>
+<h3 id="概率论角度"><a href="#概率论角度" class="headerlink" title="概率论角度"></a>概率论角度</h3><p>首先，需要回忆一下几个概念</p>
+<p>【大数定理】<br>$$<br>\lim<em>{n\to\infty} \frac{1}{n} \sum</em>{i=1}^n {X_i} = \mu<br>$$<br>不断的采样一个随机变量，得到n个值，当n趋向于<strong>正无穷</strong>的时候，这个<strong>平均值</strong>就收敛于随机变量的<strong>期望</strong></p>
+<p>【中心极限定理】</p>
+<p>大量<strong>相互独立{条件1</strong>}的随机变量，其均值的分布以<strong>正态分布{结论}</strong>为<strong>极限{条件2}</strong></p>
+<p>【贝叶斯公式】<br>$$<br>P(B_i|A) = \frac{P(A|B_i)P(B<em>i)}{\sum\limits</em>{j=1}^nP(A|B_j)P(B_j)} = \frac{P(A|B_i)P(B_i)}{P(A)}<br>$$<br>符号说明</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">表示</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">S</td>
+<td style="text-align:center">样本空间</td>
+<td style="text-align:center">一个学校的所有学生</td>
+</tr>
+<tr>
+<td style="text-align:center">A</td>
+<td style="text-align:center">样本空间中可能的一种情况</td>
+<td style="text-align:center">男学生 or 女学生</td>
+</tr>
+<tr>
+<td style="text-align:center">$\boldsymbol B$</td>
+<td style="text-align:center">样本空间的一个划分</td>
+<td style="text-align:center">穿裙子的同学 or 穿裤子的同学</td>
+</tr>
+</tbody>
+</table>
+<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="">贝叶斯公式的前世今生</a>，这个链接或许可以帮到你。</p>
 <h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
 <p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
 <blockquote>
@@ -905,14 +938,14 @@ $$
                 </div>
                 <div class="image-caption">可视化</div>
             </figure></p>
-<p>这个 $\theta(P)$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变</p>
+<p>这个 $\theta(P)​$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0​$ 或 $P = 1​$ 附近，$P​$ 的微小变化对应 $\theta(P)​$ 的较大改变</p>
 <h4 id="方案-如何解决这个问题"><a href="#方案-如何解决这个问题" class="headerlink" title="方案 - 如何解决这个问题"></a>方案 - 如何解决这个问题</h4><p>为了建立因变量 $P$ 与自变量 $\mathbf X$ 之间的<strong>合理变动关系</strong>，一个很自然的假设就是<strong>线性关系</strong>，也就是：<br>$$<br>P = \mathbf X’  \boldsymbol{\beta}<br>$$<br>其中 $\boldsymbol \beta = (\beta_1,\beta_1,\ldots,\beta_p)$ 表示每一个不同因素对最终概率 $P$ 产生的影响（这个也可以写作，权重weight）</p>
-<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logisttc回归模型</code></p>
+<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logistic回归模型</code></p>
 <h3 id="机器学习角度"><a href="#机器学习角度" class="headerlink" title="机器学习角度"></a>机器学习角度</h3><p>周志华《机器学习》，3.3 对数几率回归笔记</p>
 <p>和统计学角度相同，我们的目的是依旧是完成一个<strong>二分类任务</strong>，输出标记 $y \in {0,1}$ ，而线性回归模型产生的预测值 $z = \boldsymbol w^{T}\boldsymbol x + b$ 是实值，于是，我们需要把 z 转换为0/1值，最理想的是<code>单位阶跃函数</code>（unit-step function z &gt; 0➜y=1，z&lt;0➜y=1）</p>
 <p>单单位阶跃函数<strong>不连续</strong>，不能微分，积分，求逆，于是我们希望找到能在一定程度上近似单位阶跃函数的<code>替代函数（surrogate function）</code>，并希望它单调可微，答案很明显，就是<code>对数几率函数（logistic function）</code><br>$$<br>y = \frac{1}{1+e^{-z}}<br>$$</p>
-<p>z 为预测值，y 为输出</p>
-<p><code>对数几率函数</code>是一种<code>Sigmoid函数</code>，将$z = \boldsymbol w^{T}\boldsymbol x + b$ 带入上面的</p>
+<p>z 为预测值，y 为输出，<code>对数几率函数</code>是一种<code>Sigmoid函数</code>【一种形状类似S的函数】，将$z = \boldsymbol w^{T}\boldsymbol x + b$ 带入上面的公式</p>
+<p>$$<br>y = \frac{1}{1+e^{-(\boldsymbol w^{T}\boldsymbol x + b)}} \implies \ln(\frac{y}{1-y}) = \boldsymbol w^{T}\boldsymbol x + b<br>$$<br>如果将 $y$ 作为 $\mathbf x$ 作为正例的可能性，$1-y$ 为其反例的可能性<br>$$<br>\frac {y}{1-y}<br>$$<br>上面的式子成为“几率”(odds)：表示 $\mathbf x$ 是正例的<strong>相对可能性</strong>，对odds取对数得到“几率对数”(log odds，也就做logit)</p>
 <h3 id="生态学角度"><a href="#生态学角度" class="headerlink" title="生态学角度"></a>生态学角度</h3><p>可以换一个角度来解读这个问题的前世今生</p>
 <p>1798年的时候一个叫Malthus的英国牧师发现<strong>人口的变化率</strong>和<strong>人口的数目</strong>成正比，需要用数学的手法建立一个公式来表征这个现象，则，使用 $N(t)$ 这个函数来表示<code>t</code>时刻某个地区的<strong>总人口数</strong>（根据<strong>成正比</strong>）<br>$$<br>\frac{dN(t)}{dt} = {rN(t)}<br>$$</p>
 <blockquote>
@@ -924,13 +957,16 @@ $$
 <p>K是一个常数，表示系统的容量（capacity）</p>
 </blockquote>
 <p>令 $f(t) = \frac{N(t)}{K}$ ，在方程两边同时除以 $K$ ，上述方程变为：<br>$$<br>\frac{df(t)}{dt} = rf(1 - f)<br>$$<br>这也是<code>Logistic方程</code>的一般形式</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
+<p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
 <h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2>]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;What-Why-什么是与为什么Logistic-Regression&quot;&gt;&lt;a href=&quot;#What-Why-什么是与为什么Logistic-Regression&quot; class=&quot;headerlink&quot; title=&quot;[What Why]什么是与为什么Logistic Regression&quot;&gt;&lt;/a&gt;[What Why]什么是与为什么Logistic Regression&lt;/h1&gt;&lt;h2 id=&quot;什么是【回归（Regression）】&quot;&gt;&lt;a href=&quot;#什么是【回归（Regression）】&quot; class=&quot;headerlink&quot; title=&quot;什么是【回归（Regression）】&quot;&gt;&lt;/a&gt;什么是【回归（Regression）】&lt;/h2&gt;&lt;p&gt;回归（Regression）是一项模拟技术，用来从&lt;strong&gt;一个或多个解释变量&lt;/strong&gt;中&lt;u&gt;预测&lt;/u&gt;&lt;strong&gt;输出变量的值&lt;/strong&gt;&lt;/p&gt;
+      &lt;h2 id=&quot;什么是【回归（Regression）】&quot;&gt;&lt;a href=&quot;#什么是【回归（Regression）】&quot; class=&quot;headerlink&quot; title=&quot;什么是【回归（Regression）】&quot;&gt;&lt;/a&gt;什么是【回归（Regression）】&lt;/h2&gt;&lt;p&gt;回归（Regression）是一项模拟技术，用来从&lt;strong&gt;一个或多个解释变量&lt;/strong&gt;中&lt;u&gt;预测&lt;/u&gt;&lt;strong&gt;输出变量的值&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;什么是及为什么【Logistic-Regression】&quot;&gt;&lt;a href=&quot;#什么是及为什么【Logistic-Regression】&quot; class=&quot;headerlink&quot; title=&quot;什么是及为什么【Logistic Regression】&quot;&gt;&lt;/a&gt;什么是及为什么【Logistic Regression】&lt;/h2&gt;&lt;p&gt;回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;逻辑回归&lt;/strong&gt;则是用来预测&lt;strong&gt;二进制&lt;/strong&gt;输出变量取值（如：&lt;strong&gt;是/不是&lt;/strong&gt;）的预测技术&lt;/p&gt;
     
     </summary>
     
