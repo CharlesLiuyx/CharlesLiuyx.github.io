@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png">
-<meta property="og:updated_time" content="2017-09-06T02:42:11.000Z">
+<meta property="og:updated_time" content="2017-09-10T19:04:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -210,6 +210,9 @@
 <p>有以上定义，我们就把围棋问题转化为。</p>
 <blockquote>
 <p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
+<p>总之</p>
+<p>看到 $\vec s$ ，脑海中就是<strong>一个棋盘，上面有很多黑白子</strong></p>
+<p>看到 $\vec a$ ，脑海中就想象一个人<strong>潇洒的落子</strong></p>
 </blockquote>
 <p>接下来的问题是，如何解决这样一个问题呢？</p>
 <p>先上论文！干货第一</p>
@@ -337,7 +340,7 @@ $$
 <p><code>Aja Huang</code>认为是$P_{human-plus}(\vec s)$走棋的路数太集中，而MCTS需要更加发散的选择才能有更好的效果。</p>
 <h3 id="计算局部评价函数（Value-Network）"><a href="#计算局部评价函数（Value-Network）" class="headerlink" title="计算局部评价函数（Value Network）"></a>计算局部评价函数（Value Network）</h3><p>考虑到$P_{human-plus}(\vec s)$的下法太过集中，<code>Aja Huang</code>计算 $v(\vec s)$ 的策略是：</p>
 <ul>
-<li>开局先用$P_{human}(\vec s)$走<code>L</code>步，有利于生成更多局面</li>
+<li>开局先用$P_{human}(\vec s)​$走<code>L</code>步，有利于生成更多局面</li>
 <li>即使如此，<code>Aja Huang</code>还是觉得局面不够多样，为了进一步扩大搜索空间，在<code>L+1</code>步时，完全随机一个 $\vec a$ 落子，记下这个状态 $v(\vec s_{L+1})$ </li>
 <li>之后使用$P_{human-plus}(\vec s)$来进行对弈，直到结束时获得结果<code>r</code>，如此不断对弈，由于<code>L</code>也是一个随机数，我们可以得到，<strong>开局、中盘、官子</strong>等不同阶段的很多局面 $\vec s$，和这些局面对应的结果<code>r</code></li>
 <li><p>有了这些训练样本 $\langle \vec s,r\rangle$，还是使用<strong>神经网络</strong>，把最后一层改成<strong>回归</strong>而非<strong>分类</strong>（这里不是用的分类，而是用的<strong>回归，拟合</strong>），就得到了一个 $v(\vec s)$ 来输出<strong>赢棋的概率</strong></p>
@@ -349,7 +352,13 @@ $$
 <blockquote>
 <p>在状态 $\vec s$ 下，<strong>局面的优劣程度，或者说此时的胜率是多少</strong></p>
 </blockquote>
-<p>感谢你看到这里，我们已经拥有$P_{human}(\vec s)$，MCTS，$v(\vec s)$，有了这些我们距离AlphaGo已经不远了</p>
+<p>感谢你看到这里，我们已经拥有：</p>
+<ul>
+<li>$P_{human}(\vec s)$ <code>我的老师是人类！</code></li>
+<li>MCTS <code>乱下，我只看输赢</code></li>
+<li>$v(\vec s)$ <code>我能判断局势</code></li>
+</ul>
+<p>有了这些我们距离AlphaGo已经不远了</p>
 <h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -457,7 +466,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-06T02:42:11.000Z" itemprop="dateUpdated">2017-09-05 19:42:11</time>
+    Last updated: <time datetime="2017-09-10T19:04:20.000Z" itemprop="dateUpdated">2017-09-10 12:04:20</time>
 </span><br>
 
 
