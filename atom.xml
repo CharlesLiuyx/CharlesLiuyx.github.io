@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-10T07:56:15.000Z</updated>
+  <updated>2017-09-10T09:42:10.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/"/>
     <id>https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</id>
     <published>2017-09-06T06:50:56.000Z</published>
-    <updated>2017-09-10T07:56:15.000Z</updated>
+    <updated>2017-09-10T09:42:10.000Z</updated>
     
     <content type="html"><![CDATA[<p>版本信息：更新到7.06f</p>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -459,6 +459,7 @@ $$
 <li>面板中英雄增加的攻击速度</li>
 <li>由装备获得的攻击速度加成</li>
 <li>每个英雄基础100点基础攻速</li>
+<li>由Debuff造成的攻速减低</li>
 </ul>
 <h2 id="攻击速度计算公式"><a href="#攻击速度计算公式" class="headerlink" title="攻击速度计算公式"></a>攻击速度计算公式</h2>
 $$
@@ -503,6 +504,7 @@ $$
 </tr>
 </tbody>
 </table>
+<p>根据表格我们可以知道减攻速的技能在基础攻速很高的情况下基本没有什么效果，但是越接近0速度，减速效果越明显</p>
 <h2 id="增加攻击速度技能列表"><a href="#增加攻击速度技能列表" class="headerlink" title="增加攻击速度技能列表"></a>增加攻击速度技能列表</h2><table>
 <thead>
 <tr>
@@ -655,7 +657,7 @@ $$
 </tbody>
 </table>
 <h2 id="降低攻击速度技能"><a href="#降低攻击速度技能" class="headerlink" title="降低攻击速度技能"></a>降低攻击速度技能</h2><p>比较有效果的降低攻速的技能</p>
-<p>烈火精灵，不可侵犯，蝮蛇突袭，重生，黄泉颤抖，小狼-致残，冰封魔印，雷霆一击，袁术咆哮，冰霜新星，液态火，石化凝视，夜魔虚空，冰眼，豪猪，冰火交加，毒龙法球，全能光环</p>
+<p><code>烈火精灵：80/100/120/140</code> <code>不可侵犯：40/70/100/130</code>，<code>蝮蛇突袭：40/60/80</code> <code>重生：75</code> <code>黄泉颤抖：64</code> <code>小狼-致残：60</code> <code>冰封魔印：30/40/50/60</code> <code>雷霆一击：25/35/45/55</code> <code>原始咆哮：50</code> <code>冰霜新星：20/30/40/50</code> <code>液态火：20/30/40/50</code> <code>石化凝视：50</code> <code>夜魔虚空：50</code> <code>冰眼：45</code> <code>豪猪：10/20/30/40</code> <code>冰火交加：28/32/36/40</code> <code>毒龙法球：10/20/30/40</code> <code>全能光环：10/18/26/34</code></p>
 <h1 id="技能攻击伤害"><a href="#技能攻击伤害" class="headerlink" title="技能攻击伤害"></a>技能攻击伤害</h1><h2 id="技能伤害计算"><a href="#技能伤害计算" class="headerlink" title="技能伤害计算"></a>技能伤害计算</h2><p>魔法伤害受到<a href="#MR">魔法抗性影响</a>，技能伤害可以由智力获得增强</p>
 
 $$
