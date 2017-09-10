@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png">
-<meta property="og:updated_time" content="2017-09-10T19:22:47.000Z">
+<meta property="og:updated_time" content="2017-09-10T19:32:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -286,7 +286,7 @@ $$
 </ul>
 <p><code>Aja Huang</code>很快意识到这种方法的缺陷在哪里：初始策略（或者说<strong>随机的落子方式</strong>）太过简单。就如同上面第一条特点所说，人类对每种  $\vec s$ （棋型）都要更强的判断能力，那么我们是否可以用 $P_{human}(\vec s)$ 来代替随机呢？</p>
 <p><code>Aja Huang</code>改进了MCTS，每一步不使用随机，而是现根据 $P_{human}(\vec s)​$ 计算得到  $\vec a​$ 可能的概率分布，以这儿概率为准来挑选下一个  $\vec a​$。一次棋局下完之后，新分数按照下面的方式来更新<br>$$<br>\text{新分数} = \text{调整后的初始分} + \text{通过模拟的赢棋概率} \tag{2-3}<br>$$<br>如果某一步被随机到很多次，就应该主要依据模拟得到的概率而非 $P_{human}(\vec s)$ ，就是说当盘数不断的增加，模拟得到的结果可能会好于 $P_{human}(\vec s)$ 得到的结果。</p>
-<p>所以 $P_{human}(\vec s)$ 的初始分会被打个折扣，这也是公式2-3中的调整后的初始分的由来<br>
+<p>所以 $P_{human}(\vec s)$ 的初始分会被打个折扣，这也是公式2-3中的调整后的初始分的由来<br> <a name="2-4"></a>
 $$
 \text{调整后的初始分} = \frac{P_{human}(\vec s)}{(\text{被随机到的次数} + 1)} \tag{2-4}
 $$
@@ -296,7 +296,7 @@ $$
 <p>综合了深度卷积神经网络和MCTS两种方案，此时的围棋程序已经可以战胜所有其他电脑，虽然和其他人类职业选手还有一定的差距。</p>
 <p>2015年2月，<code>Aja Huang</code>在Deepmind的同事在顶级学术期刊nature上发表的文章 <a href="http://gnusha.org/~nmz787/pdf/Human-level_control_through_deep_reinforcement_learning.pdf" target="_blank" rel="external">Human-level control through deep reinforcement learning</a> 用神经网络打游戏。这篇文章，给AlphaGo提供的了新的方向</p>
 <h2 id="强化学习——局面函数（Value-Network）"><a href="#强化学习——局面函数（Value-Network）" class="headerlink" title="强化学习——局面函数（Value Network）"></a>强化学习——局面函数（Value Network）</h2><p>强化学习（Reinforcement learning）用来实现<strong>左右互搏和自我进化</strong>，首先说说这篇论文干了一件什么事情，Deepmind团队的大牛们使用强化学习的方法在红白机上打通了200多个游戏，大多数得分都要比人好。</p>
-<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="external">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="external">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。</p>
+<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="external">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="external">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。还有两篇我自己做的笔记，<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="external">什么是强化学习</a>，<a href="https://mubu.com/doc/2xNipOEK3l" target="_blank" rel="external">强化学习算法介绍</a></p>
 <p>对于强化学习（Reinforcement learning），它是机器学习的一个分支，特别善於控制一只能够在某个环境下<strong>自主行动</strong>的个体 (autonomous <strong>agent</strong>)，透过和<strong>环境</strong>之间的互动，例如 sensory perception 和 rewards，而不断改进它的 <strong>行为</strong>。</p>
 <p>比如，吃豆人游戏，自主行动的个体就是控制的吃豆人，环境就是迷宫，奖励就是吃到的豆子，行为就是上下左右的操作。</p>
 <p>强化学习的输入是</p>
@@ -310,7 +310,7 @@ $$
 <li><strong>方案</strong> (<u>P</u>olicy) = 在每个状态下，你会选择哪个行动？也是一个函数</li>
 </ul>
 <p>所以，我们需要根据S，A，R，来确定什么样的P是比较好的，通过不断的进行游戏，获得大量的交互数据，我们可以确定在每一个状态下，进行什么动作能获得最好的分数，而强化学习也就是利用神经网络来拟合这个过程。</p>
-<p>例如，打砖块游戏有一个秘诀是把求打到墙后，这样球能自己反弹得分，强化学习程序在玩了600盘后，学到了这个秘诀，也就是说程序会在每一个状态下选择那个更容易把球打到墙后面去的操作。如下图，球快要把墙打穿的时候，评价函数 $v$ 的值会大幅度上升</p>
+<p>例如，打砖块游戏有一个<strong>秘诀</strong>是把求打到墙后，这样球能自己反弹得分，强化学习程序在玩了600盘后，学到了这个秘诀。也就是说程序会在每一个状态下选择那个更容易把球打到墙后面去的操作。如下图，球快要把墙打穿的时候，评价函数 $v$ 的值会大幅度上升</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -318,7 +318,7 @@ $$
                 </div>
                 <div class="image-caption">打墙游戏的评价函数图</div>
             </figure>
-<p>我们可以发现，强化学习的基本思路和MCTS后异曲同工之妙，也是在对游戏完全没有了解的情况，通过不断的训练（进行多盘对弈，和获得进行行动后的分数反馈）来进行训练，和自我提升。</p>
+<p>我们可以发现，强化学习的基本思路和MCTS后异曲同工之妙，也是在对游戏完全没有了解的情况，通过不断的训练（进行多盘对弈，和获得进行行动后的分数反馈）来进行训练，自我提升。</p>
 <h3 id="利用强化学习增强棋力"><a href="#利用强化学习增强棋力" class="headerlink" title="利用强化学习增强棋力"></a>利用强化学习增强棋力</h3><p>参考这种思路，<code>Aja Huang</code>给围棋也设计了一个评价函数 $v(\vec s)$ 。此函数的功能是：<strong>量化评估围棋局面</strong>。使用$v(\vec s)$可以让我们在MCTS的过程中<strong>不用走完全局</strong>（走完全盘耗时耗力，效率不高）就发现<strong>已经必败</strong>。</p>
 <p>在利用 $P_{human}(\vec s)$ 走了开局的20步后，<strong>如果有一个 $v(\vec s_i)$ （i为当前状态）可以直接判断是否能赢，得到最后的结果<code>r</code></strong>，不需要搜索到底，可以从效率（剪枝，优化算法时间复杂度）上进一步增加MCTS的威力。</p>
 <p>很可惜的，现有的人类棋谱不足以得出这个评价函数。所以<code>Aja Huang</code>决定用<strong>机器和机器对弈</strong>的方法来创造新的对局，也就是AlphaGo的左右互搏。</p>
@@ -369,11 +369,10 @@ $$
 <p><code>Aja Huang</code>使用MCTS框架融合局面评估函数 $v(\vec s)$ 的策略是：</p>
 <ul>
 <li>使用$P_{human}(\vec s)$作为初始分开局，每局选择分数最高的方案落子</li>
-<li>到第<code>L</code>步后，改用$P_{human-fast}(\vec s)$把剩下的棋局走完，同时调用 $v(\vec s_L)$，评估局面的获胜概率，按照如下规则更新整个树的分数</li>
-</ul>
-<p>$$<br>\text{新分数} = \text{调整后的初始分} + 0.5*\text{通过模拟得到的赢棋概率} + 0.5*\text{局面评估分} \tag {3-1}<br>$$</p>
+<li><p>到第<code>L</code>步后，改用$P_{human-fast}(\vec s)$把剩下的棋局走完，同时调用 $v(\vec s_L)$，评估局面的获胜概率，按照如下规则更新整个树的分数<br><a name="3-1"></a><br>$$<br>\text{新分数} = \text{调整后的初始分} + 0.5*\text{通过模拟得到的赢棋概率} + 0.5*\text{局面评估分} \tag {3-1}<br>$$</p>
+</li>
+<li><p>前两项和原来一样</p>
 <ul>
-<li>前两项和原来一样<ul>
 <li>如果待更新的节点就是叶子节点，局面评估分就是 $v(\vec s_L)$ </li>
 <li>如果是待更新的节点是上级节点，局面评估分是该叶子节点 $v(\vec s)$ 的平均值</li>
 </ul>
@@ -387,8 +386,8 @@ $$
                 </div>
                 <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
             </figure>
-<p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下其他落子点的胜率</p>
-<p><code>b图</code>MCTS中使用局部评估函数加上$P_{human}(\vec s)$得出的结果（公式2-4）</p>
+<p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下<strong>其他落子点的胜率</strong></p>
+<p><code>b图</code>MCTS中使用局部评估函数加上$P_{human}(\vec s)$得出的结果<a href="#2-4">（公式2-4）</a></p>
 <p><code>c图</code>MCTS中使用$P_{human}(\vec s)$（复合算法）和$P_{human-fast}(\vec s)$走子走到底的结果</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -398,8 +397,8 @@ $$
                 <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
             </figure>
 <p><code>d图</code>深度卷积神经网络使用<strong>策略函数</strong>计算出来的结果</p>
-<p><code>e图</code>使用公式3-1和相关流程计算出的落子概率</p>
-<p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白。红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后两房下一步落子的地方。白色方框是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo也在进行计算）</p>
+<p><code>e图</code>使用<a href="#3-1">公式3-1</a>和相关流程计算出的落子概率</p>
+<p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白。红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后樊麾下一步落子的地方。<strong>白色方框</strong>是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo也在进行计算）</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>由于<strong>状态数有限</strong>和<strong>不存在随机性</strong>，象棋和五子棋这类游戏理论上可以由终局自底向上的推算出每一个局面的胜负情况，从而得到最优策略。例如五子棋就被验证为<strong>先手必胜</strong>。</p>
 <p>AlphaGo的MCTS属于<strong>启发式搜索算法</strong></p>
 <blockquote>
@@ -462,7 +461,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-10T19:22:47.000Z" itemprop="dateUpdated">2017-09-10 12:22:47</time>
+    Last updated: <time datetime="2017-09-10T19:32:45.000Z" itemprop="dateUpdated">2017-09-10 12:32:45</time>
 </span><br>
 
 
