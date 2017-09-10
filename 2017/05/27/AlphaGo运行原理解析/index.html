@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png">
-<meta property="og:updated_time" content="2017-09-10T19:46:53.000Z">
+<meta property="og:updated_time" content="2017-09-10T19:56:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
@@ -387,7 +387,7 @@ $$
                 <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
             </figure>
 <p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下<strong>其他落子点的胜率</strong></p>
-<p><code>b图</code>MCTS中使用局部评估函数加上$P_{human}(\vec s)$得出的结果<a href="#2-4">（公式2-4）</a></p>
+<p><code>b图</code>MCTS中使用<strong>局部评估函数</strong>加 $P_{human}(\vec s)$ 得出的结果</p>
 <p><code>c图</code>MCTS中使用$P_{human}(\vec s)$（复合算法）和$P_{human-fast}(\vec s)$走子走到底的结果</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -422,12 +422,13 @@ $$
                 <div class="image-caption">李世石78手</div>
             </figure>
 <p>赛后AlphaGo之父给出的关键信息：<code>李世石78手“挖”是AlphaGo认为概率极小的点</code>，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，即之前AlphaGo的<strong>自对弈</strong>都是建立用自己觉得好的下法来搜索的，那么如果这一手AlphaGo1.0感觉可能性极小，那么用$P_{human}(\vec s)$自对弈的棋谱中就更加难以覆盖。</p>
+<p>但是也需要提到的是，根据比赛中柯洁等人的观战我们知道，如果不是后面AlphaGo进入了混乱模式，78手不一定是一个好棋。只能说这一手，顶到了AlphaGo的软肋，在真正和人的对局中不一定是“神之一手”</p>
 <p>根据Deepmind团队给出的数据可以知道，一年前，AphaGo1.0的搜索空间，自对弈深度并不完美。所以Deepmind团队有意的在<strong>代码逻辑</strong>上让其<strong>避免打劫</strong>，或者说避免<strong>劫争</strong>，例如，有两个选择，一个胜率60%但需要打劫，另一个55%但不需要打劫，AlphaGo1.0会选择后者。</p>
 <p>那么什么是打劫呢？解释这几个和”劫“有关的围棋术语是：</p>
 <p><code>打劫</code>围棋术语，一方制造事端，和另一方讨价还价的行为。<br><code>劫材</code>可以用来做价格谈判的筹码。通常是走一手没戏，但对手若不予置理，再走第二手会出棋的局部。<br><code>寻劫</code>通过目数计算，寻找一些有价值的局部制造事端强迫对手应答。通常价值至少需要和打劫的地方相当或者小不太多，否则对方很容易消劫。<br><code>利用劫</code>劫胜可杀死对方或者得到利益，劫败也应该让对方付出代价，除非双方劫材大小和数量相差悬殊。</p>
 <p>通俗的说是，我在这一片已经处于劣势，我换一个战场，发动进攻，你应不应？可能在另外战场的角力中对这边战场的局势产生影响。可以类比于，五子棋中的冲四。</p>
 <p>如果有人观看了这一盘棋，我们也可以听到柯洁在强调，AlphaGo在避免打劫，出现了几手莫名其妙的落子。</p>
-<p><strong>总结来说，AlphaGo依靠的是对局外的大量计算，无论是局部评估函数，还是$P_{human-plus}(\vec s)$都十分依赖<font color="‘red’">对局外</font>的大量的计算。</strong>随着时间的推移，AlphaGo在对局过程需要的时间越来越固定，不需要在对局时进行太多的MCTS搜索就能获得AlphaGo的下一手位置，可以预见，MCTS的搜索深度不会太深。当计算量十分庞大的时候，依赖更多是那个120层的Policy Network。</p>
+<p><strong>总结来说，AlphaGo依靠的是对局外的大量计算，无论是局部评估函数，还是$P_{human-plus}(\vec s)$都十分依赖<font color="#FF0000">对局外</font>的大量的计算。</strong>随着时间的推移，AlphaGo在对局过程需要的时间越来越固定，不需要在对局时进行太多的MCTS搜索就能获得AlphaGo的下一手位置，可以预见，MCTS的搜索深度不会太深。当计算量十分庞大的时候，依赖更多是那个120层的Policy Network。</p>
 <p>从柯洁的第二盘可以发现，他已经努力的制造在中腹引入多方战斗的带劫争的复杂棋局，十分精彩。可惜，AlphaGo2.0貌似已经完善了自己的阿特留斯之踵。当真无敌，说到这里，我们来谈谈AlphaGo2.0</p>
 <h2 id="AlphaGo-2-0-VS-柯洁——虽败犹荣"><a href="#AlphaGo-2-0-VS-柯洁——虽败犹荣" class="headerlink" title="AlphaGo 2.0 VS 柯洁——虽败犹荣"></a>AlphaGo 2.0 VS 柯洁——虽败犹荣</h2><p>三盘对局，感觉到AlphaGo在这一年内进行了极为深度的训练。最可怕的是AlphaGo通过时间<strong>验证了机器学习对于解决NP问题的强大潜力</strong>（通过这三盘可以看出已经无限接近解决了这个问题，至少在对人类上）。甚至：</p>
 <ul>
@@ -461,7 +462,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-10T19:46:53.000Z" itemprop="dateUpdated">2017-09-10 12:46:53</time>
+    Last updated: <time datetime="2017-09-10T19:56:31.000Z" itemprop="dateUpdated">2017-09-10 12:56:31</time>
 </span><br>
 
 
