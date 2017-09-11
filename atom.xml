@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-11T21:31:20.000Z</updated>
+  <updated>2017-09-11T21:35:38.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/"/>
     <id>https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/</id>
     <published>2017-09-11T07:25:49.000Z</published>
-    <updated>2017-09-11T21:31:20.000Z</updated>
+    <updated>2017-09-11T21:35:38.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="什么是熵-Entropy"><a href="#什么是熵-Entropy" class="headerlink" title="什么是熵 - Entropy"></a>什么是熵 - Entropy</h1><h2 id="词源-最初来源于热力学"><a href="#词源-最初来源于热力学" class="headerlink" title="词源 - 最初来源于热力学"></a>词源 - 最初来源于热力学</h2><p>Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时<strong>往内部稳定状态发展</strong>的特性。定义的其实是一个热力学的系统<strong>变化的趋势</strong></p>
 <a id="more"></a>
@@ -43,7 +43,12 @@
 <p><strong>其实信息熵是信息量的期望，它不是针对每条信息，而是针对整个不确定性结果集而言，信息熵越大，事件不确定性就越大。单条信息只能从某种程度上影响结果集概率的分布</strong></p>
 <h2 id="考虑到信息冗余，信息量存储下来究竟需要多大空间？"><a href="#考虑到信息冗余，信息量存储下来究竟需要多大空间？" class="headerlink" title="考虑到信息冗余，信息量存储下来究竟需要多大空间？"></a>考虑到信息冗余，信息量存储下来究竟需要<u>多大空间</u>？</h2><p>我们已经有了 $\mathbf P = [p_1,p_2,p_3,p_4]$ 来表示天气情况，那么用计算机来存储每天的天气，那该如何编码呢？</p>
 <p>常见的做法是，4个不同的信息，只需要2bit就能做到，<code>00</code> <code>01</code> <code>11</code> <code>10</code>，假设我们在南方城市，肯定要把<code>00</code>编码成雨天，这样可以<strong>节省存储空间</strong>，至于为什么能节省存储空间，这就要讨论编码方式。可以简单的理解为，如果一串信息一串<code>0</code>很多，可以<strong>通过编码压缩这一群0来节省空间</strong></p>
-<p>使用一个公式来计算记录<strong>n天数据</strong>需要的<strong>存储空间</strong>：Sn<br>$$<br>S<em>n = n \times \sum</em>{i = 1}^4{\left(P_i \times F(P_i) \right) } \tag{2-1}<br>$$</p>
+<p>使用一个公式来计算记录<strong>n天数据</strong>需要的<strong>存储空间</strong>：Sn</p>
+
+$$
+S_n = n \times \sum_{i = 1}^4{\left(P_i \times F(P_i) \right) } \tag{2-1}
+$$
+
 <blockquote>
 <p>$P_i$ 表示第i个事件发生的概率；$F(P_i)$ 表示存储空间的存储因子</p>
 </blockquote>
