@@ -1318,7 +1318,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-11T03:25:50.000Z</updated>
+    <updated>2017-09-11T03:30:29.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
@@ -1329,15 +1329,28 @@ $$
 </blockquote>
 <p>下文中将会从不同的角度</p>
 <h3 id="概率论角度"><a href="#概率论角度" class="headerlink" title="概率论角度"></a>概率论角度</h3><p>首先，需要回忆一下几个概念</p>
-<p>【大数定理】<br>$$<br>\lim<em>{n\to\infty} \frac{1}{n} \sum</em>{i=1}^n {X_i} = \mu<br>$$<br>不断的采样一个随机变量，得到n个值，当n趋向于<strong>正无穷</strong>的时候，这个<strong>平均值</strong>就收敛于随机变量的<strong>期望</strong></p>
+<p>【大数定理】</p>
+
+$$
+\lim_{n\to\infty} \frac{1}{n} \sum_{i=1}^n {X_i} = \mu
+$$
+
+<p>不断的采样一个随机变量，得到n个值，当n趋向于<strong>正无穷</strong>的时候，这个<strong>平均值</strong>就收敛于随机变量的<strong>期望</strong></p>
 <p>【中心极限定理】</p>
 <p>大量<strong>相互独立{条件1</strong>}的随机变量，其均值的分布以<strong>正态分布{结论}</strong>为<strong>极限{条件2}</strong></p>
 <p>【贝叶斯公式】</p>
 <p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="https://mubu.com/doc/2pJ0IojsIl" target="_blank" rel="external">贝叶斯方法的前世今生</a>，这个链接或许可以帮到你。</p>
 <p>那贝叶斯公司是如何推出来的？</p>
 <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我们需要求的问题是：你在校园里面随机游走，遇到了<strong>N个穿长裤的人</strong>（但是可能因为你高度近视你无法看出他们的性别），<strong>问，这N个人里面有多少个女生，多少个男生</strong>，即，穿裤子的人里面有多少个女生</p>
-<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><p>$$<br>穿裤子的人中的女生比例 = \frac{穿长裤的女生人数}{穿长裤的总人数} =\  \frac {U\times P(Girl)\times P(Paints|Girl)}{U\times P(Boy)\times P(Paints|Boy) + U\times P(Girl)\times P(Paints|Girl)}\tag{1-1}<br>$$</p>
-<p>化简上式，可以发现其实分母合起来就是 $P(Paints)$ ，分子其实就是既穿裤子又是女孩，整理得<br>$$<br>P(Girl|Paints) = \frac{P(Girl) \times P(Paints|Girl)}{P(Paints)}<br>$$</p>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4>
+$$
+穿裤子的人中的女生比例 = \frac{穿长裤的女生人数}{穿长裤的总人数} =\\  \frac {U\times P(Girl)\times P(Paints|Girl)}{U\times P(Boy)\times P(Paints|Boy) + U\times P(Girl)\times P(Paints|Girl)}\tag{1-1}
+$$
+化简上式，可以发现其实分母合起来就是 $P(Paints)$ ，分子其实就是既穿裤子又是女孩，整理得
+$$
+P(Girl|Paints) = \frac{P(Girl) \times P(Paints|Girl)}{P(Paints)}
+$$
+ 
 <p>再一般化，用A表示穿裤子的，B表示女生<br>$$<br>P(B|A) = \frac{P(B)\times P(A|B)}{P(A)} = \frac{P(AB)}{P(A)}\tag{1-2}<br>$$<br>上式就是贝叶斯公式的一般形式，我们在推导中发现，<strong>正常人类对频率的感知和理解速度要高于对概率的</strong>。</p>
 <p>比如“穿长裤的女生人数”这个概念，用总人数乘以<strong>女人比例</strong>，得出<strong>女生人数</strong>，再用女生人数乘以<strong>女生中穿裤子人数的比例</strong>得到<strong>穿裤子的女生人数</strong>。这一串推导感觉毫无困难。但如果读成：在A发生条件下，发成B的概率，会让人乍看下，干道有一定的理解困难。</p>
 <p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，不存在任何的理解难度</p>
