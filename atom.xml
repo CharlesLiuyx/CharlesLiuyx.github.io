@@ -1318,7 +1318,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-11T03:30:29.000Z</updated>
+    <updated>2017-09-11T06:51:14.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
@@ -1390,7 +1390,13 @@ $$
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
 <p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
-<h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="目标函数-Objective-function"><a href="#目标函数-Objective-function" class="headerlink" title="目标函数 Objective function"></a>目标函数 Objective function</h3><p>### </p>
+<h2 id="相关概念总结"><a href="#相关概念总结" class="headerlink" title="相关概念总结"></a>相关概念总结</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function）<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
+<h3 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵 Cross Entropy"></a>交叉熵 Cross Entropy</h3><p>又称为logloss，是Objective function的一种，也称Loss function or Coss Function</p>
+<p>我觉得这个问题必须搞明白一件事就是：什么是“熵 Entropy”</p>
+<p>广义的定义是，熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</p>
+<p>有一个很神奇的解释是，熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</p>
+<p>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></p>
+<p>要理解这个Cross Entropy需要从贝叶斯公式出发<br>$$<br>P(\theta|\mathbf X) = \frac{P(\mathbf X)P(\mathbf X|\theta)}{P(\mathbf X)}<br>$$<br>$\theta$ 是指</p>
 ]]></content>
     
     <summary type="html">

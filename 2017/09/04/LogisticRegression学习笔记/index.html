@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-09-11T03:30:29.000Z">
+<meta property="og:updated_time" content="2017-09-11T06:51:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【理论】Logistic Regression学习笔记">
 <meta name="twitter:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
@@ -127,7 +127,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解决过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模型"><span class="post-toc-number">3.</span> <span class="post-toc-text">基本模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标函数-Objective-function"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">目标函数 Objective function</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解决过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#相关概念总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">相关概念总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#均方误差-Mean-Squre-Error-MSE"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">均方误差 Mean Squre Error MSE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交叉熵-Cross-Entropy"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">交叉熵 Cross Entropy</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -261,7 +261,13 @@ $$
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
 <p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
-<h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="目标函数-Objective-function"><a href="#目标函数-Objective-function" class="headerlink" title="目标函数 Objective function"></a>目标函数 Objective function</h3><p>### </p>
+<h2 id="相关概念总结"><a href="#相关概念总结" class="headerlink" title="相关概念总结"></a>相关概念总结</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function）<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
+<h3 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵 Cross Entropy"></a>交叉熵 Cross Entropy</h3><p>又称为logloss，是Objective function的一种，也称Loss function or Coss Function</p>
+<p>我觉得这个问题必须搞明白一件事就是：什么是“熵 Entropy”</p>
+<p>广义的定义是，熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</p>
+<p>有一个很神奇的解释是，熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</p>
+<p>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></p>
+<p>要理解这个Cross Entropy需要从贝叶斯公式出发<br>$$<br>P(\theta|\mathbf X) = \frac{P(\mathbf X)P(\mathbf X|\theta)}{P(\mathbf X)}<br>$$<br>$\theta$ 是指</p>
 
         </div>
 
@@ -269,7 +275,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-11T03:30:29.000Z" itemprop="dateUpdated">2017-09-10 20:30:29</time>
+    最后更新时间：<time datetime="2017-09-11T06:51:14.000Z" itemprop="dateUpdated">2017-09-10 23:51:14</time>
 </span><br>
 
 
@@ -451,7 +457,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
