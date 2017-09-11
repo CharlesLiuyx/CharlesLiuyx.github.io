@@ -32,7 +32,7 @@
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。定义的其实是一个热力学的系统变化的趋势">
-<meta property="og:updated_time" content="2017-09-11T21:27:51.000Z">
+<meta property="og:updated_time" content="2017-09-11T21:31:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是信息熵、交叉熵和相对熵">
 <meta name="twitter:description" content="什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。定义的其实是一个热力学的系统变化的趋势">
@@ -223,8 +223,8 @@
 <p>那么我们结束清楚之后，就很容易就可以定义出<br>$$<br>F(P_i) = \log_a ({\frac{1}{P_i}}) \tag{2-2}<br>$$<br> a作为底数，可以取2（处理2bit数据），10（万金油），e（处理正态分布相关的数据）</p>
 <p>结合对信息熵的定义（第一节最后的粗体字）然后把（2-2）带入（2-1），就会发现，哦！看着有点眼熟啊<br>$$<br>H(P) = \sum_i {P(i)log_a {\frac{1}{P(i)}}} = - \sum_i {P(i)log_a {P(i)}} \tag{2-3}<br>$$<br>这这这，就是信息熵的定义式吧？总结就发现，信息熵其实从某种意义上反映了<strong>信息量存储下来需要多少存储空间</strong></p>
 <h2 id="理解基于信息熵的交叉熵和相对熵"><a href="#理解基于信息熵的交叉熵和相对熵" class="headerlink" title="理解基于信息熵的交叉熵和相对熵"></a>理解基于信息熵的交叉熵和相对熵</h2><p>因为是我们用2bit模式存储，为了计算方便，这里取a = 2</p>
-<p>先计算刚刚有关天气问题 $\mathbf P = [p_1,p_2,p_3,p_4]$ ：【阴、晴、雨、雪】的信息熵，假设我们对天气的概率一无所知，那么四种天气的发生概率为<strong>等概率（服从平均分布）</strong>，即 $\mathbf P = [\frac{1}{4},\frac{1}{4},\frac{1}{4},\frac{1}{4}]$ ，带入公式2-3，得到 $H(P) = 2$ ，存储信息需要的空间 $S_n = 2n$ </p>
-<p>继续思考，假设我们考虑天气的城市是一个地处中国南方雨季的城市，那么阴天和雨天的概率从<strong>经验角度（先验概率）</strong>来看大于晴天雪天，把这种分布<strong>记为</strong> $\mathbf Q = [frac{1}{4},frac{1}{8},frac{1}{2},frac{1}{8}]$，带入公式2-3，信息熵 $H(Q) = 1.75$，存储信息需要的空间 $S_n = 1.75n$ </p>
+<p>先计算刚刚有关天气问题 $\mathbf P = [p_1,p_2,p_3,p_4]$ ：【阴、晴、雨、雪】的信息熵，假设我们对天气的概率一无所知，那么四种天气的发生概率为<strong>等概率（服从平均分布）</strong>，即 $\mathbf P = [\frac {1}{4},\frac {1}{4},\frac {1}{4},\frac {1}{4}]$ ，带入公式2-3，得到 $H(P) = 2$ ，存储信息需要的空间 $S_n = 2n$ </p>
+<p>继续思考，假设我们考虑天气的城市是一个地处中国南方雨季的城市，那么阴天和雨天的概率从<strong>经验角度（先验概率）</strong>来看大于晴天雪天，把这种分布<strong>记为</strong> $\mathbf Q = [\frac{1}{4},\frac{1}{8},\frac{1}{2},\frac{1}{8}]$，带入公式2-3，信息熵 $H(Q) = 1.75$，存储信息需要的空间 $S_n = 1.75n$ </p>
 <p>直观的来考虑上面不同的两种情况，明显当<strong>事件的不确定性变小</strong>时候，我们可以改变存储策略（00 雨天 01 阴天），再通过编码，节省存储空间。信息熵的大小<strong>就是用来度量这个不确定大小的</strong></p>
 <p>关于编码的方式，这里提一下，<a href="https://zhuanlan.zhihu.com/p/25181781" target="_blank" rel="external">哈夫曼树与哈夫曼编码</a> ，有兴趣的读者可以去研究一下</p>
 <h3 id="交叉熵的由来"><a href="#交叉熵的由来" class="headerlink" title="交叉熵的由来"></a>交叉熵的由来</h3><p>我们把这个问题再扩展一下</p>
@@ -241,11 +241,11 @@
 <td style="text-align:center">$H(P) = 2$</td>
 </tr>
 <tr>
-<td style="text-align:center">$\mathbf Q = [frac{1}{4},frac{1}{8},frac{1}{2},frac{1}{8}]$</td>
+<td style="text-align:center">$\mathbf Q = [\frac{1}{4},\frac{1}{8},\frac{1}{2},\frac{1}{8}]$</td>
 <td style="text-align:center">$H(Q) = 1.75$</td>
 </tr>
 <tr>
-<td style="text-align:center">$\mathbf Z = [frac{1}{8},frac{1}{16},frac{3}{4},frac{1}{16}]$</td>
+<td style="text-align:center">$\mathbf Z = [\frac{1}{8},\frac{1}{16},\frac{3}{4},\frac{1}{16}]$</td>
 <td style="text-align:center">$H(Z) = \frac{7}{8}+\log_2 {\frac{4}{3}} = 1.29$</td>
 </tr>
 <tr>
@@ -268,7 +268,7 @@
 <tbody>
 <tr>
 <td style="text-align:center">P</td>
-<td style="text-align:center">$H(P,P) = H(P) = 2$</td>
+<td style="text-align:center">$H(P,P)  = 2$</td>
 <td style="text-align:center">$H(P,Q) = 2.25$</td>
 <td style="text-align:center">$H(P,Z) = \frac{11}{4}+\frac{1}{4}\log_2 {\frac{4}{3}} = 2.85$</td>
 <td style="text-align:center">+inf</td>
@@ -276,7 +276,7 @@
 <tr>
 <td style="text-align:center">Q</td>
 <td style="text-align:center">$H(Q,P) =  2$</td>
-<td style="text-align:center">$H(Q,Q) = H(Q) = 1.75$</td>
+<td style="text-align:center">$H(Q,Q) = 1.75$</td>
 <td style="text-align:center">$H(Q,Z) = \frac{7}{4}+\frac{1}{2}\log_2 {\frac{4}{3}} = 1.96$</td>
 <td style="text-align:center">+inf</td>
 </tr>
@@ -284,7 +284,7 @@
 <td style="text-align:center">Z</td>
 <td style="text-align:center">$H(Z,P) = 2$</td>
 <td style="text-align:center">$H(Z,Q) = 1.375$</td>
-<td style="text-align:center">$H(Z,Z) = H(Z) = \frac{7}{8}+\log_2 {\frac{4}{3}} = 1.29$</td>
+<td style="text-align:center">$H(Z,Z)  = \frac{7}{8}+\log_2 {\frac{4}{3}} = 1.29$</td>
 <td style="text-align:center">+inf</td>
 </tr>
 <tr>
@@ -292,7 +292,7 @@
 <td style="text-align:center">$H(W,P) = 2$</td>
 <td style="text-align:center">$H(W,Q) = 1$</td>
 <td style="text-align:center">$H(W,Z) = \log_2 {\frac{4}{3}} = 0.415$</td>
-<td style="text-align:center">$H(W,W) = H(W) = 0$</td>
+<td style="text-align:center">$H(W,W)  = 0$</td>
 </tr>
 </tbody>
 </table>
@@ -307,7 +307,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-11T21:27:51.000Z" itemprop="dateUpdated">2017-09-11 14:27:51</time>
+    Last updated: <time datetime="2017-09-11T21:31:20.000Z" itemprop="dateUpdated">2017-09-11 14:31:20</time>
 </span><br>
 
 
