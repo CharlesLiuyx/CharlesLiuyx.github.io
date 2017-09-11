@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-10T09:42:10.000Z</updated>
+  <updated>2017-09-11T18:56:08.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>什么是信息熵、交叉熵和相对熵</title>
+    <link href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/"/>
+    <id>https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/</id>
+    <published>2017-09-11T07:25:49.000Z</published>
+    <updated>2017-09-11T18:56:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是熵-Entropy"><a href="#什么是熵-Entropy" class="headerlink" title="什么是熵 - Entropy"></a>什么是熵 - Entropy</h1><h2 id="词源-最初来源于热力学"><a href="#词源-最初来源于热力学" class="headerlink" title="词源 - 最初来源于热力学"></a>词源 - 最初来源于热力学</h2><p>Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时<strong>往内部稳定状态发展</strong>的特性。定义的其实是一个热力学的系统<strong>变化的趋势</strong><br>$$<br>\Delta S = \frac{Q}{T} = \frac{热量}{温度}<br>$$<br>1923年，德国科学家普朗克来中国讲学用到<code>entropy</code>这个词，胡刚复教授看到这个公式，<strong>创造了“熵”字</strong>，因为“火”和热量有关，定义式优势热量比温度</p>
+<h2 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h2><p>信息论中，熵是接受的每条消息中<strong>包含的信息的平均值</strong>。又被称为信息熵、信源熵、平均自信息量。可以被理解为<strong>不确定性的度量</strong>，熵越大，信源的分布越随机</p>
+<p>1948年，由克劳德·爱尔伍德·香农将热力学中的熵引入信息论，所以也叫做：香农熵</p>
+<h2 id="生态学"><a href="#生态学" class="headerlink" title="生态学"></a>生态学</h2><p>在生态学中，熵表示<strong>生物多样性的指标</strong></p>
+<h2 id="广义的定义"><a href="#广义的定义" class="headerlink" title="广义的定义"></a>广义的定义</h2><p>熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</p>
+<p>我们接下来要讨论的<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code> 更多的着眼于信息论的角度，换句话说，更加关注概率和不全定性</p>
+<h1 id="什么是信息熵、交叉熵、相对熵"><a href="#什么是信息熵、交叉熵、相对熵" class="headerlink" title="什么是信息熵、交叉熵、相对熵"></a>什么是信息熵、交叉熵、相对熵</h1><p>可以将对熵的理解从简单到复杂依次分解成三个层次来理解</p>
+<h2 id="如何衡量不确定事物的发生？"><a href="#如何衡量不确定事物的发生？" class="headerlink" title="如何衡量不确定事物的发生？"></a>如何衡量不确定事物的发生？</h2><p>数学是一种工具，使用数学来描述现实中的各种事物是一个数学家本质的工作目标。而现实中不确定性，或者说不太确定是否会发生的事件必须要找到一种<strong>抽象的</strong>、<strong>符号化</strong>和<strong>公式化</strong>的手段去表示。</p>
+<p>比如天气情况，假设可能有【阴、晴、雨、雪】四种情况，使用概率符号表示 $\mathbf P = [p_1,p_2,p_3,p_4]$，接下来自然而然的思考：那么，什么<strong>条件</strong>（情况）会影响这些值呢？</p>
+<p>假设有一下三种描述，或者说条件</p>
+<ul>
+<li>今天是晴天，所以明天可能也是晴天</li>
+<li>天气预报说明天下雨</li>
+<li>9月12日苹果公司举行发布会</li>
+</ul>
+<p>那么这三个描述中，很明显，第二条的信息量更大，因为它可以使得不确定事件发生在 $p_3$ 的<strong>概率更大</strong>。类似的，第三条对判断毫无帮助，信息量为0。<em>注意，信息量不等于信息熵，如果是这样，那么直接用概率来衡量就可以了，不需要在重新定义一个概念</em></p>
+<p><strong>其实信息熵是信息量的期望，它不是针对每条信息，而是针对整个不确定性结果集而言，信息熵越大，事件不确定性就越大。单挑信息只能从某种程度上影响结果集概率的分布</strong></p>
+<h2 id="考虑到信息冗余，信息量存储下来究竟需要多大空间？"><a href="#考虑到信息冗余，信息量存储下来究竟需要多大空间？" class="headerlink" title="考虑到信息冗余，信息量存储下来究竟需要多大空间？"></a>考虑到信息冗余，信息量存储下来究竟需要<u>多大空间</u>？</h2><p>我们已经有了 $\mathbf P = [p_1,p_2,p_3,p_4]$ 来表示天气情况，那么用计算机来存储每天的天气，那该如何编码呢？</p>
+<p>常见的做法是，4个不同的信息，只需要2bit就能做到，<code>00</code> <code>01</code> <code>11</code> <code>10</code>，如果实在南方城市，我们肯定要把<code>00</code>编码成雨天，这样可以<strong>节省存储空间</strong>，至于为什么能节省存储空间，这就要讨论编码方式。可以简单的理解为，如果一串信息一串<code>0</code>很多，可以<strong>通过编码来节省空间</strong></p>
+<p>使用一个公式来计算记录<strong>n天数据</strong>需要的<strong>存储空间</strong>：Sn<br>$$<br>S<em>n = n \times \sum</em>{i = 1}^4{\left(P_i \times F(P_i) \right) }<br>$$<br>这里的 $F(P_i)$ 表示存储空间的存储因子，需要满足条件：<strong>概率大的事件对应小的存储空间，说人话，就是成反比</strong>，你的数学功底不错的话，脑海中第一反应出来满足这个条件的一定是<strong>反比例函数</strong>，说人话， $\frac{1}{P_i}$ 。</p>
+<p>之后我们发现这个公式中有个除法非常讨厌，我们想着去掉它，脑海中第一反应出来的满足这个条件的一定是<strong>取对数</strong>，至于取对数这个操作的各种好处就非常多了</p>
+<ul>
+<li>对数操作可以让原本不符合正态分布的模型符合正态分布，比如随着模型自变量的增加，因变量的方差也增大的模型取对数后会更加稳定</li>
+<li>取对数操作可以rescale（原谅我，这里思前想后还是感觉一个英文单词更加生动）其实本质来说都是因为第一点。说人话版本，人不喜欢乘法，对数可以把乘法变加法</li>
+</ul>
+<p>那么我们结束清楚之后，就很容易就可以定义出<br>$$<br>F(P_i) = \log_a ({\frac{1}{P_i}})<br>$$</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;什么是熵-Entropy&quot;&gt;&lt;a href=&quot;#什么是熵-Entropy&quot; class=&quot;headerlink&quot; title=&quot;什么是熵 - Entropy&quot;&gt;&lt;/a&gt;什么是熵 - Entropy&lt;/h1&gt;&lt;h2 id=&quot;词源-最初来源于热力学&quot;&gt;&lt;a href=
+    
+    </summary>
+    
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Infomation Theory" scheme="https://charlesliuyx.github.io/tags/Infomation-Theory/"/>
+    
+  </entry>
   
   <entry>
     <title>Dota2机制总结</title>
@@ -1318,7 +1366,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-11T06:51:14.000Z</updated>
+    <updated>2017-09-11T07:25:13.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
@@ -1392,11 +1440,14 @@ $$
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
 <h2 id="相关概念总结"><a href="#相关概念总结" class="headerlink" title="相关概念总结"></a>相关概念总结</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function）<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
 <h3 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵 Cross Entropy"></a>交叉熵 Cross Entropy</h3><p>又称为logloss，是Objective function的一种，也称Loss function or Coss Function</p>
-<p>我觉得这个问题必须搞明白一件事就是：什么是“熵 Entropy”</p>
-<p>广义的定义是，熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</p>
-<p>有一个很神奇的解释是，熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</p>
-<p>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></p>
-<p>要理解这个Cross Entropy需要从贝叶斯公式出发<br>$$<br>P(\theta|\mathbf X) = \frac{P(\mathbf X)P(\mathbf X|\theta)}{P(\mathbf X)}<br>$$<br>$\theta$ 是指</p>
+<p>我觉得这个问题必须搞明白一件事就是：什么是<code>熵 Entropy</code></p>
+<ul>
+<li>广义的定义是：熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</li>
+<li>有一个很神奇的解释是：熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</li>
+<li>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></li>
+</ul>
+<p>要理解这个<code>Cross Entropy</code>，必须了解它是用来干啥的？</p>
+<p>对于这三个概念：<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code>的理解，需要跳转到另一篇笔记</p>
 ]]></content>
     
     <summary type="html">
