@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-09-08T22:01:24.000Z">
+<meta property="og:updated_time" content="2017-09-11T03:25:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【理论】Logistic Regression学习笔记">
 <meta name="twitter:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
@@ -127,7 +127,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -166,7 +166,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模型"><span class="post-toc-number">3.</span> <span class="post-toc-text">基本模型</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解决过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基本模型"><span class="post-toc-number">3.</span> <span class="post-toc-text">基本模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目标函数-Objective-function"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">目标函数 Objective function</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -203,34 +203,17 @@
 <p>【大数定理】<br>$$<br>\lim<em>{n\to\infty} \frac{1}{n} \sum</em>{i=1}^n {X_i} = \mu<br>$$<br>不断的采样一个随机变量，得到n个值，当n趋向于<strong>正无穷</strong>的时候，这个<strong>平均值</strong>就收敛于随机变量的<strong>期望</strong></p>
 <p>【中心极限定理】</p>
 <p>大量<strong>相互独立{条件1</strong>}的随机变量，其均值的分布以<strong>正态分布{结论}</strong>为<strong>极限{条件2}</strong></p>
-<p>【贝叶斯公式】<br>$$<br>P(B_i|A) = \frac{P(A|B_i)P(B<em>i)}{\sum\limits</em>{j=1}^nP(A|B_j)P(B_j)} = \frac{P(A|B_i)P(B_i)}{P(A)}<br>$$<br>符号说明</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th style="text-align:center">表示</th>
-<th style="text-align:center">例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">S</td>
-<td style="text-align:center">样本空间</td>
-<td style="text-align:center">一个学校的所有学生</td>
-</tr>
-<tr>
-<td style="text-align:center">A</td>
-<td style="text-align:center">样本空间中可能的一种情况</td>
-<td style="text-align:center">男学生 or 女学生</td>
-</tr>
-<tr>
-<td style="text-align:center">$\boldsymbol B$</td>
-<td style="text-align:center">样本空间的一个划分</td>
-<td style="text-align:center">穿裙子的同学 or 穿裤子的同学</td>
-</tr>
-</tbody>
-</table>
-<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="">贝叶斯公式的前世今生</a>，这个链接或许可以帮到你。</p>
+<p>【贝叶斯公式】</p>
+<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="https://mubu.com/doc/2pJ0IojsIl" target="_blank" rel="external">贝叶斯方法的前世今生</a>，这个链接或许可以帮到你。</p>
+<p>那贝叶斯公司是如何推出来的？</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我们需要求的问题是：你在校园里面随机游走，遇到了<strong>N个穿长裤的人</strong>（但是可能因为你高度近视你无法看出他们的性别），<strong>问，这N个人里面有多少个女生，多少个男生</strong>，即，穿裤子的人里面有多少个女生</p>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><p>$$<br>穿裤子的人中的女生比例 = \frac{穿长裤的女生人数}{穿长裤的总人数} =\  \frac {U\times P(Girl)\times P(Paints|Girl)}{U\times P(Boy)\times P(Paints|Boy) + U\times P(Girl)\times P(Paints|Girl)}\tag{1-1}<br>$$</p>
+<p>化简上式，可以发现其实分母合起来就是 $P(Paints)$ ，分子其实就是既穿裤子又是女孩，整理得<br>$$<br>P(Girl|Paints) = \frac{P(Girl) \times P(Paints|Girl)}{P(Paints)}<br>$$</p>
+<p>再一般化，用A表示穿裤子的，B表示女生<br>$$<br>P(B|A) = \frac{P(B)\times P(A|B)}{P(A)} = \frac{P(AB)}{P(A)}\tag{1-2}<br>$$<br>上式就是贝叶斯公式的一般形式，我们在推导中发现，<strong>正常人类对频率的感知和理解速度要高于对概率的</strong>。</p>
+<p>比如“穿长裤的女生人数”这个概念，用总人数乘以<strong>女人比例</strong>，得出<strong>女生人数</strong>，再用女生人数乘以<strong>女生中穿裤子人数的比例</strong>得到<strong>穿裤子的女生人数</strong>。这一串推导感觉毫无困难。但如果读成：在A发生条件下，发成B的概率，会让人乍看下，干道有一定的理解困难。</p>
+<p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，不存在任何的理解难度</p>
+<p>那Logistic Function和贝叶斯公式有什么联系呢？</p>
+<p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数）</p>
 <h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
 <p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
 <blockquote>
@@ -265,14 +248,15 @@
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
 <p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
-<h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2>
+<h2 id="基本模型"><a href="#基本模型" class="headerlink" title="基本模型"></a>基本模型</h2><h3 id="目标函数-Objective-function"><a href="#目标函数-Objective-function" class="headerlink" title="目标函数 Objective function"></a>目标函数 Objective function</h3><p>### </p>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-08T22:01:24.000Z" itemprop="dateUpdated">2017-09-08 15:01:24</time>
+    最后更新时间：<time datetime="2017-09-11T03:25:01.000Z" itemprop="dateUpdated">2017-09-10 20:25:01</time>
 </span><br>
 
 
@@ -454,7 +438,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
