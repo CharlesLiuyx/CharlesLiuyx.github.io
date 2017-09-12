@@ -25,20 +25,20 @@
     
     
     <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
-    <meta name="description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
+    <meta name="description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
 <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂Logistic Regression">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
-<meta property="og:description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
+<meta property="og:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-09-12T18:13:04.000Z">
+<meta property="og:updated_time" content="2017-09-12T19:09:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂Logistic Regression">
-<meta name="twitter:description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
+<meta name="twitter:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
@@ -129,7 +129,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -193,12 +193,11 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】15min - 20min</p>
-<p>【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数</p>
+            <p>【阅读时间】17min - 22min<br>【内容简介】从不同角度解释<strong>为何使用Logistic回归模型</strong>，解读模型的<strong>现实意义</strong>，详细解读<strong>为何使用</strong>以及<strong>什么是</strong>交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧</p>
+<a id="more"></a>
 <h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
-<a id="more"></a>
 <blockquote>
 <p>即输出变量只有<strong>两个值</strong>得预测技术</p>
 </blockquote>
@@ -329,7 +328,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-12T18:13:04.000Z" itemprop="dateUpdated">2017-09-12 11:13:04</time>
+    最后更新时间：<time datetime="2017-09-12T19:09:24.000Z" itemprop="dateUpdated">2017-09-12 12:09:24</time>
 </span><br>
 
 
@@ -372,8 +371,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】15min - 20min
-【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -511,7 +509,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -541,8 +539,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】15min - 20min
-【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>

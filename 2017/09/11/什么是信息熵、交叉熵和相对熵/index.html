@@ -25,17 +25,17 @@
     
     
     <meta name="keywords" content="Machine Learning,Infomation Theory">
-    <meta name="description" content="要完成题目的最终解释，必须从熵这个神奇的概念开始讲起 什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。定义的其实是一个热力学的系统变化的趋势">
+    <meta name="description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
 <meta name="keywords" content="Machine Learning,Infomation Theory">
 <meta property="og:type" content="article">
 <meta property="og:title" content="什么是信息熵、交叉熵和相对熵">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
-<meta property="og:description" content="要完成题目的最终解释，必须从熵这个神奇的概念开始讲起 什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。定义的其实是一个热力学的系统变化的趋势">
-<meta property="og:updated_time" content="2017-09-12T08:28:42.000Z">
+<meta property="og:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
+<meta property="og:updated_time" content="2017-09-12T19:01:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是信息熵、交叉熵和相对熵">
-<meta name="twitter:description" content="要完成题目的最终解释，必须从熵这个神奇的概念开始讲起 什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时往内部稳定状态发展的特性。定义的其实是一个热力学的系统变化的趋势">
+<meta name="twitter:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
     
@@ -125,7 +125,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -189,9 +189,10 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>要完成题目的最终解释，必须从<strong>熵</strong>这个神奇的概念开始讲起</p>
-<h1 id="什么是熵-Entropy"><a href="#什么是熵-Entropy" class="headerlink" title="什么是熵 - Entropy"></a>什么是熵 - Entropy</h1><h2 id="词源-最初来源于热力学"><a href="#词源-最初来源于热力学" class="headerlink" title="词源 - 最初来源于热力学"></a>词源 - 最初来源于热力学</h2><p>Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时<strong>往内部稳定状态发展</strong>的特性。定义的其实是一个热力学的系统<strong>变化的趋势</strong></p>
+            <p>【阅读时间】10min - 13min<br>【内容简介】使用一个现实中直观的例子详解<strong>信息熵、交叉熵及相对熵</strong>的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑</p>
+<p>要完成题目的最终解释，必须从<strong>熵</strong>这个神奇的概念开始讲起</p>
 <a id="more"></a>
+<h1 id="什么是熵-Entropy"><a href="#什么是熵-Entropy" class="headerlink" title="什么是熵 - Entropy"></a>什么是熵 - Entropy</h1><h2 id="词源-最初来源于热力学"><a href="#词源-最初来源于热力学" class="headerlink" title="词源 - 最初来源于热力学"></a>词源 - 最初来源于热力学</h2><p>Entropy来源于希腊语，原意：内向，即：一个系统不受外部干扰时<strong>往内部稳定状态发展</strong>的特性。定义的其实是一个热力学的系统<strong>变化的趋势</strong></p>
 <p>$$<br>\Delta S = \frac{Q}{T} = \frac{热量}{温度} \tag{1-1}<br>$$<br>1923年，德国科学家普朗克来中国讲学用到<code>entropy</code>这个词，胡刚复教授看到这个公式，<strong>创造了“熵”字</strong>，因为“火”和热量有关，定义式又是热量比温度，相当自洽</p>
 <h2 id="信息论"><a href="#信息论" class="headerlink" title="信息论"></a>信息论</h2><p>信息论中，熵是接受的每条消息中<strong>包含的信息的平均值</strong>。又被称为信息熵、信源熵、平均自信息量。可以被理解为<strong>不确定性的度量</strong>，熵越大，信源的分布越随机</p>
 <p>1948年，由克劳德·爱尔伍德·香农将热力学中的熵引入信息论，所以也叫做：香农熵</p>
@@ -313,7 +314,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-12T08:28:42.000Z" itemprop="dateUpdated">2017-09-12 01:28:42</time>
+    最后更新时间：<time datetime="2017-09-12T19:01:19.000Z" itemprop="dateUpdated">2017-09-12 12:01:19</time>
 </span><br>
 
 
@@ -356,8 +357,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/&title=《什么是信息熵、交叉熵和相对熵》 — 尼孟尼克 Blog&source=要完成题目的最终解释，必须从熵这个神奇的概念开始讲起
-什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/&title=《什么是信息熵、交叉熵和相对熵》 — 尼孟尼克 Blog&source=【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -488,7 +488,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
@@ -518,8 +518,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/&title=《什么是信息熵、交叉熵和相对熵》 — 尼孟尼克 Blog&source=要完成题目的最终解释，必须从熵这个神奇的概念开始讲起
-什么是熵 - Entropy词源 - 最初来源于热力学Entropy来源于希腊语，原意：内向，即：一..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/&title=《什么是信息熵、交叉熵和相对熵》 — 尼孟尼克 Blog&source=【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
