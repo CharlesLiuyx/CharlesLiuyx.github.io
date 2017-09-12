@@ -34,7 +34,7 @@
 <meta property="og:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
-<meta property="og:updated_time" content="2017-09-12T21:58:30.000Z">
+<meta property="og:updated_time" content="2017-09-12T22:02:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
@@ -219,10 +219,10 @@
  <title>DiagnosticTesting Diagram</title>
  <desc>Relationships between various measures of diagnostic testing by CMG Lee. In the SVG image, hover over a block or relation to highlight it.</desc>
  <style type="text/css">
-  #main         { font-size:14px; text-anchor:middle;
+  #mainsvg         { font-family:Helvetica,Arial,sans-serif; font-size:6px; text-anchor:middle;
                   stroke-linejoin:round; stroke-linecap:round; stroke-width:0.7; fill:none;
                   stroke-opacity:1;    fill-opacity:1;    }
-  #main:hover   { stroke-opacity:0.25; fill-opacity:0.25; }
+  #mainsvg:hover   { stroke-opacity:0.25; fill-opacity:0.25; }
   .active:hover { stroke-opacity:1;    fill-opacity:1;    }
   text          { fill:#000000; cursor:default; }
   .label        { stroke:none; fill:#000000 }
@@ -244,7 +244,7 @@
                            M -9,-3 q -1,-1 -2,-1 h -43 q -5, 0  -5,-5" stroke-dasharray="0.1,1"/></g>
  </defs>
  <circle cx="0" cy="0" r="99999" fill="#999999"/>
- <g id="main">
+ <g id="mainsvg">
   <g class="active" transform="translate(88,48)" stroke="#ddffdd"><use xlink:href="#f1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">F1 s.</text><title>F1 score = 2 / (1 / Recall + 1 / Precision)</title></g>
   <g class="active" transform="translate(88,10)" stroke="#cceecc"><use xlink:href="#acc"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">ACC</text><title>Accuracy = (&#931; True positive + &#931; True negative) / &#931; Total population</title></g>
   <g class="active" transform="translate(88,39)" stroke="#dddddd"><use xlink:href="#dor"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">DOR</text><title>Diagnostic odds ratio = Positive likelihood ratio / Negative likelihood ratio</title></g>
@@ -272,6 +272,7 @@
  </g>
 </svg>
 
+
 <ul>
 <li><strong>精确率（precision）</strong>：真正类率（False Postive Rate） $FPR = \frac{TP}{TP + FP}$ 表示<strong>分类预测结果中</strong>，<strong>预测为正类</strong>占<strong>所有预测结果</strong>的比例，也叫做<strong>1 - Sensitivity</strong></li>
 <li><strong>召回率（recall）</strong>：真正类率（True Postive Rate）$TPR = \frac{TP}{TP + FN}$ 表示<strong>分类器预测结果</strong>中，<strong>正类</strong>中正确预测占<strong>所有正类</strong>的比例，也叫做 <strong>Sensitivity</strong></li>
@@ -293,7 +294,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-12T21:58:30.000Z" itemprop="dateUpdated">2017-09-12 14:58:30</time>
+    Last updated: <time datetime="2017-09-12T22:02:54.000Z" itemprop="dateUpdated">2017-09-12 15:02:54</time>
 </span><br>
 
 
