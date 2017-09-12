@@ -18,27 +18,27 @@
     
     
     
-    <title>【理论】Logistic Regression学习笔记 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
+    <title>深入浅出看懂Logistic Regression | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
-    <meta name="description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
+    <meta name="description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
 <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【理论】Logistic Regression学习笔记">
+<meta property="og:title" content="深入浅出看懂Logistic Regression">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
-<meta property="og:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
+<meta property="og:description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-09-12T08:25:32.000Z">
+<meta property="og:updated_time" content="2017-09-12T18:13:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【理论】Logistic Regression学习笔记">
-<meta name="twitter:description" content="什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。 逻辑回归则是用来预测二进制输出变量取值（如：是/不是）的预测技术">
+<meta name="twitter:title" content="深入浅出看懂Logistic Regression">
+<meta name="twitter:description" content="【阅读时间】15min - 20min 【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数 什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值 什么是及为什么【Logistic Regression】回归（Regression）是用来预测的，比如给你一组虫子">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
@@ -123,7 +123,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【理论】Logistic Regression学习笔记</div>
+        <div class="flex-col header-title ellipsis">深入浅出看懂Logistic Regression</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -145,7 +145,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【理论】Logistic Regression学习笔记</h1>
+        <h1 class="title">深入浅出看懂Logistic Regression</h1>
         <h5 class="subtitle">
             
                 <time datetime="2017-09-04T07:21:50.000Z" itemprop="datePublished" class="page-time">
@@ -176,7 +176,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【理论】Logistic Regression学习笔记</h1>
+        <h1 class="post-card-title">深入浅出看懂Logistic Regression</h1>
         <div class="post-meta">
             <time class="post-time" title="2017-09-04 00:21:50" datetime="2017-09-04T07:21:50.000Z"  itemprop="datePublished">2017-09-04</time>
 
@@ -193,7 +193,9 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+            <p>【阅读时间】15min - 20min</p>
+<p>【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数</p>
+<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
 <p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
 <a id="more"></a>
@@ -327,7 +329,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-12T08:25:32.000Z" itemprop="dateUpdated">2017-09-12 01:25:32</time>
+    Last updated: <time datetime="2017-09-12T18:13:04.000Z" itemprop="dateUpdated">2017-09-12 11:13:04</time>
 </span><br>
 
 
@@ -360,7 +362,7 @@ $$
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -370,8 +372,8 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值
-什么是及为什么【Logist..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】15min - 20min
+【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -381,7 +383,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -529,7 +531,7 @@ $$
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -539,8 +541,8 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&source=什么是【回归（Regression）】回归（Regression）是一项模拟技术，用来从一个或多个解释变量中预测输出变量的值
-什么是及为什么【Logist..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&source=【阅读时间】15min - 20min
+【内容】从不同角度解释为何要使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -550,7 +552,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【理论】Logistic Regression学习笔记》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂Logistic Regression》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
