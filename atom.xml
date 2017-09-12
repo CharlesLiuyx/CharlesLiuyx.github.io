@@ -1458,7 +1458,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-11T07:25:13.000Z</updated>
+    <updated>2017-09-12T07:33:45.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
@@ -1492,10 +1492,25 @@ P(Girl|Paints) = \frac{P(Girl) \times P(Paints|Girl)}{P(Paints)}
 $$
  
 <p>再一般化，用A表示穿裤子的，B表示女生<br>$$<br>P(B|A) = \frac{P(B)\times P(A|B)}{P(A)} = \frac{P(AB)}{P(A)}\tag{1-2}<br>$$<br>上式就是贝叶斯公式的一般形式，我们在推导中发现，<strong>正常人类对频率的感知和理解速度要高于对概率的</strong>。</p>
-<p>比如“穿长裤的女生人数”这个概念，用总人数乘以<strong>女人比例</strong>，得出<strong>女生人数</strong>，再用女生人数乘以<strong>女生中穿裤子人数的比例</strong>得到<strong>穿裤子的女生人数</strong>。这一串推导感觉毫无困难。但如果读成：在A发生条件下，发成B的概率，会让人乍看下，干道有一定的理解困难。</p>
-<p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，不存在任何的理解难度</p>
+<p>比如“穿长裤的女生人数”这个概念，用总人数乘以<strong>女人比例</strong>，得出<strong>女生人数</strong>，再用女生人数乘以<strong>女生中穿裤子人数的比例</strong>得到<strong>穿裤子的女生人数</strong>。这一串推导感觉毫无困难。但如果读成：在A发生条件下，发成B的概率，会让人乍看下，感到有一定的理解困难。</p>
+<p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，在你看到的时候，抓住那个最关键的点，不存在任何的迷惑</p>
 <p>那Logistic Function和贝叶斯公式有什么联系呢？</p>
-<p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数）</p>
+<p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数），而这个函数的值就是 $f(a)$ ，很明显，<strong>是一个概率</strong></p>
+<p><strong>另一个很重要超级重要的常识就是：正态分布的的累计分布函数（就是从负无穷到x积分）和概率分布函数长得样子很像Logistic概率密度函数</strong>，可能看到这句话很多人就已经真相大白了，应给无论从中心极限定理出发，还是从统计学概率论角度来看，<strong>概率分布存在的价值是为了描述自然界（显示）中的随机事件，构造函数本身就十分重要，不同的规律需要不同的函数去拟合</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png" alt="正太分布概率密度函数（左）累计密度函数（右）" title="">
+                </div>
+                <div class="image-caption">正太分布概率密度函数（左）累计密度函数（右）</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png" alt="Logistic函数概率密度函数（左）累计密度函数（右）" title="">
+                </div>
+                <div class="image-caption">Logistic函数概率密度函数（左）累计密度函数（右）</div>
+            </figure>
 <h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
 <p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
 <blockquote>
@@ -1530,16 +1545,48 @@ $$
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
 <p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
 <p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
-<h2 id="相关概念总结"><a href="#相关概念总结" class="headerlink" title="相关概念总结"></a>相关概念总结</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function）<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
+<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function），常用于线性回归<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
 <h3 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵 Cross Entropy"></a>交叉熵 Cross Entropy</h3><p>又称为logloss，是Objective function的一种，也称Loss function or Coss Function</p>
-<p>我觉得这个问题必须搞明白一件事就是：什么是<code>熵 Entropy</code></p>
+<h4 id="什么是熵"><a href="#什么是熵" class="headerlink" title="什么是熵"></a>什么是熵</h4><p>我觉得这个问题必须搞明白一件事就是：什么是<code>熵 Entropy</code></p>
 <ul>
 <li>广义的定义是：熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</li>
 <li>有一个很神奇的解释是：熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</li>
 <li>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></li>
 </ul>
 <p>要理解这个<code>Cross Entropy</code>，必须了解它是用来干啥的？</p>
-<p>对于这三个概念：<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code>的理解，需要跳转到另一篇笔记</p>
+<p>延伸：<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code>的理解，需要跳转到另一篇笔记：<a href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">什么是信息熵、交叉熵和相对熵</a> </p>
+<p>简单来说<code>Cross Entropy</code>可以表示可以度量<strong>最终训练结果于测试集的差异程度</strong>，MSE也是同样的作用。</p>
+<p>换种更具体的说法：我们用p表示真实标记（训练样本标记）的分布，q是训练后的模型的预测标记（输出值标记）的分布，而<strong>交叉熵损失函数可以衡量p与q的相似性</strong>。</p>
+<h4 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h4><p>定义：给定联合样本值 $x$ 关于（未知 - 因为也是一边的自变量）参数 $\theta$ 的函数<br>$$<br>L(\theta|x) = f(x;\theta)<br>$$</p>
+<blockquote>
+<p>$x$ 指联合样本随机变量 $X$ 取到的值，比如天气取值 $X$ =【晴，阴，雨，雪】$x$ = 晴</p>
+<p>$\theta$ 指未知参数，属于参数空间，比如正态分布的均值，方差等</p>
+<p>$f(x;\theta)$ 是<strong>密度函数</strong>，<strong>表示 $\theta$ 参数下</strong>联合样本值 $x$ 的<strong>联合密度函数</strong>（所以这里不用|符号，|符号表达的意思是<strong>条件概率或条件分布</strong>）</p>
+</blockquote>
+<p>从定义上，似然函数和密度函数是完全不同的<strong>两个数学对象</strong>：前者是关于 $\theta$ 的函数，后者是关于 $x$ 的函数。中间的等号理解成<strong>函数值形式相等</strong></p>
+<p>这个等式表示的是对于事件发生的<strong>两种角度的看法</strong>。左边表示概率，右边表示可能性。要表达的含义都是：给定一个样本 $x$ 后，我们去测度这个样本出现的可能性到底有多大。说人话，比如样本空间是 $X$ =【晴，阴，雨，雪】，函数表达的就是样本 $x$ = 晴在这个样本空间下发生的概率或可能性</p>
+<p>从<strong>统计学</strong>的角度来说，这个样本的出现一定是<strong>基于一个分布的</strong>（比如二项分布，只正态分布等等），那么我们假设这个分布为 $f(x;\theta)$ ，对于不同的 $\theta$ 样本的分布不一样。</p>
+<p>$f(x;\theta)$ 函数表示的就是在参数 $\theta$ 下 $x$ <strong>出现的概率</strong>有多大（可以带入天气例子思考）</p>
+<p>$L(\theta|x)$ 表示在<strong>给定样本</strong> $x$ ，哪个参数 $\theta$ 使得 $x$ 出现的可能性有多大。说人话，我们已经知道天气是晴天，哪个参数（可能是 $\theta_1$ $\theta_2$）使得这个<strong>函数值最大</strong></p>
+<h4 id="对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy"><a href="#对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy" class="headerlink" title="对于Logistic Regression 为什么要用LogLoss - Cross Entropy"></a>对于Logistic Regression 为什么要用LogLoss - Cross Entropy</h4><p>了解了熵，和似然函数，我们可以开始看看在Logistic Regression的条件下为什么要用LogLoss，换句话也就是说，它一定有它的优势，我们采用，那么它有什么优势？</p>
+<p>Logistic Regression的本质还是一个二分类问题，即Y = 0，or Y = 1</p>
+<p>令 $P(Y=1|x) = \pi(x)$ $$P(Y=1|x) = 1 - \pi(x)$ </p>
+<blockquote>
+<p>$y_i$ 表示i次试验，取值就是0 or 1（二分类问题）</p>
+<p>$\pi(x) = \frac{1}{1 + e^{-wx}}$  是Logistic Function的表现形式，其中w相当于似然函数一节提到的 $\theta$ 是需要求的参数（加深理解，其实在二分类问题中，Logistic函数就是一种形式上的概率分布的表现形式）</p>
+</blockquote>
+<p>所以使用基本概率方法可以求解二分类的问题的似然函数<br>
+$$
+\ell(w) = \prod_{i = 1}^{N} [\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}
+$$
+</p>
+<blockquote>
+<p>注解：说白就和算扔N次硬币，一个连续正反事件串的概率是多少一个含义</p>
+</blockquote>
+<p>看到乘法和指数，第一反应取对数，得到<strong>对数似然函数</strong><br>$$<br>L(w) = \sum_{i=1}^N{[y_ilog\pi(x_i) + (1-y_i)log(1-\pi(x_i))]}<br>$$</p>
+<p>如果跟随我的步伐走到这一步，你会发现，这个形式，<strong>前半部分是交叉熵，后半部分也是交叉熵啊！</strong>说实话，叫做交叉熵还是和二项分布，伯努利过程分不开联系。在上面不远的地方已经详细定义了这几个符号代表的意思，不记得了可以再看看，加深印象。</p>
+<p>我们发现，$-\frac{L(w)}{N}$ 就是我们一直使用的Objective function or Loss Function or Cost Function，加负号是为了求最小值。总之，<strong>训练的目的就是要求能够使得这个函数达到最小的参数</strong>，最终的目的还是参数，这里对于参数就是 $w$ ，这个参数在上方的统计学角度，和机器学习角度都进行的讨论，重复阅读可以链接这些知识点</p>
+<p>至于LogLoss的好处，一是取对数之后，<strong>乘法边加法，指数放下来</strong>，是凸函数，方便可以寻找最优解。二是<strong>加快了收敛速度</strong>，这里有个形象的步长比喻，可以想象成去了对数后，缩小了尺度，可以让最快梯度下降法要走的距离变短</p>
 ]]></content>
     
     <summary type="html">
