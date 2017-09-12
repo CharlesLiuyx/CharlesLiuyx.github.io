@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-12T21:33:35.000Z</updated>
+  <updated>2017-09-12T21:52:52.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-12T21:33:35.000Z</updated>
+    <updated>2017-09-12T21:52:52.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
 <a id="more"></a>
@@ -39,10 +39,69 @@
 <h1 id="精确率-precision-amp-召回率-recall"><a href="#精确率-precision-amp-召回率-recall" class="headerlink" title="精确率 - precision &amp; 召回率 - recall"></a>精确率 - precision &amp; 召回率 - recall</h1><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.svg" alt="所有相关定义总结图" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.png" alt="所有相关定义总结图" title="">
                 </div>
                 <div class="image-caption">所有相关定义总结图</div>
             </figure>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/0/0e/DiagnosticTesting_Diagram.svg" target="_blank" rel="external">网页互动版本（英文版本交互）</a></p>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewbox="0 5.5 96 48">
+ <title>DiagnosticTesting Diagram</title>
+ <desc>Relationships between various measures of diagnostic testing by CMG Lee. In the SVG image, hover over a block or relation to highlight it.</desc>
+ <style type="text/css">
+  #main         { font-family:Helvetica,Arial,sans-serif; font-size:6px; text-anchor:middle;
+                  stroke-linejoin:round; stroke-linecap:round; stroke-width:0.7; fill:none;
+                  stroke-opacity:1;    fill-opacity:1;    }
+  #main:hover   { stroke-opacity:0.25; fill-opacity:0.25; }
+  .active:hover { stroke-opacity:1;    fill-opacity:1;    }
+  text          { fill:#000000; cursor:default; }
+  .label        { stroke:none; fill:#000000 }
+  .op           { stroke-width:0.15; font-size:5px; font-weight:bold; }
+ </style>
+ <defs>
+  <rect id="box" x="-6" y="-1.3" width="12" height="2.6" stroke-width="2.8" stroke-opacity="1"/>
+  <g id="top"><path d="M  0, 0 q  0,-4  5,-4 h  30 q  5, 0   5, 4 m -20,  0 q  0,-4 -5,-4" stroke-dasharray="0.1,1"/><text class="op" x="8" y="-3" dy="0.7ex">+</text></g>
+  <g id="bottom1"><path d="M  0, 0 q  0, 4 -5, 4 h -50 q -5, 0  -5,-4 m  20,  0 q  0, 4  5, 4" stroke-dasharray="2,1"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="bottom2"><path d="M  0, 0 q  0, 5 -5, 5 h -69 q -5, 0  -5,-5 m  40,  0 q  0, 5  5, 5"/><text class="op" x="0" y="4.5" dy="0.7ex">&#247;</text></g>
+  <g id="bottom3"><path d="M  0, 0 q  0, 4 -5, 4 h -30 q -5, 0  -5,-4 m  20,  0 q  0, 4  5, 4"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="left"><path d="M  0, 0 q -9, 0 -9, 5 v  10 q  0, 5   9, 5 m   0,-10 q -9, 0 -9,-5" stroke-dasharray="0.1,1"/><text class="op" x="-8.5" y="1" dy="0.7ex">+</text></g>
+  <g id="right1"><path d="M  0, 0 q  9, 0  9,-5 v -20 q  0,-5  -9,-5 m   0, 10 q  9, 0  9, 5" stroke-dasharray="2,1"/><text class="op" x="8.5" y="-1" dy="0.7ex">&#247;</text></g>
+  <g id="right2"><path d="M  0, 0 q 10, 0 10,-5 v -30 q  0,-5 -10,-5 m   0, 20 q 10, 0 10, 5"/><text class="op" x="8.5" y="0" dy="0.7ex">&#247;</text></g>
+  <g id="acc"><path d="M  0, 0 q  0, 5 -5, 5 h -69 q -5, 0  -5,-5 m  22, 10 q  0,-5  5,-5
+                           M  0, 0 q  0, 5 -5, 5 h -17 q -5, 0  -5, 5 v       5 q  0, 1 -1, 1 h -5 q -4,0 -4,4"/><text class="op" x="2.5" y="4.5" dy="0.7ex">+,&#247;</text></g>
+  <g id="dor"><path d="M  0, 0 q  0, 4 -5, 4 h  -5 q -5, 0  -5,-4 m   0,  8 q  0,-4  5,-4" stroke-dasharray="4,1"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="f1"><path d="M  0, 0 q -10,0 -9,-4 v -22 q  0,-2  -2,-2
+                           M -9,-3 q -1,-1 -2,-1 h -43 q -5, 0  -5,-5" stroke-dasharray="0.1,1"/></g>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#999999"/>
+ <g id="main">
+  <g class="active" transform="translate(88,48)" stroke="#ddffdd"><use xlink:href="#f1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">F1 s.</text><title>F1 score = 2 / (1 / Recall + 1 / Precision)</title></g>
+  <g class="active" transform="translate(88,10)" stroke="#cceecc"><use xlink:href="#acc"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">ACC</text><title>Accuracy = (&#931; True positive + &#931; True negative) / &#931; Total population</title></g>
+  <g class="active" transform="translate(88,39)" stroke="#dddddd"><use xlink:href="#dor"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">DOR</text><title>Diagnostic odds ratio = Positive likelihood ratio / Negative likelihood ratio</title></g>
+  <g class="active" transform="translate(70,39)" stroke="#eeeeee"><use xlink:href="#bottom3"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">LR+</text><title>Positive likelihood ratio = True positive rate / False positive rate</title></g>
+  <g class="active" transform="translate(70,48)" stroke="#cccccc"><use xlink:href="#bottom3"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">LR&#8722;</text><title>Negative likelihood ratio = False negative rate / True negative rate</title></g>
+  <g class="active" transform="translate(88,20)" stroke="#cceeff"><use xlink:href="#bottom2"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">FDR</text><title>False discovery rate = &#931; False positive / &#931; Predicted condition positive</title></g>
+  <g class="active" transform="translate(70,20)" stroke="#ccffee"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">PPV</text><title>Positive predictive value, Precision = &#931; True positive / &#931; Predicted condition positive</title></g>
+  <g class="active" transform="translate(88,30)" stroke="#aaddcc"><use xlink:href="#bottom2"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">NPV</text><title>Negative predictive value = &#931; True negative / &#931; Predicted condition negative</title></g>
+  <g class="active" transform="translate(70,30)" stroke="#eeddee"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">FOR</text><title>False omission rate = &#931; False negative / &#931; Predicted condition negative</title></g>
+  <g class="active" transform="translate(30,39)" stroke="#eeffcc"><use xlink:href="#right1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">TPR</text><title>True positive rate, Recall, Sensitivity, probability of detection = &#931; True positive / &#931; Condition positive</title></g>
+  <g class="active" transform="translate(30,48)" stroke="#ffeecc"><use xlink:href="#right2"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">FNR</text><title>False negative rate, Miss rate = &#931; False negative / &#931; Condition positive</title></g>
+  <g class="active" transform="translate(50,39)" stroke="#eeddbb"><use xlink:href="#right1"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">FPR</text><title>False positive rate, Fall-out, probability of false alarm = &#931; False positive / &#931; Condition negative</title></g>
+  <g class="active" transform="translate(50,48)" stroke="#ddeebb"><use xlink:href="#right2"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">TNR</text><title>True negative rate, Specificity = &#931; True negative / &#931; Condition negative</title></g>
+  <g class="active" transform="translate(70,10)" stroke="#eeeecc"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">prev.</text><title>Prevalence = &#931; Condition positive / &#931; Total population</title></g>
+  <g class="active" transform="translate(10,10)" stroke="#dddddd"><use xlink:href="#top"/><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">pop.</text><title>Total population = Condition positive + Condition negative
+ = Predicted condition positive + Predicted condition negative</title></g>
+  <g class="active" transform="translate(10,30)" stroke="#aadddd"><use xlink:href="#top"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">Pc&#8722;</text><title>Predicted condition negative = False negative + True negative</title></g>
+  <g class="active" transform="translate(10,20)" stroke="#ccffff"><use xlink:href="#top"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">Pc+</text><title>Predicted condition positive = True positive + False positive</title></g>
+  <g class="active" transform="translate(30,10)" stroke="#ffffcc"><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">C+</text><title>Condition positive = True positive + False negative</title></g>
+  <g class="active" transform="translate(50,10)" stroke="#ddddaa"><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">C&#8722;</text><title>Condition negative = False positive + True negative</title></g>
+  <g class="active" transform="translate(50,30)" stroke="#bbeebb"><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">T&#8722;</text><title>True negative</title></g>
+  <g class="active" transform="translate(30,30)" stroke="#ffdddd"><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">F&#8722;</text><title>False negative, Type II error</title></g>
+  <g class="active" transform="translate(50,20)" stroke="#eedddd"><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">F+</text><title>False positive, Type I error</title></g>
+  <g class="active" transform="translate(30,20)" stroke="#ccffcc"><use xlink:href="#box"/><text class="label" x="0" y="0.7ex">T+</text><title>True positive</title></g>
+ </g>
+</svg>
+
 <ul>
 <li><strong>精确率（precision）</strong>：真正类率（False Postive Rate） $FPR = \frac{TP}{TP + FP}$ 表示<strong>分类预测结果中</strong>，<strong>预测为正类</strong>占<strong>所有预测结果</strong>的比例，也叫做<strong>1 - Sensitivity</strong></li>
 <li><strong>召回率（recall）</strong>：真正类率（True Postive Rate）$TPR = \frac{TP}{TP + FN}$ 表示<strong>分类器预测结果</strong>中，<strong>正类</strong>中正确预测占<strong>所有正类</strong>的比例，也叫做 <strong>Sensitivity</strong></li>
@@ -56,7 +115,7 @@
                 </div>
                 <div class="image-caption">Precision - Recall</div>
             </figure>
-<p>图片解释：左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong>，中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的判断结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的正类</p>
+<p>图片解释：左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong>，中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的预测结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的正类，对应的，当然是圈以外的部分，也就是<strong>预测结果是负类的部分</strong></p>
 ]]></content>
     
     <summary type="html">
