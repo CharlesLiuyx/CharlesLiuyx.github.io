@@ -1613,10 +1613,11 @@ $$
     <link href="https://charlesliuyx.github.io/2017/08/28/Xpath%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/"/>
     <id>https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/</id>
     <published>2017-08-28T19:00:33.000Z</published>
-    <updated>2017-08-28T19:07:15.000Z</updated>
+    <updated>2017-09-12T19:12:35.000Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="XPath-相关例子Note"><a href="#XPath-相关例子Note" class="headerlink" title="XPath 相关例子Note"></a>XPath 相关例子Note</h1><a id="more"></a>
-<h2 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line">sample1 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getxpath</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="keyword">return</span> etree.HTML(html)</div><div class="line">s1 = getxpath(sample1)</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>【内容简介】Xpath相关使用法法和例子文档，以供查阅</p>
+<a id="more"></a>
+<h1 id="XPath-相关例子Note"><a href="#XPath-相关例子Note" class="headerlink" title="XPath 相关例子Note"></a>XPath 相关例子Note</h1><h2 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> lxml <span class="keyword">import</span> etree</div><div class="line">sample1 = <span class="string">"""&lt;html&gt;</span></div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;title&gt;My page&lt;/title&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">    &lt;h2&gt;Welcome to my &lt;a href="#" src="x"&gt;page&lt;/a&gt;&lt;/h2&gt;</div><div class="line">    &lt;p&gt;This is the first paragraph.&lt;/p&gt;</div><div class="line">    &lt;!-- this is the end --&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div><div class="line">"""</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">getxpath</span><span class="params">(html)</span>:</span></div><div class="line">    <span class="keyword">return</span> etree.HTML(html)</div><div class="line">s1 = getxpath(sample1)</div></pre></td></tr></table></figure>
 <p><code>//</code>绝对路径 <code>text()</code> 获取内容中的文字信息</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s1.xpath(<span class="string">'//title/text()'</span>)</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[&apos;My page&apos;]</div></pre></td></tr></table></figure>
@@ -1699,7 +1700,7 @@ $$
     
     <summary type="html">
     
-      &lt;h1 id=&quot;XPath-相关例子Note&quot;&gt;&lt;a href=&quot;#XPath-相关例子Note&quot; class=&quot;headerlink&quot; title=&quot;XPath 相关例子Note&quot;&gt;&lt;/a&gt;XPath 相关例子Note&lt;/h1&gt;
+      &lt;p&gt;【内容简介】Xpath相关使用法法和例子文档，以供查阅&lt;/p&gt;
     
     </summary>
     
