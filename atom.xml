@@ -1458,7 +1458,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-12T08:06:30.000Z</updated>
+    <updated>2017-09-12T08:25:32.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
 <h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
@@ -1496,7 +1496,7 @@ $$
 <p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，在你看到的时候，抓住那个最关键的点，不存在任何的迷惑</p>
 <p>那Logistic Function和贝叶斯公式有什么联系呢？</p>
 <p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数），而这个函数的值就是 $f(a)$ ，很明显，<strong>是一个概率</strong></p>
-<p><strong>另一个很重要超级重要的常识就是：正态分布的的累计分布函数（就是从负无穷到x积分）和概率分布函数长得样子很像Logistic概率密度函数</strong>，可能看到这句话很多人就已经真相大白了，应给无论从中心极限定理出发，还是从统计学概率论角度来看，<strong>概率分布存在的价值是为了描述自然界（显示）中的随机事件，构造函数本身就十分重要，不同的规律需要不同的函数去拟合</strong></p>
+<p><strong>另一个很重要超级重要的常识就是：正态分布的的累计分布函数（就是从负无穷到x积分）和概率分布函数长得样子很像Logistic累计分布函数和概率密度函数</strong>，可能看到这句话很多人就已经真相大白了，应给无论从中心极限定理出发，还是从统计学概率论角度来看，<strong>概率分布存在的价值是为了描述自然界（现实）中的随机事件，构造函数本身就十分重要，不同的规律需要不同的函数去拟合</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
