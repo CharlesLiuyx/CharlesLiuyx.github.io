@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>机器学习分类器性能指标详解 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Machine Learning">
+    <meta name="description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
+<meta name="keywords" content="Theory,Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习分类器性能指标详解">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/index.html">
+<meta property="og:site_name" content="尼孟尼克 Blog">
+<meta property="og:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.svg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
+<meta property="og:updated_time" content="2017-09-12T21:33:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习分类器性能指标详解">
+<meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.svg">
+    
+        <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <script>window.lazyScripts=[]</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Nimonic</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">机器学习分类器性能指标详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">机器学习分类器性能指标详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-12T20:05:32.000Z" itemprop="datePublished" class="page-time">
+  2017-09-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#准确率-accuracy"><span class="post-toc-number">1.</span> <span class="post-toc-text">准确率 - accuracy</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#精确率-precision-amp-召回率-recall"><span class="post-toc-number">2.</span> <span class="post-toc-text">精确率 - precision & 召回率 - recall</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-机器学习分类器性能指标详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">机器学习分类器性能指标详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-12 13:05:32" datetime="2017-09-12T20:05:32.000Z"  itemprop="datePublished">2017-09-12</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
+<a id="more"></a>
+<p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作，这里就一项项已经一些总结和记录</p>
+<h1 id="准确率-accuracy"><a href="#准确率-accuracy" class="headerlink" title="准确率 - accuracy"></a>准确率 - accuracy</h1><p>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
+<p>通过准确率，的确可以在一些场合，从某种意义上得到一个分类器是否有效，但它并不总是能有效的评价一个分类器的工作。一个例子，Google抓取了100个特殊页面，它的索引中有10000000页面。随机抽取一个页面，这是不是特殊页面呢？如果我们的分类器确定一个分类规则：“只要来一个页面就判断为【不是特殊页面】”，这么做的效率非常高，如果计算按照准确率的定义来计算的话，是(9,999,900/10,000,000) = 99.999%。虽然高，但是这不是我们并不是我们真正需要的值，就需要新的定义标准了</p>
+<p>在提出新的定义之前，先定义一些类型。</p>
+<p>对于一个二分类问题来说，将实例分为<strong>正类（Positive）</strong>或<strong>负类（Negative）</strong>，但在使用分类器进行分类时会有四种情况</p>
+<ul>
+<li>一个实例是正类，并被预测为正类，记为真正类（True Positive <strong>TP</strong>）</li>
+<li>一个实例是正类，但被预测为负类，记为假负类（False Negative <strong>FN</strong>）</li>
+<li>一个实例是负类，但被预测为正类，记为假正类（False Positive <strong>FP</strong>）</li>
+<li>一个实例是负类，但被预测为负类，记为真负类（True Negative <strong>TN</strong>）</li>
+</ul>
+<p><strong>TP和TN是分类正确的，FN和FP为分类错误的，真假对应实例的真实情况，真的分类正确，假的分类错误</strong></p>
+<h1 id="精确率-precision-amp-召回率-recall"><a href="#精确率-precision-amp-召回率-recall" class="headerlink" title="精确率 - precision &amp; 召回率 - recall"></a>精确率 - precision &amp; 召回率 - recall</h1><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/DiagnosticTesting_Diagram.svg" alt="所有相关定义总结图" title="">
+                </div>
+                <div class="image-caption">所有相关定义总结图</div>
+            </figure>
+<ul>
+<li><strong>精确率（precision）</strong>：真正类率（False Postive Rate） $FPR = \frac{TP}{TP + FP}$ 表示<strong>分类预测结果中</strong>，<strong>预测为正类</strong>占<strong>所有预测结果</strong>的比例，也叫做<strong>1 - Sensitivity</strong></li>
+<li><strong>召回率（recall）</strong>：真正类率（True Postive Rate）$TPR = \frac{TP}{TP + FN}$ 表示<strong>分类器预测结果</strong>中，<strong>正类</strong>中正确预测占<strong>所有正类</strong>的比例，也叫做 <strong>Sensitivity</strong></li>
+<li>真负类率（True Negative Rate）$TNR = \frac{TN}{FP + TN}$  表示<strong>分类器预测结果</strong>中，<strong>负类</strong>中正确预测占<strong>所有负类</strong>的比例，也叫做 <strong>Specificity</strong></li>
+</ul>
+<p>一图胜千言</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png" alt="Precision - Recall" title="">
+                </div>
+                <div class="image-caption">Precision - Recall</div>
+            </figure>
+<p>图片解释：左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong>，中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的判断结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的正类</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-12T21:33:35.000Z" itemprop="dateUpdated">2017-09-12 14:33:35</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="Nimonic">
+            Nimonic
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、RO..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">什么是信息熵、交叉熵和相对熵</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Nimonic &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、RO..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuklEQVR42u3awY4aMRAEUP7/pzfXSBFDldudEOnNCbHA+Hmltqfcr1d8/fx2/fn+u9fP33r+TPI71y48PDy8wdDf/VzOe/7M86QkU5aPGQ8PD2+b966iJoN4XkLaiXv+ZD5mPDw8vO/ktUU/uW8+ZXh4eHj/I28SVeS5wT9e9/Dw8PAGYUT+rXxjPQ8+rmUteHh4eDEv39R+z+uV8z08PDy88al6vrWdLAzJYnB24eHh4W3w8oLbtgW0ccNZ2BGNEw8PD+8qry33eeTaDmsSFr/9HTw8PLwFXlvQkzapSaPA2ba+Dibw8PDwBrx8i5xvr58XmHlzVTLReHh4eHu856J8VnXbwd3afNeHYXh4eHgD3llBzzfZSZAxWQai1Q8PDw/vEq84gC8P+JNouF1U6oUNDw8Pb4HXPt7nLVN5A0Eb8tYPA3h4eHhXeW0kesbOWw3ag7EP48TDw8Nb5uUP/JMoNh9cfpcPYQQeHh7eVV6yVc23uWcTkUe3h60JeHh4eMu8pNC3N8uH2LZ5Rf8SPDw8vKu8NhR4no52sckbFA4XDzw8PLw13jwIONtS7/3+627OgYeHhxcX37bd6uzYrG3JOmwgwMPDw1vgPRfffOscFetB61XbWICHh4e3zTuLd29FEskU15OCh4eHt8CbINuhR6W8Lf1J8oCHh4d3ldcW3HxYZ60A+XiKpis8PDy8BV4eLrSNU0nRzwPleuLw8PDwlnntO5MmqnmAG2UOeHh4eFd5P+XV8pKF5OzALNpe4+Hh4S3wzo7nL+fH5ca9fQzAw8PD2+CdHc/njQXtprxlfwDj4eHhrfHmJ0dtJJHf/SzMxcPDw/seXl6a83BhcmzWB9d4eHh4f5vXxqbtXxN2EQHj4eHhrfHmR1btEVq7qJxFunh4eHgbvMkD//Ow5svJZQYeHh7elPcLcFCccTVOEEAAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.7" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '在看什么呢';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>
