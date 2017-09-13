@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-13T03:14:24.000Z</updated>
+  <updated>2017-09-13T23:25:04.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,23 +20,23 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-13T03:14:24.000Z</updated>
+    <updated>2017-09-13T23:25:04.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
 <a id="more"></a>
 <p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作，这里就一项项已经一些总结和记录</p>
-<h1 id="准确率-accuracy"><a href="#准确率-accuracy" class="headerlink" title="准确率 - accuracy"></a>准确率 - accuracy</h1><p>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
+<h1 id="混淆矩阵-Confusion-Matrix"><a href="#混淆矩阵-Confusion-Matrix" class="headerlink" title="混淆矩阵 - Confusion Matrix"></a>混淆矩阵 - Confusion Matrix</h1><p><strong>准确率</strong>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
 <p>通过准确率，的确可以在一些场合，从某种意义上得到一个分类器是否有效，但它并不总是能有效的评价一个分类器的工作。一个例子，Google抓取了100个特殊页面，它的索引中有10000000页面。随机抽取一个页面，这是不是特殊页面呢？如果我们的分类器确定一个分类规则：“只要来一个页面就判断为【不是特殊页面】”，这么做的效率非常高，如果计算按照准确率的定义来计算的话，是(9,999,900/10,000,000) = 99.999%。虽然高，但是这不是我们并不是我们真正需要的值，就需要新的定义标准了</p>
-<p>在提出新的定义之前，先定义一些类型。</p>
-<p>对于一个二分类问题来说，将实例分为<strong>正类（Positive）</strong>或<strong>负类（Negative）</strong>，但在使用分类器进行分类时会有四种情况</p>
+<p>对于一个二分类问题来说，将实例分为<strong>正类（Positive/+）</strong>或<strong>负类（Negative/-）</strong>，但在使用分类器进行分类时会有四种情况</p>
 <ul>
-<li>一个实例是正类，并被预测为正类，记为真正类（True Positive <strong>TP</strong>）</li>
-<li>一个实例是正类，但被预测为负类，记为假负类（False Negative <strong>FN</strong>）</li>
-<li>一个实例是负类，但被预测为正类，记为假正类（False Positive <strong>FP</strong>）</li>
-<li>一个实例是负类，但被预测为负类，记为真负类（True Negative <strong>TN</strong>）</li>
+<li>一个实例是正类，并被预测为正类，记为真正类（True Positive <strong>TP/T+</strong>）</li>
+<li>一个实例是正类，但被预测为负类，记为假负类（False Negative <strong>FN/F-</strong>）</li>
+<li>一个实例是负类，但被预测为正类，记为假正类（False Positive <strong>FP/F+</strong>）</li>
+<li>一个实例是负类，但被预测为负类，记为真负类（True Negative <strong>TN/F-</strong>）</li>
 </ul>
-<p><strong>TP和TN是分类正确的，FN和FP为分类错误的，真假对应实例的真实情况，真的分类正确，假的分类错误</strong></p>
-<h1 id="精确率-precision-amp-召回率-recall"><a href="#精确率-precision-amp-召回率-recall" class="headerlink" title="精确率 - precision &amp; 召回率 - recall"></a>精确率 - precision &amp; 召回率 - recall</h1>
+<p><strong>TP和TN中的真表示分类正确，同理FN和FP表示分类错误的</strong></p>
+<p>为了全面的表达所有二分问题中的指标参数，下列矩阵叫做<strong>混淆矩阵 - Confusion Matrix</strong>，目的就是看懂它，搞清楚它，所有模型评价参数就很清晰了</p>
+
 <?xml version="1.0" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewbox="0 5.5 96 48">
  <title>DiagnosticTesting Diagram</title>
@@ -98,7 +98,8 @@
 </svg>
 
 
-<p>通过上一节的讨论已经有<code>T+:TP</code> <code>F+:FP</code> <code>T-:TN</code> <code>F-:FN</code> <code>C+:样本正类</code> <code>C-:样本负类</code> <code>Pc+:预测正类</code> <code>Pc-:预测负类</code> </p>
+<p>通过上暖白的的讨论已经有<code>T+:TP</code> <code>F+:FP</code> <code>T-:TN</code> <code>F-:FN</code> <code>C+:样本正类</code> <code>C-:样本负类</code> <code>Pc+:预测正类</code> <code>Pc-:预测负类</code> </p>
+<p>用样本中的正类和负类进行计算的定义</p>
 <table>
 <thead>
 <tr>
@@ -111,32 +112,120 @@
 <tbody>
 <tr>
 <td style="text-align:center">TPR</td>
-<td style="text-align:center">True Positive Rate 真正类率</td>
-<td style="text-align:center"><code>Recall</code> <code>Sensitivity</code></td>
-<td style="text-align:center">$ \frac {\sum TP}{\sum C+}$</td>
+<td style="text-align:center">True Positive Rate</td>
+<td style="text-align:center">真正类率 <code>Recall</code> <code>Sensitivity</code></td>
+<td style="text-align:center">$ \frac {\sum T+}{\sum C+}$</td>
 </tr>
 <tr>
 <td style="text-align:center">FNR</td>
-<td style="text-align:center">False Negative Rate 假负类率</td>
-<td style="text-align:center"><code>Miss rate</code> <code>Type rs  error</code></td>
-<td style="text-align:center">$ \frac {\sum FN}{\sum C+}$</td>
+<td style="text-align:center">False Negative Rate</td>
+<td style="text-align:center">假负类率<code>Miss rate</code> <code>Type rs  error</code></td>
+<td style="text-align:center">$ \frac {\sum F-}{\sum C+}$</td>
 </tr>
 <tr>
 <td style="text-align:center">FPR</td>
-<td style="text-align:center">False Positive Rate 假正类率</td>
-<td style="text-align:center"><code>fall-out</code> <code>Type 1 error</code></td>
-<td style="text-align:center">$ \frac {\sum FP}{\sum C-}$</td>
+<td style="text-align:center">False Positive Rate</td>
+<td style="text-align:center">假正类率<code>fall-out</code> <code>Type 1 error</code></td>
+<td style="text-align:center">$ \frac {\sum F+}{\sum C-}$</td>
 </tr>
 <tr>
 <td style="text-align:center">TNR</td>
-<td style="text-align:center">Tre Negative Rate 真负类率</td>
-<td style="text-align:center"><code>Specificity</code></td>
-<td style="text-align:center">$ \frac {\sum TN}{\sum C-}$</td>
+<td style="text-align:center">Tre Negative Rate</td>
+<td style="text-align:center">真负类率<code>Specificity</code></td>
+<td style="text-align:center">$ \frac {\sum T-}{\sum C-}$</td>
 </tr>
 </tbody>
 </table>
-<p>$$<br>\frac {\sum TP}{\sum C+}<br>$$</p>
-<p>一图胜千言</p>
+<p>用预测结果的正类和负类进行计算的定义</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">等价称呼</th>
+<th style="text-align:center">计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PPV</td>
+<td style="text-align:center">Positive Predictive Value</td>
+<td style="text-align:center">正类预测率<code>Precision</code></td>
+<td style="text-align:center">$ \frac {\sum T+}{\sum Pc+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FOR</td>
+<td style="text-align:center">False Omission Rata</td>
+<td style="text-align:center">假错误率</td>
+<td style="text-align:center">$ \frac {\sum F-}{\sum Pc-}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FDR</td>
+<td style="text-align:center">False Discovery Rate</td>
+<td style="text-align:center">假发现率</td>
+<td style="text-align:center">$ \frac {\sum F+}{\sum Pc+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">NPV</td>
+<td style="text-align:center">Negative Predictive Value</td>
+<td style="text-align:center">负类预测率</td>
+<td style="text-align:center">$ \frac {\sum T-}{\sum Pc-}$</td>
+</tr>
+</tbody>
+</table>
+<p>其他定义概念</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">等价称呼</th>
+<th style="text-align:center">计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ACC</td>
+<td style="text-align:center">Accuracy</td>
+<td style="text-align:center">准确率</td>
+<td style="text-align:center">$ \frac {\sum (T+) + \sum {T-}}{样本空间}$</td>
+</tr>
+<tr>
+<td style="text-align:center">LR+</td>
+<td style="text-align:center">Positive Likelihood Ratio</td>
+<td style="text-align:center">正类似然比</td>
+<td style="text-align:center">$ \frac {TPR}{FPR}$</td>
+</tr>
+<tr>
+<td style="text-align:center">LR-</td>
+<td style="text-align:center">Negative likelihood ratio</td>
+<td style="text-align:center">负类似然比</td>
+<td style="text-align:center">$ \frac {FNR}{TNR}$</td>
+</tr>
+<tr>
+<td style="text-align:center">DOR</td>
+<td style="text-align:center">Diagnostic odds ratio</td>
+<td style="text-align:center">诊断胜算比</td>
+<td style="text-align:center">$ \frac {LR+}{LR-}$</td>
+</tr>
+<tr>
+<td style="text-align:center">F1 score</td>
+<td style="text-align:center">$F_1$ test measure</td>
+<td style="text-align:center">F1值</td>
+<td style="text-align:center">$frac{2}{\frac{1}{recall}+\frac{ }{precision}}$</td>
+</tr>
+<tr>
+<td style="text-align:center">MCC</td>
+<td style="text-align:center">Matthews Correlation coefficient</td>
+<td style="text-align:center">马修斯相关性系数</td>
+<td style="text-align:center">$\frac{TP \times TN - FP \times FN}{\sqr {(TP + FP)(TP + FN)(TN + FP)(TN +FN)}}t$</td>
+</tr>
+</tbody>
+</table>
+<p><code>LR+/-</code>指的是似然比，<strong>LR+ 越大表示模型对正类的分类越好，LR-越大表示模型对负类的分类效果越好</strong></p>
+<p><code>F1值</code>是精确值和召回率的调和均值，其实原公式是 $F_\beta = (1 + \beta^2)\frac{precision \times recall}{(\beta^2recall)+recall}$，这里的β表示：<strong>召回率的权重是准确率的β倍</strong>。即F值是一种精确率和召回率的综合指标，权重由β决定</p>
+<p><code>MCC</code>值在[-1,1]之间，靠近1表示完全预测正确，靠近-1表示完全悖论，0表示随机预测</p>
+<p>最终为了不那么麻烦，说人话，还是<strong>一图胜千言</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -144,7 +233,23 @@
                 </div>
                 <div class="image-caption">Precision - Recall</div>
             </figure>
-<p>图片解释：左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong>，中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的预测结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的正类，对应的，当然是圈以外的部分，也就是<strong>预测结果是负类的部分</strong></p>
+<p>图片详解：</p>
+<blockquote>
+<p>左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong></p>
+<p>中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的预测结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的<strong>正类</strong>，对应的，当然是圈以外的部分，也就是<strong>预测结果是负类的部分</strong></p>
+<p>底下的Precision和Recall示意图也相当的直观，看一下就能明白</p>
+</blockquote>
+<h1 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a>ROC Curve</h1><p>ROC - Receiver Operating Characteristic Curve，接受者操作特征曲线，ROC曲线</p>
+<p>这个曲线乍看下为啥名称那么奇怪呢，原来这个曲线最早是由二战中的电子工程师和雷达工程师发明的，用来侦测战场上的敌军飞机，舰艇等，是一种信号检测理论，还被应用到心理学领域做知觉检测。</p>
+<p>ROC曲线和混淆矩阵息息相关，上一部分已经详细解释了相关内容，这里直接说明ROC曲线的横坐标和纵坐标分别是什么</p>
+<p>横坐标：FPR假正类率，纵坐标：TPR真正类率</p>
+<p>初看之下你不懂一个曲线表示的什么意思，那么看几个特征点或特殊曲线是一个非常好的方法。按照这种方法来分析ROC曲线：</p>
+<ul>
+<li>第一个点：(0,1)，<code>FPR=0</code> <code>TPR=1</code> ，这意味着所有的正类全部分类正确，或者说<strong>这是一个完美的分类器</strong>，将所有的样本都分类正确了</li>
+<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了</li>
+<li>第三个点：(0,0)，<code>FPR=0</code> <code>TPR=0</code> 也就是原点，这个点表示的意思是，<strong>分类器预测所有的样本都为负类</strong></li>
+<li>第四个点：(1,1)，<code>FPR=1</code> <code>TPR=1</code>，和第三个点对应，表示<strong>分类器预测所有的样本都为正类</strong></li>
+</ul>
 ]]></content>
     
     <summary type="html">
