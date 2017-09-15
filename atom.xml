@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-15T19:21:09.000Z</updated>
+  <updated>2017-09-15T19:22:13.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-15T19:21:09.000Z</updated>
+    <updated>2017-09-15T19:22:13.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
 <a id="more"></a>
@@ -304,7 +304,7 @@
 <p>我们假设有这样的一个函数，$y=f(x) + \epsilon$ ，其中噪声 $\epsilon$ 均值为0，<strong>方差为 $\sigma^2$</strong> </p>
 <p>我们的目的是去找到一个函数 $\hat {f}(x)$ <strong>尽可能接近</strong> $f(x)$ ，我们可以用<strong>均方误差（MSE）或者交叉熵，或者DL散度</strong>来表示这个接近程度，我们希望 $(y - \hat f(x) )^2$ 对样本空间内的所有样本和测试集中的所有样本都<strong>最小</strong></p>
 <p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，也称Total Error（误差）：</strong>：<br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
-<p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$ $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
+<p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$，且 $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
 <p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
 <h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2>
 为了公式简介，把 $f(x)$ 和 $\hat f(x)$ 简写为 $f$ $\hat f$ ，记随机变量为 $X$，有
