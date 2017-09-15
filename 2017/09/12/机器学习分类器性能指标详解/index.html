@@ -25,23 +25,23 @@
     
     
     <meta name="keywords" content="Theory,Machine Learning">
-    <meta name="description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+    <meta name="description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
 <meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习分类器性能指标详解">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
-<meta property="og:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+<meta property="og:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/ROCfig.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/score-ranking.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-15T19:36:35.000Z">
+<meta property="og:updated_time" content="2017-09-15T19:37:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
-<meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+<meta name="twitter:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
     
         <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
@@ -196,7 +196,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是<code>准确率 - Accuracy</code>、<code>精确率 - Precision</code>、<code>召回率 - Recall</code>、<code>F1值</code>、<code>ROC曲线</code>、<code>AUC曲线</code>、<code>误差 - Error</code>、<code>偏差 - Bias</code>、<code>方差 - Variance</code>及<code>Bias-Variance Tradeoff</code></p>
+            <p>【阅读时间】16 - 26 min<br>【内容简介】系统详解分类器性能指标，什么是<code>准确率 - Accuracy</code>、<code>精确率 - Precision</code>、<code>召回率 - Recall</code>、<code>F1值</code>、<code>ROC曲线</code>、<code>AUC曲线</code>、<code>误差 - Error</code>、<code>偏差 - Bias</code>、<code>方差 - Variance</code>及<code>Bias-Variance Tradeoff</code></p>
 <a id="more"></a>
 <p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作，这里就一项项已经一些总结和记录</p>
 <h1 id="混淆矩阵-Confusion-Matrix"><a href="#混淆矩阵-Confusion-Matrix" class="headerlink" title="混淆矩阵 - Confusion Matrix"></a>混淆矩阵 - Confusion Matrix</h1><p><strong>准确率</strong>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
@@ -507,7 +507,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-15T19:36:35.000Z" itemprop="dateUpdated">2017-09-15 12:36:35</time>
+    Last updated: <time datetime="2017-09-15T19:37:58.000Z" itemprop="dateUpdated">2017-09-15 12:37:58</time>
 </span><br>
 
 
@@ -550,7 +550,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、RO..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Re..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -711,7 +711,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、RO..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/&title=《机器学习分类器性能指标详解》 — 尼孟尼克 Blog&source=【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Re..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
