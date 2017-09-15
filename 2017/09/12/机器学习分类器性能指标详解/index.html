@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-15T19:27:27.000Z">
+<meta property="og:updated_time" content="2017-09-15T19:30:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
@@ -480,17 +480,9 @@
 <p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，也称Total Error（误差）：</strong>：<br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
 <p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$，且 $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
 <p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
-<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2>
-为了公式简介，把 $f(x)$ 与 $\hat f(x)$ 简写为 $f$ 与 $\hat f$ ，记随机变量为 $X$，有
-$$
-Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2
-$$
-
-因为 $f$ 是一个已经确定的函数，所以 $E[f] = f$ 成立 
-
-根据 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 推出 $E[y] = E[f + \epsilon] = E[f] = f$
-
-并且，噪声的方差 $ Var[\epsilon] = \sigma^2$
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>为了公式简介，把 $f(x)$ 与 $\hat f(x)$ 简写为 $f$ 与 $\hat f$ ，记随机变量为 $X$，有<br>$$<br>Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2<br>$$</p>
+<p>因为 $f$ 是一个已经确定的函数，所以 $E[f] = f$ 成立 </p>
+<p>根据 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 有<br>$$<br>E[y] = E[f + \epsilon] = E[f] = f<br>$$<br>噪声的方差 $ Var[\epsilon] = \sigma^2$<br>
 $$
 Var[y] = E[(y-E[y])^2] = E[(y - f)^2] = E[(f + \epsilon - f)^2] = E[\epsilon^2] = Var[\epsilon] + E[\epsilon]^2 = \sigma^2
 $$
@@ -505,7 +497,7 @@ E[(y - \hat f)^2] & = E[y^2 + \hat f^2 - 2y\hat f] \\
 & = \sigma^2 + Var[\hat f] + Bias[\hat f]^2
 \end{align}
 $$
-
+</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感觉在实际使用中，你不需要去自己写代码来画这些曲线，只要是框架是一定整合了这些值得结果，但是知其然知其所以然，越了解它是如何画的，越能<strong>处理奇怪的特殊情况</strong></p>
 <p>常见的处理方式是记下来所有指标的结果，即这些指标怎么变，表示了模型的那些方面好或者坏的结论，但是如果在特殊的问题出现了不在你看的结果中的情况可能还是会捉襟见肘，还是脚踏实地，能看见更大的世界！</p>
 
@@ -515,7 +507,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-15T19:27:27.000Z" itemprop="dateUpdated">2017-09-15 12:27:27</time>
+    Last updated: <time datetime="2017-09-15T19:30:20.000Z" itemprop="dateUpdated">2017-09-15 12:30:20</time>
 </span><br>
 
 
