@@ -32,7 +32,7 @@
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/index.html">
 <meta property="og:site_name" content="尼孟尼克 Blog">
 <meta property="og:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
-<meta property="og:updated_time" content="2017-09-15T17:30:34.000Z">
+<meta property="og:updated_time" content="2017-09-15T17:51:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是信息熵、交叉熵和相对熵">
 <meta name="twitter:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
@@ -125,7 +125,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -311,7 +311,7 @@ $$
 <p>在机器学习中，即用测试结果集（样本结果集）的概率乘以训练出来的结果集存储因子，而在不断的训练过程中，我们要做的就是通过不断调整参数，降低这个值，<strong>使得模型更加的稳定，不确定性越来越小</strong>，即突出需要表征的数值的特点（白话文也就是分类的效果更好）</p>
 <h3 id="相对熵的由来"><a href="#相对熵的由来" class="headerlink" title="相对熵的由来"></a>相对熵的由来</h3><p>有了信息熵和交叉熵后，<strong>相对熵是用来衡量两个概率分布之间的差异</strong>，记为 $D(P||Q) = H(P,Q) - H(P)$，也称之为KL散度<br>$$<br>D_{KL}(P||Q) = \sum_i{P(i) \log_a {\frac{P(i)}{Q(i)}}}<br>$$<br>当 $P(i) = Q(i)$ 的时候，该值为0，深度学习过程也是一个降低该值的过程，<strong>该值越低，训练出来的概率Q越接近样本集概率P，即越准确</strong>，或者可以理解为<strong>相对熵一把标尺，用来衡量两个函数是否相似，一样就是0</strong>，当然，这种解释十分牵强，但是更直观</p>
 <blockquote>
-<p>关于底数 $a$ 的选择问题，其实和概率分布的情况是分不开的。比如使用2进制编码，那么所能表示的不同情况的数量，$\sum_i=0^N 2^i$，我们知道，指数函数变化率变化很大，不好分析，稳定性差。对数操作可以<strong>乘法变加法，指数放下来</strong>，是十分好用的数学工具（其实是一种变换域的思想，这种思想在整个信息论，统计学中处处可见）</p>
+<p>关于底数 $a$ 的选择问题，其实和概率分布的情况是分不开的。比如使用2进制编码，那么所能表示的不同情况的数量，$\sum_{i=0}^N 2^i$，我们知道，指数函数变化率变化很大，不好分析，稳定性差。对数操作可以<strong>乘法变加法，指数放下来</strong>，是十分好用的数学工具（其实是一种变换域的思想，这种思想在整个信息论，统计学中处处可见）</p>
 <p>比如使用 $ln()$ 的时候，对应的分布，其实是<strong>正态分布</strong>，很好理解，正太分布的底数是 $e$</p>
 </blockquote>
 
@@ -321,7 +321,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-15T17:30:34.000Z" itemprop="dateUpdated">2017-09-15 10:30:34</time>
+    Last updated: <time datetime="2017-09-15T17:51:39.000Z" itemprop="dateUpdated">2017-09-15 10:51:39</time>
 </span><br>
 
 
@@ -502,7 +502,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
