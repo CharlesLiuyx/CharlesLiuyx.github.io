@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-15T18:21:09.000Z">
+<meta property="og:updated_time" content="2017-09-15T19:09:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
@@ -171,7 +171,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#混淆矩阵-Confusion-Matrix"><span class="post-toc-number">1.</span> <span class="post-toc-text">混淆矩阵 - Confusion Matrix</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROC-Curve"><span class="post-toc-number">2.</span> <span class="post-toc-text">ROC Curve</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是ROC曲线"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是ROC曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么使用ROC曲线"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">为什么使用ROC曲线</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#PRC-Curve"><span class="post-toc-number">3.</span> <span class="post-toc-text">PRC Curve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AUC-Value"><span class="post-toc-number">4.</span> <span class="post-toc-text">AUC Value</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三个名词表示了什么"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">三个名词表示了什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推导过程"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">推导过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#混淆矩阵-Confusion-Matrix"><span class="post-toc-number">1.</span> <span class="post-toc-text">混淆矩阵 - Confusion Matrix</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROC-Curve"><span class="post-toc-number">2.</span> <span class="post-toc-text">ROC Curve</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是ROC曲线"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是ROC曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么使用ROC曲线"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">为什么使用ROC曲线</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#PRC-Curve"><span class="post-toc-number">3.</span> <span class="post-toc-text">PRC Curve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AUC-Value"><span class="post-toc-number">4.</span> <span class="post-toc-text">AUC Value</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Bias-Variance-Tradeoff"><span class="post-toc-number">5.</span> <span class="post-toc-text">Bias-Variance Tradeoff</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三个名词表示了什么"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">三个名词表示了什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推导过程"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">推导过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
     
@@ -466,8 +466,7 @@
 <h1 id="AUC-Value"><a href="#AUC-Value" class="headerlink" title="AUC Value"></a>AUC Value</h1><p>AUC - Area Under Curve被定义为ROC曲线下的面积</p>
 <p>AUC在[0.5,1]之间，这是因为ROC曲线一般都处于y=x这条直线的上方（否则这个做分类器的人连简单的取非都不会真可以去死了）</p>
 <p>AUC值越大，证明这个模型越好</p>
-<p>#Bias-Variance Tradeoff</p>
-<p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
+<h1 id="Bias-Variance-Tradeoff"><a href="#Bias-Variance-Tradeoff" class="headerlink" title="Bias-Variance Tradeoff"></a>Bias-Variance Tradeoff</h1><p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
 <h2 id="三个名词表示了什么"><a href="#三个名词表示了什么" class="headerlink" title="三个名词表示了什么"></a>三个名词表示了什么</h2><p>再来一次，一图胜千言</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -499,7 +498,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-15T18:21:09.000Z" itemprop="dateUpdated">2017-09-15 11:21:09</time>
+    Last updated: <time datetime="2017-09-15T19:09:43.000Z" itemprop="dateUpdated">2017-09-15 12:09:43</time>
 </span><br>
 
 
