@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-15T19:22:13.000Z">
+<meta property="og:updated_time" content="2017-09-15T19:23:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
@@ -481,12 +481,12 @@
 <p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$，且 $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
 <p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
 <h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2>
-为了公式简介，把 $f(x)$ 和 $\hat f(x)$ 简写为 $f$ $\hat f$ ，记随机变量为 $X$，有
+为了公式简介，把 $f(x)$ 与 $\hat f(x)$ 简写为 $f$ 与 $\hat f$ ，记随机变量为 $X$，有
 $$
 Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2
 $$
 
-由于 $f$ 是一个已经确定的带求函数，所以 $E[f] = f$
+由于 $f$ 是一个已经确定的函数，所以 $E[f] = f$
 
 由 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 推出 $E[y] = E[f + \epsilon] = E[f] = f$
 
@@ -515,7 +515,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-15T19:22:13.000Z" itemprop="dateUpdated">2017-09-15 12:22:13</time>
+    Last updated: <time datetime="2017-09-15T19:23:48.000Z" itemprop="dateUpdated">2017-09-15 12:23:48</time>
 </span><br>
 
 
