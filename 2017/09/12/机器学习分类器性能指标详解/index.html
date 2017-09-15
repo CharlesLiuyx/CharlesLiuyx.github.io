@@ -37,7 +37,8 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/score-ranking.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
-<meta property="og:updated_time" content="2017-09-14T00:44:28.000Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
+<meta property="og:updated_time" content="2017-09-15T07:29:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff">
@@ -131,7 +132,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -170,7 +171,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#混淆矩阵-Confusion-Matrix"><span class="post-toc-number">1.</span> <span class="post-toc-text">混淆矩阵 - Confusion Matrix</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROC-Curve"><span class="post-toc-number">2.</span> <span class="post-toc-text">ROC Curve</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是ROC曲线"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是ROC曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么使用ROC曲线"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">为什么使用ROC曲线</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#PRC-Curve"><span class="post-toc-number">3.</span> <span class="post-toc-text">PRC Curve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AUC-Value"><span class="post-toc-number">4.</span> <span class="post-toc-text">AUC Value</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#混淆矩阵-Confusion-Matrix"><span class="post-toc-number">1.</span> <span class="post-toc-text">混淆矩阵 - Confusion Matrix</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROC-Curve"><span class="post-toc-number">2.</span> <span class="post-toc-text">ROC Curve</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是ROC曲线"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是ROC曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么使用ROC曲线"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">为什么使用ROC曲线</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#PRC-Curve"><span class="post-toc-number">3.</span> <span class="post-toc-text">PRC Curve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AUC-Value"><span class="post-toc-number">4.</span> <span class="post-toc-text">AUC Value</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三个名词表示了什么"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">三个名词表示了什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推导过程"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">推导过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
     
@@ -419,7 +420,7 @@
 <p>初看之下你不懂一个曲线表示的什么意思，那么看几个特征点或特殊曲线是一个非常好的方法。按照这种方法来分析ROC曲线：</p>
 <ul>
 <li>第一个点：(0,1)，<code>FPR=0</code> <code>TPR=1</code> ，这意味着所有的正类全部分类正确，或者说<strong>这是一个完美的分类器</strong>，将所有的样本都分类正确了</li>
-<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了</li>
+<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了（但其实可以直接取反，就是最好的模型，因为是二分类问题）</li>
 <li>第三个点：(0,0)，<code>FPR=0</code> <code>TPR=0</code> 也就是原点，这个点表示的意思是，<strong>分类器预测所有的样本都为负类</strong></li>
 <li>第四个点：(1,1)，<code>FPR=1</code> <code>TPR=1</code>，和第三个点对应，表示<strong>分类器预测所有的样本都为正类</strong></li>
 <li>一条线：y=x。这<strong>条对角线上的点</strong>实际上就是一个<strong>采用随机猜测策略的分类器的结果</strong></li>
@@ -465,6 +466,30 @@
 <h1 id="AUC-Value"><a href="#AUC-Value" class="headerlink" title="AUC Value"></a>AUC Value</h1><p>AUC - Area Under Curve被定义为ROC曲线下的面积</p>
 <p>AUC在[0.5,1]之间，这是因为ROC曲线一般都处于y=x这条直线的上方（否则这个做分类器的人连简单的取非都不会真可以去死了）</p>
 <p>AUC值越大，证明这个模型越好</p>
+<p>#Bias-Variance Tradeoff</p>
+<p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
+<h2 id="三个名词表示了什么"><a href="#三个名词表示了什么" class="headerlink" title="三个名词表示了什么"></a>三个名词表示了什么</h2><p>再来一次，一图胜千言</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" title="">
+                </div>
+                <div class="image-caption">Bias-Variance-Tradeoff</div>
+            </figure>
+<ul>
+<li><strong>准</strong>：Bias 描述的是<strong>根据样本</strong>训练的模型的<strong>输出预测结果的期望</strong>与<strong>样本真实结果</strong>的差距，说人话，这个模型对样本拟合的好不好。想在Bias上表现好，降低Bias，就是复杂化模型，增加模型的参数，但这样容易过拟合（Overfitting）<strong>Low Bias对应的就是点都在靶心附近，所以瞄的都是准的，但手不一定稳</strong></li>
+<li><strong>确</strong>：Variance 描述的是<strong>根据样本</strong>训练的模型在<strong>测试集上的表现（泛化能力） </strong>，想在Variance上表现好，降低Variance，需要简化模型，减少模型的参数，这样做容易欠拟合，对应上图的High Bias，点偏离的中心。<strong>Low Variance对应的是点打的都很集中，但不一定在靶心附近，手很稳，但是瞄的不准</strong></li>
+</ul>
+<p>要准确表达这两个定义的含义必须要使用公式化的语言，不得不感叹，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
+<p>我们假设有这样的一个函数，$y=f(x) + \epsilon$ ，其中噪声 $\epsilon$ 均值为0，<strong>方差为 $\sigma^2$</strong> </p>
+<p>我们的目的是去找到一个函数 $\hat {f}(x)$ <strong>尽可能接近</strong> $f(x)$ ，我们可以用<strong>均方误差（MSE）或者交叉熵，或者DL散度</strong>来表示这个接近程度，我们希望 $(y - \hat f(x) )^2$ 对样本空间内的所有样本和测试集中的所有样本都<strong>最小</strong></p>
+<p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，也称Total Error（误差）：</strong>：<br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
+<p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$ $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
+<p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>为了公式简介，把 $f(x)$ 和 $\hat f(x)$ 简写为 $f$ $\hat f$ ，记随机变量为 $X$，有<br>$$<br>Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2<br>$$</p>
+<p>由于 $f$ 是一个已经确定的带求函数，所以 $E[f] = f$</p>
+<p>由 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 推出 $E[y] = E[f + \epsilon] = E[f] = f$</p>
+<p>并且，噪声的方差 $ Var[\epsilon] = \sigma^2$<br>$$<br>Var[y] = E[(y-E[y])^2] = E[(y - f)^2] = E[(f + \epsilon - f)^2] = E[\epsilon^2] = Var[\epsilon] + E[\epsilon]^2 = \sigma^2<br>$$<br>由于 $\epsilon$ 和 $\hat f$ 互相独立<br>$$<br>\begin{align}<br>E[(y - \hat f)^2] &amp; = E[y^2 + \hat f^2 - 2y\hat f] \<br>&amp; = E[y^2] + E[\hat f^2] - E[2y\hat f]<br>\end{align}<br>$$</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感觉在实际使用中，你不需要去自己写代码来画这些曲线，只要是框架是一定整合了这些值得结果，但是知其然知其所以然，越了解它是如何画的，越能<strong>处理奇怪的特殊情况</strong></p>
 <p>常见的处理方式是记下来所有指标的结果，即这些指标怎么变，表示了模型的那些方面好或者坏的结论，但是如果在特殊的问题出现了不在你看的结果中的情况可能还是会捉襟见肘，还是脚踏实地，能看见更大的世界！</p>
 
@@ -474,7 +499,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-14T00:44:28.000Z" itemprop="dateUpdated">2017-09-13 17:44:28</time>
+    最后更新时间：<time datetime="2017-09-15T07:29:19.000Z" itemprop="dateUpdated">2017-09-15 00:29:19</time>
 </span><br>
 
 
@@ -648,7 +673,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-14T00:44:28.000Z</updated>
+  <updated>2017-09-15T07:29:19.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-14T00:44:28.000Z</updated>
+    <updated>2017-09-15T07:29:19.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
 <a id="more"></a>
@@ -246,7 +246,7 @@
 <p>初看之下你不懂一个曲线表示的什么意思，那么看几个特征点或特殊曲线是一个非常好的方法。按照这种方法来分析ROC曲线：</p>
 <ul>
 <li>第一个点：(0,1)，<code>FPR=0</code> <code>TPR=1</code> ，这意味着所有的正类全部分类正确，或者说<strong>这是一个完美的分类器</strong>，将所有的样本都分类正确了</li>
-<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了</li>
+<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了（但其实可以直接取反，就是最好的模型，因为是二分类问题）</li>
 <li>第三个点：(0,0)，<code>FPR=0</code> <code>TPR=0</code> 也就是原点，这个点表示的意思是，<strong>分类器预测所有的样本都为负类</strong></li>
 <li>第四个点：(1,1)，<code>FPR=1</code> <code>TPR=1</code>，和第三个点对应，表示<strong>分类器预测所有的样本都为正类</strong></li>
 <li>一条线：y=x。这<strong>条对角线上的点</strong>实际上就是一个<strong>采用随机猜测策略的分类器的结果</strong></li>
@@ -292,6 +292,30 @@
 <h1 id="AUC-Value"><a href="#AUC-Value" class="headerlink" title="AUC Value"></a>AUC Value</h1><p>AUC - Area Under Curve被定义为ROC曲线下的面积</p>
 <p>AUC在[0.5,1]之间，这是因为ROC曲线一般都处于y=x这条直线的上方（否则这个做分类器的人连简单的取非都不会真可以去死了）</p>
 <p>AUC值越大，证明这个模型越好</p>
+<p>#Bias-Variance Tradeoff</p>
+<p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
+<h2 id="三个名词表示了什么"><a href="#三个名词表示了什么" class="headerlink" title="三个名词表示了什么"></a>三个名词表示了什么</h2><p>再来一次，一图胜千言</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" title="">
+                </div>
+                <div class="image-caption">Bias-Variance-Tradeoff</div>
+            </figure>
+<ul>
+<li><strong>准</strong>：Bias 描述的是<strong>根据样本</strong>训练的模型的<strong>输出预测结果的期望</strong>与<strong>样本真实结果</strong>的差距，说人话，这个模型对样本拟合的好不好。想在Bias上表现好，降低Bias，就是复杂化模型，增加模型的参数，但这样容易过拟合（Overfitting）<strong>Low Bias对应的就是点都在靶心附近，所以瞄的都是准的，但手不一定稳</strong></li>
+<li><strong>确</strong>：Variance 描述的是<strong>根据样本</strong>训练的模型在<strong>测试集上的表现（泛化能力） </strong>，想在Variance上表现好，降低Variance，需要简化模型，减少模型的参数，这样做容易欠拟合，对应上图的High Bias，点偏离的中心。<strong>Low Variance对应的是点打的都很集中，但不一定在靶心附近，手很稳，但是瞄的不准</strong></li>
+</ul>
+<p>要准确表达这两个定义的含义必须要使用公式化的语言，不得不感叹，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
+<p>我们假设有这样的一个函数，$y=f(x) + \epsilon$ ，其中噪声 $\epsilon$ 均值为0，<strong>方差为 $\sigma^2$</strong> </p>
+<p>我们的目的是去找到一个函数 $\hat {f}(x)$ <strong>尽可能接近</strong> $f(x)$ ，我们可以用<strong>均方误差（MSE）或者交叉熵，或者DL散度</strong>来表示这个接近程度，我们希望 $(y - \hat f(x) )^2$ 对样本空间内的所有样本和测试集中的所有样本都<strong>最小</strong></p>
+<p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，也称Total Error（误差）：</strong>：<br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
+<p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$ $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
+<p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>为了公式简介，把 $f(x)$ 和 $\hat f(x)$ 简写为 $f$ $\hat f$ ，记随机变量为 $X$，有<br>$$<br>Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2<br>$$</p>
+<p>由于 $f$ 是一个已经确定的带求函数，所以 $E[f] = f$</p>
+<p>由 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 推出 $E[y] = E[f + \epsilon] = E[f] = f$</p>
+<p>并且，噪声的方差 $ Var[\epsilon] = \sigma^2$<br>$$<br>Var[y] = E[(y-E[y])^2] = E[(y - f)^2] = E[(f + \epsilon - f)^2] = E[\epsilon^2] = Var[\epsilon] + E[\epsilon]^2 = \sigma^2<br>$$<br>由于 $\epsilon$ 和 $\hat f$ 互相独立<br>$$<br>\begin{align}<br>E[(y - \hat f)^2] &amp; = E[y^2 + \hat f^2 - 2y\hat f] \<br>&amp; = E[y^2] + E[\hat f^2] - E[2y\hat f]<br>\end{align}<br>$$</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感觉在实际使用中，你不需要去自己写代码来画这些曲线，只要是框架是一定整合了这些值得结果，但是知其然知其所以然，越了解它是如何画的，越能<strong>处理奇怪的特殊情况</strong></p>
 <p>常见的处理方式是记下来所有指标的结果，即这些指标怎么变，表示了模型的那些方面好或者坏的结论，但是如果在特殊的问题出现了不在你看的结果中的情况可能还是会捉襟见肘，还是脚踏实地，能看见更大的世界！</p>
 ]]></content>
@@ -314,7 +338,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/"/>
     <id>https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/</id>
     <published>2017-09-11T07:25:49.000Z</published>
-    <updated>2017-09-12T19:01:19.000Z</updated>
+    <updated>2017-09-15T17:30:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】10min - 13min<br>【内容简介】使用一个现实中直观的例子详解<strong>信息熵、交叉熵及相对熵</strong>的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑</p>
 <p>要完成题目的最终解释，必须从<strong>熵</strong>这个神奇的概念开始讲起</p>
@@ -336,7 +360,7 @@
 <li>9月12日苹果公司举行发布会</li>
 </ul>
 <p>那么这三个描述中，很明显，第二条的信息量更大，因为它可以使得不确定事件发生在 $p_3$ 的<strong>概率更大</strong>。类似的，第三条对判断毫无帮助，信息量为0。<em>注意，信息量不等于信息熵，如果是这样，那么直接用概率来衡量就可以了，不需要在重新定义一个概念</em></p>
-<p><strong>其实信息熵是信息量的期望，它不是针对每条信息，而是针对整个不确定性结果集而言，信息熵越大，事件不确定性就越大。单条信息只能从某种程度上影响结果集概率的分布</strong></p>
+<p><strong>其实信息熵是信息量的期望（均值），它不是针对每条信息，而是针对整个不确定性结果集而言，信息熵越大，事件不确定性就越大。单条信息只能从某种程度上影响结果集概率的分布</strong></p>
 <h2 id="考虑到信息冗余，信息量存储下来究竟需要多大空间？"><a href="#考虑到信息冗余，信息量存储下来究竟需要多大空间？" class="headerlink" title="考虑到信息冗余，信息量存储下来究竟需要多大空间？"></a>考虑到信息冗余，信息量存储下来究竟需要<u>多大空间</u>？</h2><p>我们已经有了 $\mathbf P = [p_1,p_2,p_3,p_4]$ 来表示天气情况，那么用计算机来存储每天的天气，那该如何编码呢？</p>
 <p>常见的做法是，4个不同的信息，只需要2bit就能做到，<code>00</code> <code>01</code> <code>11</code> <code>10</code>，假设我们在南方城市，肯定要把<code>00</code>编码成雨天，这样可以<strong>节省存储空间</strong>，至于为什么能节省存储空间，这就要讨论编码方式。可以简单的理解为，如果一串信息一串<code>0</code>很多，可以<strong>通过编码压缩这一群0来节省空间</strong></p>
 <p>使用一个公式来计算记录<strong>n天数据</strong>需要的<strong>存储空间</strong>：Sn</p>
@@ -356,6 +380,7 @@ $$
 </ul>
 <p>那么我们结束清楚之后，就很容易就可以定义出<br>$$<br>F(P_i) = \log_a ({\frac{1}{P_i}}) \tag{2-2}<br>$$<br> a作为底数，可以取2（处理2bit数据），10（万金油），e（处理正态分布相关的数据）</p>
 <p>结合对信息熵的定义（第一节最后的粗体字）然后把（2-2）带入（2-1），就会发现，哦！看着有点眼熟啊<br>$$<br>H(P) = \sum_i {P(i)log_a {\frac{1}{P(i)}}} = - \sum_i {P(i)log_a {P(i)}} \tag{2-3}<br>$$<br>这这这，就是信息熵的定义式吧？总结就发现，信息熵其实从某种意义上反映了<strong>信息量存储下来需要多少存储空间</strong></p>
+<p>总结为：根据<strong>真实分布</strong>，我们能够找到一个最优策略，以<strong>最小的代价消除系统的不确定性（</strong>比如编码），而<strong>这个代价的大小就是信息熵</strong></p>
 <h2 id="理解基于信息熵的交叉熵和相对熵"><a href="#理解基于信息熵的交叉熵和相对熵" class="headerlink" title="理解基于信息熵的交叉熵和相对熵"></a>理解基于信息熵的交叉熵和相对熵</h2><p>因为是我们用2bit模式存储，为了计算方便，这里取a = 2</p>
 <p>先计算刚刚有关天气问题 $\mathbf P = [p_1,p_2,p_3,p_4]$ ：【阴、晴、雨、雪】的信息熵，假设我们对天气的概率一无所知，那么四种天气的发生概率为<strong>等概率（服从平均分布）</strong>，即 $\mathbf P = [\frac {1}{4},\frac {1}{4},\frac {1}{4},\frac {1}{4}]$ ，带入公式2-3，得到 $H(P) = 2$ ，存储信息需要的空间 $S_n = 2n$ </p>
 <p>继续思考，假设我们考虑天气的城市是一个地处中国南方雨季的城市，那么阴天和雨天的概率从<strong>经验角度（先验概率）</strong>来看大于晴天雪天，把这种分布<strong>记为</strong> $\mathbf Q = [\frac{1}{4},\frac{1}{8},\frac{1}{2},\frac{1}{8}]$，带入公式2-3，信息熵 $H(Q) = 1.75$，存储信息需要的空间 $S_n = 1.75n$ </p>
@@ -431,9 +456,15 @@ $$
 </tbody>
 </table>
 <p>上表直观的展现的<strong>交叉熵</strong>的数值表现，PQZW依次<strong>不确定性越来越低</strong>，极端情况的W不确定性为0，即<strong>是确定的</strong></p>
-<p>总的来说，<strong>我们的目的是：让熵尽可能小，即存储空间小。</strong>（不要问为什么想要存储空间小，这都是钱更是效率和时间）通过上表我们发现一个规律，为了让熵小，解决方案是：<strong>是用确定性更大的额概率乘以确定性更小的存储因子</strong>，比如不确定性越大的概率分布，如P概率分布，其信息熵越大；基于同一确定性分布的情况下，套用不确定性更大的存储因子，如P的存储因子，得出的交叉熵越大</p>
+<p><strong>交叉熵，用来高衡量在给定的真实分布下，使用非真实分布指定的策略消除系统的不确定性所需要付出努力的大小</strong></p>
+<p>总的来说，<strong>我们的目的是：让熵尽可能小，即存储空间小（消除系统的不确定的努力小）。</strong>（不要问为什么想要存储空间小，这都是钱更是效率和时间）</p>
+<p>通过上表我们发现一个规律，为了让熵小，解决方案是：<strong>是用确定性更大的额概率乘以确定性更小的存储因子</strong>，比如不确定性越大的概率分布，如P概率分布，其信息熵越大；<strong>基于同一真实（确定性）分布的情况下</strong>，套用不确定性更大的存储因子，如P的存储因子，得出的交叉熵越大</p>
 <p>在机器学习中，即用测试结果集（样本结果集）的概率乘以训练出来的结果集存储因子，而在不断的训练过程中，我们要做的就是通过不断调整参数，降低这个值，<strong>使得模型更加的稳定，不确定性越来越小</strong>，即突出需要表征的数值的特点（白话文也就是分类的效果更好）</p>
 <h3 id="相对熵的由来"><a href="#相对熵的由来" class="headerlink" title="相对熵的由来"></a>相对熵的由来</h3><p>有了信息熵和交叉熵后，<strong>相对熵是用来衡量两个概率分布之间的差异</strong>，记为 $D(P||Q) = H(P,Q) - H(P)$，也称之为KL散度<br>$$<br>D_{KL}(P||Q) = \sum_i{P(i) \log_a {\frac{P(i)}{Q(i)}}}<br>$$<br>当 $P(i) = Q(i)$ 的时候，该值为0，深度学习过程也是一个降低该值的过程，<strong>该值越低，训练出来的概率Q越接近样本集概率P，即越准确</strong>，或者可以理解为<strong>相对熵一把标尺，用来衡量两个函数是否相似，一样就是0</strong>，当然，这种解释十分牵强，但是更直观</p>
+<blockquote>
+<p>关于底数 $a$ 的选择问题，其实和概率分布的情况是分不开的。比如使用2进制编码，那么所能表示的不同情况的数量，$\sum_i=0^N 2^i$，我们知道，指数函数变化率变化很大，不好分析，稳定性差。对数操作可以<strong>乘法变加法，指数放下来</strong>，是十分好用的数学工具（其实是一种变换域的思想，这种思想在整个信息论，统计学中处处可见）</p>
+<p>比如使用 $ln()$ 的时候，对应的分布，其实是<strong>正态分布</strong>，很好理解，正太分布的底数是 $e$</p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
@@ -1753,7 +1784,7 @@ $$
     <link href="https://charlesliuyx.github.io/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</id>
     <published>2017-09-04T07:21:50.000Z</published>
-    <updated>2017-09-12T19:48:44.000Z</updated>
+    <updated>2017-09-15T17:30:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】17min - 22min<br>【内容简介】从不同角度解释<strong>为何使用Logistic回归模型</strong>，解读模型的<strong>现实意义</strong>，详细解读<strong>为何使用</strong>以及<strong>什么是</strong>交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧</p>
 <a id="more"></a>
@@ -1879,9 +1910,9 @@ $$
 <blockquote>
 <p>注解：说白就和算扔N次硬币，一个连续正反事件串的概率是多少一个含义</p>
 </blockquote>
-<p>看到乘法和指数，第一反应取对数，得到<strong>对数似然函数</strong><br>$$<br>L(w) = \sum_{i=1}^N{[y_ilog\pi(x_i) + (1-y_i)log(1-\pi(x_i))]}<br>$$</p>
-<p>如果跟随我的步伐走到这一步，你会发现，这个形式，<strong>前半部分是“正例成立”的熵，后半部是“反例成立”的熵，两者合称交叉熵，指“正例”和“反例”之间交叉，即第一类和第二类之间交叉</strong>说实话，叫做交叉熵还是和二项分布，伯努利过程分不开联系。在上面不远的地方已经详细定义了这几个符号代表的意思，不记得了可以再看看，加深印象。</p>
-<p>我们发现，$-\frac{L(w)}{N}$ 就是我们一直使用的Objective function or Loss Function or Cost Function，加负号才是最终的形式。总之，<strong>训练的目的就是要求能够使得这个函数达到最小的参数</strong>，最终的目的还是参数，这里对于参数就是 $w$ ，这个参数在上方的统计学角度，和机器学习角度都进行的讨论，重复阅读可以链接这些知识点</p>
+<p>看到乘法和指数，第一反应取对数，得到<strong>对数似然函数</strong><br>$$<br>L(w) = \sum_{i=1}^N{[y_ilog_a\pi(x_i) + (1-y_i)log_a(1-\pi(x_i))]}<br>$$</p>
+<p>如果跟随我的步伐走到这一步，你会发现，这个形式，<strong>前半部分是“正例成立”的交叉熵，后半部是“反例成立”的交叉熵</strong>，说实话，叫做交叉熵和二项分布，伯努利过程分不开联系。在上面不远的地方已经详细定义了这几个符号代表的意思</p>
+<p>我们发现，$-\frac{L(w)}{N}$ 就是我们一直使用的Objective function or Loss Function or Cost Function（加负号才是最终的形式）。总之，<strong>训练的目的就是要求能够使得这个函数达到最小的参数</strong>，最终的目的还是<strong>计算出模型参数</strong>，就是 $w$ ，这个参数在上方的统计学角度，和机器学习角度都进行的讨论，重复阅读可以链接这些知识点</p>
 <p>至于LogLoss的好处，一是取对数之后，<strong>乘法边加法，指数放下来</strong>，是凸函数，方便可以寻找最优解。二是<strong>加快了收敛速度</strong>，这里有个形象的步长比喻，可以想象成去了对数后，缩小了尺度，可以让最快梯度下降法要走的距离变短</p>
 ]]></content>
     
