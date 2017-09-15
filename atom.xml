@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-15T19:16:29.000Z</updated>
+  <updated>2017-09-15T19:18:59.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-15T19:16:29.000Z</updated>
+    <updated>2017-09-15T19:18:59.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias和方差 - Variance及Bias-Variance Tradeoff</p>
 <a id="more"></a>
@@ -294,14 +294,8 @@
 <p>AUC值越大，证明这个模型越好</p>
 <h1 id="Bias-Variance-Tradeoff"><a href="#Bias-Variance-Tradeoff" class="headerlink" title="Bias-Variance Tradeoff"></a>Bias-Variance Tradeoff</h1><p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
 <h2 id="三个名词表示了什么"><a href="#三个名词表示了什么" class="headerlink" title="三个名词表示了什么"></a>三个名词表示了什么</h2><p>再来一次，一图胜千言</p>
-<p><img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" width="450px" align="center"></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" title="">
-                </div>
-                <div class="image-caption">Bias-Variance-Tradeoff</div>
-            </figure>
+<div align="center"><br><br><img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" width="450px"><br><br></div>
+
 <ul>
 <li><strong>准</strong>：Bias 描述的是<strong>根据样本</strong>训练的模型的<strong>输出预测结果的期望</strong>与<strong>样本真实结果</strong>的差距，说人话，这个模型对样本拟合的好不好。想在Bias上表现好，降低Bias，就是复杂化模型，增加模型的参数，但这样容易过拟合（Overfitting）<strong>Low Bias对应的就是点都在靶心附近，所以瞄的都是准的，但手不一定稳</strong></li>
 <li><strong>确</strong>：Variance 描述的是<strong>根据样本</strong>训练的模型在<strong>测试集上的表现（泛化能力） </strong>，想在Variance上表现好，降低Variance，需要简化模型，减少模型的参数，这样做容易欠拟合，对应上图的High Bias，点偏离的中心。<strong>Low Variance对应的是点打的都很集中，但不一定在靶心附近，手很稳，但是瞄的不准</strong></li>
