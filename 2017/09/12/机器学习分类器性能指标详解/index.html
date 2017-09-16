@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-15T19:37:58.000Z">
+<meta property="og:updated_time" content="2017-09-16T08:07:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
@@ -272,7 +272,7 @@
 </svg>
 
 
-<p>通过上暖白的的讨论已经有<code>T+:TP</code> <code>F+:FP</code> <code>T-:TN</code> <code>F-:FN</code> <code>C+:样本正类</code> <code>C-:样本负类</code> <code>Pc+:预测正类</code> <code>Pc-:预测负类</code> </p>
+<p>通过上面的的讨论已经有<code>T+:TP</code> <code>F+:FP</code> <code>T-:TN</code> <code>F-:FN</code> <code>C+:样本正类</code> <code>C-:样本负类</code> <code>Pc+:预测正类</code> <code>Pc-:预测负类</code> </p>
 <p>用样本中的正类和负类进行计算的定义</p>
 <table>
 <thead>
@@ -477,7 +477,7 @@
 <p>要准确表达这两个定义的含义必须要使用公式化的语言，不得不感叹，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
 <p>我们假设有这样的一个函数，$y=f(x) + \epsilon$ ，其中噪声 $\epsilon$ 均值为0，<strong>方差为 $\sigma^2$</strong> </p>
 <p>我们的目的是去找到一个函数 $\hat {f}(x)$ <strong>尽可能接近</strong> $f(x)$ ，我们可以用<strong>均方误差（MSE）或者交叉熵，或者DL散度</strong>来表示这个接近程度，我们希望 $(y - \hat f(x) )^2$ 对样本空间内的所有样本和测试集中的所有样本都<strong>最小</strong></p>
-<p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，也称Total Error（误差）：</strong>：<br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
+<p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，<font color="#FF0000">也称Total Error（误差），在机器学习的训练中，这个值是评判模型好坏最重要：</font></strong><br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
 <p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$，且 $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
 <p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
 <h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>为了公式简介，把 $f(x)$ 与 $\hat f(x)$ 简写为 $f$ 与 $\hat f$ ，记随机变量为 $X$，有<br>$$<br>Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2<br>$$</p>
@@ -507,7 +507,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-15T19:37:58.000Z" itemprop="dateUpdated">2017-09-15 12:37:58</time>
+    Last updated: <time datetime="2017-09-16T08:07:11.000Z" itemprop="dateUpdated">2017-09-16 01:07:11</time>
 </span><br>
 
 
