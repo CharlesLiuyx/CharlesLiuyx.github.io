@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-09-16T08:07:11.000Z</updated>
+  <updated>2017-09-17T00:24:16.000Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="https://charlesliuyx.github.io/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/"/>
     <id>https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/</id>
     <published>2017-09-12T20:05:32.000Z</published>
-    <updated>2017-09-16T08:07:11.000Z</updated>
+    <updated>2017-09-17T00:24:16.000Z</updated>
     
     <content type="html"><![CDATA[<p>【阅读时间】16 - 26 min<br>【内容简介】系统详解分类器性能指标，什么是<code>准确率 - Accuracy</code>、<code>精确率 - Precision</code>、<code>召回率 - Recall</code>、<code>F1值</code>、<code>ROC曲线</code>、<code>AUC曲线</code>、<code>误差 - Error</code>、<code>偏差 - Bias</code>、<code>方差 - Variance</code>及<code>Bias-Variance Tradeoff</code></p>
 <a id="more"></a>
-<p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作，这里就一项项已经一些总结和记录</p>
+<p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作</p>
 <h1 id="混淆矩阵-Confusion-Matrix"><a href="#混淆矩阵-Confusion-Matrix" class="headerlink" title="混淆矩阵 - Confusion Matrix"></a>混淆矩阵 - Confusion Matrix</h1><p><strong>准确率</strong>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
 <p>通过准确率，的确可以在一些场合，从某种意义上得到一个分类器是否有效，但它并不总是能有效的评价一个分类器的工作。一个例子，Google抓取了100个特殊页面，它的索引中有10000000页面。随机抽取一个页面，这是不是特殊页面呢？如果我们的分类器确定一个分类规则：“只要来一个页面就判断为【不是特殊页面】”，这么做的效率非常高，如果计算按照准确率的定义来计算的话，是(9,999,900/10,000,000) = 99.999%。虽然高，但是这不是我们并不是我们真正需要的值，就需要新的定义标准了</p>
 <p>对于一个二分类问题来说，将实例分为<strong>正类（Positive/+）</strong>或<strong>负类（Negative/-）</strong>，但在使用分类器进行分类时会有四种情况</p>
