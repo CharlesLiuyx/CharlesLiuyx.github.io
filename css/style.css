@@ -2720,40 +2720,40 @@ pre .javascript .function {
   font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei" "Lucida Grande", Verdana, "Helvetica Neue", Arial;
 }
 .tagcloud a.color0 {
-  background: #88acdb;
+  background: #ba8f6c;
 }
 .tagcloud a.color0::before {
-  border-right-color: #88acdb;
+  border-right-color: #ba8f6c;
 }
 .tagcloud a.color1 {
-  background: #ffa07a;
+  background: #ff945c;
 }
 .tagcloud a.color1::before {
-  border-right-color: #ffa07a;
+  border-right-color: #ff945c;
 }
 .tagcloud a.color2 {
-  background: #f08080;
+  background: #7b5d5f;
 }
 .tagcloud a.color2::before {
-  border-right-color: #f08080;
+  border-right-color: #7b5d5f;
 }
 .tagcloud a.color3 {
-  background: #76becc;
+  background: #f5c7b7;
 }
 .tagcloud a.color3::before {
-  border-right-color: #76becc;
+  border-right-color: #f5c7b7;
 }
 .tagcloud a.color4 {
-  background: #918597;
+  background: #cfb7c4;
 }
 .tagcloud a.color4::before {
-  border-right-color: #918597;
+  border-right-color: #cfb7c4;
 }
 .tagcloud a.color5 {
-  background: #6fc0e4;
+  background: #918597;
 }
 .tagcloud a.color5::before {
-  border-right-color: #6fc0e4;
+  border-right-color: #918597;
 }
 .tagcloud a.color6 {
   background: #bc8f8f;
@@ -2971,4 +2971,136 @@ pre .javascript .function {
   padding: 0;
   height: 100%;
   overflow: hidden;
+}
+.search {
+  width: 68%;
+  height: 18px;
+  margin-top: 1px;
+  padding: 0;
+  font-family: inherit;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #d3d3d3;
+  border-radius: 2px;
+  opacity: 0.65;
+  background: none;
+}
+.search:hover {
+  border: 2px solid #d3d3d3;
+  opacity: 1;
+  -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+#search-form .fa-times {
+  display: none;
+  padding: 1px 0.7em;
+  -webkit-box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  box-shadow: 0 0 3px rgba(0,0,0,0.15);
+  cursor: pointer;
+  color: #808080;
+}
+#search-form .fa-times:active {
+  background: #d3d3d3;
+}
+#search-form .fa-times:hover {
+  zoom: 1.1;
+  padding: 1px 0.6em;
+  border: 1px solid #d3d3d3;
+  -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+#local-search-result {
+  margin: auto -12% auto -6%;
+  font-size: 0.9rem;
+  text-align: left;
+  word-break: break-all;
+}
+#local-search-result ul.search-result-list li:hover {
+  font-weight: normal;
+}
+#local-search-result li {
+  margin: 0.5em auto;
+  border-bottom: 2px solid #d3d3d3;
+}
+#local-search-result .search-result-list li:hover {
+  background: rgba(158,188,226,0.21);
+  -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+#local-search-result a.search-result-title {
+  line-height: 1.2;
+  font-weight: bold;
+  color: #708090;
+}
+#local-search-result p.search-result {
+  margin: 0.4em auto;
+  line-height: 1.2rem;
+  max-height: 3.6rem;
+  overflow: hidden;
+  font-size: 0.8rem;
+  text-align: justify;
+  color: #808080;
+}
+#local-search-result em.search-keyword {
+  color: #f58e90;
+  border-bottom: 1px dashed #f58e90;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+p.no-result {
+  display: none;
+  margin: 2em 0 2em 6%;
+  padding-bottom: 0.5em;
+  text-align: left;
+  color: #808080;
+  font-family: Times, Georgia serif;
+  border-bottom: 2px solid #d3d3d3;
+}
+body {
+  background: #d3d3d3;
+}
+#container .left-col {
+  background: #fff;
+}
+.article {
+  background: #fff;
+}
+.article .article-inner {
+  margin-bottom: 1em;
+}
+.article .article-more-link a {
+  opacity: 0.9;
+}
+.tagcloud a {
+  opacity: 0.9;
+}
+#header .header-nav .social li {
+  opacity: 0.8;
+}
+.archives-wrap {
+  background: #fff;
+}
+.scroll a .fa {
+  color: #fff;
+}
+.post-nav-button {
+  background: #ececec;
+}
+#post-nav-button a {
+  background: rgba(215,216,215,0.5);
+}
+.post-list {
+  background: #fff;
+}
+#article-nav {
+  background: rgba(158,188,226,0.9);
+}
+body {
+  background: #808080;
+}
+.article-header {
+  border-left: 5px solid #666;
+}
+.article-more-link a {
+  background: #4d4d4d;
+  font-size: 0.8em;
 }
