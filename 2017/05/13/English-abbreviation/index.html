@@ -596,6 +596,23 @@ MathJax.Hub.Queue(function() {
     
 </script>
 
+    <script>
+        var originTitle = document.title;
+        var titleTime;
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                document.title = "待机中" + originTitle;
+                clearTimeout(titleTime);
+            }
+            else {
+                document.title = "欢迎回来！" + originTitle;
+                titleTime = setTimeout(function() {
+                    document.title = originTitle;
+                }, 2000);
+            }
+        })
+    </script>
+
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
   </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
