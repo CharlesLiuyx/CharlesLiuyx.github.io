@@ -1276,8 +1276,6 @@ body .ui-tooltip {
   background: transparent;
 }
 .body-wrap {
-  max-width: 80em;
-  margin: auto;
   margin-bottom: 126px;
   overflow: hidden;
 }
