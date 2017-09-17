@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
-<meta property="og:updated_time" content="2017-09-17T00:24:16.000Z">
+<meta property="og:updated_time" content="2017-09-17T03:13:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习分类器性能指标详解">
 <meta name="twitter:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
@@ -386,13 +386,13 @@
 <td style="text-align:center">F1 score</td>
 <td style="text-align:center">$F_1$ test measure</td>
 <td style="text-align:center">F1值</td>
-<td style="text-align:center">$frac{2}{\frac{1}{recall}+\frac{ }{precision}}$</td>
+<td style="text-align:center">$\frac{2}{\frac{1}{recall}+\frac{1}{precision}}$</td>
 </tr>
 <tr>
 <td style="text-align:center">MCC</td>
 <td style="text-align:center">Matthews Correlation coefficient</td>
 <td style="text-align:center">马修斯相关性系数</td>
-<td style="text-align:center">$\frac{TP \times TN - FP \times FN}{\sqr {(TP + FP)(TP + FN)(TN + FP)(TN +FN)}}t$</td>
+<td style="text-align:center">$\frac{TP \times TN - FP \times FN}{\sqrt {(TP + FP)(TP + FN)(TN + FP)(TN +FN)}}$</td>
 </tr>
 </tbody>
 </table>
@@ -507,7 +507,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-17T00:24:16.000Z" itemprop="dateUpdated">2017-09-16 17:24:16</time>
+    Last updated: <time datetime="2017-09-17T03:13:20.000Z" itemprop="dateUpdated">2017-09-16 20:13:20</time>
 </span><br>
 
 
