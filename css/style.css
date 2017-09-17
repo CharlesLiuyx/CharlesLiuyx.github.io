@@ -1492,47 +1492,49 @@ color
   border-radius: 50%;
   background: #d3d3d3;
 }
-.article-entry h1 {
-  margin-top: 30px;
-}
-.article-entry h2 {
-  margin: 0.5em auto;
-  color: #66be66;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-  text-align: center;
-  font-size: 1.5rem;
-}
-.article-entry h2:hover {
-  color: #88acdb;
-}
-.article-entry h2::before,
-.article-entry h2::after {
-  content: " —— ";
-  font-family: Arial;
-}
-.article-entry h3 {
-  margin: 0.5em auto;
-  color: #438aac;
-  background: rgba(243,248,253,0.6);
-  border: 1px solid #d2e8fa;
-  padding: 0.2em 0.6em;
-  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.15);
-}
-.article-entry h3:hover a {
-  text-decoration: underline;
-}
-.article-entry h3::after {
-  content: " >";
-}
+.article-entry h1,
+.article-entry h2,
+.article-entry h3,
 .article-entry h4,
 .article-entry h5,
 .article-entry h6 {
-  margin-top: 20px;
-  color: #574c4c;
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ddd;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.article-entry h1,
+.article-entry h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #eee;
+}
+.article-entry h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+.article-entry h2 {
+  font-size: 1.75rem;
+  line-height: 1.225;
+}
+.article-entry h3 {
+  font-size: 1.5rem;
+  line-height: 1.43;
+}
+.article-entry h4 {
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+.article-entry h1 {
+  margin: 0.67em 0;
+}
+.article-entry h5,
+.article-entry h6 {
+  font-size: 1rem;
+}
+.article-entry h6 {
+  color: #777;
 }
 .article-entry figure table {
   border: none;
@@ -3054,45 +3056,6 @@ p.no-result {
   color: #808080;
   font-family: Times, Georgia serif;
   border-bottom: 2px solid #d3d3d3;
-}
-body {
-  background: #d3d3d3;
-}
-#container .left-col {
-  background: #fff;
-}
-.article {
-  background: #fff;
-}
-.article .article-inner {
-  margin-bottom: 1em;
-}
-.article .article-more-link a {
-  opacity: 0.9;
-}
-.tagcloud a {
-  opacity: 0.9;
-}
-#header .header-nav .social li {
-  opacity: 0.8;
-}
-.archives-wrap {
-  background: #fff;
-}
-.scroll a .fa {
-  color: #fff;
-}
-.post-nav-button {
-  background: #ececec;
-}
-#post-nav-button a {
-  background: rgba(215,216,215,0.5);
-}
-.post-list {
-  background: #fff;
-}
-#article-nav {
-  background: rgba(158,188,226,0.9);
 }
 body {
   background: #808080;
