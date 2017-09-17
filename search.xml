@@ -2437,13 +2437,7 @@ $$
             </figure>
 <p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合$P_{human-plus}(\vec s)$和$P_{human}(\vec s)$后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰【围棋】为叩门砖打开了机器学习自我进化的大门</strong></p>
-<h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
-                </div>
-                <div class="image-caption">李世石78手</div>
-            </figure>
+<h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" width="400" align="center" alt="78"></p>
 <p>赛后AlphaGo之父给出的关键信息：<code>李世石78手“挖”是AlphaGo认为概率极小的点</code>，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，即之前AlphaGo的<strong>自对弈</strong>都是建立用自己觉得好的下法来搜索的，那么如果这一手AlphaGo1.0感觉可能性极小，那么用$P_{human}(\vec s)$自对弈的棋谱中就更加难以覆盖。</p>
 <p>但是也需要提到的是，根据比赛中柯洁等人的观战我们知道，如果不是后面AlphaGo进入了混乱模式，78手不一定是一个好棋。只能说这一手，顶到了AlphaGo的软肋，在真正和人的对局中不一定是“神之一手”</p>
 <p>根据Deepmind团队给出的数据可以知道，一年前，AphaGo1.0的搜索空间，自对弈深度并不完美。所以Deepmind团队有意的在<strong>代码逻辑</strong>上让其<strong>避免打劫</strong>，或者说避免<strong>劫争</strong>，例如，有两个选择，一个胜率60%但需要打劫，另一个55%但不需要打劫，AlphaGo1.0会选择后者。</p>
