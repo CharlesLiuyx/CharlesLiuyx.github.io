@@ -2335,47 +2335,9 @@ pre .javascript .function {
 .share:hover {
   opacity: 1;
 }
-.bdsharebuttonbox a,
-.bdsharebuttonbox .bds_more {
-  width: 30px;
-  height: 30px !important;
-  line-height: 30px !important;
-  text-align: center;
-  padding-left: 0 !important;
-  font-size: 20.400000000000002px !important;
-  text-decoration: none;
-  color: #fff !important;
-  -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.1), 1px 1px 1px rgba(0,0,0,0.3);
-  box-shadow: 1px 1px 1px rgba(0,0,0,0.1), 1px 1px 1px rgba(0,0,0,0.3);
-}
-.bdsharebuttonbox a:hover,
-.bdsharebuttonbox .bds_more:hover {
-  -webkit-transform: scale(1.1);
-  -moz-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  color: #fff !important;
-}
-.bdsharebuttonbox .bds_tsina {
-  background: #db332f !important;
-}
-.bdsharebuttonbox .bds_sqq {
-  background: #1cbcef !important;
-}
-.bdsharebuttonbox .bds_copy {
-  background: #8f8f8f !important;
-}
-.bdsharebuttonbox .bds_mail {
-  background: #6fc0e4 !important;
-}
-.bdsharebuttonbox .bds_weixin {
-  background: #8cdc49 !important;
-}
-.bdsharebuttonbox .bds_more {
-  background: #8cbcf5 !important;
-}
-.bdsharebuttonbox .bds_twi {
-  background: #21abf4 !important;
+.addthis_sharing_toolbox {
+  margin-top: 0.5em;
+  margin-left: -2px;
 }
 #page-nav {
   text-align: center;
