@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
-    
 
-    
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
 
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
-<script>var _hmt = _hmt || []</script>
-<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
-<!-- End Baidu Tongji -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Nimonic" />
 
 
 
-
-    <meta charset="utf-8">
-    
-    
-    
-    <title>Dota2机制总结 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="Dota2,DataAnalysis">
-    <meta name="description" content="【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等 版本信息：更新到7.06f">
+<meta name="description" content="【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等 版本信息：更新到7.06f">
 <meta name="keywords" content="Dota2,DataAnalysis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dota2机制总结">
@@ -38,160 +28,292 @@
 <meta name="twitter:title" content="Dota2机制总结">
 <meta name="twitter:description" content="【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等 版本信息：更新到7.06f">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png">
-    
-        <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
-    
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="尼孟尼克 Blog" type="application/atom+xml">
+
+
+
     <link rel="shortcut icon" href="/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
-    <script>window.lazyScripts=[]</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Dota2机制总结 | 尼孟尼克 Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </head>
-
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
-
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
         </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">Nimonic</h5>
-          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Nimonic</a></h1>
         </hgroup>
+
+        
+        <p class="header-subtitle">Stay Hungry, Stay Foolish</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/297106286@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Autohotkey/">Autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTcoin/">BTcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitTiger/">BitTiger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataAnalysis/">DataAnalysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dota2/">Dota2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Infomation-Theory/">Infomation Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MCTS/">MCTS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Model/">Model</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theory/">Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawl/">crawl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/幕布/">幕布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率工具/">效率工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语积累/">英语积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Nimonic</a></h1>
       </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                Home
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/CharlesLiuyx" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">Dota2机制总结</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Nimonic</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Stay Hungry, Stay Foolish</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/297106286@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">Dota2机制总结</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2017-09-06T06:50:56.000Z" itemprop="datePublished" class="page-time">
-  2017-09-05
-</time>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-Dota2机制总结" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/05/Dota2机制总结/" class="article-date">
+      <time datetime="2017-09-06T06:50:56.000Z" itemprop="datePublished">2017-09-05</time>
+</a>
 
 
-            
-        </h5>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dota2机制总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataAnalysis/">DataAnalysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dota2/">Dota2</a></li></ul>
     </div>
 
+        <div class="clearfix"></div>
+      </div>
+      
     
-
-
-</header>
-
-
-<div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#金钱"><span class="post-toc-number">1.</span> <span class="post-toc-text">金钱</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#击杀英雄奖励"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">击杀英雄奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#助攻奖励"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">助攻奖励</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Roshan"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Roshan</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#死亡掉钱"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">死亡掉钱</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#复活"><span class="post-toc-number">2.</span> <span class="post-toc-text">复活</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复活时间"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">复活时间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#买活花费"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">买活花费</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#放弃比赛"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">放弃比赛</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物理攻击伤害"><span class="post-toc-number">3.</span> <span class="post-toc-text">物理攻击伤害</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最终攻击伤害"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">最终攻击伤害</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MD-Main-Damage-主要攻击力【白字攻击力】"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">MD(Main Damage) 主要攻击力【白字攻击力】</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#PBD-Percentage-bonus-damage-百分比攻击力加成"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">PBD(Percentage bonus damage) 百分比攻击力加成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#FBD-Flat-Bonus-Damage-固定值百分比加成"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">FBD(Flat Bonus Damage) 固定值百分比加成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CSM-Critical-Strike-Multiplier-致命一击倍数"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">CSM(Critical Strike Multiplier) 致命一击倍数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#BD-Blocked-Damage-被格挡伤害"><span class="post-toc-number">3.1.5.</span> <span class="post-toc-text">BD(Blocked Damage) 被格挡伤害</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AVM-Armor-Value-Multiplier-护甲值倍数"><span class="post-toc-number">3.1.6.</span> <span class="post-toc-text">AVM(Armor Value Multiplier) 护甲值倍数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#ATM-Armor-Type-Multiplier-护甲类型倍数"><span class="post-toc-number">3.1.7.</span> <span class="post-toc-text">ATM(Armor Type Multiplier) 护甲类型倍数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GDM-General-Damage-Multipliers-一般伤害倍数"><span class="post-toc-number">3.1.8.</span> <span class="post-toc-text">GDM(General Damage Multipliers) 一般伤害倍数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击类型"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">攻击类型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伤害调整"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">伤害调整</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#攻击速度"><span class="post-toc-number">4.</span> <span class="post-toc-text">攻击速度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础攻击间隔-BAT"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">基础攻击间隔 BAT</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击速度-ISA"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">攻击速度 ISA</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击速度计算公式"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">攻击速度计算公式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#增加攻击速度技能列表"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">增加攻击速度技能列表</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#降低攻击速度技能"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">降低攻击速度技能</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#技能攻击伤害"><span class="post-toc-number">5.</span> <span class="post-toc-text">技能攻击伤害</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技能伤害计算"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">技能伤害计算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技能增强天赋"><span class="post-toc-number">5.1.1.</span> <span class="post-toc-text">技能增强天赋</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技能伤害类型"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">技能伤害类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#物理伤害技能"><span class="post-toc-number">5.2.1.</span> <span class="post-toc-text">物理伤害技能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#纯粹伤害技能"><span class="post-toc-number">5.2.2.</span> <span class="post-toc-text">纯粹伤害技能</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#护甲"><span class="post-toc-number">6.</span> <span class="post-toc-text">护甲</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白字护甲"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">白字护甲</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲值倍数"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">护甲值倍数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲值倍数倍数和护甲值的相关曲线"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">护甲值倍数倍数和护甲值的相关曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#有效生命值-（EHP）"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">有效生命值 （EHP）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#护甲调整"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">护甲调整</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#增加护甲的技能"><span class="post-toc-number">6.5.1.</span> <span class="post-toc-text">增加护甲的技能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#减低护甲的技能"><span class="post-toc-number">6.5.2.</span> <span class="post-toc-text">减低护甲的技能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#护甲相关装备"><span class="post-toc-number">6.5.3.</span> <span class="post-toc-text">护甲相关装备</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#闪避"><span class="post-toc-number">7.</span> <span class="post-toc-text">闪避</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机制"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叠加与计算"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">叠加与计算</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上下坡落空几率"><span class="post-toc-number">7.2.1.</span> <span class="post-toc-text">上下坡落空几率</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算公式"><span class="post-toc-number">7.2.2.</span> <span class="post-toc-text">计算公式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#闪避来源"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">闪避来源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#致盲来源"><span class="post-toc-number">7.3.1.</span> <span class="post-toc-text">致盲来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#克敌机先来源"><span class="post-toc-number">7.3.2.</span> <span class="post-toc-text">克敌机先来源</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#必中来源"><span class="post-toc-number">7.3.3.</span> <span class="post-toc-text">必中来源</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#移动速度"><span class="post-toc-number">8.</span> <span class="post-toc-text">移动速度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叠加"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">叠加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#公式"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">公式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#魔法抗性"><span class="post-toc-number">9.</span> <span class="post-toc-text">魔法抗性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔法抗性加成来源"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">魔法抗性加成来源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔法抗性减少来源"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">魔法抗性减少来源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔法抗性100-来源"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">魔法抗性100%来源</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔法吸收护盾"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">魔法吸收护盾</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#物品被动效果叠加"><span class="post-toc-number">10.</span> <span class="post-toc-text">物品被动效果叠加</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#独立叠加"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">独立叠加</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#乘法叠加"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">乘法叠加</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#躲避"><span class="post-toc-number">11.</span> <span class="post-toc-text">躲避</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#躲避技能的方式"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">躲避技能的方式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#技能"><span class="post-toc-number">11.1.1.</span> <span class="post-toc-text">技能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#传送"><span class="post-toc-number">11.1.2.</span> <span class="post-toc-text">传送</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#隐身"><span class="post-toc-number">11.1.3.</span> <span class="post-toc-text">隐身</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#隐藏"><span class="post-toc-number">11.1.4.</span> <span class="post-toc-text">隐藏</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无敌"><span class="post-toc-number">11.1.5.</span> <span class="post-toc-text">无敌</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#可以被躲避的弹道"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">可以被躲避的弹道</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可以被躲避的技能"><span class="post-toc-number">11.2.1.</span> <span class="post-toc-text">可以被躲避的技能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#不可以被躲避的技能"><span class="post-toc-number">11.2.2.</span> <span class="post-toc-text">不可以被躲避的技能</span></a></li></ol></li></ol></li></ol>
-        </nav>
-    </aside>
-    
-<article id="post-Dota2机制总结"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">Dota2机制总结</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2017-09-05 23:50:56" datetime="2017-09-06T06:50:56.000Z"  itemprop="datePublished">2017-09-05</time>
-
-            
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-            
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】百科类型文章<br>【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>【阅读时间】百科类型文章<br>【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等</p>
 <p>版本信息：更新到7.06f</p>
 <a id="more"></a>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -849,13 +971,7 @@ $$
 <h1 id="护甲"><a href="#护甲" class="headerlink" title="护甲"></a>护甲</h1><h2 id="白字护甲"><a href="#白字护甲" class="headerlink" title="白字护甲"></a>白字护甲</h2><p>$$<br>敏捷 = 基础敏捷 + (等级 - 1) * 敏捷成长<br>$$</p>
 <p>$$<br>白字护甲 = 基础护甲 + ( \frac{敏捷}{7})<br>$$</p>
 <h2 id="护甲值倍数"><a href="#护甲值倍数" class="headerlink" title="护甲值倍数"></a>护甲值倍数</h2><p>$$<br>护甲值倍数 = 1 - \frac{0.06 \times 护甲值}{1 + 0.06 \times |护甲值| }<br>$$</p>
-<h2 id="护甲值倍数倍数和护甲值的相关曲线"><a href="#护甲值倍数倍数和护甲值的相关曲线" class="headerlink" title="护甲值倍数倍数和护甲值的相关曲线"></a>护甲值倍数倍数和护甲值的相关曲线</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png" alt="相关曲线" title="">
-                </div>
-                <div class="image-caption">相关曲线</div>
-            </figure>
+<h2 id="护甲值倍数倍数和护甲值的相关曲线"><a href="#护甲值倍数倍数和护甲值的相关曲线" class="headerlink" title="护甲值倍数倍数和护甲值的相关曲线"></a>护甲值倍数倍数和护甲值的相关曲线</h2><p><img src="//charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png" alt="相关曲线"></p>
 <p>纵坐标是护甲值倍数，横坐标是现在英雄的护甲，不同颜色的线是此时减少的护甲（越上面的线减的越多）</p>
 <h2 id="有效生命值-（EHP）"><a href="#有效生命值-（EHP）" class="headerlink" title="有效生命值 （EHP）"></a>有效生命值 （EHP）</h2><p>有效生命值 = 总生命值 ÷ 护甲值倍数</p>
 
@@ -1467,290 +1583,188 @@ $$
 <h3 id="可以被躲避的技能"><a href="#可以被躲避的技能" class="headerlink" title="可以被躲避的技能"></a>可以被躲避的技能</h3><p><code>亚巴顿：迷雾缠绕</code> <code>赏金猎人：投掷飞镖</code> <code>酒仙：醉酒云雾</code> <code>钢背兽：粘稠鼻涕</code> <code>育母蜘蛛：孵化蜘蛛</code> <code>混沌骑士：混乱之箭</code> <code>陈：赎罪</code> <code>戴泽：剧毒之触</code> <code>龙骑士：神龙摆尾</code> <code>大地：投掷巨石</code> <code>撼地者：回音击</code> <code>虚灵之刃：虚化冲击</code> <code>变体精灵：变体攻击</code> <code>泥土傀儡：投石</code> <code>娜迦海妖：诱捕</code> <code>食人魔魔法师：引燃</code> <code>神谕者：气运之末</code> <code>幻影刺客：窒息之刃</code> <code>幻影长矛手：灵魂之矛</code> <code>痛苦女王：暗影突袭</code> <code>阿托斯：致残</code> <code>天怒法师：震荡光弹</code> <code>狙击手：暗杀</code> <code>斯温：风暴之拳</code> <code>潮汐猎人：巨浪</code> <code>修补匠：导热飞弹</code> <code>复仇之魂：魔法箭</code> <code>冥界亚龙：蝮蛇突袭</code> <code>维萨吉：灵魂超度</code> <code>风行者：束缚击</code> <code>寒冬飞龙：碎裂冲击</code> <code>冥魂大帝：冥火暴击</code></p>
 <h3 id="不可以被躲避的技能"><a href="#不可以被躲避的技能" class="headerlink" title="不可以被躲避的技能"></a>不可以被躲避的技能</h3><p><code>炼金术士：不稳定化合物</code> <code>天穹守望者：闪光幽魂</code> <code>爱人直升机：追踪导弹</code> <code>哈斯卡：牺牲</code> <code>拉西克：闪电风暴</code> <code>巫妖：连环霜冻</code> <code>莉娜：神灭斩</code> <code>莱恩：死亡一指</code> <code>美杜莎：秘术异蛇</code> <code>米拉娜：流星风暴</code> <code>瘟疫法师：死亡脉冲</code> <code>痛苦女王：痛苦尖叫</code> <code>拉比克：技能窃取</code> <code>天怒法师：奥法鹰隼</code> <code>幽鬼：幽鬼之刃</code> <code>小小：投掷</code> <code>树精卫士：寄生种子</code> <code>巨牙海民：雪球</code> <code>寒冬飞龙：碎裂冲击弹射</code> <code>巫医：麻痹药剂</code></p>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    <div class="content">
-        
-<span class="post-time">
-    Last updated: <time datetime="2017-09-12T19:05:25.000Z" itemprop="dateUpdated">2017-09-12 12:05:25</time>
-</span><br>
-
-
-        
+      
     </div>
-    <footer>
-        <a href="https://charlesliuyx.github.io">
-            <img src="/img/avatar.jpg" alt="Nimonic">
-            Nimonic
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DataAnalysis/">DataAnalysis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dota2/">Dota2</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
     
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&title=《Dota2机制总结》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&title=《Dota2机制总结》 — 尼孟尼克 Blog&source=【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dota2机制总结》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&via=https://charlesliuyx.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
+  </div>
+  
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">什么是信息熵、交叉熵和相对熵</h4>
-      </a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/09/05/Dota2机制总结/">Dota2机制总结</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Nimonic</a></p>
+        <p><span>发布时间:</span>2017-09-05, 23:50:56</p>
+        <p><span>最后更新:</span>2017-09-12, 12:05:25</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/09/05/Dota2机制总结/" title="Dota2机制总结">https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/　　作者: Nimonic" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/">
+                    什么是信息熵、交叉熵和相对熵
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/09/04/LogisticRegression学习笔记/">
+                    深入浅出看懂Logistic Regression
+                </a>
+            </div>
+        
+    </nav>
 
   
-    <div class="waves-block waves-effect next">
-      <a href="/2017/09/04/LogisticRegression学习笔记/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">深入浅出看懂Logistic Regression</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="comments" id="comments">
-    <div id="gitment_thread"></div>
-    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
-    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
-    <script>
-        var gitment = new Gitment({
-            owner: 'CharlesLiuyx',
-            repo: 'BlogComment',
-            oauth: {
-                client_id: '2c1daf79f5a857cab513',
-                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
-            },
-        })
-        gitment.render('comments')
-    </script>
-</section>
-
-
-
-
 </article>
 
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        您的鼓励是我前进的力量
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#金钱"><span class="toc-number">1.</span> <span class="toc-text">金钱</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#击杀英雄奖励"><span class="toc-number">1.1.</span> <span class="toc-text">击杀英雄奖励</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#助攻奖励"><span class="toc-number">1.2.</span> <span class="toc-text">助攻奖励</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Roshan"><span class="toc-number">1.3.</span> <span class="toc-text">Roshan</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#死亡掉钱"><span class="toc-number">1.4.</span> <span class="toc-text">死亡掉钱</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#复活"><span class="toc-number">2.</span> <span class="toc-text">复活</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#复活时间"><span class="toc-number">2.1.</span> <span class="toc-text">复活时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#买活花费"><span class="toc-number">2.2.</span> <span class="toc-text">买活花费</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#放弃比赛"><span class="toc-number">2.3.</span> <span class="toc-text">放弃比赛</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#物理攻击伤害"><span class="toc-number">3.</span> <span class="toc-text">物理攻击伤害</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#最终攻击伤害"><span class="toc-number">3.1.</span> <span class="toc-text">最终攻击伤害</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MD-Main-Damage-主要攻击力【白字攻击力】"><span class="toc-number">3.1.1.</span> <span class="toc-text">MD(Main Damage) 主要攻击力【白字攻击力】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PBD-Percentage-bonus-damage-百分比攻击力加成"><span class="toc-number">3.1.2.</span> <span class="toc-text">PBD(Percentage bonus damage) 百分比攻击力加成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FBD-Flat-Bonus-Damage-固定值百分比加成"><span class="toc-number">3.1.3.</span> <span class="toc-text">FBD(Flat Bonus Damage) 固定值百分比加成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSM-Critical-Strike-Multiplier-致命一击倍数"><span class="toc-number">3.1.4.</span> <span class="toc-text">CSM(Critical Strike Multiplier) 致命一击倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BD-Blocked-Damage-被格挡伤害"><span class="toc-number">3.1.5.</span> <span class="toc-text">BD(Blocked Damage) 被格挡伤害</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AVM-Armor-Value-Multiplier-护甲值倍数"><span class="toc-number">3.1.6.</span> <span class="toc-text">AVM(Armor Value Multiplier) 护甲值倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ATM-Armor-Type-Multiplier-护甲类型倍数"><span class="toc-number">3.1.7.</span> <span class="toc-text">ATM(Armor Type Multiplier) 护甲类型倍数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GDM-General-Damage-Multipliers-一般伤害倍数"><span class="toc-number">3.1.8.</span> <span class="toc-text">GDM(General Damage Multipliers) 一般伤害倍数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻击类型"><span class="toc-number">3.2.</span> <span class="toc-text">攻击类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伤害调整"><span class="toc-number">3.3.</span> <span class="toc-text">伤害调整</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#攻击速度"><span class="toc-number">4.</span> <span class="toc-text">攻击速度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础攻击间隔-BAT"><span class="toc-number">4.1.</span> <span class="toc-text">基础攻击间隔 BAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻击速度-ISA"><span class="toc-number">4.2.</span> <span class="toc-text">攻击速度 ISA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#攻击速度计算公式"><span class="toc-number">4.3.</span> <span class="toc-text">攻击速度计算公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加攻击速度技能列表"><span class="toc-number">4.4.</span> <span class="toc-text">增加攻击速度技能列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#降低攻击速度技能"><span class="toc-number">4.5.</span> <span class="toc-text">降低攻击速度技能</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#技能攻击伤害"><span class="toc-number">5.</span> <span class="toc-text">技能攻击伤害</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#技能伤害计算"><span class="toc-number">5.1.</span> <span class="toc-text">技能伤害计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#技能增强天赋"><span class="toc-number">5.1.1.</span> <span class="toc-text">技能增强天赋</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#技能伤害类型"><span class="toc-number">5.2.</span> <span class="toc-text">技能伤害类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#物理伤害技能"><span class="toc-number">5.2.1.</span> <span class="toc-text">物理伤害技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#纯粹伤害技能"><span class="toc-number">5.2.2.</span> <span class="toc-text">纯粹伤害技能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#护甲"><span class="toc-number">6.</span> <span class="toc-text">护甲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#白字护甲"><span class="toc-number">6.1.</span> <span class="toc-text">白字护甲</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#护甲值倍数"><span class="toc-number">6.2.</span> <span class="toc-text">护甲值倍数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#护甲值倍数倍数和护甲值的相关曲线"><span class="toc-number">6.3.</span> <span class="toc-text">护甲值倍数倍数和护甲值的相关曲线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有效生命值-（EHP）"><span class="toc-number">6.4.</span> <span class="toc-text">有效生命值 （EHP）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#护甲调整"><span class="toc-number">6.5.</span> <span class="toc-text">护甲调整</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#增加护甲的技能"><span class="toc-number">6.5.1.</span> <span class="toc-text">增加护甲的技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#减低护甲的技能"><span class="toc-number">6.5.2.</span> <span class="toc-text">减低护甲的技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#护甲相关装备"><span class="toc-number">6.5.3.</span> <span class="toc-text">护甲相关装备</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#闪避"><span class="toc-number">7.</span> <span class="toc-text">闪避</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#机制"><span class="toc-number">7.1.</span> <span class="toc-text">机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#叠加与计算"><span class="toc-number">7.2.</span> <span class="toc-text">叠加与计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#上下坡落空几率"><span class="toc-number">7.2.1.</span> <span class="toc-text">上下坡落空几率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算公式"><span class="toc-number">7.2.2.</span> <span class="toc-text">计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闪避来源"><span class="toc-number">7.3.</span> <span class="toc-text">闪避来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#致盲来源"><span class="toc-number">7.3.1.</span> <span class="toc-text">致盲来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#克敌机先来源"><span class="toc-number">7.3.2.</span> <span class="toc-text">克敌机先来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#必中来源"><span class="toc-number">7.3.3.</span> <span class="toc-text">必中来源</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#移动速度"><span class="toc-number">8.</span> <span class="toc-text">移动速度</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#叠加"><span class="toc-number">8.1.</span> <span class="toc-text">叠加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#公式"><span class="toc-number">8.2.</span> <span class="toc-text">公式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#魔法抗性"><span class="toc-number">9.</span> <span class="toc-text">魔法抗性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#魔法抗性加成来源"><span class="toc-number">9.1.</span> <span class="toc-text">魔法抗性加成来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#魔法抗性减少来源"><span class="toc-number">9.2.</span> <span class="toc-text">魔法抗性减少来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#魔法抗性100-来源"><span class="toc-number">9.3.</span> <span class="toc-text">魔法抗性100%来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#魔法吸收护盾"><span class="toc-number">9.4.</span> <span class="toc-text">魔法吸收护盾</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#物品被动效果叠加"><span class="toc-number">10.</span> <span class="toc-text">物品被动效果叠加</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#独立叠加"><span class="toc-number">10.1.</span> <span class="toc-text">独立叠加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#乘法叠加"><span class="toc-number">10.2.</span> <span class="toc-text">乘法叠加</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#躲避"><span class="toc-number">11.</span> <span class="toc-text">躲避</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#躲避技能的方式"><span class="toc-number">11.1.</span> <span class="toc-text">躲避技能的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#技能"><span class="toc-number">11.1.1.</span> <span class="toc-text">技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传送"><span class="toc-number">11.1.2.</span> <span class="toc-text">传送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐身"><span class="toc-number">11.1.3.</span> <span class="toc-text">隐身</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏"><span class="toc-number">11.1.4.</span> <span class="toc-text">隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无敌"><span class="toc-number">11.1.5.</span> <span class="toc-text">无敌</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可以被躲避的弹道"><span class="toc-number">11.2.</span> <span class="toc-text">可以被躲避的弹道</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#可以被躲避的技能"><span class="toc-number">11.2.1.</span> <span class="toc-text">可以被躲避的技能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不可以被躲避的技能"><span class="toc-number">11.2.2.</span> <span class="toc-text">不可以被躲避的技能</span></a></li></ol></li></ol></li></ol>
         
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
-
-
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
     </div>
-    <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Nimonic &copy; 2017</span>
-        </p>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Dota2机制总结　| 尼孟尼克 Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/" title="上一篇: 什么是信息熵、交叉熵和相对熵">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/09/04/LogisticRegression学习笔记/" title="下一篇: 深入浅出看懂Logistic Regression">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/机器学习分类器性能指标详解/">机器学习分类器性能指标详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/什么是信息熵、交叉熵和相对熵/">什么是信息熵、交叉熵和相对熵</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Dota2机制总结/">Dota2机制总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/LogisticRegression学习笔记/">深入浅出看懂Logistic Regression</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Xpath使用指南/">Xpath使用指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/PDF复制粘贴去除多余的回车符/">PDF复制粘贴去除多余的回车符</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/到底什么是比特币/">到底什么是比特币</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/LeetcodeNote/">LeetcodeNote</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/17/幕布-全平台笔记思维导图工具/">幕布-全平台笔记思维导图工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/AlphaGo运行原理解析/">深入浅出看懂AlphaGo如何下棋</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/14/清欢/">清欢 - 林清玄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/13/English-abbreviation/">English-abbreviation</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/13/有关中国诗的那些事/">有关中国诗的那些事</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Nimonic
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
 </footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&title=《Dota2机制总结》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&title=《Dota2机制总结》 — 尼孟尼克 Blog&source=【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dota2机制总结》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/&via=https://charlesliuyx.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aMW7EMAxEUd//0k67jYiZoQxE1FcVBPaaTwVBkXoeeb2LVT/5+5/6l1fvbl4wYMA4lvGWa/WMEmL9lRqjxwYDBox7GEoqVFKqi1S2r44NBgwYMFbP6Am6/oWsrIQBAwaMjKEfSrNUDgMGDBh6iZa1wzqbsvksDgMGjAMZnSC+/vuT+QYMGDCOYrzm6lDd8acRFQwYMEYzsva9W8y5lyqyeGDAgDGb0Ul27gFYaaLpzz+7cjYMGDD+MaNzncIdW+pv2RHCgAHjGoZeDrptOKmkE3Lp8ndgwIBxAcNtpWUFpfKWnoJhwIBxD6NfFLoNtazRJm03DBgwLmDoKTK78mWkzowNAwaMoQx39KiMM5WSMUupRtcQBgwYQxlKEsyaa27RaZeJMGDAuIChfKBf9mVU47IFDBgwLmC4V8f07XCbd3q6t+cbMGDAOJaR5TEldH14qY8wl/1CGDBgjGYoR8dOJeZeOHM3AgYMGLMZ+nG0027LLofVsS03EQYMGEMZbpJ1i0J3LBq2/2DAgHEBI7sekY0EOonbGGTCgAFjKENJu24zzq5Ss8MzDBgwhjJec30Rolti2nUrDBgwDmf0W/md0WO/wWfDYMCAcSxDT7KdHdLZyhG61RGEAQPGsQw3Odaf14+gbrjbZrAwYMAYzfgu+epsGDBgwHAHjXpZWYP1kefyEAsDBozRjOzKl5tMO0fcbe02GDBgHMjIjo5ZoNkh2f0WDBgwBjH+AIgFIuBOa0PPAAAAAElFTkSuQmCC" alt="微信分享二维码">
-</div>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-
-
-</script>
-
-<script src="/js/main.min.js?v=1.6.7"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="/js/search.min.js?v=1.6.7" async></script>
-
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
@@ -1762,38 +1776,44 @@ MathJax.Hub.Config({
 MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
 });
 </script>
 
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
-
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
 <script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '在看什么呢';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '欢迎回来';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
         }
-    });
-})();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
 
-
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

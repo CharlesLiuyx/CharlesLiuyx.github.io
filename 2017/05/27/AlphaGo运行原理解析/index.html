@@ -1,31 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html >
 <head>
-    
 
-    
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
 
-    
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
-<script>var _hmt = _hmt || []</script>
-<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
-<!-- End Baidu Tongji -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Nimonic" />
 
 
 
-
-    <meta charset="utf-8">
-    
-    
-    
-    <title>深入浅出看懂AlphaGo如何下棋 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
-    <meta name="theme-color" content="#3F51B5">
-    
-    
-    <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
-    <meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
+<meta name="description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="keywords" content="AlphaGo,CNN,MCTS,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo如何下棋">
@@ -47,164 +37,296 @@
 <meta name="twitter:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
-    
-        <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
-    
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="尼孟尼克 Blog" type="application/atom+xml">
+
+
+
     <link rel="shortcut icon" href="/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
-    <script>window.lazyScripts=[]</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>深入浅出看懂AlphaGo如何下棋 | 尼孟尼克 Blog</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
 </head>
-
 <body>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
-
-    <aside id="menu" class="hide" >
-  <div class="inner flex-row-vertical">
-    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-        <i class="icon icon-lg icon-close"></i>
-    </a>
-    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
-      <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light">
-          <img src="/img/avatar.jpg">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
         </a>
-        <hgroup class="introduce">
-          <h5 class="nickname">Nimonic</h5>
-          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Nimonic</a></h1>
         </hgroup>
+
+        
+        <p class="header-subtitle">Stay Hungry, Stay Foolish</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="/297106286@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Autohotkey/">Autohotkey</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BTcoin/">BTcoin</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BitTiger/">BitTiger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blockchain/">Blockchain</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DataAnalysis/">DataAnalysis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dota2/">Dota2</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Infomation-Theory/">Infomation Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MCTS/">MCTS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Model/">Model</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Theory/">Theory</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tools/">Tools</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/crawl/">crawl</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/幕布/">幕布</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率工具/">效率工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/英语积累/">英语积累</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Nimonic</a></h1>
       </div>
-    </div>
-    <div class="scroll-wrap flex-col">
-      <ul class="nav">
-        
-            <li class="waves-block waves-effect">
-              <a href="/"  >
-                <i class="icon icon-lg icon-home"></i>
-                Home
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/archives"  >
-                <i class="icon icon-lg icon-archives"></i>
-                Archives
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/tags"  >
-                <i class="icon icon-lg icon-tags"></i>
-                Tags
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="/categories"  >
-                <i class="icon icon-lg icon-th-list"></i>
-                Categories
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="https://github.com/CharlesLiuyx" target="_blank" >
-                <i class="icon icon-lg icon-github"></i>
-                Github
-              </a>
-            </li>
-        
-            <li class="waves-block waves-effect">
-              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
-                <i class="icon icon-lg icon-weibo"></i>
-                Weibo
-              </a>
-            </li>
-        
-      </ul>
-    </div>
-  </div>
-</aside>
-
-    <main id="main">
-        <header class="top-header" id="header">
-    <div class="flex-row">
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
-          <i class="icon icon-lg icon-navicon"></i>
-        </a>
-        <div class="flex-col header-title ellipsis">深入浅出看懂AlphaGo如何下棋</div>
-        
-        <div class="search-wrap" id="search-wrap">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
-                <i class="icon icon-lg icon-chevron-left"></i>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
-            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
-                <i class="icon icon-lg icon-search"></i>
-            </a>
-        </div>
-        
-        
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
-            <i class="icon icon-lg icon-share-alt"></i>
-        </a>
-        
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Nimonic</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Stay Hungry, Stay Foolish</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="/297106286@qq.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
     </div>
-</header>
-<header class="content-header post-header">
-
-    <div class="container fade-scale">
-        <h1 class="title">深入浅出看懂AlphaGo如何下棋</h1>
-        <h5 class="subtitle">
-            
-                <time datetime="2017-05-27T18:51:22.000Z" itemprop="datePublished" class="page-time">
-  2017-05-27
-</time>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-AlphaGo运行原理解析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/05/27/AlphaGo运行原理解析/" class="article-date">
+      <time datetime="2017-05-27T18:51:22.000Z" itemprop="datePublished">2017-05-27</time>
+</a>
 
 
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入浅出看懂AlphaGo如何下棋
+    </h1>
+  
 
-            
-        </h5>
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Machine-Learning/">Machine Learning</a>
     </div>
 
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
     
-
-
-</header>
-
-
-<div class="container body-wrap">
-    
-    <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深度卷积神经网络——策略函数（Policy-Network）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">深度卷积神经网络——策略函数（Policy Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积神经网络解决围棋问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">深度卷积神经网络解决围棋问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积网络策略的棋力"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">深度卷积网络策略的棋力</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS-蒙特卡洛搜索树——走子演算（Rollout）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">MCTS 蒙特卡洛搜索树——走子演算（Rollout）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#强化学习——局面函数（Value-Network）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">强化学习——局面函数（Value Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是强化学习"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">什么是强化学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用强化学习增强棋力"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">利用强化学习增强棋力</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">自对弈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算局部评价函数（Value-Network）"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">计算局部评价函数（Value Network）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">AlphaGo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">详解AlphaGo VS 樊麾 对局走下某一步的计算过程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用不同组件AlphGo1-0的棋力"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">使用不同组件AlphGo1.0的棋力</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#李世石-VS-AlphaGo-1-0——第四局78手挖"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">李世石 VS AlphaGo 1.0——第四局78手挖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-2-0-VS-柯洁——虽败犹荣"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">AlphaGo 2.0 VS 柯洁——虽败犹荣</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对未来的展望——从AlphaGo想开去"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">对未来的展望——从AlphaGo想开去</span></a></li></ol></li></ol>
-        </nav>
-    </aside>
-    
-<article id="post-AlphaGo运行原理解析"
-  class="post-article article-type-post fade" itemprop="blogPost">
-
-    <div class="post-card">
-        <h1 class="post-card-title">深入浅出看懂AlphaGo如何下棋</h1>
-        <div class="post-meta">
-            <time class="post-time" title="2017-05-27 11:51:22" datetime="2017-05-27T18:51:22.000Z"  itemprop="datePublished">2017-05-27</time>
-
-            
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
-
-
-
-            
-<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
-    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
-</span>
-
-
-            
-
-        </div>
-        <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
 <a id="more"></a>
 <p>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})\tag {1-1}<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）。<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)\tag {1-2}<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>(3,1)</code>位置落<strong>白子</strong>，3为横坐标，1为列坐标</p>
 <p>有以上定义，我们就把围棋问题转化为。</p>
@@ -221,13 +343,7 @@
 <h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
 <p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）（5.29更新，原地址已经恢复，原地址的排版更好，估计之前那个博主在进行博客的整理）</p>
 <p>大致可以理解为：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
-                </div>
-                <div class="image-caption">CNN例子</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子"></p>
 <p>对一副图像进行处理，给定很多样本进行训练，使得最后的神经网络可以获得指定（<strong>具有分类效果</strong>）的输出。</p>
 <p>比如，根据上图可以观察到（这是一个已经训练好的神经网络），最右侧的<strong>输出</strong>是<code>[0.01 , 0.04 , 0.94 , 0.02]</code>，其中第三个值<code>0.94</code>代表的是boat，接近1，所以我们判断这幅图片中有船这个物体（类似的，如果使用这幅图像进行训练，那么<strong>指定</strong>输出应该是[0, 0, 1, 0]，因为图中只有船这个物体）</p>
 <ul>
@@ -242,13 +358,7 @@
 <p>在状态 $\vec s$ 下，进行哪一个落子 $\vec a$ 是<strong>最接近人类风格的</strong></p>
 </blockquote>
 <p>计算出来的直观结果，对应到棋盘上如下图，可以看到，红色的区域的值有60%，次大值位于右方，是35%（此图来自于AlphaGo论文）</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
-                </div>
-                <div class="image-caption">Policy Network</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network"></p>
 <p>还记得刚刚举得船图的例子嘛？可以类比一下，机器发现现在的状态 $ \vec s$ 和之前的某一种类型有些类似，输出是一个<code>1*361</code>的向量，其中有几个值比较大（接近1就是100%），那么就用这个值当做下一个 $ \vec a$ 的位置。不幸的，这种训练方法有很大的局限的，可以直观想到的是，如果对战平台上数据本身就都是<code>俗手</code>，那不是训练出来一个很蠢的神经网络嘛？棋力如何呢？</p>
 <h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone</code>。</p>
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把 $P_{human}(\vec s)$ 和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
@@ -310,24 +420,12 @@ $$
 </ul>
 <p>所以，我们需要根据S，A，R，来确定什么样的P是比较好的，通过不断的进行游戏，获得大量的交互数据，我们可以确定在每一个状态下，进行什么动作能获得最好的分数，而强化学习也就是利用神经网络来拟合这个过程。</p>
 <p>例如，打砖块游戏有一个<strong>秘诀</strong>是把求打到墙后，这样球能自己反弹得分，强化学习程序在玩了600盘后，学到了这个秘诀。也就是说程序会在每一个状态下选择那个更容易把球打到墙后面去的操作。如下图，球快要把墙打穿的时候，评价函数 $v$ 的值会大幅度上升</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
-                </div>
-                <div class="image-caption">打墙游戏的评价函数图</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图"></p>
 <p>我们可以发现，强化学习的基本思路和MCTS后异曲同工之妙，也是在对游戏完全没有了解的情况，通过不断的训练（进行多盘对弈，和获得进行行动后的分数反馈）来进行训练，自我提升。</p>
 <h3 id="利用强化学习增强棋力"><a href="#利用强化学习增强棋力" class="headerlink" title="利用强化学习增强棋力"></a>利用强化学习增强棋力</h3><p>参考这种思路，<code>Aja Huang</code>给围棋也设计了一个评价函数 $v(\vec s)$ 。此函数的功能是：<strong>量化评估围棋局面</strong>。使用$v(\vec s)$可以让我们在MCTS的过程中<strong>不用走完全局</strong>（走完全盘耗时耗力，效率不高）就发现<strong>已经必败</strong>。</p>
 <p>在利用 $P_{human}(\vec s)$ 走了开局的20步后，<strong>如果有一个 $v(\vec s_i)$ （i为当前状态）可以直接判断是否能赢，得到最后的结果<code>r</code></strong>，不需要搜索到底，可以从效率（剪枝，优化算法时间复杂度）上进一步增加MCTS的威力。</p>
 <p>很可惜的，现有的人类棋谱不足以得出这个评价函数。所以<code>Aja Huang</code>决定用<strong>机器和机器对弈</strong>的方法来创造新的对局，也就是AlphaGo的左右互搏。</p>
-<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
-                </div>
-                <div class="image-caption">神经网络的训练过程和结构</div>
-            </figure>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构"></p>
 <ul>
 <li>先用 $P_{human}(\vec s)$ 和 $P_{human}(\vec s)$ 对弈，比如1万盘，得到1万个新棋谱，加入到训练集中，训练出 $P_{human-1}(\vec s)$ 。</li>
 <li>使用$P_{human-1}(\vec s)$和$P_{human-1}(\vec s)$对弈，得到另1万个新棋谱，加入训练集，训练出$P_{human-2}(\vec s)$。</li>
@@ -359,13 +457,7 @@ $$
 <li>$v(\vec s)$ <code>我能判断局势</code></li>
 </ul>
 <p>有了这些我们距离AlphaGo已经不远了</p>
-<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
-                </div>
-                <div class="image-caption">MTCS流程图解</div>
-            </figure>
+<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解"></p>
 <p><code>Aja Huang</code>使用MCTS框架融合局面评估函数 $v(\vec s)$ 的策略是：<br><a name="3-1"></a></p>
 <ul>
 <li>使用$P_{human}(\vec s)$作为初始分开局，每局选择分数最高的方案落子</li>
@@ -379,23 +471,11 @@ $$
 </li>
 </ul>
 <p>如果 $v(\vec s)$ 是表示大局观，$P_{human-fast}(\vec s)$表示快速演算，那么上面的方法就是二者的并重，并且<code>Aja Huang</code>团队已经用实验证明0.5 0.5的权重对阵其他权重有95%的胜率</p>
-<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
-                </div>
-                <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
-            </figure>
+<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1"></p>
 <p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下<strong>其他落子点的胜率</strong></p>
 <p><code>b图</code>MCTS中使用<strong>局部评估函数</strong>加 $P_{human}(\vec s)$ 得出的结果</p>
 <p><code>c图</code>MCTS中使用$P_{human}(\vec s)$（复合算法）和$P_{human-fast}(\vec s)$走子走到底的结果</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
-                </div>
-                <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2"></p>
 <p><code>d图</code>深度卷积神经网络使用<strong>策略函数</strong>计算出来的结果</p>
 <p><code>e图</code>使用<a href="#3-1">公式3-1</a>和相关流程计算出的落子概率</p>
 <p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白。红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后樊麾下一步落子的地方。<strong>白色方框</strong>是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo也在进行计算）</p>
@@ -405,22 +485,10 @@ $$
 <p>启发式搜索算法：由当前局面开始，尝试看起来<u>可靠的行动</u>，达到终局或一定步数后停止，根据后续<u>局面的优劣</u>反馈，选择最有行动。通俗来说，就是”手下一招子，心想三步棋“</p>
 </blockquote>
 <p>围棋是一个NP问题，要穷举的话，解空间巨大。现代优化算法的经典之处在于，从围棋的规则来看，在某一个状态，必定有一个或几个较优解，整个AlphaGo就是想方设法的去找这个较优解。<strong>利用局面评估函数来对MCTS进行剪枝的思路十分精彩</strong>。利用上面的3个算法，结合庞大的并行运算能力，还有<code>Aja Huang</code>团队的辛苦付出，造就了AlphaGo的奇迹。</p>
-<h2 id="使用不同组件AlphGo1-0的棋力"><a href="#使用不同组件AlphGo1-0的棋力" class="headerlink" title="使用不同组件AlphGo1.0的棋力"></a>使用不同组件AlphGo1.0的棋力</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
-                </div>
-                <div class="image-caption">最终棋力结果</div>
-            </figure>
+<h2 id="使用不同组件AlphGo1-0的棋力"><a href="#使用不同组件AlphGo1-0的棋力" class="headerlink" title="使用不同组件AlphGo1.0的棋力"></a>使用不同组件AlphGo1.0的棋力</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果"></p>
 <p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合$P_{human-plus}(\vec s)$和$P_{human}(\vec s)$后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰【围棋】为叩门砖打开了机器学习自我进化的大门</strong></p>
-<h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手" title="">
-                </div>
-                <div class="image-caption">李世石78手</div>
-            </figure>
+<h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" alt="李世石78手"></p>
 <p>赛后AlphaGo之父给出的关键信息：<code>李世石78手“挖”是AlphaGo认为概率极小的点</code>，这一手之后导致的状态 $\vec s$ 进入到了AlphaGo能处理的范围之外，即之前AlphaGo的<strong>自对弈</strong>都是建立用自己觉得好的下法来搜索的，那么如果这一手AlphaGo1.0感觉可能性极小，那么用$P_{human}(\vec s)$自对弈的棋谱中就更加难以覆盖。</p>
 <p>但是也需要提到的是，根据比赛中柯洁等人的观战我们知道，如果不是后面AlphaGo进入了混乱模式，78手不一定是一个好棋。只能说这一手，顶到了AlphaGo的软肋，在真正和人的对局中不一定是“神之一手”</p>
 <p>根据Deepmind团队给出的数据可以知道，一年前，AphaGo1.0的搜索空间，自对弈深度并不完美。所以Deepmind团队有意的在<strong>代码逻辑</strong>上让其<strong>避免打劫</strong>，或者说避免<strong>劫争</strong>，例如，有两个选择，一个胜率60%但需要打劫，另一个55%但不需要打劫，AlphaGo1.0会选择后者。</p>
@@ -456,290 +524,188 @@ $$
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
 <p>[Reference]<br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">Tao Lei大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">袁行远大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/28655005/answer/61142081" target="_blank" rel="external">有关围棋打劫的回答</a><br>其他文章中引用的论文，链接已经给出</p>
 
-        </div>
-
-        <blockquote class="post-copyright">
-    <div class="content">
-        
-<span class="post-time">
-    Last updated: <time datetime="2017-09-10T19:56:31.000Z" itemprop="dateUpdated">2017-09-10 12:56:31</time>
-</span><br>
-
-
-        
+      
     </div>
-    <footer>
-        <a href="https://charlesliuyx.github.io">
-            <img src="/img/avatar.jpg" alt="Nimonic">
-            Nimonic
-        </a>
-    </footer>
-</blockquote>
-
-        
-<div class="page-reward">
-    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
-</div>
-
-
-
-        <div class="post-footer">
-            
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MCTS/">MCTS</a></li></ul>
-
-
-            
-<div class="page-share-wrap">
     
-
-<div class="page-share" id="pageShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-
-    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
-        <i class="icon icon-share-alt icon-lg"></i>
-    </a>
-</div>
-
-
-
-        </div>
-    </div>
-
+  </div>
+  
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2017/06/17/幕布-全平台笔记思维导图工具/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">幕布-全平台笔记思维导图工具</h4>
-      </a>
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/05/27/AlphaGo运行原理解析/">深入浅出看懂AlphaGo如何下棋</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Nimonic</a></p>
+        <p><span>发布时间:</span>2017-05-27, 11:51:22</p>
+        <p><span>最后更新:</span>2017-09-10, 12:56:31</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/05/27/AlphaGo运行原理解析/" title="深入浅出看懂AlphaGo如何下棋">https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/　　作者: Nimonic" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
     </div>
-  
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/2017/06/17/幕布-全平台笔记思维导图工具/">
+                    幕布-全平台笔记思维导图工具
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2017/05/14/清欢/">
+                    清欢 - 林清玄
+                </a>
+            </div>
+        
+    </nav>
 
   
-    <div class="waves-block waves-effect next">
-      <a href="/2017/05/14/清欢/" id="post-next" class="post-nav-link">
-        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">清欢 - 林清玄</h4>
-      </a>
-    </div>
-  
-</nav>
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="comments" id="comments">
-    <div id="gitment_thread"></div>
-    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
-    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
-    <script>
-        var gitment = new Gitment({
-            owner: 'CharlesLiuyx',
-            repo: 'BlogComment',
-            oauth: {
-                client_id: '2c1daf79f5a857cab513',
-                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
-            },
-        })
-        gitment.render('comments')
-    </script>
-</section>
-
-
-
-
 </article>
 
-<div id="reward" class="page-modal reward-lay">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        您的鼓励是我前进的力量
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题分析"><span class="toc-number">1.</span> <span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题解决"><span class="toc-number">2.</span> <span class="toc-text">问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#深度卷积神经网络——策略函数（Policy-Network）"><span class="toc-number">2.1.</span> <span class="toc-text">深度卷积神经网络——策略函数（Policy Network）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#深度卷积神经网络解决围棋问题"><span class="toc-number">2.1.1.</span> <span class="toc-text">深度卷积神经网络解决围棋问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度卷积网络策略的棋力"><span class="toc-number">2.1.2.</span> <span class="toc-text">深度卷积网络策略的棋力</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MCTS-蒙特卡洛搜索树——走子演算（Rollout）"><span class="toc-number">2.2.</span> <span class="toc-text">MCTS 蒙特卡洛搜索树——走子演算（Rollout）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强化学习——局面函数（Value-Network）"><span class="toc-number">2.3.</span> <span class="toc-text">强化学习——局面函数（Value Network）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是强化学习"><span class="toc-number">2.3.1.</span> <span class="toc-text">什么是强化学习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用强化学习增强棋力"><span class="toc-number">2.3.2.</span> <span class="toc-text">利用强化学习增强棋力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自对弈"><span class="toc-number">2.3.3.</span> <span class="toc-text">自对弈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算局部评价函数（Value-Network）"><span class="toc-number">2.3.4.</span> <span class="toc-text">计算局部评价函数（Value Network）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AlphaGo"><span class="toc-number">2.4.</span> <span class="toc-text">AlphaGo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><span class="toc-number">2.4.1.</span> <span class="toc-text">详解AlphaGo VS 樊麾 对局走下某一步的计算过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用不同组件AlphGo1-0的棋力"><span class="toc-number">3.1.</span> <span class="toc-text">使用不同组件AlphGo1.0的棋力</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#李世石-VS-AlphaGo-1-0——第四局78手挖"><span class="toc-number">3.2.</span> <span class="toc-text">李世石 VS AlphaGo 1.0——第四局78手挖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AlphaGo-2-0-VS-柯洁——虽败犹荣"><span class="toc-number">3.3.</span> <span class="toc-text">AlphaGo 2.0 VS 柯洁——虽败犹荣</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对未来的展望——从AlphaGo想开去"><span class="toc-number">3.4.</span> <span class="toc-text">对未来的展望——从AlphaGo想开去</span></a></li></ol></li></ol>
         
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
-
-
-
-</div>
-
-        <footer class="footer">
-    <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
-        <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
-        </p>
     </div>
-    <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Nimonic &copy; 2017</span>
-        </p>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"深入浅出看懂AlphaGo如何下棋　| 尼孟尼克 Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/06/17/幕布-全平台笔记思维导图工具/" title="上一篇: 幕布-全平台笔记思维导图工具">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2017/05/14/清欢/" title="下一篇: 清欢 - 林清玄">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/12/机器学习分类器性能指标详解/">机器学习分类器性能指标详解</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/11/什么是信息熵、交叉熵和相对熵/">什么是信息熵、交叉熵和相对熵</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Dota2机制总结/">Dota2机制总结</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/04/LogisticRegression学习笔记/">深入浅出看懂Logistic Regression</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/Xpath使用指南/">Xpath使用指南</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/29/PDF复制粘贴去除多余的回车符/">PDF复制粘贴去除多余的回车符</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/26/到底什么是比特币/">到底什么是比特币</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/01/LeetcodeNote/">LeetcodeNote</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/17/幕布-全平台笔记思维导图工具/">幕布-全平台笔记思维导图工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/AlphaGo运行原理解析/">深入浅出看懂AlphaGo如何下棋</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/14/清欢/">清欢 - 林清玄</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/13/English-abbreviation/">English-abbreviation</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/13/有关中国诗的那些事/">有关中国诗的那些事</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016-2017 Nimonic
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
     </div>
 </footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-    </main>
-    <div class="mask" id="mask"></div>
-<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
-
-
-
-<div class="global-share" id="globalShare">
-    <ul class="reset share-icons">
-      <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
-          <i class="icon icon-weibo"></i>
-        </a>
-      </li>
-      <li>
-        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
-          <i class="icon icon-weixin"></i>
-        </a>
-      </li>
-      <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
-          <i class="icon icon-qq"></i>
-        </a>
-      </li>
-      <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Facebook">
-          <i class="icon icon-facebook"></i>
-        </a>
-      </li>
-      <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
-          <i class="icon icon-twitter"></i>
-        </a>
-      </li>
-      <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/" data-title=" Google+">
-          <i class="icon icon-google-plus"></i>
-        </a>
-      </li>
-    </ul>
- </div>
-
-
-<div class="page-modal wx-share" id="wxShare">
-    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3awWrDMBAE0P7/T6fXQogzo5WMC8+n4CaSnwqRMrs/P/H1+nN9uv/+nld8JTN+eueGCw8PD2/w6MmDThbleoHe33P9OlosPDw8vGO8Tw93PfT8IZLt5HqWLxY8PDy8x/CSESZj5lQ8PDy85/PyqOJ6tLVoAw8PD+85vHboNrDIx28XaFvWgoeHh9fVmzYche98faS+h4eHhzeuql9/4c4/NWlNiObFw8PDO8Brj7Pt9PPGrDYsxsPDwzvNawPTSRNA3nSVhLPXd/Dw8PDO8fJtoF2CXeW0PKItogo8PDy8TbxdG0Byv13WZEv4MgseHh7eJt78cDxpCGgPyvUuh4eHh3eA10a0k6aoybKubUh4eHh4p3lJqJr8dY09L4DVvxXw8PDwlngtZi1U3YVJnjPa8fDw8PDGvPawm5f/1+KJvNj25Q4eHh7eAV5b7sqDiXsi4+h4jYeHh7eVlz/opJyf30nauYpiGx4eHt6NvOQrOAfnj7U2YxFG4OHh4Y157QTtNjBpL5hHunh4eHgneLsOuHnxrB2z3WDw8PDw7uS1h+b2U0mRbNcRv+7SwsPDw4t5p8v5bamsDYujufDw8PC28iatom1Ba340rxcaDw8P7wBvrey0FhBMymZrC4GHh4d3Jy+PDPLP5mfdZDOofzHg4eHh3chrv8rbSCIPHdq4BA8PD+9OXjJQXppa24omhTc8PDy8c7xXebXRatEgNSjFffwn4eHh4R3gTY6ta8Wz/PXkoI+Hh4d3mteW5/MR9rYU5Mta7H54eHh4A17SNJC3aq2FFLtiCDw8PLz/wsvbDvKGgIQUFcDw8PDwHsCbkNoHzQPiYofBw8PDG/PmgcJaMSwpcbVgPDw8vNO8+Q/+vJCfx8T5kXrDhYeHh5fyfgF6frtgcHzf7gAAAABJRU5ErkJggg==" alt="微信分享二维码">
-</div>
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
 
 
 
-    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script>
-var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
-
-
-</script>
-
-<script src="/js/main.min.js?v=1.6.7"></script>
-
-
-<div class="search-panel" id="search-panel">
-    <ul class="search-result" id="search-result"></ul>
-</div>
-<template id="search-tpl">
-<li class="item">
-    <a href="{path}" class="waves-block waves-effect">
-        <div class="title ellipsis" title="{title}">{title}</div>
-        <div class="flex-row flex-middle">
-            <div class="tags ellipsis">
-                {tags}
-            </div>
-            <time class="flex-col time">{date}</time>
-        </div>
-    </a>
-</li>
-</template>
-
-<script src="/js/search.min.js?v=1.6.7" async></script>
-
-
-
-<!-- mathjax config similar to math.stackexchange -->
-
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
     tex2jax: {
         inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
@@ -751,38 +717,44 @@ MathJax.Hub.Config({
 MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
     for(i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
-    }
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
 });
 </script>
 
-<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<script src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 
-
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
 <script>
-(function() {
-    var OriginTitile = document.title, titleTime;
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            document.title = '在看什么呢';
-            clearTimeout(titleTime);
-        } else {
-            document.title = '欢迎回来';
-            titleTime = setTimeout(function() {
-                document.title = OriginTitile;
-            },2000);
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
         }
-    });
-})();
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
 
-
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
