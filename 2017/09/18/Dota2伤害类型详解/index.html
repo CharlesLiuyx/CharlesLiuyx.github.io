@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Dota2伤害类型详解 | 尼孟尼克 Blog | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Dota2,Mechanism">
+    <meta name="description" content="伤害来源攻击伤害主要来自于普通物理攻击 - 平A 具体计算方式 技能伤害详情参见 包含了所有来自技能的伤害，三种类型：魔法，物理和纯粹 伤害类型互相作用机制表格    游戏机制 物理攻击 物理技能 魔法伤害 纯粹伤害     护甲 降低 降低 正常 正常   伤害格挡 降低 正常^1 正常 正常   魔法抗性 正常 正常 降低 正常   虚无 没有效果 美国效果 降低 正常   闪避 可能落空 正">
+<meta name="keywords" content="Dota2,Mechanism">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dota2伤害类型详解">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/index.html">
+<meta property="og:site_name" content="尼孟尼克 Blog">
+<meta property="og:description" content="伤害来源攻击伤害主要来自于普通物理攻击 - 平A 具体计算方式 技能伤害详情参见 包含了所有来自技能的伤害，三种类型：魔法，物理和纯粹 伤害类型互相作用机制表格    游戏机制 物理攻击 物理技能 魔法伤害 纯粹伤害     护甲 降低 降低 正常 正常   伤害格挡 降低 正常^1 正常 正常   魔法抗性 正常 正常 降低 正常   虚无 没有效果 美国效果 降低 正常   闪避 可能落空 正">
+<meta property="og:updated_time" content="2017-09-18T21:49:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dota2伤害类型详解">
+<meta name="twitter:description" content="伤害来源攻击伤害主要来自于普通物理攻击 - 平A 具体计算方式 技能伤害详情参见 包含了所有来自技能的伤害，三种类型：魔法，物理和纯粹 伤害类型互相作用机制表格    游戏机制 物理攻击 物理技能 魔法伤害 纯粹伤害     护甲 降低 降低 正常 正常   伤害格挡 降低 正常^1 正常 正常   魔法抗性 正常 正常 降低 正常   虚无 没有效果 美国效果 降低 正常   闪避 可能落空 正">
+    
+        <link rel="alternate" type="application/atom+xml" title="尼孟尼克 Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <script>window.lazyScripts=[]</script>
+
+        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Nimonic</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Dota2伤害类型详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Dota2伤害类型详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-18T21:31:12.000Z" itemprop="datePublished" class="page-time">
+  2017-09-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Dota2/">Dota2</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#伤害来源"><span class="post-toc-number">1.</span> <span class="post-toc-text">伤害来源</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#攻击伤害"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">攻击伤害</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技能伤害"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">技能伤害</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#伤害类型"><span class="post-toc-number">2.</span> <span class="post-toc-text">伤害类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#物理"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">物理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#魔法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">魔法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#纯粹"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">纯粹</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#标记"><span class="post-toc-number">3.</span> <span class="post-toc-text">标记</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生命移除标记"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">生命移除标记</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#伤害调整"><span class="post-toc-number">4.</span> <span class="post-toc-text">伤害调整</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#不反弹标记"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">不反弹标记</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Dota2伤害类型详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Dota2伤害类型详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-18 14:31:12" datetime="2017-09-18T21:31:12.000Z"  itemprop="datePublished">2017-09-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Dota2/">Dota2</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="伤害来源"><a href="#伤害来源" class="headerlink" title="伤害来源"></a>伤害来源</h1><h2 id="攻击伤害"><a href="#攻击伤害" class="headerlink" title="攻击伤害"></a>攻击伤害</h2><p>主要来自于普通物理攻击 - <strong>平A</strong></p>
+<p><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#物理攻击伤害">具体计算方式</a></p>
+<h2 id="技能伤害"><a href="#技能伤害" class="headerlink" title="技能伤害"></a>技能伤害</h2><p><a href="https://dota2-zh.gamepedia.com/%E6%8A%80%E8%83%BD%E4%BC%A4%E5%AE%B3" target="_blank" rel="external">详情参见</a></p>
+<p>包含了所有来自技能的伤害，三种类型：魔法，物理和纯粹</p>
+<h1 id="伤害类型"><a href="#伤害类型" class="headerlink" title="伤害类型"></a>伤害类型</h1><p><strong>互相作用机制表格</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">游戏机制</th>
+<th style="text-align:center">物理攻击</th>
+<th style="text-align:center">物理技能</th>
+<th style="text-align:center">魔法伤害</th>
+<th style="text-align:center">纯粹伤害</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#护甲">护甲</a></td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#BD-Blocked-Damage-被格挡伤害">伤害格挡</a></td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常<a href="唯一的例外是`月刃`的弹射伤害和`虫群`的攻击伤害，会被格挡">^1</a></td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#魔法抗性">魔法抗性</a></td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://dota2-zh.gamepedia.com/虚无" target="_blank" rel="external">虚无</a></td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">美国效果</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#闪避">闪避</a></td>
+<td style="text-align:center">可能落空</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">降低</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#致盲来源">致盲</a></td>
+<td style="text-align:center">可能落空</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#伤害调整">伤害加深</a></td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+</tr>
+<tr>
+<td style="text-align:center">[伤害减免]</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+</tr>
+<tr>
+<td style="text-align:center">[伤害无效化]</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+</tr>
+<tr>
+<td style="text-align:center">[魔法伤害护盾]</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center">[无敌]</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+</tr>
+<tr>
+<td style="text-align:center">[技能免疫]</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">不定</td>
+<td style="text-align:center">不定</td>
+<td style="text-align:center">不定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="物理"><a href="#物理" class="headerlink" title="物理"></a>物理</h2><h2 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h2><h2 id="纯粹"><a href="#纯粹" class="headerlink" title="纯粹"></a>纯粹</h2><h1 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h1><h2 id="生命移除标记"><a href="#生命移除标记" class="headerlink" title="生命移除标记"></a>生命移除标记</h2><h1 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h1><h2 id="不反弹标记"><a href="#不反弹标记" class="headerlink" title="不反弹标记"></a>不反弹标记</h2>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-09-18T21:49:13.000Z" itemprop="dateUpdated">2017-09-18 14:49:13</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="Nimonic">
+            Nimonic
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Dota2/">Dota2</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mechanism/">Mechanism</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&title=《Dota2伤害类型详解》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&title=《Dota2伤害类型详解》 — 尼孟尼克 Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dota2伤害类型详解》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/12/机器学习分类器性能指标详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">机器学习分类器性能指标详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        您的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>Nimonic &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&title=《Dota2伤害类型详解》 — 尼孟尼克 Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&title=《Dota2伤害类型详解》 — 尼孟尼克 Blog&source=毕业于北京邮电大学电子工程系 SJSU CE Master Machine Learning Bay" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Dota2伤害类型详解》 — 尼孟尼克 Blog&url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/18/Dota2伤害类型详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQW4bMRAEQP//0wrgWxBL7p4hZQeoPRlribvFA4dqzsdHfD0+r3/vtNezkZ99MhnhwIWHh4c3evX2Ma/Bz+7kL/16nGIS8fDw8K7x2gfki/vrKXj9rNfTnRQwPDw8vJ/l5VMwu5+w8fDw8P5HXl4Gkg13Ujbw8PDwficv38Lm1ByTP+ti1oKHh4fXnUMVB2C/4e+L53t4eHh4i1P1PCZoj7vyl86LwRfj4+Hh4V3g5VvbNhrYNBDMtsjFLwY8PDy8BW//WvluNo9092HHX3UPDw8P7ygvf6FZNNA2BJyNhvHw8PDew5stzZv8eNNSkAcleHh4eLd5s3Ol2WY6H7nIV6JuLDw8PLwJb9bG1Ea9s8A3j32jrAUPDw/vKG+2HG+os5C3jj/w8PDwLvDapbxd6E/Fu5smBjw8PLwbvLMlYd98MGsdeDrFeHh4eEd5szAijxWSz7eHZ8l74uHh4b2HNxu6pbZVq410v8ha8PDw8K7x8raqR3nlMcRm4uotNR4eHt6Cly/QOS9v8MonNN/W4+Hh4d3jJV8+0PxUMvZFBQ8PD+8eL19w2yV79vk8ECl6yvDw8PCO8maYTSHJvzVrNXjaGYGHh4d3jbdZ6JMgOL+fBxlFJcHDw8O7wMtDh7y9IGnAysPZulEMDw8P7ygvWehnB/yzI7TZf5/ex8PDw3sLry0Ms63wbJw67MDDw8O7wNu0C7RFpS0hmxYuPDw8vHu8R3m1j2+DiVlL1jcpCx4eHt5R3r7VqS0VyZ0cn08iHh4e3lleWwzawHe2058VgG8SFzw8PLyjvE202jZp7ePjoozh4eHh/Sgvf9G80SrfRrdviIeHh/d7eHlAsGlTSNjRU/Dw8PCu8dowIlnc84hhcyC3aiDAw8PDG/Han/dJS9bwMfGzNuPj4eHhLXh/AAZmK/Di4ce4AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.7" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '在看什么呢';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '欢迎回来';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

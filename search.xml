@@ -3,6 +3,130 @@
   
     
     <entry>
+      <title><![CDATA[Dota2伤害类型详解]]></title>
+      <url>/2017/09/18/Dota2%E4%BC%A4%E5%AE%B3%E7%B1%BB%E5%9E%8B%E8%AF%A6%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<h1 id="伤害来源"><a href="#伤害来源" class="headerlink" title="伤害来源"></a>伤害来源</h1><h2 id="攻击伤害"><a href="#攻击伤害" class="headerlink" title="攻击伤害"></a>攻击伤害</h2><p>主要来自于普通物理攻击 - <strong>平A</strong></p>
+<p><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#物理攻击伤害">具体计算方式</a></p>
+<h2 id="技能伤害"><a href="#技能伤害" class="headerlink" title="技能伤害"></a>技能伤害</h2><p><a href="https://dota2-zh.gamepedia.com/%E6%8A%80%E8%83%BD%E4%BC%A4%E5%AE%B3" target="_blank" rel="external">详情参见</a></p>
+<p>包含了所有来自技能的伤害，三种类型：魔法，物理和纯粹</p>
+<h1 id="伤害类型"><a href="#伤害类型" class="headerlink" title="伤害类型"></a>伤害类型</h1><p><strong>互相作用机制表格</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">游戏机制</th>
+<th style="text-align:center">物理攻击</th>
+<th style="text-align:center">物理技能</th>
+<th style="text-align:center">魔法伤害</th>
+<th style="text-align:center">纯粹伤害</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#护甲">护甲</a></td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#BD-Blocked-Damage-被格挡伤害">伤害格挡</a></td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常<a href="唯一的例外是`月刃`的弹射伤害和`虫群`的攻击伤害，会被格挡">^1</a></td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#魔法抗性">魔法抗性</a></td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://dota2-zh.gamepedia.com/虚无" target="_blank" rel="external">虚无</a></td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">美国效果</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#闪避">闪避</a></td>
+<td style="text-align:center">可能落空</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">降低</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#致盲来源">致盲</a></td>
+<td style="text-align:center">可能落空</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="https://charlesliuyx.github.io/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/#伤害调整">伤害加深</a></td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+<td style="text-align:center">加深</td>
+</tr>
+<tr>
+<td style="text-align:center">[伤害减免]</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+<td style="text-align:center">降低</td>
+</tr>
+<tr>
+<td style="text-align:center">[伤害无效化]</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+</tr>
+<tr>
+<td style="text-align:center">[魔法伤害护盾]</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">正常</td>
+</tr>
+<tr>
+<td style="text-align:center">[无敌]</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+<td style="text-align:center">没有效果</td>
+</tr>
+<tr>
+<td style="text-align:center">[技能免疫]</td>
+<td style="text-align:center">正常</td>
+<td style="text-align:center">不定</td>
+<td style="text-align:center">不定</td>
+<td style="text-align:center">不定</td>
+</tr>
+</tbody>
+</table>
+<h2 id="物理"><a href="#物理" class="headerlink" title="物理"></a>物理</h2><h2 id="魔法"><a href="#魔法" class="headerlink" title="魔法"></a>魔法</h2><h2 id="纯粹"><a href="#纯粹" class="headerlink" title="纯粹"></a>纯粹</h2><h1 id="标记"><a href="#标记" class="headerlink" title="标记"></a>标记</h1><h2 id="生命移除标记"><a href="#生命移除标记" class="headerlink" title="生命移除标记"></a>生命移除标记</h2><h1 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h1><h2 id="不反弹标记"><a href="#不反弹标记" class="headerlink" title="不反弹标记"></a>不反弹标记</h2>]]></content>
+      
+        <categories>
+            
+            <category> Dota2 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Dota2 </tag>
+            
+            <tag> Mechanism </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[机器学习分类器性能指标详解]]></title>
       <url>/2017/09/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E8%AF%A6%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>【阅读时间】16 - 26 min<br>【内容简介】系统详解分类器性能指标，什么是<code>准确率 - Accuracy</code>、<code>精确率 - Precision</code>、<code>召回率 - Recall</code>、<code>F1值</code>、<code>ROC曲线</code>、<code>AUC曲线</code>、<code>误差 - Error</code>、<code>偏差 - Bias</code>、<code>方差 - Variance</code>及<code>Bias-Variance Tradeoff</code></p>
@@ -466,7 +590,7 @@ $$
     <entry>
       <title><![CDATA[Dota2机制总结]]></title>
       <url>/2017/09/05/Dota2%E6%9C%BA%E5%88%B6%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<p>【阅读时间】百科类型文章<br>【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，针对人群可能是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等</p>
+      <content type="html"><![CDATA[<p>【阅读时间】百科类型文章<br>【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，<strong>计算公式</strong>。针对人群是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解<strong>如何通过击杀或得更多的经济</strong>，<strong>哪些操作可以躲避技能</strong>等等</p>
 <p>版本信息：更新到7.06f</p>
 <a id="more"></a>
 <h1 id="金钱"><a href="#金钱" class="headerlink" title="金钱"></a>金钱</h1><h2 id="击杀英雄奖励"><a href="#击杀英雄奖励" class="headerlink" title="击杀英雄奖励"></a>击杀英雄奖励</h2><p>获得金钱 = 110 + 连杀奖励 + （被击杀者等级 * 8）</p>
@@ -792,7 +916,7 @@ $$
 <h3 id="GDM-General-Damage-Multipliers-一般伤害倍数"><a href="#GDM-General-Damage-Multipliers-一般伤害倍数" class="headerlink" title="GDM(General Damage Multipliers) 一般伤害倍数"></a>GDM(General Damage Multipliers) 一般伤害倍数</h3><p>见<a href="#DM"><strong>伤害调整</strong></a><br><a name="AT"></a></p>
 <h2 id="攻击类型"><a href="#攻击类型" class="headerlink" title="攻击类型"></a>攻击类型</h2><p>基础打英雄护甲75%伤害</p>
 <p>穿刺打英雄护甲50%伤害，基础护甲（小兵护甲）150%伤害<br><a name="DM"></a></p>
-<h2 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h2><p>除了<strong>回光返照，幽灵船，魔法护盾</strong>之外，伤害减免和加深的叠加为<strong>加法叠加</strong></p>
+<h2 id="伤害调整"><a href="#伤害调整" class="headerlink" title="伤害调整"></a>伤害调整</h2><h3 id="伤害减免和加深"><a href="#伤害减免和加深" class="headerlink" title="伤害减免和加深"></a>伤害减免和加深</h3><p>除了<strong>回光返照，幽灵船，魔法护盾</strong>之外，伤害减免和加深的叠加为<strong>加法叠加</strong></p>
 <table>
 <thead>
 <tr>
@@ -896,6 +1020,53 @@ $$
 <td style="text-align:center">白银之锋</td>
 <td style="text-align:center">降低输出</td>
 <td style="text-align:center">50 持续5秒</td>
+</tr>
+</tbody>
+</table>
+<h3 id="伤害无效化"><a href="#伤害无效化" class="headerlink" title="伤害无效化"></a>伤害无效化</h3><p>伤害实例仍然存在，如果一些与伤害触发相关的事件并且没有低于伤害阈值的伤害，仍然会触发<strong>伤害事件</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">技能或物品名称</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">无天光盾</td>
+<td style="text-align:center">110/140/170/200 天赋 +300 15s持续时间</td>
+</tr>
+<tr>
+<td style="text-align:center">回光返照</td>
+<td style="text-align:center">3/4/5(A 5/6/7) 伤害转化为治疗</td>
+</tr>
+<tr>
+<td style="text-align:center">凝魂之类</td>
+<td style="text-align:center">5次 大于50点的伤害抵挡120点</td>
+</tr>
+<tr>
+<td style="text-align:center">尖刺外壳</td>
+<td style="text-align:center">2.25s持续时间 无效化每个玩家的<strong>第一次</strong>伤害</td>
+</tr>
+<tr>
+<td style="text-align:center">守护天使</td>
+<td style="text-align:center">6/7/8 (A 8/9/10) 物理伤害无效化</td>
+</tr>
+<tr>
+<td style="text-align:center">虚妄芝诺</td>
+<td style="text-align:center">7/8/9(天赋 +2) 持续时间结束受到被无效化的伤害</td>
+</tr>
+<tr>
+<td style="text-align:center">折光</td>
+<td style="text-align:center">次数 3/4/5/6(天赋 +3) 忽略低于5点的伤害</td>
+</tr>
+<tr>
+<td style="text-align:center">活体护甲</td>
+<td style="text-align:center">所有类型伤害无效化 20/40/60/80 次数 4/5/6/7(天赋 +4) 持续15s  低于5伤害忽略</td>
+</tr>
+<tr>
+<td style="text-align:center">极寒之拥</td>
+<td style="text-align:center">持续时间4s 无效物理伤害</td>
 </tr>
 </tbody>
 </table>
@@ -1743,12 +1914,18 @@ $$
 <h3 id="不可以被躲避的技能"><a href="#不可以被躲避的技能" class="headerlink" title="不可以被躲避的技能"></a>不可以被躲避的技能</h3><p><code>炼金术士：不稳定化合物</code> <code>天穹守望者：闪光幽魂</code> <code>爱人直升机：追踪导弹</code> <code>哈斯卡：牺牲</code> <code>拉西克：闪电风暴</code> <code>巫妖：连环霜冻</code> <code>莉娜：神灭斩</code> <code>莱恩：死亡一指</code> <code>美杜莎：秘术异蛇</code> <code>米拉娜：流星风暴</code> <code>瘟疫法师：死亡脉冲</code> <code>痛苦女王：痛苦尖叫</code> <code>拉比克：技能窃取</code> <code>天怒法师：奥法鹰隼</code> <code>幽鬼：幽鬼之刃</code> <code>小小：投掷</code> <code>树精卫士：寄生种子</code> <code>巨牙海民：雪球</code> <code>寒冬飞龙：碎裂冲击弹射</code> <code>巫医：麻痹药剂</code></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Dota2 </category>
+            
+        </categories>
+        
         
         <tags>
             
             <tag> Dota2 </tag>
             
-            <tag> DataAnalysis </tag>
+            <tag> Data Analysis </tag>
             
         </tags>
         
