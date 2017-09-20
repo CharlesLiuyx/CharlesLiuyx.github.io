@@ -33,7 +33,7 @@ $$
 </ul>
 
 
-根据这两点，抽象SVM的直接表达（Directly Representation）注：$arg \operatorname*{max}\_{x} f(x)$ 表示当 $f(x)$ **取最大值时，x的取值**
+根据这两点，抽象SVM的直接表达（Directly Representation）$arg \operatorname\*{max}\_{x} f(x)$ 表示当 $f(x)$ **取最大值时，x的取值**
 $$
 arg \operatorname*{max}_{boundary} margin(boundary) \\ \text{所有正确归类的两类到boundary的距离} \ge margin \tag{1}
 $$
