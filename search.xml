@@ -46,7 +46,7 @@ $$
 <li>如果这些训练数据是线性可分的，选出两条直线（上图中的虚线），使得他们的距离尽可能的大，这两条直线的中央就是<strong>待求的超平面</strong>（直线）</li>
 <li>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，且两个超平面（直线）之间的距离为 $\gamma = \frac{2}{\lVert \mathbf w \lVert}$</li>
 <li>为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong>，我们需要保证对于所有的 $i$ 满足下列的条件<ul>
-<li>$\mathbf w^T \vec x_i + b \gesqlant 1$ 若 $y_i = 1$</li>
+<li>$\mathbf w^T \vec x_i + b \geqslant 1$ 若 $y_i = 1$</li>
 <li>$\mathbf w^T \vec x_i + b \leqslant -1$ 若 $y_i = -1$</li>
 </ul>
 </li>
