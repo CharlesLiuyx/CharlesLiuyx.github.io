@@ -50,7 +50,7 @@ $$
 <li>$\mathbf w^T \vec x + b \le -1$ 若 $y_i = -1$</li>
 </ul>
 </li>
-<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \le 1, for all 1\le i \le n$ </li>
+<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \le 1, \text{for all 1}\; \le i \le n$ </li>
 <li>上面的表达（Directly Representation）可以被写成
 $$
 arg \operatorname*{max}_{\mathbf w,b} \left\{ {\frac{1}{\lVert w \lVert} \operatorname*{min}_{n} [y_i(\mathbf w^T\vec x_i}+b)]\right\} \tag{2} 
