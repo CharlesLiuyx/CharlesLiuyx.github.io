@@ -31,7 +31,7 @@ $$
 <li>它离<strong>两边一样远</strong></li>
 <li><strong>最近的距离</strong>就是到<strong>支持向量中的点</strong>的距离</li>
 </ul>
-<p>根据这两点，抽象SVM的直接表达（Directly Representation）$arg \operatorname*{max}_{x} f(x)$ 表示当 $f(x)$ <strong>取最大值时，x的取值</strong></p>
+<p>根据这两点，抽象SVM的直接表达（Directly Representation）<br>注：$arg \operatorname*{max}_{x} f(x)$ 表示当 $f(x)$ <strong>取最大值时，x的取值</strong></p>
 
 $$
 arg \operatorname*{max}_{boundary} margin(boundary) \\ \text{所有正确归类的两类到boundary的距离} \ge margin \tag{1}
