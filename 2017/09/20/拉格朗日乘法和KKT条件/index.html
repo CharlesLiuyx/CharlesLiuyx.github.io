@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_parab.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_levelsets.png">
-<meta property="og:updated_time" content="2017-09-20T23:32:23.000Z">
+<meta property="og:updated_time" content="2017-09-20T23:35:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日乘法和KKT条件">
 <meta name="twitter:description" content="【阅读时间】8min - 10mun【内容简介】直观的解读了什么是拉格朗日乘子法，以及如何求解拉格朗日方程，并且给出几个直观的例子，针对不等式约束解读了KKT条件的必要条件和充分条件">
@@ -290,7 +290,8 @@ $$
 <p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_parab.png" width="400px"></p>
 <p>和单约束的解决方法类似，我们画出等高线图，目的就是<strong>在约束线上找到一个点可以和等高线相切，所得的值实在约束范围内的最大值或者最小值</strong>，直观表示如下图</p>
 <p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_levelsets.png" width="400px"></p>
-<h1 id="KKT条件"><a href="#KKT条件" class="headerlink" title="KKT条件"></a>KKT条件</h1><p>已经解决的在<strong>等式约束条件下</strong>的求函数极值的问题，那么如果是不等式约束条件下，应该如何解决呢？</p>
+<p>解算方法是讲单约束的扩展到多约束的情况，较为类似，可举一反三</p>
+<h1 id="KKT条件"><a href="#KKT条件" class="headerlink" title="KKT条件"></a>KKT条件</h1><p>已经解决的在<strong>等式约束条件下</strong>的求函数极值的问题，那<strong>不等式约束条件</strong>下，应该如何解决呢？</p>
 <p>这就需要引出<strong>KKT条件</strong>（Karush-Kuhn-Tucker Conditions），它是在满足一些有规则的条件下，一个<strong>非线性规划问题能有最优化解法</strong>的一个必<strong>要和充分条件</strong></p>
 <p>考虑以下非线性最优化问题，含有 $m$ 个不等式约束，$l$ 个等式约束<br>$$<br>\operatorname*{min}_{x}f(x) \qquad s.t. \; g_i(x) \leqslant 0,\; h_j(x) =0<br>$$</p>
 <h2 id="必要条件"><a href="#必要条件" class="headerlink" title="必要条件"></a>必要条件</h2><p>假设 $f,g_i,h_j$ 三个函数为<strong>实数集映射</strong>，再者，他们都在 $x^<em>$ 这点<strong>连续可微</strong>，如果 $x^</em>$  是一个<strong>局部极值</strong>，那么<strong>将会存在</strong>一组<strong>称为乘子</strong>的常数 $\lambda \geqslant 0,\mu_i \geqslant0, \nu_j$  令<br>
@@ -316,7 +317,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-20T23:32:23.000Z" itemprop="dateUpdated">2017-09-20 16:32:23</time>
+    Last updated: <time datetime="2017-09-20T23:35:33.000Z" itemprop="dateUpdated">2017-09-20 16:35:33</time>
 </span><br>
 
 
