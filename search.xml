@@ -135,7 +135,7 @@ $$
 \mu_i  g_i(x^*) =0 \; \text{for all} \; i=1,\ldots,m
 $$
 </p>
-<p>那么 $x^<em>$ 就是<em>*全局极小值</em></em></p>
+<p>那么 $x^*$ 就是<strong>全局极小值</strong></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总的来说，拉格朗日乘子法是<strong>一个工具（手段或方法）</strong>，来<strong>解决在有约束情况的求函数极值的问题</strong></p>
 ]]></content>
       
