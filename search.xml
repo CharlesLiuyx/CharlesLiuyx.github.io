@@ -3,6 +3,32 @@
   
     
     <entry>
+      <title><![CDATA[拉格朗日乘法和KKT条件]]></title>
+      <url>/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/</url>
+      <content type="html"><![CDATA[<p>【阅读时间】</p>
+<p>【内容简介】</p>
+<a id="more"></a>
+<p>拉格朗日乘法（Lagrange multiplier）是一种在<strong>最优化的问题中</strong>寻找多元函数在其变量<strong>受到一个或多个条件的相等约束</strong>时的<strong>求局部极值的方法</strong>。这种方法可以将一个有 n 个变量和 k 个约束条件的最优化问题转换为一个<strong>解有 n+k 个变量的方程组的解的问题</strong></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Machine Learning </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Theory </tag>
+            
+            <tag> Machine Learning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[支持向量机SVM学习笔记]]></title>
       <url>/2017/09/19/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】</p>
