@@ -34,7 +34,7 @@
 <meta property="og:description" content="【阅读时间】【内容简介】">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
-<meta property="og:updated_time" content="2017-09-20T03:28:56.000Z">
+<meta property="og:updated_time" content="2017-09-20T03:30:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机SVM学习笔记">
 <meta name="twitter:description" content="【阅读时间】【内容简介】">
@@ -240,8 +240,8 @@ $$
 <p>其实这个公式是一点也不抽象，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
 <ul>
 <li>首先定义直线：$y(x) = \mathbf w_T x + b$</li>
-<li>任意点 x 到该直线的距离为 $\frac{1}{\lVert w \lVert} (\mathbf w^Tx + b)$</li>
-<li>对于空间内所有<strong>训练点的坐标</strong>记为 $\vec x_i,y_i$，其中 $y_i$=1 or -1， 表示点 $\vec x_i$ 所属的类</li>
+<li>任意点 $\vec x_i$ 到该直线的距离为 $\frac{1}{\lVert w \lVert} (\mathbf w^Tx + b)$</li>
+<li>对于空间内所有<strong>训练点的坐标</strong>记为 $(\vec x_i,y_i)$，其中 $y_i$=1 or -1， 表示点 $\vec x_i$ 所属的类</li>
 <li>上面的表达（Directly Representation）可以被写成
 $$
 arg \operatorname*{max}_{\mathbf w,b} \left\{ {\frac{1}{\lVert w \lVert} \operatorname*{min}_{n} [y_i(\mathbf w^T\vec x_i}+b)]\right\} \tag{2}
@@ -256,7 +256,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-20T03:28:56.000Z" itemprop="dateUpdated">2017-09-19 20:28:56</time>
+    Last updated: <time datetime="2017-09-20T03:30:52.000Z" itemprop="dateUpdated">2017-09-19 20:30:52</time>
 </span><br>
 
 
