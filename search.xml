@@ -13,13 +13,7 @@ $$
 \operatorname*{max}_{x,y} f(x,y) \qquad s.t.\;\; g(x,y)=c
 $$
 
-<p>为了求 $x$ 和 $y$ ，引入一个新的变量 $\lambda$ 称为<strong>拉格朗日乘数</strong>，再引入朗格朗日函数的极值<br>$$<br>\mathcal{L}(x,y,\lambda)=f(x,y)-\lambda \cdot \bigl( g(x,y) - c\bigl) \tag 1<br>$$<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/LagrangeMultiplier.png" alt="上式直观图像表达" title="">
-                </div>
-                <div class="image-caption">上式直观图像表达</div>
-            </figure></p>
+<p>为了求 $x$ 和 $y$ ，引入一个新的变量 $\lambda$ 称为<strong>拉格朗日乘数</strong>，再引入朗格朗日函数的极值<br>$$<br>\mathcal{L}(x,y,\lambda)=f(x,y)-\lambda \cdot \bigl( g(x,y) - c\bigl) \tag 1<br>$$<br><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/LagrangeMultiplier.png" width="400px"></p>
 <blockquote>
 <p>红线表示 $g(x,y) = c$ ，蓝线是 $f(x,y)$ 的<strong>等高线</strong>，所有箭头表示梯度下降最快的方向。图中<strong>红线与等高线相切</strong>的位置就是待求的极大值</p>
 </blockquote>
@@ -73,13 +67,7 @@ $$
 (\pm \sqrt{2},1,-1 ); (\pm \sqrt{2},-1,1 );(0,\pm \sqrt{3},0)
 $$
 <br>根据几个不同的解带入 $f(x,y)$ 得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如下图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png" alt="Sample" title="">
-                </div>
-                <div class="image-caption">Sample</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png" width="400px"></p>
 <h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><p>关于拉格朗日乘子法的应用，有一个十分著名的：求<strong>离散概率分布  $p_1,p_2,\cdots,p_n$  的最大<a href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">信息熵</a></strong><br>
 $$
 f(p1,p2,\cdots,p_n) = - \sum_{j=1}^n p_j log_2{p_j} \\
@@ -103,21 +91,9 @@ $$
 <p>这说明所有的 $p_i$ 都相等，所以得到 $p_k = \frac{1}{n}$ </p>
 <p>我们可以得到一个结论是：<strong>均匀分布的信息熵是最大的</strong></p>
 <h2 id="多约束"><a href="#多约束" class="headerlink" title="多约束"></a>多约束</h2><p>既然可以解决单约束，继续思考一下多约束情况的直观表现，假设我们的约束是两条线，如下图所示</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_parab.png" alt="3D直观表示" title="">
-                </div>
-                <div class="image-caption">3D直观表示</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_parab.png" width="400px"></p>
 <p>和单约束的解决方法类似，我们画出等高线图，目的就是<strong>在约束线上找到一个点可以和等高线相切，所得的值实在约束范围内的最大值或者最小值</strong>，直观表示如下图</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_levelsets.png" alt="二维等高线示意图" title="">
-                </div>
-                <div class="image-caption">二维等高线示意图</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_levelsets.png" width="400px"></p>
 <h1 id="KKT条件"><a href="#KKT条件" class="headerlink" title="KKT条件"></a>KKT条件</h1><p>已经解决的在<strong>等式约束条件下</strong>的求函数极值的问题，那么如果是不等式约束条件下，应该如何解决呢？</p>
 <p>这就需要引出<strong>KKT条件</strong>（Karush-Kuhn-Tucker Conditions），它是在满足一些有规则的条件下，一个<strong>非线性规划问题能有最优化解法</strong>的一个必<strong>要和充分条件</strong></p>
 <p>考虑以下非线性最优化问题，含有 $m$ 个不等式约束，$l$ 个等式约束<br>$$<br>\operatorname*{min}_{x}f(x) \qquad s.t. \; g_i(x) \leqslant 0,\; h_j(x) =0<br>$$</p>
