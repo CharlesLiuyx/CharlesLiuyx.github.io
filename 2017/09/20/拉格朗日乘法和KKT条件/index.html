@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_parab.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/lgm_levelsets.png">
-<meta property="og:updated_time" content="2017-09-20T22:31:22.000Z">
+<meta property="og:updated_time" content="2017-09-20T23:27:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拉格朗日乘法和KKT条件">
 <meta name="twitter:description" content="【阅读时间】8min - 10mun【内容简介】直观的解读了什么是拉格朗日乘子法，以及如何求解拉格朗日方程，并且给出几个直观的例子，针对不等式约束解读了KKT条件的必要条件和充分条件">
@@ -133,7 +133,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -220,8 +220,55 @@ $$
 <p>红线表示 $g(x,y) = c$ ，蓝线是 $f(x,y)$ 的<strong>等高线</strong>，所有箭头表示梯度下降最快的方向。图中<strong>红线与等高线相切</strong>的位置就是待求的极大值</p>
 </blockquote>
 <h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><p>那么如何求这个极值点呢？</p>
-<h2 id="单约束"><a href="#单约束" class="headerlink" title="单约束"></a>单约束</h2><p>对(1)式直接求微分，并令其为零，计算出<strong>鞍点</strong><br>$$<br>\nabla<em>{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0<br>$$<br>有三个未知数，所以需要3个方程。求 $\lambda$ 的偏微分有 $\nabla</em>{\lambda} \mathcal{L}(x,y,\lambda) = 0 \implies g(x,y)=0$，则总结得<br>$$<br>\nabla<em>{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0 \iff<br>\begin{cases}<br>\nabla</em>{x,y} f(x,y) = \lambda \nabla_{x,y} g(x,y) \<br>g(x,y)=0<br>\end{cases}<br>$$</p>
-<h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><p>设一个具体的例子，我们需要求下列问题<br>$$<br>\operatorname<em>{max}<em>{x,y} f(x,y) = x^2y \qquad s.t.\;\; g(x,y): x^2+y^2-3=0<br>$$<br>只有一个一个约束，使用一个乘子，设为 $\lambda$，列出<strong>拉格朗日函数</strong><br>$$<br>\mathcal{L}(x,y,\lambda)=f(x,y)-\lambda \cdot \bigl( g(x,y) - c\bigl) = x^2y + \lambda(x^2+y^2-3)<br>$$<br>接下来求解上式，分别对<strong>三个待求量偏微分</strong><br>$$<br>\begin{align}<br>\nabla</em>{x,y,\lambda} \mathcal{L}(x,y,\lambda) &amp; = \left( \frac{\partial \mathcal{L}}{\partial x},\frac{\partial \mathcal{L}}{\partial y},\frac{\partial \mathcal{L}}{\partial \lambda}\right)\<br>&amp; = (2xy + 2\lambda x, x^2 + 2\lambda y, x^2 + y^2 - 3)<br>\end{align}<br>$$<br>令<strong>偏微分分别等于0</strong>，得到<br>$$<br>\nabla_{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0 \iff<br>\begin{cases}<br>2xy+2\lambda x = 0 \<br>x^2 + 2\lambda y = 0 \<br>x^2 + y^2 - 3 = 0<br>\end{cases}<br>\iff<br>\begin{cases}<br>x(y + \lambda) = 0  &amp; (i)\<br>x^2 = -2\lambda y  &amp; (ii)\<br>x^2 +y^2 = 3 &amp; (iii)<br>\end{cases}<br>$$<br>根据上式，我们可以解得 $\mathcal{L}$:<br>$$<br>(\pm \sqrt{2},1,-1 ); (\pm \sqrt{2},-1,1 );(0,\pm \sqrt{3},0)<br>$$<br>根据几个不同的解带入 $f(x,y)$ 得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如下图所示（<em>*非常直观的展现约束和等高线的含义</em></em>）</p>
+<h2 id="单约束"><a href="#单约束" class="headerlink" title="单约束"></a>单约束</h2><p>对(1)式直接求微分，并令其为零，计算出<strong>鞍点</strong></p>
+
+$$
+\nabla_{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0
+$$
+有三个未知数，所以需要3个方程。求 $\lambda$ 的偏微分有 $\nabla_{\lambda} \mathcal{L}(x,y,\lambda) = 0 \implies g(x,y)=0$，则总结得
+$$
+\nabla_{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0 \iff 
+\begin{cases}
+\nabla_{x,y} f(x,y) = \lambda \nabla_{x,y} g(x,y) \\
+g(x,y)=0
+\end{cases}
+$$
+
+<h3 id="例子1"><a href="#例子1" class="headerlink" title="例子1"></a>例子1</h3><p>设一个具体的例子，我们需要求下列问题<br>
+$$
+\operatorname*{max}_{x,y} f(x,y) = x^2y \qquad s.t.\;\; g(x,y): x^2+y^2-3=0
+$$
+<br>只有一个一个约束，使用一个乘子，设为 $\lambda$，列出<strong>拉格朗日函数</strong><br>
+$$
+\mathcal{L}(x,y,\lambda)=f(x,y)-\lambda \cdot \bigl( g(x,y) - c\bigl) = x^2y + \lambda(x^2+y^2-3)
+$$
+<br>接下来求解上式，分别对<strong>三个待求量偏微分</strong><br>
+$$
+\begin{align}
+\nabla_{x,y,\lambda} \mathcal{L}(x,y,\lambda) & = \left( \frac{\partial \mathcal{L}}{\partial x},\frac{\partial \mathcal{L}}{\partial y},\frac{\partial \mathcal{L}}{\partial \lambda}\right)\\
+& = (2xy + 2\lambda x, x^2 + 2\lambda y, x^2 + y^2 - 3)
+\end{align}
+$$
+<br>令<strong>偏微分分别等于0</strong>，得到<br>
+$$
+\nabla_{x,y,\lambda} \mathcal{L}(x,y,\lambda) = 0 \iff 
+\begin{cases}
+2xy+2\lambda x = 0 \\
+x^2 + 2\lambda y = 0 \\
+x^2 + y^2 - 3 = 0
+\end{cases}
+\iff
+\begin{cases}
+x(y + \lambda) = 0  & (i)\\
+x^2 = -2\lambda y  & (ii)\\
+x^2 +y^2 = 3 & (iii)
+\end{cases}
+$$
+<br>根据上式，我们可以解得 $\mathcal{L}$:<br>
+$$
+(\pm \sqrt{2},1,-1 ); (\pm \sqrt{2},-1,1 );(0,\pm \sqrt{3},0)
+$$
+<br>根据几个不同的解带入 $f(x,y)$ 得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如下图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -293,7 +340,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-20T22:31:22.000Z" itemprop="dateUpdated">2017-09-20 15:31:22</time>
+    Last updated: <time datetime="2017-09-20T23:27:33.000Z" itemprop="dateUpdated">2017-09-20 16:27:33</time>
 </span><br>
 
 
@@ -467,7 +514,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
