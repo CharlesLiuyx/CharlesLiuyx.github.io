@@ -34,7 +34,7 @@
 <meta property="og:description" content="【阅读时间】【内容简介】">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
-<meta property="og:updated_time" content="2017-09-20T07:40:09.000Z">
+<meta property="og:updated_time" content="2017-09-20T08:35:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机SVM学习笔记">
 <meta name="twitter:description" content="【阅读时间】【内容简介】">
@@ -131,7 +131,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -234,17 +234,17 @@ $$
 <p>其实这个公式是一点也不抽象，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
 <p> <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM"></p>
 <ul>
-<li>首先定义超平面：$\mathbf w^T \vec {x_i} + b = 0$，接下来为了方便，设  $\vec x = (x_1,x_2)$  即一条直线</li>
+<li>首先定义超平面：$\mathbf w^T \vec x_i + b = 0$，接下来为了方便，设  $\vec x = (x_1,x_2)$  即一条直线</li>
 <li>任意点 $\vec x_i$ 到该直线的距离为 $\frac{1}{\lVert \mathbf w \lVert} (\mathbf w^T \vec x_i + b)$</li>
 <li>对于空间内所有<strong>训练点的坐标</strong>记为 $(\vec x_i,y_i)$，其中 $y_i$ = 1 or -1， 表示点 $\vec x_i$ <strong>所属的类</strong></li>
 <li>如果这些训练数据是线性可分的，选出两条直线（上图中的虚线），使得他们的距离尽可能的大，这两条直线的中央就是<strong>待求的超平面</strong>（直线）</li>
-<li>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，且两个超平面（直线）之间的距离为 $\frac{2}{\lVert \mathbf w \lVert}$</li>
+<li>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，且两个超平面（直线）之间的距离为 $\gamma = \frac{2}{\lVert \mathbf w \lVert}$</li>
 <li>为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong>，我们需要保证对于所有的 $i$ 满足下列的条件<ul>
-<li>$\mathbf w^T \vec x_i + b \ge 1$ 若 $y_i = 1$</li>
-<li>$\mathbf w^T \vec x_i + b \le -1$ 若 $y_i = -1$</li>
+<li>$\mathbf w^T \vec x_i + b \geqlant 1$ 若 $y_i = 1$</li>
+<li>$\mathbf w^T \vec x_i + b \leqslant -1$ 若 $y_i = -1$</li>
 </ul>
 </li>
-<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \le 1, \text{for all 1}\; \le i \le n$ </li>
+<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \leqslant 1, \text{for all 1}\; \leqslant i \leqlant n$ </li>
 <li><p>上面的表达（Directly Representation）可以被写成</p>
 
 $$
@@ -252,9 +252,11 @@ arg \operatorname*{max}_{\mathbf w,b} \left\{ {\frac{1}{\lVert \mathbf w \lVert}
 $$
 
 </li>
-<li><p>最终目的是</p>
+<li><p>最终目的是<strong>找到具有“最大间隔”（Maximum Margin）的划分超平面（直线），找到参数 $\mathbf w$ 和 $b$ 使得 $\gamma$ 最大</strong></p>
 </li>
+<li>则可以对(2)式进行形式变换，得到 canonical representation</li>
 </ul>
+<p>$$<br>arg \operatorname<em>{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \iff  arg \operatorname</em>{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \ s.t.\; y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m  \tag{3}<br>$$</p>
 
         </div>
 
@@ -262,7 +264,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-20T07:40:09.000Z" itemprop="dateUpdated">2017-09-20 00:40:09</time>
+    最后更新时间：<time datetime="2017-09-20T08:35:27.000Z" itemprop="dateUpdated">2017-09-20 01:35:27</time>
 </span><br>
 
 
@@ -436,7 +438,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
