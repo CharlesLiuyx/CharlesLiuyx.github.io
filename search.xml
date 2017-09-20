@@ -38,8 +38,15 @@ arg \operatorname*{max}_{boundary} margin(boundary) \\ \text{所有正确归类�
 $$
 
 <p>其实这个公式是一点也不抽象，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
-<p> <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM"></p>
+<h2 id="硬间隔"><a href="#硬间隔" class="headerlink" title="硬间隔"></a>硬间隔</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM" title="">
+                </div>
+                <div class="image-caption">SVM</div>
+            </figure>
 <ul>
+<li>假设这些数据<strong>线性可分</strong>，也可以叫做硬间隔（Hard Margin）</li>
 <li>首先定义超平面：$\mathbf w^T \vec x_i + b = 0$，接下来为了方便，设  $\vec x = (x_1,x_2)$  即一条直线</li>
 <li>任意点 $\vec x_i$ 到该直线的距离为 $\frac{1}{\lVert \mathbf w \lVert} (\mathbf w^T \vec x_i + b)$</li>
 <li>对于空间内所有<strong>训练点的坐标</strong>记为 $(\vec x_i,y_i)$，其中 $y_i$ = 1 or -1， 表示点 $\vec x_i$ <strong>所属的类</strong></li>
@@ -62,11 +69,12 @@ $$
 </li>
 <li>则可以对(2)式进行形式变换，得到 canonical representation
 $$
-arg \operatorname*{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \iff  arg \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \\ s.t.\; y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m  \tag{3}
+arg \operatorname*{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \implies  arg \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \\ s.t.\; y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m  \tag{3}
 $$
 
-s.t. subject to 表达约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></li>
+<code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></li>
 </ul>
+<p>为了求得(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用在有各种约束条件下的目标函数，可以</p>
 ]]></content>
       
         <categories>
