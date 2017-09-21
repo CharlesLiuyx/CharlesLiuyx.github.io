@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png">
-<meta property="og:updated_time" content="2017-09-21T22:25:40.000Z">
+<meta property="og:updated_time" content="2017-09-21T23:12:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】支持向量机SVM">
 <meta name="twitter:description" content="【阅读时间】13-19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
@@ -215,45 +215,60 @@
 <p>有了直观的感知，在定义这一节在做一些深入的思考，分解名词（Support Vector Machine）并尝试解释：</p>
 <ul>
 <li><strong>Machine</strong> - Classification Machine 说明它的本质是一个<strong>分类器</strong></li>
-<li><strong>Support Vector</strong> - 如上图所示，在<code>Maximum Margin</code>上的<strong>这些点</strong>就是<strong>支持向量</strong>，具体来说就是<strong>最后的Classification Machine的表达式里只含有这些支持向量</strong>的信息，而与其他数据点无关，在下面的公式中，只有<strong>支持向量的系数</strong> $\alpha_i$ 不等于0。说人话，<strong>上图中的两个红色的点，一个蓝色的点，合起来就是支持向量</strong>
+<li><strong>Support Vector</strong> - 如上图所示，在<code>Maximum Margin</code>上的<strong>这些点</strong>就是<strong>支持向量</strong>，具体说即最终分类器表达式中<strong>只含有这些支持向量</strong>的信息，而与其他数据点无关。在下面的公式中，只有<strong>支持向量的系数</strong> $\alpha_i$ 不等于0。说人话，<strong>上图中两个红色的点，一个蓝色的点，合起来就是支持向量</strong>
 $$
-\mathbf w \cdot \varphi (\mathbf x) = \sum_i \alpha_i y_i k(\mathbf x_i,\mathbf x)
+\mathbf w \cdot \varphi (\mathbf x) = \sum_i \lambda_i y_i k(\mathbf x_i,\mathbf x)
 $$
 
 </li>
 </ul>
-<h1 id="如何求解支持向量机"><a href="#如何求解支持向量机" class="headerlink" title="如何求解支持向量机"></a>如何求解支持向量机</h1><p>对于我们需要求解的这条直线来说，我们知道</p>
+<blockquote>
+<p>公式中每一个符号的含义在后文有说明</p>
+</blockquote>
+<h1 id="如何求解支持向量机"><a href="#如何求解支持向量机" class="headerlink" title="如何求解支持向量机"></a>如何求解支持向量机</h1><p>对于我们需要求解的这个超平面（直线）来说，我们知道</p>
 <ul>
-<li>它离<strong>两边一样远</strong></li>
+<li>它离<strong>两边一样远</strong>（待分类的两个部分的样本点）</li>
 <li><strong>最近的距离</strong>就是到<strong>支持向量中的点</strong>的距离</li>
 </ul>
-<p>根据这两点，抽象SVM的直接表达（Directly Representation）<br>注：$arg \operatorname*{max}_{x} f(x)$ 表示当 $f(x)$ <strong>取最大值时，x的取值</strong></p>
+<p>根据这两点，抽象SVM的直接表达（Directly Representation）</p>
+<blockquote>
+<p>注：$arg \operatorname*{max}_{x} f(x)$ 表示当 $f(x)$ <strong>取最大值时，x的取值</strong></p>
+</blockquote>
 
 $$
 arg \operatorname*{max}_{boundary} margin(boundary) \\ \text{所有正确归类的两类到boundary的距离} \ge margin \tag{1}
 $$
 
-<p>其实这个公式是一点也不抽象，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
+<p>其实这个公式是一点也不抽象，需要更进一步的用符号来表达。</p>
+<p>我们知道<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
 <h2 id="硬间隔"><a href="#硬间隔" class="headerlink" title="硬间隔"></a>硬间隔</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM支持向量机" title="">
                 </div>
-                <div class="image-caption">SVM</div>
+                <div class="image-caption">SVM支持向量机</div>
             </figure>
+<blockquote>
+<p>注：公式中加粗或者带有向量箭头的都<strong>表达一个向量</strong></p>
+</blockquote>
 <ul>
 <li>假设这些数据<strong>线性可分</strong>，也可称为<strong>硬间隔</strong>（Hard Margin）</li>
 <li>首先定义超平面：$\mathbf w^T \vec x_i + b = 0$，接下来为了方便，设  $\vec x = (x_1,x_2)$  即一条直线</li>
 <li>任意点 $\vec x_i$ 到该直线的距离为 $\frac{1}{\lVert \mathbf w \lVert} (\mathbf w^T \vec x_i + b)$</li>
-<li>对于空间内所有<strong>训练点的坐标</strong>记为 $(\vec x_i,y_i)$，其中 $y_i$ = 1 or -1， 表示点 $\vec x_i$ <strong>所属的类</strong></li>
+<li>对于空间内所有训练点的坐<strong>标记为</strong> $(\vec x_i,y_i)$，其中 $y_i$ = 1 or -1， 表示点 $\vec x_i$ <strong>所属的类</strong></li>
 <li>如果这些训练数据是线性可分的，选出两条直线（上图中的虚线），使得他们的距离尽可能的大，这两条直线的中央就是<strong>待求的超平面</strong>（直线）</li>
-<li>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，且两个超平面（直线）之间的距离为 $\gamma = \frac{2}{\lVert \mathbf w \lVert}$</li>
-<li>为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong>，我们需要保证对于所有的 $i$ 满足下列的条件<ul>
+<li><p>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，两个超平面（直线）之间的距离为 $\gamma = \frac{2}{\lVert \mathbf w \lVert}$</p>
+<blockquote>
+<p>注：选择<code>1</code>的好处是，<code>w</code> 和<code>b</code>进行尺缩变换（<code>kw</code>和<code>kb</code>）不改变距离，方便计算</p>
+</blockquote>
+</li>
+<li><p>为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong>，我们需要保证对于所有的 $i$ 满足下列的条件</p>
+<ul>
 <li>$\mathbf w^T \vec x_i + b \geqslant 1$ 若 $y_i = 1$</li>
 <li>$\mathbf w^T \vec x_i + b \leqslant -1$ 若 $y_i = -1$</li>
 </ul>
 </li>
-<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \leqslant 1, \text{for all 1}\; \leqslant i \leqslant n$ </li>
+<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \geqslant 1, \;\text{for all 1}\; 1\leqslant i \leqslant n$  这里的<code>n</code>指样本点的数量</li>
 <li><p>上面的表达（Directly Representation）可以被写成</p>
 
 $$
@@ -268,8 +283,11 @@ $$
 arg \operatorname*{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \implies  arg \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \\ s.t.\; y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m  \tag{3}
 $$
 
-<code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></li>
+</li>
 </ul>
+<blockquote>
+<p>注：<code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></p>
+</blockquote>
 <p>为了解(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用来求解在约束条件目标函数的极值的，<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a></p>
 <blockquote>
 <p>注：以下解算过程希望完全看懂强烈建议理解阅读<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a>，很多地方推导过程只写必要过程及结论</p>
@@ -301,17 +319,17 @@ $$
 \lambda_i \geqslant0 ;\quad y_i f(\mathbf x_i)-1 \geqslant0; \quad \lambda_i\{ y_i f(\mathbf x_i)-1 \}=0
 $$
 </p>
-<p>根据这个条件，有一些高效的算法，比如<strong>SMO（Sequential Minimal Optimization）</strong>就是其中一个比较著名的</p>
-<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>我们已经了解了求得方程的，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
+<p>使用这些条件，可以构建高效算法来解这个方程，比如<strong>SMO（Sequential Minimal Optimization）</strong>就是其中一个比较著名的。至于SMO是如何做的，考虑到现代很多SVM的Pakage都是直接拿来用，秉承着<strong>前人付出了努力造了轮子就不重复造的核心精神</strong>，直接调用就好</p>
+<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>已经说明了如何求得方程，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据<strong>你中有我我中有你</strong>（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，<strong>允许支持向量机在一定程度上出错</strong></p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px" alt="SoftMargin"></div>
 
-<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是使得我们的目标函数可以在一定程度不满足这个约束条件，我们引入常数 $C$ 和 损失函数 $\ell_{0/1}(z)$ 为<code>0/1损失函数</code>，即当z小于0函数值为1，否则函数值为0<br>
+<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是<strong>使目标函数可以在一定程度不满足这个约束条件</strong>，我们引入常数 $C$ 和 损失函数 $\ell_{0/1}(z)$ 为<code>0/1损失函数</code>，当z小于0函数值为1，否则函数值为0<br>
 $$
 \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \ell_{0/1}(y_i(\mathbf w^T\vec x_i+b) -1) \tag {7}
 $$
 </p>
-<p>对于上式来说 $C \ge 0$ 是个常数，<strong>当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束</strong></p>
-<p>但 $\ell_{0/1}(z)$ 损失函数非凸、非连续，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>
+<p>对于(7)式来说 $C \geqslant 0$ 是个常数，<strong>当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束</strong></p>
+<p>但 $\ell_{0/1}(z)$ 损失函数<strong>非凸、非连续</strong>，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>
 $$
 \begin{align}
 & \text{hinge损失:} \ell_{hinge}(z) = max(0,1-z)\\
@@ -322,7 +340,7 @@ $$
 <br>三种常见损失函数如下图</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png" alt="损失函数" width="450px"></div>
 
-<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong> $\xi_i \geqslant 0$，可将(7)式重写为<br>
+<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong>: $\xi_i \geqslant 0$，可将(7)式重写为<br>
 $$
 \operatorname*{min}_{\mathbf w,b,\xi_i} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \xi_i \\ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}
 $$
@@ -380,8 +398,8 @@ $$
 </tr>
 </tbody>
 </table>
-<p>也可以通过函数组合得到这些值</p>
-<h2 id="多类问题"><a href="#多类问题" class="headerlink" title="多类问题"></a>多类问题</h2><p>多累问题可以使用两两做支持向量机，再由所有的支持向量机投票选出这个类别的归属，被称为<code>one-versus-one approace</code>。</p>
+<p>也可以通过<strong>函数组合</strong>得到这些值</p>
+<h2 id="多类问题"><a href="#多类问题" class="headerlink" title="多类问题"></a>多类问题</h2><p>多类问题可以使用两两做支持向量机，再由所有的支持向量机投票选出这个类别的归属，被称为<code>one-versus-one approace</code>。</p>
 <p>Reference<br><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">知乎各类回答</a><br><a href="https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">Wiki百科</a><br>PRML<br>周志华-机器学习</p>
 
         </div>
@@ -390,7 +408,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-21T22:25:40.000Z" itemprop="dateUpdated">2017-09-21 15:25:40</time>
+    Last updated: <time datetime="2017-09-21T23:12:09.000Z" itemprop="dateUpdated">2017-09-21 16:12:09</time>
 </span><br>
 
 
