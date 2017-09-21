@@ -205,7 +205,10 @@ $$
 
 <code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></li>
 </ul>
-<p>为了求得(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用在有各种约束条件下的目标函数，可以</p>
+<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>这里可以考虑到，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px"></div>
+
+<p>为了解(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用来求解在约束条件目标函数的极值的，<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a></p>
 ]]></content>
       
         <categories>
