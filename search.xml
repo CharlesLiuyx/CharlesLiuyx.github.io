@@ -36,7 +36,7 @@ $$
 $$
 \operatorname*{max}_{x,y} f(x,y) = x^2y \qquad s.t.\;\; g(x,y): x^2+y^2-3=0
 $$
-<br>只有一个一个约束，使用一个乘子，设为 $\lambda$，列出<strong>拉格朗日函数</strong><br>
+<br><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png" width="500px"><br>只有<strong>一个约束</strong>，使用<strong>一个乘子</strong>，设为 $\lambda$，列出<strong>拉格朗日函数</strong><br>
 $$
 \mathcal{L}(x,y,\lambda)=f(x,y)-\lambda \cdot \bigl( g(x,y) - c\bigl) = x^2y + \lambda(x^2+y^2-3)
 $$
@@ -67,7 +67,6 @@ $$
 (\pm \sqrt{2},1,-1 ); (\pm \sqrt{2},-1,1 );(0,\pm \sqrt{3},0)
 $$
 <br>根据几个不同的解带入 $f(x,y)$ 得到，2，-2，0，也就是我们需要的最大值，最小值，对应的直观图像解释如下图所示（<strong>非常直观的展现约束和等高线的含义</strong>）</p>
-<p><img src="//charlesliuyx.github.io/2017/09/20/拉格朗日乘法和KKT条件/Lagrange_simple_1.png" width="500px"></p>
 <h3 id="例子2"><a href="#例子2" class="headerlink" title="例子2"></a>例子2</h3><p>关于拉格朗日乘子法的应用，有一个十分著名的：求<strong>离散概率分布  $p_1,p_2,\cdots,p_n$  的最大<a href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">信息熵</a></strong><br>
 $$
 f(p1,p2,\cdots,p_n) = - \sum_{j=1}^n p_j log_2{p_j} \\
@@ -205,10 +204,32 @@ $$
 
 <code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></li>
 </ul>
-<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>这里可以考虑到，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px"></div>
-
 <p>为了解(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用来求解在约束条件目标函数的极值的，<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a></p>
+<blockquote>
+<p>注：以下解算过程希望完全看懂强烈建议理解阅读<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a>，很多地方推导过程只写必要过程及结论</p>
+</blockquote>
+<p>根据约束的形式，我们引入<code>m</code>个拉格朗日乗法子，记为  $\boldsymbold \lambda = (\lambda_1,\ldots,\lambda_m)^T$ ，原因是，有<code>m</code>个约束，所以需要<code>m</code>个拉格朗日乗法子。可以得出拉格朗日方程如下：<br>
+$$
+\mathcal{L}(\mathbf w,b,\boldsymbol \lambda) = \frac{1}{2}\lVert \mathbf w \lVert ^2  - \sum_{i=1}^m \lambda_i \{  y_i(\mathbf w^T\vec x_i+b) -1 \} \tag{4}
+$$
+</p>
+<p>解这个拉格朗日方程，可以得到以下两个条件<br>
+$$
+\mathbf w = \sum_{i=1}^m \lambda_i y_i \vec x_i \\
+0 = \sum_{i=1}^m \lambda_i y_i
+$$
+</p>
+<p>使用这两个条件带回公式(4)，可以得到 <strong>对偶（dual representaiton）</strong> 形式，我们的目的也变为最大化 $\mathcal{L}(\boldsymbol \lambda)$，表达式如下<br>
+$$
+arg \operatorname*{max}_{\boldsymbol \lambda}\mathcal{L}(\boldsymbol \lambda)  = \sum_{i=1}^m \lambda_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \lambda_i \lambda_j \vec x_i \vec x_j \mathbf x_i^T \mathbf x_j \\
+s.t. \qquad \lambda_i \geqslant 0, \forall i\;;\quad \sum_{i=1}^m \lambda_i y_i = 0
+$$
+</p>
+<p>以上表达式可以通过<strong>二次规划</strong>算法求解</p>
+<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>这里可以考虑到，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px" alt="SoftMargin"></div>
+
+<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是使得我们的目标函数可以在一定程度不满足这个约束条件，我们引入常数 $C$ 和 损失函数 $l(z)$</p>
 ]]></content>
       
         <categories>
