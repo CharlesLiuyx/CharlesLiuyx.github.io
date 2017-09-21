@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png">
-<meta property="og:updated_time" content="2017-09-21T06:15:59.000Z">
+<meta property="og:updated_time" content="2017-09-21T06:22:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】支持向量机SVM">
 <meta name="twitter:description" content="【阅读时间】【内容简介】">
@@ -278,7 +278,7 @@ $$
 \mathcal{L}(\mathbf w,b,\boldsymbol \lambda) = \frac{1}{2}\lVert \mathbf w \lVert ^2  - \sum_{i=1}^m \lambda_i \{  y_i(\mathbf w^T\vec x_i+b) -1 \} \tag{4}
 $$
 </p>
-<p>解这个拉格朗日方程，可以得到以下两个条件<br>
+<p>解这个拉格朗日方程，对 $\mathbf w$ 和 $b$ 求偏导数，可以得到以下两个条件<br>
 $$
 \mathbf w = \sum_{i=1}^m \lambda_i y_i \vec x_i \\
 0 = \sum_{i=1}^m \lambda_i y_i
@@ -290,7 +290,11 @@ arg \operatorname*{max}_{\boldsymbol \lambda}\mathcal{L}(\boldsymbol \lambda)  =
 s.t. \qquad \lambda_i \geqslant 0, \forall i\;;\quad \sum_{i=1}^m \lambda_i y_i = 0
 $$
 </p>
-<p>以上表达式可以通过<strong>二次规划</strong>算法求解</p>
+<p>以上表达式可以通过<strong>二次规划</strong>算法解出 $\boldsymbol \lambda$ 后，带回，求出$\mathbf w$ 和 $b$，即可得到模型<br>
+$$
+
+$$
+</p>
 <h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>这里可以考虑到，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px" alt="SoftMargin"></div>
 
@@ -302,7 +306,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-21T06:15:59.000Z" itemprop="dateUpdated">2017-09-20 23:15:59</time>
+    Last updated: <time datetime="2017-09-21T06:22:17.000Z" itemprop="dateUpdated">2017-09-20 23:22:17</time>
 </span><br>
 
 
