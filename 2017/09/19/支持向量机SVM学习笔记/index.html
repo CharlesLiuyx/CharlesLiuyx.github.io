@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png">
-<meta property="og:updated_time" content="2017-09-21T22:10:32.000Z">
+<meta property="og:updated_time" content="2017-09-21T22:25:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】支持向量机SVM">
 <meta name="twitter:description" content="【阅读时间】13-19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
@@ -133,7 +133,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -322,7 +322,11 @@ $$
 <br>三种常见损失函数如下图</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png" alt="损失函数" width="450px"></div>
 
-<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong> $\xi_i \geqslant 0$，可将(7)式重写为<br>$$<br>\operatorname<em>{min}_{\mathbf w,b,\xi<em>i} \frac{1}{2}\lVert w \lVert^2 + C \sum</em>{i=1}^m \xi_i \ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}<br>$$<br>(8)式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<em>*表征该样本不满足约束的程度</em></em>，求解的方法同理硬间隔支持向量机</p>
+<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong> $\xi_i \geqslant 0$，可将(7)式重写为<br>
+$$
+\operatorname*{min}_{\mathbf w,b,\xi_i} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \xi_i \\ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}
+$$
+<br>(8)式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<strong>表征该样本不满足约束的程度</strong>，求解的方法同理硬间隔支持向量机</p>
 <h1 id="支持向量机扩展"><a href="#支持向量机扩展" class="headerlink" title="支持向量机扩展"></a>支持向量机扩展</h1><h2 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h2><p>以上我们求解的支持向量机都是在<strong>线性情况下</strong>的，那么<strong>非线性情况</strong>下如何处理？这里就引入：核方法</p>
 <p>对于这样的问题，可以将<strong>样本从原始空间映射到一个更高为的特征空间，使得样本在这个特征空间内线性可分</strong>，<a href="https://v.qq.com/x/page/k05170ntgzc.html" target="_blank" rel="external">直观可视化解释</a></p>
 <p>为了完成这个目的，令 $\phi(\mathbf x)$ 表示将 $\mathbf x$ <strong>映射后的特征向量</strong>，于是，在特征空间<strong>划分超平面</strong>所对应的模型可表示为：<br>
@@ -378,8 +382,7 @@ $$
 </table>
 <p>也可以通过函数组合得到这些值</p>
 <h2 id="多类问题"><a href="#多类问题" class="headerlink" title="多类问题"></a>多类问题</h2><p>多累问题可以使用两两做支持向量机，再由所有的支持向量机投票选出这个类别的归属，被称为<code>one-versus-one approace</code>。</p>
-<p>Reference</p>
-<p><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">知乎各类回答</a><br><a href="https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">Wiki百科</a><br>PRML<br>周志华-机器学习</p>
+<p>Reference<br><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">知乎各类回答</a><br><a href="https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">Wiki百科</a><br>PRML<br>周志华-机器学习</p>
 
         </div>
 
@@ -387,7 +390,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-09-21T22:10:32.000Z" itemprop="dateUpdated">2017-09-21 15:10:32</time>
+    Last updated: <time datetime="2017-09-21T22:25:40.000Z" itemprop="dateUpdated">2017-09-21 15:25:40</time>
 </span><br>
 
 
@@ -568,7 +571,7 @@ $$
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
