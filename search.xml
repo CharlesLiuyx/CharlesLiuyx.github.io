@@ -133,7 +133,7 @@ $$
     </entry>
     
     <entry>
-      <title><![CDATA[支持向量机SVM学习笔记]]></title>
+      <title><![CDATA[【直观详解】支持向量机SVM]]></title>
       <url>/2017/09/19/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】</p>
 <a id="more"></a>
@@ -2194,7 +2194,7 @@ $$
     </entry>
     
     <entry>
-      <title><![CDATA[深入浅出看懂Logistic Regression]]></title>
+      <title><![CDATA[【直观详解】Logistic Regression]]></title>
       <url>/2017/09/04/LogisticRegression%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>【阅读时间】17min - 22min<br>【内容简介】从不同角度解释<strong>为何使用Logistic回归模型</strong>，解读模型的<strong>现实意义</strong>，详细解读<strong>为何使用</strong>以及<strong>什么是</strong>交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧</p>
 <a id="more"></a>
