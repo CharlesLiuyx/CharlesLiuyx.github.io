@@ -135,7 +135,7 @@ $$
     <entry>
       <title><![CDATA[【直观详解】支持向量机SVM]]></title>
       <url>/2017/09/19/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<p>【阅读时间】13-19min<br>【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读</p>
+      <content type="html"><![CDATA[<p>【阅读时间】13min - 19min<br>【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读</p>
 <a id="more"></a>
 <h1 id="什么是支持向量机-SVM"><a href="#什么是支持向量机-SVM" class="headerlink" title="什么是支持向量机-SVM"></a>什么是支持向量机-SVM</h1><p>支持向量机-SVM(Support Vector Machine)从本质来说是一种：<strong>用一条线（方程）分类两种事物</strong></p>
 <p>SVM的任务是找到这条分界线<strong>使得它到两边的<code>margin</code>都最大</strong>，<font color="FF00000">注意，这里的横坐标是 $x_1$ 纵坐标为 $x_2$</font>，如下图所示</p>
