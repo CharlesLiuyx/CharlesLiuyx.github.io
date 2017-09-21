@@ -208,7 +208,7 @@ $$
 <blockquote>
 <p>注：以下解算过程希望完全看懂强烈建议理解阅读<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a>，很多地方推导过程只写必要过程及结论</p>
 </blockquote>
-<p>根据约束的形式，我们引入<code>m</code>个拉格朗日乗法子，记为  $\boldsymbold \lambda = (\lambda_1,\ldots,\lambda_m)^T$ ，原因是，有<code>m</code>个约束，所以需要<code>m</code>个拉格朗日乗法子。可以得出拉格朗日方程如下：<br>
+<p>根据约束的形式，我们引入<code>m</code>个拉格朗日乗法子，记为  $\boldsymbol \lambda = (\lambda_1,\ldots,\lambda_m)^T$ ，原因是，有<code>m</code>个约束，所以需要<code>m</code>个拉格朗日乗法子。可以得出拉格朗日方程如下：<br>
 $$
 \mathcal{L}(\mathbf w,b,\boldsymbol \lambda) = \frac{1}{2}\lVert \mathbf w \lVert ^2  - \sum_{i=1}^m \lambda_i \{  y_i(\mathbf w^T\vec x_i+b) -1 \} \tag{4}
 $$
@@ -219,21 +219,37 @@ $$
 0 = \sum_{i=1}^m \lambda_i y_i
 $$
 </p>
-<p>使用这两个条件带回公式(4)，可以得到 <strong>对偶（dual representaiton）</strong> 形式，我们的目的也变为最大化 $\mathcal{L}(\boldsymbol \lambda)$，表达式如下<br>
+<p>将这两个条件带回公式(4)，可以得到<strong>对偶形式（dual representaiton）</strong>，我们的目的也变为最大化 $\mathcal{L}(\boldsymbol \lambda)$，表达式如下<br>
 $$
 arg \operatorname*{max}_{\boldsymbol \lambda}\mathcal{L}(\boldsymbol \lambda)  = \sum_{i=1}^m \lambda_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \lambda_i \lambda_j \vec x_i \vec x_j \mathbf x_i^T \mathbf x_j \\
-s.t. \qquad \lambda_i \geqslant 0, \forall i\;;\quad \sum_{i=1}^m \lambda_i y_i = 0
+s.t. \qquad \lambda_i \geqslant 0, \forall i\;;\quad \sum_{i=1}^m \lambda_i y_i = 0 \tag{5}
 $$
 </p>
 <p>以上表达式可以通过<strong>二次规划</strong>算法解出 $\boldsymbol \lambda$ 后，带回，求出$\mathbf w$ 和 $b$，即可得到模型<br>
 $$
-
+f(\mathbf x) = \mathbf w^T\mathbf x + b = \sum_{i=1}^m \lambda_i y_i \mathbf x_i^T \mathbf x + b \tag{6}
 $$
 </p>
-<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>这里可以考虑到，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
+<p>补充一些关于<strong>二次规划</strong>算法的相关，(3)式的约束是一个不等式约束，所以我们可以使用KKT条件得到三个条件：<br>
+$$
+\lambda_i \geqslant0 ;\quad y_i f(\mathbf x_i)-1 \geqslant0; \quad \lambda_i\{ y_i f(\mathbf x_i)-1 \}=0
+$$
+</p>
+<p>根据这个条件，有一些高效的算法，比如<strong>SMO（Sequential Minimal Optimization）</strong>就是其中一个比较著名的</p>
+<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>我们已经了解了求得方程的，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据你中有我我中有你（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，我们允许支持向量机在一定程度上出错</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px" alt="SoftMargin"></div>
 
-<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是使得我们的目标函数可以在一定程度不满足这个约束条件，我们引入常数 $C$ 和 损失函数 $l(z)$</p>
+<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是使得我们的目标函数可以在一定程度不满足这个约束条件，我们引入常数 $C$ 和 损失函数 $\ell_{0/1}(z)$ 为<code>0/1损失函数</code>，即当z小于0函数值为1，否则函数值为0<br>
+$$
+\operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \ell_{0/1}(y_i(\mathbf w^T\vec x_i+b) -1) \tag {7}
+$$
+</p>
+<p>对于上式来说 $C \ge 0$ 是个常数，<strong>当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束</strong></p>
+<p>但 $\ell_{0/1}(z)$ 损失函数非凸、非连续，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>$$<br>\begin{align}<br>&amp; \text{hinge损失:} \ell<em>{hinge}(z) = max(0,1-z)\<br>&amp; \text{指数损失:} \ell</em>{exp}(z) =  e^{-z}\<br>&amp; \text{对数损失:} \ell_{log}(z) = log(1+e^{-z})\<br>\end{align}<br>$$<br>三种常见损失函数如下图</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png" alt="损失函数" width="450px"></div>
+
+<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong> $\xi_i \geqslant 0$，可将(7)式重写为<br>$$<br>\operatorname<em>{min}_{\mathbf w,b,\xi<em>i} \frac{1}{2}\lVert w \lVert^2 + C \sum</em>{i=1}^m \xi_i \ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}<br>$$<br>(8)式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<em>*表征该样本不满足约束的程度</em></em>，求解的方法同理硬间隔支持向量机</p>
+<h1 id="支持向量机扩展"><a href="#支持向量机扩展" class="headerlink" title="支持向量机扩展"></a>支持向量机扩展</h1><h2 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h2><p>以上我们求解的支持向量机都是在<strong>线性情况下</strong>的，那么<strong>非线性情况</strong>下如何处理？这里就引入：核方法</p>
 ]]></content>
       
         <categories>
