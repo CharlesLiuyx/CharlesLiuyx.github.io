@@ -135,7 +135,7 @@ $$
     <entry>
       <title><![CDATA[【直观详解】支持向量机SVM]]></title>
       <url>/2017/09/19/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BASVM%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】</p>
+      <content type="html"><![CDATA[<p>【阅读时间】13-19min<br>【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读</p>
 <a id="more"></a>
 <h1 id="什么是支持向量机-SVM"><a href="#什么是支持向量机-SVM" class="headerlink" title="什么是支持向量机-SVM"></a>什么是支持向量机-SVM</h1><p>支持向量机-SVM(Support Vector Machine)从本质来说是一种：<strong>用一条线（方程）分类两种事物</strong></p>
 <p>SVM的任务是找到这条分界线<strong>使得它到两边的<code>margin</code>都最大</strong>，<font color="FF00000">注意，这里的横坐标是 $x_1$ 纵坐标为 $x_2$</font>，如下图所示</p>
@@ -245,11 +245,75 @@ $$
 $$
 </p>
 <p>对于上式来说 $C \ge 0$ 是个常数，<strong>当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束</strong></p>
-<p>但 $\ell_{0/1}(z)$ 损失函数非凸、非连续，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>$$<br>\begin{align}<br>&amp; \text{hinge损失:} \ell<em>{hinge}(z) = max(0,1-z)\<br>&amp; \text{指数损失:} \ell</em>{exp}(z) =  e^{-z}\<br>&amp; \text{对数损失:} \ell_{log}(z) = log(1+e^{-z})\<br>\end{align}<br>$$<br>三种常见损失函数如下图</p>
+<p>但 $\ell_{0/1}(z)$ 损失函数非凸、非连续，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>
+$$
+\begin{align}
+& \text{hinge损失:} \ell_{hinge}(z) = max(0,1-z)\\
+& \text{指数损失:} \ell_{exp}(z) =  e^{-z}\\
+& \text{对数损失:} \ell_{log}(z) = log(1+e^{-z})\\
+\end{align}
+$$
+<br>三种常见损失函数如下图</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png" alt="损失函数" width="450px"></div>
 
 <p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong> $\xi_i \geqslant 0$，可将(7)式重写为<br>$$<br>\operatorname<em>{min}_{\mathbf w,b,\xi<em>i} \frac{1}{2}\lVert w \lVert^2 + C \sum</em>{i=1}^m \xi_i \ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}<br>$$<br>(8)式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<em>*表征该样本不满足约束的程度</em></em>，求解的方法同理硬间隔支持向量机</p>
 <h1 id="支持向量机扩展"><a href="#支持向量机扩展" class="headerlink" title="支持向量机扩展"></a>支持向量机扩展</h1><h2 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h2><p>以上我们求解的支持向量机都是在<strong>线性情况下</strong>的，那么<strong>非线性情况</strong>下如何处理？这里就引入：核方法</p>
+<p>对于这样的问题，可以将<strong>样本从原始空间映射到一个更高为的特征空间，使得样本在这个特征空间内线性可分</strong>，<a href="https://v.qq.com/x/page/k05170ntgzc.html" target="_blank" rel="external">直观可视化解释</a></p>
+<p>为了完成这个目的，令 $\phi(\mathbf x)$ 表示将 $\mathbf x$ <strong>映射后的特征向量</strong>，于是，在特征空间<strong>划分超平面</strong>所对应的模型可表示为：<br>
+$$
+f(\mathbf x) = \mathbf w^T \phi(\mathbf x) + b
+$$
+</p>
+<p>同理上文中引入拉格朗日乘子，求解整个方程后可得<br>
+$$
+\begin{align}
+f(\mathbf x) &=   \mathbf w^T \phi(\mathbf x) + b \\
+&= \sum_{i=1}^m \lambda_i y_i \phi(\mathbf x_i)^T \phi(\mathbf x) + b \\
+&= \sum_{i=1}^m \lambda_i y_i k(\mathbf x,\mathbf x_i)+ b
+\end{align}
+$$
+</p>
+<p>这里的函数 $k(\cdot,\cdot)$ 就是<strong>核函数（kernel function）</strong>，常见的核函数见下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">线性核</td>
+<td style="text-align:center"> $\boldsymbol x_i^T \boldsymbol x_j$ </td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center">多项式核</td>
+<td style="text-align:center"> $(\boldsymbol x_i^T \boldsymbol x_j)^d$ </td>
+<td style="text-align:center">$d \geqslant 1$ 多项式次数</td>
+</tr>
+<tr>
+<td style="text-align:center">高斯核</td>
+<td style="text-align:center"> $exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{2\sigma^2})$ </td>
+<td style="text-align:center">$\sigma&gt;0$  高斯核带宽</td>
+</tr>
+<tr>
+<td style="text-align:center">拉普拉斯核</td>
+<td style="text-align:center"> $exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{\sigma})$ </td>
+<td style="text-align:center">$\sigma&gt;0$</td>
+</tr>
+<tr>
+<td style="text-align:center">Sigmoid核</td>
+<td style="text-align:center"> $tanh(\beta \boldsymbol x_i^T\boldsymbol x_j + \theta)$ </td>
+<td style="text-align:center">$\beta&gt;0$ $\theta&gt;0$</td>
+</tr>
+</tbody>
+</table>
+<p>也可以通过函数组合得到这些值</p>
+<h2 id="多类问题"><a href="#多类问题" class="headerlink" title="多类问题"></a>多类问题</h2><p>多累问题可以使用两两做支持向量机，再由所有的支持向量机投票选出这个类别的归属，被称为<code>one-versus-one approace</code>。</p>
+<p>Reference</p>
+<p><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="external">知乎各类回答</a><br><a href="https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="external">Wiki百科</a><br>PRML<br>周志华-机器学习</p>
 ]]></content>
       
         <categories>
