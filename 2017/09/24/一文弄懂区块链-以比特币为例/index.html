@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict2.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/AllFunctionNode.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SoloMiner.svg">
-<meta property="og:updated_time" content="2017-09-24T22:21:47.000Z">
+<meta property="og:updated_time" content="2017-09-24T22:35:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一文弄懂区块链-以比特币为例">
 <meta name="twitter:description" content="【阅读时间】25min - 35min【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链，在此之后的内容会涉及一些思考和技术上的原理延伸，可以选择性阅读">
@@ -385,7 +385,11 @@
 <h2 id="比特币网络节点的构成"><a href="#比特币网络节点的构成" class="headerlink" title="比特币网络节点的构成"></a>比特币网络节点的构成</h2><p>比特币网络是一种点对点的数字现金系统，IP网络节点中每台机器都彼此对等，P2P网络不存在任何服务端、层级关系或者中心化服务。</p>
 <h3 id="节点类型与分工"><a href="#节点类型与分工" class="headerlink" title="节点类型与分工"></a>节点类型与分工</h3><div align="center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/AllFunctionNode.svg" alt="全功能节点" width="250"></div>
 
-<p>一个全功能节点包含上述4个模块，它可以独立自主的验证所有的交易，每个节点都有网络路由节点模块，<strong>都参与验证并传播交易与区块信息</strong></p>
+<p>一个全功能节点包含上述4个模块【钱包<strong>W</strong>allet】【矿工<strong>M</strong>iner】【完整区块链full <strong>B</strong>lock-chain database】【网络路由节点<strong>N</strong>etwork routing】</p>
+<ul>
+<li>【网络路由节点】使得节点具有<strong>参与验证并传播交易与区块信息，发现监听并维持点对点的链接</strong>的能力</li>
+<li>【完整区块链】具有此模块的节点被称为：全节点</li>
+</ul>
 <p>拥有全部四个模块被称之为<strong>核心客户端（Bitcoin Core）</strong></p>
 <table>
 <thead>
@@ -397,9 +401,9 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SoloMiner.svg" alt="" width="100"></td>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SoloMiner.svg" alt="" width="80"></td>
+<td style="text-align:center">独立矿工</td>
+<td style="text-align:center">具有完整区块链副本</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
@@ -421,7 +425,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-24T22:21:47.000Z" itemprop="dateUpdated">2017-09-24 15:21:47</time>
+    Last updated: <time datetime="2017-09-24T22:35:41.000Z" itemprop="dateUpdated">2017-09-24 15:35:41</time>
 </span><br>
 
 
