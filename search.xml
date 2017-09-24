@@ -210,7 +210,7 @@
 <td style="text-align:center">此种节点有时有中继作用，不断收听网络广播，维护完整区块链</td>
 </tr>
 <tr>
-<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SPVWallet.svg" alt="" width="80"></td>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SPVwallet.svg" alt="" width="80"></td>
 <td style="text-align:center">轻量(SPV)钱包</td>
 <td style="text-align:center">移动端，或者不想太过于笨重的桌面端，只需要进行交易广播操作</td>
 </tr>
