@@ -2705,9 +2705,35 @@ $$
 <p>我们知道区块链中记载的实体，对于比特币（加密货币）来说就是<strong>转账记录</strong>。但是，一个概念真正的跑起来，有甚多技术上，协议上的细节是需要追根问底的</p>
 <p>接下里的部分主要探讨一些比特币具体实现方面的细节，如网络节点构成，比特币的计算难度系数，比特币总量的由来，比特币的缺陷等</p>
 <h2 id="比特币网络节点的构成"><a href="#比特币网络节点的构成" class="headerlink" title="比特币网络节点的构成"></a>比特币网络节点的构成</h2><p>比特币网络是一种点对点的数字现金系统，IP网络节点中每台机器都彼此对等，P2P网络不存在任何服务端、层级关系或者中心化服务。</p>
-<h3 id="节点类型与分工"><a href="#节点类型与分工" class="headerlink" title="节点类型与分工"></a>节点类型与分工</h3><div align="center"><img src="//charlesliuyx.github.io/2017/07/26/一文弄懂区块链 - 以比特币为例/AllFunction.svg" alt="全功能节点" width="250"></div>
+<h3 id="节点类型与分工"><a href="#节点类型与分工" class="headerlink" title="节点类型与分工"></a>节点类型与分工</h3><div align="center"><img src="//charlesliuyx.github.io/2017/07/26/一文弄懂区块链 - 以比特币为例/AllFunctionNode.svg" alt="全功能节点" width="250"></div>
 
-<p>一个全功能节点包含上述4个模块，它可以独立自主的验证所有的交易，被称之为<strong>核心客户端（Bitcoin Core）</strong></p>
+<p>一个全功能节点包含上述4个模块，它可以独立自主的验证所有的交易，每个节点都有网络路由节点模块，<strong>都参与验证并传播交易与区块信息</strong></p>
+<p>拥有全部四个模块被称之为<strong>核心客户端（Bitcoin Core）</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">图示</th>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&lt;img src=”一文弄懂区块链 - 以比特币为例\FullBlockChianNode.svg alt=”” width=“50”&gt;</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
 <p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附录上<strong>内容</strong>作为参考文献：</p>
 <ul>
 <li>文章中引用多个Gif的出处：<a href="https://www.bilibili.com/video/av12465079/" target="_blank" rel="external">比特币原理-3B1B</a>，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多</li>
