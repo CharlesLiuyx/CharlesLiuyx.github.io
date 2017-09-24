@@ -185,9 +185,11 @@
 <ul>
 <li>【网络路由节点】使得节点具有<strong>参与验证并传播交易与区块信息，发现监听并维持点对点的链接</strong>的能力</li>
 <li>【完整区块链】具有此模块的节点被称为：全节点。它能够<strong>独自自主的校验所有交易</strong>，不需要任何其他信息。</li>
-<li>【钱包】个人私有秘钥，数字签名的入口。有些节点仅仅保留<strong>区块链的一部分</strong>，通过一种”简易支付验证“（SPV Simplified Payment Verification）的方法来完成交易</li>
+<li>【钱包】比特币的所有权是通过数字密钥、比特币地址和数字签名来确定的，用户自己保存私有密钥，钱包提供接入功能，余额查询等功能。有些节点仅仅保留<strong>区块链的一部分</strong>，通过一种”简易支付验证“（SPV Simplified Payment Verification）的方法来完成交易</li>
+<li>【矿工】挖矿节点以相互竞争的方式创造新的区块。有一些挖矿节点也是全节点，可以独立挖矿；还有一些参与矿池挖矿的节点是轻量级节点，<strong>必须依赖矿池服务器维护全节点进行工作</strong></li>
 </ul>
-<p>拥有全部四个模块被称之为<strong>核心客户端（Bitcoin Core）</strong></p>
+<p>拥有全部四个模块被称之为<strong>核心客户端（Bitcoin Core）</strong>，除了这些主要节点类型外，还有一些服务器及节点运行其他协议，如特殊矿池挖矿协议、轻量级客户端访问协议。</p>
+<p>下表为扩展比特币网络的不同节点类型</p>
 <table>
 <thead>
 <tr>
@@ -205,14 +207,38 @@
 <tr>
 <td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FullBlockChainNode.svg" alt="" width="80"></td>
 <td style="text-align:center">完整区块链节点</td>
-<td style="text-align:center"></td>
+<td style="text-align:center">此种节点有时有中继作用，不断收听网络广播，维护完整区块链</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td style="text-align:center"></td>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/SPVWallet.svg" alt="" width="80"></td>
+<td style="text-align:center">轻量(SPV)钱包</td>
+<td style="text-align:center">移动端，或者不想太过于笨重的桌面端，只需要进行交易广播操作</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/PoolProtocolServers.svg" alt="" width="80"></td>
+<td style="text-align:center">矿池协议服务器</td>
+<td style="text-align:center">将运行其他协议的节点，连接至P2P网络的网关路由器</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MiningNodes.svg" alt="" height="120px"></td>
+<td style="text-align:center">挖矿节点</td>
+<td style="text-align:center">不具有区块链，但具备Stratum协议的节点或其他矿池挖矿协议的网络节点</td>
+</tr>
+<tr>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/StratumWallet.svg" alt="" width="80"></td>
+<td style="text-align:center">轻量 Stratum 钱包</td>
+<td style="text-align:center">不具有区块链的钱包、运行Stratum协议的网络节点</td>
 </tr>
 </tbody>
 </table>
+<h3 id="扩展比特币网络"><a href="#扩展比特币网络" class="headerlink" title="扩展比特币网络"></a>扩展比特币网络</h3><p>要在全世界的网络中完成整个的交易，下图描述了一个扩展比特币网络，它包含了多重类型的节点、网关服务器、边缘路由器、钱包客户端以及它们互相连接所需要的各类协议</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinNet.png" alt="扩展比特币网络" title="">
+                </div>
+                <div class="image-caption">扩展比特币网络</div>
+            </figure>
 <p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附录上<strong>内容</strong>作为参考文献：<br>【1】文章中引用多个Gif的出处：比特币原理-3B1B(<a href="https://www.bilibili.com/video/av12465079/)，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多" target="_blank" rel="external">https://www.bilibili.com/video/av12465079/)，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多</a><br>【2】一篇技术性极强的文章，包含代码和实现，以及很多数据结构，具体实现方式的细节，如果想成为加密货币（区块链）开发者，这本书5星推荐：精通比特币(<a href="http://8btc.com/topic-mastering-bitcoin.html" target="_blank" rel="external">http://8btc.com/topic-mastering-bitcoin.html</a>)<br>【3】宋老师的鸿观125期(<a href="http://v.youku.com/v_show/id_XMjc3MDU4MDY2OA==.html?spm=a2h1n.8261147.reload_201705.1~3!2~5~A" target="_blank" rel="external">http://v.youku.com/v_show/id_XMjc3MDU4MDY2OA==.html?spm=a2h1n.8261147.reload_201705.1~3!2~5~A</a>) （需要优酷会员）<br>【4】只能膜拜之的创世区块作者的论文：比特币白皮书(<a href="http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system" target="_blank" rel="external">http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system</a>)</p>
 ]]></content>
       
