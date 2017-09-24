@@ -2694,7 +2694,7 @@ $$
 <li>是的，你不可能<strong>持续的竞争过世界上所有的矿工</strong></li>
 <li>注意，作为一个用户，你不能立马相信你所听到的最新区块，而是应该等待多几个区块被创建过后，再确认这的确是世界所有人都在使用的区块链</li>
 </ul>
-<h2 id="关键点总结"><a href="#关键点总结" class="headerlink" title="关键点总结"></a>关键点总结</h2><ul>
+<h2 id="发明过程中的关键点"><a href="#发明过程中的关键点" class="headerlink" title="发明过程中的关键点"></a>发明过程中的关键点</h2><ul>
 <li>电子签名 Digital Signatures</li>
 <li>公共账本就是货币 The Ledger is the currency</li>
 <li>去中心化 Decentralize</li>
@@ -2715,7 +2715,7 @@ $$
       
         <categories>
             
-            <category> BloackChain </category>
+            <category> BlockChain </category>
             
         </categories>
         
