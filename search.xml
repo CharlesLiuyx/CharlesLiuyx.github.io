@@ -2708,10 +2708,11 @@ $$
 <h3 id="节点类型与分工"><a href="#节点类型与分工" class="headerlink" title="节点类型与分工"></a>节点类型与分工</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/07/26/一文弄懂区块链 - 以比特币为例/一文弄懂区块链" alt="比特币节点类型" title="-">
+                    <img src="//charlesliuyx.github.io/2017/07/26/一文弄懂区块链 - 以比特币为例/一文弄懂区块链" alt="全节点" title="-">
                 </div>
                 <div class="image-caption">-</div>
             </figure>
+<p>一个全节点包含上述4个模块，它可以独立自主的验证所有的交易，被称之为核心客户端（Bitcoin Core）</p>
 <p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附录上<strong>内容</strong>作为参考文献：</p>
 <ul>
 <li>文章中引用多个Gif的出处：<a href="https://www.bilibili.com/video/av12465079/" target="_blank" rel="external">比特币原理-3B1B</a>，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多</li>
