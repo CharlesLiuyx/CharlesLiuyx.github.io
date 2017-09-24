@@ -67,7 +67,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gi" alt="密码哈希函数的特点" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif" alt="密码哈希函数的特点" title="">
                 </div>
                 <div class="image-caption">密码哈希函数的特点</div>
             </figure>
@@ -76,12 +76,12 @@
 <li>特点是<strong>输入值稍微变化后，结果就会有很大的不同，完全无法预测不同输入间的规律</strong></li>
 <li><strong>逆向计算</strong>不可行，只能使用试错法（穷举法），解空间 $2^256$ </li>
 </ul>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero.gi" alt="基于SHA256函数的工作量证明直观表现图"></p>
+<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero.gif" alt="基于SHA256函数的工作量证明直观表现图"></p>
 <p>在每一个账本后添加一个<strong>特殊数字</strong>，对整个列表使用SHA256，我们要求这个<strong>特殊数字</strong>可以使得输出值的开头有<strong>30个零</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gi" alt="寻找能使得输出前30位为0的特殊数字" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif" alt="寻找能使得输出前30位为0的特殊数字" title="">
                 </div>
                 <div class="image-caption">寻找能使得输出前30位为0的特殊数字</div>
             </figure>
@@ -90,7 +90,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gi" alt="修改后的重新计算" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gif" alt="修改后的重新计算" title="">
                 </div>
                 <div class="image-caption">修改后的重新计算</div>
             </figure>
@@ -99,7 +99,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain1.gi" alt="区块链的诞生" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain1.gif" alt="区块链的诞生" title="">
                 </div>
                 <div class="image-caption">区块链的诞生</div>
             </figure>
@@ -107,9 +107,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain2.gi" alt="区块链无法被修改" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain2.gif" alt="区块链的诞生" title="">
                 </div>
-                <div class="image-caption">区块链无法被修改</div>
+                <div class="image-caption">区块链的诞生</div>
             </figure>
 <p><strong>允许世界上的每一个人建造区块</strong>。每一个新建区块的人（找到了这个特殊数字 - SHA256值有40个零）都能获得奖励，对于<strong>新建区块的这部分人（矿工）</strong>来说，以下几点需要注意</p>
 <ul>
@@ -128,7 +128,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gi" alt="用户保留最长的区块链" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gif" alt="用户保留最长的区块链" title="">
                 </div>
                 <div class="image-caption">用户保留最长的区块链</div>
             </figure>
@@ -138,7 +138,7 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gi" alt="如何更新本地区块链" title="">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gif" alt="如何更新本地区块链" title="">
                 </div>
                 <div class="image-caption">如何更新本地区块链</div>
             </figure>
