@@ -51,9 +51,9 @@
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/一文弄懂区块链" alt="广播模式分布式账本示意图" title="-">
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif" alt="广播模式分布式账本示意图" title="">
                 </div>
-                <div class="image-caption">-</div>
+                <div class="image-caption">广播模式分布式账本示意图</div>
             </figure>
 <p>只要是明眼人都能发现，太天真的，这个方法行不通。可以，行不通，那就把行不通的原因总结出来</p>
 <blockquote>
