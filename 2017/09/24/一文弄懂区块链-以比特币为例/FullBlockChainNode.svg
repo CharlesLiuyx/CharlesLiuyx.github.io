@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="-1 -2 212 213" width="212pt" height="213pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <metadata> Produced by OmniGraffle 7.3 
-    <dc:date>2017-09-24 21:44:41 +0000</dc:date>
+    <dc:date>2017-09-24 22:49:32 +0000</dc:date>
   </metadata>
   <defs>
     <font-face font-family="PingFang SC" font-size="24" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
@@ -30,15 +30,15 @@
       <circle cx="155" cy="155" r="50.00008" fill="#ff9300"/>
       <circle cx="155" cy="155" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <text transform="translate(120 112.5)" fill="black">
-        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="11" y="25" textLength="48">网络</tspan>
-        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="11" y="51" textLength="48">路由</tspan>
-        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="11" y="77" textLength="48">节点</tspan>
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="25" textLength="48">网络</tspan>
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="51" textLength="48">路由</tspan>
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="77" textLength="48">节点</tspan>
       </text>
       <circle cx="55" cy="154.57143" r="50.00008" fill="#0432ff" fill-opacity=".60329555"/>
       <circle cx="55" cy="154.57143" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
       <text transform="translate(20 123.57143)" fill="black">
-        <tspan font-family="PingFang SC" font-size="22" font-weight="500" fill="black" x="13" y="23" textLength="44">完整</tspan>
-        <tspan font-family="PingFang SC" font-size="23" font-weight="500" fill="black" x=".5" y="54" textLength="69">区块链</tspan>
+        <tspan font-family="PingFang SC" font-size="22" font-weight="500" x="13" y="23" textLength="44">完整</tspan>
+        <tspan font-family="PingFang SC" font-size="23" font-weight="500" x=".5" y="54" textLength="69">区块链</tspan>
       </text>
     </g>
   </g>
