@@ -85,7 +85,7 @@
                 <div class="image-caption">寻找能使得输出前30位为0的特殊数字</div>
             </figure>
 <p>根据之前说过SHA256的性质：输入变化输出不可预测，找到这个特殊数字唯一的办法就是穷举。换言之，你很容易就证明了他们<strong>进行了海量的计算</strong>。而这个<strong>特殊数字就叫做工作量证明</strong>（proof of work）</p>
-<p>这就意味着，所有的工作量证明就对应了交易列表，如果你修改了一个交易，哪怕只有一点点，就会完全改变哈希值，就得重做工作量证明</p>
+<p>这就意味着，所有的工作量证明就对应了交易列表，如果你修改了一个交易，哪怕只有一点点，就会完全改变哈希值，就得<strong>重做工作量证明</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
