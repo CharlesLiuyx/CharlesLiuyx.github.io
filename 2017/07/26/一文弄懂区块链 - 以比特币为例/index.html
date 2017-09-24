@@ -42,7 +42,8 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/07/26/一文弄懂区块链%20-%20以比特币为例/一文弄懂区块链">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/07/26/一文弄懂区块链%20-%20以比特币为例/一文弄懂区块链">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/07/26/一文弄懂区块链%20-%20以比特币为例/一文弄懂区块链">
-<meta property="og:updated_time" content="2017-09-24T09:47:00.000Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/07/26/一文弄懂区块链%20-%20以比特币为例/一文弄懂区块链">
+<meta property="og:updated_time" content="2017-09-24T20:51:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一文弄懂区块链 - 以比特币为例">
 <meta name="twitter:description" content="【阅读时间】25min - 35min【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链，在此之后的内容会涉及一些思考和技术上的原理延伸，可以选择性阅读 加密货币在一步一步发明发明比特币之前，有一些基本直观的认知需要阐明。 我们常说的比特币，是加密货币（Cryptocurrency）的一种，而加密货币实现去中心化的最关键的技术是区">
@@ -139,7 +140,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -180,7 +181,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#加密货币"><span class="post-toc-number">1.</span> <span class="post-toc-text">加密货币</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一步一步发明比特币"><span class="post-toc-number">2.</span> <span class="post-toc-text">一步一步发明比特币</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一个用户需求-账本和电子签名的由来"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第一个用户需求 - 账本和电子签名的由来</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题1：身份问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">产生的问题1：身份问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题2：欠债跑路问题"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">产生的问题2：欠债跑路问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一个大家都遵守的协议"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">一个大家都遵守的协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二个用户需求：账本放在哪里？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">第二个用户需求：账本放在哪里？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心需求：去中心化"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">核心需求：去中心化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何实现分布记账（去中心化）"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">如何实现分布记账（去中心化）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题核心"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">问题核心</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#☆解决方案"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">☆解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、密码学：哈希函数"><span class="post-toc-number">2.2.2.2.1.</span> <span class="post-toc-text">1、密码学：哈希函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、区块链-信用的共识的基石"><span class="post-toc-number">2.2.2.2.2.</span> <span class="post-toc-text">2、区块链 - 信用的共识的基石</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、51-算力攻击问题"><span class="post-toc-number">2.2.2.2.3.</span> <span class="post-toc-text">3、51%算力攻击问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结-系统可行性分析"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">总结 - 系统可行性分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发明过程中的关键点"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">发明过程中的关键点</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#比特币技术"><span class="post-toc-number">3.</span> <span class="post-toc-text">比特币技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币网络节点的构成"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">比特币网络节点的构成</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#加密货币"><span class="post-toc-number">1.</span> <span class="post-toc-text">加密货币</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一步一步发明比特币"><span class="post-toc-number">2.</span> <span class="post-toc-text">一步一步发明比特币</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一个用户需求-账本和电子签名的由来"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第一个用户需求 - 账本和电子签名的由来</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题1：身份问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">产生的问题1：身份问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题2：欠债跑路问题"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">产生的问题2：欠债跑路问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一个大家都遵守的协议"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">一个大家都遵守的协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二个用户需求：账本放在哪里？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">第二个用户需求：账本放在哪里？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心需求：去中心化"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">核心需求：去中心化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何实现分布记账（去中心化）"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">如何实现分布记账（去中心化）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题核心"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">问题核心</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#☆解决方案"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">☆解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、密码学：哈希函数"><span class="post-toc-number">2.2.2.2.1.</span> <span class="post-toc-text">1、密码学：哈希函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、区块链-信用的共识的基石"><span class="post-toc-number">2.2.2.2.2.</span> <span class="post-toc-text">2、区块链 - 信用的共识的基石</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、51-算力攻击问题"><span class="post-toc-number">2.2.2.2.3.</span> <span class="post-toc-text">3、51%算力攻击问题</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结-系统可行性分析"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">总结 - 系统可行性分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发明过程中的关键点"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">发明过程中的关键点</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#比特币技术"><span class="post-toc-number">3.</span> <span class="post-toc-text">比特币技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币网络节点的构成"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">比特币网络节点的构成</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#节点类型与分工"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">节点类型与分工</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -380,7 +381,15 @@
 <h1 id="比特币技术"><a href="#比特币技术" class="headerlink" title="比特币技术"></a>比特币技术</h1><p>到这里，已经发明了比特币，解决了去中心化的信任这一难题。只对比特币和区块链是什么这个问题的读者，希望大家可以在我的叙述中解决一些困惑，新技术，新点子，要拥抱它，使用它，<strong>必须先了解它</strong>。</p>
 <p>我们知道区块链中记载的实体，对于比特币（加密货币）来说就是<strong>转账记录</strong>。但是，一个概念真正的跑起来，有甚多技术上，协议上的细节是需要追根问底的</p>
 <p>接下里的部分主要探讨一些比特币具体实现方面的细节，如网络节点构成，比特币的计算难度系数，比特币总量的由来，比特币的缺陷等</p>
-<h2 id="比特币网络节点的构成"><a href="#比特币网络节点的构成" class="headerlink" title="比特币网络节点的构成"></a>比特币网络节点的构成</h2><p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附录上<strong>内容</strong>作为参考文献：</p>
+<h2 id="比特币网络节点的构成"><a href="#比特币网络节点的构成" class="headerlink" title="比特币网络节点的构成"></a>比特币网络节点的构成</h2><p>比特币网络是一种点对点的数字现金系统，IP网络节点中每台机器都彼此对等，P2P网络不存在任何服务端、层级关系或者中心化服务。</p>
+<h3 id="节点类型与分工"><a href="#节点类型与分工" class="headerlink" title="节点类型与分工"></a>节点类型与分工</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/07/26/一文弄懂区块链 - 以比特币为例/一文弄懂区块链" alt="比特币节点类型" title="-">
+                </div>
+                <div class="image-caption">-</div>
+            </figure>
+<p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附录上<strong>内容</strong>作为参考文献：</p>
 <ul>
 <li>文章中引用多个Gif的出处：<a href="https://www.bilibili.com/video/av12465079/" target="_blank" rel="external">比特币原理-3B1B</a>，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多</li>
 <li>一篇技术性极强的文章，包含代码和实现，以及很多数据结构，具体实现方式的细节，如果想成为加密货币（区块链）开发者，这本书5星推荐：<a href="http://8btc.com/topic-mastering-bitcoin.html" target="_blank" rel="external">精通比特币</a></li>
@@ -394,7 +403,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-24T09:47:00.000Z" itemprop="dateUpdated">2017-09-24 02:47:00</time>
+    最后更新时间：<time datetime="2017-09-24T20:51:33.000Z" itemprop="dateUpdated">2017-09-24 13:51:33</time>
 </span><br>
 
 
@@ -575,7 +584,7 @@
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
         </p>
     </div>
     <div class="bottom">
