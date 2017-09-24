@@ -220,7 +220,7 @@
 <td style="text-align:center">将运行其他协议的节点，连接至P2P网络的网关路由器</td>
 </tr>
 <tr>
-<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MiningNodes.svg" alt="" height="120px"></td>
+<td style="text-align:center"><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MiningNodes.svg" alt="" height="80px"></td>
 <td style="text-align:center">挖矿节点</td>
 <td style="text-align:center">不具有区块链，但具备Stratum协议的节点或其他矿池挖矿协议的网络节点</td>
 </tr>
