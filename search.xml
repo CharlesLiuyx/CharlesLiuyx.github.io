@@ -624,6 +624,7 @@
 <h4 id="Merkle应用-简单支付验证节点（SPV）"><a href="#Merkle应用-简单支付验证节点（SPV）" class="headerlink" title="Merkle应用 - 简单支付验证节点（SPV）"></a>Merkle应用 - 简单支付验证节点（SPV）</h4><p>我们知道，每当一笔新的交易产生的时候，我们必须<strong>验证这笔交易是否真的存在</strong>，在SPV节点中，不保存区块链，仅仅保存区块头。<strong>使用认证路径或者Merkle路径来验证交易是否存在于区块中</strong></p>
 <p>例如，一个SPV节点需要处理一笔支付，它<strong>需要验证这笔交易在某个区块中是否存在</strong>，才能决定是不是把这笔交易添加到这个区块中，那么它只需要接收少于1KB大小的，<strong>有关区块头和Merkle路径的信息</strong>，比接收完整区块（大约1MB）大小少了1千倍。简单来说，可以想象，Merkle树类似<strong>一个数组</strong>（这也是哈希表的最简单表示），<strong>下标是区块字段</strong>，下标对应<strong>数组存储的内容是这笔交易是否存在的值（True or False）</strong></p>
 <h1 id="区块链（比特币）与金融"><a href="#区块链（比特币）与金融" class="headerlink" title="区块链（比特币）与金融"></a>区块链（比特币）与金融</h1><p>因为比特币具有价值，那就必须谈到它和金融的关系。</p>
+<p>因为篇幅的关系，这部分也写在了另一篇文章中：<a href="https://charlesliuyx.github.io/2017/09/25/%E5%8C%BA%E5%9D%97%E9%93%BE%EF%BC%88%E6%AF%94%E7%89%B9%E5%B8%81%EF%BC%89%E4%B8%8E%E9%87%91%E8%9E%8D/">链接</a>，如果对ICO和金融方面感兴趣的读者欢迎移步讨论</p>
 <h1 id="各类竞争币"><a href="#各类竞争币" class="headerlink" title="各类竞争币"></a>各类竞争币</h1><p>所谓竞争币当然是利用区块链技术为即使，仿照比特币的基本协议架构进行的创新后的新币种，或者是新的区块链实现模式。这篇文章围绕什么是区块链展开，这部分的内容请移步<a href="https://charlesliuyx.github.io/2017/09/25/%E8%AF%84%E4%BC%B0%E7%AB%9E%E4%BA%89%E5%B8%81%E7%9A%84%E4%BB%B7%E5%80%BC%E4%B8%8E%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6/">如何评估竞争币的价值与智能合约</a></p>
 <p>其中谈到了工作量证明的其他替代手段；到底什么是智能合约；以太坊开发技术栈等</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感谢您看到这里，写这篇文章的目的一方面也是回答<strong>区块链（比特币）到底是什么</strong>这个困扰了自己很久的问题，另一方面，也是因为最近区块链技术非常火，需要<strong>一些接地气的科普文</strong></p>
@@ -634,7 +635,7 @@
 <p>那么如何才能梳理主干，抓住要点，提升学习能力呢？见谅加一个软广告</p>
 <p>幕布是一款笔记本软件，博主参与了部分研发工作，如果你喜爱沉浸式层次化输入，并喜欢思维导图，还喜爱记录总结各种书籍或文章，幕布完美切合这三类人群的需求：一键生成思维导图，极简输入界面，快捷键操作！Organize your brain by mubu</p>
 <p><a href="https://mubu.com/inv/121749" target="_blank" rel="external">点我</a>一键微信注册，一个月9块钱，良心商家，<a href="https://www.zhihu.com/question/20772002/answer/192382928" target="_blank" rel="external">这个</a>是一篇我自己写的有关幕布的介绍文章</p>
-<p>以上，鞠躬！</p>
+<p>以上！鞠躬！</p>
 <p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附参考文献出处：<br>【1】文章中引用多个Gif的出处：<a href="https://www.bilibili.com/video/av12465079/" target="_blank" rel="external">比特币原理-3B1B</a>，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多<br>【2】一本入门教材。包含代码和实现，以及很多数据结构，具体实现方式的细节，如果想成为加密货币（区块链）开发者，这本书5星推荐：<a href="http://8btc.com/topic-mastering-bitcoin.html" target="_blank" rel="external">精通比特币</a><br>【3】宋老师的<a href="http://v.youku.com/v_show/id_XMjc3MDU4MDY2OA==.html?spm=a2h1n.8261147.reload_201705.1~3!2~5~A" target="_blank" rel="external">鸿观125期</a> （需要优酷会员）<br>【4】只能膜拜之的创世区块作者的论文：<a href="http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system" target="_blank" rel="external">比特币白皮书</a><br>【5】<a href="http://www.sohu.com/a/162825922_735021" target="_blank" rel="external">ICO科普文章</a>中的例子引用</p>
 ]]></content>
       
