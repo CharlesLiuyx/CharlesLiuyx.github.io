@@ -185,7 +185,7 @@
 <h3 id="产生的问题1：身份问题"><a href="#产生的问题1：身份问题" class="headerlink" title="产生的问题1：身份问题"></a>产生的问题1：身份问题</h3><p>在这个账本条目上我们无法确认交易双方<code>小明</code>和<code>小红</code>是否是本人，可能出现伪造（逍遥法外电影中的伪造支票）</p>
 <p><strong>【解决办法】</strong>使用<strong>电子签名</strong>，即公钥 - 私钥对</p>
 <p>过程解释为，<code>小明</code>使用自己的私钥（一个字符串）通过<strong>一连串的计算</strong>（加密函数）产生一个公钥（一串字符串），作为签名（一个字符串），验证过程是对<strong>签名和公钥</strong>进行<strong>一连串计算</strong>（验证函数）进行验证（输出为真/假，真为签名有效，证明这个公钥的确能证明这是<code>小明</code>的）</p>
-<p>直观结果是，我们可以利用<strong>密码学的手段</strong>，只有有对应人的<strong>数字签名</strong>，我们保证<code>小明</code>和<code>小红</code>的<strong>身份能被100%确认真实</strong></p>
+<p>直观结果是，我们可以利用<strong>密码学的手段</strong>，只要有对应人的<strong>数字签名</strong>，我们保证<code>小明</code>和<code>小红</code>的<strong>身份能被100%确认真实</strong></p>
 <p>但是这个解决方案有一个小漏洞：可以<strong>复制同一行信息</strong>来伪造交易记录，解决的办法是添加一个<strong>这笔交易独有的信息（比如时间戳）</strong></p>
 <h3 id="产生的问题2：欠债跑路问题"><a href="#产生的问题2：欠债跑路问题" class="headerlink" title="产生的问题2：欠债跑路问题"></a>产生的问题2：欠债跑路问题</h3><p>如果<code>小明</code>在此时账户上已经没有足够的余额进行支付，就会出现超支问题</p>
 <p><strong>【解决办法】</strong>添加余额记录，此时就不可避免的需要一个<strong>中间担保人（国家？信誉机构？银行？）</strong>为<code>小明</code>进行余额担保</p>
