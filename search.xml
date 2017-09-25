@@ -59,10 +59,10 @@
 <blockquote>
 <p>遇到问题，总结不可行的原因，寻找解决方案。这是整个人类不断前进的核心最小单位</p>
 </blockquote>
-<h4 id="问题核心"><a href="#问题核心" class="headerlink" title="问题核心"></a>问题核心</h4><font color="FF0000">如何让所有人都<strong>同意这个新账本</strong>？如何<strong>保持这些账本同步</strong>？有一笔交易发生时，如何让其他人<strong>都听到并相信</strong>这一笔交易呢？</font>
+<h4 id="问题核心"><a href="#问题核心" class="headerlink" title="问题核心"></a>问题核心</h4><font color="FF0000">如何让所有人都同意这个新账本？如何保持这些账本同步？有一笔交易发生时，如何让其他人都听到并相信这一笔交易呢？</font>
 
 <p>这些问题才是真正的核心：<strong>是否能在协议（办法，规则）中添加几行，找到办法，来决定是否接受交易，并确定交易顺序，使你可以放心的相信，世界上遵守同一协议的所有人手上的账本都和你的一模一样呢？</strong>（问题描述值得品读，只有抽象出问题才能更好的去寻找解决方案）</p>
-<h4 id="☆解决方案"><a href="#☆解决方案" class="headerlink" title="☆解决方案"></a>☆解决方案</h4><p>解决的思路是：哪个账本的<strong>计算工作量大</strong>，就信任哪个账本。换个角度来说是<strong>让交易欺诈和账本不一的情形的计算力成本高到不能接受甚至完全不可信</strong></p>
+<h4 id="☆解决方案"><a href="#☆解决方案" class="headerlink" title="☆解决方案"></a>☆解决方案</h4><p>解决的思路是：哪个账本的<strong>计算工作量大</strong>，就信任哪个账本。换个角度来说是<strong>让交易欺诈和账本不一的情形的计算力成本高到不能接受甚至完全不可行</strong></p>
 <h5 id="1、密码学：哈希函数"><a href="#1、密码学：哈希函数" class="headerlink" title="1、密码学：哈希函数"></a>1、密码学：哈希函数</h5><p>哈希函数，<strong>输入</strong>可以是任意信息或者文件，<strong>输出</strong>是固定长度的比特串，例如256bit的1/0串，这个输出叫做这个信息的<strong>“哈希值”或者“摘要”（digest）</strong>。比如SHA256就是一个哈希函数</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
