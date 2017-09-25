@@ -53,7 +53,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png">
-<meta property="og:updated_time" content="2017-09-25T21:43:22.000Z">
+<meta property="og:updated_time" content="2017-09-25T21:57:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一文弄懂区块链-以比特币为例">
 <meta name="twitter:description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
@@ -558,7 +558,7 @@
 <p>通过上面三张表我们可以知道，矿工的计算力是整个区块链信用的基石（记住贪婪=信任），所以对矿工的激励不能少，而对于用户来说，当然希望自己的交易越快速完成越好。</p>
 <p>对于矿工来说，区块使用率超过95%是一个很好的信号，那意味着我可以拿到更多的奖励。奖励太低，在区块建立奖励越来越少的情况下，安全性（信任）就慢慢的得不到保障。这么说来，<strong>这也就变成了一个Trade-off博弈过程</strong></p>
 <p>分析下来，<strong>类似门罗币（menero）实现的根据网络负载来动态调整区块容量的设计似乎很合理</strong></p>
-<h3 id="比特币扩容之争"><a href="#比特币扩容之争" class="headerlink" title="比特币扩容之争"></a>比特币扩容之争</h3><p>这是一场复杂的博弈斗争，使用隔离见证把增长区块容量，并出现了比特币现金一个新的币种。</p>
+<h3 id="比特币扩容之争"><a href="#比特币扩容之争" class="headerlink" title="比特币扩容之争"></a>比特币扩容之争</h3><p>这是一场复杂的博弈斗争，使用隔离见证增长区块容量，并出现了<strong>比特币现金</strong>这个新的币种。</p>
 <p>如果想要了解这里面的很多技术，英文是必须过硬的，因为比特币代码开源，可以随意fork，只要英文功底过硬，阅读白皮书，文档等，这些不同技术的处理方法都是能够学到的</p>
 <h2 id="比特币的一笔交易过程中到底发生了什么"><a href="#比特币的一笔交易过程中到底发生了什么" class="headerlink" title="比特币的一笔交易过程中到底发生了什么"></a>比特币的一笔交易过程中到底发生了什么</h2><p>我们可以确认的是，每一笔都将记录在大账本中，那么我们需要研究的内容，就是区块中交易内容内的具体数据结构</p>
 <h3 id="交易结构"><a href="#交易结构" class="headerlink" title="交易结构"></a>交易结构</h3><p>每一个交易块包含的内容如下表所示</p>
@@ -614,7 +614,7 @@
 <li>一定量的比特币。被命名为“聪”（satoshis）</li>
 <li>一个<strong>锁定脚本</strong>。给这个UTXO上锁，保证只有<strong>收款人地址</strong>的私钥才可以打开</li>
 </ul>
-<h4 id="交易输入"><a href="#交易输入" class="headerlink" title="交易输入"></a>交易输入</h4><p>比如你需要支付0.015BTC，钱包会寻找一个0.01BTC和0.005BTC的UTXO来组成这一笔交易。其中还会包含一个解锁脚本，这是一个签名，可以类比成支付宝红包密码的口令</p>
+<h4 id="交易输入"><a href="#交易输入" class="headerlink" title="交易输入"></a>交易输入</h4><p>每个交易输入是在构造的一笔交易（使用UTXO），比如你需要支付0.015BTC，钱包会寻找一个0.01BTC和0.005BTC的UTXO来组成这一笔交易。交易输入中还会<strong>包含一个解锁脚本</strong>，这是一个签名，可以类比成支付宝红包密码的口令</p>
 <h4 id="交易费"><a href="#交易费" class="headerlink" title="交易费"></a>交易费</h4><p>交易费 = 求和（所有输入） - 求和（所有输出）</p>
 <p>这里有一个比较有意思的地方，就是因为找零的输出UTXO是交易的发起这自己构建的，如果很不幸，你忘记了自己构建找零的UTXO，那么这些多余的BTC就会变成矿工的劳务费</p>
 <p>例如，我需要和小明进行交易，需要购买一个商品，花费<code>0.8BTC</code>，为了确保这笔交易能被更快的处理（添加到大账本上），我要在其中添加一笔交易费，假设<code>0.01BTC</code>（忽略人傻钱多），那就意味着这笔交易会需要我从钱包中找到几个UTXO能组成<code>0.81BTC</code>。但如果我的钱包内找不出这样的UTXO，只有一个<code>1BTC</code>的UTXO可用，那么我就需要构建一个<code>0.19BTC</code>的UTXO作为找零回到自己的钱包</p>
@@ -624,7 +624,7 @@
 <p>在<a href="#区块容量">区块容量</a>一节中，有一张图表直观的展示了现在网络中一笔交易的等待时间，其中最长的，也就是30分钟，如果你不是一个超级急性子，很多时候还是可以接受的（毕竟跨国转账1-2个工作日）</p>
 <p>优先级 = 输入值块龄 * 输出值块龄 / 交易总长度</p>
 <p>一个交易想成为<strong>“较高优先级”</strong>，需满足条件：<strong>优先值大于57600000</strong>，等价于1个BTC，年龄为1天，交易的大小为250字节</p>
-<p>区块中钱50KB的字节是保留给“较高优先级”的，其实这一机制也保证了一笔交易不会等待时间无现长。但是我们要知道，内存池（存放待处理交易的位置）中的交易，如果在没有处理后消失，所以钱包必须拥有不断重新广播未被处理交易的功能</p>
+<p>区块中前50KB的字节是保留给“较高优先级”的，其实这一机制也保证了一笔交易不会等待时间无现长。但是我们要知道，内存池（存放待处理交易的位置）中的交易，如果在没有处理后消失，所以钱包必须拥有不断重新广播未被处理交易的功能</p>
 <h3 id="创币交易-Coinbase"><a href="#创币交易-Coinbase" class="headerlink" title="创币交易 - Coinbase"></a>创币交易 - Coinbase</h3><p>每一个<strong>新建立的区块</strong>，都会有新的比特币作为奖励被产生，这个交易是一个特殊交易，被称为<strong>创币交易（Coinbase奖励）</strong></p>
 <p>创币交易中不存在解锁脚本（也叫ScriptSig字段），被Coinbase的数据取代，长度最小2字节，最大100字节，除了开始的几个自己以外，矿工可以任意使用Coinbase的其他部分。比如创世区块中，Coinbase的输入中的字段是：The Times 03/Jan/2009 Chancellor on brink of second bailout for banks，是泰晤士日报当天的头版文章标题：财政大臣将再次对银行施以援手。</p>
 <h2 id="Merkle树"><a href="#Merkle树" class="headerlink" title="Merkle树"></a>Merkle树</h2><p><strong>每个区块中的所有交易，都是用Merkle树来表示的</strong>。换句话说，交易的存储数据结构是，Merkle树</p>
@@ -700,7 +700,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-25T21:43:22.000Z" itemprop="dateUpdated">2017-09-25 14:43:22</time>
+    Last updated: <time datetime="2017-09-25T21:57:30.000Z" itemprop="dateUpdated">2017-09-25 14:57:30</time>
 </span><br>
 
 
