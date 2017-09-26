@@ -18,7 +18,7 @@
     
     
     
-    <title>深入浅出看懂AlphaGo如何下棋 | GoFurther Blog | Stay Hungry, Stay Foolish</title>
+    <title>深入浅出看懂AlphaGo如何下棋 | Go Further | Stay Hungry, Stay Foolish</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -30,7 +30,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo如何下棋">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/index.html">
-<meta property="og:site_name" content="GoFurther Blog">
+<meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
@@ -48,7 +48,7 @@
 <meta name="twitter:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
     
-        <link rel="alternate" type="application/atom+xml" title="GoFurther Blog" href="/atom.xml">
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/favicon.png">
     <link rel="stylesheet" href="/css/style.css?v=1.6.7">
@@ -492,7 +492,7 @@ $$
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -502,7 +502,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — Go Further&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -512,7 +512,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — Go Further&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -660,7 +660,7 @@ $$
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -670,7 +670,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&title=《深入浅出看懂AlphaGo如何下棋》 — Go Further&source=问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -680,7 +680,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — GoFurther Blog&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo如何下棋》 — Go Further&url=https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
