@@ -882,9 +882,9 @@
 <h3 id="创币交易-Coinbase"><a href="#创币交易-Coinbase" class="headerlink" title="创币交易 - Coinbase"></a>创币交易 - Coinbase</h3><p>每一个<strong>新建立的区块</strong>，都会有新的比特币作为奖励被产生，这个交易是一个特殊交易，被称为<strong>创币交易（Coinbase奖励）</strong></p>
 <p>创币交易中不存在解锁脚本（也叫ScriptSig字段），被Coinbase的数据取代，长度最小2字节，最大100字节，除了开始的几个自己以外，矿工可以任意使用Coinbase的其他部分。比如创世区块中，Coinbase的输入中的字段是：The Times 03/Jan/2009 Chancellor on brink of second bailout for banks，是泰晤士日报当天的头版文章标题：财政大臣将再次对银行施以援手。</p>
 <h2 id="Merkle树"><a href="#Merkle树" class="headerlink" title="Merkle树"></a>Merkle树</h2><p><strong>每个区块中的所有交易，都是用Merkle树来表示的</strong>。换句话说，交易的存储数据结构是，Merkle树</p>
-<h4 id="什么是Merkle树"><a href="#什么是Merkle树" class="headerlink" title="什么是Merkle树"></a>什么是Merkle树</h4><p>Merkle树是一种<strong>哈希二叉树</strong>，它可以用来进行<strong>快速查找和检验大规模数据完整性</strong>。对于比特币网络来说，使用Merkle树来存储交易信息的目的是为了<strong>高效的查找和校验某笔交易的信息是否存在</strong></p>
+<h3 id="什么是Merkle树"><a href="#什么是Merkle树" class="headerlink" title="什么是Merkle树"></a>什么是Merkle树</h3><p>Merkle树是一种<strong>哈希二叉树</strong>，它可以用来进行<strong>快速查找和检验大规模数据完整性</strong>。对于比特币网络来说，使用Merkle树来存储交易信息的目的是为了<strong>高效的查找和校验某笔交易的信息是否存在</strong></p>
 <p>当N个数据元素经过加密（使用两次SHA256算法，也称double-SHA256），<strong>至多</strong>计算 $2log_2(N)$ 次就能<strong>检查出任意某元素是否在树中</strong></p>
-<h4 id="构造Merkle树"><a href="#构造Merkle树" class="headerlink" title="构造Merkle树"></a>构造Merkle树</h4><p>假设我们有A B C D四笔交易字段，首先需要把这四个数据Hash化。然后把这些哈细化的<strong>数据通过串联相邻叶子节点</strong>的哈希值然后哈希化。基本过程如下图所示</p>
+<h3 id="构造Merkle树"><a href="#构造Merkle树" class="headerlink" title="构造Merkle树"></a>构造Merkle树</h3><p>假设我们有A B C D四笔交易字段，首先需要把这四个数据Hash化。然后把这些哈细化的<strong>数据通过串联相邻叶子节点</strong>的哈希值然后哈希化。基本过程如下图所示</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -893,7 +893,7 @@
                 <div class="image-caption">Merkle树的构造过程</div>
             </figure>
 <p>叶子节点必须是偶数（平衡树），如果遇到奇数的情况，把最后一个节点自身复制一个，凑偶</p>
-<h4 id="Merkle树的效率"><a href="#Merkle树的效率" class="headerlink" title="Merkle树的效率"></a>Merkle树的效率</h4><p>下表显示了证明区块中存在某笔交易所需转化为Merkle路径的数据量</p>
+<h3 id="Merkle树的效率"><a href="#Merkle树的效率" class="headerlink" title="Merkle树的效率"></a>Merkle树的效率</h3><p>下表显示了证明区块中存在某笔交易所需转化为Merkle路径的数据量</p>
 <table>
 <thead>
 <tr>
@@ -931,7 +931,7 @@
 </tbody>
 </table>
 <p>可以发现，即使区块容量达到16MB规模，为证明交易存在的Merkle路径长度增长也极其缓慢（幂指数增长取对数变为线性增长）</p>
-<h4 id="Merkle应用-简单支付验证节点（SPV）"><a href="#Merkle应用-简单支付验证节点（SPV）" class="headerlink" title="Merkle应用 - 简单支付验证节点（SPV）"></a>Merkle应用 - 简单支付验证节点（SPV）</h4><p>我们知道，每当一笔新的交易产生的时候，我们必须<strong>验证这笔交易是否真的存在</strong>，在SPV节点中，不保存区块链，仅仅保存区块头。<strong>使用认证路径或者Merkle路径来验证交易是否存在于区块中</strong></p>
+<h3 id="Merkle应用-简单支付验证节点（SPV）"><a href="#Merkle应用-简单支付验证节点（SPV）" class="headerlink" title="Merkle应用 - 简单支付验证节点（SPV）"></a>Merkle应用 - 简单支付验证节点（SPV）</h3><p>我们知道，每当一笔新的交易产生的时候，我们必须<strong>验证这笔交易是否真的存在</strong>，在SPV节点中，不保存区块链，仅仅保存区块头。<strong>使用认证路径或者Merkle路径来验证交易是否存在于区块中</strong></p>
 <p>例如，一个SPV节点需要处理一笔支付，它<strong>需要验证这笔交易在某个区块中是否存在</strong>，才能决定是不是把这笔交易添加到这个区块中，那么它只需要接收少于1KB大小的，<strong>有关区块头和Merkle路径的信息</strong>，比接收完整区块（大约1MB）大小少了1千倍。简单来说，可以想象，Merkle树类似<strong>一个数组</strong>（这也是哈希表的最简单表示），<strong>下标是区块字段</strong>，下标对应<strong>数组存储的内容是这笔交易是否存在的值（True or False）</strong></p>
 <h1 id="区块链（比特币）与金融"><a href="#区块链（比特币）与金融" class="headerlink" title="区块链（比特币）与金融"></a>区块链（比特币）与金融</h1><p>因为比特币具有价值，那就必须谈到它和金融的关系。</p>
 <p>限于篇幅（太长了太可怕了，一个博客写2万字莫不是有病），这部分另起一篇：<a href="https://charlesliuyx.github.io/2017/09/25/%E5%8C%BA%E5%9D%97%E9%93%BE%EF%BC%88%E6%AF%94%E7%89%B9%E5%B8%81%EF%BC%89%E4%B8%8E%E9%87%91%E8%9E%8D/">链接（直接点不会打开新标签）</a>，如果对<strong>ICO和金融方面</strong>感兴趣的读者欢迎移步讨论</p>
