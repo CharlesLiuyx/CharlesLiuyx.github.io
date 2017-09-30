@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[Pandas-Wiki]]></title>
       <url>/2017/09/30/Pandas-Wiki/</url>
-      <content type="html"><![CDATA[<p>【阅读时间】百科类<br>【内容简介】pandas函数库相关操作手册，供查阅使用。笔记对象来自<a href="https://jizhi.im/blog/post/10min2pandas01" target="_blank" rel="external">集智</a></p>
+      <content type="html"><![CDATA[<p>【阅读时间】百科类<br>【内容简介】pandas函数库相关操作手册，供查阅使用。笔记对象来自<a href="https://jizhi.im/blog/post/10min2pandas01" target="_blank" rel="external">集智</a><br><a id="more"></a></p>
 <p>必备库的导入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</div><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</div></pre></td></tr></table></figure>
 <h1 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h1><p>创建一个<code>Series</code>对象：传递一个<strong>数值列表</strong>作为参数，令Pandas使用默认索引。</p>
