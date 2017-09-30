@@ -3,6 +3,30 @@
   
     
     <entry>
+      <title><![CDATA[Pandas-Wiki]]></title>
+      <url>/2017/09/30/Pandas-Wiki/</url>
+      <content type="html"></content>
+      
+        <categories>
+            
+            <category> Wiki </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Library </tag>
+            
+            <tag> Wiki </tag>
+            
+            <tag> Machine Learning </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[区块链（比特币）与金融]]></title>
       <url>/2017/09/25/%E5%8C%BA%E5%9D%97%E9%93%BE%EF%BC%88%E6%AF%94%E7%89%B9%E5%B8%81%EF%BC%89%E4%B8%8E%E9%87%91%E8%9E%8D/</url>
       <content type="html"><![CDATA[<p>【阅读时间】11min - 17min - 4187 words<br>【内容简介】其中讨论了区块链技术（比特币）对金融体系的影响，并解读了最近很火的热点问题：ICO相关的知识</p>
@@ -1089,9 +1113,9 @@ $$
         
         <tags>
             
-            <tag> Theory </tag>
-            
             <tag> Machine Learning </tag>
+            
+            <tag> Theory </tag>
             
         </tags>
         
@@ -1311,9 +1335,9 @@ $$
         
         <tags>
             
-            <tag> Theory </tag>
-            
             <tag> Machine Learning </tag>
+            
+            <tag> Theory </tag>
             
         </tags>
         
@@ -1770,9 +1794,9 @@ $$
         
         <tags>
             
-            <tag> Theory </tag>
-            
             <tag> Machine Learning </tag>
+            
+            <tag> Theory </tag>
             
         </tags>
         
@@ -3250,6 +3274,8 @@ $$
             
             <category> Dota2 </category>
             
+            <category> Wiki </category>
+            
         </categories>
         
         
@@ -3399,20 +3425,20 @@ $$
         
         <tags>
             
+            <tag> Machine Learning </tag>
+            
             <tag> BitTiger </tag>
             
             <tag> Theory </tag>
             
             <tag> Model </tag>
             
-            <tag> Machine Learning </tag>
-            
         </tags>
         
     </entry>
     
     <entry>
-      <title><![CDATA[Xpath使用指南]]></title>
+      <title><![CDATA[Xpath-Wiki]]></title>
       <url>/2017/08/28/Xpath%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</url>
       <content type="html"><![CDATA[<p>【阅读时间】查阅类文档<br>【内容简介】Xpath相关使用法法和例子文档，以供查阅（➜ 后是对应语句的输出output）</p>
 <a id="more"></a>
@@ -3449,8 +3475,16 @@ $$
 <p>获取所有<code>class</code>属性中<strong>包含</strong>content的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">s4.xpath((<span class="string">'//*[contains(@class,"content")]/text()'</span>)) ➜ [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>]</div></pre></td></tr></table></figure></p>
 ]]></content>
       
+        <categories>
+            
+            <category> Wiki </category>
+            
+        </categories>
+        
         
         <tags>
+            
+            <tag> Wiki </tag>
             
             <tag> crawl </tag>
             
