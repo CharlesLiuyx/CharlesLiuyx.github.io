@@ -128,7 +128,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -193,24 +193,8 @@
 <li>右键创建的文件 ➜ 选择 Edit Script 出来一个记事本</li>
 <li>编辑记事本文件，在已经有的内容下直接加上</li>
 </ul>
-<pre><code>#IfWinActive ahk_class classFoxitReader
-^c:: 
-    old := ClipboardAll
-    clipboard := &quot;&quot;
-    send ^c
-    clipwait 0.1
-    if clipboard = 
-        clipboard := old
-    else {
-        tmp := RegExReplace(clipboard, &quot;(\S.*?)\R(.*?\S)&quot;, &quot;$1 $2&quot;)
-        clipboard := tmp
-        StringReplace clipboard, clipboard, % &quot;  &quot;, % &quot; &quot;, A
-        clipwait 0.1
-        }
-    old := &quot;&quot;
-    tmp := &quot;&quot;
-return
-</code></pre><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#IfWinActive ahk_class classFoxitReader</div><div class="line">^c:: </div><div class="line">    old := ClipboardAll</div><div class="line">    clipboard := &quot;&quot;</div><div class="line">    send ^c</div><div class="line">    clipwait 0.1</div><div class="line">    if clipboard = </div><div class="line">        clipboard := old</div><div class="line">    else &#123;</div><div class="line">        tmp := RegExReplace(clipboard, &quot;(\S.*?)\R(.*?\S)&quot;, &quot;$1 $2&quot;)</div><div class="line">        clipboard := tmp</div><div class="line">        StringReplace clipboard, clipboard, % &quot;  &quot;, % &quot; &quot;, A</div><div class="line">        clipwait 0.1</div><div class="line">        &#125;</div><div class="line">    old := &quot;&quot;</div><div class="line">    tmp := &quot;&quot;</div><div class="line">return</div></pre></td></tr></table></figure>
+<blockquote>
 <p>这里有个问题 <code>IfWinActive ahk_class classFoxitReader</code> 第一行的<code>classFoxitReader</code> 是指的你用什么程序打开PDF </p>
 <p>如果是FoxitReader就是<code>classFoxitReader</code> 如果是Acrobat Adobe就是<code>AcrobatSDIWindow</code></p>
 <p>可以用Autohotkey中的  <a href="https://autohotkey.com/docs/commands/WinGetClass.htm" target="_blank" rel="external">WinGetClass</a> 来获得某一个窗口的<code>ahk_class</code></p>
@@ -227,7 +211,7 @@ return
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2017-07-30T07:24:57.000Z" itemprop="dateUpdated">2017-07-30 00:24:57</time>
+    Last updated: <time datetime="2017-07-30T07:24:57.000Z" itemprop="dateUpdated">2017-07-30 00:24:57</time>
 </span><br>
 
 
@@ -408,7 +392,7 @@ return
             
                 <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
             
-            <span>博客内容遵循<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
