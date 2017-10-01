@@ -32,6 +32,7 @@
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/index.html">
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="问题分析围棋问题，棋盘 19 * 19 = 361 个交叉点可供落子，每个点三种状态，白（用1表示），黑（用-1表示），无子（用0表示），用 $\vec s$ 描述此时棋盘的状态，即棋盘的状态向量记为 $ \vec s$ （state首字母）。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png">
@@ -72,7 +73,7 @@
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">Nimonic</h5>
+          <h5 class="nickname">遥行</h5>
           <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
         </hgroup>
       </div>
@@ -224,13 +225,7 @@
 <h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
 <p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）（5.29更新，原地址已经恢复，原地址的排版更好，估计之前那个博主在进行博客的整理）</p>
 <p>大致可以理解为：</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子" title="">
-                </div>
-                <div class="image-caption">CNN例子</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/CNN.png" alt="CNN例子"></p>
 <p>对一副图像进行处理，给定很多样本进行训练，使得最后的神经网络可以获得指定（<strong>具有分类效果</strong>）的输出。</p>
 <p>比如，根据上图可以观察到（这是一个已经训练好的神经网络），最右侧的<strong>输出</strong>是<code>[0.01 , 0.04 , 0.94 , 0.02]</code>，其中第三个值<code>0.94</code>代表的是boat，接近1，所以我们判断这幅图片中有船这个物体（类似的，如果使用这幅图像进行训练，那么<strong>指定</strong>输出应该是[0, 0, 1, 0]，因为图中只有船这个物体）</p>
 <ul>
@@ -245,13 +240,7 @@
 <p>在状态 $\vec s$ 下，进行哪一个落子 $\vec a$ 是<strong>最接近人类风格的</strong></p>
 </blockquote>
 <p>计算出来的直观结果，对应到棋盘上如下图，可以看到，红色的区域的值有60%，次大值位于右方，是35%（此图来自于AlphaGo论文）</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network" title="">
-                </div>
-                <div class="image-caption">Policy Network</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/PolicyNetwork.png" alt="Policy Network"></p>
 <p>还记得刚刚举得船图的例子嘛？可以类比一下，机器发现现在的状态 $ \vec s$ 和之前的某一种类型有些类似，输出是一个<code>1*361</code>的向量，其中有几个值比较大（接近1就是100%），那么就用这个值当做下一个 $ \vec a$ 的位置。不幸的，这种训练方法有很大的局限的，可以直观想到的是，如果对战平台上数据本身就都是<code>俗手</code>，那不是训练出来一个很蠢的神经网络嘛？棋力如何呢？</p>
 <h3 id="深度卷积网络策略的棋力"><a href="#深度卷积网络策略的棋力" class="headerlink" title="深度卷积网络策略的棋力"></a>深度卷积网络策略的棋力</h3><p>很不幸，据<code>Aja Huang</code>本人说，这个网络的棋力大概相当于业余6段所有的的人类选手。远远未能超过当时最强的围棋电脑程序<code>CrazyStone</code>。</p>
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把 $P_{human}(\vec s)$ 和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
@@ -313,24 +302,12 @@ $$
 </ul>
 <p>所以，我们需要根据S，A，R，来确定什么样的P是比较好的，通过不断的进行游戏，获得大量的交互数据，我们可以确定在每一个状态下，进行什么动作能获得最好的分数，而强化学习也就是利用神经网络来拟合这个过程。</p>
 <p>例如，打砖块游戏有一个<strong>秘诀</strong>是把求打到墙后，这样球能自己反弹得分，强化学习程序在玩了600盘后，学到了这个秘诀。也就是说程序会在每一个状态下选择那个更容易把球打到墙后面去的操作。如下图，球快要把墙打穿的时候，评价函数 $v$ 的值会大幅度上升</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图" title="">
-                </div>
-                <div class="image-caption">打墙游戏的评价函数图</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RL.png" alt="打墙游戏的评价函数图"></p>
 <p>我们可以发现，强化学习的基本思路和MCTS后异曲同工之妙，也是在对游戏完全没有了解的情况，通过不断的训练（进行多盘对弈，和获得进行行动后的分数反馈）来进行训练，自我提升。</p>
 <h3 id="利用强化学习增强棋力"><a href="#利用强化学习增强棋力" class="headerlink" title="利用强化学习增强棋力"></a>利用强化学习增强棋力</h3><p>参考这种思路，<code>Aja Huang</code>给围棋也设计了一个评价函数 $v(\vec s)$ 。此函数的功能是：<strong>量化评估围棋局面</strong>。使用$v(\vec s)$可以让我们在MCTS的过程中<strong>不用走完全局</strong>（走完全盘耗时耗力，效率不高）就发现<strong>已经必败</strong>。</p>
 <p>在利用 $P_{human}(\vec s)$ 走了开局的20步后，<strong>如果有一个 $v(\vec s_i)$ （i为当前状态）可以直接判断是否能赢，得到最后的结果<code>r</code></strong>，不需要搜索到底，可以从效率（剪枝，优化算法时间复杂度）上进一步增加MCTS的威力。</p>
 <p>很可惜的，现有的人类棋谱不足以得出这个评价函数。所以<code>Aja Huang</code>决定用<strong>机器和机器对弈</strong>的方法来创造新的对局，也就是AlphaGo的左右互搏。</p>
-<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构" title="">
-                </div>
-                <div class="image-caption">神经网络的训练过程和结构</div>
-            </figure>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/RLArchitecture.png" alt="神经网络的训练过程和结构"></p>
 <ul>
 <li>先用 $P_{human}(\vec s)$ 和 $P_{human}(\vec s)$ 对弈，比如1万盘，得到1万个新棋谱，加入到训练集中，训练出 $P_{human-1}(\vec s)$ 。</li>
 <li>使用$P_{human-1}(\vec s)$和$P_{human-1}(\vec s)$对弈，得到另1万个新棋谱，加入训练集，训练出$P_{human-2}(\vec s)$。</li>
@@ -362,13 +339,7 @@ $$
 <li>$v(\vec s)$ <code>我能判断局势</code></li>
 </ul>
 <p>有了这些我们距离AlphaGo已经不远了</p>
-<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解" title="">
-                </div>
-                <div class="image-caption">MTCS流程图解</div>
-            </figure>
+<h2 id="AlphaGo"><a href="#AlphaGo" class="headerlink" title="AlphaGo"></a>AlphaGo</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/MCTS.png" alt="MTCS流程图解"></p>
 <p><code>Aja Huang</code>使用MCTS框架融合局面评估函数 $v(\vec s)$ 的策略是：<br><a name="3-1"></a></p>
 <ul>
 <li>使用$P_{human}(\vec s)$作为初始分开局，每局选择分数最高的方案落子</li>
@@ -382,23 +353,11 @@ $$
 </li>
 </ul>
 <p>如果 $v(\vec s)$ 是表示大局观，$P_{human-fast}(\vec s)$表示快速演算，那么上面的方法就是二者的并重，并且<code>Aja Huang</code>团队已经用实验证明0.5 0.5的权重对阵其他权重有95%的胜率</p>
-<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1" title="">
-                </div>
-                <div class="image-caption">详解AlphaGo走某一步棋的过程1</div>
-            </figure>
+<h3 id="详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><a href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程" class="headerlink" title="详解AlphaGo VS 樊麾 对局走下某一步的计算过程"></a>详解AlphaGo VS 樊麾 对局走下某一步的计算过程</h3><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result1.png" alt="详解AlphaGo走某一步棋的过程1"></p>
 <p><code>a图</code>使用局部评估函数计算出 $\vec s$ 状态下<strong>其他落子点的胜率</strong></p>
 <p><code>b图</code>MCTS中使用<strong>局部评估函数</strong>加 $P_{human}(\vec s)$ 得出的结果</p>
 <p><code>c图</code>MCTS中使用$P_{human}(\vec s)$（复合算法）和$P_{human-fast}(\vec s)$走子走到底的结果</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2" title="">
-                </div>
-                <div class="image-caption">详解AlphaGo走某一步棋的过程2</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result2.png" alt="详解AlphaGo走某一步棋的过程2"></p>
 <p><code>d图</code>深度卷积神经网络使用<strong>策略函数</strong>计算出来的结果</p>
 <p><code>e图</code>使用<a href="#3-1">公式3-1</a>和相关流程计算出的落子概率</p>
 <p><code>f图</code>演示了AlphaGo和樊麾对弈的计算过程，AlphaGo执黑，樊麾执白。红圈是AlphaGo实际落子额地方。1，2，3和后面的数字表示他想象中的之后樊麾下一步落子的地方。<strong>白色方框</strong>是樊麾的实际落子。在复盘时，樊麾认为1的走法更好（这说明在樊麾落子后AlphaGo也在进行计算）</p>
@@ -408,13 +367,7 @@ $$
 <p>启发式搜索算法：由当前局面开始，尝试看起来<u>可靠的行动</u>，达到终局或一定步数后停止，根据后续<u>局面的优劣</u>反馈，选择最有行动。通俗来说，就是”手下一招子，心想三步棋“</p>
 </blockquote>
 <p>围棋是一个NP问题，要穷举的话，解空间巨大。现代优化算法的经典之处在于，从围棋的规则来看，在某一个状态，必定有一个或几个较优解，整个AlphaGo就是想方设法的去找这个较优解。<strong>利用局面评估函数来对MCTS进行剪枝的思路十分精彩</strong>。利用上面的3个算法，结合庞大的并行运算能力，还有<code>Aja Huang</code>团队的辛苦付出，造就了AlphaGo的奇迹。</p>
-<h2 id="使用不同组件AlphGo1-0的棋力"><a href="#使用不同组件AlphGo1-0的棋力" class="headerlink" title="使用不同组件AlphGo1.0的棋力"></a>使用不同组件AlphGo1.0的棋力</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果" title="">
-                </div>
-                <div class="image-caption">最终棋力结果</div>
-            </figure>
+<h2 id="使用不同组件AlphGo1-0的棋力"><a href="#使用不同组件AlphGo1-0的棋力" class="headerlink" title="使用不同组件AlphGo1.0的棋力"></a>使用不同组件AlphGo1.0的棋力</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/Result.png" alt="最终棋力结果"></p>
 <p>上图显示了各种算法的棋力，Rollout是走棋演算，也就是<code>MCTS</code>，Value Network是 $v(\vec s)$ 局面评估函数，Policy Network 是结合$P_{human-plus}(\vec s)$和$P_{human}(\vec s)$后计算的策略函数（下一步走在哪里胜率高的深度卷积神经网络）</p>
 <p>整个AlphaGo使用的技术，深度卷积网络，强化学习神经网络，都是炙手可热的领域，近年来发展迅猛，日新月异。AlphaGo已经完成了自己历史使命，<strong>借助棋类的巅峰【围棋】为叩门砖打开了机器学习自我进化的大门</strong></p>
 <h2 id="李世石-VS-AlphaGo-1-0——第四局78手挖"><a href="#李世石-VS-AlphaGo-1-0——第四局78手挖" class="headerlink" title="李世石 VS AlphaGo 1.0——第四局78手挖"></a>李世石 VS AlphaGo 1.0——第四局78手挖</h2><p><img src="//charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/78.png" width="400" align="center" alt="78"></p>
@@ -467,8 +420,8 @@ $$
     </div>
     <footer>
         <a href="https://charlesliuyx.github.io">
-            <img src="/img/avatar.jpg" alt="Nimonic">
-            Nimonic
+            <img src="/img/avatar.jpg" alt="遥行">
+            遥行
         </a>
     </footer>
 </blockquote>
@@ -646,7 +599,7 @@ $$
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Nimonic &copy; 2017</span>
+            <span>遥行 &copy; 2017</span>
         </p>
     </div>
 </footer>

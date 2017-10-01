@@ -24,14 +24,15 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,BitTiger,Theory,Model">
+    <meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
     <meta name="description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
-<meta name="keywords" content="Machine Learning,BitTiger,Theory,Model">
+<meta name="keywords" content="BitTiger,Theory,Model,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】Logistic Regression">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
@@ -65,7 +66,7 @@
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">Nimonic</h5>
+          <h5 class="nickname">遥行</h5>
           <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
         </hgroup>
       </div>
@@ -234,32 +235,14 @@ $$
 <p>那Logistic Function和贝叶斯公式有什么联系呢？</p>
 <p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数），而这个函数的值就是 $f(a)$ ，很明显，<strong>是一个概率</strong></p>
 <p><strong>另一个很重要超级重要的常识就是：正态分布的的累计分布函数（就是从负无穷到x积分）和概率分布函数长得样子很像Logistic累计分布函数和概率密度函数</strong>，可能看到这句话很多人就已经真相大白了，应给无论从中心极限定理出发，还是从统计学概率论角度来看，<strong>概率分布存在的价值是为了描述自然界（现实）中的随机事件，构造函数本身就十分重要，不同的规律需要不同的函数去拟合</strong></p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png" alt="正太分布概率密度函数（左）累计密度函数（右）" title="">
-                </div>
-                <div class="image-caption">正太分布概率密度函数（左）累计密度函数（右）</div>
-            </figure>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png" alt="Logistic函数概率密度函数（左）累计密度函数（右）" title="">
-                </div>
-                <div class="image-caption">Logistic函数概率密度函数（左）累计密度函数（右）</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png" alt="正太分布概率密度函数（左）累计密度函数（右）"></p>
+<p><img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png" alt="Logistic函数概率密度函数（左）累计密度函数（右）"></p>
 <h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
 <p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
 <blockquote>
 <p>比如，<u>农药的用量</u>和<u>杀死害虫的概率</u>之间，在农药用量在很小的范围内增长的时候，因为药效不够，杀死害虫的概率增长很慢。</p>
 </blockquote>
-<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）c<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png" alt="可视化" title="">
-                </div>
-                <div class="image-caption">可视化</div>
-            </figure></p>
+<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）c<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png" alt="可视化"></p>
 <p>这个 $\theta(P)​$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0​$ 或 $P = 1​$ 附近，$P​$ 的微小变化对应 $\theta(P)​$ 的较大改变</p>
 <h4 id="方案-如何解决这个问题"><a href="#方案-如何解决这个问题" class="headerlink" title="方案 - 如何解决这个问题"></a>方案 - 如何解决这个问题</h4><p>为了建立因变量 $P$ 与自变量 $\mathbf X$ 之间的<strong>合理变动关系</strong>，一个很自然的假设就是<strong>线性关系</strong>，也就是：<br>$$<br>P = \mathbf X’  \boldsymbol{\beta}<br>$$<br>其中 $\boldsymbol \beta = (\beta_1,\beta_1,\ldots,\beta_p)$ 表示每一个不同因素对最终概率 $P$ 产生的影响（这个也可以写作，权重weight）</p>
 <p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logistic回归模型</code></p>
@@ -339,8 +322,8 @@ $$
     </div>
     <footer>
         <a href="https://charlesliuyx.github.io">
-            <img src="/img/avatar.jpg" alt="Nimonic">
-            Nimonic
+            <img src="/img/avatar.jpg" alt="遥行">
+            遥行
         </a>
     </footer>
 </blockquote>
@@ -518,7 +501,7 @@ $$
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Nimonic &copy; 2017</span>
+            <span>遥行 &copy; 2017</span>
         </p>
     </div>
 </footer>

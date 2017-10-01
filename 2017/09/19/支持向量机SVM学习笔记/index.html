@@ -24,14 +24,15 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="keywords" content="Theory,Machine Learning">
     <meta name="description" content="【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
-<meta name="keywords" content="Machine Learning,Theory">
+<meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】支持向量机SVM">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/index.html">
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png">
@@ -66,7 +67,7 @@
           <img src="/img/avatar.jpg">
         </a>
         <hgroup class="introduce">
-          <h5 class="nickname">Nimonic</h5>
+          <h5 class="nickname">遥行</h5>
           <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
         </hgroup>
       </div>
@@ -205,13 +206,7 @@
 <a id="more"></a>
 <h1 id="什么是支持向量机-SVM"><a href="#什么是支持向量机-SVM" class="headerlink" title="什么是支持向量机-SVM"></a>什么是支持向量机-SVM</h1><p>支持向量机-SVM(Support Vector Machine)从本质来说是一种：<strong>用一条线（方程）分类两种事物</strong></p>
 <p>SVM的任务是找到这条分界线<strong>使得它到两边的<code>margin</code>都最大</strong>，<font color="FF00000">注意，这里的横坐标是 $x_1$ 纵坐标为 $x_2$</font>，如下图所示</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg" alt="margin" title="">
-                </div>
-                <div class="image-caption">margin</div>
-            </figure>
+<p><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg" alt="margin"></p>
 <p>有了直观的感知，在定义这一节在做一些深入的思考，分解名词（Support Vector Machine）并尝试解释：</p>
 <ul>
 <li><strong>Machine</strong> - Classification Machine 说明它的本质是一个<strong>分类器</strong></li>
@@ -241,13 +236,7 @@ $$
 
 <p>其实这个公式是一点也不抽象，需要更进一步的用符号来表达。</p>
 <p>我们知道<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
-<h2 id="硬间隔"><a href="#硬间隔" class="headerlink" title="硬间隔"></a>硬间隔</h2><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM支持向量机" title="">
-                </div>
-                <div class="image-caption">SVM支持向量机</div>
-            </figure>
+<h2 id="硬间隔"><a href="#硬间隔" class="headerlink" title="硬间隔"></a>硬间隔</h2><p><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM支持向量机"></p>
 <blockquote>
 <p>注：公式中加粗或者带有向量箭头的都<strong>表达一个向量</strong></p>
 </blockquote>
@@ -416,8 +405,8 @@ $$
     </div>
     <footer>
         <a href="https://charlesliuyx.github.io">
-            <img src="/img/avatar.jpg" alt="Nimonic">
-            Nimonic
+            <img src="/img/avatar.jpg" alt="遥行">
+            遥行
         </a>
     </footer>
 </blockquote>
@@ -595,7 +584,7 @@ $$
     <div class="bottom">
         <p>
             <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>Nimonic &copy; 2017</span>
+            <span>遥行 &copy; 2017</span>
         </p>
     </div>
 </footer>
