@@ -32,7 +32,6 @@
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/index.html">
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
-<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif">
@@ -269,7 +268,13 @@
 </ul>
 <p>当然还有很多没有提到（比如好处，控制经济发展速度，调控供需平衡等），总之，是一种一直饱受诟病的清算方式，此时，中本聪在2009年横空出世，他提出了一种全新的<strong>清算方法</strong>，并且真正解决了陌生人间信用的问题！接下来就是真正的一步一步的发明比特币了</p>
 <h3 id="如何实现分布记账（去中心化）"><a href="#如何实现分布记账（去中心化）" class="headerlink" title="如何实现分布记账（去中心化）"></a>如何实现分布记账（去中心化）</h3><p>为了去中心化，我们可以反其道而行之：每个用户保存账本，分布记账。用户产生一笔交易就<strong>将这笔交易广播到到网络上所有的节点上</strong>，这样不就完美的去中心化了？</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif" alt="广播模式分布式账本示意图"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif" alt="广播模式分布式账本示意图" title="">
+                </div>
+                <div class="image-caption">广播模式分布式账本示意图</div>
+            </figure>
 <p>只要是明眼人都能发现，太天真的，这个方法行不通。若行不通，那就把行不通的原因总结出来</p>
 <blockquote>
 <p>遇到问题，总结不可行的原因，寻找解决方案。这是整个人类不断前进的核心最小单位</p>
@@ -279,22 +284,52 @@
 <p>这些问题才是真正的核心：<strong>是否能在协议（办法，规则）中添加几行，找到办法，来决定是否接受交易，并确定交易顺序，使你可以放心的相信，世界上遵守同一协议的所有人手上的账本都和你的一模一样呢？</strong>（问题描述值得品读，只有抽象出问题才能更好的去寻找解决方案）</p>
 <h4 id="☆解决方案"><a href="#☆解决方案" class="headerlink" title="☆解决方案"></a>☆解决方案</h4><p>解决的思路是：哪个账本的<strong>计算工作量大</strong>，就信任哪个账本。换个角度来说是<strong>【让交易欺诈和账本不一的情形的计算力成本高到不能接受甚至完全不可行】</strong></p>
 <h5 id="1、密码学：哈希函数"><a href="#1、密码学：哈希函数" class="headerlink" title="1、密码学：哈希函数"></a>1、密码学：哈希函数</h5><p>哈希函数，<strong>输入</strong>可以是任意信息或者文件，<strong>输出</strong>是固定长度的比特串。例如256bit的1/0串，这个输出叫做这个信息的<strong>“哈希值”或者“摘要”（digest）</strong>。SHA256就是一个哈希函数</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif" alt="密码哈希函数的特点"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif" alt="密码哈希函数的特点" title="">
+                </div>
+                <div class="image-caption">密码哈希函数的特点</div>
+            </figure>
 <p>密码哈希函数有几个特点</p>
 <ul>
 <li>特点是<strong>输入值稍微变化后，结果就会有很大的不同，完全无法预测不同输入间的规律</strong></li>
 <li><strong>逆向计算</strong>不可行，只能使用试错法（穷举法），解空间 $2^{256}$ </li>
 </ul>
 <p>在每一个账本后添加一个<strong>特殊数字</strong>，对整个列表使用SHA256，我们要求这个<strong>特殊数字</strong>可以使得输出值的开头有<strong>30个零</strong>（关于如何确定0的个数问题，在后面部分有详细的说明）</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif" alt="寻找能使得输出前30位为0的特殊数字"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif" alt="寻找能使得输出前30位为0的特殊数字" title="">
+                </div>
+                <div class="image-caption">寻找能使得输出前30位为0的特殊数字</div>
+            </figure>
 <p>根据之前说过SHA256的性质：输入变化输出不可预测，找到这个特殊数字唯一的办法就是穷举。换言之，你很容易就证明了他们<strong>进行了海量的计算</strong>。而这个<strong>特殊数字就叫做工作量证明</strong>（proof of work）</p>
 <p>这就意味着，所有的工作量证明就对应了交易列表（账本 Ledger），如果你修改了一个交易，哪怕只是其中一个字符，就会完全改变哈希值，就得<strong>重做工作量证明</strong>，直观动图如下</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gif" alt="修改后的重新计算"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gif" alt="修改后的重新计算" title="">
+                </div>
+                <div class="image-caption">修改后的重新计算</div>
+            </figure>
 <h5 id="2、区块链-信任与共识的基石"><a href="#2、区块链-信任与共识的基石" class="headerlink" title="2、区块链 - 信任与共识的基石"></a>2、区块链 - 信任与共识的基石</h5><p>每一个小账本被称为<strong>区块</strong>，<strong>每一个不同的区块链协议（产生不同的加密货币）</strong>都会规定每一个<strong>区块的大小</strong>（最初比特币为1M）    </p>
 <p><strong>账本组成区块，区块构成链表，区块的头包含前一块的哈希值，这就是区块链</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain1.gif" alt="区块链的诞生"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain1.gif" alt="区块链的诞生" title="">
+                </div>
+                <div class="image-caption">区块链的诞生</div>
+            </figure>
 <p>如此一来，<strong>任何人就不能随意修改其中的内容，或者交换顺序</strong>。如果你这么做，意味着<strong>你需要重新计算所有的特殊数字</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain2.gif" alt="修改任何部分都以为着重新计算"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain2.gif" alt="修改任何部分都以为着重新计算" title="">
+                </div>
+                <div class="image-caption">修改任何部分都以为着重新计算</div>
+            </figure>
 <p>规定，<strong>允许世界上的每一个人建造区块</strong>。每一个新建区块的人（找到了这个特殊数字 - SHA256值有30个零）都能获得奖励，对于<strong>新建区块的这部分人（矿工）</strong>来说</p>
 <ul>
 <li>没有发送者信息，不需要签名</li>
@@ -309,13 +344,31 @@
 <p>注：区块链本身就是最终的大账本，发生交易的唯一方法就是把你的交易加入到大账本上。具体来说，就是让矿工把你的交易记录加入它新挖到的区块中，并把这个区块链接到区块链上。链表的纽带，当然就是工作量证明</p>
 </blockquote>
 <p>对于上面的问题，用户的解决方案也比较简单：即，<strong>只保留最长的，也就是包含的工作量最大的那一条</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gif" alt="用户保留最长的区块链"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gif" alt="用户保留最长的区块链" title="">
+                </div>
+                <div class="image-caption">用户保留最长的区块链</div>
+            </figure>
 <p>这里有一个Trick，<strong>即所谓信任工作量最大不仅仅是出【一道难题】，还通过等待多个区块的产生引入世界上所有矿工之间的博弈</strong>（吃瓜群众，坐看大戏，谁厉害我选谁，你们尽管斗）</p>
 <p>个人观点：区块链的Idea最核心的创新就是从技术上把<strong>信任和贪婪画了等号</strong>。<font color="“FF0000”">因为贪婪</font>（希望去竞争建立区块的建立和交易费）<font color="“FF0000”">所以信任</font>（全网算力越大，用户越放心），这句话甚至带上了些许哲学和传奇的色彩</p>
 <p>对于用户来说，是这样一种情景</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gif" alt="如何更新本地区块链"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gif" alt="如何更新本地区块链" title="">
+                </div>
+                <div class="image-caption">如何更新本地区块链</div>
+            </figure>
 <p>其中的原因是，你可以假设Alice希望篡改一个交易信息，那么就意味着Alice需要不断的通过计算维护这个区块链了。<strong>也就是说每一次有新的区块链产生，Alice都需要不断的抢到这个彩票</strong>，理论上来说，他至少必须拥有全网51%以上的算力才能做到这一点，更多的，<strong>随着用户等待区块的增加，这个难度，幂次上升</strong>，在7-8个区块链产生后，概率上来讲，就是<strong>绝对信任</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict2.gif" alt="无穷大的篡改成本"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict2.gif" alt="无穷大的篡改成本" title="">
+                </div>
+                <div class="image-caption">无穷大的篡改成本</div>
+            </figure>
 <p>此时</p>
 <ul>
 <li>我们用<strong>数字签名</strong>保证了不能伪造交易记录</li>
@@ -397,7 +450,13 @@
 </table>
 <h3 id="扩展比特币网络"><a href="#扩展比特币网络" class="headerlink" title="扩展比特币网络"></a>扩展比特币网络</h3><p>要在全世界的网络中完成整个的交易，下图描述了一个扩展比特币网络，它包含了多重类型的节点、网关服务器、边缘路由器、钱包客户端以及它们互相连接所需要的各类协议，比特币互相连接的接口一般使用<code>8333端口</code></p>
 <p>可以参看这个文章了解Stratum协议，<a href="http://www.8btc.com/stratum_protocol" target="_blank" rel="external">Stratum协议详解</a></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinNet.png" alt="扩展比特币网络"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinNet.png" alt="扩展比特币网络" title="">
+                </div>
+                <div class="image-caption">扩展比特币网络</div>
+            </figure>
 <h2 id="如何控制区块产生速度恒定"><a href="#如何控制区块产生速度恒定" class="headerlink" title="如何控制区块产生速度恒定"></a>如何控制区块产生速度恒定</h2><h3 id="难度系数"><a href="#难度系数" class="headerlink" title="难度系数"></a>难度系数</h3><p>我们在发明比特币的过程已经详细说明了<strong>工作量证明</strong>寻找一个特殊数字使得SHA256函数的输出字符串的前<code>n</code>位是零</p>
 <p>对于每一种不同的加密货币来说，都有<strong>一个值</strong>需要在建立货币的时候时候被定义，即<strong>每一个新区块在当前全网算力的条件被发现的【平均时间】</strong>，这也是难度系数的由来</p>
 <blockquote>
@@ -465,20 +524,38 @@
 <p>另外插一句，你会发现<strong>平均区块建立间隔时间</strong>，的确和10分钟这个设计值差距很大吧</p>
 <h3 id="区块容量"><a href="#区块容量" class="headerlink" title="区块容量"></a>区块容量</h3><p>比特币从被创建时，或者说源代码中规定了，区块容量是1M。最初设计成1M的原因一方面，<strong>防止DOS攻击</strong>。另一方面，当年中本聪在创建区块链的时候的容量是32M，但是他通过一个说明为”Clear up“这样毫不起眼的Commit把区块容量改成了1M，为<strong>防止区块链体积增长过快</strong>，为区块容量这个问题添加了些神秘色彩。好吧，我承认，中本聪就已经非常具有神秘色彩了，是在神秘色彩上添上了些故事</p>
 <p>通过上表我们知道，1M的容量意味着比特币最大的处理交易数量在约2400（486882区块1034.39的大小很接近了），在给出<a href="http://charts.woobull.com/bitcoin-transactions-per-second/" target="_blank" rel="external">一张时间和每秒交易数量的关系图表</a>(交互表格点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinTraPS.png" alt="每秒比特币交易数量"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinTraPS.png" alt="每秒比特币交易数量" title="">
+                </div>
+                <div class="image-caption">每秒比特币交易数量</div>
+            </figure>
 <blockquote>
 <p>这是一张对数图，纵坐标是每秒交易数量，横坐标是时间。其中，蓝色圆圈的大小代表的是比特币内存池（mempool）的大小（交易在等待矿工处理之前都会暂时存在这里）。</p>
 </blockquote>
 <p>一句话总结，这是一个拥堵的网络，已经重负不堪。</p>
 <p>再来看一张<a href="http://charts.woobull.com/bitcoin-blocksize-fees/" target="_blank" rel="external">比特币交易费和区块使用率之间的关系图</a>(交互表格可以点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png" alt="Bitcoin Fees VS BlockSize"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png" alt="Bitcoin Fees VS BlockSize" title="">
+                </div>
+                <div class="image-caption">Bitcoin Fees VS BlockSize</div>
+            </figure>
 <blockquote>
 <p>蓝色的圈大小是Mempool的大小。横坐标是区块容量的使用情况，纵坐标是每一个区块的可以得到的交易费用。</p>
 </blockquote>
 <p>手续费随区块使用率开始增长，甚至出现了4BTC一个区块2400笔交易的情况，意味着挖到这个区块的人通过交易费得到的汇报接近了本身建立区块的回报</p>
 <p>有一个结论是，扩容后，因为每一个区块的交易承载量增加，矿工的交易费收入肯定会减少。因为，通过上表可以发现，只有当区块使用程度接近95%时候，交易费才有明显的增长</p>
 <p>再看一张<a href="http://charts.woobull.com/bitcoin-blocksize-confirm-time/" target="_blank" rel="external">用户执行交易需要等待的时长和区块使用比例间关系的图表</a>(交互图表点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png" alt="Bitcoin Median Confirmation Time VS Bloacksize"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png" alt="Bitcoin Median Confirmation Time VS Bloacksize" title="">
+                </div>
+                <div class="image-caption">Bitcoin Median Confirmation Time VS Bloacksize</div>
+            </figure>
 <blockquote>
 <p>蓝色的圈大小是Mempool的大小。横坐标是区块容量的使用情况，纵坐标是用户平均需要等待的时间，单位是分钟。</p>
 </blockquote>
@@ -558,7 +635,13 @@
 <h3 id="什么是Merkle树"><a href="#什么是Merkle树" class="headerlink" title="什么是Merkle树"></a>什么是Merkle树</h3><p>Merkle树是一种<strong>哈希二叉树</strong>，它可以用来进行<strong>快速查找和检验大规模数据完整性</strong>。对于比特币网络来说，使用Merkle树来存储交易信息的目的是为了<strong>高效的查找和校验某笔交易的信息是否存在</strong></p>
 <p>当N个数据元素经过加密（使用两次SHA256算法，也称double-SHA256），<strong>至多</strong>计算 $2log_2(N)$ 次就能<strong>检查出任意某元素是否在树中</strong></p>
 <h3 id="构造Merkle树"><a href="#构造Merkle树" class="headerlink" title="构造Merkle树"></a>构造Merkle树</h3><p>假设我们有A B C D四笔交易字段，首先需要把这四个数据Hash化。然后把这些哈细化的<strong>数据通过串联相邻叶子节点</strong>的哈希值然后哈希化。基本过程如下图所示</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png" alt="Merkle树的构造过程"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png" alt="Merkle树的构造过程" title="">
+                </div>
+                <div class="image-caption">Merkle树的构造过程</div>
+            </figure>
 <p>叶子节点必须是偶数（平衡树），如果遇到奇数的情况，把最后一个节点自身复制一个，凑偶</p>
 <h3 id="Merkle树的效率"><a href="#Merkle树的效率" class="headerlink" title="Merkle树的效率"></a>Merkle树的效率</h3><p>下表显示了证明区块中存在某笔交易所需转化为Merkle路径的数据量</p>
 <table>
