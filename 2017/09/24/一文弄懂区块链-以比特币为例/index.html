@@ -1,115 +1,31 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
 
 
 
-  
-  
+
+    <meta charset="utf-8">
     
     
-  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
-  <link href="/lib/pace/pace-theme-big-counter.min.css?v=1.0.2" rel="stylesheet">
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-  
-
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="BlockChain,BTCoin," />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="Go Further" type="application/atom+xml" />
-
-
-
-
-
-
-<meta name="description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
+    
+    <title>一文弄懂区块链-以比特币为例 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="BlockChain,BTCoin">
+    <meta name="description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
 <meta name="keywords" content="BlockChain,BTCoin">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一文弄懂区块链-以比特币为例">
@@ -143,313 +59,167 @@
 <meta name="twitter:title" content="一文弄懂区块链-以比特币为例">
 <meta name="twitter:description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <script>window.lazyScripts=[]</script>
 
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/"/>
-
-
-
-
-
-  <title>一文弄懂区块链-以比特币为例 | Go Further</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-
+        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
 
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Go Further</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-      
-        <p class="site-subtitle">Stay Hungry, Stay Foolish</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
     </div>
   </div>
-  <div id="local-search-result"></div>
-</div>
+</aside>
 
-
-
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一文弄懂区块链-以比特币为例</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
     </div>
-  
-</nav>
+</header>
+<header class="content-header post-header">
 
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
+    <div class="container fade-scale">
+        <h1 class="title">一文弄懂区块链-以比特币为例</h1>
+        <h5 class="subtitle">
             
+                <time datetime="2017-09-24T22:09:42.000Z" itemprop="datePublished" class="page-time">
+  2017-09-24
+</time>
 
-  <div id="posts" class="posts-expand">
-    
 
-  
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/BlockChain/">BlockChain</a></li></ul>
 
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="遥行 Go Further">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Go Further">
-    </span>
+            
+        </h5>
+    </div>
 
     
-      <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">一文弄懂区块链-以比特币为例</h1>
-        
 
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#加密货币"><span class="post-toc-number">1.</span> <span class="post-toc-text">加密货币</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#一步一步发明比特币"><span class="post-toc-number">2.</span> <span class="post-toc-text">一步一步发明比特币</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一个用户需求-账本和电子签名的由来"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">第一个用户需求 - 账本和电子签名的由来</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题1：身份问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">产生的问题1：身份问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#产生的问题2：欠债跑路问题"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">产生的问题2：欠债跑路问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一个大家都遵守的协议"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">一个大家都遵守的协议</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二个用户需求：账本放在哪里？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">第二个用户需求：账本放在哪里？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核心需求：去中心化"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">核心需求：去中心化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何实现分布记账（去中心化）"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">如何实现分布记账（去中心化）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题核心"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">问题核心</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#☆解决方案"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">☆解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#1、密码学：哈希函数"><span class="post-toc-number">2.2.2.2.1.</span> <span class="post-toc-text">1、密码学：哈希函数</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#2、区块链-信任与共识的基石"><span class="post-toc-number">2.2.2.2.2.</span> <span class="post-toc-text">2、区块链 - 信任与共识的基石</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#3、51-算力-共识攻击"><span class="post-toc-number">2.2.2.2.3.</span> <span class="post-toc-text">3、51%算力-共识攻击</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结-系统可行性分析"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">总结 - 系统可行性分析</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发明过程中的关键点"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">发明过程中的关键点</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#比特币技术"><span class="post-toc-number">3.</span> <span class="post-toc-text">比特币技术</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币网络节点的构成"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">比特币网络节点的构成</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#节点类型与分工"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">节点类型与分工</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#扩展比特币网络"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">扩展比特币网络</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何控制区块产生速度恒定"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">如何控制区块产生速度恒定</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#难度系数"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">难度系数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#难度调整方式"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">难度调整方式</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币总量的由来"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">比特币总量的由来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币的交易处理能力"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">比特币的交易处理能力</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#现在比特币区块链的区块信息"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">现在比特币区块链的区块信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#区块容量"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">区块容量</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#比特币扩容之争"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">比特币扩容之争</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#比特币的一笔交易过程中到底发生了什么"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">比特币的一笔交易过程中到底发生了什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易结构"><span class="post-toc-number">3.5.1.</span> <span class="post-toc-text">交易结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交易的输入和输出"><span class="post-toc-number">3.5.2.</span> <span class="post-toc-text">交易的输入和输出</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#交易输出"><span class="post-toc-number">3.5.2.1.</span> <span class="post-toc-text">交易输出</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#交易输入"><span class="post-toc-number">3.5.2.2.</span> <span class="post-toc-text">交易输入</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#交易费"><span class="post-toc-number">3.5.2.3.</span> <span class="post-toc-text">交易费</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解锁和锁定脚本"><span class="post-toc-number">3.5.2.4.</span> <span class="post-toc-text">解锁和锁定脚本</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#矿工费和优先级"><span class="post-toc-number">3.5.3.</span> <span class="post-toc-text">矿工费和优先级</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创币交易-Coinbase"><span class="post-toc-number">3.5.4.</span> <span class="post-toc-text">创币交易 - Coinbase</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Merkle树"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">Merkle树</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是Merkle树"><span class="post-toc-number">3.6.1.</span> <span class="post-toc-text">什么是Merkle树</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#构造Merkle树"><span class="post-toc-number">3.6.2.</span> <span class="post-toc-text">构造Merkle树</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Merkle树的效率"><span class="post-toc-number">3.6.3.</span> <span class="post-toc-text">Merkle树的效率</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Merkle应用-简单支付验证节点（SPV）"><span class="post-toc-number">3.6.4.</span> <span class="post-toc-text">Merkle应用 - 简单支付验证节点（SPV）</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链（比特币）与金融"><span class="post-toc-number">4.</span> <span class="post-toc-text">区块链（比特币）与金融</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#竞争币和其他技术创新"><span class="post-toc-number">5.</span> <span class="post-toc-text">竞争币和其他技术创新</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-一文弄懂区块链-以比特币为例"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">一文弄懂区块链-以比特币为例</h1>
         <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-24T15:09:42-07:00">
-                2017-09-24
-              </time>
-            
+            <time class="post-time" title="2017-09-24 15:09:42" datetime="2017-09-24T22:09:42.000Z"  itemprop="datePublished">2017-09-24</time>
 
             
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/BlockChain/">BlockChain</a></li></ul>
+
+
 
             
-          </span>
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
 
-          
-            <span class="post-category" >
+
             
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/BlockChain/" itemprop="url" rel="index">
-                    <span itemprop="name">BlockChain</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/24/一文弄懂区块链-以比特币为例/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/24/一文弄懂区块链-以比特币为例/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
 
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>【阅读时间】29min - 35min - 11348 words<br>【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从<strong>用户需求</strong>的角度出发，<strong>一步一步发明区块链（或者说比特币，因为两者互相依存）</strong>，在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。<br><a id="more"></a></p>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】29min - 35min - 11348 words<br>【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从<strong>用户需求</strong>的角度出发，<strong>一步一步发明区块链（或者说比特币，因为两者互相依存）</strong>，在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。<br><a id="more"></a></p>
 <p><a href="https://www.zhihu.com/question/37290469/answer/236442981" target="_blank" rel="external">如果有帮助求知乎点个赞，感谢！</a></p>
 <blockquote>
 <p><strong>因为贪婪，所以信任</strong></p>
@@ -499,7 +269,13 @@
 </ul>
 <p>当然还有很多没有提到（比如好处，控制经济发展速度，调控供需平衡等），总之，是一种一直饱受诟病的清算方式，此时，中本聪在2009年横空出世，他提出了一种全新的<strong>清算方法</strong>，并且真正解决了陌生人间信用的问题！接下来就是真正的一步一步的发明比特币了</p>
 <h3 id="如何实现分布记账（去中心化）"><a href="#如何实现分布记账（去中心化）" class="headerlink" title="如何实现分布记账（去中心化）"></a>如何实现分布记账（去中心化）</h3><p>为了去中心化，我们可以反其道而行之：每个用户保存账本，分布记账。用户产生一笔交易就<strong>将这笔交易广播到到网络上所有的节点上</strong>，这样不就完美的去中心化了？</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif" alt="广播模式分布式账本示意图"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/broadcast.gif" alt="广播模式分布式账本示意图" title="">
+                </div>
+                <div class="image-caption">广播模式分布式账本示意图</div>
+            </figure>
 <p>只要是明眼人都能发现，太天真的，这个方法行不通。若行不通，那就把行不通的原因总结出来</p>
 <blockquote>
 <p>遇到问题，总结不可行的原因，寻找解决方案。这是整个人类不断前进的核心最小单位</p>
@@ -509,22 +285,52 @@
 <p>这些问题才是真正的核心：<strong>是否能在协议（办法，规则）中添加几行，找到办法，来决定是否接受交易，并确定交易顺序，使你可以放心的相信，世界上遵守同一协议的所有人手上的账本都和你的一模一样呢？</strong>（问题描述值得品读，只有抽象出问题才能更好的去寻找解决方案）</p>
 <h4 id="☆解决方案"><a href="#☆解决方案" class="headerlink" title="☆解决方案"></a>☆解决方案</h4><p>解决的思路是：哪个账本的<strong>计算工作量大</strong>，就信任哪个账本。换个角度来说是<strong>【让交易欺诈和账本不一的情形的计算力成本高到不能接受甚至完全不可行】</strong></p>
 <h5 id="1、密码学：哈希函数"><a href="#1、密码学：哈希函数" class="headerlink" title="1、密码学：哈希函数"></a>1、密码学：哈希函数</h5><p>哈希函数，<strong>输入</strong>可以是任意信息或者文件，<strong>输出</strong>是固定长度的比特串。例如256bit的1/0串，这个输出叫做这个信息的<strong>“哈希值”或者“摘要”（digest）</strong>。SHA256就是一个哈希函数</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif" alt="密码哈希函数的特点"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/hashfunction.gif" alt="密码哈希函数的特点" title="">
+                </div>
+                <div class="image-caption">密码哈希函数的特点</div>
+            </figure>
 <p>密码哈希函数有几个特点</p>
 <ul>
 <li>特点是<strong>输入值稍微变化后，结果就会有很大的不同，完全无法预测不同输入间的规律</strong></li>
 <li><strong>逆向计算</strong>不可行，只能使用试错法（穷举法），解空间 $2^{256}$ </li>
 </ul>
 <p>在每一个账本后添加一个<strong>特殊数字</strong>，对整个列表使用SHA256，我们要求这个<strong>特殊数字</strong>可以使得输出值的开头有<strong>30个零</strong>（关于如何确定0的个数问题，在后面部分有详细的说明）</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif" alt="寻找能使得输出前30位为0的特殊数字"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zero2.gif" alt="寻找能使得输出前30位为0的特殊数字" title="">
+                </div>
+                <div class="image-caption">寻找能使得输出前30位为0的特殊数字</div>
+            </figure>
 <p>根据之前说过SHA256的性质：输入变化输出不可预测，找到这个特殊数字唯一的办法就是穷举。换言之，你很容易就证明了他们<strong>进行了海量的计算</strong>。而这个<strong>特殊数字就叫做工作量证明</strong>（proof of work）</p>
 <p>这就意味着，所有的工作量证明就对应了交易列表（账本 Ledger），如果你修改了一个交易，哪怕只是其中一个字符，就会完全改变哈希值，就得<strong>重做工作量证明</strong>，直观动图如下</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gif" alt="修改后的重新计算"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/30zerochange.gif" alt="修改后的重新计算" title="">
+                </div>
+                <div class="image-caption">修改后的重新计算</div>
+            </figure>
 <h5 id="2、区块链-信任与共识的基石"><a href="#2、区块链-信任与共识的基石" class="headerlink" title="2、区块链 - 信任与共识的基石"></a>2、区块链 - 信任与共识的基石</h5><p>每一个小账本被称为<strong>区块</strong>，<strong>每一个不同的区块链协议（产生不同的加密货币）</strong>都会规定每一个<strong>区块的大小</strong>（最初比特币为1M）    </p>
 <p><strong>账本组成区块，区块构成链表，区块的头包含前一块的哈希值，这就是区块链</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain1.gif" alt="区块链的诞生"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain1.gif" alt="区块链的诞生" title="">
+                </div>
+                <div class="image-caption">区块链的诞生</div>
+            </figure>
 <p>如此一来，<strong>任何人就不能随意修改其中的内容，或者交换顺序</strong>。如果你这么做，意味着<strong>你需要重新计算所有的特殊数字</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain2.gif" alt="修改任何部分都以为着重新计算"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/blockchain2.gif" alt="修改任何部分都以为着重新计算" title="">
+                </div>
+                <div class="image-caption">修改任何部分都以为着重新计算</div>
+            </figure>
 <p>规定，<strong>允许世界上的每一个人建造区块</strong>。每一个新建区块的人（找到了这个特殊数字 - SHA256值有30个零）都能获得奖励，对于<strong>新建区块的这部分人（矿工）</strong>来说</p>
 <ul>
 <li>没有发送者信息，不需要签名</li>
@@ -539,13 +345,31 @@
 <p>注：区块链本身就是最终的大账本，发生交易的唯一方法就是把你的交易加入到大账本上。具体来说，就是让矿工把你的交易记录加入它新挖到的区块中，并把这个区块链接到区块链上。链表的纽带，当然就是工作量证明</p>
 </blockquote>
 <p>对于上面的问题，用户的解决方案也比较简单：即，<strong>只保留最长的，也就是包含的工作量最大的那一条</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gif" alt="用户保留最长的区块链"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict.gif" alt="用户保留最长的区块链" title="">
+                </div>
+                <div class="image-caption">用户保留最长的区块链</div>
+            </figure>
 <p>这里有一个Trick，<strong>即所谓信任工作量最大不仅仅是出【一道难题】，还通过等待多个区块的产生引入世界上所有矿工之间的博弈</strong>（吃瓜群众，坐看大戏，谁厉害我选谁，你们尽管斗）</p>
 <p>个人观点：区块链的Idea最核心的创新就是从技术上把<strong>信任和贪婪画了等号</strong>。<font color="“FF0000”">因为贪婪</font>（希望去竞争建立区块的建立和交易费）<font color="“FF0000”">所以信任</font>（全网算力越大，用户越放心），这句话甚至带上了些许哲学和传奇的色彩</p>
 <p>对于用户来说，是这样一种情景</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gif" alt="如何更新本地区块链"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-trust.gif" alt="如何更新本地区块链" title="">
+                </div>
+                <div class="image-caption">如何更新本地区块链</div>
+            </figure>
 <p>其中的原因是，你可以假设Alice希望篡改一个交易信息，那么就意味着Alice需要不断的通过计算维护这个区块链了。<strong>也就是说每一次有新的区块链产生，Alice都需要不断的抢到这个彩票</strong>，理论上来说，他至少必须拥有全网51%以上的算力才能做到这一点，更多的，<strong>随着用户等待区块的增加，这个难度，幂次上升</strong>，在7-8个区块链产生后，概率上来讲，就是<strong>绝对信任</strong></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict2.gif" alt="无穷大的篡改成本"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/bloackchain-conflict2.gif" alt="无穷大的篡改成本" title="">
+                </div>
+                <div class="image-caption">无穷大的篡改成本</div>
+            </figure>
 <p>此时</p>
 <ul>
 <li>我们用<strong>数字签名</strong>保证了不能伪造交易记录</li>
@@ -627,7 +451,13 @@
 </table>
 <h3 id="扩展比特币网络"><a href="#扩展比特币网络" class="headerlink" title="扩展比特币网络"></a>扩展比特币网络</h3><p>要在全世界的网络中完成整个的交易，下图描述了一个扩展比特币网络，它包含了多重类型的节点、网关服务器、边缘路由器、钱包客户端以及它们互相连接所需要的各类协议，比特币互相连接的接口一般使用<code>8333端口</code></p>
 <p>可以参看这个文章了解Stratum协议，<a href="http://www.8btc.com/stratum_protocol" target="_blank" rel="external">Stratum协议详解</a></p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinNet.png" alt="扩展比特币网络"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinNet.png" alt="扩展比特币网络" title="">
+                </div>
+                <div class="image-caption">扩展比特币网络</div>
+            </figure>
 <h2 id="如何控制区块产生速度恒定"><a href="#如何控制区块产生速度恒定" class="headerlink" title="如何控制区块产生速度恒定"></a>如何控制区块产生速度恒定</h2><h3 id="难度系数"><a href="#难度系数" class="headerlink" title="难度系数"></a>难度系数</h3><p>我们在发明比特币的过程已经详细说明了<strong>工作量证明</strong>寻找一个特殊数字使得SHA256函数的输出字符串的前<code>n</code>位是零</p>
 <p>对于每一种不同的加密货币来说，都有<strong>一个值</strong>需要在建立货币的时候时候被定义，即<strong>每一个新区块在当前全网算力的条件被发现的【平均时间】</strong>，这也是难度系数的由来</p>
 <blockquote>
@@ -695,20 +525,38 @@
 <p>另外插一句，你会发现<strong>平均区块建立间隔时间</strong>，的确和10分钟这个设计值差距很大吧</p>
 <h3 id="区块容量"><a href="#区块容量" class="headerlink" title="区块容量"></a>区块容量</h3><p>比特币从被创建时，或者说源代码中规定了，区块容量是1M。最初设计成1M的原因一方面，<strong>防止DOS攻击</strong>。另一方面，当年中本聪在创建区块链的时候的容量是32M，但是他通过一个说明为”Clear up“这样毫不起眼的Commit把区块容量改成了1M，为<strong>防止区块链体积增长过快</strong>，为区块容量这个问题添加了些神秘色彩。好吧，我承认，中本聪就已经非常具有神秘色彩了，是在神秘色彩上添上了些故事</p>
 <p>通过上表我们知道，1M的容量意味着比特币最大的处理交易数量在约2400（486882区块1034.39的大小很接近了），在给出<a href="http://charts.woobull.com/bitcoin-transactions-per-second/" target="_blank" rel="external">一张时间和每秒交易数量的关系图表</a>(交互表格点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinTraPS.png" alt="每秒比特币交易数量"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/BitcoinTraPS.png" alt="每秒比特币交易数量" title="">
+                </div>
+                <div class="image-caption">每秒比特币交易数量</div>
+            </figure>
 <blockquote>
 <p>这是一张对数图，纵坐标是每秒交易数量，横坐标是时间。其中，蓝色圆圈的大小代表的是比特币内存池（mempool）的大小（交易在等待矿工处理之前都会暂时存在这里）。</p>
 </blockquote>
 <p>一句话总结，这是一个拥堵的网络，已经重负不堪。</p>
 <p>再来看一张<a href="http://charts.woobull.com/bitcoin-blocksize-fees/" target="_blank" rel="external">比特币交易费和区块使用率之间的关系图</a>(交互表格可以点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png" alt="Bitcoin Fees VS BlockSize"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png" alt="Bitcoin Fees VS BlockSize" title="">
+                </div>
+                <div class="image-caption">Bitcoin Fees VS BlockSize</div>
+            </figure>
 <blockquote>
 <p>蓝色的圈大小是Mempool的大小。横坐标是区块容量的使用情况，纵坐标是每一个区块的可以得到的交易费用。</p>
 </blockquote>
 <p>手续费随区块使用率开始增长，甚至出现了4BTC一个区块2400笔交易的情况，意味着挖到这个区块的人通过交易费得到的汇报接近了本身建立区块的回报</p>
 <p>有一个结论是，扩容后，因为每一个区块的交易承载量增加，矿工的交易费收入肯定会减少。因为，通过上表可以发现，只有当区块使用程度接近95%时候，交易费才有明显的增长</p>
 <p>再看一张<a href="http://charts.woobull.com/bitcoin-blocksize-confirm-time/" target="_blank" rel="external">用户执行交易需要等待的时长和区块使用比例间关系的图表</a>(交互图表点击链接)</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png" alt="Bitcoin Median Confirmation Time VS Bloacksize"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png" alt="Bitcoin Median Confirmation Time VS Bloacksize" title="">
+                </div>
+                <div class="image-caption">Bitcoin Median Confirmation Time VS Bloacksize</div>
+            </figure>
 <blockquote>
 <p>蓝色的圈大小是Mempool的大小。横坐标是区块容量的使用情况，纵坐标是用户平均需要等待的时间，单位是分钟。</p>
 </blockquote>
@@ -788,7 +636,13 @@
 <h3 id="什么是Merkle树"><a href="#什么是Merkle树" class="headerlink" title="什么是Merkle树"></a>什么是Merkle树</h3><p>Merkle树是一种<strong>哈希二叉树</strong>，它可以用来进行<strong>快速查找和检验大规模数据完整性</strong>。对于比特币网络来说，使用Merkle树来存储交易信息的目的是为了<strong>高效的查找和校验某笔交易的信息是否存在</strong></p>
 <p>当N个数据元素经过加密（使用两次SHA256算法，也称double-SHA256），<strong>至多</strong>计算 $2log_2(N)$ 次就能<strong>检查出任意某元素是否在树中</strong></p>
 <h3 id="构造Merkle树"><a href="#构造Merkle树" class="headerlink" title="构造Merkle树"></a>构造Merkle树</h3><p>假设我们有A B C D四笔交易字段，首先需要把这四个数据Hash化。然后把这些哈细化的<strong>数据通过串联相邻叶子节点</strong>的哈希值然后哈希化。基本过程如下图所示</p>
-<p><img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png" alt="Merkle树的构造过程"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png" alt="Merkle树的构造过程" title="">
+                </div>
+                <div class="image-caption">Merkle树的构造过程</div>
+            </figure>
 <p>叶子节点必须是偶数（平衡树），如果遇到奇数的情况，把最后一个节点自身复制一个，凑偶</p>
 <h3 id="Merkle树的效率"><a href="#Merkle树的效率" class="headerlink" title="Merkle树的效率"></a>Merkle树的效率</h3><p>下表显示了证明区块中存在某笔交易所需转化为Merkle路径的数据量</p>
 <table>
@@ -846,826 +700,316 @@
 <p>以上！鞠躬！</p>
 <p>除了<a href="https://www.zhihu.com/question/22076666" target="_blank" rel="external">江卓尔 知乎回答</a>等优秀的知乎答主的回答，附参考文献出处：<br>【1】文章中引用多个Gif的出处：<a href="https://www.bilibili.com/video/av12465079/" target="_blank" rel="external">比特币原理-3B1B</a>，这也是让我真正弄懂比特币的一个视频，不得不说，外国人在让门外汉入行这件事上，领先了很多<br>【2】一本入门教材。包含代码和实现，以及很多数据结构，具体实现方式的细节，如果想成为加密货币（区块链）开发者，这本书5星推荐：<a href="http://8btc.com/topic-mastering-bitcoin.html" target="_blank" rel="external">精通比特币</a><br>【3】宋老师的<a href="http://v.youku.com/v_show/id_XMjc3MDU4MDY2OA==.html?spm=a2h1n.8261147.reload_201705.1~3!2~5~A" target="_blank" rel="external">鸿观125期</a> （需要优酷会员）<br>【4】只能膜拜之的创世区块作者的论文：<a href="http://www.8btc.com/wiki/bitcoin-a-peer-to-peer-electronic-cash-system" target="_blank" rel="external">比特币白皮书</a><br>【5】<a href="http://www.sohu.com/a/162825922_735021" target="_blank" rel="external">ICO科普文章</a>中的例子引用</p>
 
-      
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-29T06:29:05.839Z" itemprop="dateUpdated">2017-09-28 23:29:05</time>
+</span><br>
+
+
+        
     </div>
-    
-    
-    
-
-    
-
-    
-      <div>
-        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
-  <div>您的支持是我最大的动力！</div>
-  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
-    <span>Donate</span>
-  </button>
-  <div id="QR" style="display: none;">
-
-    
-      <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechat.jpg" alt="遥行 Go Further WeChat Pay"/>
-        <p>WeChat Pay</p>
-      </div>
-    
-
-    
-      <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="遥行 Go Further Alipay"/>
-        <p>Alipay</p>
-      </div>
-    
-
-    
-
-  </div>
-</div>
-
-      </div>
-    
-
-    
-      <div>
-        <ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>Post author:</strong>
-    遥行 Go Further
-  </li>
-  <li class="post-copyright-link">
-    <strong>Post link:</strong>
-    <a href="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/" title="一文弄懂区块链-以比特币为例">https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>Copyright Notice: </strong>
-    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
-  </li>
-</ul>
-
-      </div>
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/BlockChain/" rel="tag"># BlockChain</a>
-          
-            <a href="/tags/BTCoin/" rel="tag"># BTCoin</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/09/20/拉格朗日乘法和KKT条件/" rel="next" title="【直观详解】拉格朗日乘法和KKT条件">
-                <i class="fa fa-chevron-left"></i> 【直观详解】拉格朗日乘法和KKT条件
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/25/现代区块链与新技术/" rel="prev" title="现代区块链与新技术">
-                现代区块链与新技术 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
     </footer>
-  </div>
-  
-  
-  
-  </article>
+</blockquote>
 
-
-
-    <div class="post-spread">
-      
-        <!-- JiaThis Button BEGIN -->
-<div class="jiathis_style">
-<span class="jiathis_txt">分享到：</span>
-<a class="jiathis_button_fav">收藏夹</a>
-<a class="jiathis_button_copy">复制网址</a>
-<a class="jiathis_button_email">邮件</a>
-<a class="jiathis_button_weixin">微信</a>
-<a class="jiathis_button_qzone">QQ空间</a>
-<a class="jiathis_button_tqq">腾讯微博</a>
-<a class="jiathis_button_douban">豆瓣</a>
-<a class="jiathis_button_share">一键分享</a>
-
-<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
-<a class="jiathis_counter_style"></a>
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
-<script type="text/javascript" >
-var jiathis_config={
-  data_track_clickback:true,
-  summary:"",
-  shortUrl:false,
-  hideMore:false
-}
-</script>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-      
-    </div>
-  </div>
 
 
-          </div>
-          
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BTCoin/">BTCoin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BlockChain/">BlockChain</a></li></ul>
 
 
-          
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    </div>
-  
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
+            
+<div class="page-share-wrap">
     
-    <div class="sidebar-inner">
 
-      
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&title=《一文弄懂区块链-以比特币为例》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&title=《一文弄懂区块链-以比特币为例》 — Go Further&source=【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一文弄懂区块链-以比特币为例》 — Go Further&url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="遥行 Go Further" />
-            
-              <p class="site-author-name" itemprop="name">遥行 Go Further</p>
-              <p class="site-description motion-element" itemprop="description">Stay Hungry, Stay Foolish. Be passion, be inquisitive</p>
-          </div>
 
-          <nav class="site-state motion-element">
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
 
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">19</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">27</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          <div class="links-of-author motion-element">
-            
-              
-                <span class="links-of-author-item">
-                  <a href="https://github.com/CharlesLiuyx" target="_blank" title="GitHub">
-                    
-                      <i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  <a href="https://www.zhihu.com/people/CharelsLiu/answers" target="_blank" title="知乎">
-                    
-                      <i class="fa fa-fw fa-globe"></i>知乎</a>
-                </span>
-              
-            
-          </div>
-
-          
-          
-
-          
-          
-
-          
 
         </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#加密货币"><span class="nav-number">1.</span> <span class="nav-text">加密货币</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一步一步发明比特币"><span class="nav-number">2.</span> <span class="nav-text">一步一步发明比特币</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个用户需求-账本和电子签名的由来"><span class="nav-number">2.1.</span> <span class="nav-text">第一个用户需求 - 账本和电子签名的由来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#产生的问题1：身份问题"><span class="nav-number">2.1.1.</span> <span class="nav-text">产生的问题1：身份问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产生的问题2：欠债跑路问题"><span class="nav-number">2.1.2.</span> <span class="nav-text">产生的问题2：欠债跑路问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个大家都遵守的协议"><span class="nav-number">2.1.3.</span> <span class="nav-text">一个大家都遵守的协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二个用户需求：账本放在哪里？"><span class="nav-number">2.2.</span> <span class="nav-text">第二个用户需求：账本放在哪里？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心需求：去中心化"><span class="nav-number">2.2.1.</span> <span class="nav-text">核心需求：去中心化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何实现分布记账（去中心化）"><span class="nav-number">2.2.2.</span> <span class="nav-text">如何实现分布记账（去中心化）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题核心"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">问题核心</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#☆解决方案"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">☆解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、密码学：哈希函数"><span class="nav-number">2.2.2.2.1.</span> <span class="nav-text">1、密码学：哈希函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、区块链-信任与共识的基石"><span class="nav-number">2.2.2.2.2.</span> <span class="nav-text">2、区块链 - 信任与共识的基石</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、51-算力-共识攻击"><span class="nav-number">2.2.2.2.3.</span> <span class="nav-text">3、51%算力-共识攻击</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-系统可行性分析"><span class="nav-number">2.2.3.</span> <span class="nav-text">总结 - 系统可行性分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发明过程中的关键点"><span class="nav-number">2.3.</span> <span class="nav-text">发明过程中的关键点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比特币技术"><span class="nav-number">3.</span> <span class="nav-text">比特币技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币网络节点的构成"><span class="nav-number">3.1.</span> <span class="nav-text">比特币网络节点的构成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点类型与分工"><span class="nav-number">3.1.1.</span> <span class="nav-text">节点类型与分工</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#扩展比特币网络"><span class="nav-number">3.1.2.</span> <span class="nav-text">扩展比特币网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何控制区块产生速度恒定"><span class="nav-number">3.2.</span> <span class="nav-text">如何控制区块产生速度恒定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#难度系数"><span class="nav-number">3.2.1.</span> <span class="nav-text">难度系数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难度调整方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">难度调整方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币总量的由来"><span class="nav-number">3.3.</span> <span class="nav-text">比特币总量的由来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币的交易处理能力"><span class="nav-number">3.4.</span> <span class="nav-text">比特币的交易处理能力</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现在比特币区块链的区块信息"><span class="nav-number">3.4.1.</span> <span class="nav-text">现在比特币区块链的区块信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区块容量"><span class="nav-number">3.4.2.</span> <span class="nav-text">区块容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#比特币扩容之争"><span class="nav-number">3.4.3.</span> <span class="nav-text">比特币扩容之争</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比特币的一笔交易过程中到底发生了什么"><span class="nav-number">3.5.</span> <span class="nav-text">比特币的一笔交易过程中到底发生了什么</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交易结构"><span class="nav-number">3.5.1.</span> <span class="nav-text">交易结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交易的输入和输出"><span class="nav-number">3.5.2.</span> <span class="nav-text">交易的输入和输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#交易输出"><span class="nav-number">3.5.2.1.</span> <span class="nav-text">交易输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交易输入"><span class="nav-number">3.5.2.2.</span> <span class="nav-text">交易输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#交易费"><span class="nav-number">3.5.2.3.</span> <span class="nav-text">交易费</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解锁和锁定脚本"><span class="nav-number">3.5.2.4.</span> <span class="nav-text">解锁和锁定脚本</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#矿工费和优先级"><span class="nav-number">3.5.3.</span> <span class="nav-text">矿工费和优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创币交易-Coinbase"><span class="nav-number">3.5.4.</span> <span class="nav-text">创币交易 - Coinbase</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Merkle树"><span class="nav-number">3.6.</span> <span class="nav-text">Merkle树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Merkle树"><span class="nav-number">3.6.1.</span> <span class="nav-text">什么是Merkle树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造Merkle树"><span class="nav-number">3.6.2.</span> <span class="nav-text">构造Merkle树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merkle树的效率"><span class="nav-number">3.6.3.</span> <span class="nav-text">Merkle树的效率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Merkle应用-简单支付验证节点（SPV）"><span class="nav-number">3.6.4.</span> <span class="nav-text">Merkle应用 - 简单支付验证节点（SPV）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区块链（比特币）与金融"><span class="nav-number">4.</span> <span class="nav-text">区块链（比特币）与金融</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#竞争币和其他技术创新"><span class="nav-number">5.</span> <span class="nav-text">竞争币和其他技术创新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
     </div>
-  </aside>
 
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/25/现代区块链与新技术/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">现代区块链与新技术</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/20/拉格朗日乘法和KKT条件/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观详解】拉格朗日乘法和KKT条件</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
         
-      </div>
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>遥行 Go Further &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
     </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">遥行 Go Further</span>
 
-  
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&title=《一文弄懂区块链-以比特币为例》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&title=《一文弄懂区块链-以比特币为例》 — Go Further&source=【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《一文弄懂区块链-以比特币为例》 — Go Further&url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACp0lEQVR42u3awW7iUAwFUP7/pzvrWUDvtd8DKp2sUAWJTyrFju3HIz5+4uPZb1+fs/3m4QMPDw/vaOivL/Cal4T1+iqvP0e3GA8PD+8aL7lw8tTNQ2kDzePBw8PD+zZe8qBvQ8zPiYeHh/d3eS2jDS4vr/Hw8PA+xUsK37zAbdu+G/yxXgseHh5eN6WKpkjf8/nKfA8PDw/v6ELArKSeJYxNhP+dBw8PD+8CL3/g7pcANmsKebmMh4eH9x5e2xhNUkVCykdfCfKXc+Lh4eEd4t0ba20atZvkUfd98fDw8Ea8Ay/8o2HVLBkUSDw8PLwP8U7NlfJifVboPzZ5Bg8PD289Z8/L1lM3aJMGohuKh4eHd4g3G/wngbYN33zElSc5PDw8vBu8ltQWzW19O1sLGOY9PDw8vAWvLYVnLdf8DLPWyS87ZXh4eHiXefv2RP55wxiOwfDw8PAWvORnyenyMvpUER/FgIeHh3eNlwzpc0zeut0X9L98Bw8PD+8yL08Gp5al2iWDurmMh4eHd5nXLlS16WTWpMjHb0+bEXh4eHhHee2K1YaR3479YgEeHh7ePV5+sXaHK2lhbBjF/w0PDw/vLbx8ZJUvFrTfzIdeTxV4eHh4F3izmXu+mNUmj01r49hKAR4eHl5wxfaBm5Ta7TBs1pKIUgIeHh7eNV77qp///VQiyV8Jis0yPDw8vAXvdRB5ezdvc9RNhFF6w8PDwzvL+ymP2Xhs095djeXw8PDwLvBmj912NapFzsZpB0ZieHh4eDFv9ijflNT5XW8TEh4eHt47efnkKA99hmxzV5QY8PDw8D7K26eKVeOgbGHg4eHhfQ9vMyprx2/Hdm/x8PDwjvLaZalZuPsRV13u4+Hh4V3gzV74k8FVm07a2/Q4deDh4eGlvH/TO3OoZMsK7wAAAABJRU5ErkJggg==" alt="微信分享二维码">
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
 
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
 </script>
 
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://lyxblog.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/';
-          this.page.identifier = '2017/09/24/一文弄懂区块链-以比特币为例/';
-          this.page.title = '一文弄懂区块链-以比特币为例';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://lyxblog.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
+<script src="/js/main.min.js?v=1.6.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.7" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
     }
-    var path = "/" + search_path;
-    // monitor main search box;
+});
 
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
     }
+});
+</script>
 
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('-1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 
 
 
 
-
-  
-
-  
-
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
-  
 
-  
+
 
 </body>
 </html>
