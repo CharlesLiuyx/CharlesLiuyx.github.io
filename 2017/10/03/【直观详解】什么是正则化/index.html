@@ -37,8 +37,9 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T21:51:57.469Z">
+<meta property="og:updated_time" content="2017-10-04T21:59:24.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -260,10 +261,10 @@ $$
 <p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ </p>
 </blockquote>
 <p>可以直观的理解为（帮助理解正则化），我们的目标函数（误差函数）就是<strong>求蓝圈+红圈的和的最小值</strong>（回想等高线的概念并参照3式），而这个值通在很多情况下是<strong>两个曲面相交的地方</strong></p>
-<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度，即$\mathbf w$ 中<code>M</code>的大小</strong>，<code>M</code>越大意味着需要决定的权重越多，所以模型越复杂。在多项式模型多，直观理解是每一个不同幂次的$x$前的系数，0（或很小的值）越多，模型越简单。这就<strong>数学角度解释了，为什么正则化（规则化）可以限制模型的复杂度，进而避免过拟合</strong></p>
-<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$的位置恰好是$w_1=0$的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度（降低模型复杂度，防止过拟合）二次正则项也做到了这一点，但是一次正则项做的更加彻底</strong>，更稀疏。不幸的是，<strong>一次正则项有拐点</strong>，不是处处可微，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
+<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度，即 $\mathbf w$ 中<code>M</code>的大小</strong>，<code>M</code>越大意味着需要决定的权重越多，所以模型越复杂。在多项式模型多，直观理解是每一个不同幂次的 $x$ 前的系数，0（或很小的值）越多，模型越简单。这就<strong>数学角度解释了，为什么正则化（规则化）可以限制模型的复杂度，进而避免过拟合</strong></p>
+<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$ 的位置恰好是 $w_1=0$ 的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度（降低模型复杂度，防止过拟合）二次正则项也做到了这一点，但是一次正则项做的更加彻底</strong>，更稀疏。不幸的是，<strong>一次正则项有拐点</strong>，不是处处可微，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
 <h1 id="How-神经网络模型角度"><a href="#How-神经网络模型角度" class="headerlink" title="How 神经网络模型角度"></a>How 神经网络模型角度</h1><p>我们已经知道，最简单的单层神经网，可以实现简单的线性模型。而多隐含层的神经网络模型如何来<strong>实现正则化</strong>？（毕竟神经网络模型没有目标函数）</p>
-{% image 【直观详解】什么是正则化/NNHiden.png '不同单隐含层神经元数量对拟合程度的影响' '' %}
+<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png" alt="不同隐含层神经元数量对拟合的影响"></p>
 <blockquote>
 <p><code>M</code>表示单层神经网中隐含层中的神经元的数量</p>
 </blockquote>
@@ -276,8 +277,9 @@ $$
 <p>我们常说测度测度，测量长度，也就是为了表征这个长度。而如何表达“长度”这个概念也是不同的，也就对应了不同的<strong>范数</strong>，本质上说，还是<strong>观察问题的方式和角度不同</strong></p>
 <p>范数分为<strong>向量范数</strong>（二维坐标系）和<strong>矩阵范数</strong>（多维空间，一般化表达）</p>
 <h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联只是间的本质（根）联系的好处</p>
-<p><div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div></p>
-<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3>{% raw %} $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ {% endraw %}：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$的测度，可以用来限制模型不至于过于复杂</strong><br><br>### $-\infty$-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}$ {% endraw %} ：所有<strong>向量元素中绝对值的最小值</strong><br><br>### 1-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_1 = \sum\limits_{i=1}^{N}\vert x_i \vert$ {% endraw %} ：向量元素<strong>绝对值之和</strong>，也称<strong>街区距离（city-block）</strong><br><br>{% raw %}
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
+
+<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3>{% raw %}$\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ {% endraw %}：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$的测度，可以用来限制模型不至于过于复杂</strong><br><br>### $-\infty$-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}$ {% endraw %} ：所有<strong>向量元素中绝对值的最小值</strong><br><br>### 1-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_1 = \sum\limits_{i=1}^{N}\vert x_i \vert$ {% endraw %} ：向量元素<strong>绝对值之和</strong>，也称<strong>街区距离（city-block）</strong><br><br>{% raw %}
 $$
 \begin{matrix}
 4 & 3 & 2 & 3 & 4 \\
@@ -337,7 +339,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T21:51:57.469Z" itemprop="dateUpdated">2017-10-04 14:51:57</time>
+    Last updated: <time datetime="2017-10-04T21:59:24.682Z" itemprop="dateUpdated">2017-10-04 14:59:24</time>
 </span><br>
 
 
