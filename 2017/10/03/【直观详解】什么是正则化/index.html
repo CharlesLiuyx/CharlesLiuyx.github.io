@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T23:20:35.911Z">
+<meta property="og:updated_time" content="2017-10-04T23:23:43.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -283,7 +283,7 @@ $$
 <h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联只是间的本质（根）联系的好处</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
-<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ ：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$的测度，可以用来限制模型不至于过于复杂</strong><br><br>### $-\infty$-范数<br><br> 
+<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ ：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$ 的测度</strong>，可以用来限制模型不至于过于复杂<br><br>### $\infty$-范数<br><br> 
 $$
 \Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}
 $$
@@ -355,7 +355,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T23:20:35.911Z" itemprop="dateUpdated">2017-10-04 16:20:35</time>
+    Last updated: <time datetime="2017-10-04T23:23:43.697Z" itemprop="dateUpdated">2017-10-04 16:23:43</time>
 </span><br>
 
 
