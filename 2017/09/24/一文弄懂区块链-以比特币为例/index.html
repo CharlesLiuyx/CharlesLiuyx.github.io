@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png">
-<meta property="og:updated_time" content="2017-09-29T06:29:05.839Z">
+<meta property="og:updated_time" content="2017-10-04T01:37:26.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一文弄懂区块链-以比特币为例">
 <meta name="twitter:description" content="【阅读时间】29min - 35min - 11348 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
@@ -244,8 +244,8 @@
 <p><strong>【解决办法】</strong>使用<strong>电子签名</strong>，即公钥 - 私钥对</p>
 <p>记住，<strong>电子签名被发明的核心目的</strong>是希望在电子文档也能有一个类似与现实中个人笔迹的签名，目的一定是：<strong>确认写这个签名的人是本人，即身份确认（验证）</strong></p>
 <p>私钥顾名思义，也叫做密钥，是你<strong>本人需要需要妥善保管和保存的</strong><br>$$<br>Sign(\text{信息},私钥) = \text{电子签名}<br>$$<br>Sign在这里是一个函数，可以理解为<strong>一连串计算（变换）</strong>，这一连串计算有一个特点，就是<strong>输入值只要改变一点点</strong>，输出就会<strong>完全改变</strong>。信息和私钥一起，可以得到一个电子签名。并且这个电子签名不能被轻易的复制到其他信息里，原因是因为每一个电子签名都和<strong>这一段信息</strong>有关联。<br>$$<br>Verify(\text{信息},\text{电子签名},\text{公钥}) = \text{真/假}<br>$$<br>在进行<strong>验证</strong>的时候，Verify也是一个函数，<strong>输入值是信息，电子签名，公钥，输出是一个True or False</strong>，来判断这个<strong>电子签名</strong>是真的还是假的。</p>
-<p>这个时候可能有人就要问了，这个电子签名我难道不能试出来吗？很不幸，这是一个有<strong>256bit的1/0字符串</strong>，可能性是2的256次方，无穷大。</p>
-<p>解释完电子签名，我们来看看实例。<code>小明</code>使用自己的私钥加上<code>小明转给小红10块钱</code>的文字通过Sign函数生成一个签名（256位），把签名放在这条转账信息的后面，通过之前的讲解，这个签名就能保证<code>小明</code>已经过目了，并且说：“这真的是我<code>小明</code>，不用怀疑了！肯定是我”</p>
+<p>这个时候可能有人就要问了，这个电子签名我难道不能试出来吗？很不幸，这是一个有<strong>256bit的1/0字符串</strong>，可能性是2的256次方，2的10次方是1024，我只能告诉你这么多了。</p>
+<p>解释完电子签名，我们来看看实例。<code>小明</code>使用自己的私钥加上<code>小明转给小红10块钱</code><strong>这段话</strong>通过Sign函数生成一个签名（256位），把签名放在这条转账信息的后面，通过之前的讲解，这个签名就能保证<code>小明</code>已经过目了，并且说：“这真的是我<code>小明</code>，不用怀疑了！肯定是我”</p>
 <p>直观结果是，我们可以利用<strong>密码学的手段</strong>，只要有对应人的<strong>数字签名</strong>，我们保证<code>小明</code>和<code>小红</code>的<strong>身份能被100%确认真实</strong></p>
 <p>但是这个解决方案有一个小漏洞：可以<strong>复制同一行信息</strong>来伪造交易记录，解决的办法是添加一个<strong>这笔交易独有的信息（比如时间戳）</strong></p>
 <h3 id="产生的问题2：欠债跑路问题"><a href="#产生的问题2：欠债跑路问题" class="headerlink" title="产生的问题2：欠债跑路问题"></a>产生的问题2：欠债跑路问题</h3><p>如果<code>小明</code>在此时账户上已经没有足够的余额进行支付，就会出现超支问题</p>
@@ -706,7 +706,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-09-29T06:29:05.839Z" itemprop="dateUpdated">2017-09-28 23:29:05</time>
+    Last updated: <time datetime="2017-10-04T01:37:26.312Z" itemprop="dateUpdated">2017-10-03 18:37:26</time>
 </span><br>
 
 
