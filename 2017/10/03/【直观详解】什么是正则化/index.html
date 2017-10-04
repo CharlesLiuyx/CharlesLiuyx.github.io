@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T23:25:00.274Z">
+<meta property="og:updated_time" content="2017-10-04T23:26:34.965Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -177,7 +177,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why & What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-线性模型角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 线性模型角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-神经网络模型角度"><span class="post-toc-number">3.</span> <span class="post-toc-text">How 神经网络模型角度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#范数"><span class="post-toc-number">4.</span> <span class="post-toc-text">范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量范数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">向量范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#p-范数"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">p-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">$\infty$-范数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵范数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-1"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">$\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数-1"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F-范数"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">F-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核范数"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">核范数</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why & What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-线性模型角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 线性模型角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-神经网络模型角度"><span class="post-toc-number">3.</span> <span class="post-toc-text">How 神经网络模型角度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#范数"><span class="post-toc-number">4.</span> <span class="post-toc-text">范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量范数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">向量范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#p-范数"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">p-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">$-\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-1"><span class="post-toc-number">4.1.5.</span> <span class="post-toc-text">$\infty$-范数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵范数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-2"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">$\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数-1"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F-范数"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">F-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核范数"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">核范数</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -283,7 +283,14 @@ $$
 <h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联只是间的本质（根）联系的好处</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
-<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ ：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$ 的测度</strong>，可以用来限制模型不至于过于复杂<br><br>### 范数<br><br> 
+<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> 
+$$
+\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}
+$$
+
+<p>向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong></p>
+<p>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$ 的测度</strong>，可以用来限制模型不至于过于复杂</p>
+<h3 id="infty-范数"><a href="#infty-范数" class="headerlink" title="$-\infty$-范数"></a>$-\infty$-范数</h3> 
 $$
 \Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}
 $$
@@ -317,7 +324,7 @@ $$
 \end{matrix}
 $$
 
-<h3 id="infty-范数"><a href="#infty-范数" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> $\Vert \mathbf x \Vert_{\infty} = arg \operatorname*{max}_{i}{\vert x_i \vert}$  ：所有<strong>向量元素中绝对值的最大值</strong>，也称<strong>棋盘距离（chessboard），切比雪夫距离</strong><br><br>
+<h3 id="infty-范数-1"><a href="#infty-范数-1" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> $\Vert \mathbf x \Vert_{\infty} = arg \operatorname*{max}_{i}{\vert x_i \vert}$  ：所有<strong>向量元素中绝对值的最大值</strong>，也称<strong>棋盘距离（chessboard），切比雪夫距离</strong><br><br>
 $$
 \begin{matrix}
 2 & 3 & 2 & 2 & 2 \\
@@ -334,7 +341,7 @@ $$
 $$
 
 <p><strong>列和范数</strong>，即所有<strong>矩阵列向量</strong>绝对值之和的最大值</p>
-<h3 id="infty-范数-1"><a href="#infty-范数-1" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> 
+<h3 id="infty-范数-2"><a href="#infty-范数-2" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> 
 $$
 \Vert \mathbf A \Vert_{\infty} = arg \operatorname*{max}_{1 \leqslant i \leqslant n}\sum\limits_{j=1}^m{\vert a_{i,j} \vert}
 $$
@@ -355,7 +362,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T23:25:00.274Z" itemprop="dateUpdated">2017-10-04 16:25:00</time>
+    Last updated: <time datetime="2017-10-04T23:26:34.965Z" itemprop="dateUpdated">2017-10-04 16:26:34</time>
 </span><br>
 
 
