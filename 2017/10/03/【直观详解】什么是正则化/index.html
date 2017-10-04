@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T22:01:02.958Z">
+<meta property="og:updated_time" content="2017-10-04T22:02:26.667Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -248,15 +248,12 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
 <blockquote>
-<p>横坐标是$w_1$<br>纵坐标是$w_2$<br>绿线是<strong>等高线的其中一条</strong>，换言之是一个<strong>俯视图</strong>，而<strong>z轴代表</strong>的是 $ \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q$ {% endr aw %}的值
-
-
-空间想象力不足无法理解只能看下面这张图了（与绿线图一一对应）
-
+<p>横坐标是$w_1$<br>纵坐标是$w_2$<br>绿线是<strong>等高线的其中一条</strong>，换言之是一个<strong>俯视图</strong>，而<strong>z轴代表</strong>的是 $ \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q$ 的值</p>
+</blockquote>
+<p>空间想象力不足无法理解只能看下面这张图了（与绿线图一一对应）</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png" alt="正则项的边缘直观表示"></div>
 
-`q=2`是一个圆非常好理解，考虑 {% raw %} $z = w_1^2 + w_2^2 $ {% endraw %} 就是抛物面，俯视图是一个圆。其他几项同理（必须强调<strong>俯视图和等高线的概念</strong>，z轴表示的是正则项项的值）</p>
-</blockquote>
+<p><code>q=2</code>是一个圆非常好理解，考虑  $z = w_1^2 + w_2^2 $  就是抛物面，俯视图是一个圆。其他几项同理（必须强调<strong>俯视图和等高线的概念</strong>，z轴表示的是正则项项的值）</p>
 <p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示" height="400"></p>
 <blockquote>
 <p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ </p>
@@ -280,7 +277,7 @@ $$
 <h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联只是间的本质（根）联系的好处</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
-<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3>{% raw %} $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ {% endraw %}：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$的测度，可以用来限制模型不至于过于复杂</strong><br><br>### $-\infty$-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}$ {% endraw %} ：所有<strong>向量元素中绝对值的最小值</strong><br><br>### 1-范数<br><br>{% raw %} $\Vert \mathbf x \Vert_1 = \sum\limits_{i=1}^{N}\vert x_i \vert$ {% endraw %} ：向量元素<strong>绝对值之和</strong>，也称<strong>街区距离（city-block）</strong><br><br>{% raw %}
+<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> $\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}$ ：向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong><br><br>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$的测度，可以用来限制模型不至于过于复杂</strong><br><br>### $-\infty$-范数<br><br> $\Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}$  ：所有<strong>向量元素中绝对值的最小值</strong><br><br>### 1-范数<br><br> $\Vert \mathbf x \Vert_1 = \sum\limits_{i=1}^{N}\vert x_i \vert$  ：向量元素<strong>绝对值之和</strong>，也称<strong>街区距离（city-block）</strong><br><br>
 $$
 \begin{matrix}
 4 & 3 & 2 & 3 & 4 \\
@@ -290,8 +287,8 @@ $$
 4&3 & 2 &3 &4  \\
 \end{matrix}
 $$
-{% endraw %}
-<h3 id="2-范数"><a href="#2-范数" class="headerlink" title="2-范数"></a>2-范数</h3>{% raw %} $\Vert\mathbf x \Vert_2 = \sqrt{\sum\limits_{i=1}^{N} x_i^2}$ {% endraw %} ：向量元素的<strong>平方和再开方</strong>。<strong>Euclid范数</strong>，也称<strong>欧几里得范数，欧氏距离</strong><br><br>{% raw %}
+
+<h3 id="2-范数"><a href="#2-范数" class="headerlink" title="2-范数"></a>2-范数</h3> $\Vert\mathbf x \Vert_2 = \sqrt{\sum\limits_{i=1}^{N} x_i^2}$  ：向量元素的<strong>平方和再开方</strong>。<strong>Euclid范数</strong>，也称<strong>欧几里得范数，欧氏距离</strong><br><br>
 $$
 \begin{matrix}
 2.8&2.2&2&2.2&2.8 \\
@@ -301,8 +298,8 @@ $$
 2.8&2.2&2&2.2&2.8 \\
 \end{matrix}
 $$
-{% endraw %}
-<h3 id="infty-范数"><a href="#infty-范数" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3>{% raw %} $\Vert \mathbf x \Vert_{\infty} = arg \operatorname*{max}_{i}{\vert x_i \vert}$ {% endraw %} ：所有<strong>向量元素中绝对值的最大值</strong>，也称<strong>棋盘距离（chessboard），切比雪夫距离</strong><br><br>{% raw %}
+
+<h3 id="infty-范数"><a href="#infty-范数" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> $\Vert \mathbf x \Vert_{\infty} = arg \operatorname*{max}_{i}{\vert x_i \vert}$  ：所有<strong>向量元素中绝对值的最大值</strong>，也称<strong>棋盘距离（chessboard），切比雪夫距离</strong><br><br>
 $$
 \begin{matrix}
 2 & 3 & 2 & 2 & 2 \\
@@ -312,27 +309,27 @@ $$
 2&2 & 2 &2 &2 \\
 \end{matrix}
 $$
-{% endraw %}
-<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2><h3 id="1-范数"><a href="#1-范数" class="headerlink" title="1-范数"></a>1-范数</h3>{% raw %} 
+
+<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2><h3 id="1-范数"><a href="#1-范数" class="headerlink" title="1-范数"></a>1-范数</h3> 
 $$
 \Vert \mathbf A \Vert_{1} = arg \operatorname*{max}_{1 \leqslant j \leqslant n}\sum\limits_{i=1}^m{\vert a_{i,j} \vert}
 $$
-{% endraw %}
+
 <p><strong>列和范数</strong>，即所有<strong>矩阵列向量</strong>绝对值之和的最大值</p>
-<h3 id="infty-范数-1"><a href="#infty-范数-1" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3>{% raw %} 
+<h3 id="infty-范数-1"><a href="#infty-范数-1" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> 
 $$
 \Vert \mathbf A \Vert_{\infty} = arg \operatorname*{max}_{1 \leqslant i \leqslant n}\sum\limits_{j=1}^m{\vert a_{i,j} \vert}
 $$
-{% endraw %}
+
 <p><strong>行和范数</strong>，即所有<strong>矩阵行向量</strong>绝对值之和的最大值</p>
-<h3 id="2-范数-1"><a href="#2-范数-1" class="headerlink" title="2-范数"></a>2-范数</h3>{% raw %} $\Vert \mathbf A \Vert_{2} = \sqrt{\lambda_{max}(\mathbf A^* \mathbf A) }$ {% endraw %}
+<h3 id="2-范数-1"><a href="#2-范数-1" class="headerlink" title="2-范数"></a>2-范数</h3> $\Vert \mathbf A \Vert_{2} = \sqrt{\lambda_{max}(\mathbf A^* \mathbf A) }$ 
 <p><code>p=2</code><strong>且<code>m=n</code>方阵</strong>时，称为谱范数。矩阵 $\mathbf A$ 的<strong>谱范数</strong>是 $\mathbf A$ 最大的<strong>奇异值</strong>或半正定矩阵 $\mathbf A^T \mathbf A$ 的<strong>最大特征值的平方根</strong></p>
 <blockquote>
 <p>$\mathbf A^*$ 为 $\mathbf A$ 的共轭转置，实数域等同于 $\mathbf A^T$</p>
 </blockquote>
-<h3 id="F-范数"><a href="#F-范数" class="headerlink" title="F-范数"></a>F-范数</h3>{% raw %} $\Vert \mathbf A \Vert_{F} = \sqrt{ \sum\limits_{i=1}^m \sum\limits_{j=1}^n \vert a_{i,j}\vert^2 }$ {% endraw %}
+<h3 id="F-范数"><a href="#F-范数" class="headerlink" title="F-范数"></a>F-范数</h3> $\Vert \mathbf A \Vert_{F} = \sqrt{ \sum\limits_{i=1}^m \sum\limits_{j=1}^n \vert a_{i,j}\vert^2 }$ 
 <p>Frobenius范数（希尔伯特-施密特范数，这个称呼只在希尔伯特空间），即<strong>矩阵元素绝对值的平方和再开平方</strong></p>
-<h3 id="核范数"><a href="#核范数" class="headerlink" title="核范数"></a>核范数</h3><p>{% raw %} $\Vert \mathbf A \Vert_{*} =  \sum\limits_{i=1}^n \lambda_i$ {% endraw %}：$\lambda_i$ 为 $\mathbf A$ 的奇异值，即<strong>奇异值之和</strong></p>
+<h3 id="核范数"><a href="#核范数" class="headerlink" title="核范数"></a>核范数</h3><p> $\Vert \mathbf A \Vert_{*} =  \sum\limits_{i=1}^n \lambda_i$ ：$\lambda_i$ 为 $\mathbf A$ 的奇异值，即<strong>奇异值之和</strong></p>
 
         </div>
 
@@ -340,7 +337,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T22:01:02.958Z" itemprop="dateUpdated">2017-10-04 15:01:02</time>
+    Last updated: <time datetime="2017-10-04T22:02:26.667Z" itemprop="dateUpdated">2017-10-04 15:02:26</time>
 </span><br>
 
 
