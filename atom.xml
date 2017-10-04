@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-10-04T01:44:15.791Z</updated>
+  <updated>2017-10-04T02:03:08.667Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -21,18 +21,13 @@
     <link href="https://charlesliuyx.github.io/2017/10/03/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     <id>https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/</id>
     <published>2017-10-04T01:10:12.000Z</published>
-    <updated>2017-10-04T01:44:15.791Z</updated>
+    <updated>2017-10-04T02:03:08.667Z</updated>
     
-    <content type="html"><![CDATA[<p>【阅读时间】5min - 7min<br>【内容简介】从两个角度来直观回到问题：<strong>什么是正则化</strong>，附一些对范数的直观理解</p><p>我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。</p><p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p><p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" title="">                </div>                <div class="image-caption">过拟合</div>            </figure>{:height=”100px”}</p><p>如上图，红色这条“想象力”很丰富，极不安分的曲线是过拟合的情况。结合上图，和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直观的翻译是：规则化</strong>。</p>]]></content>
+    <content type="html"><![CDATA[<p>【阅读时间】5min - 7min<br>【内容简介】从两个角度来直观回到问题：<strong>什么是正则化</strong>，附一些对范数的直观理解</p><a id="more"></a><h1 id="Why-amp-What-正则化"><a href="#Why-amp-What-正则化" class="headerlink" title="Why &amp; What 正则化"></a>Why &amp; What 正则化</h1><p>我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。</p><p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p><p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" width="500"></p><p>如上图，红色这条“想象力”过于丰富上下横跳的曲线就是过拟合情形。结合上图和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直译应该是：规则化</strong>（加个“化”字只是变成动词，自豪一下中文还是强）。什么是规则？你妈喊你6点前回家吃饭，这就是规则，一个<strong>限制</strong>。同理，在这里，<strong>规则化就是说给需要训练的目标函数加上一些规则（限制），让他们不要自我膨胀</strong>。正则化，看起来，挺不好理解的，追其根源，还是“正则”这两字在中文中实在没有一个直观的对应，如果能翻译成<strong>规则化</strong>，更好理解。但我们一定要明白，搞学术，概念名词的准确是十分重要的，对于一个重要确定的概念，为它安上一个不会产生歧义的名词也是非常重要的，正则化的名称没毛病，只是从如何理解的角度，要更灵活。</p><h1 id="How-最小二乘法的角度"><a href="#How-最小二乘法的角度" class="headerlink" title="How 最小二乘法的角度"></a>How 最小二乘法的角度</h1><p>我一直相信，对每一个概念，<strong>被定义</strong>就是为了去<strong>解决一个实际问题</strong>，而解决的方法在计算机领域就是“算法”，我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>方法、角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并完善自己的知识图谱</strong></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;【阅读时间】5min - 7min&lt;br&gt;【内容简介】从两个角度来直观回到问题：&lt;strong&gt;什么是正则化&lt;/strong&gt;，附一些对范数的直观理解&lt;/p&gt;
-&lt;p&gt;我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。&lt;/p&gt;
-&lt;p&gt;首先，
-      
+      &lt;p&gt;【阅读时间】5min - 7min&lt;br&gt;【内容简介】从两个角度来直观回到问题：&lt;strong&gt;什么是正则化&lt;/strong&gt;，附一些对范数的直观理解&lt;/p&gt;
     
     </summary>
     
