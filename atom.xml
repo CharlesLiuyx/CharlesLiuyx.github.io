@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-10-04T01:23:58.070Z</updated>
+  <updated>2017-10-04T01:44:15.791Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://charlesliuyx.github.io/2017/10/03/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%A3%E5%88%99%E5%8C%96/"/>
     <id>https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/</id>
     <published>2017-10-04T01:10:12.000Z</published>
-    <updated>2017-10-04T01:23:58.070Z</updated>
+    <updated>2017-10-04T01:44:15.791Z</updated>
     
-    <content type="html"><![CDATA[<p>【阅读时间】5min - 7min<br>【内容简介】从两个角度来直观回到问题：<strong>什么是正则化</strong>，附一些对范数的直观理解</p><p>我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。</p><p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p><p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" title="">                </div>                <div class="image-caption">过拟合</div>            </figure>{:height=”50%” width=”50%”}</p><p>如上图，红色这条“想象力”很丰富，极不安分的曲线是过拟合的情况。结合上图，和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直观的翻译是：规则化</strong>。</p>]]></content>
+    <content type="html"><![CDATA[<p>【阅读时间】5min - 7min<br>【内容简介】从两个角度来直观回到问题：<strong>什么是正则化</strong>，附一些对范数的直观理解</p><p>我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。</p><p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p><p><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" title="">                </div>                <div class="image-caption">过拟合</div>            </figure>{:height=”100px”}</p><p>如上图，红色这条“想象力”很丰富，极不安分的曲线是过拟合的情况。结合上图，和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直观的翻译是：规则化</strong>。</p>]]></content>
     
     <summary type="html">
     
