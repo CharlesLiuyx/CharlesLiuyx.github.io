@@ -37,9 +37,9 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
-<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T22:05:18.885Z">
+<meta property="og:updated_time" content="2017-10-04T23:12:07.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -254,7 +254,7 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png" alt="正则项的边缘直观表示"></div>
 
 <p><code>q=2</code>是一个圆非常好理解，考虑  $z = w_1^2 + w_2^2 $  就是抛物面，俯视图是一个圆。其他几项同理（必须强调<strong>俯视图和等高线的概念</strong>，z轴表示的是正则项项的值）</p>
-<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示" height="400"></p>
+<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示"></p>
 <blockquote>
 <p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ 最小值取到的点</p>
 </blockquote>
@@ -262,7 +262,13 @@ $$
 <p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度，即 $\mathbf w$ 中<code>M</code>的大小</strong>，<code>M</code>越大意味着需要决定的权重越多，所以模型越复杂。在多项式模型多，直观理解是每一个不同幂次的 $x$ 前的系数，0（或很小的值）越多，模型越简单。这就<strong>数学角度解释了，为什么正则化（规则化）可以限制模型的复杂度，进而避免过拟合</strong></p>
 <p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$ 的位置恰好是 $w_1=0$ 的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度（降低模型复杂度，防止过拟合）二次正则项也做到了这一点，但是一次正则项做的更加彻底</strong>，更稀疏。不幸的是，<strong>一次正则项有拐点</strong>，不是处处可微，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
 <h1 id="How-神经网络模型角度"><a href="#How-神经网络模型角度" class="headerlink" title="How 神经网络模型角度"></a>How 神经网络模型角度</h1><p>我们已经知道，最简单的单层神经网，可以实现简单的线性模型。而多隐含层的神经网络模型如何来<strong>实现正则化</strong>？（毕竟神经网络模型没有目标函数）</p>
-<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png" alt="不同隐含层神经元数量对拟合的影响"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
 <blockquote>
 <p><code>M</code>表示单层神经网中隐含层中的神经元的数量</p>
 </blockquote>
@@ -272,7 +278,7 @@ $$
 <p>这里有一个尾巴，即<strong>神经网络的一致性</strong>，我们并不希望加入正则项后出现不在掌控范围内的变化（即所谓图像还是那个图像，不能乱变）。卷积神经网络从结构上恰恰实现了这种<strong>一致性</strong>，这也是它强大的一个原因</p>
 <h1 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h1><p>我并不是数学专业的学生，但是我发现在讲完线性模型角度后，有几个概念可以很轻松的解答，就在这里献丑把它们串联起来，并做一些总结以供查阅和对照。</p>
 <p>我们知道，<strong>范数（norm）</strong>的概念来源于泛函分析与测度理论，wiki中的定义相当简单明了：<strong>范数是具有“长度”概念的函数</strong>。</p>
-<p>我们常说测度测度，测量长度，也就是为了表征这个长度。而如何表达“长度”这个概念也是不同的，也就对应了不同的<strong>范数</strong>，本质上说，还是<strong>观察问题的方式和角度不同</strong></p>
+<p>我们常说测度测度，测量长度，也就是为了表征这个长度。而如何表达“长度”这个概念也是不同的，也就对应了不同的<strong>范数</strong>，本质上说，还是<strong>观察问题的方式和角度不同</strong>，比如那个经典问题，<strong>为什么矩形的面积是长乘以宽？</strong>这背后的关键是欧式空间的<strong>平移不变性</strong>，换句话说，就是面积和长成正比，所以才有这个</p>
 <p>范数分为<strong>向量范数</strong>（二维坐标系）和<strong>矩阵范数</strong>（多维空间，一般化表达）</p>
 <h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联只是间的本质（根）联系的好处</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
@@ -337,7 +343,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T22:05:18.885Z" itemprop="dateUpdated">2017-10-04 15:05:18</time>
+    Last updated: <time datetime="2017-10-04T23:12:07.055Z" itemprop="dateUpdated">2017-10-04 16:12:07</time>
 </span><br>
 
 
