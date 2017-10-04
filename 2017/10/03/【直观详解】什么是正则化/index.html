@@ -34,7 +34,9 @@
 <meta property="og:description" content="【阅读时间】5min - 7min【内容简介】从两个角度来直观回到问题：什么是正则化，附一些对范数的直观理解">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png">
-<meta property="og:updated_time" content="2017-10-04T02:03:08.667Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
+<meta property="og:updated_time" content="2017-10-04T03:49:54.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】5min - 7min【内容简介】从两个角度来直观回到问题：什么是正则化，附一些对范数的直观理解">
@@ -172,7 +174,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why & What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-最小二乘法的角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 最小二乘法的角度</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why & What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-最小二乘角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 最小二乘角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -205,7 +207,51 @@
 <p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p>
 <p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" width="500"></p>
 <p>如上图，红色这条“想象力”过于丰富上下横跳的曲线就是过拟合情形。结合上图和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直译应该是：规则化</strong>（加个“化”字只是变成动词，自豪一下中文还是强）。什么是规则？你妈喊你6点前回家吃饭，这就是规则，一个<strong>限制</strong>。同理，在这里，<strong>规则化就是说给需要训练的目标函数加上一些规则（限制），让他们不要自我膨胀</strong>。正则化，看起来，挺不好理解的，追其根源，还是“正则”这两字在中文中实在没有一个直观的对应，如果能翻译成<strong>规则化</strong>，更好理解。但我们一定要明白，搞学术，概念名词的准确是十分重要的，对于一个重要确定的概念，为它安上一个不会产生歧义的名词也是非常重要的，正则化的名称没毛病，只是从如何理解的角度，要更灵活。</p>
-<h1 id="How-最小二乘法的角度"><a href="#How-最小二乘法的角度" class="headerlink" title="How 最小二乘法的角度"></a>How 最小二乘法的角度</h1><p>我一直相信，对每一个概念，<strong>被定义</strong>就是为了去<strong>解决一个实际问题</strong>，而解决的方法在计算机领域就是“算法”，我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>方法、角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并完善自己的知识图谱</strong></p>
+<h1 id="How-最小二乘角度"><a href="#How-最小二乘角度" class="headerlink" title="How 最小二乘角度"></a>How 最小二乘角度</h1><p>我一直相信，对每一个概念，<strong>被定义</strong>就是为了去<strong>解决一个实际问题</strong>，而解决的方法在计算机领域就是“算法”，我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>方法、角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并完善自己的知识图谱</strong></p>
+<h2 id="二次正则项"><a href="#二次正则项" class="headerlink" title="二次正则项"></a>二次正则项</h2><p>我们看一个线性的<strong>目标函数（需要使用数据训练出来的预测函数）</strong><br>
+$$
+E(\mathbf w) =\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 \tag{1}
+$$
+</p>
+<blockquote>
+<p>$E(\mathbf w)$ 是目标函数，<code>E</code>即Evaluate<br>$t_n$ 是测试集的真实输出（即本身应该的输出）<br>$\mathbf w$ 是权重（需要训练的部分，未知数）<br>$\phi()$ 是训练出来的预测函数，输出是预测结果<br>测试样本有<code>n</code>个数据<br>整个函数直观解释就是<strong>方差和</strong>，$\frac{1}{2}$ 只是为了<strong>求导后消去方便计算</strong></p>
+</blockquote>
+<p>加<strong>正则化项</strong>，得到最终的<strong>误差函数（Error function）</strong><br>
+$$
+\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 + \frac{\lambda}{2} \mathbf w^T \mathbf w \tag{2}
+$$
+</p>
+<blockquote>
+<p>$\lambda$ 被称为正则化系数，<strong>越大，这个限制越强</strong></p>
+</blockquote>
+<p>对2式求导，并令为0（<strong>使误差最小</strong>），可以解得</p>
+
+$$
+\mathbf w = (\lambda \mathbf I + \Phi^T \Phi)^{-1}\Phi^T\mathbf t
+$$
+
+<p>这是最小二乘法的解形式，所以在题目中写的是从“最小二乘角度”</p>
+<h2 id="一般正则项"><a href="#一般正则项" class="headerlink" title="一般正则项"></a>一般正则项</h2><p>接下来要直观的详解为什么要选择二次正则项</p>
+<p>首先，一般正则项是以下公式的形式</p>
+
+$$
+\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 + \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q
+$$
+
+<blockquote>
+<p><code>M</code>是数据的维度，比如<code>M=2</code>，就是一个平面内的点</p>
+</blockquote>
+<p>若<code>q=2</code>就是二次正则项。高纬度没有图像表达非常难以理解，那就使用二维作为特例来理解，这里令<code>M=2</code>，即 $\mathbf x ={x_1,x_2} \mathbf w={w_1,w_2}$  ，令<code>q=0.5</code> <code>q=1</code> <code>q=2</code> <code>q=4</code> 有</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示" height="400"></div>
+
+<blockquote>
+<p>横坐标是$w_1$ 纵坐标是$w_2$</p>
+</blockquote>
+<p><code>q=2</code>是一个圆非常好理解，考虑  $w_1^2 + w_2^2 = r$  就是一个圆的表达式。其他几项同理</p>
+<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示" height="400"></p>
+<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）。可以直观的理解为（帮助理解正则化），褐色区域就是<strong>规则（限制）的直观表示</strong>，待求<strong>权重 $\mathbf w$无法取到褐色区域</strong></p>
+<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算。</p>
+<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$的位置恰好是$w_1=0$的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度</strong>，克服数据稀疏性。相对的，<strong>一次正则项有拐点</strong>，不是处处可导，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
 
         </div>
 
@@ -213,7 +259,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T02:03:08.667Z" itemprop="dateUpdated">2017-10-03 19:03:08</time>
+    Last updated: <time datetime="2017-10-04T03:49:54.767Z" itemprop="dateUpdated">2017-10-03 20:49:54</time>
 </span><br>
 
 
