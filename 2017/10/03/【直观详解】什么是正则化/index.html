@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T22:02:26.667Z">
+<meta property="og:updated_time" content="2017-10-04T22:05:18.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -256,7 +256,7 @@ $$
 <p><code>q=2</code>是一个圆非常好理解，考虑  $z = w_1^2 + w_2^2 $  就是抛物面，俯视图是一个圆。其他几项同理（必须强调<strong>俯视图和等高线的概念</strong>，z轴表示的是正则项项的值）</p>
 <p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示" height="400"></p>
 <blockquote>
-<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ </p>
+<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ 最小值取到的点</p>
 </blockquote>
 <p>可以直观的理解为（帮助理解正则化），我们的目标函数（误差函数）就是<strong>求蓝圈+红圈的和的最小值</strong>（回想等高线的概念并参照3式），而这个值通在很多情况下是<strong>两个曲面相交的地方</strong></p>
 <p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度，即 $\mathbf w$ 中<code>M</code>的大小</strong>，<code>M</code>越大意味着需要决定的权重越多，所以模型越复杂。在多项式模型多，直观理解是每一个不同幂次的 $x$ 前的系数，0（或很小的值）越多，模型越简单。这就<strong>数学角度解释了，为什么正则化（规则化）可以限制模型的复杂度，进而避免过拟合</strong></p>
@@ -337,7 +337,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T22:02:26.667Z" itemprop="dateUpdated">2017-10-04 15:02:26</time>
+    Last updated: <time datetime="2017-10-04T22:05:18.885Z" itemprop="dateUpdated">2017-10-04 15:05:18</time>
 </span><br>
 
 
