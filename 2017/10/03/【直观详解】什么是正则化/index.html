@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNHiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-04T21:32:21.701Z">
+<meta property="og:updated_time" content="2017-10-04T21:49:18.854Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -228,7 +228,7 @@ $$
 <blockquote>
 <p>$\lambda$ 被称为正则化系数，<strong>越大，这个限制越强</strong></p>
 </blockquote>
-<p>对2式求导，并令为0（<strong>使误差最小</strong>），可以解得</p>
+<p>2式对 $\mathbf w$ 求导，并令为0（<strong>使误差最小</strong>），可以解得</p>
 
 $$
 \mathbf w = (\lambda \mathbf I + \Phi^T \Phi)^{-1}\Phi^T\mathbf t
@@ -248,7 +248,7 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
 <blockquote>
-<p>横坐标是$w_1$<br>纵坐标是$w_2$<br>绿线是<strong>等高线</strong>的其中一条，换言之是一个<strong>俯视图</strong>，而<strong>z轴代表</strong>的是 $ \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q$ 的值</p>
+<p>横坐标是$w_1$<br>纵坐标是$w_2$<br>绿线是<strong>等高线的其中一条</strong>，换言之是一个<strong>俯视图</strong>，而<strong>z轴代表</strong>的是 $ \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q$ 的值</p>
 </blockquote>
 <p>空间想象力不足无法理解只能看下面这张图了</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png" alt="正则项的边缘直观表示"></div>
@@ -342,7 +342,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T21:32:21.701Z" itemprop="dateUpdated">2017-10-04 14:32:21</time>
+    Last updated: <time datetime="2017-10-04T21:49:18.854Z" itemprop="dateUpdated">2017-10-04 14:49:18</time>
 </span><br>
 
 
