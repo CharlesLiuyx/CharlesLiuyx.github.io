@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
-<meta property="og:updated_time" content="2017-10-04T03:49:54.767Z">
+<meta property="og:updated_time" content="2017-10-04T07:23:39.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】5min - 7min【内容简介】从两个角度来直观回到问题：什么是正则化，附一些对范数的直观理解">
@@ -242,16 +242,19 @@ $$
 <p><code>M</code>是数据的维度，比如<code>M=2</code>，就是一个平面内的点</p>
 </blockquote>
 <p>若<code>q=2</code>就是二次正则项。高纬度没有图像表达非常难以理解，那就使用二维作为特例来理解，这里令<code>M=2</code>，即 $\mathbf x ={x_1,x_2} \mathbf w={w_1,w_2}$  ，令<code>q=0.5</code> <code>q=1</code> <code>q=2</code> <code>q=4</code> 有</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示" height="400"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
 
 <blockquote>
 <p>横坐标是$w_1$ 纵坐标是$w_2$</p>
 </blockquote>
 <p><code>q=2</code>是一个圆非常好理解，考虑  $w_1^2 + w_2^2 = r$  就是一个圆的表达式。其他几项同理</p>
 <p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示" height="400"></p>
-<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）。可以直观的理解为（帮助理解正则化），褐色区域就是<strong>规则（限制）的直观表示</strong>，待求<strong>权重 $\mathbf w$无法取到褐色区域</strong></p>
-<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算。</p>
-<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$的位置恰好是$w_1=0$的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度</strong>，克服数据稀疏性。相对的，<strong>一次正则项有拐点</strong>，不是处处可导，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
+<blockquote>
+<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线</strong>，纵轴的值就是<br>$w^*$ 是最优化值</p>
+</blockquote>
+<p>可以直观的理解为（帮助理解正则化），褐色区域就是<strong>规则（限制）的直观表示</strong>，待求<strong>权重 $\mathbf w$无法取到褐色区域</strong></p>
+<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度</strong>。</p>
+<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$的位置恰好是$w_1=0$的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度（降低模型复杂度，防止过拟合）二次正则项也做到了这一点，但是一次正则项做的更加彻底</strong>，更稀疏。不幸的是，<strong>一次正则项有拐点</strong>，不是处处可微，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
 
         </div>
 
@@ -259,7 +262,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-04T03:49:54.767Z" itemprop="dateUpdated">2017-10-03 20:49:54</time>
+    Last updated: <time datetime="2017-10-04T07:23:39.933Z" itemprop="dateUpdated">2017-10-04 00:23:39</time>
 </span><br>
 
 
