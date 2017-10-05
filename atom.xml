@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-10-05T06:50:21.280Z</updated>
+  <updated>2017-10-05T08:09:05.616Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://charlesliuyx.github.io/2017/10/04/README/"/>
-    <id>https://charlesliuyx.github.io/2017/10/04/README/</id>
-    <published>2017-10-05T06:50:21.280Z</published>
-    <updated>2017-10-05T06:50:21.280Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Blog-posts"><a href="#Blog-posts" class="headerlink" title="Blog_posts"></a>Blog_posts</h1><p>This is the _posts folder of my blog, for multi-platform editting</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;Blog-posts&quot;&gt;&lt;a href=&quot;#Blog-posts&quot; class=&quot;headerlink&quot; title=&quot;Blog_posts&quot;&gt;&lt;/a&gt;Blog_posts&lt;/h1&gt;&lt;p&gt;This is the _posts folder of my blog, 
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>【直观详解】什么是正则化</title>
