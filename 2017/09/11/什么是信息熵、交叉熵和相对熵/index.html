@@ -33,7 +33,7 @@
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-06T01:33:23.444Z">
+<meta property="og:updated_time" content="2017-10-06T17:02:53.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】信息熵、交叉熵和相对熵">
 <meta name="twitter:description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
@@ -270,7 +270,7 @@ $$
 </tr>
 </tbody>
 </table>
-<p>接下来，假定在<strong>确定性更大的概率分布</strong>情况下，用<strong>更不确定的存储策略</strong>来计算，比如使用 $\mathbf P$ 的概率乘上 $\mathbf Q$ 的存储因子，套用公式2-3<br>$$<br>H(\mathbf Q,\mathbf P) = \sum_i {P(i) \log_a {\frac{1}{Q(i)}}} \tag{3-1}<br>$$<br>顾名思义，看公式3-1的形式，就不难发现，这就是所谓的<strong>交叉熵</strong>，计算可得</p>
+<p>接下来，假定在<strong>确定性更大的概率分布</strong>情况下，用<strong>更不确定的存储策略</strong>来计算，比如使用 $\mathbf P$ 的概率乘上 $\mathbf Q$ 的存储因子，套用公式2-3<br>$$<br>H(\mathbf P,\mathbf Q) = \sum_i {P(i) \log_a {\frac{1}{Q(i)}}} \tag{3-1}<br>$$<br>顾名思义，看公式3-1的形式，就不难发现，这就是所谓的<strong>交叉熵</strong>，计算可得</p>
 <table>
 <thead>
 <tr>
@@ -315,7 +315,7 @@ $$
 <p>上表直观的展现的<strong>交叉熵</strong>的数值表现，PQZW依次<strong>不确定性越来越低</strong>，极端情况的W不确定性为0，即<strong>是确定的</strong></p>
 <p><strong>交叉熵，用来高衡量在给定的真实分布下，使用非真实分布指定的策略消除系统的不确定性所需要付出努力的大小</strong></p>
 <p>总的来说，<strong>我们的目的是：让熵尽可能小，即存储空间小（消除系统的不确定的努力小）。</strong>（不要问为什么想要存储空间小，这都是钱更是效率和时间）</p>
-<p>通过上表我们发现一个规律，为了让熵小，解决方案是：<strong>是用确定性更大的额概率乘以确定性更小的存储因子</strong>，比如不确定性越大的概率分布，如P概率分布，其信息熵越大；<strong>基于同一真实（确定性）分布的情况下</strong>，套用不确定性更大的存储因子，如P的存储因子，得出的交叉熵越大</p>
+<p>通过上表我们发现一个规律，为了让熵小，解决方案是：<strong>是用确定性更大的概率乘以确定性更小的存储因子</strong>，比如不确定性越大的概率分布，如P概率分布，其信息熵越大；<strong>基于同一真实（确定性）分布的情况下</strong>，套用不确定性更大的存储因子，如P的存储因子，得出的交叉熵越大</p>
 <p>在机器学习中，即用测试结果集（样本结果集）的概率乘以训练出来的结果集存储因子，而在不断的训练过程中，我们要做的就是通过不断调整参数，降低这个值，<strong>使得模型更加的稳定，不确定性越来越小</strong>，即突出需要表征的数值的特点（白话文也就是分类的效果更好）</p>
 <h3 id="相对熵的由来"><a href="#相对熵的由来" class="headerlink" title="相对熵的由来"></a>相对熵的由来</h3><p>有了信息熵和交叉熵后，<strong>相对熵是用来衡量两个概率分布之间的差异</strong>，记为 $D(P||Q) = H(P,Q) - H(P)$，也称之为KL散度<br>$$<br>D_{KL}(P||Q) = \sum_i{P(i) \log_a {\frac{P(i)}{Q(i)}}}<br>$$<br>当 $P(i) = Q(i)$ 的时候，该值为0，深度学习过程也是一个降低该值的过程，<strong>该值越低，训练出来的概率Q越接近样本集概率P，即越准确</strong>，或者可以理解为<strong>相对熵一把标尺，用来衡量两个函数是否相似，一样就是0</strong>，当然，这种解释十分牵强，但是更直观</p>
 <blockquote>
@@ -329,7 +329,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-06T01:33:23.444Z" itemprop="dateUpdated">2017-10-05 18:33:23</time>
+    Last updated: <time datetime="2017-10-06T17:02:53.911Z" itemprop="dateUpdated">2017-10-06 10:02:53</time>
 </span><br>
 
 
