@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-06T02:13:13.949Z">
+<meta property="og:updated_time" content="2017-10-06T02:14:16.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -277,7 +277,7 @@ $$
 <p><strong>所以我们只能通过建立验证集（Validation Set），拉网搜索来确定<code>M</code>的取值（迭代停止的时间），又称为【提前停止】</strong></p>
 <p>这里有一个尾巴，即<strong>神经网络的不变量（invariance）</strong>，我们并不希望加入正则项后出现不在掌控范围内的变化（即所谓图像还是那个图像，不能乱变）。而<strong>机器学习的其中一个核心目的也是去寻找不同事物（对象）的中包含信息的这个不变量（特征）</strong>。卷积神经网络从结构上恰恰实现了这种<strong>不变性</strong>，这也是它强大的一个原因</p>
 <h1 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h1><p>我并不是数学专业的学生，但是我发现在讲完线性模型角度后，有几个概念可以很轻松的解答，就在这里献丑把它们串联起来，并做一些总结以供查阅和对照。</p>
-<p>我们知道，<strong>范数（norm）</strong>的概念来源于泛函分析与测度理论，wiki中的定义相当简单明了：<strong>范数是具有“长度”概念的函数</strong>，用于衡量一个<strong>矢量的大小</strong>（测量矢量的测度）</p>
+<p>我们知道，<strong>范数（norm）</strong>的概念来源于<strong>泛函分析与测度理论</strong>，wiki中的定义相当简单明了：<strong>范数是具有“长度”概念的函数</strong>，用于衡量一个<strong>矢量的大小</strong>（测量矢量的测度）</p>
 <p>我们常说测度测度，测量长度，也就是为了表征这个长度。而如何表达“长度”这个概念也是不同的，也就对应了不同的<strong>范数</strong>，本质上说，还是<strong>观察问题的方式和角度不同</strong>，比如那个经典问题，<strong>为什么矩形的面积是长乘以宽？</strong>这背后的关键是欧式空间的<strong>平移不变性</strong>，换句话说，就是面积和长成正比，所以才有这个</p>
 <p>没有<strong>测度论就没有（现代）概率论</strong>。而概率论也是整个机器学习学科的基石之一。测度<strong>就像尺子</strong>，由于测量对象不同，我们需要直尺量布匹、皮尺量身披、卷尺量房间、游标卡尺量工件等等。<strong>注意，“尺子”与刻度（寸、米等）是两回事，不能混淆。</strong></p>
 <p>范数分为<strong>向量范数</strong>（二维坐标系）和<strong>矩阵范数</strong>（多维空间，一般化表达）</p>
@@ -363,7 +363,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-06T02:13:13.949Z" itemprop="dateUpdated">2017-10-05 19:13:13</time>
+    Last updated: <time datetime="2017-10-06T02:14:16.732Z" itemprop="dateUpdated">2017-10-05 19:14:16</time>
 </span><br>
 
 
