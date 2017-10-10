@@ -51,7 +51,19 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/65-ReverseMatrix.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/63-ColumnSpace.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/64-NullSpace.gif">
-<meta property="og:updated_time" content="2017-10-09T17:30:11.378Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/71-Dot.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/71-DotVisual.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/72-DotOrder.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/73-nD21D.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-Duality1.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-Duality2.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-DualityAll.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/81-Cal.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/82-f.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/83-Duality.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/83-findp.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/84-Volum.gif">
+<meta property="og:updated_time" content="2017-10-10T08:20:13.893Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -189,7 +201,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#向量究竟是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">向量究竟是什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量的定义-What"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">向量的定义 What</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#物理专业角度"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">物理专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机专业角度"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">计算机专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学专业角度"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">数学专业角度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坐标系"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">坐标系</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线性组合、张成的空间与基"><span class="post-toc-number">2.</span> <span class="post-toc-text">线性组合、张成的空间与基</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性组合"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">线性组合</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#空间的基-Basis"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">空间的基 Basis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#张成的空间-Span"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">张成的空间 Span</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性相关"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">线性相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量空间一组基的严格定义"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">向量空间一组基的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵与线性变换"><span class="post-toc-number">3.</span> <span class="post-toc-text">矩阵与线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变换"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性变换"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">线性变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何用数值描述线性变换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">如何用数值描述线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【线性】的严格定义"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">【线性】的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵乘法与线性变换复合"><span class="post-toc-number">4.</span> <span class="post-toc-text">矩阵乘法与线性变换复合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复合变换"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">复合变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵乘法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算规则证明"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">计算规则证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三维空间"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">三维空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#行列式"><span class="post-toc-number">5.</span> <span class="post-toc-text">行列式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式定义的由来"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">行列式定义的由来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算行列式"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">计算行列式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式直观理解的好处"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">行列式直观理解的好处</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#逆矩阵、列空间与零空间"><span class="post-toc-number">6.</span> <span class="post-toc-text">逆矩阵、列空间与零空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵的用途"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">矩阵的用途</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性方程组"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">线性方程组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逆矩阵"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">逆矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列空间"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">列空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#秩-Rank"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">秩 Rank</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#零空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">零空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#非方阵"><span class="post-toc-number">7.</span> <span class="post-toc-text">非方阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#点积与叉积"><span class="post-toc-number">8.</span> <span class="post-toc-text">点积与叉积</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基变换"><span class="post-toc-number">9.</span> <span class="post-toc-text">基变换</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#特征向量与特征值"><span class="post-toc-number">10.</span> <span class="post-toc-text">特征向量与特征值</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#抽象向量空间"><span class="post-toc-number">11.</span> <span class="post-toc-text">抽象向量空间</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#向量究竟是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">向量究竟是什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量的定义-What"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">向量的定义 What</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#物理专业角度"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">物理专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机专业角度"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">计算机专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学专业角度"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">数学专业角度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坐标系"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">坐标系</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线性组合、张成的空间与基"><span class="post-toc-number">2.</span> <span class="post-toc-text">线性组合、张成的空间与基</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性组合"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">线性组合</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#空间的基-Basis"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">空间的基 Basis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#张成的空间-Span"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">张成的空间 Span</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性相关"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">线性相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量空间一组基的严格定义"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">向量空间一组基的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵与线性变换"><span class="post-toc-number">3.</span> <span class="post-toc-text">矩阵与线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变换"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性变换"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">线性变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何用数值描述线性变换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">如何用数值描述线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【线性】的严格定义"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">【线性】的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵乘法与线性变换复合"><span class="post-toc-number">4.</span> <span class="post-toc-text">矩阵乘法与线性变换复合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复合变换"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">复合变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵乘法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算规则证明"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">计算规则证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三维空间"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">三维空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#行列式"><span class="post-toc-number">5.</span> <span class="post-toc-text">行列式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式定义的由来"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">行列式定义的由来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算行列式"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">计算行列式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式直观理解的好处"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">行列式直观理解的好处</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#逆矩阵、列空间与零空间"><span class="post-toc-number">6.</span> <span class="post-toc-text">逆矩阵、列空间与零空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵的用途"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">矩阵的用途</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性方程组"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">线性方程组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逆矩阵"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">逆矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列空间"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">列空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#秩-Rank"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">秩 Rank</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#零空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">零空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#非方阵"><span class="post-toc-number">7.</span> <span class="post-toc-text">非方阵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#几何意义"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">几何意义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非方阵乘法"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">非方阵乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非方阵行列式"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">非方阵行列式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#点积与对偶性"><span class="post-toc-number">8.</span> <span class="post-toc-text">点积与对偶性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是点积"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">什么是点积</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#点积的顺序"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">点积的顺序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#点积与投影"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">点积与投影</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对偶性"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">对偶性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-1"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#叉积"><span class="post-toc-number">9.</span> <span class="post-toc-text">叉积</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二维情况下的叉积类比"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">二维情况下的叉积类比</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#真正的叉积定义"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">真正的叉积定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叉积计算公式"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">叉积计算公式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叉积计算的几何直观"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">叉积计算的几何直观</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-2"><span class="post-toc-number">9.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基变换"><span class="post-toc-number">10.</span> <span class="post-toc-text">基变换</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#特征向量与特征值"><span class="post-toc-number">11.</span> <span class="post-toc-text">特征向量与特征值</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#抽象向量空间"><span class="post-toc-number">12.</span> <span class="post-toc-text">抽象向量空间</span></a></li></ol>
         </nav>
     </aside>
     
@@ -289,13 +301,8 @@ $$
 <p>本部分继续加深一个概念，为何<strong>向量加法与向量乘法是那么重要，并从始至终贯穿整个线性代数</strong></p>
 <h2 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h2><p>这个概念再好理解不过，空间中不共线的两个不为零向量都可以<strong>表示空间中的任意一个向量</strong>，写成符号语言就是：$a \mathbf{\vec v} + b \mathbf{\vec w}$  </p>
 <p>至于为什么被称为“线性”，有一种几何直观：如果你固定其中一个标量，让另一个标量自由变化，所产生的向量终点会描出一条直线</p>
-<figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/2-Linear.gif" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/2-Linear.gif" alt="" width="500px"></div>
+
 <h2 id="空间的基-Basis"><a href="#空间的基-Basis" class="headerlink" title="空间的基 Basis"></a>空间的基 Basis</h2><p>对于我们常见的笛卡尔坐标系，有一个最直观一组基：$\{{\hat {\imath}} ,{\hat {\jmath}} \}$  ，即单位向量：${\hat {\imath}}=(1,0)$ 和$\hat {\jmath} =(0,1)$   ，通过 ${\hat {\imath}}$ 和 ${\hat {\jmath}}$的<strong>拉伸与相加</strong>可以组成笛卡尔坐标系中的任意一个向量</p>
 <h3 id="张成的空间-Span"><a href="#张成的空间-Span" class="headerlink" title="张成的空间 Span"></a>张成的空间 Span</h3><p>同理，举一反三的来说，我们可以选择不同的<strong>基向量</strong>，并且这些基向量构成的空间称为：<strong>张成的空间</strong></p>
 <p>所有可以表示为<strong>给定向量（基）</strong>线性组合（刚刚讲了这个概念）的向量的集合，被称为<strong>给定向量（基）</strong>张成的空间</p>
@@ -315,7 +322,7 @@ $$
 <p>很遗憾，Matrix（矩阵）是什么是说不清的。你必须得自己亲眼看看 ——墨菲斯</p>
 <p>Unfortunately, no one can be told what the Matrix is. You have to see it yourself -Morpheus</p>
 </blockquote>
-<p>矩阵，最直观的理解当然是一个<strong>写成方阵的数字</strong> $\begin{bmatrix} 1&2 \\ 3&4 \end{bmatrix}$，这几节的核心是为了说明：<strong>矩阵其实就是一种向量变换（至于什么是变换下面会讲）</strong>，并附带一种不用死记硬背的考虑矩阵向量乘法的方法</p>
+<p>矩阵，最直观的理解当然是一个<strong>写成方阵的数字</strong> $\left[\begin{smallmatrix} 1&2 \\ 3&4 \end{smallmatrix}\right]$，这几节的核心是为了说明：<strong>矩阵其实就是一种向量变换（至于什么是变换下面会讲）</strong>，并附带一种不用死记硬背的考虑矩阵向量乘法的方法</p>
 <h2 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h2><p>【变换】本质上是【函数】（左）的一种花哨的说法，它接受输入内容，并输出对应结果，矩阵变换（右），同理，如下图</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/31-Fun1.gif" alt="" width="300px"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/32-Fun2.gif" alt="" width="300px"></div>
 
@@ -427,25 +434,116 @@ $$
 <h2 id="秩-Rank"><a href="#秩-Rank" class="headerlink" title="秩 Rank"></a>秩 Rank</h2><p>秩这个概念相信很多学习线性代数的同学，因为中文字，秩，本身就不熟（和正则化有点类似），所以秩也就非常难以理解了。<strong>秩是秩序，联想为秩序的程度</strong>。但是，因为你已经看了这个教程，<strong>矩阵的秩在现在你拥有的几何直观下</strong>，理解起来，当真的小菜一碟</p>
 <p>我们已经建立了一种深刻的认知：矩阵 = 变换，那么<strong>变换后空间的维度</strong>，就是这个矩阵的秩。更加精确的定义是：<strong>列空间的维数</strong>（如果你可以焕然大：原来这两句话是一个意思，那么我觉得你对矩阵的理解已经有了质的提高）</p>
 <h2 id="零空间"><a href="#零空间" class="headerlink" title="零空间"></a>零空间</h2><p>变换后<strong>落在原点的向量</strong>的集合，称为<strong>这个矩阵</strong>（再次强调矩阵 = 变换的数字表达）的<strong>零空间或核</strong>，如果感觉没理解，可以看看下图</p>
-<p><div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/64-NullSpace.gif" alt="" width="800px"></div></p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/64-NullSpace.gif" alt="" width="800px"></div>
+
 <blockquote>
 <p>【图1】二维压缩到一个直线（一维），有一条直线（一维）的点被压缩到原点<br>【图2】三维压缩到一个面（二维），有一条直线（一维）的点被压缩到原点<br>【图3】三维压缩到一条线（一维），有一条直线（二维）的点被压缩到原点</p>
 <p>【注意】压缩就是变换，变换就是矩阵，其实说的就是矩阵</p>
 </blockquote>
+<p>满秩 = 列空间 + 零空间</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
 <li>从<strong>几何角度理解线性方程组</strong>的一个高水平概述</li>
 <li><strong>每个方程组</strong>都有一个线性变换与之联系，当<strong>逆变换存在</strong>时，你就能用这个<strong>逆变换求解方程组</strong></li>
 <li>不存在逆变换时，<strong>列空间的概念</strong>让我们清楚什么时候存在解</li>
 <li><strong>零空间的概念</strong>有助于我们理解<strong>所有可能得解的集合</strong>是什么样的</li>
 </ul>
-<h1 id="非方阵"><a href="#非方阵" class="headerlink" title="非方阵"></a>非方阵</h1><h1 id="点积与叉积"><a href="#点积与叉积" class="headerlink" title="点积与叉积"></a>点积与叉积</h1><h1 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h1><h1 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h1><h1 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h1>
+<h1 id="非方阵"><a href="#非方阵" class="headerlink" title="非方阵"></a>非方阵</h1><blockquote>
+<p>在这个小测试里，我让你们求一个2*3矩阵的行列式。让我感到非常可笑的是，你们当中竟然有人尝试去做 ——佚名</p>
+<p>On this quiz, I asked you to find the determinant of a 2*3 matrix. Some of you, to my great amusement, actually tried to do this - no name listed</p>
+</blockquote>
+<h2 id="几何意义"><a href="#几何意义" class="headerlink" title="几何意义"></a>几何意义</h2><p>首先从一个特例出发，考虑<code>3×2</code>（3行2列）矩阵的几何意义，从列空间我们得知，第一列表示的是 $\hat {\imath}$ 变换后的位置（现在是一个有三个坐标的值，即三维），第二列同理是 $\hat {\jmath}$ 。总结来说，<code>3×2</code>矩阵的几何意义是将<strong>二维空间映射到三维空间</strong>上</p>
+<p>此时从特例到一般化推倒，我们可以得到一个结论：<code>n*m</code> 的几何意义是将<strong>m维空间（输入空间）映射到n维空间（输出空间）</strong>上</p>
+<p>注意这里的输入空间，输出空间的概念，阅读方向同样也是<strong>从右向左的（靠右的是输入，靠左的是输出）</strong></p>
+<h2 id="非方阵乘法"><a href="#非方阵乘法" class="headerlink" title="非方阵乘法"></a>非方阵乘法</h2><p>如果你已经学过线性代数的大学课程，你可能有一些影响，并不是任意两个非方阵都可以进行矩阵乘法，必须满足一些条件，例如，$\mathbf M_1 \mathbf M_2$（非方阵）计算中，假设 $\mathbf M_2$ 为<code>2×3</code>的矩阵，那么 $\mathbf M_1$的列必须等于 $\mathbf M_2$ 的行，否则这个乘法是没法计算的。</p>
+<p>当我们有了变换的几何直观后，这个概念只要自己思考推倒一次，也是一辈子都忘不了的</p>
+<p>直观解释是：<strong>矩阵的行</strong>是这个变换的<strong>输出空间维数</strong>，而<strong>列</strong>是变换的<strong>输入空间维数</strong>。矩阵乘法从右向左读，第一个变换的 $\mathbf M_2$ 的输出向量的维度（ $\mathbf M_2$ 的行）必须和第二个变换 $\mathbf M_1$ 的输入向量（ $\mathbf M_1$ 的列）<strong>维度相等</strong>，才可以计算。也就是说，类似于插头和插座的关系，我只有三头插座，你来一个双头插头肯定没法用的</p>
+<h2 id="非方阵行列式"><a href="#非方阵行列式" class="headerlink" title="非方阵行列式"></a>非方阵行列式</h2><p>这里有一个很好玩的概念，非方阵的行列式呢？都<strong>不是一个维度的变换</strong>，如同归零者和咱们谈判一样，你和我谈<strong>缩放比例</strong>？不存在的</p>
+<h1 id="点积与对偶性"><a href="#点积与对偶性" class="headerlink" title="点积与对偶性"></a>点积与对偶性</h1><blockquote>
+<p>卡尔文：你知道吗，我觉数学不是一门科学，而是一种宗教<br>霍布斯：一种宗教？<br>卡尔文：是啊。这些公式就像奇迹一般。你取出两个数，把它们相加时，它们神奇地成为了一个全新的数！没人能说清这到底是怎么发生的。你要么完全相信，要么完全不信</p>
+</blockquote>
+<h2 id="什么是点积"><a href="#什么是点积" class="headerlink" title="什么是点积"></a>什么是点积</h2><p>个相同维数的向量，或是两个相同长度的数组。求它们的点积，<strong>就是将相应坐标配对，求出每一对坐标的乘积，然后将结果相加</strong>，一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/71-Dot.gif" alt="" width="300px"></div>
+
+<p>几何直观来说，$\mathbf{\vec v} \cdot \mathbf{\vec w}$ 可以想象成向量 $\mathbf{\vec w}$ 朝着过原点和向量 $\mathbf{\vec v}$ 的直线上的<strong>正交（垂直）投影</strong>，然后把投影的长度和向量 $\mathbf{\vec v}$ 的长度乘起来就是点击的值。其中<strong>正负号代表方向</strong>，两个向量成锐角，大于0；钝角，小于0</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/71-DotVisual.png" alt="" width="600px"></div>
+
+<h2 id="点积的顺序"><a href="#点积的顺序" class="headerlink" title="点积的顺序"></a>点积的顺序</h2><p>你可能会发现，顺序在线性代数其实是很重要的，而对于 $\mathbf{\vec v} \cdot \mathbf{\vec w}$ 和 $\mathbf{\vec w} \cdot \mathbf{\vec v}$ 它们的结果是相同，为什么呢？</p>
+<p>解释的方法为：首先假设 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 长度相同，利用对称轴，两个向量互相的投影相等；接下来如果你<strong>缩放其中一个到原来的两倍</strong>，对称性被破坏，但是<strong>缩放比例没变</strong>，最终<strong>乘法的结果</strong>也没变，一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/72-DotOrder.gif" alt="" width="300px"></div>
+
+<h2 id="点积与投影"><a href="#点积与投影" class="headerlink" title="点积与投影"></a>点积与投影</h2><p>这个时候问题就来了，这种直观的乘法与加法的组合运算：点积为何和投影长度的乘积有关？这个问题非常有意思，因为回答这个问题的过程用到了十分精彩的直觉和思维方式</p>
+<p>首先，需要建立<strong>多维空间到一维空间的线性变换（描述为<code>1×n</code>的矩阵，列代表对应的基向量压缩到一维空间的位置）</strong>，即<strong>函数</strong>（自变量对应多维空间，$f(x)$ 最后的输出为一维空间，也就是<strong>数轴上的点</strong>，一个确定的数）的概念。一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/73-nD21D.gif" alt="" width="600px"></div>
+
+<p>你会发现，<code>n×1</code> 表示的是坐标和<code>1×n</code>表示的多维到一维的变换（矩阵）之间有某种联系，即<strong>将向量转化为数的线性变换</strong>和这个<strong>向量本身</strong>有着<strong>某种关系</strong></p>
+<p>接下来，我们想象一个情景，这个<strong>被压缩成的一条线</strong>（数轴）放置在一个<strong>坐标系</strong>（二维空间）中，且空间所有向量都经过<strong>一个变换被压缩到</strong>这个数轴上。记这个数轴的单位向量为 $\mathbf{\vec u}$，一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-Duality1.gif" alt="" width="600px"></div>
+
+<p>再然后，我们需要考虑的问题变为，坐标系中的 $\hat {\imath}$ 与 $\hat {\jmath}$ 是如何被压缩到这条直线上的呢（基向量表征整个空间的变换）？即求一个<code>1×2</code>的矩阵内的值，第一列表示 $\hat {\imath}$ 变换后的位置（在这条数轴上），第二列表示 $\hat {\jmath}$ 变换后的位置。可以直接给出结论，<strong>这个变换</strong>的数值恰好就是 $\mathbf{\vec u}$ 在这个坐标系中的坐标 $(u_x,u_y)$ ，推倒方法使用<strong>到了对称性</strong>，一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-Duality2.gif" alt="" width="600px"></div>
+
+<p>动图中的白色虚线就是对称轴，目的就是确定变换后 $\hat {\imath}$ 与 $\hat {\jmath}$ 的位置，即<strong>描述变换的矩阵（再次重复，列表示坐标，行表示变换）</strong>。</p>
+<p>推倒完毕，把这个过程总结成一个动图</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/74-DualityAll.gif" alt="" width="600px"></div>
+
+<p>矩阵的向量乘积和点积的计算公式一样，且恰好由<strong>压缩这一变换理念</strong>，与投影正好联系了起来。关键点，在于<strong>压缩变换 = 投影</strong></p>
+<h2 id="对偶性"><a href="#对偶性" class="headerlink" title="对偶性"></a>对偶性</h2><p>在证明的过程中，有一个很关键的点就是<strong>使用了对称轴（对称理念）</strong>。在数学中，对偶性定义为：两种数学事物之间<strong>自然而又出乎意料</strong>的<strong>对应关系</strong>。刚刚推倒的内容是数学上“对偶性”的一个实例，即无论何时你看到一个<strong>二维到一维的变换</strong>，空间中会存在为一个向量 $\mathbf{\vec v}$ 与之相关</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><strong>点积是理解投影的有力几何工具</strong></li>
+<li>方便<strong>检验两个向量的指向是否相同</strong></li>
+<li>更进一步，两个<strong>向量点乘</strong>，就是将<strong>其中一个向量转化为线性变换</strong></li>
+<li>向量放佛是一个<strong>特定变换的概念性记号</strong>。对一般人类来说，想象空间中的向量比想象这个空间移动到数轴上更加容易</li>
+</ul>
+<h1 id="叉积"><a href="#叉积" class="headerlink" title="叉积"></a>叉积</h1><blockquote>
+<p>每一个维度都很特别 ——杰弗里·拉加里亚斯</p>
+<p>从他（格罗滕迪克）和他的作为中，我还学到了一点：不以高难度的证明为傲，因为难度高意味着我们还不理解。理想的情况是能够绘出一幅美景，而其中的证明显而易见</p>
+</blockquote>
+<h2 id="二维情况下的叉积类比"><a href="#二维情况下的叉积类比" class="headerlink" title="二维情况下的叉积类比"></a>二维情况下的叉积类比</h2><p>$\mathbf{\vec v}$ 与 $\mathbf{\vec w}$ 张成的<strong>平行四边形的面积</strong>，即 $\mathbf{\vec v} \times \mathbf{\vec w}$ ，结果方向的确定考虑 $\hat {\imath}$ 和 $\hat {\jmath}$ 的相对位置关系，与其相同，为正；否则，为负</p>
+<p>通过这个定义，结合几何直观，我们可以发现几个有趣的结论</p>
+<ul>
+<li>越接近垂直的 $\mathbf{\vec v}$ 与 $\mathbf{\vec w}$ 构成的面积越大</li>
+<li>并且叉积的分配律成立</li>
+</ul>
+<h2 id="真正的叉积定义"><a href="#真正的叉积定义" class="headerlink" title="真正的叉积定义"></a>真正的叉积定义</h2><p><strong>真正的叉积</strong>是在三维情况下被定义出来的：通过两个三维向量（$\mathbf{\vec v}$ 与 $\mathbf{\vec w}$ ）产生一个新的三维向量 $\mathbf{\vec p}$ ，向量 $\mathbf{\vec p}$ 的长度就是 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ <strong>组成平行四边形的面积</strong>  ，向量的方向与平行四边形（所在平面）垂直，并用右手定则确定方向，食指为 $\mathbf{\vec v}$ ，中指为 $\mathbf{\vec w}$ ，大拇指即 $\mathbf{\vec p}$</p>
+<h2 id="叉积计算公式"><a href="#叉积计算公式" class="headerlink" title="叉积计算公式"></a>叉积计算公式</h2> <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/81-Cal.png" alt="" width="500px"></div>
+
+<p>其中 $\hat {\imath}$ $\hat {\jmath}$ $\hat k$ 三个基向量后的数字就是对应向量 $\mathbf{\vec p}$ 的坐标值</p>
+<p>第一次学这个计算方法的时候，估计没几个人能想清楚它为什么是这样的形式，甚至老师也说不清，只是告诉学生，我们这么记下来，定义是这样的定义的。但是，既然是直观讲解，必须把这里的来由探明清楚</p>
+<h2 id="叉积计算的几何直观"><a href="#叉积计算的几何直观" class="headerlink" title="叉积计算的几何直观"></a>叉积计算的几何直观</h2><p>在开始前，先再次加深一次<strong>对偶性</strong>的概念：每当你看到一个<strong>（多维）空间到数轴的线性变换</strong>时，它都与那个空间中的<strong>唯一一个向量对应</strong>。即<strong>应用线性变换到某个向量</strong>和<strong>与这个向量点乘</strong>等价</p>
+<p>恰好，叉积的运算过程给出了对偶性的一个绝佳的实例：根据 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 定义一个从三维空间到数轴的<strong>特定线性变换</strong>，找到这个变换的<strong>对偶向量</strong>，这个<strong>对偶向量</strong>就是 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 的<strong>叉积</strong> </p>
+<p>首先，我们知道三维情况的，求一个<code>3×3</code>矩阵的行列式，就是求这三个向量张成的<strong>平行六面体的体积</strong>，然后，把第一列（向量）换成一个自变量，后两列（两向量）记为 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ ，那么我们就有</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/82-f.png" alt="" width="600px"></div>
+
+<p>这样形式的函数 $f()$ ，如右图所示，即<strong>平行六面体随白色向量 $(x,y,z)$ 的随机游走而不断改变</strong>。然后，问题就变成了，<strong>我们需要根据 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 找到一个变换（一个矩阵，或者说函数），使得上述等式成立</strong>。</p>
+<p>并且因为 $f()$ 是线性的，可以利用<strong>对偶性</strong>，一动图胜千言</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/83-Duality.gif" alt="" width="600px"></div>
+
+<p>对偶性：即<strong>应用线性变换到某个向量</strong>和<strong>与这个向量点乘</strong>等价，即我们可以把<code>1×3</code>的变换（矩阵用来描述变换），立起来（转置），并写成点乘的形式。并把这个向量记为 $\mathbf{\vec p}$ </p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/83-findp.png" alt="" width="600px"></div>
+
+<p>其中向量的颜色左右对应，并且行列式的值就是右图中平行四面体的体积，然后，我们就把问题进一步变成了：<strong>寻找向量 $\mathbf{\vec p}$ 使得上述等式成立</strong></p>
+<p>根据点积的性质得知，当你把一个向量与其他向量点积的几何解释是，<strong>把其他向量投影到 $\mathbf{\vec p}$ 上，然后将投影长度与 $\mathbf{\vec p}$ 的长度相乘</strong>。而我们知道，对于一个平行六面体来说，<strong>体积等于底面积乘以高</strong>，高于底面积垂直，所以，作为背投影对象的 $\mathbf{\vec p}$ 必须和 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 构成的平面垂直，方面已经找到</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/84-Volum.gif" alt="" width="600px"></div>
+
+<p>至于长度，可以看到，一个向量与其他向量点积的几何解释是，<strong>把其他向量投影到 $\mathbf{\vec p}$ 上，然后将投影长度与 $\mathbf{\vec p}$ 的长度相乘</strong>，其中投影长度就是 $(x,y,z)$ 向量的长度，根据公式的形式，可以观察得，向量 $\mathbf{\vec p}$ 的长度作为第二项，只有当长度等于平行四面体面积时，上述公式（图片中的点积=行列式值的公式）才能成立。</p>
+<p>至此，又一次利用<strong>对偶性</strong>发现了一些事物之间<strong>自然而又出乎意料</strong>的<strong>对应关系</strong>。通过几何直观来了解计算公式的由来，也是一种加深印象，深刻理解的有效途径</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>在这里总结一下涉及到的过程，也可以通过阅读看看是否直观的理解每句话来判断<strong>掌握程度</strong></p>
+<ul>
+<li>首先定义了一个三维空间到数轴的<strong>线性变换（函数 $f()$ ）</strong>，它是根据向量 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 来定义的</li>
+<li>接着通过两种不同的方式来<strong>考虑这个变换的对偶向量</strong><ul>
+<li>这种计算方法引导你在第一列中插入 $\hat {\imath}$ $\hat {\jmath}$ $\hat k$ ，然后计算<strong>行列式</strong></li>
+<li>在几何直观上，这个<strong>对偶向量</strong>一定与 $\mathbf{\vec v}$ 和 $\mathbf{\vec w}$ 垂直，并且<strong>其长度与这两个向量张成的平行四边形的面积相同</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="基变换"><a href="#基变换" class="headerlink" title="基变换"></a>基变换</h1><h1 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h1><h1 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h1>
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-09T17:30:11.378Z" itemprop="dateUpdated">2017-10-09 10:30:11</time>
+    Last updated: <time datetime="2017-10-10T08:20:13.893Z" itemprop="dateUpdated">2017-10-10 01:20:13</time>
 </span><br>
 
 
