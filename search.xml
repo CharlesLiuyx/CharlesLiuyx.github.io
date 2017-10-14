@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[程序员技能图谱]]></title>
     <url>%2F2017%2F10%2F13%2F%E7%A8%8B%E5%BA%8F%E5%91%98%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1%2F</url>
-    <content type="text"><![CDATA[【阅读时间】百科类【内容简介】原文来自]]></content>
+    <content type="text"><![CDATA[【阅读时间】百科类【内容简介】原文来自StuQ的开源项目。核心目的是提纲挈领不同领域的技术栈。高层次来说，技术无止境，终身学习会越来越重要，一份由行内的资深人士总结的技术，工具和概念图谱有很强的指导作用，帮你节省时间。低层次来说，一份知识图谱也同领域聊天中装逼的神器，名词概念是有专业隔离的 记录工具使用幕布，方便一键生成思维导图，并且快速搜索查找 人工智能AI机器学习 大数据总 Hadoop Web 前端总 移动性能优化 HTML5开发 Angular 2 Server 后端架构师 OpenResty 直播技术 CDN技术 DNS排查 云计算总 容器 Container 微服务 MicroService 微服务架构和实践 智能运维总 DBA DevOps Kubernetes 安全总 测试总 移动无线测试 移动开发iOS开发 Android App 开发 Android ROM 开发 Android 架构师 智能硬件嵌入式开发 开发语言总 Golang Clojure Python Haskell Node.js Ruby Java 开发工具Git 技能清单CTO技能]]></content>
       <categories>
         <category>Tech</category>
       </categories>

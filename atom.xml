@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2017-10-14T02:10:14.604Z</updated>
+  <updated>2017-10-14T04:11:17.563Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -21,17 +21,13 @@
     <link href="https://charlesliuyx.github.io/2017/10/13/%E7%A8%8B%E5%BA%8F%E5%91%98%E6%8A%80%E8%83%BD%E5%9B%BE%E8%B0%B1/"/>
     <id>https://charlesliuyx.github.io/2017/10/13/程序员技能图谱/</id>
     <published>2017-10-14T02:08:30.000Z</published>
-    <updated>2017-10-14T02:10:14.604Z</updated>
+    <updated>2017-10-14T04:11:17.563Z</updated>
     
-    <content type="html"><![CDATA[<p>【阅读时间】百科类<br>【内容简介】原文来自</p>]]></content>
+    <content type="html"><![CDATA[<p>【阅读时间】百科类<br>【内容简介】原文来自StuQ的<a href="https://github.com/CharlesLiuyx/skill-map" target="_blank" rel="external">开源项目</a>。核心目的是提纲挈领不同领域的技术栈。高层次来说，技术无止境，终身学习会越来越重要，一份由行内的资深人士总结的技术，工具和概念图谱有很强的指导作用，帮你节省时间。低层次来说，一份知识图谱也同领域聊天中装逼的神器，名词概念是有专业隔离的</p><a id="more"></a><p>记录工具使用幕布，方便<strong>一键生成思维导图</strong>，并且<strong>快速搜索查找</strong></p><h1 id="人工智能AI"><a href="#人工智能AI" class="headerlink" title="人工智能AI"></a>人工智能AI</h1><p><a href="https://mubu.com/doc/3wVIpfpgDl" target="_blank" rel="external">机器学习</a></p><h1 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h1><p><a href="https://mubu.com/doc/Sq1-UW_kl" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/1pXN8Egyll" target="_blank" rel="external">Hadoop</a></p><h1 id="Web-前端"><a href="#Web-前端" class="headerlink" title="Web 前端"></a>Web 前端</h1><p><a href="https://mubu.com/doc/1Ztwio0Oll" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/2pUvC-peMl" target="_blank" rel="external">移动性能优化</a></p><p><a href="https://mubu.com/doc/34w-BTEWDl" target="_blank" rel="external">HTML5开发</a></p><p><a href="https://mubu.com/doc/3HC5GcaODl" target="_blank" rel="external">Angular 2</a></p><h1 id="Server-后端"><a href="#Server-后端" class="headerlink" title="Server 后端"></a>Server 后端</h1><p><a href="https://mubu.com/doc/V_HqHKAll" target="_blank" rel="external">架构师</a></p><p><a href="https://mubu.com/doc/1p-2FT0h2l" target="_blank" rel="external">OpenResty</a></p><p><a href="https://mubu.com/doc/24CxEM0Ill" target="_blank" rel="external">直播技术</a></p><p><a href="https://mubu.com/doc/2E8gOvYoMl" target="_blank" rel="external">CDN技术</a></p><p><a href="https://mubu.com/doc/3fdnSQy4Vl" target="_blank" rel="external">DNS排查</a></p><h1 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h1><p><a href="https://mubu.com/doc/3LbL5_LZtl" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/118IN3Kull" target="_blank" rel="external">容器 Container</a></p><p><a href="https://mubu.com/doc/1x740eMWul" target="_blank" rel="external">微服务 MicroService</a></p><p><a href="https://mubu.com/doc/1Zy3kQZWul" target="_blank" rel="external">微服务架构和实践</a></p><h1 id="智能运维"><a href="#智能运维" class="headerlink" title="智能运维"></a>智能运维</h1><p><a href="https://mubu.com/doc/2twqA0nftl" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/3129JLY32l" target="_blank" rel="external">DBA</a></p><p><a href="https://mubu.com/doc/3Le0DdRKDl" target="_blank" rel="external">DevOps</a></p><p><a href="https://mubu.com/doc/W4et8A4cl" target="_blank" rel="external">Kubernetes</a></p><h1 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h1><p><a href="https://mubu.com/doc/1AIJs2et2l" target="_blank" rel="external">总</a></p><h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p><a href="https://mubu.com/doc/217IMEnEVl" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/2OSXAHtFtl" target="_blank" rel="external">移动无线测试</a></p><h1 id="移动开发"><a href="#移动开发" class="headerlink" title="移动开发"></a>移动开发</h1><p><a href="https://mubu.com/doc/3pY2E_AQul" target="_blank" rel="external">iOS开发</a></p><p><a href="https://mubu.com/doc/ElEpvcqll" target="_blank" rel="external">Android App 开发</a></p><p><a href="https://mubu.com/doc/18j_EGmuMl" target="_blank" rel="external">Android ROM 开发</a></p><p><a href="https://mubu.com/doc/1HRKOql_kl" target="_blank" rel="external">Android 架构师</a></p><h1 id="智能硬件"><a href="#智能硬件" class="headerlink" title="智能硬件"></a>智能硬件</h1><p><a href="https://mubu.com/doc/2fntYa2rbl" target="_blank" rel="external">嵌入式开发</a></p><h1 id="开发语言"><a href="#开发语言" class="headerlink" title="开发语言"></a>开发语言</h1><p><a href="https://mubu.com/doc/2SsB0ul2Dl" target="_blank" rel="external">总</a></p><p><a href="https://mubu.com/doc/3txI4O-yVl" target="_blank" rel="external">Golang</a></p><p><a href="https://mubu.com/doc/HXhRiFYVl" target="_blank" rel="external">Clojure</a></p><p><a href="https://mubu.com/doc/14OVfjS4ll" target="_blank" rel="external">Python</a></p><p><a href="https://mubu.com/doc/1EkEp411kl" target="_blank" rel="external">Haskell</a></p><p><a href="https://mubu.com/doc/3LkRaVjkVl" target="_blank" rel="external">Node.js</a></p><p><a href="https://mubu.com/doc/ZKqXp6nbl" target="_blank" rel="external">Ruby</a></p><p><a href="https://mubu.com/doc/1tIOaA4_bl" target="_blank" rel="external">Java</a></p><h1 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h1><p><a href="https://mubu.com/doc/1ZH9pL3Dbl" target="_blank" rel="external">Git</a></p><h1 id="技能清单"><a href="#技能清单" class="headerlink" title="技能清单"></a>技能清单</h1><p><a href="https://mubu.com/doc/2q68KkZyul" target="_blank" rel="external">CTO技能</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;p&gt;【阅读时间】百科类&lt;br&gt;【内容简介】原文来自&lt;/p&gt;
-
-      
+      &lt;p&gt;【阅读时间】百科类&lt;br&gt;【内容简介】原文来自StuQ的&lt;a href=&quot;https://github.com/CharlesLiuyx/skill-map&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;开源项目&lt;/a&gt;。核心目的是提纲挈领不同领域的技术栈。高层次来说，技术无止境，终身学习会越来越重要，一份由行内的资深人士总结的技术，工具和概念图谱有很强的指导作用，帮你节省时间。低层次来说，一份知识图谱也同领域聊天中装逼的神器，名词概念是有专业隔离的&lt;/p&gt;
     
     </summary>
     
