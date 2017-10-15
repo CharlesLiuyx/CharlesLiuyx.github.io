@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/103-EigenBasis.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png">
-<meta property="og:updated_time" content="2017-10-15T08:25:55.068Z">
+<meta property="og:updated_time" content="2017-10-15T08:30:37.500Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -588,7 +588,12 @@ $$
 <p>但需要说明的是，并不是所有的矩阵都能对角化，比如<strong>Shear变换</strong>，它的特征向量不够多，不足以张成一个空间</p>
 <h1 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h1><p>线性代数的一切概念，如行列式和特征向量，它们并<strong>不受所选坐标系</strong>的影响，但是这两者是暗含于<strong>空间</strong>中的性质</p>
 <p>这里所说的空间是什么意思呢？</p>
-<h2 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h2><p>从某种意义上来说，<strong>函数实际上也只是另一种向量</strong>，对于函数来说，也有可加性，可比性<br>$$<br>(f+g)(x) = f(x)+g(x)\(2f)(x) = 2f(x)<br>$$<br>你能发现，这两个性质和向量加法与向量乘法是息息相关的。所以我们对于矩阵中所有定义的概念和方法，都可以相对应的应用到函数中。如<strong>函数的线性变换</strong>：函数接受一个函数，并把它变成另一个函数。如微积分中可以找到一个形象的例子——<strong>导数</strong>。关于这一点，你听到的可能是【算子】，而不是【变换】，但他们所要表达的思想是一样的</p>
+<h2 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h2><p>从某种意义上来说，<strong>函数实际上也只是另一种向量</strong>，对于函数来说，也有可加性，可比性<br>
+$$
+(f+g)(x) = f(x)+g(x)\\(2f)(x) = 2f(x)
+$$
+</p>
+<p>你能发现，这两个性质和向量加法与向量乘法是息息相关的。所以我们对于矩阵中所有定义的概念和方法，都可以相对应的应用到函数中。如<strong>函数的线性变换</strong>：函数接受一个函数，并把它变成另一个函数。如微积分中可以找到一个形象的例子——<strong>导数</strong>。关于这一点，你听到的可能是【算子】，而不是【变换】，但他们所要表达的思想是一样的</p>
 <p>以导数为例，既然两者是一个东西，那么我们<strong>可不可以使用矩阵来描述多项式空间呢</strong>？</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png" alt="" width="600px"></div>
 
@@ -632,7 +637,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-15T08:25:55.068Z" itemprop="dateUpdated">2017-10-15 01:25:55</time>
+    Last updated: <time datetime="2017-10-15T08:30:37.500Z" itemprop="dateUpdated">2017-10-15 01:30:37</time>
 </span><br>
 
 
