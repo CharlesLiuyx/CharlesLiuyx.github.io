@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/103-EigenBasis.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png">
-<meta property="og:updated_time" content="2017-10-15T08:30:37.500Z">
+<meta property="og:updated_time" content="2017-10-15T08:32:52.902Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -297,7 +297,7 @@ $$
 <p>本部分继续加深一个概念，为何<strong>向量加法与向量乘法是那么重要，并从始至终贯穿整个线性代数</strong></p>
 <h2 id="线性组合"><a href="#线性组合" class="headerlink" title="线性组合"></a>线性组合</h2><p>这个概念再好理解不过，空间中不共线的两个不为零向量都可以<strong>表示空间中的任意一个向量</strong>，写成符号语言就是：$a \mathbf{\vec v} + b \mathbf{\vec w}$  </p>
 <p>至于为什么被称为“线性”，有一种几何直观：如果你固定其中一个标量，让另一个标量自由变化，所产生的向量终点会描出一条直线</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/2-Linear.gif" alt="" width="500px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/2-Linear.gif" alt="" width="350px"></div>
 
 <h2 id="空间的基-Basis"><a href="#空间的基-Basis" class="headerlink" title="空间的基 Basis"></a>空间的基 Basis</h2><p>对于我们常见的笛卡尔坐标系，有一个最直观一组基：$\{{\hat {\imath}} ,{\hat {\jmath}} \}$  ，即单位向量：${\hat {\imath}}=(1,0)$ 和$\hat {\jmath} =(0,1)$   ，通过 ${\hat {\imath}}$ 和 ${\hat {\jmath}}$的<strong>拉伸与相加</strong>可以组成笛卡尔坐标系中的任意一个向量</p>
 <h3 id="张成的空间-Span"><a href="#张成的空间-Span" class="headerlink" title="张成的空间 Span"></a>张成的空间 Span</h3><p>同理，举一反三的来说，我们可以选择不同的<strong>基向量</strong>，并且这些基向量构成的空间称为：<strong>张成的空间</strong></p>
@@ -346,7 +346,7 @@ $$
 <h2 id="如何用数值描述线性变换"><a href="#如何用数值描述线性变换" class="headerlink" title="如何用数值描述线性变换"></a>如何用数值描述线性变换</h2><p>这里需要使用上一节提到的工具，<strong>空间的基</strong>，也就是单位向量（基向量）：${\hat {\imath}}=(1,0)$ 和$\hat {\jmath} =(0,1)$ </p>
 <p>你只需要关注两个基向量 $\hat {\imath}$ 和 $\hat {\jmath}$ <strong>变换后的位置即可</strong>。例如， $\hat {\imath}$ 变换到 $(3,1)$ 的位置， $\hat {\jmath}$ 变换到$(1,2)$ 的位置，并把 $\hat {\imath}$ <strong>变换后坐标</strong>立起来作为方阵的第一列（绿色表示）， $\hat {\jmath}$ <strong>变换后的坐标</strong>立起来作为方阵的第二列（红色表示）。</p>
 <p>构成了一个<strong>矩阵</strong>：$\begin{bmatrix} \color{green}3&\color{red}1 \\ \color{green}1&\color{red}2 \end{bmatrix}$，假设我们想要知道目标向量$(-1,2)$进行变换后的位置，<strong>那么这个矩阵就是对变换过程最好的描述</strong>，一动图胜千言</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/36-Matrix1.gif" alt="" width="800px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/36-Matrix1.gif" alt="" width="700px"></div>
 
 <blockquote>
 <p>Step1：绿色 $\hat {\imath}$ （x轴）进行移动（变换）<br>Step2：红色 $\hat {\jmath}$ （y轴）进行移动（变换）<br>Step3：目标向量x轴<strong>坐标值</strong>与 $\hat {\imath}$ <strong>变换后向量</strong>进行<strong>向量乘法</strong><br>Step4：目标向量y轴<strong>坐标值</strong>与 $\hat {\jmath}$ <strong>变换后向量</strong>进行<strong>向量乘法</strong><br>Step5：两者进行向量加法，得到<strong>线性变换结果</strong></p>
@@ -377,12 +377,12 @@ $$
 <p>It is my experience that proofs involving matrices can be shortened by 50% if one throws the matrices out -Emil Artin</p>
 </blockquote>
 <h2 id="复合变换"><a href="#复合变换" class="headerlink" title="复合变换"></a>复合变换</h2><p>如果对一个向量先进行一次旋转变换，再进行一次剪切变换（ $\hat {\imath}$ 保持不变第一列为（1,0）， $\hat {\jmath}$ 移动到坐标（1,1）） ，如下图所示</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/41-Composition.png" alt="" width="800px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/41-Composition.png" alt="" width="600px"></div>
 
 <p>那么如果通过旋转矩阵和剪切矩阵来求得这个符合矩阵呢？为了解决这个问题，我们定义这个过程叫做<strong>矩阵的乘法</strong></p>
 <h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>在这里我们发现，矩阵乘法的变换顺序是<strong>从右往左读的（这一个常识很重要，你得明白这一点，有基本概念）</strong>，进一步联系和思考发现，和复合函数的形势，如 $f(g(x))$ 非常类似</p>
 <p>那么如何求解矩阵乘法呢？对线性代数有印象的同学你们现在能马上记起来那个稍显复杂的公式吗？如果有些忘记了，那么，现在，就有一个一辈子也忘不了的直观解释方法：</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/42-Cal.gif" alt="" width="800px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/42-Cal.gif" alt="" width="700px"></div>
 
 <p><code>M1</code>矩阵的第一列表示的是 $\hat {\imath}$ 变换的位置，先把它拿出来，<code>M2</code>矩阵看成对这个变换过的 $\hat {\imath}$ 进行一次变换（按照同样的规则），就如上图所示。同理，针对 $\hat {\jmath}$ 一样的操作过程，就可以得出这个表达式。这里我也不把它写出来了，按照这种思路，并且把上面的动图多看几遍，如果还能忘记，那就要去补一补<strong>基本的对几何图形的反应能</strong>力了（这也是一种能力，包括<strong>三维想象力，心算能力，都和记忆或肌肉一样，不锻炼，是不可能躺着被提高的</strong>）</p>
 <h2 id="计算规则证明"><a href="#计算规则证明" class="headerlink" title="计算规则证明"></a>计算规则证明</h2><p>有了上面的想法，可以自己尝试证明一下，矩阵乘法的交换律是否成立？矩阵乘法的结合律呢？你会发现，原来这么直观，根本不需要动笔算</p>
@@ -588,11 +588,12 @@ $$
 <p>但需要说明的是，并不是所有的矩阵都能对角化，比如<strong>Shear变换</strong>，它的特征向量不够多，不足以张成一个空间</p>
 <h1 id="抽象向量空间"><a href="#抽象向量空间" class="headerlink" title="抽象向量空间"></a>抽象向量空间</h1><p>线性代数的一切概念，如行列式和特征向量，它们并<strong>不受所选坐标系</strong>的影响，但是这两者是暗含于<strong>空间</strong>中的性质</p>
 <p>这里所说的空间是什么意思呢？</p>
-<h2 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h2><p>从某种意义上来说，<strong>函数实际上也只是另一种向量</strong>，对于函数来说，也有可加性，可比性<br>
+<h2 id="函数与向量"><a href="#函数与向量" class="headerlink" title="函数与向量"></a>函数与向量</h2><p>从某种意义上来说，<strong>函数实际上也只是另一种向量</strong>，对于函数来说，也有可加性，可比性</p>
+
 $$
 (f+g)(x) = f(x)+g(x)\\(2f)(x) = 2f(x)
 $$
-</p>
+
 <p>你能发现，这两个性质和向量加法与向量乘法是息息相关的。所以我们对于矩阵中所有定义的概念和方法，都可以相对应的应用到函数中。如<strong>函数的线性变换</strong>：函数接受一个函数，并把它变成另一个函数。如微积分中可以找到一个形象的例子——<strong>导数</strong>。关于这一点，你听到的可能是【算子】，而不是【变换】，但他们所要表达的思想是一样的</p>
 <p>以导数为例，既然两者是一个东西，那么我们<strong>可不可以使用矩阵来描述多项式空间呢</strong>？</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png" alt="" width="600px"></div>
@@ -624,7 +625,7 @@ $$
 <p>有很多<strong>类似向量的不同事物</strong>，只要你处理的对象具有<strong>合理的数乘和相加</strong>的概念，线性代数中所有关于向量，线性变换和其他的概念都应该使用与它。作为数学家，你可能希望你发现的规律不只对一个特殊情况适用，对其他<strong>类似向量的事物</strong>都有<strong>普适性</strong></p>
 <h2 id="向量空间"><a href="#向量空间" class="headerlink" title="向量空间"></a>向量空间</h2><p>这些<strong>类似向量的事物</strong>，比如箭头、一组数、函数等，他们构成的集合被称为：<strong>向量空间</strong></p>
 <p>向量加法和向量数乘的规则 - 被称为<strong>公理</strong>，如下图</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png" alt="" width="600px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png" alt="" width="800px"></div>
 
 <p>它仅仅是一个待查列表，以保证向量加法和数乘的概念确实是你所希望的那样。这些公理是一种媒介，<strong>用来连接数学家和所有想要把这些结论应用于新的向量空间的人</strong></p>
 <p><strong>仅仅根据这些公理描述一个空间</strong>，而不是集中于某一个特定的向量上。简而言之，这就是为什么你阅读的每一本教科书都会根据可加性和成比例来定义线性变换</p>
@@ -637,7 +638,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-15T08:30:37.500Z" itemprop="dateUpdated">2017-10-15 01:30:37</time>
+    Last updated: <time datetime="2017-10-15T08:32:52.902Z" itemprop="dateUpdated">2017-10-15 01:32:52</time>
 </span><br>
 
 
