@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/103-EigenBasis.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png">
-<meta property="og:updated_time" content="2017-10-17T05:59:54.884Z">
+<meta property="og:updated_time" content="2017-10-17T17:25:25.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -380,7 +380,7 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/41-Composition.png" alt="" width="600px"></div>
 
 <p>那么如果通过旋转矩阵和剪切矩阵来求得这个符合矩阵呢？为了解决这个问题，我们定义这个过程叫做<strong>矩阵的乘法</strong></p>
-<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>在这里我们发现，矩阵乘法的变换顺序是<strong>从右往左读的（这一个常识很重要，你得明白这一点，有基本概念）</strong>，进一步联系和思考发现，和复合函数的形势，如 $f(g(x))$ 非常类似</p>
+<h2 id="矩阵乘法"><a href="#矩阵乘法" class="headerlink" title="矩阵乘法"></a>矩阵乘法</h2><p>在这里我们发现，矩阵乘法的变换顺序是<strong>从右往左读的（这一个常识很重要，你得明白这一点，有基本概念）</strong>，进一步联系和思考发现，和复合函数的形式，如 $f(g(x))$ ，是一致的</p>
 <p>那么如何求解矩阵乘法呢？对线性代数有印象的同学你们现在能马上记起来那个稍显复杂的公式吗？如果有些忘记了，那么，现在，就有一个一辈子也忘不了的直观解释方法：</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/42-Cal.gif" alt="" width="700px"></div>
 
@@ -423,7 +423,7 @@ $$
 
 <p>逆矩阵乘原矩阵等于恒等变换，写作 $\mathbf A \mathbf A^{-1} = \mathbf I$ 。$\mathbf I$ 矩阵表示基向量，对角线元素为1，其余为0（矩阵说对角线，默认为左上方到右下方） </p>
 <h2 id="列空间"><a href="#列空间" class="headerlink" title="列空间"></a>列空间</h2><p>其实这只是之前一直在提到过的概念，在线性方程组中，这么描述：所有可能得<strong>输出向量</strong> $\mathbf A \mathbf{\vec v}$ 构成的集合被称为A的<strong>列空间</strong>。这么说不太好理解，可以从名称“列空间”入手，矩阵的列是什么呢？我们之前已经多次强调了，就是 $\hat {\imath}$ 和 $\hat {\jmath}$ <strong>变换后的坐标</strong>。即<strong>矩阵的列</strong>表示基向量变换后的坐标（位置），变换后的向量张成的空间就是<strong>所有可能得输出向量</strong></p>
-<p>简单说即：<strong>列张成的空间 = 列空间，或者说即矩阵的列所张成的空间</strong>，如下图。</p>
+<p>简单说即：<strong>列张成的空间 = 列空间，即矩阵的列所张成的空间</strong>，如下图。</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/63-ColumnSpace.png" alt="" width="400px"></div>
 
 <p>检查一下自己是否完全理解，就思考下面句话为什么这么说：<strong>零向量</strong>一定在列空间中（列空间很好理解）</p>
@@ -638,7 +638,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-17T05:59:54.884Z" itemprop="dateUpdated">2017-10-16 22:59:54</time>
+    Last updated: <time datetime="2017-10-17T17:25:25.697Z" itemprop="dateUpdated">2017-10-17 10:25:25</time>
 </span><br>
 
 
