@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCA.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCAani.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/SVD.svg">
-<meta property="og:updated_time" content="2017-10-17T08:53:44.087Z">
+<meta property="og:updated_time" content="2017-10-17T08:55:44.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是PCA、SVD">
 <meta name="twitter:description" content="【阅读时间】【内容简介】">
@@ -238,7 +238,7 @@ $$
 <p>$\mathbf M$ 是一个<code>m×n</code>阶矩阵（输入为<code>n</code>维向量，输出为<code>m</code>维向量</p>
 <p>$\mathbf U$ 的列组成一套基向量，<code>m×m</code>阶矩阵，为$\mathbf M \mathbf M^*$ 的<strong>特征向量</strong></p>
 <p>$\mathbf \Sigma$ 对角矩阵，对角线上的值称为奇异值，可视为在输入与输出之间进行的标量的“伸缩尺度控制”。为 $\mathbf M \mathbf M^*$ 或 $\mathbf M^* \mathbf M$ 的非零<strong>特征值</strong>的平方根</p>
-<p>$\mathbf V^*^<em>$ 是 $\mathbf V$ 的共轭转置（实数域即 $\mathbf V^T$），<code>n×n</code>阶矩阵，$\mathbf V$ 的列组成一套基向量，为 $\mathbf M^\</em> \mathbf M$ 的<strong>特征向量</strong></p>
+<p>$\mathbf V^*$ 是 $\mathbf V$ 的共轭转置（实数域即 $\mathbf V^T$），<code>n×n</code>阶矩阵，$\mathbf V$ 的列组成一套基向量，为 $\mathbf M^* \mathbf M$ 的<strong>特征向量</strong></p>
 </blockquote>
 <p>这里我们发现这个 $\mathbf U$ 还有 $\mathbf V$ 都是<strong>方阵</strong>，恰好满足之前的需求</p>
 <p>且有 $\mathbf U \mathbf U^T = \mathbf I_n$ 同时 $\mathbf V \mathbf V^T = \mathbf I_m$ ，所以 $\mathbf U$ 和 $\mathbf V$ 是<strong>正交矩阵</strong>，而我们知道，正交矩阵对应的变换，就是<strong>旋转变换</strong></p>
@@ -251,7 +251,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-17T08:53:44.087Z" itemprop="dateUpdated">2017-10-17 01:53:44</time>
+    Last updated: <time datetime="2017-10-17T08:55:44.204Z" itemprop="dateUpdated">2017-10-17 01:55:44</time>
 </span><br>
 
 
