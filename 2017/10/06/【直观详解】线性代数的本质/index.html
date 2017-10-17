@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/103-EigenBasis.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png">
-<meta property="og:updated_time" content="2017-10-17T19:06:27.441Z">
+<meta property="og:updated_time" content="2017-10-17T19:08:02.329Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -556,7 +556,7 @@ $$
 </ul>
 <p>这给了很多域变换的应用一个直观的理解，把这简单的几行记录清晰，</p>
 <h1 id="特征向量与特征值"><a href="#特征向量与特征值" class="headerlink" title="特征向量与特征值"></a>特征向量与特征值</h1><p>在这一部分中，你会发现，前面提到的所有几何直观：线性变换，行列式，线性方程组，基变换会穿插其中。不仅给了你一个机会检验之前的理解是否深刻（在这一节，会添加一些超链接，方便你进行复习和定位），更多的，现在，<strong>是拼装起来感受成就感的时刻了！</strong></p>
-<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>首先，我们假设坐标系的一个基变换（对  $\hat {\imath}$ 和 $\hat {\jmath}$ <a href="#张成的空间 Span">张成的空间</a>做一个<a href="#矩阵与线性变换">线性变换</a> ），即 $\hat {\imath}’ = [\begin{smallmatrix}  3\ 0 \end{smallmatrix}]  $ 和 $\hat {\jmath}’ = [\begin{smallmatrix} 1 \ 2 \end{smallmatrix}]$ 。在变换的过程中，空间内大部分的向量都离开了它所张成的空间（即这个向量原点到终点构成的直线） ，还有一部分向量留在了它所张成的空间，<strong>矩阵对它仅仅是拉伸或者压缩而已</strong>，如同一个<strong>标量</strong>。</p>
+<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p>首先，我们假设坐标系的一个基变换（对  $\hat {\imath}$ 和 $\hat {\jmath}$ <a href="#张成的空间 Span">张成的空间</a>做一个<a href="#矩阵与线性变换">线性变换</a> ），即 $\hat {\imath}’ = [\begin{smallmatrix}  3\\ 0 \end{smallmatrix}]  $ 和 $\hat {\jmath}’ = [\begin{smallmatrix} 1 \\ 2 \end{smallmatrix}]$ 。在变换的过程中，空间内大部分的向量都离开了它所张成的空间（即这个向量原点到终点构成的直线） ，还有一部分向量留在了它所张成的空间，<strong>矩阵对它仅仅是拉伸或者压缩而已</strong>，如同一个<strong>标量</strong>。</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/101-LeaveStay.gif" alt="" width="600px"></div>
 
 <p>如上图，是给出例子中，<strong>x轴</strong>所有向量被伸长为原来的<strong>3倍</strong>，一个明显留在张成空间内的例子。另一个比较隐藏的，是$(-1,1)$这个向量，其中的任意一个向量被伸长为原来的<strong>2倍</strong></p>
@@ -638,7 +638,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-17T19:06:27.441Z" itemprop="dateUpdated">2017-10-17 12:06:27</time>
+    Last updated: <time datetime="2017-10-17T19:08:02.329Z" itemprop="dateUpdated">2017-10-17 12:08:02</time>
 </span><br>
 
 
