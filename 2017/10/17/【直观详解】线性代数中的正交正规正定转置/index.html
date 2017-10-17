@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】线性代数中的转置正交正规正定 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Linear Algebra">
+    <meta name="description" content="【阅读时间】【内容简介】">
+<meta name="keywords" content="Theory,Linear Algebra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】线性代数中的转置正交正规正定">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】【内容简介】">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-10-17T18:25:53.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
+<meta name="twitter:description" content="【阅读时间】【内容简介】">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <script>window.lazyScripts=[]</script>
+
+        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】线性代数中的转置正交正规正定</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】线性代数中的转置正交正规正定</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-17T18:01:27.000Z" itemprop="datePublished" class="page-time">
+  2017-10-17
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-【直观详解】线性代数中的正交正规正定转置"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】线性代数中的转置正交正规正定</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-17 11:01:27" datetime="2017-10-17T18:01:27.000Z"  itemprop="datePublished">2017-10-17</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】<br>【内容简介】<br><a id="more"></a></p>
+<p>在之前的<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>的笔记中，详细讨论了<strong>特征值与特征向量的几何直观意义</strong></p>
+<p>起初，研究线性代数，也是因为深入了解矩阵（变换）对机器学习中的很多<strong>优美公式的推导和理解</strong>有帮助。但在上篇笔记中，有几个线性代数中的概念没有涉及，且这些概念在做矩阵分解时会被用到。根据上一篇笔记中的直观理解（矩阵 = 变换）在这里做一个整理和记录</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-10-17T18:25:53.294Z" itemprop="dateUpdated">2017-10-17 11:25:53</time>
+</span><br>
+
+
+        
+    </div>
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linear-Algebra/">Linear Algebra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/13/程序员技能图谱/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">程序员技能图谱</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
+            <span>遥行 Go Further &copy; 2017</span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADMklEQVR42u3a0W7qQAwE0P7/T3Ol+9qWzthBIsvJU0VIyFmkDrb36ys+Hv+P5698f/23q74f38/O3n/xgY2NjX0T9uPp8Rsm4bULNOMl9/nhWmxsbOzj2PntkquS6ErOzt6fBDA2Njb2Z7LbciUpMPJS5zkeGxsbG/vaAEvucFVhg42NjY2dN5XamEmaU/uIenkvDRsbG/vt2e2g953/fuF8GxsbG/st2Y/yaBciD7ZZ/DxGBzY2NvZJ7LwkmEVFPlSYhdNs8ICNjY19Hvu3MEhaNpv4aZdgVl/Ul2FjY2PfnN1GWhsz+QO144rhkmFjY2PfnD1rJ23CL28wbWL1j6uwsbGxD2Jf8FP+Zex8PLB6HRsbG/sg9uwXe9von8VYi2nvjI2NjX1fdr4RJ/ngZHPP82XK20OboMXGxsY+iT27ad6y2Y8Nno8B2o2hUe5hY2Nj35w9e9C2hNiPBzbDYGxsbOzz2JtWfvKRm6vy5c5LF2xsbOzz2O22mCSKZmPaq6KuyG1sbGzsm7NnbZ3ZtLTeOjOCRY0nbGxs7OPY7WMlD52XDftRbrLc2NjY2Key89b/PuTy2mhTfrRRio2NjX13dhIPm0DK39MWPO2I99emEjY2NvbN2ZuYmYVf2x7KB8BJ4YGNjY19Hnv2WPsA2xQ5m6IIGxsb+zx2HhKvaP23HZ48RFfjAWxsbOxbsfOGzqa02Axr23Il+jqxsbGxj2Nvxr3Fj/7FVpv8E6Oz2NjY2B/Gvnbz5awN1A6D/ziLjY2NfTR7v0cxD8K8CMlLlGIqgo2NjX0Euw2t/BE344fZdpy2yMHGxsY+g92C88BLhgftMCAfY3zNvgFsbGzs27I321/yge5s6Dsrjf64MzY2NvZx7NlAd1+itAPavKkUjQewsbGxj2DX//rLgW7erG8XNy9F6kIFGxsb+4bsdhzbPkqycLNga4uc4hvDxsbGviE7bx7lbf1kYLBpM7Xj3h8CDBsbG/vD2FeNBNomVB6lRbBhY2Njfzw7KUva7TuzEG3viY2NjX0qOy8ermpU5Yu4HzmvxgPY2NjYb8+eNWjace9VcdW2sS6bb2NjY2O/I/sfntNPAvudd/AAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.6.7"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.6.7" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
