@@ -69,7 +69,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/103-EigenBasis.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/111-Polynomial.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/112-Rules.png">
-<meta property="og:updated_time" content="2017-10-17T19:17:43.327Z">
+<meta property="og:updated_time" content="2017-10-18T19:22:03.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数的本质">
 <meta name="twitter:description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
@@ -536,14 +536,14 @@ $$
 <p>数学是一门赋予不同事物相同名称的艺术 ——昂利·庞加莱</p>
 <p>Mathematics is the art of givinh the same name to different things -Henri Poincare</p>
 </blockquote>
-<h2 id="坐标系与基向量"><a href="#坐标系与基向量" class="headerlink" title="坐标系与基向量"></a>坐标系与基向量</h2><p>坐标系指：发生在向量与一组数之间的任意转化，如果假设有一个向量，使用 $\hat {\imath}$ 和 $\hat {\jmath}$ 来描述是 $[\begin{smallmatrix} 3 \ 2 \end{smallmatrix}]$ ，我们把这种描述称为：<strong>我们的语言</strong>。如果有另一组基向量，$\hat {\imath}’ = [\begin{smallmatrix} 2 \ 1 \end{smallmatrix}]  $ 和 $\hat {\jmath}’ = [\begin{smallmatrix} -1 \ 1 \end{smallmatrix}]$ （写成<strong>列向量的形式</strong>是为了形式上的统一）来描述同样一个向量变成 $[\begin{smallmatrix} \frac{5}{3} \ \frac{1}{3} \end{smallmatrix}]$ ，我们把这种语言记为：<strong>詹妮弗的语言</strong></p>
-<h2 id="基变换-1"><a href="#基变换-1" class="headerlink" title="基变换"></a>基变换</h2><p>我们在之前的解释中已经说明了，在不同的【语言】之间的转化使用<strong>矩阵向量乘法</strong>，在上面的例子中，转移矩阵是 $\mathbf T = [\begin{smallmatrix} 2 &amp; -1 \ 1 &amp; 1 \end{smallmatrix}]$ ，矩阵的列表示用<strong>我们的语言</strong>表达<strong>詹妮弗的基向量</strong>，称为<strong>基变换</strong>。</p>
+<h2 id="坐标系与基向量"><a href="#坐标系与基向量" class="headerlink" title="坐标系与基向量"></a>坐标系与基向量</h2><p>坐标系指：发生在向量与一组数之间的任意转化，如果假设有一个向量，使用 $\hat {\imath}$ 和 $\hat {\jmath}$ 来描述是 $[\begin{smallmatrix} 3 \\ 2 \end{smallmatrix}]$ ，我们把这种描述称为：<strong>我们的语言</strong>。如果有另一组基向量，$\hat {\imath}’ = [\begin{smallmatrix} 2 \\ 1 \end{smallmatrix}]  $ 和 $\hat {\jmath}’ = [\begin{smallmatrix} -1 \\ 1 \end{smallmatrix}]$ （写成<strong>列向量的形式</strong>是为了形式上的统一）来描述同样一个向量变成 $[\begin{smallmatrix} \frac{5}{3} \\ \frac{1}{3} \end{smallmatrix}]$ ，我们把这种语言记为：<strong>詹妮弗的语言</strong></p>
+<h2 id="基变换-1"><a href="#基变换-1" class="headerlink" title="基变换"></a>基变换</h2><p>我们在之前的解释中已经说明了，在不同的【语言】之间的转化使用<strong>矩阵向量乘法</strong>，在上面的例子中，转移矩阵是 $\mathbf T = [\begin{smallmatrix} 2 &amp; -1 \\ 1 &amp; 1 \end{smallmatrix}]$ ，矩阵的列表示用<strong>我们的语言</strong>表达<strong>詹妮弗的基向量</strong>，称为<strong>基变换</strong>。</p>
 <p>反过来，就是求转移矩阵的逆 $\mathbf T^{-1}$ ，称为<strong>基变换矩阵的逆</strong>，作用是可以表示从詹妮弗的基向量转换回我们的语言需要做的变换。 </p>
 <h2 id="如何转化一个矩阵"><a href="#如何转化一个矩阵" class="headerlink" title="如何转化一个矩阵"></a>如何转化一个矩阵</h2><p>接下来使用一个具体的例子：<strong>变换左旋转90°</strong>，在我们的语言中，和詹妮弗的语言分别是如何互相转换的来加深印象</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/91-Trans.gif" alt="" width="600px"></div>
 
 <ul>
-<li>左乘<strong>基变换矩阵（矩阵的列代表的是用我们的语言描述詹妮弗语言的基向量）</strong>：需要被转换的詹妮弗的语言：$[\begin{smallmatrix} -1 \ 2 \end{smallmatrix}]$ ➜ 使用<strong>我们的语言描述</strong>来描述同一个向量</li>
+<li>左乘<strong>基变换矩阵（矩阵的列代表的是用我们的语言描述詹妮弗语言的基向量）</strong>：需要被转换的詹妮弗的语言：$[\begin{smallmatrix} -1 \\ 2 \end{smallmatrix}]$ ➜ 使用<strong>我们的语言描述</strong>来描述同一个向量</li>
 <li>左乘<strong>线性变换矩阵（表示的变化为：左旋转90°）</strong>：➜变换的后的向量（还是以我们的语言来描述）</li>
 <li>左乘<strong>基变换矩阵的逆</strong>：➜变换后的向量（用<strong>詹妮弗的语言</strong>来描述）</li>
 </ul>
@@ -638,7 +638,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-17T19:17:43.327Z" itemprop="dateUpdated">2017-10-17 12:17:43</time>
+    Last updated: <time datetime="2017-10-18T19:22:03.422Z" itemprop="dateUpdated">2017-10-18 12:22:03</time>
 </span><br>
 
 
