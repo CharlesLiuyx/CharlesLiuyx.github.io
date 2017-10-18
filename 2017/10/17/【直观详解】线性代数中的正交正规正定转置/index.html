@@ -25,18 +25,18 @@
     
     
     <meta name="keywords" content="Theory,Linear Algebra">
-    <meta name="description" content="【阅读时间】【内容简介】">
+    <meta name="description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
 <meta name="keywords" content="Theory,Linear Algebra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】线性代数中的转置正交正规正定">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】【内容简介】">
+<meta property="og:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2017-10-17T18:25:53.294Z">
+<meta property="og:updated_time" content="2017-10-18T08:13:22.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
-<meta name="twitter:description" content="【阅读时间】【内容简介】">
+<meta name="twitter:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
@@ -167,6 +167,13 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正交矩阵"><span class="post-toc-number">1.</span> <span class="post-toc-text">正交矩阵</span></a></li></ol>
+        </nav>
+    </aside>
+    
 <article id="post-【直观详解】线性代数中的正交正规正定转置"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -190,9 +197,11 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】<br>【内容简介】<br><a id="more"></a></p>
+            <p>【阅读时间】<br>【内容简介】从<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释<br><a id="more"></a></p>
 <p>在之前的<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>的笔记中，详细讨论了<strong>特征值与特征向量的几何直观意义</strong></p>
-<p>起初，研究线性代数，也是因为深入了解矩阵（变换）对机器学习中的很多<strong>优美公式的推导和理解</strong>有帮助。但在上篇笔记中，有几个线性代数中的概念没有涉及，且这些概念在做矩阵分解时会被用到。根据上一篇笔记中的直观理解（矩阵 = 变换）在这里做一个整理和记录</p>
+<p>起初，研究线性代数，也是因为深入了解矩阵（变换）对机器学习中的很多<strong>优美公式的推导和理解</strong>有帮助。上篇笔记中，3B1B团队的讲解内容中没有涉及几个线性代数中的概念，且这些概念在做矩阵分解时会被用到。以<strong>上一篇笔记中的直观理解为基础</strong>（矩阵 = 变换）在这里做一个整理和记录</p>
+<h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>可能很多人已经有一个概念：正交 = 垂直。但我们知道，正交的一定垂直，垂直的不一定叫做正交（比如空间中两个<strong>不相交直线垂直</strong>）</p>
+<p>那什么是正交矩阵呢？</p>
 
         </div>
 
@@ -200,7 +209,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-17T18:25:53.294Z" itemprop="dateUpdated">2017-10-17 11:25:53</time>
+    Last updated: <time datetime="2017-10-18T08:13:22.868Z" itemprop="dateUpdated">2017-10-18 01:13:22</time>
 </span><br>
 
 
@@ -243,7 +252,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -404,7 +413,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/&title=《【直观详解】线性代数中的转置正交正规正定》 — Go Further&source=【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
