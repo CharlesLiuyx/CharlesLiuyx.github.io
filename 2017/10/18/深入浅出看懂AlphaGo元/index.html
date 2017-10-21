@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T22:07:08.841Z">
+<meta property="og:updated_time" content="2017-10-21T22:10:05.812Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -400,7 +400,11 @@ $$
 <p>$N(\vec s,\vec a)$ 表示<strong>MCST的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong></p>
 </blockquote>
 <p>多线程执行多次模拟，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，再下现在的这一步棋</p>
-<h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t<l$ 步时，根据**搜索树的统计概率落子**="" $$="" \vec="" a_t="\operatorname*{argmax}_{\vec" a}(q(\vec="" s_t,="" a)="" +="" u="" (\vec="" a))="" <="" p="">
+<h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t$ 步时，根据<strong>搜索树的统计概率落子</strong><br>
+$$
+\vec a_t = \operatorname*{argmax}_{\vec a}(Q(\vec s_t, \vec a) + U (\vec s_t, \vec a))
+$$
+</p>
 <p>其中计算 $U (\vec s_t, \vec a)$ 使用PUCT算法的变体</p>
 
 $$
@@ -455,14 +459,14 @@ $$
 <li>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</li>
 </ul>
 <p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
-</l$></p>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T22:07:08.841Z" itemprop="dateUpdated">2017-10-21 15:07:08</time>
+    Last updated: <time datetime="2017-10-21T22:10:05.812Z" itemprop="dateUpdated">2017-10-21 15:10:05</time>
 </span><br>
 
 
