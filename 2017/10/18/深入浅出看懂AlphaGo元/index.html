@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T09:17:13.629Z">
+<meta property="og:updated_time" content="2017-10-21T09:22:24.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -212,12 +212,12 @@
 <p>AlphaGo Zero，从本质上来说完全不同于打败樊麾，和李世石的版本</p>
 <ul>
 <li>算法上，<strong>自对弈强化学习，完全从随机落子开始</strong>，不用人类棋谱。之前使用了大量棋谱学习人类的下棋风格）</li>
-<li>数据结构上，只有<strong>黑子白字两种状态</strong>。之前包含这个点的气等相关棋盘信息）</li>
+<li>数据结构上，只有<strong>黑子白子两种状态</strong>。之前包含这个点的气等相关棋盘信息</li>
 <li>模型上，使用<strong>一个</strong>神经网络。之前使用了<strong>策略网络（基于深度卷积神经网）</strong>学习人类的下棋风格，<strong>局面网络</strong>（基于左右互搏生成的棋谱，为什么这里需要使用左右互搏是因为现有的数据集不够，没法判断落子胜率这一更难的问题）来计算在<strong>当前局面下每一个不同落子的胜率</strong></li>
 <li>策略上，基于训练好的这个神经网，进行简单的<strong>树形搜索</strong>。之前会使用蒙特卡洛算法实时演算并且<strong>加权得出落子的位置</strong></li>
 </ul>
 <h2 id="AlphaGo-Zero-的强化学习"><a href="#AlphaGo-Zero-的强化学习" class="headerlink" title="AlphaGo Zero 的强化学习"></a>AlphaGo Zero 的强化学习</h2><p>在开始之前，必须再过一遍如何符号化的定义一个围棋问题</p>
-<p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>3行1列</code>位置落<strong>白子</strong>，黑白交替进行</p>
+<p>围棋问题，棋盘 <code>19×19=361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>3行1列</code>位置落<strong>白子</strong>，黑白交替进行</p>
 <p>有以上定义，我们就把围棋问题转化为。</p>
 <blockquote>
 <p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
@@ -445,7 +445,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T09:17:13.629Z" itemprop="dateUpdated">2017-10-21 02:17:13</time>
+    Last updated: <time datetime="2017-10-21T09:22:24.508Z" itemprop="dateUpdated">2017-10-21 02:22:24</time>
 </span><br>
 
 
