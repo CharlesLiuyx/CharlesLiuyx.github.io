@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T10:46:03.309Z">
+<meta property="og:updated_time" content="2017-10-21T10:55:49.982Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -284,9 +284,9 @@ $$
 <li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
 <li>每一个<strong>子迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
 <li>第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，<strong>根据落子策略 $\boldsymbol \pi_t$ 中【采样】来进行落子</strong></li>
-<li>在 $T$ 步棋局结束：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$</li>
-<li>每 $t$ 时刻每一步中的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
-<li>同时，使用上一步 $\vec s$ 迭代的数据 $(\vec s, \boldsymbol \pi, z)$ 作为样本来训练网络参数 $\theta_i$，<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
+<li>在 $T$ 步棋局结束：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
+<li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
+<li>同时，使用上一步 $\vec s$ 迭代时自对弈过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 作为样本来训练网络参数 $\theta_i$，<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
 </ul>
 
 $$
@@ -450,7 +450,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T10:46:03.309Z" itemprop="dateUpdated">2017-10-21 03:46:03</time>
+    Last updated: <time datetime="2017-10-21T10:55:49.982Z" itemprop="dateUpdated">2017-10-21 03:55:49</time>
 </span><br>
 
 
