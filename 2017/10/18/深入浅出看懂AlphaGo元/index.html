@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T09:55:52.185Z">
+<meta property="og:updated_time" content="2017-10-21T10:46:03.309Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -229,13 +229,13 @@
 </blockquote>
 <h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>新的网络中，使用了一个参数为 $\theta$ （需要通过训练来不断调整） 的<strong>深度神经网络</strong>$f_\theta$ ，<a href="">具体结构细节</a></p>
 <ul>
-<li>【网络的输入】<code>19×19×17</code>：现在棋盘状态的 $\vec s$ 以及<strong>7步历史落子记录</strong>（即下成这个局面的前8步，类似于<strong>棋谱</strong>），最后一个位置记录黑白，0白1黑</li>
-<li>【网络的输出】两个值：落子的概率（<code>362</code>个输出值）和一个数值（[-1,1]之间）  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$ <ul>
-<li>【落子的概率 $\mathbf p$】 向量表示下一步在每一个可能位置落子的<strong>未处理概率</strong>（包括不下），即  $p_a = Pr(\vec a|\mathbf {\vec s})$  （公式表示在当前输入的条件下落子行动每个点的概率）</li>
-<li>【数值 $v$】 是一个数，它的值表示现在准备下当前下这一步棋的选手<strong>在局面 $\vec s$ 下的胜率</strong>（我这里强调局面是因为网络的输入其实包含棋谱，即历史对战过程）</li>
+<li>【网络输入】<code>19×19×17</code>0/1值：现在棋盘状态的 $\vec s$ 以及<strong>7步历史落子记录</strong>。最后一个位置记录黑白，0白1黑</li>
+<li>【网络输出】两个输出：<strong>落子概率（<code>362</code>个输出值）</strong>和<strong>一个评估值（[-1,1]之间）</strong>记为  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$ <ul>
+<li>【落子概率 $\mathbf p$】 向量表示下一步在每一个可能位置<strong>落子的概率，又称先验概率</strong> （加上不下的选择），即  $p_a = Pr(\vec a|\mathbf {\vec s})$  （公式表示在当前输入条件下在每个可能点落子的概率）</li>
+<li>【评估值 $v$】 表示现在准备下当前这步棋的选手<strong>在局面 $\vec s$ 下的胜率</strong>（我这里强调局面是因为网络的输入其实包含历史对战过程）</li>
 </ul>
 </li>
-<li>【网络结构】基于Residual Block（大名鼎鼎ImageNet冠军ResNet）的卷积网络，有20个Residual Block，使用批量归一化Batch normalisation与非线性整流器rectifier non-linearities</li>
+<li>【网络结构】基于<strong>Residual Network</strong>（大名鼎鼎ImageNet冠军ResNet）的卷积网络，包含20或40个Residual Block，加入<strong>批量归一化</strong>Batch normalisation与<strong>非线性整流器</strong>rectifier non-linearities模块</li>
 </ul>
 <h3 id="改进的强化学习算法"><a href="#改进的强化学习算法" class="headerlink" title="改进的强化学习算法"></a>改进的强化学习算法</h3><p>自对弈强化学习算法（<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="external">什么是强化学习</a>，非常建议先看看强化学习的一些基本思想和步骤，有利于理解下面策略、价值的概念，推荐<a href="http://www.cnblogs.com/steven-yang/p/6481772.html" target="_blank" rel="external">系列笔记</a>）</p>
 <p>在每一个状态  $\vec s$ ，利用<strong>深度神经网络 $f_\theta$ 预测作为参照</strong>执行MCTS搜索（<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">蒙特卡洛搜索树算法</a>），<strong>MCTS搜索的输出是每一个状态下在不同位置对应的概率 $\boldsymbol \pi$ （注意这里是一个向量，里面的值是MCTS搜索得出的概率值）</strong>，一种策略，从人类的眼光来看，就是看到现在在局面，选择下在每个不同的落子的点的概率。如下面公式的例子，下在$(1,3)$位置的概率是<code>0.92</code>，有很高概率选这个点作为<strong>落子点</strong><br>
@@ -264,24 +264,27 @@ $$
 <p>【b图】表示更新神经网络参数过程。使用原始落子状态 $\vec s_t$ 作为输入，得到此棋盘状态 $\vec s_t$ 下<strong>下一步所有可能落子位置的概率分布</strong> $\mathbf p_t$ 和<strong>当前状态  $\vec s_t$ 下选手的赢棋评估值</strong> $v_t$ </p>
 <p><strong>以最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ （详见公式1）</strong> ，更新参数 $\theta$ ，下一轮迭代中使用新神经网络进行自我对弈</p>
 </blockquote>
-<p>我们知道，最初的蒙特卡洛树搜索算法是使用随机落子来进行模拟，在AlphaGo1.0中<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#利用强化学习增强棋力">使用<strong>局面函数</strong>辅助<strong>策略函数</strong>作为落子的参考</a>进行模拟。在<strong>最新的模型中，蒙特卡洛搜索树使用神经网络 $f_\theta$ 的输出来作为落子的参考</strong>（详见下图Figure 2）</p>
-<p>每一条边 $(\vec s,\vec a)$ （每个状态下的落子选择）保存的是三个值：先验概率 $P(\vec s,\vec a)$，访问次数 $N(\vec s,\vec a)$，行动价值 $Q(\vec s,\vec a)$。每一次模拟落子最大化<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060?fr=aladdin" target="_blank" rel="external">上限置信区间</a> $Q(\vec s,\vec a) + U(\vec s,\vec a)$ 其中 $U(\vec s,\vec a) \propto \frac{P(\vec s,\vec a)}{1 + N(\vec s,\vec a)}$ 直到遇到叶子节点 $s’$，叶子节点（终局）只会被产生一次用于产生<strong>先验概率和评估值</strong>，符号表示即 $f_\theta(s’) = (P(s’,\cdot), V(s’))$ ，每次更新 $Q(\vec s,\vec a)$ 的方式与AlphaGo1.0类似，见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">链接</a></p>
+<p>我们知道，最初的蒙特卡洛树搜索算法是<strong>使用随机</strong>来进行模拟，在AlphaGo1.0中<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#利用强化学习增强棋力">使用<strong>局面函数</strong>辅助<strong>策略函数</strong>作为落子的参考</a>进行模拟。在<strong>最新的模型中，蒙特卡洛搜索树使用神经网络 $f_\theta$ 的输出来作为落子的参考</strong>（详见下图Figure 2）</p>
+<p>每一条边 $(\vec s,\vec a)$ （每个状态下的落子选择）保存的是三个值：先验概率 $P(\vec s,\vec a)$，访问次数 $N(\vec s,\vec a)$，行动价值 $Q(\vec s,\vec a)$。</p>
+<p>每次<strong>模拟</strong>（模拟一盘棋，直到分出胜负）从根状态开始，每次落子最大化<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060?fr=aladdin" target="_blank" rel="external">上限置信区间</a> $Q(\vec s,\vec a) + U(\vec s,\vec a)$ 其中 $U(\vec s,\vec a) \propto \frac{P(\vec s,\vec a)}{1 + N(\vec s,\vec a)}$ 直到遇到叶子节点 $s’$</p>
+<p>叶子节点（终局）只会被产生一次用于产生<strong>先验概率和评估值</strong>，符号表示即 $f_\theta(s’) = (P(s’,\cdot), V(s’))$ </p>
+<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac{1}{N(\vec s, \vec a) \Sigma_{\vec s'|\vec s, \vec a \impies \vec s'}V(\vec s')}$ ，$\vec a \impies \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png" alt="Figure 2" width="800px"></div>
 
 <blockquote>
-<p>【a图】表示上一段中提到的模拟方式，选 $Q+U$ 更大的作为落子点，这个数值随着每次遍历会增加（赢了就会加分）</p>
-<p>【b图】表示已经扩展到了叶子节点</p>
-<p>【c图】表示行动分数 $Q$ 等于评估值 $V$ 子树落子的平均值</p>
-<p>【d图】表示当搜索完成，返回这个状态的下在每一个位置的概率 $\boldsymbol \pi$，除以 $N^{1/\tau}$（$N$为访问次数，$\tau$ 为控温常数）</p>
+<p>【a图】表示模拟过程中遍历时选 $Q+U$ 更大的作为落子点</p>
+<p>【b图】将叶子节点 $s_L$ 扩展，<strong>使用神经网络对状态 $s_L$ 进行评估</strong>，即 $f_\theta(s_L) = (P(s_L,\cdot), V(s_L))$ ，<strong>其中 $\mathbf P$ 的值存储在叶子节点扩展的边中</strong></p>
+<p>【c图】更新<strong>行动价值</strong> $Q$ 等于此时根状态 $\vec s$ 所有子树评估值 $V$ 的平均值</p>
+<p>【d图】当MCTS搜索完成后，<strong>返回这个状态 $\vec s$ 下每一个位置的落子概率</strong> $\boldsymbol \pi$，成比例于 $N^{1/\tau}$（$N$为访问次数，$\tau$ 为控温常数）</p>
 <p>更加具体的详解见：<a href="#搜索算法">搜索算法</a></p>
 </blockquote>
-<p>MCTS可以看成一个自对弈算法根据神经网络的参数 $\theta$ 和根的状态 $\vec s$ 去计算<strong>每一个状态下落子位置</strong></p>
-<h3 id="训练步骤总结"><a href="#训练步骤总结" class="headerlink" title="训练步骤总结"></a>训练步骤总结</h3><p>使用MCTS下每一步棋，进行自对弈，使用<strong>强化学习算法（必须了解通用策略迭代的基本方法）</strong>训练神经网络</p>
+<p>MCTS可以看成一个自对弈算法，根据神经网络的参数 $\theta$ 和根的状态 $\vec s$ 去计算<strong>每个状态下推荐落子位置的概率</strong>，记为 $\boldsymbol \pi  = \alpha_\theta(\vec s)$ ，幂指数<strong>正比于</strong>访问次数 $\pi_{\vec a} \propto N(\vec s, \vec a)^{1/\tau}$，$\tau$ 是温度常数</p>
+<h3 id="训练步骤总结"><a href="#训练步骤总结" class="headerlink" title="训练步骤总结"></a>训练步骤总结</h3><p>使用MCTS下每一步棋，进行自对弈，<strong>强化学习算法（必须了解通用策略迭代的基本方法）的迭代过程中</strong>训练神经网络</p>
 <ul>
-<li>神经网络参数随机初始化 $\theta_0$</li>
-<li>每一次迭代过程 $i \geqslant 1$ ，都产生<strong>一盘自对弈过程</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
-<li>在第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用前一次迭代的神经网络 $f_{\theta_{i-1}}$，<strong>根据选取策略概率矩阵 $\boldsymbol \pi_t$ 的概率来进行落子</strong></li>
-<li>在 $T$ 步停止条件为：双方选择跳过；超过限制下限；棋盘无地落子。棋局停止后，得到最终奖励Reward $r_T \in {-1,+1}$</li>
+<li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
+<li>每一个<strong>子迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
+<li>第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，<strong>根据落子策略 $\boldsymbol \pi_t$ 中【采样】来进行落子</strong></li>
+<li>在 $T$ 步棋局结束：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$</li>
 <li>每 $t$ 时刻每一步中的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
 <li>同时，使用上一步 $\vec s$ 迭代的数据 $(\vec s, \boldsymbol \pi, z)$ 作为样本来训练网络参数 $\theta_i$，<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
 </ul>
@@ -291,7 +294,7 @@ l = (z - v)^2 - \boldsymbol {\pi}^T \log(\mathbf p) + c \Vert \theta \Vert ^2 \t
 $$
 
 <blockquote>
-<p>其中$c$是L2正则化的系数</p>
+<p>其中$c$是<code>L2</code>正则化的系数</p>
 </blockquote>
 <h2 id="AlphaGo-Zero训练过程中的经验"><a href="#AlphaGo-Zero训练过程中的经验" class="headerlink" title="AlphaGo Zero训练过程中的经验"></a>AlphaGo Zero训练过程中的经验</h2><p>最开始，使用完全的随机落子<strong>训练持续了大概3天</strong>。训练过程中，产生490万场自对弈，每次MCTS大约1600次模拟，每一步使用的时间0.4秒。使用了2048个位置的70万个Mini-Batches来进行训练。</p>
 <p>训练结果如下，图3</p>
@@ -387,9 +390,9 @@ $$
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）。</p>
 <p>在前30步，温度 $\tau = 1$。在之后的棋局中，温度设为无穷小。并在先验概率中加入狄利克雷噪声。这个噪声保证所有的落子可能都会被尝试</p>
 <h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
-<p>每一个搜索树的中的节点 $\vec s$ （<strong>为了方便，后面简写 $\vec s$ 和 $\vec a$，不使用向量标识</strong>）包含一条边 $(s,a)$ 对应所有可能的落子 $a \in \mathcal A(s)$ ，每一条边存储一个数据集<br>$$<br>{N(s,a), W(s,a), Q(s,a), P(s,a)}<br>$$</p>
+<p>每一个搜索树的中的节点 $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有可能的落子 $\vec a \in \mathcal A(\vec s)$ ，每一条边存储一个数据集<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
 <blockquote>
-<p>$N(s,a)$ 表示<strong>MCST的访问次数</strong><br>$W(s,a)$ 表示<strong>行动价值的总和</strong><br>$Q(s,a)$ 表示<strong>行动价值的均值</strong><br>$P(s,a)$ 表示选择这条边的<strong>先验概率</strong></p>
+<p>$N(\vec s,\vec a)$ 表示<strong>MCST的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong></p>
 </blockquote>
 <p>多线程执行多次模拟，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，再下现在的这一步棋</p>
 <h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t<l$ 步时，根据**搜索树的统计概率落子**="" $$="" \vec="" a_t="\operatorname*{argmax}_{\vec" a}(q(\vec="" s_t,="" a)="" +="" u="" (\vec="" a))="" <="" p="">
@@ -447,7 +450,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T09:55:52.185Z" itemprop="dateUpdated">2017-10-21 02:55:52</time>
+    Last updated: <time datetime="2017-10-21T10:46:03.309Z" itemprop="dateUpdated">2017-10-21 03:46:03</time>
 </span><br>
 
 
