@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T10:55:49.982Z">
+<meta property="og:updated_time" content="2017-10-21T17:29:56.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -286,7 +286,8 @@ $$
 <li>第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，<strong>根据落子策略 $\boldsymbol \pi_t$ 中【采样】来进行落子</strong></li>
 <li>在 $T$ 步棋局结束：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
 <li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
-<li>同时，使用上一步 $\vec s$ 迭代时自对弈过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 作为样本来训练网络参数 $\theta_i$，<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
+<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 中<strong>采样</strong>来训练网络参数 $\theta_i$，</li>
+<li>神经网络 $f_{\theta_i}(\vec s) = (\mathbf p, v)$以<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
 </ul>
 
 $$
@@ -330,7 +331,7 @@ $$
 <p>【b图】最终的AlphaGo Zero训练了<strong>40天，使用40个Risdual Block</strong>。</p>
 <p><strong>其中的raw network是每一步的仅仅使用训练好的深度学习神经网的 $\mathbf \p$的输出 $\mathbf p_a$ 来下棋，而不使用MCTS搜索</strong></p>
 </blockquote>
-<p>最终，AlphaGo Zero 与 AlphaGo Master的<strong>对战比分为89：11</strong>，对局中限制一场比赛在2小时之内</p>
+<p>最终，AlphaGo Zero 与 AlphaGo Master的<strong>对战比分为89：11</strong>，对局中限制一场比赛在2小时之内（不知道很多新闻中的零封是从哪里看出来的）</p>
 <h1 id="论文附录内容"><a href="#论文附录内容" class="headerlink" title="论文附录内容"></a>论文附录内容</h1><p>我们知道，Nature上的文章一般都是很强的可读性和严谨性，每一篇文章的正文可能只有4-5页，但是附录一般会远长于正文。基本所有你的<strong>技术细节疑惑</strong>都可以在其中找到结果，这里值列举一些我自己比较感兴趣的点，如果你是专业人士，甚至想复现AlphaGo Zero，读原文更好更精确</p>
 <h2 id="自对弈训练工作流"><a href="#自对弈训练工作流" class="headerlink" title="自对弈训练工作流"></a>自对弈训练工作流</h2><p>AlphaGo Zero的工作流由三个模块构成，可以异步多线程进行：</p>
 <ul>
@@ -450,7 +451,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T10:55:49.982Z" itemprop="dateUpdated">2017-10-21 03:55:49</time>
+    Last updated: <time datetime="2017-10-21T17:29:56.369Z" itemprop="dateUpdated">2017-10-21 10:29:56</time>
 </span><br>
 
 
