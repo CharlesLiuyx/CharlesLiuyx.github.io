@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T19:43:50.871Z">
+<meta property="og:updated_time" content="2017-10-21T22:07:08.841Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -268,7 +268,7 @@ $$
 <p>每一条边 $(\vec s,\vec a)$ （每个状态下的落子选择）保存的是三个值：先验概率 $P(\vec s,\vec a)$，访问次数 $N(\vec s,\vec a)$，行动价值 $Q(\vec s,\vec a)$。</p>
 <p>每次<strong>模拟</strong>（模拟一盘棋，直到分出胜负）从根状态开始，每次落子最大化<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060?fr=aladdin" target="_blank" rel="external">上限置信区间</a> $Q(\vec s,\vec a) + U(\vec s,\vec a)$ 其中 $U(\vec s,\vec a) \propto \frac{P(\vec s,\vec a)}{1 + N(\vec s,\vec a)}$ 直到遇到叶子节点 $s’$</p>
 <p>叶子节点（终局）只会被产生一次用于产生<strong>先验概率和评估值</strong>，符号表示即 $f_\theta(s’) = (P(s’,\cdot), V(s’))$ </p>
-<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac{1}{N(\vec s, \vec a) \Sigma_{\vec s'|\vec s, \vec a \implies \vec s'}V(\vec s')}$ ，$\vec a \implies \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$</p>
+<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac{1}{N(\vec s, \vec a) \Sigma_{\vec s'|\vec s, \vec a \implies \vec s'}V(\vec s')}$ ，$\vec a \implies \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$<br><a name="Figure2"></a></p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png" alt="Figure 2" width="800px"></div>
 
 <blockquote>
@@ -302,9 +302,9 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure3.png" alt="Figure 3" width="1200px"></div>
 
 <blockquote>
-<p>a图表示随时间AlphaGo Zero棋力的增长情况，<strong>显示了每一个不同的棋手 $\alpha_{\theta_i}$ 在每一次强化学习迭代时的表现</strong>，可以看到，它的增长曲线非常平滑，没有很明显的震荡，稳定性很好</p>
-<p>b图表示的是<strong>预测准确率</strong>基于不同迭代第$i$轮的 $f_{\theta_i}$</p>
-<p>c图表示的MSE（平方误差）</p>
+<p>【a图】表示随时间AlphaGo Zero棋力的增长情况，<strong>显示了每一个不同的棋手 $\alpha_{\theta_i}$ 在每一次强化学习迭代时的表现</strong>，可以看到，它的增长曲线非常平滑，没有很明显的震荡，稳定性很好</p>
+<p>【b图】表示的是<strong>预测准确率</strong>基于不同迭代第$i$轮的 $f_{\theta_i}$</p>
+<p>【c图】表示的MSE（平方误差）</p>
 </blockquote>
 <p>在24小时的学习后，无人工因素的强化学习方案就打败了通过模仿人类棋谱的监督学习方法</p>
 <p>为了分别评估结构和算法对结构的影响，得到了，下图4</p>
@@ -314,7 +314,7 @@ $$
 <p>dual-res 表示 AlphaGo Zero<br>sep-conv表示 AlphaGo Lee（几百李世乭的）使用的网络结构（P+V且分开）</p>
 </blockquote>
 <h2 id="AlphaGo-Zero学到的知识"><a href="#AlphaGo-Zero学到的知识" class="headerlink" title="AlphaGo Zero学到的知识"></a>AlphaGo Zero学到的知识</h2><p>在训练过程中，AlphaGo Zero可以一步步的学习到一些<strong>特殊的围棋技巧（定式）</strong>，如图5</p>
-<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png" alt="Figure 5" width="900px"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png" alt="Figure 5" width="800px"></div>
 
 <blockquote>
 <p>中间的黑色横轴表示的是学习时间</p>
@@ -447,7 +447,7 @@ $$
 <li>不是<strong>无监督学习</strong>，带有明显胜负规则的强化学习是<strong>强监督</strong>的范畴</li>
 <li>无需<strong>担心快速的攻克其他领域</strong>，核心还是<strong>启发式搜索</strong></li>
 <li><strong>模型简约漂亮，充满整合哲学的优雅</strong>，可怕的是效果和效率也同样极高</li>
-<li>AlphaGo项目在经历了<strong>把书读厚</strong>的过程后，已经取得了瞩目的成就依旧不满足现状，现通过AlphaGo Zero<strong>把书读薄</strong>，简约而不简单，大道至简，九九归一，已然位位连仙班了</li>
+<li>AlphaGo项目在经历了<strong>把书读厚</strong>的过程后，已经取得了瞩目的成就依旧不满足现状，现通过AlphaGo Zero<strong>把书读薄</strong>，简约而不简单，大道至简，九九归一，已然位列仙班了</li>
 </ul>
 <h1 id="总结与随想"><a href="#总结与随想" class="headerlink" title="总结与随想"></a>总结与随想</h1><p><strong>AlphaGo Zero = 启发式搜索 + 强化学习 + 深度神经网络</strong>，你中有我，我中有你，互相对抗，不断自我进化。使用<strong>深度神经网络的训练作为策略改善</strong>，<strong>蒙特卡洛搜索树作为策略评价</strong>的<strong>强化学习算法</strong></p>
 <p>之后提出一些我在看论文时带着的问题，最后给出我仔细看完每一行论文后得出的回答，如有错误，请批评指正！</p>
@@ -462,7 +462,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T19:43:50.871Z" itemprop="dateUpdated">2017-10-21 12:43:50</time>
+    Last updated: <time datetime="2017-10-21T22:07:08.841Z" itemprop="dateUpdated">2017-10-21 15:07:08</time>
 </span><br>
 
 
