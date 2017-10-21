@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T18:54:00.075Z">
+<meta property="og:updated_time" content="2017-10-21T19:43:50.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -278,13 +278,13 @@ $$
 <p>【d图】当MCTS搜索完成后，<strong>返回这个状态 $\vec s$ 下每一个位置的落子概率</strong> $\boldsymbol \pi$，成比例于 $N^{1/\tau}$（$N$为访问次数，$\tau$ 为控温常数）</p>
 <p>更加具体的详解见：<a href="#搜索算法">搜索算法</a></p>
 </blockquote>
-<p>MCTS可以看成一个自对弈算法，根据神经网络的参数 $\theta$ 和根的状态 $\vec s$ 去计算<strong>每个状态下推荐落子位置的概率</strong>，记为 $\boldsymbol \pi  = \alpha_\theta(\vec s)$ ，幂指数<strong>正比于</strong>访问次数 $\pi_{\vec a} \propto N(\vec s, \vec a)^{1/\tau}$，$\tau$ 是温度常数</p>
+<p>MCTS搜索可以看成一个自对弈过程中决定每一步如何下的依据，根据神经网络的参数 $\theta$ 和根的状态 $\vec s$ 去计算<strong>每个状态下落子位置的先验概率</strong>，记为 $\boldsymbol \pi  = \alpha_\theta(\vec s)$ ，幂指数<strong>正比于</strong>访问次数 $\pi_{\vec a} \propto N(\vec s, \vec a)^{1/\tau}$，$\tau$ 是温度常数</p>
 <h3 id="训练步骤总结"><a href="#训练步骤总结" class="headerlink" title="训练步骤总结"></a>训练步骤总结</h3><p>使用MCTS下每一步棋，进行自对弈，<strong>强化学习算法（必须了解通用策略迭代的基本方法）的迭代过程中</strong>训练神经网络</p>
 <ul>
 <li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
-<li>每一个<strong>子迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
+<li>每<strong>一轮迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
 <li>第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，<strong>根据落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
-<li>在 $T$ 步棋局结束：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
+<li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
 <li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
 <li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 中<strong>采样</strong>来训练网络参数 $\theta_i$，</li>
 <li>神经网络 $f_{\theta_i}(\vec s) = (\mathbf p, v)$以<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
@@ -388,9 +388,12 @@ $$
 <p>动量参数设置为<strong>0.9</strong></p>
 <p>L2正则化系数设置为 $c = 10^{-4}$</p>
 <p><strong>优化过程每1000个训练步数</strong>执行一次，并使用这个<strong>新模型</strong>来生成下一个Batch的<strong>自对弈棋谱</strong></p>
-<h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>在使用检查点（checkpoint）新的神经网络去生成自对弈棋谱前，使用<strong>现有的最好网络</strong>来对它进行评估。具体设计方法见论文（不赘述）</p>
-<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）。</p>
-<p>在前30步，温度 $\tau = 1$。在之后的棋局中，温度设为无穷小。并在先验概率中加入狄利克雷噪声。这个噪声保证所有的落子可能都会被尝试</p>
+<h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>在使用检查点（checkpoint）新的神经网络去生成自对弈棋谱前，使用<strong>现有的最好网络</strong>来对它进行评估</p>
+<p>评估神经网络 $f_{\theta_i}$ 的方法是使用  $f_{\theta_i}$ 进行MCTS搜索得出 $\alpha_{\theta_i}$ </p>
+<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \implies 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 胜率大于 55%，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来产生数据。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）</p>
+<p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但可能下出臭棋</p>
+<p>投降阈值 $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
 <h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
 <p>每一个搜索树的中的节点 $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有可能的落子 $\vec a \in \mathcal A(\vec s)$ ，每一条边存储一个数据集<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
 <blockquote>
@@ -419,7 +422,7 @@ $$
 <h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>进行了一次MCTS搜索后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec s_0$，与访问次数成幂指数比例</p>
 
 $$
-\pi(\vec a|\vec s_0) = \frac {N(\vec s_0,a)^{1/\tau}}{\Sigma_{\vec b} N(\vec s_0, \vec b)^{1/\tau}}
+\boldsymbol \pi(\vec a|\vec s_0) = \frac {N(\vec s_0,a)^{1/\tau}}{\Sigma_{\vec b} N(\vec s_0, \vec b)^{1/\tau}}
 $$
 
 <p>其中 $\tau$ 是一个温度常数用来控制探索等级（level of exploration）。搜索树会在接下来的走子中继续使用，如果孩子节点和落子的位置吻合，它就成为新的根节点，保留子树的所有统计数据，同时丢弃其他的树。<strong>如果根的评价值和它最好孩子的评价值都低于 $v_{resign}$ AlphaGo Zero就认输</strong></p>
@@ -449,8 +452,9 @@ $$
 <h1 id="总结与随想"><a href="#总结与随想" class="headerlink" title="总结与随想"></a>总结与随想</h1><p><strong>AlphaGo Zero = 启发式搜索 + 强化学习 + 深度神经网络</strong>，你中有我，我中有你，互相对抗，不断自我进化。使用<strong>深度神经网络的训练作为策略改善</strong>，<strong>蒙特卡洛搜索树作为策略评价</strong>的<strong>强化学习算法</strong></p>
 <p>之后提出一些我在看论文时带着的问题，最后给出我仔细看完每一行论文后得出的回答，如有错误，请批评指正！</p>
 <h2 id="问题与答案"><a href="#问题与答案" class="headerlink" title="问题与答案"></a>问题与答案</h2><ul>
-<li>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在那个位置</strong>？</li>
+<li>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</li>
 </ul>
+<p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
 </l$></p>
         </div>
 
@@ -458,7 +462,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T18:54:00.075Z" itemprop="dateUpdated">2017-10-21 11:54:00</time>
+    Last updated: <time datetime="2017-10-21T19:43:50.871Z" itemprop="dateUpdated">2017-10-21 12:43:50</time>
 </span><br>
 
 
