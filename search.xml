@@ -15,7 +15,7 @@
 <li>模型上，使用<strong>一个</strong>神经网络。之前使用了<strong>策略网络（基于深度卷积神经网）</strong>学习人类的下棋风格，<strong>局面网络</strong>（基于左右互搏生成的棋谱，为什么这里需要使用左右互搏是因为现有的数据集不够，没法判断落子胜率这一更难的问题）来计算在<strong>当前局面下每一个不同落子的胜率</strong></li>
 <li>策略上，基于训练好的这个神经网，进行简单的<strong>树形搜索</strong>。之前会使用蒙特卡洛算法实时演算并且<strong>加权得出落子的位置</strong></li>
 </ul>
-<h2 id="AlphaGo-Zero-的强化学习"><a href="#AlphaGo-Zero-的强化学习" class="headerlink" title="AlphaGo Zero 的强化学习"></a>AlphaGo Zero 的强化学习</h2><p>在开始之前，必须再过一遍如何符号化的定义一个围棋问题</p>
+<h2 id="AlphaGo-Zero-的强化学习"><a href="#AlphaGo-Zero-的强化学习" class="headerlink" title="AlphaGo Zero 的强化学习"></a>AlphaGo Zero 的强化学习</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在开始之前，必须再过一遍如何符号化的定义一个围棋问题</p>
 <p>围棋问题，棋盘 <code>19×19=361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>3行1列</code>位置落<strong>白子</strong>，黑白交替进行</p>
 <p>有以上定义，我们就把围棋问题转化为。</p>
 <blockquote>
@@ -86,9 +86,9 @@ $$
 <li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
 <li>每<strong>一轮迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
 <li>第 $t$ 步：MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，根据MCTS结构计算出的<strong>落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
-<li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
+<li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in \{-1,+1\}$。</li>
 <li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
-<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 中<strong>采样</strong>（这里的采样是指选Mini-Batch）来训练网络参数 $\theta_i$，</li>
+<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的数据 $(\vec s, \boldsymbol \pi, z)$ （<strong>$\vec s$ 为训练数据，$\boldsymbol \pi, z$ 为标签</strong>）中<strong>采样</strong>（这里的采样是指选Mini-Batch）来训练网络参数 $\theta_i$，</li>
 <li>神经网络 $f_{\theta_i}(\vec s) = (\mathbf p, v)$以<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
 </ul>
 
@@ -97,7 +97,7 @@ l = (z - v)^2 - \boldsymbol {\pi}^T \log(\mathbf p) + c \Vert \theta \Vert ^2 \t
 $$
 
 <blockquote>
-<p>其中$c$是<code>L2</code>正则化的系数</p>
+<p>其中 $c$ 是<code>L2</code>正则化的系数</p>
 </blockquote>
 <h2 id="AlphaGo-Zero训练过程中的经验"><a href="#AlphaGo-Zero训练过程中的经验" class="headerlink" title="AlphaGo Zero训练过程中的经验"></a>AlphaGo Zero训练过程中的经验</h2><p>最开始，使用完全的随机落子<strong>训练持续了大概3天</strong>。训练过程中，产生490万场自对弈，每次MCTS大约1600次模拟，每一步使用的时间0.4秒。使用了2048个位置的70万个Mini-Batches来进行训练。</p>
 <p>训练结果如下，图3</p>
@@ -251,16 +251,9 @@ $$
                 </div>
                 <div class="image-caption">Figure 5b中每种定式出现的频率图</div>
             </figure>
-<h1 id="各类评论"><a href="#各类评论" class="headerlink" title="各类评论"></a>各类评论</h1><p><a href="https://zhuanlan.zhihu.com/p/30325845?group_id=905063580597968896" target="_blank" rel="external">量子位汇集各家评论</a></p>
-<ul>
-<li>不是<strong>无监督学习</strong>，带有明显胜负规则的强化学习是<strong>强监督</strong>的范畴</li>
-<li>无需<strong>担心快速的攻克其他领域</strong>，核心还是<strong>启发式搜索</strong></li>
-<li><strong>模型简约漂亮，充满整合哲学的优雅</strong>，可怕的是效果和效率也同样极高</li>
-<li>AlphaGo项目在经历了<strong>把书读厚</strong>的过程后，已经取得了瞩目的成就依旧不满足现状，现通过AlphaGo Zero<strong>把书读薄</strong>，简约而不简单，大道至简，九九归一，已然位列仙班了</li>
-</ul>
 <h1 id="总结与随想"><a href="#总结与随想" class="headerlink" title="总结与随想"></a>总结与随想</h1><p><strong>AlphaGo Zero = 启发式搜索 + 强化学习 + 深度神经网络</strong>，你中有我，我中有你，互相对抗，不断自我进化。使用<strong>深度神经网络的训练作为策略改善</strong>，<strong>蒙特卡洛搜索树作为策略评价</strong>的<strong>强化学习算法</strong></p>
 <p>之后提出一些我在看论文时带着的问题，最后给出我仔细看完每一行论文后得出的回答，如有错误，请批评指正！</p>
-<h2 id="问题与答案"><a href="#问题与答案" class="headerlink" title="问题与答案"></a>问题与答案</h2><h3 id="训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><a href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？" class="headerlink" title="训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"></a>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</h3><p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程（自对弈中的落子就是真实最终对局时的落子方式）：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
+<h2 id="问题与个人答案"><a href="#问题与个人答案" class="headerlink" title="问题与个人答案"></a>问题与个人答案</h2><h3 id="训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><a href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？" class="headerlink" title="训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"></a>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</h3><p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程（自对弈中的落子就是真实最终对局时的落子方式）：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
 <h3 id="AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><a href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？" class="headerlink" title="AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？"></a>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</h3><p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
 <p>对于AlphaGo Zero来说</p>
 <ul>
@@ -273,6 +266,31 @@ $$
 \pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_*
 $$
 
+<p>对于AlphaGo Zero来说，<a href="改进的强化学习算法">详细可见论文</a>，简单总结如下</p>
+<ul>
+<li>策略评估过程，即使用MCTS搜索<strong>每一次模拟</strong>的<strong>对局胜者</strong>，胜者的<strong>所有落子</strong>（$\vec s$）都获得<strong>更好的评估值</strong></li>
+<li>策略提升过程，即使用MCTS搜索返回的<strong>更好策略</strong> $\boldsymbol \pi$</li>
+<li>迭代过程，即神经网络输出 $\mathbf p$ 和 $v$ 与策略评估和策略提升返回值的对抗（即神经网络的训练过程）</li>
+</ul>
+<p>总的来说，有点像一个嵌套过程，MCST算法可以用来解决围棋问题，这个深度神经网络也可以用来解决围棋问题，而AlphaGo Zero将两者<strong>融合</strong>，你中有我，我中有你，不断对抗，不对自我进化</p>
+<h3 id="AlphaGo-Zero-最精彩的部分哪部分？"><a href="#AlphaGo-Zero-最精彩的部分哪部分？" class="headerlink" title="AlphaGo Zero 最精彩的部分哪部分？"></a>AlphaGo Zero 最精彩的部分哪部分？</h3>
+$$
+l = (z - v)^2 - \boldsymbol {\pi}^T \log(\mathbf p) + c \Vert \theta \Vert ^2
+$$
+
+<p>毫无悬念的，我会选择这个漂亮的公式，看懂公式<strong>每一项的来历，即产生的过程</strong>，就读懂了AlphaGo Zero，这是一个完美的对抗，完美的自我进化</p>
+<p>第二我觉得很精彩的点子是将<strong>深度神经网络作为一个模块</strong>嵌入到了<strong>强化学习的策略迭代法中</strong>。最关键的是，<strong>收敛速度快，效果好，解决各种复杂的局面</strong>（比如一个关于围棋棋盘的观看角度可以从八个方向来看的细节处理的很好，又如神经网络的输入状态选择了使用<strong>历史八步</strong>）</p>
+<h2 id="随想和评论"><a href="#随想和评论" class="headerlink" title="随想和评论"></a>随想和评论</h2><p><a href="https://zhuanlan.zhihu.com/p/30325845?group_id=905063580597968896" target="_blank" rel="external">量子位汇集各家评论</a></p>
+<ul>
+<li>不是<strong>无监督学习</strong>，带有明显胜负规则的强化学习是<strong>强监督</strong>的范畴</li>
+<li>无需<strong>担心快速的攻克其他领域</strong>，核心还是<strong>启发式搜索</strong></li>
+<li><strong>模型简约漂亮，充满整合哲学的优雅</strong>，可怕的是效果和效率也同样极高</li>
+<li>AlphaGo项目在经历了<strong>把书读厚</strong>的过程后，已经取得了瞩目的成就依旧不满足现状，现通过AlphaGo Zero<strong>把书读薄</strong>，简约而不简单，大道至简，九九归一，已然位列仙班了</li>
+</ul>
+<p>随着AlphaGo Zero的归隐，DeepMind已经正式转移精力到其他的任务上了。其他这个天才的团队还能搞出什么大新闻！</p>
+<p>对于围棋这项运动的影响可能是：以后的学围棋手段会发生变化，毕竟世界上能复现AlphaGo Zero的绝对很多，那么AlphaGo Zero的实力那就是棋神的感觉，向AlphaGo Zero直接学习不是更加高效嘛？另，围棋受到的关注也应该涨了一波，是利好</p>
+<p>感觉强化学习会越来越热，对于和环境交互这个领域，强化学习更加贴近于人类做决策的学习方式。个人预测，强化学习会在未来会有更多进展！AlphaGo Zero 可能仅仅是一个开头</p>
+<p>以上！鞠躬！</p>
 ]]></content>
       
         <categories>
