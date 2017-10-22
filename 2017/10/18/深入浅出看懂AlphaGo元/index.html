@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-22T19:18:12.880Z">
+<meta property="og:updated_time" content="2017-10-22T22:29:40.276Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -243,9 +243,9 @@ $$
 \boldsymbol \pi_i = (\underbrace{0.01,0.02,0.92,\ldots}_{\text{361}})
 $$
 </p>
-<font color="“red”">MCTS搜索得出的<strong>落子概率</strong>比 $f_\theta$ 输出的<strong>仅使用神经网络输出的落子概率  $\mathbf p$ </strong>更强，因此，MCTS可以被视为一个强力的<strong>策略改善（policy improvement）过程</strong></font>
+<font color="red">MCTS搜索得出的<strong>落子概率</strong>比 $f_\theta$ 输出的<strong>仅使用神经网络输出的落子概率  $\mathbf p$ </strong>更强，因此，MCTS可以被视为一个强力的<strong>策略改善（policy improvement）过程</strong></font>
 
-<font color="“red”">使用基于MCTS提升后的策略（policy）来进行落子，然后用自对弈最终对局的胜者 $z$ 作为价值（Value），作为一个强力的<strong>策略评估（policy evaluation）过程</strong></font>
+<font color="red">使用基于MCTS提升后的策略（policy）来进行落子，然后用自对弈最终对局的胜者 $z$ 作为价值（Value），作为一个强力的<strong>策略评估（policy evaluation）过程</strong></font>
 
 <p>并用上述的规则，完成一个<strong>通用策略迭代</strong>算法去更新神经网络的<strong>参数</strong> $\theta$ ，使得神经网络输出的<strong>落子概率和评估值</strong>，即  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$  更加贴近<strong>能把这盘棋局赢下的落子方式（使用不断提升的MCST搜索落子策略$\boldsymbol \pi$ 和自对弈的胜者 $z$ 作为调整依据）</strong>。并且，在下轮迭代中使用<strong>新的参数</strong>来进行自对弈</p>
 <p>在这里补充<strong>强化学习</strong>的<strong>通用策略迭代</strong>（Generalized Policy Iteration）方法</p>
@@ -499,7 +499,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-22T19:18:12.880Z" itemprop="dateUpdated">2017-10-22 12:18:12</time>
+    Last updated: <time datetime="2017-10-22T22:29:40.276Z" itemprop="dateUpdated">2017-10-22 15:29:40</time>
 </span><br>
 
 
