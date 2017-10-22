@@ -25,13 +25,13 @@
     
     
     <meta name="keywords" content="AlphaGo,Deep Learning">
-    <meta name="description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+    <meta name="description" content="【阅读时间】15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="keywords" content="AlphaGo,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo元">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta property="og:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png">
@@ -41,10 +41,10 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-21T22:10:05.812Z">
+<meta property="og:updated_time" content="2017-10-22T03:19:51.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
-<meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta name="twitter:description" content="【阅读时间】15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -206,7 +206,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】15min - 17min<br>【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
+            <p>【阅读时间】15min - 17min<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
 <p>在之前的详解：<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">深入浅出看懂AlphaGo</a>中，详细定义的DeepMind团队定义围棋问题的结构，并且深入解读了AlphaGo1.0每下一步都发生了什么事，就在最近，AlphaGo Zero横空出世。个人观点是，如果你看了之前的文章，你就会觉得这是一个水到渠成的事情</p>
 <h1 id="论文正文内容详细解析"><a href="#论文正文内容详细解析" class="headerlink" title="论文正文内容详细解析"></a>论文正文内容详细解析</h1><p>先上干货论文：<a href="https://deepmind.com/documents/119/agz_unformatted_nature.pdf" target="_blank" rel="external">Mastering the Game of Go without Human Knowledge</a> ，之后会主要<strong>以翻译论文</strong>为主，在语言上<strong>尽量易懂，去除翻译腔</strong></p>
 <p>AlphaGo Zero，从本质上来说完全不同于打败樊麾和李世石的版本</p>
@@ -393,13 +393,13 @@ $$
 <p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \implies 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 胜率大于 55%，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来产生数据。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）</p>
 <p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但可能下出臭棋</p>
-<p>投降阈值 $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
+<p><strong>投降阈值</strong> $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
 <h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
 <p>每一个搜索树的中的节点 $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有可能的落子 $\vec a \in \mathcal A(\vec s)$ ，每一条边存储一个数据集<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
 <blockquote>
 <p>$N(\vec s,\vec a)$ 表示<strong>MCST的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong></p>
 </blockquote>
-<p>多线程执行多次模拟，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，再下现在的这一步棋</p>
+<p>多线程执行多次模拟，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，计算出一个 $\boldsymbol \pi$ ，根据这个向量下现在的这一步棋</p>
 <h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t$ 步时，根据<strong>搜索树的统计概率落子</strong><br>
 $$
 \vec a_t = \operatorname*{argmax}_{\vec a}(Q(\vec s_t, \vec a) + U (\vec s_t, \vec a))
@@ -412,7 +412,7 @@ U(\vec s, \vec a) = c_{puct}P(\vec s, \vec a) \frac{\sqrt{\Sigma_{\vec b} N(\vec
 $$
 
 <p>其中 $c_{puct}$ 是一个常数。这种搜索策略落子选择<strong>最开始</strong>会跟趋向于<strong>高先验概率</strong>和<strong>低访问次数</strong>的，但逐渐的会更加趋向于选择有着<strong>更高评价值</strong>的落子</p>
-<h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到一个队列中等待输入至神经网络进行评估， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示双面反射和旋转选择</p>
+<h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到一个队列中等待输入至神经网络进行评估， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示双面反射和旋转选择（从8个不同的方向进行评估，）</p>
 <p>队列中的不同位置组成一个大小为8的mini-batch输入到神经网络中进行评估。整个MCTS搜索线程被锁死直到评估过程完成。叶子节点被展开，每一条边 $(\vec s_L,\vec a)$被初始化为  $\{N(\vec s_L,\vec a) = 0, W(\vec s_L,\vec a) = 0, Q(\vec s_L,\vec a) = 0, P(\vec s_L,\vec a) = p_a\}$ 。之后将神经网络的输出值 $v$ 传回</p>
 <h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着回溯的路线将边的统计数据更新。</p>
 
@@ -459,6 +459,11 @@ $$
 <li>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</li>
 </ul>
 <p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
+<ul>
+<li>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</li>
+</ul>
+<p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
+<p>对于AlphaGo Zero来说，</p>
 
         </div>
 
@@ -466,7 +471,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T22:10:05.812Z" itemprop="dateUpdated">2017-10-21 15:10:05</time>
+    Last updated: <time datetime="2017-10-22T03:19:51.113Z" itemprop="dateUpdated">2017-10-21 20:19:51</time>
 </span><br>
 
 
@@ -509,7 +514,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -670,7 +675,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】15min - 17min【内容简介】AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo ..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
