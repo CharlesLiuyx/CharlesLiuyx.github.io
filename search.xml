@@ -37,12 +37,15 @@
 <li>【<strong>网络结构</strong>】基于<strong>Residual Network</strong>（大名鼎鼎ImageNet冠军ResNet）的卷积网络，包含20或40个Residual Block（残差模块），加入<strong>批量归一化</strong>Batch normalisation与<strong>非线性整流器</strong>rectifier non-linearities模块</li>
 </ul>
 <h3 id="改进的强化学习算法"><a href="#改进的强化学习算法" class="headerlink" title="改进的强化学习算法"></a>改进的强化学习算法</h3><p>自对弈强化学习算法（<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="external">什么是强化学习</a>，非常建议先看看强化学习的一些基本思想和步骤，有利于理解下面策略、价值的概念，推荐<a href="http://www.cnblogs.com/steven-yang/p/6481772.html" target="_blank" rel="external">系列笔记</a>）</p>
-<p>在每一个状态  $\vec s$ ，利用<strong>深度神经网络 $f_\theta$ 预测作为参照</strong>执行MCTS搜索（<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">蒙特卡洛搜索树算法</a>），<strong>MCTS搜索的输出是每一个状态下在不同位置对应的概率 $\boldsymbol \pi$ （注意这里是一个向量，里面的值是MCTS搜索得出的概率值）</strong>，一种策略，从人类的眼光来看，就是看到现在在局面，选择下在每个不同的落子的点的概率。如下面公式的例子，下在$(1,3)$位置的概率是<code>0.92</code>，有很高概率选这个点作为<strong>落子点</strong><br>
+<p>在每一个状态  $\vec s$ ，利用<strong>深度神经网络 $f_\theta$ 预测作为参照</strong>执行MCTS搜索（<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">蒙特卡洛搜索树算法</a>），<strong>MCTS搜索的输出是每一个状态下在不同位置对应的概率 $\boldsymbol \pi$ （注意这里是一个向量，里面的值是MCTS搜索得出的概率值）</strong>，一种策略，从人类的眼光来看，就是看到现在局面，选择下在每个不同的落子的点的概率。如下面公式的例子，下在$(1,3)$位置的概率是<code>0.92</code>，有很高概率选这个点作为<strong>落子点</strong><br>
 $$
 \boldsymbol \pi_i = (\underbrace{0.01,0.02,0.92,\ldots}_{\text{361}})
 $$
-<br>MCTS搜索得出的<strong>落子概率</strong>比 $f_\theta$ 输出的<strong>仅使用神经网络输出的落子概率  $\mathbf p$ </strong>更强，因此，MCTS可以被视为一个强力的<strong>策略改善（policy improvement）过程</strong></p>
-<p>使用基于MCTS提升后的策略（policy）来进行落子，然后用最终对局的胜者 $z$ 作为价值（Value）的自对弈方法，作为一个强力的<strong>策略评估（policy evaluation）过程</strong></p>
+</p>
+<font color="“red”">MCTS搜索得出的<strong>落子概率</strong>比 $f_\theta$ 输出的<strong>仅使用神经网络输出的落子概率  $\mathbf p$ </strong>更强，因此，MCTS可以被视为一个强力的<strong>策略改善（policy improvement）过程</strong></font>
+
+<font color="“red”">使用基于MCTS提升后的策略（policy）来进行落子，然后用自对弈最终对局的胜者 $z$ 作为价值（Value），作为一个强力的<strong>策略评估（policy evaluation）过程</strong></font>
+
 <p>并用上述的规则，完成一个<strong>通用策略迭代</strong>算法去更新神经网络的<strong>参数</strong> $\theta$ ，使得神经网络输出的<strong>落子概率和评估值</strong>，即  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$  更加贴近<strong>能把这盘棋局赢下的落子方式（使用不断提升的MCST搜索落子策略$\boldsymbol \pi$ 和自对弈的胜者 $z$ 作为调整依据）</strong>。并且，在下轮迭代中使用<strong>新的参数</strong>来进行自对弈</p>
 <p>在这里补充<strong>强化学习</strong>的<strong>通用策略迭代</strong>（Generalized Policy Iteration）方法</p>
 <ul>
@@ -82,10 +85,10 @@ $$
 <ul>
 <li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
 <li>每<strong>一轮迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
-<li>第 $t$ 步，MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，<strong>根据落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
+<li>第 $t$ 步：MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，根据MCTS结构计算出的<strong>落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
 <li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in {-1,+1}$。</li>
 <li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
-<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 中<strong>采样</strong>来训练网络参数 $\theta_i$，</li>
+<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的存储数据 $(\vec s, \boldsymbol \pi, z)$ 中<strong>采样</strong>（这里的采样是指选Mini-Batch）来训练网络参数 $\theta_i$，</li>
 <li>神经网络 $f_{\theta_i}(\vec s) = (\mathbf p, v)$以<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
 </ul>
 
@@ -123,7 +126,7 @@ $$
 <p>具体频率图见：<a href="#Figure5">出现频率随训练时间分布图</a></p>
 </blockquote>
 <h2 id="AlphaGo-Zero的最终实力"><a href="#AlphaGo-Zero的最终实力" class="headerlink" title="AlphaGo Zero的最终实力"></a>AlphaGo Zero的最终实力</h2><p>之后，最终的AlphaGo Zero 使用40个残差模块，训练接近40天。在训练过程中，产生了2900万盘的自对弈棋谱，使用了310万个Mini-Batches来训练神经网络，每一个Mini-Batch包含了2048个不同的状态。（覆盖的状态数是63亿（$10^10$），但和围棋的解空间 $2^361 \approx 10^108$ 相比真的很小，也从侧面反映出，<strong>围棋中大部分选择都是冗余的</strong>。在一个棋盘局面下，根据<strong>先验概率</strong>，估计只有15-20种下法是<strong>值得考虑</strong>的）</p>
-<p>被评测不同版本使用计算力的情况，AlphaGo Zero和AlphaGo Master被部署到有<strong>4个TPUs</strong>的单机上运行（主要用于做<strong>模型的输出预测Inference和MCTS搜索</strong>），AlphaGo Fan（打败樊麾版本）和AlphaGo Lee（打败李世乭版本） <strong>分布式部署到机器群</strong>里，总计有176GPUs和48GPUs（Goolge真有钱）。还加入了<strong>raw network，它是每一步的仅仅使用训练好的深度学习神经网的 $\mathbf \p$的输出 $\mathbf p_a$ ，并选择最大概率点来落子，不使用MCTS搜索</strong></p>
+<p>被评测不同版本使用计算力的情况，AlphaGo Zero和AlphaGo Master被部署到有<strong>4个TPUs</strong>的单机上运行（主要用于做<strong>模型的输出预测Inference和MCTS搜索</strong>），AlphaGo Fan（打败樊麾版本）和AlphaGo Lee（打败李世乭版本） <strong>分布式部署到机器群</strong>里，总计有176GPUs和48GPUs（Goolge真有钱）。还加入了<strong>raw network，它是每一步的仅仅使用训练好的深度学习神经网的输出 $\mathbf p_a$ 为依据选择最大概率点来落子，不使用MCTS搜索</strong>（Raw Network裸用深度神经网络的输出已经十分强大，甚至已经接近了AlphaGo Fan）</p>
 <p>下图6展示不同种AlphaGo版本的棋力情况</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png" alt="Figure 6" width="900px"></div>
 
@@ -210,10 +213,10 @@ $$
 U(\vec s, \vec a) = c_{puct}P(\vec s, \vec a) \frac{\sqrt{\Sigma_{\vec b} N(\vec s, \vec b)}}{1 + N(\vec s, \vec a)}
 $$
 
-<p>其中 $c_{puct}$ 是一个常数。这种搜索策略落子选择<strong>最开始</strong>会跟趋向于<strong>高先验概率</strong>和<strong>低访问次数</strong>的，但逐渐的会更加趋向于选择有着<strong>更高评价值</strong>的落子</p>
+<p>其中 $c_{puct}$ 是一个常数。这种搜索策略落子选择<strong>最开始</strong>更趋向于<strong>高先验概率</strong>和<strong>低访问次数</strong>的，但逐渐的会更加趋向于选择有着<strong>更高行动价值</strong>的落子</p>
 <h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到一个队列中等待输入至神经网络进行评估， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示双面反射和旋转选择（从8个不同的方向进行评估，）</p>
 <p>队列中的不同位置组成一个大小为8的mini-batch输入到神经网络中进行评估。整个MCTS搜索线程被锁死直到评估过程完成。叶子节点被展开，每一条边 $(\vec s_L,\vec a)$被初始化为  $\{N(\vec s_L,\vec a) = 0, W(\vec s_L,\vec a) = 0, Q(\vec s_L,\vec a) = 0, P(\vec s_L,\vec a) = p_a\}$ 。之后将神经网络的输出值 $v$ 传回</p>
-<h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着回溯的路线将边的统计数据更新。</p>
+<h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着<strong>回溯的路线</strong>将边的统计数据更新。</p>
 
 $$
 N(\vec s_t, \vec a_t) = N(\vec s_t, \vec a_t)  + 1 \\
@@ -221,6 +224,9 @@ W(\vec s_t, \vec a_t)  = W(\vec s_t, \vec a_t)  + v \\
 Q(\vec s_t, \vec a_t)  = \frac{W(\vec s_t, \vec a_t) }{N(\vec s_t, \vec a_t) }
 $$
 
+<blockquote>
+<p>注解：在 $W(\vec s_t, \vec a_t)$ 的更新中，使用了神经网络的输出 $v$，而最后的价值就是策略评估中的</p>
+</blockquote>
 <p>使用虚拟损失（virtual loss）确保每一个线程评估不同的节点</p>
 <h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>进行了一次MCTS搜索后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec s_0$，与访问次数成幂指数比例</p>
 
@@ -254,15 +260,19 @@ $$
 </ul>
 <h1 id="总结与随想"><a href="#总结与随想" class="headerlink" title="总结与随想"></a>总结与随想</h1><p><strong>AlphaGo Zero = 启发式搜索 + 强化学习 + 深度神经网络</strong>，你中有我，我中有你，互相对抗，不断自我进化。使用<strong>深度神经网络的训练作为策略改善</strong>，<strong>蒙特卡洛搜索树作为策略评价</strong>的<strong>强化学习算法</strong></p>
 <p>之后提出一些我在看论文时带着的问题，最后给出我仔细看完每一行论文后得出的回答，如有错误，请批评指正！</p>
-<h2 id="问题与答案"><a href="#问题与答案" class="headerlink" title="问题与答案"></a>问题与答案</h2><ul>
-<li>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</li>
-</ul>
-<p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
+<h2 id="问题与答案"><a href="#问题与答案" class="headerlink" title="问题与答案"></a>问题与答案</h2><h3 id="训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><a href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？" class="headerlink" title="训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"></a>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</h3><p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程（自对弈中的落子就是真实最终对局时的落子方式）：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
+<h3 id="AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><a href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？" class="headerlink" title="AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？"></a>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</h3><p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
+<p>对于AlphaGo Zero来说</p>
 <ul>
-<li>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</li>
+<li>最大的区别在于，<strong>模拟过程</strong>中依据神经网络的输出 $\nathbf p$ 的概率分布<strong>采样</strong>落子。<strong>采样是关键词</strong>，如果模拟的盘数足够多，那这一步就会越来越强</li>
+<li>其次，在<a href="#Backup - Figure 2c">返回（Bakcup）部分</a>每一个点的价值（得分），使用了神经网络的输出 $v$。这个值也是<strong>策略评估</strong>的重要依据</li>
 </ul>
-<p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
-<p>对于AlphaGo Zero来说，</p>
+<h3 id="AlphaGo-Zero-中的策略迭代法是如何工作的？"><a href="#AlphaGo-Zero-中的策略迭代法是如何工作的？" class="headerlink" title="AlphaGo Zero 中的策略迭代法是如何工作的？"></a>AlphaGo Zero 中的策略迭代法是如何工作的？</h3><p>策略迭代法（Policy Iteration）是强化学习中的一种算法，简单来说：以某种<strong>策略</strong>（ $\pi_0$ ）开始，计算当前策略下的<strong>价值函数</strong>（ $v_{\pi_0}$ ）；然后<strong>利用这个价值函数，找到更好的策略</strong>（<strong>E</strong>valuate和<strong>I</strong>mprove）；接下来再用这个<strong>更好的策略</strong>继续前行，更新价值函数……这样经过若干轮的计算，如果一切顺利，我们的策略会收敛到<strong>最优的策略</strong>（ $\pi_*$ ），问题也就得到了解答。</p>
+
+$$
+\pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_*
+$$
+
 ]]></content>
       
         <categories>
