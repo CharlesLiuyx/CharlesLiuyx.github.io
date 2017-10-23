@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-22T23:57:43.834Z">
+<meta property="og:updated_time" content="2017-10-23T06:53:35.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -208,6 +208,7 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>【阅读时间】8000words 15min - 17min<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
 <p>在之前的详解：<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">深入浅出看懂AlphaGo</a>中，详细定义的DeepMind团队定义围棋问题的结构，并且深入解读了AlphaGo1.0每下一步都发生了什么事，就在最近，AlphaGo Zero横空出世。个人观点是，如果你看了之前的文章，你就会觉得这是一个水到渠成的事情</p>
+<p>令，如果你只对这个事件感兴趣的，而不想了解论文和技术细节，链接奉上，欢迎跳过到<a href="#总结与随想">最后评论和总结部分</a>（但这部分网上的大牛太多了，知乎答案内最高票对结合围棋的分析很漂亮！建议阅读）</p>
 <h1 id="论文正文内容详细解析"><a href="#论文正文内容详细解析" class="headerlink" title="论文正文内容详细解析"></a>论文正文内容详细解析</h1><p>先上干货论文：<a href="https://deepmind.com/documents/119/agz_unformatted_nature.pdf" target="_blank" rel="external">Mastering the Game of Go without Human Knowledge</a> ，之后会主要<strong>以翻译论文</strong>为主，在语言上<strong>尽量易懂，避免翻译腔</strong></p>
 <p>AlphaGo Zero，从本质上来说完全不同于打败樊麾和李世石的版本</p>
 <ul>
@@ -322,7 +323,7 @@ $$
 <p>【a图】对应的5张棋谱展现的是不同阶段AlphaGo Zero在自对弈过过程中展现出来的<strong>围棋定式</strong>上的新发现</p>
 <p>【b图】展示在右星位上的定式下法的进化。可以看到训练到50小时，<strong>点三三出现了</strong>，但再往后训练，b图中的<strong>第五种定式</strong>高频率出现，在AlphGa Zero看来，这一种形式似乎更加强大</p>
 <p>【c图】展现了前80手自对弈的棋谱伴随时间，明显有很大的提升，在第三幅图中，已经展现出了比较明显的<strong>围</strong>的倾向性</p>
-<p>具体频率图见：<a href="#Figure5">出现频率随训练时间分布图</a></p>
+<p>具体频率图见：<a href="#图5更多细节">出现频率随训练时间分布图</a></p>
 </blockquote>
 <h2 id="AlphaGo-Zero的最终实力"><a href="#AlphaGo-Zero的最终实力" class="headerlink" title="AlphaGo Zero的最终实力"></a>AlphaGo Zero的最终实力</h2><p>之后，最终的AlphaGo Zero 使用40个残差模块，训练接近40天。在训练过程中，产生了2900万盘的自对弈棋谱，使用了310万个Mini-Batches来训练神经网络，每一个Mini-Batch包含了2048个不同的状态。（覆盖的状态数是63亿（$10^{10}$），但和围棋的解空间 $2^{361} \approx 10^{108}$ 相比真的很小，也从侧面反映出，<strong>围棋中大部分选择都是冗余的</strong>。在一个棋盘局面下，根据<strong>先验概率</strong>，估计只有15-20种下法是<strong>值得考虑</strong>的）</p>
 <p>被评测不同版本使用计算力的情况，AlphaGo Zero和AlphaGo Master被部署到有<strong>4个TPUs</strong>的单机上运行（主要用于做<strong>模型的输出预测Inference和MCTS搜索</strong>），AlphaGo Fan（打败樊麾版本）和AlphaGo Lee（打败李世乭版本） <strong>分布式部署到机器群</strong>里，总计有176GPUs和48GPUs（Goolge真有钱）。还加入了<strong>raw network，它是每一步的仅仅使用训练好的深度学习神经网的输出 $\mathbf p_a$ 为依据选择最大概率点来落子，不使用MCTS搜索</strong>（Raw Network裸用深度神经网络的输出已经十分强大，甚至已经接近了AlphaGo Fan）</p>
@@ -465,7 +466,7 @@ $$
 \pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_*
 $$
 
-<p>对于AlphaGo Zero来说，<a href="改进的强化学习算法">详细可见论文</a>，简单总结如下</p>
+<p>对于AlphaGo Zero来说，<a href="#改进的强化学习算法">详细可见论文</a>，简单总结如下</p>
 <ul>
 <li>策略评估过程，即使用MCTS搜索<strong>每一次模拟</strong>的<strong>对局胜者</strong>，胜者的<strong>所有落子</strong>（$\vec s$）都获得<strong>更好的评估值</strong></li>
 <li>策略提升过程，即使用MCTS搜索返回的<strong>更好策略</strong> $\boldsymbol \pi$</li>
@@ -497,7 +498,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-22T23:57:43.834Z" itemprop="dateUpdated">2017-10-22 16:57:43</time>
+    Last updated: <time datetime="2017-10-23T06:53:35.261Z" itemprop="dateUpdated">2017-10-22 23:53:35</time>
 </span><br>
 
 
