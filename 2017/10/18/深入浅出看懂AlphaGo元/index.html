@@ -41,7 +41,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-22T22:32:53.994Z">
+<meta property="og:updated_time" content="2017-10-22T23:57:43.834Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -232,7 +232,7 @@
 <li>【<strong>网络输入</strong>】<code>19×19×17</code>0/1值：现在棋盘状态的 $\vec s$ 以及<strong>7步历史落子记录</strong>。最后一个位置记录黑白，0白1黑</li>
 <li>【<strong>网络输出</strong>】两个输出：<strong>落子概率（<code>362</code>个输出值）</strong>和<strong>一个评估值（[-1,1]之间）</strong>记为  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$ <ul>
 <li>【落子概率 $\mathbf p$】 向量表示下一步在每一个可能位置<strong>落子的概率，又称先验概率</strong> （加上不下的选择），即  $p_a = Pr(\vec a|\mathbf {\vec s})$  （公式表示在当前输入条件下在每个可能点落子的概率）</li>
-<li>【评估值 $v$】 表示现在准备下当前这步棋的选手<strong>在局面 $\vec s$ 下的胜率</strong>（我这里强调局面是因为网络的输入其实包含历史对战过程）</li>
+<li>【评估值 $v$】 表示现在准备下当前这步棋的选手<strong>在输入的这八步历史局面 $\vec s$ 下的胜率</strong>（我这里强调局面是因为网络的输入其实包含历史对战过程）</li>
 </ul>
 </li>
 <li>【<strong>网络结构</strong>】基于<strong>Residual Network</strong>（大名鼎鼎ImageNet冠军ResNet）的卷积网络，包含20或40个Residual Block（残差模块），加入<strong>批量归一化</strong>Batch normalisation与<strong>非线性整流器</strong>rectifier non-linearities模块</li>
@@ -261,7 +261,7 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png" alt="Figure 1" width="600px"></div>
 
 <blockquote>
-<p>【 a图】表示自对弈过程 $s_1,\ldots,s_T$。在每一个位置 $s_t$ ，使用最新的神经网络 $f_\theta$ 执行一次MCTS搜索 $\alpha_\theta$ 。根据搜索得出的概率 $a_t ~ \pi_i$ 进行落子。终局 $s_T$ 时根据围棋规则计算胜者 $z$<br>$\pi_i$ 是每一步时执行MCTS搜索得出的结果（柱状图表示概率的高低）</p>
+<p>【 a图】表示自对弈过程 $s_1,\ldots,s_T$。在每一个位置 $s_t$ ，使用最新的神经网络 $f_\theta$ 执行一次MCTS搜索 $\alpha_\theta$ 。根据搜索得出的概率 $a_t \sim \boldsymbol \pi_i$ 进行落子。终局 $s_T$ 时根据围棋规则计算胜者 $z$<br>$\pi_i$ 是每一步时执行MCTS搜索得出的结果（柱状图表示概率的高低）</p>
 <p>【b图】表示更新神经网络参数过程。使用原始落子状态 $\vec s_t$ 作为输入，得到此棋盘状态 $\vec s_t$ 下<strong>下一步所有可能落子位置的概率分布</strong> $\mathbf p_t$ 和<strong>当前状态  $\vec s_t$ 下选手的赢棋评估值</strong> $v_t$ </p>
 <p><strong>以最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ （详见公式1）</strong> ，更新参数 $\theta$ ，下一轮迭代中使用新神经网络进行自我对弈</p>
 </blockquote>
@@ -269,7 +269,7 @@ $$
 <p>每一条边 $(\vec s,\vec a)$ （每个状态下的落子选择）保存的是三个值：先验概率 $P(\vec s,\vec a)$，访问次数 $N(\vec s,\vec a)$，行动价值 $Q(\vec s,\vec a)$。</p>
 <p>每次<strong>模拟</strong>（模拟一盘棋，直到分出胜负）从根状态开始，每次落子最大化<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060?fr=aladdin" target="_blank" rel="external">上限置信区间</a> $Q(\vec s,\vec a) + U(\vec s,\vec a)$ 其中 $U(\vec s,\vec a) \propto \frac{P(\vec s,\vec a)}{1 + N(\vec s,\vec a)}$ 直到遇到叶子节点 $s’$</p>
 <p>叶子节点（终局）只会被产生一次用于产生<strong>先验概率和评估值</strong>，符号表示即 $f_\theta(s’) = (P(s’,\cdot), V(s’))$ </p>
-<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac{1}{N(\vec s, \vec a) \Sigma_{\vec s'|\vec s, \vec a \implies \vec s'}V(\vec s')}$ ，$\vec a \implies \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$<br><a name="Figure2"></a></p>
+<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac{1}{N(\vec s, \vec a) \Sigma_{\vec s'|\vec s, \vec a \Rightarrow \vec s'}V(\vec s')}$ ，$\vec s’|\vec s, \vec a \Rightarrow \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$<br><a name="Figure2"></a></p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png" alt="Figure 2" width="800px"></div>
 
 <blockquote>
@@ -312,7 +312,7 @@ $$
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure4.png" alt="Figure 4" width="1200px"></div>
 
 <blockquote>
-<p>dual-res 表示 AlphaGo Zero<br>sep-conv表示 AlphaGo Lee（几百李世乭的）使用的网络结构（P+V且分开）</p>
+<p>dual-res 表示 AlphaGo Zero<br>sep-conv表示 AlphaGo Lee（击败李世乭的）使用的网络结构（P+V且分开）</p>
 </blockquote>
 <h2 id="AlphaGo-Zero学到的知识"><a href="#AlphaGo-Zero学到的知识" class="headerlink" title="AlphaGo Zero学到的知识"></a>AlphaGo Zero学到的知识</h2><p>在训练过程中，AlphaGo Zero可以一步步的学习到一些<strong>特殊的围棋技巧（定式）</strong>，如图5</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png" alt="Figure 5" width="800px"></div>
@@ -324,7 +324,7 @@ $$
 <p>【c图】展现了前80手自对弈的棋谱伴随时间，明显有很大的提升，在第三幅图中，已经展现出了比较明显的<strong>围</strong>的倾向性</p>
 <p>具体频率图见：<a href="#Figure5">出现频率随训练时间分布图</a></p>
 </blockquote>
-<h2 id="AlphaGo-Zero的最终实力"><a href="#AlphaGo-Zero的最终实力" class="headerlink" title="AlphaGo Zero的最终实力"></a>AlphaGo Zero的最终实力</h2><p>之后，最终的AlphaGo Zero 使用40个残差模块，训练接近40天。在训练过程中，产生了2900万盘的自对弈棋谱，使用了310万个Mini-Batches来训练神经网络，每一个Mini-Batch包含了2048个不同的状态。（覆盖的状态数是63亿（$10^10$），但和围棋的解空间 $2^361 \approx 10^108$ 相比真的很小，也从侧面反映出，<strong>围棋中大部分选择都是冗余的</strong>。在一个棋盘局面下，根据<strong>先验概率</strong>，估计只有15-20种下法是<strong>值得考虑</strong>的）</p>
+<h2 id="AlphaGo-Zero的最终实力"><a href="#AlphaGo-Zero的最终实力" class="headerlink" title="AlphaGo Zero的最终实力"></a>AlphaGo Zero的最终实力</h2><p>之后，最终的AlphaGo Zero 使用40个残差模块，训练接近40天。在训练过程中，产生了2900万盘的自对弈棋谱，使用了310万个Mini-Batches来训练神经网络，每一个Mini-Batch包含了2048个不同的状态。（覆盖的状态数是63亿（$10^{10}$），但和围棋的解空间 $2^{361} \approx 10^{108}$ 相比真的很小，也从侧面反映出，<strong>围棋中大部分选择都是冗余的</strong>。在一个棋盘局面下，根据<strong>先验概率</strong>，估计只有15-20种下法是<strong>值得考虑</strong>的）</p>
 <p>被评测不同版本使用计算力的情况，AlphaGo Zero和AlphaGo Master被部署到有<strong>4个TPUs</strong>的单机上运行（主要用于做<strong>模型的输出预测Inference和MCTS搜索</strong>），AlphaGo Fan（打败樊麾版本）和AlphaGo Lee（打败李世乭版本） <strong>分布式部署到机器群</strong>里，总计有176GPUs和48GPUs（Goolge真有钱）。还加入了<strong>raw network，它是每一步的仅仅使用训练好的深度学习神经网的输出 $\mathbf p_a$ 为依据选择最大概率点来落子，不使用MCTS搜索</strong>（Raw Network裸用深度神经网络的输出已经十分强大，甚至已经接近了AlphaGo Fan）</p>
 <p>下图6展示不同种AlphaGo版本的棋力情况</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png" alt="Figure 6" width="900px"></div>
@@ -391,7 +391,7 @@ $$
 <p><strong>优化过程每1000个训练步数</strong>执行一次，并使用这个<strong>新模型</strong>来生成下一个Batch的<strong>自对弈棋谱</strong></p>
 <h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>在使用检查点（checkpoint）新的神经网络去生成自对弈棋谱前，使用<strong>现有的最好网络</strong>来对它进行评估</p>
 <p>评估神经网络 $f_{\theta_i}$ 的方法是使用  $f_{\theta_i}$ 进行MCTS搜索得出 $\alpha_{\theta_i}$ </p>
-<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \implies 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 胜率大于 55%，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
+<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \Rightarrow 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 胜率大于 55%，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
 <h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来产生数据。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）</p>
 <p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但可能下出臭棋</p>
 <p><strong>投降阈值</strong> $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
@@ -456,7 +456,7 @@ $$
 <h3 id="AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><a href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？" class="headerlink" title="AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？"></a>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</h3><p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
 <p>对于AlphaGo Zero来说</p>
 <ul>
-<li>最大的区别在于，<strong>模拟过程</strong>中依据神经网络的输出 $\nathbf p$ 的概率分布<strong>采样</strong>落子。<strong>采样是关键词</strong>，如果模拟的盘数足够多，那这一步就会越来越强</li>
+<li>最大的区别在于，<strong>模拟过程</strong>中依据神经网络的输出 $\mathbf p$ 的概率分布<strong>采样</strong>落子。<strong>采样是关键词</strong>，如果模拟的盘数足够多，那这一步就会越来越强</li>
 <li>其次，在<a href="#Backup - Figure 2c">返回（Bakcup）部分</a>每一个点的价值（得分），使用了神经网络的输出 $v$。这个值也是<strong>策略评估</strong>的重要依据</li>
 </ul>
 <h3 id="AlphaGo-Zero-中的策略迭代法是如何工作的？"><a href="#AlphaGo-Zero-中的策略迭代法是如何工作的？" class="headerlink" title="AlphaGo Zero 中的策略迭代法是如何工作的？"></a>AlphaGo Zero 中的策略迭代法是如何工作的？</h3><p>策略迭代法（Policy Iteration）是强化学习中的一种算法，简单来说：以某种<strong>策略</strong>（ $\pi_0$ ）开始，计算当前策略下的<strong>价值函数</strong>（ $v_{\pi_0}$ ）；然后<strong>利用这个价值函数，找到更好的策略</strong>（<strong>E</strong>valuate和<strong>I</strong>mprove）；接下来再用这个<strong>更好的策略</strong>继续前行，更新价值函数……这样经过若干轮的计算，如果一切顺利，我们的策略会收敛到<strong>最优的策略</strong>（ $\pi_*$ ），问题也就得到了解答。</p>
@@ -497,7 +497,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-22T22:32:53.994Z" itemprop="dateUpdated">2017-10-22 15:32:53</time>
+    Last updated: <time datetime="2017-10-22T23:57:43.834Z" itemprop="dateUpdated">2017-10-22 16:57:43</time>
 </span><br>
 
 
