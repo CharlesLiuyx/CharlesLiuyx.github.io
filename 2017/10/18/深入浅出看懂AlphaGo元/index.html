@@ -25,13 +25,13 @@
     
     
     <meta name="keywords" content="AlphaGo,Deep Learning">
-    <meta name="description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+    <meta name="description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="keywords" content="AlphaGo,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo元">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta property="og:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png">
@@ -39,12 +39,13 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure4.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/DG.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-25T17:51:21.486Z">
+<meta property="og:updated_time" content="2017-10-27T18:07:01.723Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
-<meta name="twitter:description" content="【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta name="twitter:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -179,7 +180,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文正文内容详细解析"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文正文内容详细解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero-的强化学习"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AlphaGo Zero 的强化学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络结构"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">网络结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改进的强化学习算法"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">改进的强化学习算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练步骤总结"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">训练步骤总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero训练过程中的经验"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">AlphaGo Zero训练过程中的经验</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero学到的知识"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">AlphaGo Zero学到的知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero的最终实力"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">AlphaGo Zero的最终实力</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文附录内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">论文附录内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自对弈训练工作流"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">自对弈训练工作流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化参数"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">优化参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#评估器"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">评估器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">自对弈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索算法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">搜索算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Selcet-Figure2a"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">Selcet - Figure2a</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Expand-and-evaluate-Figure-2b"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">Expand and evaluate - Figure 2b</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Backup-Figure-2c"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">Backup - Figure 2c</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Play-Figure-2d"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">Play - Figure 2d</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据集"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">数据集</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图5更多细节"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">图5更多细节</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结与随想"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结与随想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题与个人答案"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">问题与个人答案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-中的策略迭代法是如何工作的？"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">AlphaGo Zero 中的策略迭代法是如何工作的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-最精彩的部分哪部分？"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">AlphaGo Zero 最精彩的部分哪部分？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随想和评论"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">随想和评论</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文正文内容详细解析"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文正文内容详细解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero-的强化学习"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AlphaGo Zero 的强化学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络结构"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">网络结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改进的强化学习算法"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">改进的强化学习算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练步骤总结"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">训练步骤总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero训练过程中的经验"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">AlphaGo Zero训练过程中的经验</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero学到的知识"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">AlphaGo Zero学到的知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero的最终实力"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">AlphaGo Zero的最终实力</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文附录内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">论文附录内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#围棋领域先验知识"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">围棋领域先验知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#围棋基本规则"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">围棋基本规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#旋转与镜面"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">旋转与镜面</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自对弈训练工作流"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">自对弈训练工作流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化参数"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">优化参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#评估器"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">评估器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">自对弈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#监督学习"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">监督学习</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS搜索算法"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">MCTS搜索算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Selcet-Figure2a"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">Selcet - Figure2a</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Expand-and-evaluate-Figure-2b"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">Expand and evaluate - Figure 2b</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Backup-Figure-2c"><span class="post-toc-number">2.4.3.</span> <span class="post-toc-text">Backup - Figure 2c</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Play-Figure-2d"><span class="post-toc-number">2.4.4.</span> <span class="post-toc-text">Play - Figure 2d</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MCTS搜索总结"><span class="post-toc-number">2.4.5.</span> <span class="post-toc-text">MCTS搜索总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络结构-1"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">网络结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据集"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">数据集</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图5更多细节"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">图5更多细节</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结与随想"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结与随想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题与个人答案"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">问题与个人答案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-中的策略迭代法是如何工作的？"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">AlphaGo Zero 中的策略迭代法是如何工作的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-最精彩的部分哪部分？"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">AlphaGo Zero 最精彩的部分哪部分？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随想和评论"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">随想和评论</span></a></li></ol></li></ol>
         </nav>
     </aside>
     
@@ -206,9 +207,13 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】8000words 15min - 17min<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
+            <p>【阅读时间】21min - 24min 9715<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
 <p>在之前的详解：<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">深入浅出看懂AlphaGo</a>中，详细定义的DeepMind团队定义围棋问题的结构，并且深入解读了AlphaGo1.0每下一步都发生了什么事，就在最近，AlphaGo Zero横空出世。个人观点是，如果你看了之前的文章，你就会觉得这是一个水到渠成的事情</p>
 <p>令，如果你只对这个事件感兴趣的，而不想了解论文和技术细节，链接奉上，欢迎跳过到<a href="#总结与随想">最后评论和总结部分</a>（但这部分网上的大牛太多了，知乎答案内最高票对结合围棋的分析很漂亮！建议阅读）</p>
+<p><strong>上限置信区间算法（UCT），一种博弈树搜索算法</strong>，是AlphaGo中一个重要组成部分：<strong>MCTS搜索算法</strong>中的核心</p>
+<p>法国南巴黎大学的数学家西尔万·热利(SylvainGelly)与巴黎技术学校的王毅早(YizaoWang，音译)将<strong>UCT</strong>集成到一个他们称之为<strong>MoGo</strong>的程序中。该程序的胜率竟然比先前最先进的蒙特卡罗扩展算法<strong>几乎高出了一倍</strong>。</p>
+<p><strong>2007年春季</strong>，MoGo在大棋盘比赛中也击败了实力稍弱的业余棋手，充分展示了能力。<strong>科奇什（UCT算法发明者）预言，10年以后，计算机就能攻克最后的壁垒，终结人类职业棋手对围棋的统治</strong>。今年是2017年，AlphaG横空出世。10年，总有着天才的人具有先知般的远见。<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060" target="_blank" rel="external">详见UTC算法</a></p>
+<p>【小发现】看完论文发现，这篇文章的<strong>接受时间是2017年4月7号</strong>，审核完成时间是2017年9月13号，而在<strong>乌镇对阵柯洁（2017年5月23号）</strong>用的可能是AlphaGo Master（这里没法证据来证明到底是AlphaGo Zero还是AlphaGo Master）。这个团队也是无情啊，人类再一次感觉被耍了，根据Elo得分，Deepmind团队可能在赛前就透露过吧，即使是Master也有4858分啊，对于一个棋手来说，我感受到的是<strong>风萧萧兮易水寒决绝的背影</strong>。<strong>为柯洁的勇气打Call，当真围棋第一人，天下无双</strong></p>
 <h1 id="论文正文内容详细解析"><a href="#论文正文内容详细解析" class="headerlink" title="论文正文内容详细解析"></a>论文正文内容详细解析</h1><p>先上干货论文：<a href="https://deepmind.com/documents/119/agz_unformatted_nature.pdf" target="_blank" rel="external">Mastering the Game of Go without Human Knowledge</a> ，之后会主要<strong>以翻译论文</strong>为主，在语言上<strong>尽量易懂，避免翻译腔</strong></p>
 <p>AlphaGo Zero，从本质上来说完全不同于打败樊麾和李世石的版本</p>
 <ul>
@@ -336,6 +341,13 @@ $$
 </blockquote>
 <p>最终，AlphaGo Zero 与 AlphaGo Master的<strong>对战比分为89：11</strong>，对局中限制一场比赛在2小时之内（新闻中的零封是对下赢李世乭的AlphaGo Lee）</p>
 <h1 id="论文附录内容"><a href="#论文附录内容" class="headerlink" title="论文附录内容"></a>论文附录内容</h1><p>我们知道，Nature上的文章一般都是很强的可读性和严谨性，每一篇文章的正文可能只有4-5页，但是附录一般会远长于正文。基本所有你的<strong>技术细节疑惑</strong>都可以在其中找到结果，这里值列举一些我自己比较感兴趣的点，如果你是专业人士，甚至想复现AlphaGo Zero，读原文更好更精确</p>
+<h2 id="围棋领域先验知识"><a href="#围棋领域先验知识" class="headerlink" title="围棋领域先验知识"></a>围棋领域先验知识</h2><p>AlphaGo Zero最主要的贡献是<strong>证明了没有人类的先验知识机器也可以在性能上超越人类</strong>。为了阐释清楚这种贡献来自于何处，我们列举一些AlphaGo Zero使用到的<strong>知识</strong>，无论是训练过工程中的还是MCTS搜索中的。如果你想把AlphaGo Zero的思路<strong>应用的到解决其他游戏问题</strong>上，这些内容可能需要被替换</p>
+<h3 id="围棋基本规则"><a href="#围棋基本规则" class="headerlink" title="围棋基本规则"></a>围棋基本规则</h3><p>无论实在MCTS搜索中的模拟还是自对弈的过程，都依赖游戏最终的胜负规则，并且在落子过程中，根据规则还可以<strong>排除一部分不可以落子的点</strong>（比如已经落子的点，无法确认在AlphaGo Zero还有气为零的点不能下这个规则，因为<strong>不记录气的信息</strong>了。但可以<strong>写一个函数来判断</strong>当前局面 $\vec s$ 下<strong>下一步所有可能的落子点</strong>，不一定非得计算这个信息，这个过程可以<strong>完全多线程</strong>）</p>
+<p>###Tromp-Taylor规则</p>
+<p>在AlphaGo Zero中使用的是PSK（Positional Superko）禁全同规则（中国，韩国及日本使用），只要这一手（不包括跳过）会导致再现之前的局面，就禁止。</p>
+<h3 id="旋转与镜面"><a href="#旋转与镜面" class="headerlink" title="旋转与镜面"></a>旋转与镜面</h3><p>对于围棋来说，<strong>几个状态 $\vec s$ 在经过旋转或反射后是完全相同的</strong>，这种规律可以用来优化训练数据和MCTS搜索中的子树替换策略。并且因为<strong>贴目（黑棋先下优势贴目7目半）规则</strong>存在，不同状态 $\vec s$ <strong>换颜色也是相同的</strong>。这个规则可以用来使用当前下子的棋手的角度来表示棋盘</p>
+<p>除了以上的三个规则，AlphaGo Zero <strong>没有使用其他任何先验知识</strong>，它仅仅使用深度神经网络对叶子节点进行评估并选择落子位置。它没有使用任何Rollout Policy(这里指的应该是AlphaGo之前版本的快速走子策略)或者树形规则，MCTS搜索也没有使用<strong>其他的标准启发式规则</strong>或者<strong>先验常识规则</strong>去进行增强</p>
+<p>整个算法从随机初始化神经网络参数开始。<a href="">网络结构</a>和<a href="#优化参数">超参数选择</a> 见下一节。MCTS搜索的超参数 $c_puct$ 由<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="external">高斯过程优化</a>决定，为了<strong>优化自对弈的性能</strong>，使用了一个神经网络进行<strong>预训练</strong>。对于一个大规模网络的训练过程（40个残差模块，40天），使用一个小规模网络（20个残差模块，3天）来<strong>反复优化MCTS搜索的超参数</strong> $c_puct$。整个<strong>训练过程没有任何人工干预</strong></p>
 <h2 id="自对弈训练工作流"><a href="#自对弈训练工作流" class="headerlink" title="自对弈训练工作流"></a>自对弈训练工作流</h2><p>AlphaGo Zero的工作流由三个模块构成，可以异步多线程进行：</p>
 <ul>
 <li>深度神经网络<strong>参数</strong> $\theta_i$ 根据自对弈数据<strong>持续优化</strong></li>
@@ -343,7 +355,7 @@ $$
 <li>使用表现最好的 $\alpha_{\theta_*}$ 用来产生新的<strong>自对弈数据</strong></li>
 </ul>
 <h3 id="优化参数"><a href="#优化参数" class="headerlink" title="优化参数"></a>优化参数</h3><p>每一个神经网络 $f_{\theta_i}$ 在<strong>64个GPU工作节点</strong>和<strong>19个CPU参数服务器</strong>上进行优化。</p>
-<p><strong>批次（batch）每个工作节点32个</strong>，每一个<strong>mini-batch大小为2048</strong>。每一个 <strong>mini-batch 的数据</strong>从最近<strong>50万盘</strong>的自对弈棋谱的状态中联合随机采样。</p>
+<p><strong>每个工作节点的批次（Batch）大小是32</strong>，每一个<strong>mini-batch大小为2048</strong>。每一个 <strong>mini-batch 的数据</strong>从最近<strong>50万盘</strong>的自对弈棋谱的状态中联合随机采样。</p>
 <p><strong>神经网络权重</strong>更新使用带有<strong>动量（momentum）和学习率退火（learning rate annealing）的随机梯度下降法（SGD）</strong>，损失函数见公式1</p>
 <p>学习率退火比率见下表</p>
 <table>
@@ -388,21 +400,25 @@ $$
 </tbody>
 </table>
 <p>动量参数设置为<strong>0.9</strong></p>
+<p>方差项和交叉项的权重相同，原因是奖励值被归一化到 $r \in {-1,+1}$</p>
 <p>L2正则化系数设置为 $c = 10^{-4}$</p>
 <p><strong>优化过程每1000个训练步数</strong>执行一次，并使用这个<strong>新模型</strong>来生成下一个Batch的<strong>自对弈棋谱</strong></p>
-<h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>在使用检查点（checkpoint）新的神经网络去生成自对弈棋谱前，使用<strong>现有的最好网络</strong>来对它进行评估</p>
-<p>评估神经网络 $f_{\theta_i}$ 的方法是使用  $f_{\theta_i}$ 进行MCTS搜索得出 $\alpha_{\theta_i}$ </p>
-<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \Rightarrow 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 胜率大于 55%，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
-<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来产生数据。在每一次迭代中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步使用1600次MCTS模拟（每一步大约会花费0.4秒）</p>
-<p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但可能下出臭棋</p>
+<h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>为了保证生成数据的质量（不至于棋力反而下降），在使用<strong>新的神经网络去生成自对弈棋谱前</strong>，用<strong>现有的最好网络</strong> $f_\theta_*$来对它进行评估</p>
+<p>【评估神经网络 $f_{\theta_i}$ 的方法】使用  $f_{\theta_i}$ 进行MCTS搜索得出的 $\alpha_{\theta_i}$ 的<strong>性能</strong>（得到 $\alpha_{\theta_i}$ 的MCTS搜索过程中使用 $f_{\theta_i}$ 去估计<strong>叶子节点的位置</strong>和<strong>先验概率</strong>，<a href="#MCTS搜索算法">详见MCTS搜索这一节</a>）</p>
+<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \Rightarrow 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 在这400盘中胜率<strong>大于55%</strong>，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来<strong>产生数据</strong>。<strong>每次迭代</strong>中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步MCTS搜索模拟1600次（模拟的每次落子大约<strong>0.4秒</strong>，这里的一次表示的就是MCTS搜索中走到叶子节点，得出胜负结果）</p>
+<p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但也可能下出臭棋</p>
 <p><strong>投降阈值</strong> $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
-<h2 id="搜索算法"><a href="#搜索算法" class="headerlink" title="搜索算法"></a>搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
-<p>每一个搜索树的中的节点 $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有可能的落子 $\vec a \in \mathcal A(\vec s)$ ，每一条边存储一个数据集<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
+<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>为了进行对比，我们还<strong>使用监督学习</strong>训练了一个参数为 $\theta_{SL}$ 神经网络。神经网络的结构和AlphaGo Zero相同。数据集 $(\vec s, \boldsymbol \pi, z)$ 随机采样自KGS数据集，人类的落子策略位置即设置 $\pi_a = 1$ 。使用同样的超参数和损失函数，但是平方误差的系数为0.01，学习率图参照上表的第二列。其他超参数和上一节相同</p>
+<p>比AlphaGo1.0z中使用两种网络，使用这种结构的网络，可以有效的防止过拟合。并且实验也证明这个<strong>网络结构的</strong>的效果要<strong>好于之前的网络</strong></p>
+<h2 id="MCTS搜索算法"><a href="#MCTS搜索算法" class="headerlink" title="MCTS搜索算法"></a>MCTS搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
+<p>AlphaGo Zero使用的是<strong>比AlphaGo1.0中更简单</strong>的<strong>异步策略价值MCTS搜索算法</strong>（APV-MCTS）的变种</p>
+<p>搜索树中的<strong>节点</strong> $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有<strong>可能的落子</strong> $\vec a \in \mathcal A(\vec s)$ ，每一条边中<strong>存储一个数据</strong>，包含下列公式的四个值<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
 <blockquote>
-<p>$N(\vec s,\vec a)$ 表示<strong>MCST的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong></p>
+<p>$N(\vec s,\vec a)$ 表示<strong>MCST搜索模拟走到叶子节点的过程中的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值（由路径上所有的 $v$ 组成）的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong>（一个单独的值）</p>
 </blockquote>
-<p>多线程执行多次模拟，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，计算出一个 $\boldsymbol \pi$ ，根据这个向量下现在的这一步棋</p>
-<h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t$ 步时，根据<strong>搜索树的统计概率落子</strong><br>
+<p><strong>多线程（并行）执行多次模拟</strong>，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，计算出一个 $\boldsymbol \pi$ ，根据这个向量下现在的这一步棋</p>
+<h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t &lt; L$ 步时，根据<strong>搜索树的统计概率落子</strong><br>
 $$
 \vec a_t = \operatorname*{argmax}_{\vec a}(Q(\vec s_t, \vec a) + U (\vec s_t, \vec a))
 $$
@@ -414,9 +430,18 @@ U(\vec s, \vec a) = c_{puct}P(\vec s, \vec a) \frac{\sqrt{\Sigma_{\vec b} N(\vec
 $$
 
 <p>其中 $c_{puct}$ 是一个常数。这种搜索策略落子选择<strong>最开始</strong>更趋向于<strong>高先验概率</strong>和<strong>低访问次数</strong>的，但逐渐的会更加趋向于选择有着<strong>更高行动价值</strong>的落子</p>
-<h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到一个队列中等待输入至神经网络进行评估， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示双面反射和旋转选择（从8个不同的方向进行评估，）</p>
-<p>队列中的不同位置组成一个大小为8的mini-batch输入到神经网络中进行评估。整个MCTS搜索线程被锁死直到评估过程完成。叶子节点被展开，每一条边 $(\vec s_L,\vec a)$被初始化为  $\{N(\vec s_L,\vec a) = 0, W(\vec s_L,\vec a) = 0, Q(\vec s_L,\vec a) = 0, P(\vec s_L,\vec a) = p_a\}$ 。之后将神经网络的输出值 $v$ 传回</p>
-<h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着<strong>回溯的路线</strong>将边的统计数据更新。</p>
+<p> $c_{puct}$ 使用<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="external">贝叶斯高斯过程优化</a>来确定</p>
+<h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到<strong>队列</strong>中等待输入至神经网络<strong>进行评估</strong>， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示<strong>双方向镜面</strong>和<strong>旋转</strong>（从8个不同的方向进行评估，如下图所示，围棋棋型在很多情况如果<strong>从视觉角度来提取特征</strong>来说是同一个节点，极大的缩小了搜索空间）</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/DG.svg" alt="Figure 6" width="300px"></div>
+
+<p>队列中<strong>8个不同位置</strong>组成一个<strong>大小为8的mini-batch</strong>输入到神经网络中<strong>进行评估</strong>。整个<strong>MCTS搜索线程被锁死</strong>直到评估过程完成（这个锁死是保证并行运算间同步）。叶子节点被<strong>展开</strong>(Expand)，每一条边 $(\vec s_L,\vec a)$被初始化为 </p>
+
+$$
+{N(\vec s_L,\vec a) = 0 ;\; W(\vec s_L,\vec a) = 0; \; Q(\vec s_L,\vec a) = 0\\P(\vec s_L,\vec a) = p_a}
+$$
+
+<p>这里的 $p_a$ 由将 $\vec s$ <strong>输入神经网络</strong>得出 $\mathbf p$ （包括所有落子可能的概率值 $p_a$），然后将<strong>神经网络的输出值 $v$ 传回（backed up）</strong></p>
+<h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着<strong>扩展到叶子节点的路线回溯</strong>将边的统计数据更新（如下列公式所示）</p>
 
 $$
 N(\vec s_t, \vec a_t) = N(\vec s_t, \vec a_t)  + 1 \\
@@ -428,15 +453,17 @@ $$
 <p>注解：在 $W(\vec s_t, \vec a_t)$ 的更新中，使用了神经网络的输出 $v$，而最后的价值就是策略评估中的这一状态的价值 $Q(\vec s, \vec a)$</p>
 </blockquote>
 <p>使用虚拟损失（virtual loss）确保每一个线程评估不同的节点</p>
-<h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>进行了一次MCTS搜索后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec a_0$，与访问次数成幂指数比例</p>
+<h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>完成MCTS搜索（并行重复1-3步1600次，花费0.4s）后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec a_0$，与访问次数成幂指数比例</p>
 
 $$
 \boldsymbol \pi(\vec a|\vec s_0) = \frac {N(\vec s_0,a)^{1/\tau}}{\Sigma_{\vec b} N(\vec s_0, \vec b)^{1/\tau}}
 $$
 
-<p>其中 $\tau$ 是一个温度常数用来控制探索等级（level of exploration）。搜索树会在接下来的走子中继续使用，如果孩子节点和落子的位置吻合，它就成为新的根节点，保留子树的所有统计数据，同时丢弃其他的树。<strong>如果根的评价值和它最好孩子的评价值都低于 $v_{resign}$ AlphaGo Zero就认输</strong></p>
-<p>与之前的版本的MCTS相比，<strong>AlphaGo Zero最大的不同是没有使用走子网络（Rollout），而是使用一个神经网络</strong></p>
-<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><a href="http://gokifu.com/" target="_blank" rel="external">GoKifu数据集</a>，和<a href="https://u-go.net/gamerecords/" target="_blank" rel="external">KGS数据集</a></p>
+<p>其中 $\tau$ 是一个温度常数用来控制探索等级（level of exploration）。它是热力学玻尔兹曼分布的一种变形。温度较高的时候，分布更加<strong>均匀（走子多样性强）</strong>；温度降低的时候，分布更加<strong>尖锐（多样性弱，追求最强棋力）</strong></p>
+<p>搜索树会在接下来的<strong>自对弈走子</strong>中<strong>复用</strong>，如果孩子节点和落子的位置吻合，它就成为新的根节点，保留子树的所有统计数据，同时丢弃其他的树。<strong>如果根的评价值和它最好孩子的评价值都低于 $v_{resign}$ AlphaGo Zero就认输</strong></p>
+<h3 id="MCTS搜索总结"><a href="#MCTS搜索总结" class="headerlink" title="MCTS搜索总结"></a>MCTS搜索总结</h3><p>与之前的版本的MCTS相比，<strong>AlphaGo Zero最大的不同是没有使用走子网络（Rollout），而是使用一个整合的深度神经网络</strong>；叶子节点总会被扩展，而不是动态扩展；每一次MCTS搜索线程需要<strong>等待</strong>神经网络的评估，之前的版本性能评估（evaluate）和返回（backup）是异步的；没有树形策略</p>
+<p>至于很重要的一个关键点<strong>：每一次模拟的中的叶子节点<code>L</code>的深度</strong>。【个人分析】是由时间来决定，根据论文提到的数据，<strong>0.4秒执行1600次模拟</strong>，<strong>多线程模拟</strong>，所以0.4秒内就可以完成，在<strong>时限内</strong>能走到的深度有多深就是这个<strong>叶子节点</strong>。可以类比为AlphaGo 1.0中的局面函数（用来判断某个局面下的胜率的），也就是说不用下完，在叶子节点的状态下，使用深度神经网的输出来判断现在落子的棋手的胜率</p>
+<h2 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h2><h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><a href="http://gokifu.com/" target="_blank" rel="external">GoKifu数据集</a>，和<a href="https://u-go.net/gamerecords/" target="_blank" rel="external">KGS数据集</a></p>
 <h2 id="图5更多细节"><a href="#图5更多细节" class="headerlink" title="图5更多细节"></a>图5更多细节</h2><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -498,7 +525,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-25T17:51:21.486Z" itemprop="dateUpdated">2017-10-25 10:51:21</time>
+    Last updated: <time datetime="2017-10-27T18:07:01.723Z" itemprop="dateUpdated">2017-10-27 11:07:01</time>
 </span><br>
 
 
@@ -541,7 +568,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了Alp..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -702,7 +729,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】8000words 15min - 17min【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了Alp..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
