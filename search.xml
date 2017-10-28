@@ -250,7 +250,7 @@ $$
 <blockquote>
 <p>注解：在 $W(\vec s_t, \vec a_t)$ 的更新中，使用了神经网络的输出 $v$，而最后的价值就是策略评估中的这一状态的价值 $Q(\vec s, \vec a)$</p>
 </blockquote>
-<p>使用虚拟损失（virtual loss）确保每一个线程评估不同的节点</p>
+<p>使用虚拟损失（virtual loss）确保每一个线程评估不同的节点。实现方法概括为<strong>把其他节点减去一个很大的值</strong>，避免其他搜索进程走相同的路，<a href="https://link.springer.com/chapter/10.1007/978-3-642-17928-0_4" target="_blank" rel="external">详见</a></p>
 <h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>完成MCTS搜索（并行重复1-3步1600次，花费0.4s）后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec a_0$，与访问次数成幂指数比例</p>
 
 $$
