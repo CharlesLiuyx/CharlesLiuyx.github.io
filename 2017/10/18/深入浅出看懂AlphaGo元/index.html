@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-28T06:00:24.844Z">
+<meta property="og:updated_time" content="2017-10-28T06:03:14.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -403,7 +403,7 @@ $$
 </tbody>
 </table>
 <p>动量参数设置为<strong>0.9</strong></p>
-<p>方差项和交叉项的权重相同，原因是奖励值被归一化到 $r \in {-1,+1}$</p>
+<p>方差项和交叉项的权重相同，原因是奖励值被归一化到 $r \in [-1,+1]$</p>
 <p>L2正则化系数设置为 $c = 10^{-4}$</p>
 <p><strong>优化过程每1000个训练步数</strong>执行一次，并使用这个<strong>新模型</strong>来生成下一个Batch的<strong>自对弈棋谱</strong></p>
 <h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>为了保证生成数据的质量（不至于棋力反而下降），在使用<strong>新的神经网络去生成自对弈棋谱前</strong>，用<strong>现有的最好网络</strong> $f_{\theta_*}$ 来对它进行评估</p>
@@ -571,7 +571,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-28T06:00:24.844Z" itemprop="dateUpdated">2017-10-27 23:00:24</time>
+    Last updated: <time datetime="2017-10-28T06:03:14.804Z" itemprop="dateUpdated">2017-10-27 23:03:14</time>
 </span><br>
 
 
