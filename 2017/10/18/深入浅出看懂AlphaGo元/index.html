@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-28T05:17:54.430Z">
+<meta property="og:updated_time" content="2017-10-28T06:00:24.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -350,7 +350,7 @@ $$
 <h3 id="Tromp-Taylor规则"><a href="#Tromp-Taylor规则" class="headerlink" title="Tromp-Taylor规则"></a>Tromp-Taylor规则</h3><p>在AlphaGo Zero中使用的是PSK（Positional Superko）禁全同规则（中国，韩国及日本使用），只要这一手（不包括跳过）会导致再现之前的局面，就禁止。</p>
 <h3 id="旋转与镜面"><a href="#旋转与镜面" class="headerlink" title="旋转与镜面"></a>旋转与镜面</h3><p>对于围棋来说，<strong>几个状态 $\vec s$ 在经过旋转或反射后是完全相同的</strong>，这种规律可以用来优化训练数据和MCTS搜索中的子树替换策略。并且因为<strong>贴目（黑棋先下优势贴目7目半）规则</strong>存在，不同状态 $\vec s$ <strong>换颜色也是相同的</strong>。这个规则可以用来使用当前下子的棋手的角度来表示棋盘</p>
 <p>除了以上的三个规则，AlphaGo Zero <strong>没有使用其他任何先验知识</strong>，它仅仅使用深度神经网络对叶子节点进行评估并选择落子位置。它没有使用任何Rollout Policy(这里指的应该是AlphaGo之前版本的快速走子策略)或者树形规则，MCTS搜索也没有使用<strong>其他的标准启发式规则</strong>或者<strong>先验常识规则</strong>去进行增强</p>
-<p>整个算法从随机初始化神经网络参数开始。<a href="">网络结构</a>和<a href="#优化参数">超参数选择</a> 见下一节。MCTS搜索的超参数 $c_puct$ 由<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="external">高斯过程优化</a>决定，为了<strong>优化自对弈的性能</strong>，使用了一个神经网络进行<strong>预训练</strong>。对于一个大规模网络的训练过程（40个残差模块，40天），使用一个小规模网络（20个残差模块，3天）来<strong>反复优化MCTS搜索的超参数</strong> $c_puct$。整个<strong>训练过程没有任何人工干预</strong></p>
+<p>整个算法从随机初始化神经网络参数开始。<a href="">网络结构</a>和<a href="#优化参数">超参数选择</a> 见下一节。MCTS搜索的超参数 $c_{puct}$ 由<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="external">高斯过程优化</a>决定，为了<strong>优化自对弈的性能</strong>，使用了一个神经网络进行<strong>预训练</strong>。对于一个大规模网络的训练过程（40个残差模块，40天），使用一个小规模网络（20个残差模块，3天）来<strong>反复优化MCTS搜索的超参数</strong> $c_{puct}$。整个<strong>训练过程没有任何人工干预</strong></p>
 <h2 id="自对弈训练工作流"><a href="#自对弈训练工作流" class="headerlink" title="自对弈训练工作流"></a>自对弈训练工作流</h2><p>AlphaGo Zero的工作流由三个模块构成，可以异步多线程进行：</p>
 <ul>
 <li>深度神经网络<strong>参数</strong> $\theta_i$ 根据自对弈数据<strong>持续优化</strong></li>
@@ -571,7 +571,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-28T05:17:54.430Z" itemprop="dateUpdated">2017-10-27 22:17:54</time>
+    Last updated: <time datetime="2017-10-28T06:00:24.844Z" itemprop="dateUpdated">2017-10-27 23:00:24</time>
 </span><br>
 
 
