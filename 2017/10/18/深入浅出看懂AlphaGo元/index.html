@@ -25,13 +25,13 @@
     
     
     <meta name="keywords" content="AlphaGo,Deep Learning">
-    <meta name="description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+    <meta name="description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="keywords" content="AlphaGo,Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入浅出看懂AlphaGo元">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta property="og:description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png">
@@ -45,10 +45,10 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-28T07:21:31.888Z">
+<meta property="og:updated_time" content="2017-10-28T08:13:12.957Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
-<meta name="twitter:description" content="【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta name="twitter:description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -210,9 +210,9 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】21min - 24min 9715<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
+            <p>【阅读时间】21min - 24min 10999字<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
 <p>在之前的详解：<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">深入浅出看懂AlphaGo</a>中，详细定义的DeepMind团队定义围棋问题的结构，并且深入解读了AlphaGo1.0每下一步都发生了什么事，就在最近，AlphaGo Zero横空出世。个人观点是，如果你看了之前的文章，你就会觉得这是一个水到渠成的事情</p>
-<p>令，如果你只对这个事件感兴趣的，而不想了解论文和技术细节，链接奉上，欢迎跳过到<a href="#总结与随想">最后评论和总结部分</a>（但这部分网上的大牛太多了，知乎答案内最高票对结合围棋的分析很漂亮！建议阅读）</p>
+<p>另，如果你只对这个事件感兴趣的，而不想了解论文和技术细节，链接奉上，欢迎跳过到<a href="#总结与随想">最后评论和总结部分</a>（但这部分网上的大牛太多了，知乎答案内最高票对结合围棋的分析很漂亮！建议阅读）</p>
 <p><strong>上限置信区间算法（UCT），一种博弈树搜索算法</strong>，是AlphaGo中一个重要组成部分：<strong>MCTS搜索算法</strong>中的核心</p>
 <p>法国南巴黎大学的数学家西尔万·热利(SylvainGelly)与巴黎技术学校的王毅早(YizaoWang，音译)将<strong>UCT</strong>集成到一个他们称之为<strong>MoGo</strong>的程序中。该程序的胜率竟然比先前最先进的蒙特卡罗扩展算法<strong>几乎高出了一倍</strong>。</p>
 <p><strong>2007年春季</strong>，MoGo在大棋盘比赛中也击败了实力稍弱的业余棋手，充分展示了能力。<strong>科奇什（UCT算法发明者）预言，10年以后，计算机就能攻克最后的壁垒，终结人类职业棋手对围棋的统治</strong>。今年是2017年，AlphaGo系列横空出世。10年，总有着天才的人具有先知般的远见。<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060" target="_blank" rel="external">详见UTC算法</a></p>
@@ -571,7 +571,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-28T07:21:31.888Z" itemprop="dateUpdated">2017-10-28 00:21:31</time>
+    Last updated: <time datetime="2017-10-28T08:13:12.957Z" itemprop="dateUpdated">2017-10-28 01:13:12</time>
 </span><br>
 
 
@@ -614,7 +614,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了Alp..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了A..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -775,7 +775,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 9715【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了Alp..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了A..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
