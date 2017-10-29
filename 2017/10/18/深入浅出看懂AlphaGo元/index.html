@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
-<meta property="og:updated_time" content="2017-10-28T22:42:27.391Z">
+<meta property="og:updated_time" content="2017-10-29T01:07:53.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入浅出看懂AlphaGo元">
 <meta name="twitter:description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
@@ -293,7 +293,7 @@ $$
 <ul>
 <li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
 <li>每<strong>一轮迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
-<li>第 $t$ 步：MCTS搜索 $\boldsymbol \pi_t = \alpha \theta_{i-1}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，根据MCTS结构计算出的<strong>落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
+<li>第 $t$ 步：MCTS搜索 $\boldsymbol \pi_t = \alpha_{\theta_{i-1}}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，根据MCTS结构计算出的<strong>落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
 <li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in \{-1,+1\}$。</li>
 <li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
 <li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的数据 $(\vec s, \boldsymbol \pi, z)$ （<strong>$\vec s$ 为训练数据，$\boldsymbol \pi, z$ 为标签</strong>）中<strong>采样</strong>（这里的采样是指选Mini-Batch）来训练网络参数 $\theta_i$，</li>
@@ -571,7 +571,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-28T22:42:27.391Z" itemprop="dateUpdated">2017-10-28 15:42:27</time>
+    Last updated: <time datetime="2017-10-29T01:07:53.365Z" itemprop="dateUpdated">2017-10-28 18:07:53</time>
 </span><br>
 
 
