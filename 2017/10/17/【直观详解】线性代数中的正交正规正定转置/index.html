@@ -35,7 +35,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif">
-<meta property="og:updated_time" content="2017-10-21T17:36:16.319Z">
+<meta property="og:updated_time" content="2017-11-01T22:47:50.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
 <meta name="twitter:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
@@ -173,7 +173,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正交矩阵"><span class="post-toc-number">1.</span> <span class="post-toc-text">正交矩阵</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正交矩阵"><span class="post-toc-number">1.</span> <span class="post-toc-text">正交矩阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正定与半正定"><span class="post-toc-number">2.</span> <span class="post-toc-text">正定与半正定</span></a></li></ol>
         </nav>
     </aside>
     
@@ -208,16 +208,24 @@
 <p>三维情况下，单位矩阵（对角线为1，其他为0，即基向量构成的矩阵）$\mathbf E = \left [ \begin{smallmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0&amp;0&amp;1 \end{smallmatrix} \right ]$   如下图所示</p>
 <div align="center"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png" alt="" width="400px"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif" alt="" width="400px"></div>
 
-<p>$\mathbf E$ 中的三个基向量分别记为 $\mathbf {X_a}= \left [ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right ] $ ，$\mathbf {Y_a} = \left [ \begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix} \right ] $，$\mathbf {Z_a} = \left [ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right ] $ ，用下标<code>a</code>来表示。之后对这个矩阵 $\mathbf E$ 应用一个旋转变换，以 $(0,-0.6,0.8)$ 为旋转轴，转90°。得到三个新的向量，用下标<code>b</code>来表示，记为 $\mathbf {X_b}= \left [ \begin{smallmatrix} 0 \\ 0.8 \\ 0.6 \end{smallmatrix} \right ] $ ，$\mathbf {Y_b} = \left [ \begin{smallmatrix} -0.8 \\ -0.36 \\ 0.48 \end{smallmatrix} \right ] $，$\mathbf {Z_b} = \left [ \begin{smallmatrix} -0.6 \\ 0.48 \\ -0.64 \end{smallmatrix} \right ] $ </p>
-<p>根据基变换原理，易得<strong>旋转变换的矩阵表达式</strong> $\mathbf R = \left [ \begin{smallmatrix} 0&amp;-0.8 &amp;-0.6 \\ 0.8&amp;-0.36&amp;0.48 \\ 0.6&amp;0.48&amp;-0.64 \end{smallmatrix} \right ]$  计算得特征向量为</p>
+<p>$\mathbf E$ 中的三个基向量分别记为 $\mathbf {X_a}= \left [ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right ] $ ，$\mathbf {Y_a} = \left [ \begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix} \right ] $，$\mathbf {Z_a} = \left [ \begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix} \right ] $ ，用下标<code>a</code>来表示。之后对这个矩阵 $\mathbf E$ 应用一个旋转变换，以 $(0,-0.6,0.8)$ 为旋转轴，转90°。得到三个新的向量，用下标<code>b</code>来表示，记为 $\mathbf {X_b}= \left [ \begin{smallmatrix} 0 \\ 0.8 \\ 0.6 \end{smallmatrix} \right ] $ ，$\mathbf {Y_b} = \left [ \begin{smallmatrix} -0.8 \\ -0.36 \\ 0.48 \end{smallmatrix} \right ] $，$\mathbf {Z_b} = \left [ \begin{smallmatrix} -0.6 \\ 0.48 \\ -0.64 \end{smallmatrix} \right ] $ </p>
+<p>根据基变换原理，易得<strong>旋转变换的矩阵表达式</strong> $\mathbf R = \left [ \begin{smallmatrix} 0&amp;-0.8 &amp;-0.6 \\ 0.8&amp;-0.36&amp;0.48 \\ 0.6&amp;0.48&amp;-0.64 \end{smallmatrix} \right ]$  计算得特征向量为 $(0,-0.75,1)$，发现这条向量即旋转轴！</p>
+<p>此时我们考虑从 $\mathbf R$矩阵下变到 $\mathbf E$的变换矩阵是多少，即求 $\mathbf R$ 矩阵的逆</p>
 
+$$
+\mathbf R^{-1} = \left [ \begin{matrix} 0 & 0.8 & 0.6 \\-0.8 & -0.36 & 0.48 \\-0.6 & 0.48 & -0.64 \end{matrix}\right]
+$$
+
+<p>观察形式大家就可以发现一个有趣的特点 $\mathbf R^{-1} = \mathbf R^T$</p>
+<p><strong>正交矩阵有一个几何直观的特点，表示一个旋转变换，并且矩阵的逆和矩阵的转置相等</strong></p>
+<h1 id="正定与半正定"><a href="#正定与半正定" class="headerlink" title="正定与半正定"></a>正定与半正定</h1>
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-21T17:36:16.319Z" itemprop="dateUpdated">2017-10-21 10:36:16</time>
+    Last updated: <time datetime="2017-11-01T22:47:50.771Z" itemprop="dateUpdated">2017-11-01 15:47:50</time>
 </span><br>
 
 
