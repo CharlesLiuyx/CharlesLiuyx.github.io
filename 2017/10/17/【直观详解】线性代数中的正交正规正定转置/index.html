@@ -35,7 +35,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif">
-<meta property="og:updated_time" content="2017-11-01T22:47:50.771Z">
+<meta property="og:updated_time" content="2017-11-11T01:27:42.602Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
 <meta name="twitter:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
@@ -173,7 +173,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正交矩阵"><span class="post-toc-number">1.</span> <span class="post-toc-text">正交矩阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正定与半正定"><span class="post-toc-number">2.</span> <span class="post-toc-text">正定与半正定</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正交矩阵"><span class="post-toc-number">1.</span> <span class="post-toc-text">正交矩阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正定与半正定矩阵"><span class="post-toc-number">2.</span> <span class="post-toc-text">正定与半正定矩阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#正规矩阵"><span class="post-toc-number">3.</span> <span class="post-toc-text">正规矩阵</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵的转置"><span class="post-toc-number">4.</span> <span class="post-toc-text">矩阵的转置</span></a></li></ol>
         </nav>
     </aside>
     
@@ -218,14 +218,45 @@ $$
 
 <p>观察形式大家就可以发现一个有趣的特点 $\mathbf R^{-1} = \mathbf R^T$</p>
 <p><strong>正交矩阵有一个几何直观的特点，表示一个旋转变换，并且矩阵的逆和矩阵的转置相等</strong></p>
-<h1 id="正定与半正定"><a href="#正定与半正定" class="headerlink" title="正定与半正定"></a>正定与半正定</h1>
+<h1 id="正定与半正定矩阵"><a href="#正定与半正定矩阵" class="headerlink" title="正定与半正定矩阵"></a>正定与半正定矩阵</h1><p>根据<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/#特征向量与特征值">特征值和特征向量</a>稳重讲解的内容，我们知道特征值是对一个变换（矩阵）特性的<strong>有力表征</strong>，公式  $\mathbf A \mathbf{\vec v} = \lambda \mathbf{\vec v}$  表示了<strong>变换中被留在张成空间内的向量就是特征向量</strong>的符号表达，其中 $\vec v$ 是特征向量，$\lambda$ 即特征值</p>
+<p>我们对上式进行一些数学恒等变换，左乘 $\vec v^T$，得到</p>
+
+$$
+\vec v^T \mathbf A \vec v = \vec v^T \lambda \vec v = \lambda \vec v^T \vec v \tag{2-1}
+$$
+
+<p>此时我们会发现一些巧合，先来看看正定矩阵的正规定义：若一个 <code>n×n</code>的矩阵 $\mathbf M$ 是<strong>正定的</strong>，当且仅当队友所有的非零实系数的向量 $\vec v$，都有 $\vec v^T \mathbf M \vec v &gt; 0$</p>
+<p>我们暂时不考虑复数情况（在机器学习预见复数域的内容较少），结合上面的二公式，发现保证 $\vec v^T \mathbf M \vec v &gt; 0$ 即使得 $\lambda \vec v^T \vec v&gt;0$，其中 $\vec v^T \vec v$一定大于等于0（由于 $\vec v$ 是一个<code>1×n</code>的向量，转置进行矩阵相乘实际效果<strong>计算元素的平方和</strong>），所以可以推出即<strong>正定矩阵就是使得特征值大于0</strong></p>
+<p>再回到正定矩阵的定义公式 $\vec x^T \mathbf M \vec x &gt; 0$，我们已经有深刻的理解 $\mathbf M \vec x$ 表示对向量 $\vec x$ 进行<strong>变换</strong>，记变换后的向量为 $\vec y = \mathbf M \vec x$  ，则我们可以把正定矩阵的公式写成</p>
+
+$$
+\vec x^T \vec y > 0 \tag{2-2}
+$$
+
+<p>这个公式是不是很熟悉呢？它是<strong>两个向量的内积</strong>，对于内积，有公式：</p>
+
+$$
+\cos(\theta) = \frac{\vec x^T \vec y}{\Vert \vec x \Vert * \Vert \vec y \Vert}
+$$
+
+<p>$\Vert \vec x \Vert \; \Vert \vec y \Vert$ 表示 $\vec x$ 和 $\vec y$的长度，$\theta$ 是它们之间的夹角。根据2-2式，可以得到 $\cos(\theta) &gt; 0$，即它们之间的夹角<strong>小于90度</strong> </p>
+<p>总结：如果说一个矩阵正定，则表示，一个向量<strong>经过此矩阵变换后的向量</strong>与原向量<strong>夹角小于90度</strong></p>
+<p>当然，加一个【半】字，是指这个小于变成<strong>小于等于</strong></p>
+<h1 id="正规矩阵"><a href="#正规矩阵" class="headerlink" title="正规矩阵"></a>正规矩阵</h1><p>矩阵中还有一张<strong>形状特殊</strong>的矩阵，被称为<strong>正规矩阵</strong>，定义为：如果矩阵 $\mathbf A$ 满足 $\mathbf A^T \mathbf A = \mathbf A \mathbf A^T$</p>
+<p>更多的，如果矩阵 $\mathbf U$ 满足 $\mathbf U^T \mathbf U = \mathbf U \mathbf U^T = \mathbf I$，其中 $\mathbf I$ 是单位矩阵，则称矩阵 $\mathbf U$ 为<strong>酉矩阵</strong></p>
+<p>从变换的角度来看<strong>正规矩阵</strong>，先做一个变换 $\mathbf A$ 再做一个变换 $\mathbf A^T$。并且交换两个矩阵的位置，最终结果相同</p>
+<h1 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h1><p>在前面的三个描绘矩阵不同矩阵的概念中，多次使用了<strong>转置</strong>的概念，从形式上来说，转置只是一个45°角度的对称交换操作。那么，从矩阵表示变换的集合角度如何理解转置呢？</p>
+<p>首先，考虑矩阵的列向量有具体的物理含义这一特性，如果按照规则进行转置的操作，几何角度的性质就会被破坏</p>
+<p>如果是<strong>非方阵的情况</strong>，考虑矩阵转置的几何含义感觉是无意义的</p>
+<p>方阵的情况</p>
+
         </div>
 
         <blockquote class="post-copyright">
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-11-01T22:47:50.771Z" itemprop="dateUpdated">2017-11-01 15:47:50</time>
+    Last updated: <time datetime="2017-11-11T01:27:42.602Z" itemprop="dateUpdated">2017-11-10 17:27:42</time>
 </span><br>
 
 
