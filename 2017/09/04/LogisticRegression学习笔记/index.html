@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
-<meta property="og:updated_time" content="2017-10-06T01:34:15.303Z">
+<meta property="og:updated_time" content="2017-11-15T00:46:30.946Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】Logistic Regression">
 <meta name="twitter:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
@@ -312,7 +312,7 @@ $$
 <p>$L(\theta|x)$ 表示在<strong>给定样本</strong> $x$ ，哪个参数 $\theta$ 使得 $x$ 出现的可能性有多大。说人话，我们已经知道天气是晴天，哪个参数（可能是 $\theta_1$ $\theta_2$）使得这个<strong>函数值最大</strong></p>
 <h4 id="对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy"><a href="#对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy" class="headerlink" title="对于Logistic Regression 为什么要用LogLoss - Cross Entropy"></a>对于Logistic Regression 为什么要用LogLoss - Cross Entropy</h4><p>了解了熵，和似然函数，我们可以开始看看在Logistic Regression的条件下为什么要用LogLoss，换句话也就是说，它一定有它的优势，我们采用，那么它有什么优势？</p>
 <p>Logistic Regression的本质还是一个二分类问题，即Y = 0，or Y = 1</p>
-<p>令 $P(Y=1|x) = \pi(x)$ $P(Y=1|x) = 1 - \pi(x)$ </p>
+<p>令 $P(Y=0|x) = \pi(x)$ $P(Y=1|x) = 1 - \pi(x)$ </p>
 <blockquote>
 <p>$y_i$ 表示i次试验，取值就是0 or 1（二分类问题）</p>
 <p>$\pi(x) = \frac{1}{1 + e^{-wx}}$  是Logistic Function的表现形式，其中w相当于似然函数一节提到的 $\theta$ 是需要求的参数（加深理解，其实在二分类问题中，Logistic函数就是一种形式上的概率分布的表现形式）</p>
@@ -336,7 +336,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-06T01:34:15.303Z" itemprop="dateUpdated">2017-10-05 18:34:15</time>
+    Last updated: <time datetime="2017-11-15T00:46:30.946Z" itemprop="dateUpdated">2017-11-14 16:46:30</time>
 </span><br>
 
 
