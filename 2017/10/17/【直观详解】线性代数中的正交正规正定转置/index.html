@@ -35,7 +35,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif">
-<meta property="og:updated_time" content="2017-11-14T05:23:20.743Z">
+<meta property="og:updated_time" content="2017-11-28T01:29:32.508Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
 <meta name="twitter:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
@@ -245,10 +245,11 @@ $$
 <h1 id="正规矩阵"><a href="#正规矩阵" class="headerlink" title="正规矩阵"></a>正规矩阵</h1><p>矩阵中还有一张<strong>形状特殊</strong>的矩阵，被称为<strong>正规矩阵</strong>，定义为：如果矩阵 $\mathbf A$ 满足 $\mathbf A^T \mathbf A = \mathbf A \mathbf A^T$</p>
 <p>更多的，如果矩阵 $\mathbf U$ 满足 $\mathbf U^T \mathbf U = \mathbf U \mathbf U^T = \mathbf I$，其中 $\mathbf I$ 是单位矩阵，则称矩阵 $\mathbf U$ 为<strong>酉矩阵</strong></p>
 <p>从变换的角度来看<strong>正规矩阵</strong>，先做一个变换 $\mathbf A$ 再做一个变换 $\mathbf A^T$。并且交换两个矩阵的位置，最终结果相同</p>
-<h1 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h1><p>在前面的三个描绘矩阵不同矩阵的概念中，多次使用了<strong>转置</strong>的概念，从形式上来说，转置只是一个45°角度的对称交换操作。那么，从矩阵表示变换的集合角度如何理解转置呢？</p>
+<h1 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h1><p>在前面的三个描绘矩阵不同矩阵的概念中，多次使用了<strong>转置</strong>的概念。从形式（作用结果）上来说，转置只是一个45°角度的对称交换操作。那么，从矩阵表示变换的集合角度如何理解转置呢？</p>
 <p>首先，考虑矩阵的列向量有具体的物理含义这一特性，如果按照规则进行转置的操作，几何角度的性质就会被破坏</p>
-<p>如果是<strong>非方阵的情况</strong>，考虑矩阵转置的几何含义感觉是无意义的</p>
-<p><strong>方阵的情况</strong>下，从列空间的角度来说</p>
+<p><strong>非方阵</strong>：考虑矩阵转置的几何含义是无意义的，或者说，对出现过矩阵转置的公式的进一步理解是没有帮助的</p>
+<p>特别的，如果是向量形式（1×n的矩阵），转置很多时候出现，是为了<strong>进行二次型运算</strong>（即平方运算），设  $\mathbf x = {x_1, x_2,\ldots, x_n}$ </p>
+<p><strong>方阵</strong>：从<strong>列空间</strong>的概念，转置是<strong>一种非常特殊的旋转</strong>，</p>
 
         </div>
 
@@ -256,7 +257,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-11-14T05:23:20.743Z" itemprop="dateUpdated">2017-11-13 21:23:20</time>
+    Last updated: <time datetime="2017-11-28T01:29:32.508Z" itemprop="dateUpdated">2017-11-27 17:29:32</time>
 </span><br>
 
 
