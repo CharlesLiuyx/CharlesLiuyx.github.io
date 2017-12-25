@@ -72,9 +72,9 @@
     <link href="https://charlesliuyx.github.io/2017/10/17/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E4%B8%AD%E7%9A%84%E6%AD%A3%E4%BA%A4%E6%AD%A3%E8%A7%84%E6%AD%A3%E5%AE%9A%E8%BD%AC%E7%BD%AE/"/>
     <id>https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/</id>
     <published>2017-10-17T18:01:27.000Z</published>
-    <updated>2017-12-22T01:17:34.236Z</updated>
+    <updated>2017-12-25T23:42:37.238Z</updated>
     
-    <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】从<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释<br><a id="more"></a></p><p>在之前的<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>的笔记中，详细讨论了<strong>特征值与特征向量的几何直观意义</strong></p><p>起初，研究线性代数，也是因为深入了解矩阵（变换）对机器学习中的很多<strong>优美公式的推导和理解</strong>有帮助。上篇笔记中，3B1B团队的讲解内容中没有涉及几个线性代数中的概念，且这些概念在做矩阵分解时会被用到。以<strong>上一篇笔记中的直观理解为基础</strong>（矩阵 = 变换）在这里做一个整理和记录</p><h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>可能很多人已经有一个概念：正交（Orthogonal） = 垂直。但我们知道，正交的一定垂直，垂直的不一定正交（比如空间中两个<strong>不相交直线垂直</strong>）。提及垂直，首先出现你脑海中的特点是什么呢？我想是勾股数 $a^2 + b^2 = c^2$ ， 还有 $\cos (\frac {\pi}{2}) = 1$  </p><p>那什么是正交矩阵呢？在讲这个概念之前，变换中有一种特殊变换：<strong>旋转变换</strong>。这种变换除了原点外没有特征向量，特征值恒为1，不对网格进行伸缩。</p><p>三维情况下，单位矩阵（对角线为1，其他为0，即基向量构成的矩阵）$\mathbf E = \left [ \begin{smallmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0&amp;0&amp;1 \end{smallmatrix} \right ]$   如下图所示</p><div align="center"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png" alt="" width="400px"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif" alt="" width="400px"></div><p>$\mathbf E$ 中的三个基向量分别记为 $\mathbf {X_a}= \left [ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right ] $ ，$\mathbf {Y_a} = \left [ \begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix} \right ] $，$\mathbf {Z_a} = \left [ \begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix} \right ] $ ，用下标<code>a</code>来表示。之后对这个矩阵 $\mathbf E$ 应用一个旋转变换，以 $(0,-0.6,0.8)$ 为旋转轴，转90°。得到三个新的向量，用下标<code>b</code>来表示，记为 $\mathbf {X_b}= \left [ \begin{smallmatrix} 0 \\ 0.8 \\ 0.6 \end{smallmatrix} \right ] $ ，$\mathbf {Y_b} = \left [ \begin{smallmatrix} -0.8 \\ -0.36 \\ 0.48 \end{smallmatrix} \right ] $，$\mathbf {Z_b} = \left [ \begin{smallmatrix} -0.6 \\ 0.48 \\ -0.64 \end{smallmatrix} \right ] $ </p><p>根据基变换原理，易得<strong>旋转变换的矩阵表达式</strong> $\mathbf R = \left [ \begin{smallmatrix} 0&amp;-0.8 &amp;-0.6 \\ 0.8&amp;-0.36&amp;0.48 \\ 0.6&amp;0.48&amp;-0.64 \end{smallmatrix} \right ]$  计算得特征向量为 $(0,-0.75,1)$，发现这条向量即旋转轴！</p><p>此时我们考虑从 $\mathbf R$矩阵下变到 $\mathbf E$的变换矩阵是多少，即求 $\mathbf R$ 矩阵的逆</p>$$\mathbf R^{-1} = \left [ \begin{matrix} 0 & 0.8 & 0.6 \\-0.8 & -0.36 & 0.48 \\-0.6 & 0.48 & -0.64 \end{matrix}\right]$$<p>观察形式大家就可以发现一个有趣的特点 $\mathbf R^{-1} = \mathbf R^T$</p><p><strong>正交矩阵有一个几何直观的特点，表示一个旋转变换，并且矩阵的逆和矩阵的转置相等</strong></p><h1 id="正定与半正定矩阵"><a href="#正定与半正定矩阵" class="headerlink" title="正定与半正定矩阵"></a>正定与半正定矩阵</h1><p>根据<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/#特征向量与特征值">特征值和特征向量</a>稳重讲解的内容，我们知道特征值是对一个变换（矩阵）特性的<strong>有力表征</strong>，公式  $\mathbf A \mathbf{\vec v} = \lambda \mathbf{\vec v}$  表示了<strong>变换中被留在张成空间内的向量就是特征向量</strong>的符号表达，其中 $\vec v$ 是特征向量，$\lambda$ 即特征值</p><p>我们对上式进行一些数学恒等变换，左乘 $\vec v^T$，得到</p>$$\vec v^T \mathbf A \vec v = \vec v^T \lambda \vec v = \lambda \vec v^T \vec v \tag{2-1}$$<p>此时我们会发现一些巧合，先来看看正定矩阵的正规定义：若一个 <code>n×n</code>的矩阵 $\mathbf M$ 是<strong>正定的</strong>，当且仅当队友所有的非零实系数的向量 $\vec v$，都有 $\vec v^T \mathbf M \vec v &gt; 0$</p><p>我们暂时不考虑复数情况（在机器学习预见复数域的内容较少），结合上面的二公式，发现保证 $\vec v^T \mathbf M \vec v &gt; 0$ 即使得 $\lambda \vec v^T \vec v&gt;0$，其中 $\vec v^T \vec v$一定大于等于0（由于 $\vec v$ 是一个<code>1×n</code>的向量，转置进行矩阵相乘实际效果<strong>计算元素的平方和</strong>），所以可以推出即<strong>正定矩阵就是使得特征值大于0</strong></p><p>再回到正定矩阵的定义公式 $\vec x^T \mathbf M \vec x &gt; 0$，我们已经有深刻的理解 $\mathbf M \vec x$ 表示对向量 $\vec x$ 进行<strong>变换</strong>，记变换后的向量为 $\vec y = \mathbf M \vec x$  ，则我们可以把正定矩阵的公式写成</p>$$\vec x^T \vec y > 0 \tag{2-2}$$<p>这个公式是不是很熟悉呢？它是<strong>两个向量的内积</strong>，对于内积，有公式：</p>$$\cos(\theta) = \frac{\vec x^T \vec y}{\Vert \vec x \Vert * \Vert \vec y \Vert}$$<p>$\Vert \vec x \Vert \; \Vert \vec y \Vert$ 表示 $\vec x$ 和 $\vec y$的长度，$\theta$ 是它们之间的夹角。根据2-2式，可以得到 $\cos(\theta) &gt; 0$，即它们之间的夹角<strong>小于90度</strong> </p><p>总结：如果说一个矩阵正定，则表示，一个向量<strong>经过此矩阵变换后的向量</strong>与原向量<strong>夹角小于90度</strong></p><p>当然，加一个【半】字，是指这个小于变成<strong>小于等于</strong></p><h1 id="正规矩阵"><a href="#正规矩阵" class="headerlink" title="正规矩阵"></a>正规矩阵</h1><p>矩阵中还有一张<strong>形状特殊</strong>的矩阵，被称为<strong>正规矩阵</strong>，定义为：如果矩阵 $\mathbf A$ 满足 $\mathbf A^T \mathbf A = \mathbf A \mathbf A^T$</p><p>更多的，如果矩阵 $\mathbf U$ 满足 $\mathbf U^T \mathbf U = \mathbf U \mathbf U^T = \mathbf I$，其中 $\mathbf I$ 是单位矩阵，则称矩阵 $\mathbf U$ 为<strong>酉矩阵</strong></p><p>从变换的角度来看<strong>正规矩阵</strong>，先做一个变换 $\mathbf A$ 再做一个变换 $\mathbf A^T$。并且交换两个矩阵的位置，最终结果相同</p><h1 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h1><p>在前面的三个描绘矩阵不同矩阵的概念中，多次使用了<strong>转置</strong>的概念。从形式（作用结果）上来说，转置只是一个45°角度的对称交换操作。那么，从矩阵表示变换的集合角度如何理解转置呢？</p><p>首先，考虑矩阵的列向量有具体的物理含义，若进行转置操作，几何角度的性质就会被破坏</p><p><strong>非方阵</strong>：考虑矩阵转置的几何含义是无意义的，或者说，对出现过矩阵转置的公式的进一步理解是没有帮助的</p><p>特别的，如果是向量形式（1×n的矩阵），转置很多时候出现，是为了<strong>进行二次型运算</strong>（即平方运算），设  $\mathbf x = \{x_1, x_2,\ldots, x_n\}$  是一个1×n的矩阵</p><blockquote><p>很多机器学习的教材中这里会是<strong>列矩阵</strong>，因为要切合列空间的概念。对于机器学习来说，这里的 $x_1$ 代表的数据的特征维度 </p></blockquote><p>计算二次型：  $\mathbf x \mathbf x^T = \x_1^2 + x_2^2 + \ldots + x_n^2$ ，计算出来是一个数，表示的是距离</p><p><strong>方阵</strong>：从<strong>列空间</strong>的概念，转置是<strong>一种非常特殊的旋转</strong>，</p>]]></content>
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【内容简介】从<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释<br><a id="more"></a></p><p>在之前的<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观理解】线性代数的本质</a>的笔记中，详细讨论了<strong>特征值与特征向量的几何直观意义</strong></p><p>起初，研究线性代数，也是因为深入了解矩阵（变换）对机器学习中的很多<strong>优美公式的推导和理解</strong>有帮助。上篇笔记中，3B1B团队的讲解内容中没有涉及几个线性代数中的概念，且这些概念在做矩阵分解时会被用到。以<strong>上一篇笔记中的直观理解为基础</strong>（矩阵 = 变换）在这里做一个整理和记录</p><h1 id="正交矩阵"><a href="#正交矩阵" class="headerlink" title="正交矩阵"></a>正交矩阵</h1><p>可能很多人已经有一个概念：正交（Orthogonal） = 垂直。但我们知道，正交的一定垂直，垂直的不一定正交（比如空间中两个<strong>不相交直线垂直</strong>）。提及垂直，首先出现你脑海中的特点是什么呢？我想是勾股数 $a^2 + b^2 = c^2$ ， 还有 $\cos (\frac {\pi}{2}) = 1$  </p><p>那什么是正交矩阵呢？在讲这个概念之前，变换中有一种特殊变换：<strong>旋转变换</strong>。这种变换除了原点外没有特征向量，特征值恒为1，不对网格进行伸缩。</p><p>三维情况下，单位矩阵（对角线为1，其他为0，即基向量构成的矩阵）$\mathbf E = \left [ \begin{smallmatrix} 1 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0&amp;0&amp;1 \end{smallmatrix} \right ]$   如下图所示</p><div align="center"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.png" alt="" width="400px"><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif" alt="" width="400px"></div><p>$\mathbf E$ 中的三个基向量分别记为 $\mathbf {X_a}= \left [ \begin{smallmatrix} 1 \\ 0 \\ 0 \end{smallmatrix} \right ] $ ，$\mathbf {Y_a} = \left [ \begin{smallmatrix} 0 \\ 1 \\ 0 \end{smallmatrix} \right ] $，$\mathbf {Z_a} = \left [ \begin{smallmatrix} 0 \\ 0 \\ 1 \end{smallmatrix} \right ] $ ，用下标<code>a</code>来表示。之后对这个矩阵 $\mathbf E$ 应用一个旋转变换，以 $(0,-0.6,0.8)$ 为旋转轴，转90°。得到三个新的向量，用下标<code>b</code>来表示，记为 $\mathbf {X_b}= \left [ \begin{smallmatrix} 0 \\ 0.8 \\ 0.6 \end{smallmatrix} \right ] $ ，$\mathbf {Y_b} = \left [ \begin{smallmatrix} -0.8 \\ -0.36 \\ 0.48 \end{smallmatrix} \right ] $，$\mathbf {Z_b} = \left [ \begin{smallmatrix} -0.6 \\ 0.48 \\ -0.64 \end{smallmatrix} \right ] $ </p><p>根据基变换原理，易得<strong>旋转变换的矩阵表达式</strong> $\mathbf R = \left [ \begin{smallmatrix} 0&amp;-0.8 &amp;-0.6 \\ 0.8&amp;-0.36&amp;0.48 \\ 0.6&amp;0.48&amp;-0.64 \end{smallmatrix} \right ]$  计算得特征向量为 $(0,-0.75,1)$，发现这条向量即旋转轴！</p><p>此时我们考虑从 $\mathbf R$矩阵下变到 $\mathbf E$的变换矩阵是多少，即求 $\mathbf R$ 矩阵的逆</p>$$\mathbf R^{-1} = \left [ \begin{matrix} 0 & 0.8 & 0.6 \\-0.8 & -0.36 & 0.48 \\-0.6 & 0.48 & -0.64 \end{matrix}\right]$$<p>观察形式大家就可以发现一个有趣的特点 $\mathbf R^{-1} = \mathbf R^T$</p><p><strong>正交矩阵有一个几何直观的特点，表示一个旋转变换，并且矩阵的逆和矩阵的转置相等</strong></p><h1 id="正定与半正定矩阵"><a href="#正定与半正定矩阵" class="headerlink" title="正定与半正定矩阵"></a>正定与半正定矩阵</h1><p>根据<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/#特征向量与特征值">特征值和特征向量</a>稳重讲解的内容，我们知道特征值是对一个变换（矩阵）特性的<strong>有力表征</strong>，公式  $\mathbf A \mathbf{\vec v} = \lambda \mathbf{\vec v}$  表示了<strong>变换中被留在张成空间内的向量就是特征向量</strong>的符号表达，其中 $\vec v$ 是特征向量，$\lambda$ 即特征值</p><p>我们对上式进行一些数学恒等变换，左乘 $\vec v^T$，得到</p>$$\vec v^T \mathbf A \vec v = \vec v^T \lambda \vec v = \lambda \vec v^T \vec v \tag{2-1}$$<p>此时我们会发现一些巧合，先来看看正定矩阵的正规定义：若一个 <code>n×n</code>的矩阵 $\mathbf M$ 是<strong>正定的</strong>，当且仅当队友所有的非零实系数的向量 $\vec v$，都有 $\vec v^T \mathbf M \vec v &gt; 0$</p><p>我们暂时不考虑复数情况（在机器学习预见复数域的内容较少），结合上面的二公式，发现保证 $\vec v^T \mathbf M \vec v &gt; 0$ 即使得 $\lambda \vec v^T \vec v&gt;0$，其中 $\vec v^T \vec v$一定大于等于0（由于 $\vec v$ 是一个<code>1×n</code>的向量，转置进行矩阵相乘实际效果<strong>计算元素的平方和</strong>），所以可以推出即<strong>正定矩阵就是使得特征值大于0</strong></p><p>再回到正定矩阵的定义公式 $\vec x^T \mathbf M \vec x &gt; 0$，我们已经有深刻的理解 $\mathbf M \vec x$ 表示对向量 $\vec x$ 进行<strong>变换</strong>，记变换后的向量为 $\vec y = \mathbf M \vec x$  ，则我们可以把正定矩阵的公式写成</p>$$\vec x^T \vec y > 0 \tag{2-2}$$<p>这个公式是不是很熟悉呢？它是<strong>两个向量的内积</strong>，对于内积，有公式：</p>$$\cos(\theta) = \frac{\vec x^T \vec y}{\Vert \vec x \Vert * \Vert \vec y \Vert}$$<p>$\Vert \vec x \Vert \; \Vert \vec y \Vert$ 表示 $\vec x$ 和 $\vec y$的长度，$\theta$ 是它们之间的夹角。根据2-2式，可以得到 $\cos(\theta) &gt; 0$，即它们之间的夹角<strong>小于90度</strong> </p><p>总结：如果说一个矩阵正定，则表示，一个向量<strong>经过此矩阵变换后的向量</strong>与原向量<strong>夹角小于90度</strong></p><p>当然，加一个【半】字，是指这个小于变成<strong>小于等于</strong></p><h1 id="正规矩阵"><a href="#正规矩阵" class="headerlink" title="正规矩阵"></a>正规矩阵</h1><p>矩阵中还有一张<strong>形状特殊</strong>的矩阵，被称为<strong>正规矩阵</strong>，定义为：如果矩阵 $\mathbf A$ 满足 $\mathbf A^T \mathbf A = \mathbf A \mathbf A^T$</p><p>更多的，如果矩阵 $\mathbf U$ 满足 $\mathbf U^T \mathbf U = \mathbf U \mathbf U^T = \mathbf I$，其中 $\mathbf I$ 是单位矩阵，则称矩阵 $\mathbf U$ 为<strong>酉矩阵</strong></p><p>从变换的角度来看<strong>正规矩阵</strong>，先做一个变换 $\mathbf A$ 再做一个变换 $\mathbf A^T$。并且交换两个矩阵的位置，最终结果相同</p><h1 id="矩阵的转置"><a href="#矩阵的转置" class="headerlink" title="矩阵的转置"></a>矩阵的转置</h1><p>在前面的三个描绘矩阵不同矩阵的概念中，多次使用了<strong>转置</strong>的概念。从形式（作用结果）上来说，转置只是一个45°角度的对称交换操作。那么，从矩阵表示变换的集合角度如何理解转置呢？</p><p>首先，考虑矩阵的列向量有具体的物理含义，若进行转置操作，几何角度的性质就会被破坏</p><p><strong>非方阵</strong>：考虑矩阵转置的几何含义是无意义的，或者说，对出现过矩阵转置的公式的进一步理解是没有帮助的</p><p>特别的，如果是向量形式（1×n的矩阵），转置很多时候出现，是为了<strong>进行二次型运算</strong>（即平方运算），设  $\mathbf x = \{x_1, x_2,\ldots, x_n\}$  是一个1×n的矩阵</p><blockquote><p>很多机器学习的教材中这里会是<strong>列矩阵</strong>，因为要切合列空间的概念。对于机器学习来说，这里的 $x_1$ 代表的数据的特征维度 </p></blockquote><p>计算二次型：  $\mathbf x \mathbf x^T = x_1^2 + x_2^2 + \ldots + x_n^2$ ，计算出来是一个数，表示的是距离</p><p><strong>方阵</strong>：从<strong>列空间</strong>的概念，转置是<strong>一种非常特殊的旋转</strong>，</p>]]></content>
     
     <summary type="html">
     
@@ -135,9 +135,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
       <category term="Linear Algebra" scheme="https://charlesliuyx.github.io/tags/Linear-Algebra/"/>
     
@@ -161,9 +161,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -185,9 +185,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -211,9 +211,9 @@
     
       <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Library" scheme="https://charlesliuyx.github.io/tags/Library/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -307,9 +307,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -331,9 +331,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -379,9 +379,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -404,9 +404,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -455,9 +455,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
