@@ -24,9 +24,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="keywords" content="Theory,Machine Learning">
     <meta name="description" content="【阅读时间】10min - 13min【内容简介】使用一个现实中直观的例子详解信息熵、交叉熵及相对熵的核心概念，读完后，希望能帮助你建立起这三个概念的固有直觉，不再疑惑 要完成题目的最终解释，必须从熵这个神奇的概念开始讲起">
-<meta name="keywords" content="Machine Learning,Theory">
+<meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】信息熵、交叉熵和相对熵">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/index.html">
@@ -41,11 +41,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -168,12 +169,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是熵-Entropy"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是熵 - Entropy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#词源-最初来源于热力学"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">词源 - 最初来源于热力学</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#信息论"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">信息论</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#生态学"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">生态学</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#广义的定义"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">广义的定义</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是信息熵、交叉熵、相对熵"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是信息熵、交叉熵、相对熵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何衡量不确定事物的发生？"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">如何衡量不确定事物的发生？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#考虑到信息冗余，信息量存储下来究竟需要多大空间？"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">考虑到信息冗余，信息量存储下来究竟需要多大空间？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#理解基于信息熵的交叉熵和相对熵"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">理解基于信息熵的交叉熵和相对熵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交叉熵的由来"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">交叉熵的由来</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#相对熵的由来"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">相对熵的由来</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-什么是信息熵、交叉熵和相对熵"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -192,8 +194,6 @@
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
-
-            
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -242,7 +242,7 @@ $$
 <p>先计算刚刚有关天气问题 $\mathbf P = [p_1,p_2,p_3,p_4]$ ：【阴、晴、雨、雪】的信息熵，假设我们对天气的概率一无所知，那么四种天气的发生概率为<strong>等概率（服从平均分布）</strong>，即 $\mathbf P = [\frac {1}{4},\frac {1}{4},\frac {1}{4},\frac {1}{4}]$ ，带入公式2-3，得到 $H(P) = 2$ ，存储信息需要的空间 $S_n = 2n$ </p>
 <p>继续思考，假设我们考虑天气的城市是一个地处中国南方雨季的城市，那么阴天和雨天的概率从<strong>经验角度（先验概率）</strong>来看大于晴天雪天，把这种分布<strong>记为</strong> $\mathbf Q = [\frac{1}{4},\frac{1}{8},\frac{1}{2},\frac{1}{8}]$，带入公式2-3，信息熵 $H(Q) = 1.75$，存储信息需要的空间 $S_n = 1.75n$ </p>
 <p>直观的来考虑上面不同的两种情况，明显当<strong>事件的不确定性变小</strong>时候，我们可以改变存储策略（00 雨天 01 阴天），再通过编码，节省存储空间。信息熵的大小<strong>就是用来度量这个不确定大小的</strong></p>
-<p>关于编码的方式，这里提一下，<a href="https://zhuanlan.zhihu.com/p/25181781" target="_blank" rel="external">哈夫曼树与哈夫曼编码</a> ，有兴趣的读者可以去研究一下</p>
+<p>关于编码的方式，这里提一下，<a href="https://zhuanlan.zhihu.com/p/25181781" target="_blank" rel="noopener">哈夫曼树与哈夫曼编码</a> ，有兴趣的读者可以去研究一下</p>
 <h3 id="交叉熵的由来"><a href="#交叉熵的由来" class="headerlink" title="交叉熵的由来"></a>交叉熵的由来</h3><p>我们把这个问题再扩展一下</p>
 <table>
 <thead>
@@ -326,6 +326,7 @@ $$
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -334,7 +335,10 @@ $$
 
 
         
+        <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/09/11/什么是信息熵、交叉熵和相对熵/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -438,11 +442,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -463,6 +462,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -472,21 +474,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -514,9 +518,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -577,10 +583,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -600,7 +605,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

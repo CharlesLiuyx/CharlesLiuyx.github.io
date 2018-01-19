@@ -24,9 +24,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="keywords" content="Theory,Machine Learning">
     <meta name="description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
-<meta name="keywords" content="Machine Learning,Theory">
+<meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】Logistic Regression">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
@@ -45,11 +45,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -172,12 +173,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解决过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重要概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">重要概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#均方误差-Mean-Squre-Error-MSE"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">均方误差 Mean Squre Error MSE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交叉熵-Cross-Entropy"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">交叉熵 Cross Entropy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是熵"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">什么是熵</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#似然函数"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">似然函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">对于Logistic Regression 为什么要用LogLoss - Cross Entropy</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-LogisticRegression学习笔记"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -196,8 +198,6 @@
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
-
-            
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -221,7 +221,7 @@ $$
 <p>【中心极限定理】</p>
 <p>大量<strong>相互独立{条件1</strong>}的随机变量，其均值的分布以<strong>正态分布{结论}</strong>为<strong>极限{条件2}</strong></p>
 <p>【贝叶斯公式】</p>
-<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="https://mubu.com/doc/2pJ0IojsIl" target="_blank" rel="external">贝叶斯方法的前世今生</a>，这个链接或许可以帮到你。</p>
+<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="https://mubu.com/doc/2pJ0IojsIl" target="_blank" rel="noopener">贝叶斯方法的前世今生</a>，这个链接或许可以帮到你。</p>
 <p>那贝叶斯公式是如何推出来的？</p>
 <h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我们需要求的问题是：你在校园里面随机游走，遇到了<strong>N个穿长裤的人</strong>（但是可能因为你高度近视你无法看出他们的性别），<strong>问，这N个人里面有多少个女生，多少个男生</strong>，即，穿裤子的人里面有多少个女生</p>
 <h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4>
@@ -293,7 +293,7 @@ $$
 <ul>
 <li>广义的定义是：熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</li>
 <li>有一个很神奇的解释是：熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</li>
-<li>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="external">转到</a></li>
+<li>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="noopener">转到</a></li>
 </ul>
 <p>要理解这个<code>Cross Entropy</code>，必须了解它是用来干啥的？</p>
 <p>延伸：<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code>的理解，需要跳转到另一篇笔记：<a href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">什么是信息熵、交叉熵和相对熵</a> </p>
@@ -333,6 +333,7 @@ $$
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -341,7 +342,10 @@ $$
 
 
         
+        <a href="/2017/09/04/LogisticRegression学习笔记/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -445,11 +449,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -470,6 +469,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -479,21 +481,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -521,9 +525,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -584,10 +590,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -607,7 +612,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

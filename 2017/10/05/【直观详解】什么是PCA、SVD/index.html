@@ -24,9 +24,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="keywords" content="Theory,Machine Learning">
     <meta name="description" content="【阅读时间】【内容简介】">
-<meta name="keywords" content="Machine Learning,Theory">
+<meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】什么是PCA、SVD">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/index.html">
@@ -45,11 +45,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -172,12 +173,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-PCA（主成分分析）"><span class="post-toc-number">1.</span> <span class="post-toc-text">What & Why PCA（主成分分析）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-SVD（奇异值分解）"><span class="post-toc-number">2.</span> <span class="post-toc-text">What & Why SVD（奇异值分解）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-PCA"><span class="post-toc-number">3.</span> <span class="post-toc-text">How PCA</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-PCA（主成分分析）"><span class="post-toc-number">1.</span> <span class="post-toc-text">What &amp; Why PCA（主成分分析）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-SVD（奇异值分解）"><span class="post-toc-number">2.</span> <span class="post-toc-text">What &amp; Why SVD（奇异值分解）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-PCA"><span class="post-toc-number">3.</span> <span class="post-toc-text">How PCA</span></a></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-【直观详解】什么是PCA、SVD"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -196,8 +198,6 @@
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
-
-            
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -249,6 +249,7 @@ $$
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -257,7 +258,10 @@ $$
 
 
         
+        <a href="/2017/10/05/【直观详解】什么是PCA、SVD/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -361,11 +365,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -386,6 +385,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -395,21 +397,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -437,9 +441,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -500,10 +506,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -523,7 +528,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

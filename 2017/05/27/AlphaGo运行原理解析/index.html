@@ -52,11 +52,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -179,12 +180,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题分析</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题解决"><span class="post-toc-number">2.</span> <span class="post-toc-text">问题解决</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#深度卷积神经网络——策略函数（Policy-Network）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">深度卷积神经网络——策略函数（Policy Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积神经网络解决围棋问题"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">深度卷积神经网络解决围棋问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度卷积网络策略的棋力"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">深度卷积网络策略的棋力</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS-蒙特卡洛搜索树——走子演算（Rollout）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">MCTS 蒙特卡洛搜索树——走子演算（Rollout）</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#强化学习——局面函数（Value-Network）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">强化学习——局面函数（Value Network）</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是强化学习"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">什么是强化学习</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#利用强化学习增强棋力"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">利用强化学习增强棋力</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.3.3.</span> <span class="post-toc-text">自对弈</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算局部评价函数（Value-Network）"><span class="post-toc-number">2.3.4.</span> <span class="post-toc-text">计算局部评价函数（Value Network）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">AlphaGo</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#详解AlphaGo-VS-樊麾-对局走下某一步的计算过程"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">详解AlphaGo VS 樊麾 对局走下某一步的计算过程</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用不同组件AlphGo1-0的棋力"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">使用不同组件AlphGo1.0的棋力</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#李世石-VS-AlphaGo-1-0——第四局78手挖"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">李世石 VS AlphaGo 1.0——第四局78手挖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-2-0-VS-柯洁——虽败犹荣"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">AlphaGo 2.0 VS 柯洁——虽败犹荣</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对未来的展望——从AlphaGo想开去"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">对未来的展望——从AlphaGo想开去</span></a></li></ol></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-AlphaGo运行原理解析"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -204,8 +206,6 @@
 </span>
 
 
-            
-
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
             <h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><p>围棋问题，棋盘 <code>19 * 19 = 361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）。</p>
@@ -220,10 +220,10 @@
 </blockquote>
 <p>接下来的问题是，如何解决这样一个问题呢？</p>
 <p>先上论文！干货第一</p>
-<p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="external">Mastering the game of Go with deep neural networks and tree search</a></p>
+<p><a href="http://ai.arizona.edu/sites/ai/files/resources/mastering_the_game_of_go_with_deep_neural_networks_and_tree_search.pdf" target="_blank" rel="noopener">Mastering the game of Go with deep neural networks and tree search</a></p>
 <h1 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h1><p>首先想到，棋盘也是一幅图像，那么在当时最好用的图像处理算法就是<strong>深度卷积神经网络</strong>（Deep Convolutional Neural Network）。</p>
 <h2 id="深度卷积神经网络——策略函数（Policy-Network）"><a href="#深度卷积神经网络——策略函数（Policy-Network）" class="headerlink" title="深度卷积神经网络——策略函数（Policy Network）"></a>深度卷积神经网络——策略函数（Policy Network）</h2><p>关于什么是<code>CNN</code>，这篇文章十分靠谱，深入浅出的讲解了什么是<code>CNN</code></p>
-<p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">原地址</a>挂了）（5.29更新，原地址已经恢复，原地址的排版更好，估计之前那个博主在进行博客的整理）</p>
+<p><a href="http://www.kdnuggets.com/2016/11/intuitive-explanation-convolutional-neural-networks.html" target="_blank" rel="noopener">An Intuitive Explanation of Convolutional Neural Networks</a> （好像<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="noopener">原地址</a>挂了）（5.29更新，原地址已经恢复，原地址的排版更好，估计之前那个博主在进行博客的整理）</p>
 <p>大致可以理解为：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
@@ -238,7 +238,7 @@
 <li>在Deep Learning中，卷积层的中的<strong>Filter</strong>也需要<strong>训练</strong>，也就是说<strong>我们使用已有数据来学习图像的关键特征，这样，就可以把网络的规模大幅度的降低</strong></li>
 </ul>
 <p>总而言之，<strong><code>CNN</code>可以帮助我们提取出图像中有实际含义的特征</strong>，那么这和围棋又有什么关系呢？我们来看看Deepmind团队是怎么运用<code>CNN</code>来解决围棋问题。</p>
-<h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="external">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
+<h3 id="深度卷积神经网络解决围棋问题"><a href="#深度卷积神经网络解决围棋问题" class="headerlink" title="深度卷积神经网络解决围棋问题"></a>深度卷积神经网络解决围棋问题</h3><p>2015年，<code>Aja Huang</code>在ICLR的论文<a href="https://arxiv.org/pdf/1412.6564.pdf" target="_blank" rel="noopener">Move Evaluation in Go Using Deep Convolutional Neural Networks</a>中就提出了如何使用<code>CNN</code>来解决围棋问题。</p>
 <p>他从围棋对战平台KGS上获得了人类选手的围棋对弈棋谱，对于每一个状态 $ \vec s$，都会有一个人类进行 $ \vec a$ 的落子，这也就是一个天然训练样本 $ \langle \vec s,\vec a\rangle $，如此可以得到3000万个训练样本。</p>
 <p>之后，将 $ \vec s$ 看做一个<code>19*19</code>的二维图像（具体实现依据论文输入数据是<code>19*19*48</code>（48是这个位置的其他信息，比如气等信息，激励函数用的 tanh）使用<code>CNN</code>进行训练，目标函数就是人类落子向量 ${\vec a}’$，通过使用海量的数据，不断让计算机接近人类落子的位置。就可以得到一个<strong>模拟</strong>人类棋手下棋的神经网络。</p>
 <p>使用训练的结果，我们可以得到一个神经网络用来计算对于每一个当前棋盘状态 $ \vec s$ ，所对应的落子向量 $ \vec a$ 的概率分布（之所以是概率分布，是因为，计算好的神经网络，输出一般是一个0-1之间的浮点数，越接近1的点表示在这个位置越接近人类的风格，也可以等同于作为人类概率最大的落点。<br>$$<br>\vec a=f(\vec s) \tag{2-1}<br>$$<br>根据公式2.1，我们记 $f()$ 为$P_{human}(\vec s)$ ，论文中也叫做<code>Policy Network</code>，也称策略函数。表示的含义是</p>
@@ -258,7 +258,7 @@
 <p>既然比不过，那么就学习它，<code>Aja Huang</code>打算把 $P_{human}(\vec s)$ 和<code>CrazyStone</code>结合一下，那么问题就来了，    <code>CrazyStone</code>是怎么来解决围棋问题的呢？</p>
 <p>这是<code>Aja Huang</code>的老师<code>Remi Colulum</code>在2006年对围棋AI做出的另一大重要突破</p>
 <p><strong>干货论文送上</strong> MCTS</p>
-<p><a href="https://github.com/papers-we-love/papers-we-love/blob/5a54fa883a813e81b1e54bfed9669fc8961dedb4/artificial_intelligence/efficient-selectivity-and-backup-operators-in-monte-carlo-tree-search.pdf" target="_blank" rel="external">Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search</a></p>
+<p><a href="https://github.com/papers-we-love/papers-we-love/blob/5a54fa883a813e81b1e54bfed9669fc8961dedb4/artificial_intelligence/efficient-selectivity-and-backup-operators-in-monte-carlo-tree-search.pdf" target="_blank" rel="noopener">Efficient Selectivity and Backup Operators in Monte-Carlo Tree Search</a></p>
 <h2 id="MCTS-蒙特卡洛搜索树——走子演算（Rollout）"><a href="#MCTS-蒙特卡洛搜索树——走子演算（Rollout）" class="headerlink" title="MCTS 蒙特卡洛搜索树——走子演算（Rollout）"></a>MCTS 蒙特卡洛搜索树——走子演算（Rollout）</h2><p>蒙特卡洛搜索树（Monte-Carlo Tree Search）是一种<em>大智若愚</em>的方法，它的基本思想是：</p>
 <p>首先模拟一盘对决，使用的思路很简单，<strong>随机</strong></p>
 <ul>
@@ -297,9 +297,9 @@ $$
 <p>一次 $P_{human}(\vec s)$ 的计算需要<code>3ms</code>，随机算法<code>1us</code>，慢了3000倍，所以，<code>Aja huang</code>训练了一个简化版本的 $P_{human-fast}(\vec s)$ ，把神经网络层数、输入特征减少，耗时下降到<code>2us</code>，基本满足了要求。</p>
 <p>更多的，策略是，先以 $P_{human}(\vec s)$ 开局，走前面大概20步，之后再使用 $P_{human-fast}(\vec s)$ 走完剩下的到最后。兼顾速度和准确性。</p>
 <p>综合了深度卷积神经网络和MCTS两种方案，此时的围棋程序已经可以战胜所有其他电脑，虽然和其他人类职业选手还有一定的差距。</p>
-<p>2015年2月，<code>Aja Huang</code>在Deepmind的同事在顶级学术期刊nature上发表的文章 <a href="http://gnusha.org/~nmz787/pdf/Human-level_control_through_deep_reinforcement_learning.pdf" target="_blank" rel="external">Human-level control through deep reinforcement learning</a> 用神经网络打游戏。这篇文章，给AlphaGo提供的了新的方向</p>
+<p>2015年2月，<code>Aja Huang</code>在Deepmind的同事在顶级学术期刊nature上发表的文章 <a href="http://gnusha.org/~nmz787/pdf/Human-level_control_through_deep_reinforcement_learning.pdf" target="_blank" rel="noopener">Human-level control through deep reinforcement learning</a> 用神经网络打游戏。这篇文章，给AlphaGo提供的了新的方向</p>
 <h2 id="强化学习——局面函数（Value-Network）"><a href="#强化学习——局面函数（Value-Network）" class="headerlink" title="强化学习——局面函数（Value Network）"></a>强化学习——局面函数（Value Network）</h2><p>强化学习（Reinforcement learning）用来实现<strong>左右互搏和自我进化</strong>，首先说说这篇论文干了一件什么事情，Deepmind团队的大牛们使用强化学习的方法在红白机上打通了200多个游戏，大多数得分都要比人好。</p>
-<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="external">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="external">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。还有两篇我自己做的笔记，<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="external">什么是强化学习</a>，<a href="https://mubu.com/doc/2xNipOEK3l" target="_blank" rel="external">强化学习算法介绍</a></p>
+<h3 id="什么是强化学习"><a href="#什么是强化学习" class="headerlink" title="什么是强化学习"></a>什么是强化学习</h3><p>那什么是强化学习呢？这里推荐莫烦大神的 <a href="https://zhuanlan.zhihu.com/p/24807239" target="_blank" rel="noopener">什么是强化学习</a> 系列教程的知乎专栏，以及另一篇<a href="http://geniferology.blogspot.hk/2015/04/what-is-reinforcement-learning.html" target="_blank" rel="noopener">强化学习指南</a> 后者对强化学习的基本概念，实现方法进行全面的讲解，含有公式推导。还有两篇我自己做的笔记，<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="noopener">什么是强化学习</a>，<a href="https://mubu.com/doc/2xNipOEK3l" target="_blank" rel="noopener">强化学习算法介绍</a></p>
 <p>对于强化学习（Reinforcement learning），它是机器学习的一个分支，特别善於控制一只能够在某个环境下<strong>自主行动</strong>的个体 (autonomous <strong>agent</strong>)，透过和<strong>环境</strong>之间的互动，例如 sensory perception 和 rewards，而不断改进它的 <strong>行为</strong>。</p>
 <p>比如，吃豆人游戏，自主行动的个体就是控制的吃豆人，环境就是迷宫，奖励就是吃到的豆子，行为就是上下左右的操作。</p>
 <p>强化学习的输入是</p>
@@ -435,7 +435,7 @@ $$
 </ul>
 <p><strong>局面函数</strong>和<strong>策略函数</strong>愈发强大，愈加的接近于”围棋之神“。</p>
 <p>随着Google TPU的发布，跑在<code>TPU阵列</code>上的AlphaGo如虎添翼，MCTS的走子演算效率更高，速度更快（加速的其实就是$P_{human-plus}(\vec s)$的落子速度。</p>
-<p>关于TPU的设计思路和原理可以参考 <a href="https://arxiv.org/pdf/1704.04760.pdf" target="_blank" rel="external">In-Datacenter Performance Analysis of a Tensor Processor</a></p>
+<p>关于TPU的设计思路和原理可以参考 <a href="https://arxiv.org/pdf/1704.04760.pdf" target="_blank" rel="noopener">In-Datacenter Performance Analysis of a Tensor Processor</a></p>
 <p>对于围棋这个策略单步游戏，是存在<strong>N步最优解</strong>（不存在<code>i+1</code>步最优解），AlphaGo已经在正确的道路上无限的接近于这个<strong>N步最优解</strong>，仿佛在某一步已经看到了你无论怎么下都能走到的N步最优解。</p>
 <p>人类的每一次失误都会使局部评估函数往胜率移动一点，这一点是十分可怕的，因为算法本身的优越性，<strong>大局观</strong>对于AlphaGo的逻辑来说本身就是一种刻在骨子里的基因</p>
 <ul>
@@ -449,14 +449,15 @@ $$
 <p>这俨然是一个 <strong>模仿➜学习➜优化</strong>的过程</p>
 </blockquote>
 <p>或许，模仿人类，是机器学习最终的归途，至于应用领域方面</p>
-<p>游戏AI是一个最容易想到的领域，只要能抽象出 <code>State</code> <code>Action</code> <code>Judgement</code>，那么这一套解决问题的方式就可以举一反三，让每一个1V1领域的游戏AI非常强大（OpenAI在Dota2 1V1 Solo上的结果更加证明了这一点），至于合作领域的AI可能需要更大的计算量去计算（OpenAI发布的论文<a href="https://blog.openai.com/learning-to-cooperate-compete-and-communicate/" target="_blank" rel="external">MultiAgent</a>很有启发性），对于实际问题来说获得这样的AI有多大的经济价值值得推敲。</p>
+<p>游戏AI是一个最容易想到的领域，只要能抽象出 <code>State</code> <code>Action</code> <code>Judgement</code>，那么这一套解决问题的方式就可以举一反三，让每一个1V1领域的游戏AI非常强大（OpenAI在Dota2 1V1 Solo上的结果更加证明了这一点），至于合作领域的AI可能需要更大的计算量去计算（OpenAI发布的论文<a href="https://blog.openai.com/learning-to-cooperate-compete-and-communicate/" target="_blank" rel="noopener">MultiAgent</a>很有启发性），对于实际问题来说获得这样的AI有多大的经济价值值得推敲。</p>
 <p>游戏的乐趣就在于<strong>不确定性</strong>，适当的失误也是竞技类游戏的魅力所在，一个能看到<strong>N步最优解</strong>的AI会让一个游戏机制，游戏规则变得可数据化，这一点其实是游戏被创造出来的初衷相背离的。</p>
 <p>其他方面，只要是人类可以学习出来的事物，比如翻译，编程，都是现在的这套体系可能解决的问题，我们期待未来这套<strong>解决问题的方法发挥出无穷的力量</strong>吧！</p>
-<p>[Reference]<br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">Tao Lei大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="external">袁行远大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/28655005/answer/61142081" target="_blank" rel="external">有关围棋打劫的回答</a><br>其他文章中引用的论文，链接已经给出</p>
+<p>[Reference]<br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="noopener">Tao Lei大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/41176911" target="_blank" rel="noopener">袁行远大神的回答</a><br>知乎<a href="https://www.zhihu.com/question/28655005/answer/61142081" target="_blank" rel="noopener">有关围棋打劫的回答</a><br>其他文章中引用的论文，链接已经给出</p>
 
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -465,7 +466,10 @@ $$
 
 
         
+        <a href="/2017/05/27/AlphaGo运行原理解析/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/05/27/AlphaGo运行原理解析/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -569,11 +573,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -594,6 +593,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -603,21 +605,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -645,9 +649,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -708,10 +714,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -731,7 +736,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

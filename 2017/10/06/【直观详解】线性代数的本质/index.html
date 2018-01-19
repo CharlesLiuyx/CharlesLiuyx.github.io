@@ -24,9 +24,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory,Linear Algebra">
+    <meta name="keywords" content="Theory,Machine Learning,Linear Algebra">
     <meta name="description" content="【阅读时间】1小时左右【内容简介】将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上，致敬3B1B的系列视频的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性">
-<meta name="keywords" content="Machine Learning,Theory,Linear Algebra">
+<meta name="keywords" content="Theory,Machine Learning,Linear Algebra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】线性代数的本质">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/index.html">
@@ -78,11 +78,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -205,12 +206,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#向量究竟是什么"><span class="post-toc-number">1.</span> <span class="post-toc-text">向量究竟是什么</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量的定义-What"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">向量的定义 What</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#物理专业角度"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">物理专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机专业角度"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">计算机专业角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数学专业角度"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">数学专业角度</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坐标系"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">坐标系</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#线性组合、张成的空间与基"><span class="post-toc-number">2.</span> <span class="post-toc-text">线性组合、张成的空间与基</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性组合"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">线性组合</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#空间的基-Basis"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">空间的基 Basis</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#张成的空间-Span"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">张成的空间 Span</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#线性相关"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">线性相关</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#向量空间一组基的严格定义"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">向量空间一组基的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵与线性变换"><span class="post-toc-number">3.</span> <span class="post-toc-text">矩阵与线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#变换"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性变换"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">线性变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何用数值描述线性变换"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">如何用数值描述线性变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#【线性】的严格定义"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">【线性】的严格定义</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#矩阵乘法与线性变换复合"><span class="post-toc-number">4.</span> <span class="post-toc-text">矩阵乘法与线性变换复合</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复合变换"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">复合变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵乘法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算规则证明"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">计算规则证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三维空间"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">三维空间</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#行列式"><span class="post-toc-number">5.</span> <span class="post-toc-text">行列式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式定义的由来"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">行列式定义的由来</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计算行列式"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">计算行列式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#行列式直观理解的好处"><span class="post-toc-number">5.3.</span> <span class="post-toc-text">行列式直观理解的好处</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#逆矩阵、列空间与零空间"><span class="post-toc-number">6.</span> <span class="post-toc-text">逆矩阵、列空间与零空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵的用途"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">矩阵的用途</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#线性方程组"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">线性方程组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#逆矩阵"><span class="post-toc-number">6.3.</span> <span class="post-toc-text">逆矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#列空间"><span class="post-toc-number">6.4.</span> <span class="post-toc-text">列空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#秩-Rank"><span class="post-toc-number">6.5.</span> <span class="post-toc-text">秩 Rank</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#零空间"><span class="post-toc-number">6.6.</span> <span class="post-toc-text">零空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.7.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#非方阵"><span class="post-toc-number">7.</span> <span class="post-toc-text">非方阵</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#几何意义"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">几何意义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非方阵乘法"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">非方阵乘法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#非方阵行列式"><span class="post-toc-number">7.3.</span> <span class="post-toc-text">非方阵行列式</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#点积与对偶性"><span class="post-toc-number">8.</span> <span class="post-toc-text">点积与对偶性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是点积"><span class="post-toc-number">8.1.</span> <span class="post-toc-text">什么是点积</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#点积的顺序"><span class="post-toc-number">8.2.</span> <span class="post-toc-text">点积的顺序</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#点积与投影"><span class="post-toc-number">8.3.</span> <span class="post-toc-text">点积与投影</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对偶性"><span class="post-toc-number">8.4.</span> <span class="post-toc-text">对偶性</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-1"><span class="post-toc-number">8.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#叉积"><span class="post-toc-number">9.</span> <span class="post-toc-text">叉积</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二维情况下的叉积类比"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">二维情况下的叉积类比</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#真正的叉积定义"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">真正的叉积定义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叉积计算公式"><span class="post-toc-number">9.3.</span> <span class="post-toc-text">叉积计算公式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#叉积计算的几何直观"><span class="post-toc-number">9.4.</span> <span class="post-toc-text">叉积计算的几何直观</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-2"><span class="post-toc-number">9.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基变换"><span class="post-toc-number">10.</span> <span class="post-toc-text">基变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#坐标系与基向量"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">坐标系与基向量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基变换-1"><span class="post-toc-number">10.2.</span> <span class="post-toc-text">基变换</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#如何转化一个矩阵"><span class="post-toc-number">10.3.</span> <span class="post-toc-text">如何转化一个矩阵</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-3"><span class="post-toc-number">10.4.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#特征向量与特征值"><span class="post-toc-number">11.</span> <span class="post-toc-text">特征向量与特征值</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#What"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">What</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Why"><span class="post-toc-number">11.2.</span> <span class="post-toc-text">Why</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#How"><span class="post-toc-number">11.3.</span> <span class="post-toc-text">How</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特征向量的特殊情况"><span class="post-toc-number">11.4.</span> <span class="post-toc-text">特征向量的特殊情况</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#旋转变换"><span class="post-toc-number">11.4.1.</span> <span class="post-toc-text">旋转变换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#剪切变换"><span class="post-toc-number">11.4.2.</span> <span class="post-toc-text">剪切变换</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#伸缩变换"><span class="post-toc-number">11.4.3.</span> <span class="post-toc-text">伸缩变换</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#特征基"><span class="post-toc-number">11.5.</span> <span class="post-toc-text">特征基</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#抽象向量空间"><span class="post-toc-number">12.</span> <span class="post-toc-text">抽象向量空间</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#函数与向量"><span class="post-toc-number">12.1.</span> <span class="post-toc-text">函数与向量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量空间"><span class="post-toc-number">12.2.</span> <span class="post-toc-text">向量空间</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-4"><span class="post-toc-number">12.3.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-【直观详解】线性代数的本质"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -230,11 +232,9 @@
 </span>
 
 
-            
-
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】1小时左右<br>【内容简介】<strong>将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上</strong>，致敬<a href="http://www.bilibili.com/video/av6731067/" target="_blank" rel="external">3B1B的系列视频</a>的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性<br><a id="more"></a></p>
+            <p>【阅读时间】1小时左右<br>【内容简介】<strong>将只停留在数值运算和公式的线性代数推进到可视化几何直观（Visual Geometric Intuition）的领悟上</strong>，致敬<a href="http://www.bilibili.com/video/av6731067/" target="_blank" rel="noopener">3B1B的系列视频</a>的笔记，动图也都来自于视频。内容涉及到基变换，叉积，逆矩阵，点积，特征向量与特征值。每一章节都有一句经典的名言，非常有启发性<br><a id="more"></a></p>
 <p>在笔记开始之前，想象<strong>学习一个事物（概念）</strong>的场景：我们需要学习<strong>正弦函数</strong>，$\sin (x)$，非常不幸的是，你遇到了一本相当装逼的教材，它告诉你，正弦函数是这样的：<br>
 $$
 \sin (x) = x - \frac{x^3}{3!} + \frac{x^5}{5!} + \cdots + (-1)^n\frac{x^{2n+1}}{(2n+1)!} + \cdots
@@ -635,6 +635,7 @@ $$
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -643,7 +644,10 @@ $$
 
 
         
+        <a href="/2017/10/06/【直观详解】线性代数的本质/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/06/【直观详解】线性代数的本质/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -747,11 +751,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -772,6 +771,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -781,21 +783,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -823,9 +827,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -886,10 +892,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -909,7 +914,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

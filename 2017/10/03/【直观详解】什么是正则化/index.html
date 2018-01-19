@@ -24,9 +24,9 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="keywords" content="Theory,Machine Learning">
     <meta name="description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
-<meta name="keywords" content="Machine Learning,Theory">
+<meta name="keywords" content="Theory,Machine Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】什么是正则化">
 <meta property="og:url" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/index.html">
@@ -48,11 +48,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -175,12 +176,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why & What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-线性模型角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 线性模型角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-神经网络模型角度"><span class="post-toc-number">3.</span> <span class="post-toc-text">How 神经网络模型角度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#范数"><span class="post-toc-number">4.</span> <span class="post-toc-text">范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量范数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">向量范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#p-范数"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">p-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">$-\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-1"><span class="post-toc-number">4.1.5.</span> <span class="post-toc-text">$\infty$-范数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵范数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-2"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">$\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数-1"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F-范数"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">F-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核范数"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">核范数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why &amp; What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-线性模型角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 线性模型角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-神经网络模型角度"><span class="post-toc-number">3.</span> <span class="post-toc-text">How 神经网络模型角度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#范数"><span class="post-toc-number">4.</span> <span class="post-toc-text">范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量范数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">向量范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#p-范数"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">p-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">$-\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-1"><span class="post-toc-number">4.1.5.</span> <span class="post-toc-text">$\infty$-范数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵范数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-2"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">$\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数-1"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F-范数"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">F-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核范数"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">核范数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-【直观详解】什么是正则化"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -199,8 +201,6 @@
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
-
-            
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -363,6 +363,7 @@ $$
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -371,7 +372,10 @@ $$
 
 
         
+        <a href="/2017/10/03/【直观详解】什么是正则化/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -475,11 +479,6 @@ $$
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -500,6 +499,9 @@ $$
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -509,21 +511,23 @@ $$
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -551,9 +555,11 @@ $$
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -614,10 +620,9 @@ $$
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -637,7 +642,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 

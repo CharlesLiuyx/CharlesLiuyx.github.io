@@ -41,11 +41,12 @@
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
     <link rel="shortcut icon" href="/img/favicon.png">
-    <link rel="stylesheet" href="/css/style.css?v=1.6.7">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
     <script>window.lazyScripts=[]</script>
 
-        <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
+
 </head>
 
 <body>
@@ -168,12 +169,13 @@
 <div class="container body-wrap">
     
     <aside class="post-widget">
-        <nav class="post-toc-wrap" id="post-toc">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
             <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#XPath-相关例子Note"><span class="post-toc-number">1.</span> <span class="post-toc-text">XPath 相关例子Note</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例子1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">例子1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例子2"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">例子2</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例子3"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">例子3</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#例子4"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">例子4</span></a></li></ol></li></ol>
         </nav>
     </aside>
-    
+
+
 <article id="post-Xpath使用指南"
   class="post-article article-type-post fade" itemprop="blogPost">
 
@@ -192,8 +194,6 @@
     <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
 </span>
 
-
-            
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
@@ -220,7 +220,7 @@
 <p>使用 | 同时获取 a 和 h2 中的内容<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s2.xpath(<span class="string">'//a/text()|//h2/text()'</span>) ➜ [<span class="string">'link'</span>, <span class="string">'another link'</span>, <span class="string">'Quote 4 title'</span>]</span><br></pre></td></tr></table></figure></p>
 <h2 id="例子3"><a href="#例子3" class="headerlink" title="例子3"></a>例子3</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sample3 = <span class="string">"""&lt;html&gt;</span></span><br><span class="line"><span class="string">  &lt;body&gt;</span></span><br><span class="line"><span class="string">    &lt;ul&gt;</span></span><br><span class="line"><span class="string">      &lt;li id="begin"&gt;&lt;a href="https://scrapy.org"&gt;Scrapy&lt;/a&gt;begin&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li&gt;&lt;a href="https://scrapinghub.com"&gt;Scrapinghub&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li&gt;&lt;a href="https://blog.scrapinghub.com"&gt;Scrapinghub Blog&lt;/a&gt;&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li id="end"&gt;&lt;a href="http://quotes.toscrape.com"&gt;Quotes To Scrape&lt;/a&gt;end&lt;/li&gt;</span></span><br><span class="line"><span class="string">      &lt;li data-xxxx="end" abc="abc"&gt;&lt;a href="http://quotes.toscrape.com"&gt;Quotes To Scrape&lt;/a&gt;end&lt;/li&gt;</span></span><br><span class="line"><span class="string">    &lt;/ul&gt;</span></span><br><span class="line"><span class="string">  &lt;/body&gt;</span></span><br><span class="line"><span class="string">&lt;/html&gt;</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line">s3 = getxpath(sample3)</span><br></pre></td></tr></table></figure>
 <p>获取 <code>a</code> 标签下 <code>href</code> 以https开始的<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//a[starts-with(@href, "https")]/text()'</span>) ➜ [<span class="string">'Scrapy'</span>, <span class="string">'Scrapinghub'</span>, <span class="string">'Scrapinghub Blog'</span>]</span><br></pre></td></tr></table></figure></p>
-<p>获取 <code>href</code>=<a href="https://scrapy.org" target="_blank" rel="external">https://scrapy.org</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//li/a[@href="https://scrapy.org"]/text()'</span>) ➜ [<span class="string">'Scrapy'</span>]</span><br></pre></td></tr></table></figure></p>
+<p>获取 <code>href</code>=<a href="https://scrapy.org" target="_blank" rel="noopener">https://scrapy.org</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//li/a[@href="https://scrapy.org"]/text()'</span>) ➜ [<span class="string">'Scrapy'</span>]</span><br></pre></td></tr></table></figure></p>
 <p>获取 <code>id</code> = begin<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//li[@id="begin"]/text()'</span>) ➜ [<span class="string">'begin'</span>]</span><br></pre></td></tr></table></figure></p>
 <p>获取<code>text</code> = Scrapinghub<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//li/a[text()="Scrapinghub"]/text()'</span>) ➜ [<span class="string">'Scrapinghub'</span>]</span><br></pre></td></tr></table></figure></p>
 <p>获取某个标签下 某个参数 = xx<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s3.xpath(<span class="string">'//li[@data-xxxx="end"]/text()'</span>) ➜ [<span class="string">'end'</span>]</span><br></pre></td></tr></table></figure></p>
@@ -234,6 +234,7 @@
         </div>
 
         <blockquote class="post-copyright">
+    
     <div class="content">
         
 <span class="post-time">
@@ -242,7 +243,10 @@
 
 
         
+        <a href="/2017/08/28/Xpath使用指南/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/08/28/Xpath使用指南/</a>
+        
     </div>
+    
     <footer>
         <a href="https://charlesliuyx.github.io">
             <img src="/img/avatar.jpg" alt="遥行 Go Further">
@@ -346,11 +350,6 @@
 
 
 
-
-
-
-
-
 <section class="comments" id="comments">
     <div id="gitment_thread"></div>
     <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
@@ -371,6 +370,9 @@
 
 
 
+
+
+
 </article>
 
 <div id="reward" class="page-modal reward-lay">
@@ -380,21 +382,23 @@
         你的鼓励是我前进的力量
         <i class="icon icon-quote-right"></i>
     </h3>
-    <ul class="reward-items">
+    <div class="reward-content">
         
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
         
-
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
         
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
+    </div>
 </div>
 
 
@@ -422,9 +426,11 @@
         </p>
     </div>
     <div class="bottom">
-        <p>
-            <span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>
-            <span>遥行 Go Further &copy; 2017</span>
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
         </p>
     </div>
 </footer>
@@ -485,10 +491,9 @@
 var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 
 
-
 </script>
 
-<script src="/js/main.min.js?v=1.6.7"></script>
+<script src="/js/main.min.js?v=1.7.2"></script>
 
 
 <div class="search-panel" id="search-panel">
@@ -508,7 +513,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.6.7" async></script>
+<script src="/js/search.min.js?v=1.7.2" async></script>
 
 
 
