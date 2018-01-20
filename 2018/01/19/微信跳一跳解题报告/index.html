@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Prob.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Method.jpg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/JumpToJump.png">
-<meta property="og:updated_time" content="2018-01-20T02:01:45.955Z">
+<meta property="og:updated_time" content="2018-01-20T04:05:26.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信跳一跳解题报告">
 <meta name="twitter:description" content="【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案两部分">
@@ -252,7 +252,7 @@
 </tbody>
 </table>
 <p>【2】连续中心点，+2 +4 …… （是个人都知道）</p>
-<h2 id="按压时间与跳跃距离"><a href="#按压时间与跳跃距离" class="headerlink" title="按压时间与跳跃距离"></a>按压时间与跳跃距离</h2><p>直说结论，<strong>微信跳一跳的按压时间和跳跃距离是完美的线性关系</strong></p>
+<h2 id="按压时间与跳跃距离"><a href="#按压时间与跳跃距离" class="headerlink" title="按压时间与跳跃距离"></a>按压时间与跳跃距离</h2><p>直说结论，<strong>微信跳一跳的按压时间和跳跃距离是基本线性关系</strong>（根据其他程序员们的精确测试，并不是完美线性关系）</p>
 <p>打开声音，在蓄力的过程会有嘟嘟声，两次声音之间0.105秒左右，而每次跳跃的距离可以用尺子量出来。拟合（找一条直线看看是否能正好通过所有的点）后是个直线</p>
 <p>写成公式的话为<br>$$<br>按压时间 = k \times 目标墩中心和小人的距离<br>$$<br>其实只要针对你的手机把这个k拟合出来就好（iOS，非Plus系列，k = 2.045）</p>
 <h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>对于游戏设计来说，一款优秀的【休闲游戏】一定要满足三点</p>
@@ -287,9 +287,9 @@
 <p>【2 3类】是最容易出问题的类别，如果失误，根据【第二设计原则】，太正常，如果太容易高分，成就感也会被压缩到很小，所以这是必须的，大侠从头来过就好</p>
 <h3 id="小墩"><a href="#小墩" class="headerlink" title="小墩"></a>小墩</h3><p>对于遇到看起来非常小的墩（小药瓶，天崩地裂）</p>
 <p>首先，不要虚，个人虽然没有验证，但是小的目标，感觉能跳上去的阈值也会大一些（或说磁铁or吸附效应），只要按照4分类模型来跳，上垒的可能性还是挺高的</p>
-<h3 id="多跳"><a href="#多跳" class="headerlink" title="多跳"></a>多跳</h3><p>用时间积累，就和练钢琴是一个套路，身体的肌肉根据你看的图像</p>
-<p>解决这个问题，就是计算目标墩中心和小人的距离，那么目标墩的位置（目标位置），和小人的位置（起跳点位置）就是待求量</p>
-<h2 id="正常方案"><a href="#正常方案" class="headerlink" title="正常方案"></a>正常方案</h2><p>这种方案都需要在每一跳花费一定时间，非大毅力者不可为</p>
+<h3 id="多跳"><a href="#多跳" class="headerlink" title="多跳"></a>多跳</h3><p>用时间积累，就和练钢琴是一个套路，身体的肌肉根据你看的图像产生反应，如果已经成为一种自然反应，分数肯定不会低</p>
+<h2 id="正常方案"><a href="#正常方案" class="headerlink" title="正常方案"></a>正常方案</h2><p>解决这个问题，就是计算目标墩中心和小人的距离，那么目标墩的位置（目标位置），和小人的位置（起跳点位置）就是待求量</p>
+<p>但是这些<strong>正常方案</strong>都需要在每一跳花费一定时间，非大毅力者不可为</p>
 <h3 id="听音法"><a href="#听音法" class="headerlink" title="听音法"></a>听音法</h3><table>
 <thead>
 <tr>
@@ -337,12 +337,12 @@
 </tbody>
 </table>
 <p>量距离 ➜ 查表 ➜ 专心听 ➜ 数嘟嘟声 ➜ 到次数放</p>
-<p>（不做评价，累）</p>
+<p>（不做评价，累）优势是如果每次都很准，+32 +64 可能都不是梦想吧？</p>
 <h3 id="滑动屏幕法"><a href="#滑动屏幕法" class="headerlink" title="滑动屏幕法"></a>滑动屏幕法</h3><p><img src="//charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Method.jpg" alt="滑动屏幕法" width="400"></p>
 <p>然后，匀速的速度是 5.1 cm/s</p>
-<p>（这个方法，感觉比靠感觉更容易失误）</p>
-<h2 id="程序方案"><a href="#程序方案" class="headerlink" title="程序方案"></a>程序方案</h2><p>程序员或者说市面上很多的外挂，脚本基本都是这个方案</p>
-<h3 id="手机和电脑交互方法"><a href="#手机和电脑交互方法" class="headerlink" title="手机和电脑交互方法"></a>手机和电脑交互方法</h3><p>电脑手机连接起来，并且手机可以和电脑交换数据（API）</p>
+<p>（这个方法，感觉比靠感觉更容易失误）这个方法并没有每次都可以跳到中心的特点，个人感觉这个网站找到的方法有点做负功</p>
+<h2 id="程序方案"><a href="#程序方案" class="headerlink" title="程序方案"></a>程序方案</h2><p>市面上很多的【外挂】或者说【脚本】基本都是这个方案，还有一些直接截包的可能更加暴力一些，更像是纯粹的【外挂】（虽然我这个也是，五十步笑百步尔，但是至少我学习的这个有点和截包破解包伪造包这些体力活比自认为还是更有技术含量的）</p>
+<h3 id="手机和电脑交互方法"><a href="#手机和电脑交互方法" class="headerlink" title="手机和电脑交互方法"></a>手机和电脑交互方法</h3><p>电脑手机连接起来，并且手机可以和电脑交换数据（API），比如电脑可以控制按压时间，电脑可以控制手机截图之类的基本交互操作</p>
 <p>Android有adb工具，iOS有<a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">WebDriverAgent</a></p>
 <h3 id="算法流程图"><a href="#算法流程图" class="headerlink" title="算法流程图"></a>算法流程图</h3><p>截图 ➜ 算出小人位置 ➜ 算出目标墩位置 ➜ 计算按压时间 ➜ 利用API操控手机按压 ➜ 跳</p>
 <p>其实流程图非常简单，直接单线程就搞定了（没有循环结构和分支结构，都不用用其他软件画了）</p>
@@ -378,7 +378,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-01-20T02:01:45.955Z" itemprop="dateUpdated">2018-01-19 18:01:45</time>
+    Last updated: <time datetime="2018-01-20T04:05:26.003Z" itemprop="dateUpdated">2018-01-19 20:05:26</time>
 </span><br>
 
 
