@@ -37,8 +37,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Rotate.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Matrix_transpose.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Transpose.jpg">
-<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/">
-<meta property="og:updated_time" content="2018-02-15T08:06:27.167Z">
+<meta property="og:updated_time" content="2018-02-15T08:09:03.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】线性代数中的转置正交正规正定">
 <meta name="twitter:description" content="【阅读时间】【内容简介】从【直观理解】线性代数的本质笔记出发，继续讨论几个线性代数中的概念，正交，正规，正定及转置的直观解释">
@@ -263,8 +262,7 @@ $$
 <h3 id="方阵"><a href="#方阵" class="headerlink" title="方阵"></a>方阵</h3><p>从<strong>列空间</strong>的概念，转置是<strong>一种非常特殊的旋转</strong>。这种旋转结合了横向镜面等特性，详细可以参看下图</p>
 <p>从这幅图可以看出，如果想从几何变换的角度（类似<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">3b1b的方法</a>）来理解转置相当困难。此时，需要考虑换一种思考角度，<strong>性质</strong>和<strong>数学计算</strong>（这可能也是解决一个数学问题最常用的两种手段，性质寻找共性，并推广演绎，数学计算导出同样问题的不同表现形式，并总结规律）</p>
 <h4 id="性质找规律"><a href="#性质找规律" class="headerlink" title="性质找规律"></a>性质找规律</h4><p>首先先用一个简单的例子，二维可视化，并寻找规律，得到下面图像</p>
-<p><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Transpose.jpg" alt="" width="500"></p>
-<p><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" alt="转置"></p>
+<p><img src="//charlesliuyx.github.io/2017/10/17/【直观详解】线性代数中的正交正规正定转置/Transpose.jpg" alt="" width="600"></p>
 <p>观察得到，和旋转有一定的关系的，但是其实这个几何意义已经十分抽象了，为了追根之底，从数学的角度进行一些更有意思的探究</p>
 <h4 id="数学计算"><a href="#数学计算" class="headerlink" title="数学计算"></a>数学计算</h4><p>为了发掘 $\mathbf A$ 和 $\mathbf A^T$ 之间的关系，我们可以设有<strong>转换矩阵</strong> $\mathbf T$，其描述了从 $\mathbf A$ 到 $\mathbf A^T$ 的<strong>变换</strong>，写成公式为：<br>$$<br>\mathbf T \mathbf A = \mathbf A^{T} \tag 1<br>$$<br>同时我们假设 $\mathbf A$ 是一个2×2的矩阵，如下所示所示（<strong>列的不同</strong>为字母的不同a和b，<strong>行的不同</strong>为小标的1和2）</p>
 
@@ -585,11 +583,11 @@ $$
 <blockquote>
 <p>$M_y$ 表示的是关于y轴对称<br>$R_\alpha$ 表示逆时针旋转 $\alpha$ 度<br>$\Lambda$ 表示一种伸缩变换</p>
 </blockquote>
-<p>这里的（18式）结论和上面的作图规律，还有（12）式从某种程度上来说有相似的地方</p>
+<p>这里的（18式）结论和<a href="#性质找规律">上面的作图规律</a>，还有（12）式从某种程度上来说有相似的地方</p>
 <p>其实应该从矩阵分解的部分来再次思索矩阵转置的意义，可详见<a href="https://charlesliuyx.github.io/2017/10/05/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AFPCA%E3%80%81SVD/#What-amp-Why-SVD%EF%BC%88%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3%EF%BC%89">什么是PCA,SVD</a></p>
 <p>最终感觉关于转置还是研究的不够透彻，可能需要拔高到另一个层面去理解会更加直观，但是限于水平，只能至此（并不是数学专业的学生）</p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>$\mathbf A \ mathbf A^T$ 的对称特性非常有用</li>
+<li>$\mathbf A \mathbf A^T$ 的对称特性非常有用</li>
 <li>正交 = 旋转 = 垂直，并且<strong>逆等于转置</strong></li>
 <li>正规矩阵的定义和转置息息相关，但是从形式上来看，约束条件是逐步变弱的，其实这些特征都是描述了空间一个变换的一些变化模式，比如旋转，伸缩的特殊模式，只需要有一个基本的直观理解，在机器学习领域就已经足够用了</li>
 </ul>
@@ -601,7 +599,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-02-15T08:06:27.167Z" itemprop="dateUpdated">2018-02-15 00:06:27</time>
+    Last updated: <time datetime="2018-02-15T08:09:03.381Z" itemprop="dateUpdated">2018-02-15 00:09:03</time>
 </span><br>
 
 
