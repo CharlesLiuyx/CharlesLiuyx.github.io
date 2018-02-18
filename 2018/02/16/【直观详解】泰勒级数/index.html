@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/16/【直观详解】泰勒级数/FareaC.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/16/【直观详解】泰勒级数/Converge.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/16/【直观详解】泰勒级数/Diverge.gif">
-<meta property="og:updated_time" content="2018-02-18T07:50:58.486Z">
+<meta property="og:updated_time" content="2018-02-18T19:19:37.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】泰勒级数">
 <meta name="twitter:description" content="【阅读时间】10min 3326words【阅读内容】通过构造知识联想链条和直观例子回答什么是泰勒级数，为什么需要泰勒级数，泰勒级数干了什么，如何记忆这个公式">
@@ -216,7 +216,7 @@
 <p>For me, mathematics is a collection of <strong>examples</strong>; a theorem is a statement about a collection of <strong>examples</strong> and the purpose of proving theorems is to classify and explain the <strong>examples</strong></p>
 <p>John B. Conway</p>
 <p>对于我而言，数学就是<strong>范例</strong>的集合——定理是为了描述<strong>范例</strong>，证明定理是为了分类并解释<strong>范例</strong>                                                                   </p>
-<p>​约翰·B·康威</p>
+<p>约翰·B·康威</p>
 </blockquote>
 <p><a href="https://www.bilibili.com/video/av11251323/?from=search&amp;seid=10355824295490802414" target="_blank" rel="noopener">微积分的本质 - 10 - 泰勒级数</a></p>
 <p>在遇到一个生僻的概念或者公式时，确认它的几种不同的<strong>表述</strong>形式（马甲）是很重要，也就是定义问题：我们到底要了解的东西是什么 ＆ 怎么称呼：</p>
@@ -227,12 +227,12 @@
 <h1 id="什么是泰勒公式"><a href="#什么是泰勒公式" class="headerlink" title="什么是泰勒公式"></a>什么是泰勒公式</h1><h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p>数学定义，公式各个部分代表什么含义先说清楚</p>
 
 $$
-\begin{align} f(x)_{Taylor}  &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} \times (x - a)^n + R_n (x) \\ &= f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f^{(2)}(a)}{2!}(x-a)^2+ \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n(x) \end{align}
+\begin{align} f(x)_{Taylor}  &= \sum_{n=0}^{\infty} \frac{f^{(n)}(a)}{n!} \times (x - a)^n \\ &= f(a) + \frac{f'(a)}{1!}(x-a) + \frac{f^{(2)}(a)}{2!}(x-a)^2+ \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n + R_n(x) \end{align}
 $$
 
 <blockquote>
-<p>$f^{(n)}(a)$ 表示 $f(x)$ 在第 $n$ 阶导数的<strong>表达式</strong>，带入一个值 $a$ 计算后<strong>得到的结果</strong>（注意，它是个值）<br>$\frac{1}{n!}$ 是一个系数（一个值），每一项都不同，第一项 $\frac{1}{1}$，第二项 $\frac{1}{2!}$ …… 依此类推<br>$(x-a)^n$ 是一个以 $x$ 为自变量的<strong>表达式</strong><br>$R_n(x)$ 是泰勒公式的<strong>余项</strong>，是 $(x-a)^n$ 的高阶无穷小（此处先不解释，听起来很牛逼，但是跟随例子看完就发现并没有什么玄乎的）</p>
-<p>求和符号去掉展开写即第二行</p>
+<p>$f^{(n)}(a)$ 表示 $f(x)$ 在第 $n$ 阶导数的<strong>表达式</strong>，带入一个值 $a$ 计算后<strong>得到的结果</strong>（注意，它是个值）<br>$\frac{1}{n!}$ 是一个系数（一个值），每一项都不同，第一项 $\frac{1}{1}$，第二项 $\frac{1}{2!}$ …… 依此类推<br>$(x-a)^n$ 是一个以 $x$ 为自变量的<strong>表达式</strong></p>
+<p>求和符号去掉展开写即第二行<br>$R_n(x)$ 是泰勒公式的<strong>余项</strong>，是 $(x-a)^n$ 的高阶无穷小（此处先不解释，听起来很牛逼，但是跟随例子看完就发现并没有什么玄乎的）</p>
 </blockquote>
 <p>个人粗浅总结，初学者产生记不住的感觉大多数情况下是没有沉下心来想想<strong>公式的各部分表示的是什么东西</strong>，梳理一下会清晰很多</p>
 <h2 id="联想链条"><a href="#联想链条" class="headerlink" title="联想链条"></a>联想链条</h2><blockquote>
@@ -342,7 +342,7 @@ $$
 f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!} (x-a)^n
 $$
 
-<p>并不知道写的对不对，翻到上面Check。OK，少一个余项 $R_n(x)$ ，收工！</p>
+<p>并不知道写的对不对，翻到上面Check。OK，很完美，收工！</p>
 
         </div>
 
@@ -351,7 +351,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-02-18T07:50:58.486Z" itemprop="dateUpdated">2018-02-17 23:50:58</time>
+    Last updated: <time datetime="2018-02-18T19:19:37.859Z" itemprop="dateUpdated">2018-02-18 11:19:37</time>
 </span><br>
 
 
