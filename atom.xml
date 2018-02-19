@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-02-19T05:50:48.348Z</updated>
+  <updated>2018-02-19T21:13:22.023Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【直观详解】让你永远忘不了的傅里叶变换解析</title>
+    <link href="https://charlesliuyx.github.io/2018/02/18/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E8%AE%A9%E4%BD%A0%E6%B0%B8%E8%BF%9C%E5%BF%98%E4%B8%8D%E4%BA%86%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E8%A7%A3%E6%9E%90/"/>
+    <id>https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/</id>
+    <published>2018-02-19T07:06:25.000Z</published>
+    <updated>2018-02-19T21:13:22.023Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解<strong>什么是傅立叶变换</strong>，<strong>为什么要做傅立叶变换</strong>等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：<strong>为什么要研究复数</strong><br><a id="more"></a></p><p>本篇博客为<a href="https://www.bilibili.com/video/av19141078/" target="_blank" rel="noopener">形象展示傅里叶变换</a>和<a href="https://www.bilibili.com/video/av11339177/" target="_blank" rel="noopener">欧拉公式与初等群论</a>两个视频的笔记结合，希望通过此篇让所有读者对傅立叶变换有一个全新的认知，并且宣传一波 3b1b 良心视频系列！<strong>重塑对未知和知识的渴求</strong></p><h1 id="群论与欧拉公式"><a href="#群论与欧拉公式" class="headerlink" title="群论与欧拉公式"></a>群论与欧拉公式</h1><p>在开始一步一步接近【傅立叶变换】前，先说一下群论。</p><p>提前说明，博主并不是要试图把什么环、域、向量空间、代数结构、线性代数群、李群等等一大堆很抽象的概念灌输给大家，我们只是为了利用群论的概念，<strong>加深</strong>或者说<strong>建立</strong>两个对【理解傅立叶变换】<strong>极度有帮助</strong>的直观理解：</p><blockquote><p><strong>幂函数（逆操作对数函数同理）表征的是旋转</strong></p></blockquote><p>推广，一个特例是</p><blockquote><p>$e^{\pi i}$ 表示的是<strong>在单位圆</strong>上<strong>逆时针在旋转180°</strong>这一变换</p></blockquote><p>等等，这不是排行<strong>世界上最伟大的十个公式</strong>第二名的欧拉公式嘛？（BTW，我们今天的主角【傅立叶变换】排行第七，这阵容有点强大）<br>$$<br>e^{\pi i} + 1 = 0<br>$$<br>是的，这第一部分，捎带，会带你更进一步的重新认识这个<strong>公式的伟大</strong></p><h2 id="对称性-symmetry"><a href="#对称性-symmetry" class="headerlink" title="对称性 symmetry"></a>对称性 symmetry</h2><p>群论 $\iff$ 对称性</p><p>不太严谨（但是很好理解）的来解释，群论是用来<strong>研究对称性</strong>的理论抽象与总结。比如我们有以下陈述：</p><blockquote><p><strong>正方形</strong>是<strong>对称</strong>图形</p></blockquote><p>那么从<strong>数学（解析 or 公式）角度</strong>上来说，怎么表现【对称】这个概念呢？回答这个问题的一种方式是：</p><blockquote><p>你能对正方形<strong>做些什么</strong>，并且在<strong>这个操作</strong>后，保持<strong>正方形的形态</strong>和操作前<strong>相同</strong></p></blockquote><p>我们把具有上述性质的<strong>操作</strong>都列出来，放在一起，如下面动图所示（左右旋转90°，旋转180°，四个轴对称，不变，这<strong>八个操作</strong>），就构成了一个有限群【对称群】，更专业的叫法是【八阶二面体群 Dihedral group of order 8】</p><div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif" alt="" width="550"></div><p>有了上面的直观理解，还有一个无限群需要了解，即【旋转群】，表示的是<strong>所有旋转操作</strong>，当然，因为角度可以无限细分，这个<strong>操作</strong>也是无限的，比如：顺时针旋转 $\theta$° </p><p>此时很多数学家就发现了神奇的现象，按照顺序进行上面8个操作的某两个，恰好等同于8个操作中的其他的某一个（旋转群也是一样的），如下面的动图所示，把这些<strong>组合</strong>放到一起，才真正的表达了【群】这个概念</p><div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/groupAdd.gif" alt="" width="550"></div><p>很多不同的概念都能从对称性和对称性的符合构建得到，如下图所示，其中，数字本身有两种表达方式，<strong>加法</strong>和<strong>乘法</strong>。</p><div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Group.png" alt="" width="300"></div><p><strong>加法</strong>对应数轴的<strong>平移变换</strong>（一个操作），<strong>乘法</strong>对应着数轴的<strong>伸缩变换</strong>（一个操作）</p><p>把这个数轴的概念拓展到<strong>平面坐标系</strong>，1D ➜ 2D，要把一个点，比如（1,0）移动到另一个点，只需要先在实轴上平移，再在复轴上平移即可（核心思想类比与正方形的几个<strong>操作</strong>，就发现往高层次抽象，这是一个事情）</p><p>同理，除了<strong>平移</strong>外，使用<strong>伸缩</strong>加<strong>旋转</strong>也是操作也可以完成<strong>同样的事情</strong>（将任意一点移动到另一个位置），<strong>伸缩</strong>是乘法显而易见，但是<strong>旋转</strong>怎么表示呢？</p><ul><li>考虑一个特殊的点对点操作，（1,0）通过<strong>伸缩</strong>和<strong>旋转</strong>到（-1,0），伸缩不用变，考虑旋转</li><li>此时，有一个非常神奇的定义出现了： $-1 = i \times i$ ，那么从（1,0）出发进行<strong>两次同样的操作</strong>可以得到（-1,0），即一个<strong>单位 $i$</strong> 能表示<strong>旋转90°</strong>，不就可以做到了吗？</li><li><strong>更意外的发现</strong>，进行一次<strong>单位 $i$</strong> 操作，如果是<strong>逆时针旋转90°</strong>，正好会落在二维平面y轴的（0,1）与<strong>单位 $i$</strong> 不谋而合</li><li>更大胆的假设，如果在y轴为 $i,2i,3i……$ ，是不是就就能通过<strong>乘法</strong>来描述处在这个平面上的所有变换了？如果在纵轴上默认跟上虚数单位 $i$ 意味着</li></ul><p>以上都是假设和推理，剥丝抽茧后，最关键的部分：如何使用<strong>单位 $i$</strong> 表示<strong>逆时针旋转90°</strong> ，并且给出了一种可能的<strong>映射规则</strong>，<strong>x轴平移表示伸缩</strong>，<strong>y轴平移表示旋转</strong>，这样就可以保证群的特性（<strong>几种操作</strong>一定可以组合成其他<strong>某个操作</strong>）</p><p>既然是<strong>旋转</strong>，也就是表示一个角度，并且是沿着一个圆运动的角度，如果你对<a href="https://charlesliuyx.github.io/2018/02/16/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E6%B3%B0%E5%8B%92%E7%BA%A7%E6%95%B0/">泰勒公式</a>非常熟悉（不熟悉没关系，点开连接看看呗？），就可以通过一系列公式推导得到一个完美<strong>桥梁</strong>：<strong>【幂函数】</strong>，形如 $f(x) = a^x$ </p>$$e^x = 1 + x + \frac{1}{2!} x^2 + \frac{1}{3!} x^3 + \cdots \tag{1} \\ sin(x) = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots  \\ cos(x) = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 + \cdots$$<p>将 $x = i\theta $ 带入（1）式（这里的 $\theta$ 是一个<strong>未知数</strong>，<strong>自变量</strong>），整理项，并移动，结合 $cos(x)$ 和 $sin(x)$ 的泰勒展开式，可以得到下列公式推倒：</p>$$\begin{align}e^{i\theta} & = 1 + {i\theta} + \frac{1}{2!}({i\theta})^2 + \frac{1}{3!} ({i\theta})^3 + \frac{1}{4!} ({i\theta})^4 + \frac{1}{5!} ({i\theta})^5 + \cdots \\ &= (1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} + \cdots) + i(\theta -\frac{\theta^3}{3!} + \frac{\theta^5}{5!} + \cdots) \\&= cos(\theta) + isin(\theta)\end{align}\tag{4}$$<p>如下图所示</p><div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/ei.svg" alt="" width="500"></div><blockquote><p>复平面中，$sin(\theta)$ 为纵坐标（自带虚数单位 $i$ ），$cos(\theta)$ 为横坐标<br>圆心在原点，半径为1的单位圆<br>$e^{i\theta}$ 即表征的就是一种<strong>旋转</strong>，$\theta$ 为旋转角的度数（统一单位，弧度制，即把°转换成实数）</p></blockquote><p>复平面中乘法的含义是什么？</p><h2 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h2><p>幂函数有一个非常重要的特性：<strong>加法变乘法</strong>，即 $a^{x+y} = a^x \times a^y$</p><p>也就是说通过幂函数，可以做到使用<strong>平移变换</strong>来描述<strong>伸缩变换</strong>，这具体是什么意思呢？参考下面的动图</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解&lt;strong&gt;什么是傅立叶变换&lt;/strong&gt;，&lt;strong&gt;为什么要做傅立叶变换&lt;/strong&gt;等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：&lt;strong&gt;为什么要研究复数&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Math" scheme="https://charlesliuyx.github.io/categories/Math/"/>
+    
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Fourier Transform" scheme="https://charlesliuyx.github.io/tags/Fourier-Transform/"/>
+    
+  </entry>
   
   <entry>
     <title>【直观详解】泰勒级数</title>

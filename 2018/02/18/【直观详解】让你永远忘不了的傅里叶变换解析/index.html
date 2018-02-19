@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】让你永远忘不了的傅里叶变换解析 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Fourier Transform">
+    <meta name="description" content="【阅读时间】【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+<meta name="keywords" content="Theory,Fourier Transform">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
+<meta property="og:url" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/groupAdd.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Group.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/ei.svg">
+<meta property="og:updated_time" content="2018-02-19T21:13:22.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
+<meta name="twitter:description" content="【阅读时间】【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】让你永远忘不了的傅里叶变换解析</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】让你永远忘不了的傅里叶变换解析</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-19T07:06:25.000Z" itemprop="datePublished" class="page-time">
+  2018-02-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Math/">Math</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#群论与欧拉公式"><span class="post-toc-number">1.</span> <span class="post-toc-text">群论与欧拉公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对称性-symmetry"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">对称性 symmetry</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#幂函数"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">幂函数</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【直观详解】让你永远忘不了的傅里叶变换解析"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】让你永远忘不了的傅里叶变换解析</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-18 23:06:25" datetime="2018-02-19T07:06:25.000Z"  itemprop="datePublished">2018-02-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Math/">Math</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】<br>【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解<strong>什么是傅立叶变换</strong>，<strong>为什么要做傅立叶变换</strong>等，帮助记忆和理解。另，这篇博客还从侧面一定程度上回答了另一个问题：<strong>为什么要研究复数</strong><br><a id="more"></a></p>
+<p>本篇博客为<a href="https://www.bilibili.com/video/av19141078/" target="_blank" rel="noopener">形象展示傅里叶变换</a>和<a href="https://www.bilibili.com/video/av11339177/" target="_blank" rel="noopener">欧拉公式与初等群论</a>两个视频的笔记结合，希望通过此篇让所有读者对傅立叶变换有一个全新的认知，并且宣传一波 3b1b 良心视频系列！<strong>重塑对未知和知识的渴求</strong></p>
+<h1 id="群论与欧拉公式"><a href="#群论与欧拉公式" class="headerlink" title="群论与欧拉公式"></a>群论与欧拉公式</h1><p>在开始一步一步接近【傅立叶变换】前，先说一下群论。</p>
+<p>提前说明，博主并不是要试图把什么环、域、向量空间、代数结构、线性代数群、李群等等一大堆很抽象的概念灌输给大家，我们只是为了利用群论的概念，<strong>加深</strong>或者说<strong>建立</strong>两个对【理解傅立叶变换】<strong>极度有帮助</strong>的直观理解：</p>
+<blockquote>
+<p><strong>幂函数（逆操作对数函数同理）表征的是旋转</strong></p>
+</blockquote>
+<p>推广，一个特例是</p>
+<blockquote>
+<p>$e^{\pi i}$ 表示的是<strong>在单位圆</strong>上<strong>逆时针在旋转180°</strong>这一变换</p>
+</blockquote>
+<p>等等，这不是排行<strong>世界上最伟大的十个公式</strong>第二名的欧拉公式嘛？（BTW，我们今天的主角【傅立叶变换】排行第七，这阵容有点强大）<br>$$<br>e^{\pi i} + 1 = 0<br>$$<br>是的，这第一部分，捎带，会带你更进一步的重新认识这个<strong>公式的伟大</strong></p>
+<h2 id="对称性-symmetry"><a href="#对称性-symmetry" class="headerlink" title="对称性 symmetry"></a>对称性 symmetry</h2><p>群论 $\iff$ 对称性</p>
+<p>不太严谨（但是很好理解）的来解释，群论是用来<strong>研究对称性</strong>的理论抽象与总结。比如我们有以下陈述：</p>
+<blockquote>
+<p><strong>正方形</strong>是<strong>对称</strong>图形</p>
+</blockquote>
+<p>那么从<strong>数学（解析 or 公式）角度</strong>上来说，怎么表现【对称】这个概念呢？回答这个问题的一种方式是：</p>
+<blockquote>
+<p>你能对正方形<strong>做些什么</strong>，并且在<strong>这个操作</strong>后，保持<strong>正方形的形态</strong>和操作前<strong>相同</strong></p>
+</blockquote>
+<p>我们把具有上述性质的<strong>操作</strong>都列出来，放在一起，如下面动图所示（左右旋转90°，旋转180°，四个轴对称，不变，这<strong>八个操作</strong>），就构成了一个有限群【对称群】，更专业的叫法是【八阶二面体群 Dihedral group of order 8】</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif" alt="" width="550"></div>
+
+<p>有了上面的直观理解，还有一个无限群需要了解，即【旋转群】，表示的是<strong>所有旋转操作</strong>，当然，因为角度可以无限细分，这个<strong>操作</strong>也是无限的，比如：顺时针旋转 $\theta$° </p>
+<p>此时很多数学家就发现了神奇的现象，按照顺序进行上面8个操作的某两个，恰好等同于8个操作中的其他的某一个（旋转群也是一样的），如下面的动图所示，把这些<strong>组合</strong>放到一起，才真正的表达了【群】这个概念</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/groupAdd.gif" alt="" width="550"></div>
+
+<p>很多不同的概念都能从对称性和对称性的符合构建得到，如下图所示，其中，数字本身有两种表达方式，<strong>加法</strong>和<strong>乘法</strong>。</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Group.png" alt="" width="300"></div>
+
+<p><strong>加法</strong>对应数轴的<strong>平移变换</strong>（一个操作），<strong>乘法</strong>对应着数轴的<strong>伸缩变换</strong>（一个操作）</p>
+<p>把这个数轴的概念拓展到<strong>平面坐标系</strong>，1D ➜ 2D，要把一个点，比如（1,0）移动到另一个点，只需要先在实轴上平移，再在复轴上平移即可（核心思想类比与正方形的几个<strong>操作</strong>，就发现往高层次抽象，这是一个事情）</p>
+<p>同理，除了<strong>平移</strong>外，使用<strong>伸缩</strong>加<strong>旋转</strong>也是操作也可以完成<strong>同样的事情</strong>（将任意一点移动到另一个位置），<strong>伸缩</strong>是乘法显而易见，但是<strong>旋转</strong>怎么表示呢？</p>
+<ul>
+<li>考虑一个特殊的点对点操作，（1,0）通过<strong>伸缩</strong>和<strong>旋转</strong>到（-1,0），伸缩不用变，考虑旋转</li>
+<li>此时，有一个非常神奇的定义出现了： $-1 = i \times i$ ，那么从（1,0）出发进行<strong>两次同样的操作</strong>可以得到（-1,0），即一个<strong>单位 $i$</strong> 能表示<strong>旋转90°</strong>，不就可以做到了吗？</li>
+<li><strong>更意外的发现</strong>，进行一次<strong>单位 $i$</strong> 操作，如果是<strong>逆时针旋转90°</strong>，正好会落在二维平面y轴的（0,1）与<strong>单位 $i$</strong> 不谋而合</li>
+<li>更大胆的假设，如果在y轴为 $i,2i,3i……$ ，是不是就就能通过<strong>乘法</strong>来描述处在这个平面上的所有变换了？如果在纵轴上默认跟上虚数单位 $i$ 意味着</li>
+</ul>
+<p>以上都是假设和推理，剥丝抽茧后，最关键的部分：如何使用<strong>单位 $i$</strong> 表示<strong>逆时针旋转90°</strong> ，并且给出了一种可能的<strong>映射规则</strong>，<strong>x轴平移表示伸缩</strong>，<strong>y轴平移表示旋转</strong>，这样就可以保证群的特性（<strong>几种操作</strong>一定可以组合成其他<strong>某个操作</strong>）</p>
+<p>既然是<strong>旋转</strong>，也就是表示一个角度，并且是沿着一个圆运动的角度，如果你对<a href="https://charlesliuyx.github.io/2018/02/16/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E6%B3%B0%E5%8B%92%E7%BA%A7%E6%95%B0/">泰勒公式</a>非常熟悉（不熟悉没关系，点开连接看看呗？），就可以通过一系列公式推导得到一个完美<strong>桥梁</strong>：<strong>【幂函数】</strong>，形如 $f(x) = a^x$ </p>
+
+$$
+e^x = 1 + x + \frac{1}{2!} x^2 + \frac{1}{3!} x^3 + \cdots \tag{1} \\ sin(x) = x - \frac{1}{3!}x^3 + \frac{1}{5!}x^5 + \cdots  \\ cos(x) = 1 - \frac{1}{2!}x^2 + \frac{1}{4!}x^4 + \cdots
+$$
+
+<p>将 $x = i\theta $ 带入（1）式（这里的 $\theta$ 是一个<strong>未知数</strong>，<strong>自变量</strong>），整理项，并移动，结合 $cos(x)$ 和 $sin(x)$ 的泰勒展开式，可以得到下列公式推倒：</p>
+
+$$
+\begin{align}e^{i\theta} & = 1 + {i\theta} + \frac{1}{2!}({i\theta})^2 + \frac{1}{3!} ({i\theta})^3 + \frac{1}{4!} ({i\theta})^4 + \frac{1}{5!} ({i\theta})^5 + \cdots \\ &= (1 - \frac{\theta^2}{2!} + \frac{\theta^4}{4!} + \cdots) + i(\theta -\frac{\theta^3}{3!} + \frac{\theta^5}{5!} + \cdots) \\&= cos(\theta) + isin(\theta)\end{align}\tag{4}
+$$
+
+<p>如下图所示</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/ei.svg" alt="" width="500"></div>
+
+<blockquote>
+<p>复平面中，$sin(\theta)$ 为纵坐标（自带虚数单位 $i$ ），$cos(\theta)$ 为横坐标<br>圆心在原点，半径为1的单位圆<br>$e^{i\theta}$ 即表征的就是一种<strong>旋转</strong>，$\theta$ 为旋转角的度数（统一单位，弧度制，即把°转换成实数）</p>
+</blockquote>
+<p>复平面中乘法的含义是什么？</p>
+<h2 id="幂函数"><a href="#幂函数" class="headerlink" title="幂函数"></a>幂函数</h2><p>幂函数有一个非常重要的特性：<strong>加法变乘法</strong>，即 $a^{x+y} = a^x \times a^y$</p>
+<p>也就是说通过幂函数，可以做到使用<strong>平移变换</strong>来描述<strong>伸缩变换</strong>，这具体是什么意思呢？参考下面的动图</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-02-19T21:13:22.023Z" itemprop="dateUpdated">2018-02-19 13:13:22</time>
+</span><br>
+
+
+        
+        <a href="/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/" target="_blank" rel="external">https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Fourier-Transform/">Fourier Transform</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解。另，这篇博..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/16/【直观详解】泰勒级数/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观详解】泰勒级数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '【直观详解】让你永远忘不了的傅里叶变换解析',
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解。另，这篇博..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADQUlEQVR42u3awW7CMBAEUP7/p6nUUw8lzKyDlJiXEwKa+LmHZXf8eMTX8/dq30nu+fevjl8n3zz5wsbGxr4J+3l4vfpOfrdXSz9e9MoWHFuwsbGxd2UnDz5e9PF3oqXEm5hs0BsjNjY29ley89KSb1BePttiho2NjY19fLu2qKyXn/bfgI2Njf1t7LyEJAtqy1Vy5yS6+MgsDRsbG/vy7DbovfLrD+bb2NjY2JdkP8urbQ/aJmElNigU2NjY2Buxk0M27ULXR1T54aG2WhVni7CxsbFvxT4eo89KVz5gag/ofGSbsLGxsbdgJ19NjuMkS1x/yuwI0ZuUGxsbG/uG7HwReZlpI962QLZF95/X2NjY2NuxZ9RZmZkdD8qfEo3JsLGxsTdit2FqPpPJw9qVw0N5q1M8CxsbG/tW7HbQvzJaaqPilQHWm6dgY2Njb8Ruk4RZ83Bc/JJPk5W0rRE2Njb2Hux8Qfmo6Nxf+yvvYGNjY38nO2k58sYjH9Dnz521PS8rNjY2NvbN2fnP+rYZmEWzLS9vY6L0AxsbG/u27LNS4uTTpGHIV3hCgIGNjY19c/ZseNQO6NvQtz2gU0ca2NjY2Nux81o3a1dyxnrrEq0EGxsbezv27AjOWeHrSrScN0XY2NjYu7LzQDcfNh0XpPxZeQuUP+Xl/xwbGxv7tuw2pm3xecvRjv7zZimq29jY2Ni3Zbd/fNYhyFmbcW6zhI2Njb0TOx/xnFVa2i1rZ0F1NoKNjY19c3Z7OCb/ft6EtMFwXt6wsbGxv4GdtByz8U17zzZIyA8V1UEvNjY29g3Z7fhmFscmyXMbIeTBBjY2NvZ+7JXgth3fJ4FBUX7iYdM/q8LGxsbelJ38oG+j2bxezIrW7EgQNjY29k7s2ZUspd2ONopoV/tYv7CxsbEvyV5vBmaxbj76T4pQHVRgY2Njb8SelYH8kM1Km5G3EAkPGxsbe2/2SmuRvJOXsdnoaljAsLGxsbdjz4rWSrSwfiRopfRiY2Njfyc7bzxm29RuxOxTbGxsbOz2uMxKQ9I2HsU9sbGxsbdj50OltiXIx/dtMJBszWknj7CxsbEvzG5HM59baF4sZ8h6bdjY2NhXZ/8AlqUhTNqg8FoAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
