@@ -61,7 +61,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/limit.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/virtualpart.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/seeF.gif">
-<meta property="og:updated_time" content="2018-02-23T02:06:02.710Z">
+<meta property="og:updated_time" content="2018-02-23T02:11:57.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
 <meta name="twitter:description" content="【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
@@ -387,8 +387,12 @@ $$
 <p>更进一步，幂函数中，以 $e$ 为底的函数有着特殊的性质，如下面动图所示，$\pi$ 单位的 $e^{6.28i}$ 就表示一个单位圆的360°旋转，则 $e^{2\pi it}$ 表示的就是<strong>一秒钟一圈</strong>的旋转方程，感觉速度有点太快了，所以加一个 $f$ 频率，控制<strong>旋转的速度</strong> ，图中为 $\frac{1}{10}$ ，合起来表示<strong>一秒钟十分之一圈</strong></p>
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/fe.gif" alt="" width="500"></div>
 
+
+
 <h4 id="第二步：缠绕的表示"><a href="#第二步：缠绕的表示" class="headerlink" title="第二步：缠绕的表示"></a>第二步：缠绕的表示</h4><p>首先，依据下面的动图所示，在傅立叶变换中，我们<strong>规定</strong>旋转是顺时针的（规定只是为了统一标准，并且有时候也会考虑<strong>书写简洁</strong>和<strong>方便计算</strong>），所以先加一个负号。假设原来的函数是 $g(t)$ ，将两者的<strong>幅值相乘</strong>就能得到缠绕图像，  $g(t) e^{-2 \pi ift}$ ，可以说是相当机智了！</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/circle.gif" alt="" width="550"></div>
+
+
 
 <h4 id="第三步：质心的表示"><a href="#第三步：质心的表示" class="headerlink" title="第三步：质心的表示"></a>第三步：质心的表示</h4><p>那如何表示质心这一概念呢？粗略想一下感觉挺难的，但是看起来很难的问题，有一种解决问题的途径是【演绎推理】，先从<strong>简单的特例出发</strong>，推广到<strong>一般</strong>，最后<strong>证明正确性</strong>即可</p>
 <p>考虑如何求一个正方形的质心位置，我们只需在边框上取n个等<strong>距离分布的点</strong>，并且算这几个点的位置的平均值。那么推广到一般情况，也使用类似的采样点的方式解决，如下面动图所示（紫红色的点即采样点），得到  $\frac{1}{N} \sum\limits _{k=1}^N g(t_k) e^{-2 \pi ift_k} $ </p>
@@ -396,6 +400,8 @@ $$
 
 <p>随着采样点的增加，需要使用<strong>积分</strong>来求解这个问题，如下面动图所示，得到 $\frac{1}{t_2 - t_1} \int_{t_1}^{t_2} g(t) e^{-2 \pi i f t}dt$ </p>
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/sample2.gif" alt="" width="550"></div>
+
+
 
 <h4 id="最终步：整理积分限和系数"><a href="#最终步：整理积分限和系数" class="headerlink" title="最终步：整理积分限和系数"></a>最终步：整理积分限和系数</h4><p>看到常数项系数  $\frac{1}{t_2 - t_1}$ ，如果忽略表达倍数关系的系数，对应的含义也会发生变化，不再是质心，而是<strong>信号存在的时间越久</strong>，位置是质心位置乘以一个倍数，它的值<strong>就越大</strong>。参看下面的动图，持续时长为3秒，那么新的位置就是原来质心位置的三倍；为6秒，就是原来的6倍</p>
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/noeffi.gif" alt="" width="550"></div>
@@ -436,7 +442,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-02-23T02:06:02.710Z" itemprop="dateUpdated">2018-02-22 18:06:02</time>
+    Last updated: <time datetime="2018-02-23T02:11:57.986Z" itemprop="dateUpdated">2018-02-22 18:11:57</time>
 </span><br>
 
 
