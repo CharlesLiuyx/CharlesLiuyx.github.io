@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-02-23T23:15:41.051Z</updated>
+  <updated>2018-03-03T22:18:59.500Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【区块链】如何解决拜占庭将军问题</title>
+    <link href="https://charlesliuyx.github.io/2018/03/03/%E3%80%90%E5%8C%BA%E5%9D%97%E9%93%BE%E3%80%91%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%8B%9C%E5%8D%A0%E5%BA%AD%E5%B0%86%E5%86%9B%E9%97%AE%E9%A2%98/"/>
+    <id>https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/</id>
+    <published>2018-03-03T22:17:06.000Z</published>
+    <updated>2018-03-03T22:18:59.500Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】</p><a id="more"></a><h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="BlockChain" scheme="https://charlesliuyx.github.io/categories/BlockChain/"/>
+    
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="BlockChain" scheme="https://charlesliuyx.github.io/tags/BlockChain/"/>
+    
+  </entry>
   
   <entry>
     <title>【直观详解】让你永远忘不了的傅里叶变换解析</title>
