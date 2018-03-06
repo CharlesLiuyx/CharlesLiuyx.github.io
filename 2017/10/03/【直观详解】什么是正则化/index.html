@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
-<meta property="og:updated_time" content="2017-10-06T16:52:08.813Z">
+<meta property="og:updated_time" content="2018-03-06T22:14:44.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】什么是正则化">
 <meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
@@ -206,11 +206,11 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>【阅读时间】7min - 9min<br>【内容简介】主要解决<strong>什么是正则化，为什么使用正则化，如何实现正则化</strong>，外加一些对<strong>范数</strong>的直观理解并进行知识整理以供查阅</p>
 <a id="more"></a>
-<h1 id="Why-amp-What-正则化"><a href="#Why-amp-What-正则化" class="headerlink" title="Why &amp; What 正则化"></a>Why &amp; What 正则化</h1><p>我们总会在各种地方遇到正则化这个看起来很难理解的名词，其实它并没有那么高冷，很好理解。</p>
-<p>首先，从使用正则化的目的角度：<strong>正则化是为了防止过拟合</strong></p>
+<h1 id="Why-amp-What-正则化"><a href="#Why-amp-What-正则化" class="headerlink" title="Why &amp; What 正则化"></a>Why &amp; What 正则化</h1><p>我们总会在各种地方遇到<strong>正则化</strong>这个看起来很难理解的名词，其实它并没有那么高冷，是很好理解的</p>
+<p>首先，从<strong>使用正则化解决了一个什么问题</strong>的角度来看：<strong>正则化是为了防止过拟合， 进而增强泛化能力</strong>。用白话文转义，<strong>泛化误差</strong>（generalization error）= 测试误差（test error），其实就是使用训练数据训练的模型在测试集上的表现（或说性能 performance）好不好</p>
 <p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" width="500"></p>
 <p>如上图，红色这条“想象力”过于丰富上下横跳的曲线就是过拟合情形。结合上图和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直译应该是：规则化</strong>（加个“化”字变动词，自豪一下中文还是强）。什么是规则？你妈喊你6点前回家吃饭，这就是规则，一个<strong>限制</strong>。同理，在这里，<strong>规则化就是说给需要训练的目标函数加上一些规则（限制），让他们不要自我膨胀</strong>。正则化，看起来，挺不好理解的，追其根源，还是“正则”这两字在中文中实在没有一个直观的对应，如果能翻译成<strong>规则化</strong>，更好理解。但我们一定要明白，搞<strong>学术，概念名词的准确是十分重要</strong>，对于一个<strong>重要唯一确定的概念</strong>，为它安上一个不会产生歧义的名词是必须的，正则化的名称没毛病，只是从如何理解的角度，要灵活和类比。</p>
-<p>我思考模式的中心有一个理念：<strong>每一个概念</strong>，<strong>被定义</strong>就是为了去<strong>解决一个实际问题（问Why&amp;What），接着寻找解决问题的方法（问How）</strong>，这个“方法”在计算机领域被称为“算法”（非常多的人在研究）。我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>解决问题的角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并健壮自己的知识图谱</strong></p>
+<p>我的思考模式的中心有一个理念：<strong>每一个概念</strong>，<strong>被定义</strong>就是为了去<strong>解决一个实际问题（问Why&amp;What），接着寻找解决问题的方法（问How）</strong>，这个“方法”在计算机领域被称为“算法”（非常多的人在研究）。我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>解决问题的角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并健壮自己的知识图谱</strong></p>
 <h1 id="How-线性模型角度"><a href="#How-线性模型角度" class="headerlink" title="How 线性模型角度"></a>How 线性模型角度</h1><p><strong>对于线性模型来说，无论是Logistic Regression、SVM或是简单的线性模型，都有一个基函数 $\phi()$，其中有很多 $\mathbf w$ （参数）需要通过对损失函数 $E()$ 求极小值（或最大似然估计）来确定，求的过程，也就是使用训练集的训练过程：梯度下降到最小值点。最终，找到最合适的 $\mathbf w$ 确定模型。</strong>从这个角度来看，正则化是怎么做的呢？</p>
 <h2 id="二次正则项"><a href="#二次正则项" class="headerlink" title="二次正则项"></a>二次正则项</h2><p>我们看一个线性的<strong>损失函数（真实值和预测值的误差）</strong><br>
 $$
@@ -367,7 +367,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2017-10-06T16:52:08.813Z" itemprop="dateUpdated">2017-10-06 09:52:08</time>
+    Last updated: <time datetime="2018-03-06T22:14:44.327Z" itemprop="dateUpdated">2018-03-06 14:14:44</time>
 </span><br>
 
 
