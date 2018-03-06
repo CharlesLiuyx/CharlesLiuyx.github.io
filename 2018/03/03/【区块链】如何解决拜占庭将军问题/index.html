@@ -35,7 +35,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png">
-<meta property="og:updated_time" content="2018-03-04T04:13:32.209Z">
+<meta property="og:updated_time" content="2018-03-06T22:12:45.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】如何解决拜占庭将军问题">
 <meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，">
@@ -203,10 +203,10 @@
             <p>【阅读时间】5min 1051 words<br>【阅读内容】什么是拜占庭问题，</p>
 <a id="more"></a>
 <p>首先，这个问题属于<strong>计算机科学领域</strong>。解决这个问题才是区块链最大的价值所在，因为这个问题一直是<strong>分布式系统</strong>的重要难题之一</p>
-<h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1><p>这个问题的定义者是<strong>图灵奖</strong>获得者，Lamport大神，是分布式系统的关键性奠基人之一，有面包店算法，拜占庭将军问题，Paxos算法等著名成果</p>
+<h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1><p>这个问题的定义者是<strong>图灵奖</strong>获得者，Lamport大神，分布式系统的关键性奠基人之一，有面包店算法，拜占庭将军问题，Paxos算法等著名成果</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><div align="center"><img src="//charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png" alt="" width="500"></div>
 
-<p>9个将军带领9支军队，打一场攻城战役中。假设每个将军都能<strong>独立</strong>根据眼前战况做出两种判断：<strong>进攻</strong>或<strong>撤退</strong>，要求（或者最终目的是）如何让这9个将军的<strong>命令</strong>是<strong>一致的</strong>（一致性，即共识）？要么一起进攻，要么一起撤退（每个将军之间也是互不信任的，也有消灭对方的动机）</p>
+<p><code>9个将军</code>带领<code>9支军队</code>，打一场攻城战役。假设每个将军都能<strong>独立</strong>根据眼前战况做出两种判断：<strong>进攻</strong>或<strong>撤退</strong>，要求（或者最终目的是）如何让这9个将军的<strong>命令</strong>是<strong>一致的</strong>（一致性，即共识）？要么一起进攻，要么一起撤退（每个将军之间也是互不信任的，也有消灭对方的动机）</p>
 <p>最简单的策略即：<strong>投票</strong>（上图中的红色箭头和绿色箭头为每个将军做出的判断），<strong>超过半数支持</strong>某个决定，那么<strong>所有9个将军</strong>一定执行<strong>这个决定</strong>。如上图，5个将军决定进攻，4个将军决定撤退，那么所有将军都会下令：进攻！</p>
 <p>这种策略需要每个将军把<strong>自己的判断</strong>通过一种途径（途中灰色箭头）传递到所有其他将军处。相对的，每个将军只有在收到了所有投票结果后，才会下令。如上面的例子，所有将军得到投票：<strong>4进攻5撤退</strong>，才下令<strong>撤退</strong></p>
 <p><div align="center"><img src="//charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png" alt="" width="500"></div></p>
@@ -237,7 +237,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-04T04:13:32.209Z" itemprop="dateUpdated">2018-03-03 20:13:32</time>
+    Last updated: <time datetime="2018-03-06T22:12:45.133Z" itemprop="dateUpdated">2018-03-06 14:12:45</time>
 </span><br>
 
 
