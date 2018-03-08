@@ -25,13 +25,13 @@
     
     
     <meta name="keywords" content="Theory,Fourier Transform">
-    <meta name="description" content="【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+    <meta name="description" content="【阅读时间】15-20min 7185 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
 <meta name="keywords" content="Theory,Fourier Transform">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
 <meta property="og:url" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+<meta property="og:description" content="【阅读时间】15-20min 7185 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/groupAdd.gif">
@@ -60,11 +60,15 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/newpic.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/limit.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/virtualpart.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Phase.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relation.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relation2.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relationAll.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/seeF.gif">
-<meta property="og:updated_time" content="2018-02-23T23:15:41.051Z">
+<meta property="og:updated_time" content="2018-03-08T08:44:16.862Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
-<meta name="twitter:description" content="【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
+<meta name="twitter:description" content="【阅读时间】15-20min 7185 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Dihedral.gif">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -200,7 +204,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#群论与欧拉公式"><span class="post-toc-number">1.</span> <span class="post-toc-text">群论与欧拉公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对称性-symmetry"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">对称性 symmetry</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#幂函数-Exponentiation"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">幂函数 Exponentiation</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复平面-Complex-Plane"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">复平面 Complex Plane</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#傅立叶变换"><span class="post-toc-number">2.</span> <span class="post-toc-text">傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是傅立叶变换"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#公式表示"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">公式表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#联想链条"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">联想链条</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【看到】傅立叶变换"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">【看到】傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#声音的表示"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">声音的表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可视化方法"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">可视化方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#绕圈记录法：同一事物的不同角度"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">绕圈记录法：同一事物的不同角度</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#质心记录法：新维度的特征提取"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">质心记录法：新维度的特征提取</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#公式表示-1"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">公式表示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一步：旋转的表示"><span class="post-toc-number">2.2.3.1.</span> <span class="post-toc-text">第一步：旋转的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第二步：缠绕的表示"><span class="post-toc-number">2.2.3.2.</span> <span class="post-toc-text">第二步：缠绕的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第三步：质心的表示"><span class="post-toc-number">2.2.3.3.</span> <span class="post-toc-text">第三步：质心的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最终步：整理积分限和系数"><span class="post-toc-number">2.2.3.4.</span> <span class="post-toc-text">最终步：整理积分限和系数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#尾巴"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">尾巴</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结-1"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#群论与欧拉公式"><span class="post-toc-number">1.</span> <span class="post-toc-text">群论与欧拉公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#对称性-symmetry"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">对称性 symmetry</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#幂函数-Exponentiation"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">幂函数 Exponentiation</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#复平面-Complex-Plane"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">复平面 Complex Plane</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#傅立叶变换"><span class="post-toc-number">2.</span> <span class="post-toc-text">傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是傅立叶变换"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#公式表示"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">公式表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#联想链条"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">联想链条</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#【看到】傅立叶变换"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">【看到】傅立叶变换</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#声音的表示"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">声音的表示</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可视化方法"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">可视化方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#绕圈记录法：同一事物的不同角度"><span class="post-toc-number">2.2.2.1.</span> <span class="post-toc-text">绕圈记录法：同一事物的不同角度</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#质心记录法：新维度的特征提取"><span class="post-toc-number">2.2.2.2.</span> <span class="post-toc-text">质心记录法：新维度的特征提取</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#公式表示-1"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">公式表示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第一步：旋转的表示"><span class="post-toc-number">2.2.3.1.</span> <span class="post-toc-text">第一步：旋转的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第二步：缠绕的表示"><span class="post-toc-number">2.2.3.2.</span> <span class="post-toc-text">第二步：缠绕的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#第三步：质心的表示"><span class="post-toc-number">2.2.3.3.</span> <span class="post-toc-text">第三步：质心的表示</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#最终步：整理积分限和系数"><span class="post-toc-number">2.2.3.4.</span> <span class="post-toc-text">最终步：整理积分限和系数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#补充"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">补充</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#相位"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">相位</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原信号的长度"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">原信号的长度</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结-1"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
 
@@ -226,7 +230,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】15-20min 7184 words<br>【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解<strong>什么是傅立叶变换</strong>，<strong>为什么要做傅立叶变换</strong>等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：<strong>为什么要研究复数</strong><br><a id="more"></a></p>
+            <p>【阅读时间】15-20min 7185 words<br>【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解<strong>什么是傅立叶变换</strong>，<strong>为什么要做傅立叶变换</strong>等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：<strong>为什么要研究复数</strong><br><a id="more"></a></p>
 <p>本篇博客为<a href="https://www.bilibili.com/video/av19141078/" target="_blank" rel="noopener">形象展示傅里叶变换</a>和<a href="https://www.bilibili.com/video/av11339177/" target="_blank" rel="noopener">欧拉公式与初等群论</a>两个视频的笔记结合，希望通过此篇让所有读者对傅立叶变换有一个全新的认知，并且宣传一波 3b1b 良心视频系列！<strong>重塑对未知和知识的渴求</strong></p>
 <p><a href="https://www.zhihu.com/question/19714540/answer/325895339" target="_blank" rel="noopener">知乎相关问题链接</a>，小伙伴们求点赞！没有功劳也有苦劳啊！</p>
 <h1 id="群论与欧拉公式"><a href="#群论与欧拉公式" class="headerlink" title="群论与欧拉公式"></a>群论与欧拉公式</h1><p>在开始一步一步接近【傅立叶变换】前，先说一下群论</p>
@@ -414,9 +418,24 @@ $$
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/limit.gif" alt="" width="550"></div>
 
 <p>说实话，这个动图解答了我大学时代的一个疑惑，音乐文件不都是有时间长度的嘛，我就一直不懂，凭什么对负无穷到正无穷做傅立叶变换？原来真实情况是，负无穷到0，音乐结尾到正无穷，就像上面的动图，其实都没有<strong>振动幅值（电信号幅值）与之对应</strong>，再结合缠绕圆圈的思想：原来，从音乐开始到结束傅立叶变换和从负无穷到正无穷做傅立叶变换，是特么的一回事啊！（吐槽完毕）</p>
-<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><p>还有一个坑，即在表示质心的时候，我们只取用了x轴坐标，下面的图中的<strong>蓝色曲线</strong>就是纵坐标（y轴 or 虚部）的可视化,红色曲线是横坐标（x轴 or 实部）</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="相位"><a href="#相位" class="headerlink" title="相位"></a>相位</h3><p>在表示质心的时候，我们只取用了x轴坐标，下面的图中的<strong>蓝色曲线</strong>就是纵坐标（y轴 or 虚部）的可视化,红色曲线是横坐标（x轴 or 实部）</p>
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/virtualpart.png" alt="" width="400"></div>
 
+<p>那么相位是如何表示的呢？如下面动图所示，其中红色的部分为质心，长度为振幅大小，<strong>对应的角度就是相位</strong></p>
+ <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/Phase.gif" alt="" width="350"></div>
+
+<h3 id="原信号的长度"><a href="#原信号的长度" class="headerlink" title="原信号的长度"></a>原信号的长度</h3><p>再追根究底一些，因为之前已经提到过，假设我们的信号有4.5s。</p>
+<p>那么考虑<strong>原信号的长度的变化</strong>呢？首先，假设<strong>信号的长度很长</strong>，那么缠绕圆上的线就会更多，每次接近稳定图像质心的变化速度更快（即频域图像更加密集），参看下面动图</p>
+ <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relation.gif" alt="" width="450"></div>
+
+<p>那么对应的，如果<strong>原信号的长度缩短</strong>呢？如下面动图所示，频域图像会更加稀疏。原因同理，当<strong>缠绕的内容少的时候，重心变化的速度也相应的变慢了</strong></p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relation2.gif" alt="" width="450"></div>
+
+<p>总得来说，基本就上述内容就详细解释了下面的现象：</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relationAll.gif" alt="" width="450"></div>
+
+<p>时域的信号周期越长，那么频域就越集中，越不容易发生混叠，越容易抽象出时间信号的<strong>周期性重复信息</strong>，此时自然而然的，周期性这个词就出现了。</p>
+<p>另外，可以自己思索一下，比如无穷时间的周期时域信号呢？又比如一个恒定振幅（一个电平）的时域信号呢？其实这里就给出了一个提示有关为什么傅立叶变换有那么多需要考虑的变形了，因为在缠绕这件事情发生的过程中，有<strong>几种情况是特别的</strong>（这部分3B1B视频并没有讲解，可能需要未来再更新了）</p>
 <h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p>讲了这么长，至此全部结束。估计读者都已经晕了，那么，在这里为【看到】傅立叶变换做一个总结，就来总得说说我们从头到尾都干了些啥？参看下面动图</p>
  <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/seeF.gif" alt="" width="550"></div>
 
@@ -443,7 +462,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-02-23T23:15:41.051Z" itemprop="dateUpdated">2018-02-23 15:15:41</time>
+    Last updated: <time datetime="2018-03-08T08:44:16.862Z" itemprop="dateUpdated">2018-03-08 00:44:16</time>
 </span><br>
 
 
@@ -489,7 +508,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】15-20min 7185 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -660,7 +679,7 @@ $$
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】15-20min 7184 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/&title=《【直观详解】让你永远忘不了的傅里叶变换解析》 — Go Further&source=【阅读时间】15-20min 7185 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
