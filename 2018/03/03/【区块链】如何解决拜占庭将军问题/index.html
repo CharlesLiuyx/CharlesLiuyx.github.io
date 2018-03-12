@@ -25,20 +25,20 @@
     
     
     <meta name="keywords" content="Theory,BlockChain,BGP">
-    <meta name="description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，">
+    <meta name="description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系">
 <meta name="keywords" content="Theory,BlockChain,BGP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【区块链】如何解决拜占庭将军问题">
 <meta property="og:url" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，">
+<meta property="og:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png">
-<meta property="og:updated_time" content="2018-03-06T22:12:45.133Z">
+<meta property="og:updated_time" content="2018-03-12T15:23:02.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】如何解决拜占庭将军问题">
-<meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，">
+<meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -200,7 +200,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】5min 1051 words<br>【阅读内容】什么是拜占庭问题，</p>
+            <p>【阅读时间】5min 1051 words<br>【阅读内容】什么是拜占庭问题，以及它和区块链的关系</p>
 <a id="more"></a>
 <p>首先，这个问题属于<strong>计算机科学领域</strong>。解决这个问题才是区块链最大的价值所在，因为这个问题一直是<strong>分布式系统</strong>的重要难题之一</p>
 <h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1><p>这个问题的定义者是<strong>图灵奖</strong>获得者，Lamport大神，分布式系统的关键性奠基人之一，有面包店算法，拜占庭将军问题，Paxos算法等著名成果</p>
@@ -224,7 +224,7 @@
 <p>推广到计算机系统内，【将军】类比为【计算机】，而计算机因为物理或被感染等其他原因造成的【运行异常】就是【叛徒】，其实整个问题也是为了保证分布式系统的<strong>一致性</strong>和<strong>可用性</strong></p>
 <h1 id="传统解决方案"><a href="#传统解决方案" class="headerlink" title="传统解决方案"></a>传统解决方案</h1><p>在区块链之前，有两种解决方案：口头协议（又称为拜占庭容错算法）和书面协议，在这里就不赘述</p>
 <p>通常来说，大多数分布式系统使用的是书面协议确保一致性，中心机构背书</p>
-<h1 id="区块链解决方案"><a href="#区块链解决方案" class="headerlink" title="区块链解决方案"></a>区块链解决方案</h1><p>我们知道，区块链最强的地方就在于它的一致性（了解去快线原理，请参看我的另一篇博客 <a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/">一文看懂区块链：一步一步发明比特币</a>），同意这正是拜占庭问题的核心</p>
+<h1 id="区块链解决方案"><a href="#区块链解决方案" class="headerlink" title="区块链解决方案"></a>区块链解决方案</h1><p>我们知道，区块链最强的地方就在于它的一致性（了解区块链原理，可移步另一篇博客 <a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/">一文看懂区块链：一步一步发明比特币</a>），同意这正是拜占庭问题的核心</p>
 <p>互联网技术的存在，让传输过程中，基本没有延迟（或说延迟很小可以基本忽略），<strong>解决了通讯延迟的问题</strong></p>
 <p>区块链使用<strong>链型数据结构</strong> + <strong>算力互相制约</strong>使得<strong>作假的成本</strong>随着时间的加长<strong>呈指数上升</strong>，<strong>解决了一致性问题</strong>。当然非对称秘钥部分的密码学，解决了<strong>身份确认问题</strong></p>
 <p>至少这个系统解决的问题不仅仅是金融领域，去中心化银行系统的问题所在，交易，其实只是其中很小的一部分</p>
@@ -237,7 +237,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-06T22:12:45.133Z" itemprop="dateUpdated">2018-03-06 14:12:45</time>
+    Last updated: <time datetime="2018-03-12T15:23:02.794Z" itemprop="dateUpdated">2018-03-12 08:23:02</time>
 </span><br>
 
 
@@ -283,7 +283,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -447,7 +447,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
