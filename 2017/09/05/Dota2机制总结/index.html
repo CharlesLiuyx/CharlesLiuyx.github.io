@@ -34,7 +34,7 @@
 <meta property="og:description" content="【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，计算公式。针对人群是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等 版本信息：更新到7.09">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/05/Dota2机制总结/Dota_2_armor_debuff_efficiency.png">
-<meta property="og:updated_time" content="2018-03-15T18:15:41.524Z">
+<meta property="og:updated_time" content="2018-03-15T18:27:55.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dota2机制总结">
 <meta name="twitter:description" content="【阅读时间】百科类型文章【内容简介】这是一份有关Dota2游戏机制的总结，核心目的是为了方便查阅，计算公式。针对人群是对数据和游戏机制有很大兴趣的高玩，从中你可能能了解如何通过击杀或得更多的经济，哪些操作可以躲避技能等等 版本信息：更新到7.09">
@@ -214,30 +214,30 @@
 <tbody>
 <tr>
 <td style="text-align:center">1</td>
-<td>财产总和<strong>贫穷</strong>系数 <em> 财产总和<strong>排名</strong>系数 </em> ( 126 + 4.5 <em> 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 </em> 90 + 财产总和系数 * 0.03375 )</td>
+<td>财产总和<strong>贫穷</strong>系数 × 财产总和<strong>排名</strong>系数 × ( 126 + 4.5 × 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 × 90 + 财产总和系数 × 0.03375 )</td>
 </tr>
 <tr>
 <td style="text-align:center">2</td>
-<td>财产总和<strong>贫穷</strong>系数 <em> 财产总和<strong>排名</strong>系数 </em> ( 63 + 3.6 <em> 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 </em> 67.5 + 财产总和系数 * 0.03375 )</td>
+<td>财产总和<strong>贫穷</strong>系数 × 财产总和<strong>排名</strong>系数 × ( 63 + 3.6 × 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 × 67.5 + 财产总和系数 × 0.03375 )</td>
 </tr>
 <tr>
 <td style="text-align:center">3</td>
-<td>财产总和<strong>贫穷</strong>系数 <em> 财产总和<strong>排名</strong>系数 </em> ( 31.5 + 2.7 <em> 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 </em> 45 + 财产总和系数 * 0.03375 )</td>
+<td>财产总和<strong>贫穷</strong>系数 × 财产总和<strong>排名</strong>系数 × ( 31.5 + 2.7 × 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 × 45 + 财产总和系数 * 0.03375 )</td>
 </tr>
 <tr>
 <td style="text-align:center">4</td>
-<td>财产总和<strong>贫穷</strong>系数 <em> 财产总和<strong>排名</strong>系数 </em> ( 22.5 + 1.8 <em> 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 </em> 31.5 + 财产总和系数 * 0.027 )</td>
+<td>财产总和<strong>贫穷</strong>系数 × 财产总和<strong>排名</strong>系数 × ( 22.5 + 1.8 × 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 × 31.5 + 财产总和系数 × 0.027 )</td>
 </tr>
 <tr>
 <td style="text-align:center">5</td>
-<td>财产总和<strong>贫穷</strong>系数 <em> 财产总和<strong>排名</strong>系数 </em> ( 18 + 0.9 <em> 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 </em> 22.5 + 财产总和系数 * 0.02025 )</td>
+<td>财产总和<strong>贫穷</strong>系数 × 财产总和<strong>排名</strong>系数 × ( 18 + 0.9 × 阵亡英雄等级 + 财产总和<strong>前期</strong>系数 × 22.5 + 财产总和系数 × 0.02025 )</td>
 </tr>
 </tbody>
 </table>
 <ul>
 <li>7.11更新：<ul>
-<li>【新】（阵亡英雄财产综合 * 0.026  + 70） / 击杀涉及英雄的数量</li>
-<li>【旧】财产总和前期系数 <em> {} + 财产总和系数 </em> {}</li>
+<li>【新】（阵亡英雄财产综合 × 0.026  + 70） / 击杀涉及英雄的数量</li>
+<li>【旧】财产总和前期系数 × {} + 财产总和系数 × {}</li>
 </ul>
 </li>
 </ul>
@@ -1852,7 +1852,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-15T18:15:41.524Z" itemprop="dateUpdated">2018-03-15 11:15:41</time>
+    Last updated: <time datetime="2018-03-15T18:27:55.257Z" itemprop="dateUpdated">2018-03-15 11:27:55</time>
 </span><br>
 
 
