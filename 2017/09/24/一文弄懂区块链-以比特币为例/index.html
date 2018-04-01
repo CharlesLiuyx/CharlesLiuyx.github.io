@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png">
-<meta property="og:updated_time" content="2018-03-26T21:04:57.935Z">
+<meta property="og:updated_time" content="2018-04-01T23:39:56.022Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】一文看懂区块链：一步一步发明比特币">
 <meta name="twitter:description" content="【阅读时间】29 ~ 35 min | 11872 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
@@ -609,7 +609,7 @@
 <h4 id="交易费"><a href="#交易费" class="headerlink" title="交易费"></a>交易费</h4><p>交易费 = 求和（所有输入） - 求和（所有输出）</p>
 <p>这里有一个比较有意思的地方，就是因为找零的输出UTXO是交易的发起这自己构建的，如果很不幸，你忘记了自己构建找零的UTXO，那么这些多余的BTC就会变成矿工的劳务费</p>
 <p>例如，我需要和小明进行交易，需要购买一个商品，花费<code>0.8BTC</code>，为了确保这笔交易能被更快的处理（添加到大账本上），我要在其中添加一笔交易费，假设<code>0.01BTC</code>（忽略人傻钱多），那就意味着这笔交易会需要我从钱包中找到几个UTXO能组成<code>0.81BTC</code>。但如果我的钱包内找不出这样的UTXO，只有一个<code>1BTC</code>的UTXO可用，那么我就需要构建一个<code>0.19BTC</code>的UTXO作为找零回到自己的钱包</p>
-<p><strong>交易费只和交易字段使用的字节大小有关，与参与交易的比特币币值无关</strong>。UTXO是有尺寸的，比如某人想支付一笔很大的BTC交易，但是他的钱包中有很多小尺寸的UTXO，如果加入了很多个UTXO，就以为这他的交易会变复杂且尺寸大。</p>
+<p><strong>交易费只和交易字段使用的字节大小有关，与参与交易的比特币币值无关</strong>。UTXO是有尺寸的，比如某人想支付一笔很大的BTC交易，但是他的钱包中有很多小尺寸的UTXO，如果加入了很多个UTXO，就意味着他的交易会变复杂，存储空间需求多。当然，很多钱包会提供这方面的优化功能，保证你的交易使用的字段大小最优化</p>
 <h4 id="解锁和锁定脚本"><a href="#解锁和锁定脚本" class="headerlink" title="解锁和锁定脚本"></a>解锁和锁定脚本</h4><p>在实际实现的时候，这个“支付宝红包口令”被称为脚本，是一种基于逆波兰表示法的基于堆栈的执行语言。具体细节感兴趣的读者可以去<a href="https://github.com/bitcoin/bitcoin" target="_blank" rel="noopener">比特币的Github</a>研究代码。关于脚本有很多细节上的定义和实现方法，这里限于篇幅不展开描述了</p>
 <h3 id="矿工费和优先级"><a href="#矿工费和优先级" class="headerlink" title="矿工费和优先级"></a>矿工费和优先级</h3><p>我们知道，<strong>每一笔交易都是广播到区块链上，由矿工决定是不是加入到新区块上的</strong>。那么这里就会涉及到一个问题，谁的交易的优先级更高，是先来后到？还是谁给前多谁就能加入到新区块中？</p>
 <p>在<a href="#区块容量">区块容量</a>一节中，有一张图表直观的展示了现在网络中一笔交易的等待时间，其中最长的，也就是30分钟，如果你不是一个超级急性子，很多时候还是可以接受的（毕竟跨国转账1-2个工作日）</p>
@@ -694,7 +694,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-26T21:04:57.935Z" itemprop="dateUpdated">2018-03-26 14:04:57</time>
+    Last updated: <time datetime="2018-04-01T23:39:56.022Z" itemprop="dateUpdated">2018-04-01 16:39:56</time>
 </span><br>
 
 
