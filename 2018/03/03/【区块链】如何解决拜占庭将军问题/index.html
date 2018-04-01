@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BlockChain.png">
-<meta property="og:updated_time" content="2018-03-26T20:05:10.071Z">
+<meta property="og:updated_time" content="2018-03-27T01:53:18.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】如何解决拜占庭将军问题">
 <meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分">
@@ -224,7 +224,9 @@
 <p>解释方法使用<strong>副官模型</strong>即可</p>
 <p>推广到计算机系统内，【将军】类比为【计算机】，而计算机因为物理或被感染等其他原因造成的【运行异常】就是【叛徒】，其实整个问题也是为了保证分布式系统的<strong>一致性</strong>和<strong>可用性</strong></p>
 <h1 id="传统解决方案"><a href="#传统解决方案" class="headerlink" title="传统解决方案"></a>传统解决方案</h1><p>在区块链之前，有两种解决方案：口头协议（又称为拜占庭容错算法）和书面协议，在这里就不赘述</p>
-<p>通常来说，大多数分布式系统使用的是书面协议确保一致性，中心机构背书。其中有实用拜占庭容错算法（PBFT）最为有名。采用PBFT方法，本质上就是<strong>利用通信次数换取信用</strong>。每个命令的执行都需要节点间两两交互去核验消息，通信代价是非常高的。通常采用PBFT算法，节点间的通信复杂度是节点数的平方级的</p>
+<p>通常来说，大多数分布式系统使用的是书面协议确保一致性，中心机构背书。其中有实用拜占庭容错算法（PBFT）最为有名。</p>
+<p>这个算法说起来也不难理解，他的核心思想是：<strong>对于每一个收到命令的将军，都要去询问其他人，他们收到的命令是什么</strong></p>
+<p>采用PBFT方法，本质上就是<strong>利用通信次数换取信用</strong>。每个命令的执行都需要节点间两两交互去核验消息，通信代价是非常高的。通常采用PBFT算法，节点间的通信复杂度是节点数的平方级的</p>
 <h1 id="区块链解决方案"><a href="#区块链解决方案" class="headerlink" title="区块链解决方案"></a>区块链解决方案</h1><p>我们知道，区块链最强的地方就在于它的一致性（了解区块链原理，可移步另一篇博客 <a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/">一文看懂区块链：一步一步发明比特币</a>），同时这正是拜占庭问题的核心</p>
 <h2 id="案例拆解"><a href="#案例拆解" class="headerlink" title="案例拆解"></a>案例拆解</h2><p>我们先假设你已经完全了解了比特币区块链的运行原理，那么我们一步一步<strong>建立一个场景</strong>看一看区块链是如何解决拜占庭将军问题？</p>
 <p>我们先假设信道一定是可靠的，传令兵死亡之类的事情我们不考虑，毕竟在一个非常复杂的网络中，还可以通过多条的方式连接任意两个节点，可靠性还是值得相信。<strong>主要破坏一致性的还是心怀不轨的【间谍】</strong>，或者总结为：如何防止【间谍】对整体决策（进攻还是撤退）进行破坏？</p>
@@ -252,7 +254,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-26T20:05:10.071Z" itemprop="dateUpdated">2018-03-26 13:05:10</time>
+    Last updated: <time datetime="2018-03-27T01:53:18.632Z" itemprop="dateUpdated">2018-03-26 18:53:18</time>
 </span><br>
 
 
