@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png">
-<meta property="og:updated_time" content="2018-04-02T08:15:10.530Z">
+<meta property="og:updated_time" content="2018-04-02T09:25:05.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】一文看懂区块链：一步一步发明比特币">
 <meta name="twitter:description" content="【阅读时间】29 ~ 35 min | 11872 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
@@ -512,7 +512,8 @@
 <p>其中的重量是指的实际存储的大小，这个值和交易协议有关，其实可以忽略。非常幸运的是，<strong>这几个区块放佛是专门为讲解这一节而出现的</strong>，这可能是天意吧</p>
 <p>另外插一句，你会发现<strong>平均区块建立间隔时间</strong>，的确和10分钟这个设计值差距很大吧</p>
 <h3 id="区块容量"><a href="#区块容量" class="headerlink" title="区块容量"></a>区块容量</h3><p>比特币区块链从被<strong>第一次部署</strong>时，或者说源代码中已经规定，<strong>区块容量是1M</strong>。最初设计成1M的原因一方面，<strong>防止DOS攻击</strong>。另一方面，当年中本聪在创建区块链的时候的容量是32M，但是他通过一个说明为”Clear up“这样毫不起眼的Commit把区块容量改成了1M，为<strong>防止区块链体积增长过快</strong>，为区块容量这个问题添加了些神秘色彩。好吧，我承认，中本聪就已经非常具有神秘色彩了，是在神秘色彩上添上了些故事</p>
-<p>通过上表我们知道，1M的容量意味着比特币最大的处理交易数量在约2400（486882区块1034.39的大小很接近了），在给出<a href="http://charts.woobull.com/bitcoin-transactions-per-second/" target="_blank" rel="noopener">一张时间和每秒交易数量的关系图表</a>(交互表格点击链接)</p>
+<p>截止2018年4月1号，完整区块链大小已经有约<strong>151GB</strong>的大小了</p>
+<p>上表中，可以观察到，<strong>1M的容量</strong>意味着比特币最大的处理交易数量在<strong>约2400</strong>（486882区块1034.39的大小很接近了），从代码及技术文档来看，一个区块的最大处理交易数量在2700笔，意味着在一定程度上区块利用率可以超过100%。下面再给出<a href="http://charts.woobull.com/bitcoin-transactions-per-second/" target="_blank" rel="noopener">一张时间和每秒交易数量的关系图表</a>(交互表格点击链接)</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -696,7 +697,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-04-02T08:15:10.530Z" itemprop="dateUpdated">2018-04-02 01:15:10</time>
+    Last updated: <time datetime="2018-04-02T09:25:05.446Z" itemprop="dateUpdated">2018-04-02 02:25:05</time>
 </span><br>
 
 
