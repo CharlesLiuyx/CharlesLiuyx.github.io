@@ -54,7 +54,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/FeesVsBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/TimeVSBlocksize.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2017/09/24/一文弄懂区块链-以比特币为例/MerkleTree.png">
-<meta property="og:updated_time" content="2018-04-01T23:39:56.022Z">
+<meta property="og:updated_time" content="2018-04-02T08:15:10.530Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】一文看懂区块链：一步一步发明比特币">
 <meta name="twitter:description" content="【阅读时间】29 ~ 35 min | 11872 words【内容简介】此文潜在面向群体是对区块链或比特币的运行原理完全不了解的人。所以会从用户需求的角度出发，一步一步发明区块链（或者说比特币，因为两者互相依存），在此之后的内容有关比特币与金融，ICO，竞争币等，可选择性阅读。">
@@ -330,7 +330,7 @@
 <blockquote>
 <p>注：区块链本身就是最终的大账本，发生交易的唯一方法就是把你的交易加入到大账本上。具体来说，就是让矿工把你的交易记录加入它新挖到的区块中，并把这个区块链接到区块链上。链表的纽带，当然就是工作量证明</p>
 </blockquote>
-<p>对于上面的问题，用户的解决方案也比较简单：即，<strong>只保留最长的，也就是包含的工作量最大的那一条</strong></p>
+<p>对于上面的问题，用户的解决方案也比较简单：即，<strong>只保留最长的且难度系数最高的，也就是包含的工作量最大的那一条</strong></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
@@ -370,7 +370,7 @@
 <li>你必须投入自己所有的工作量，不断给<strong>篡改后的区块链分叉</strong>增添新的区块</li>
 <li><strong>记住：根据协议，所有用户会一直信任他所知道的最长的链</strong></li>
 <li>是的，你<strong>持续的竞争过世界上所有的矿工</strong>的概率或者说代价，实在太大了，得不偿失（其实<strong>法律也是一样的道理</strong>，它强制给违法的人给予惩罚，让违法者付出他们不能承受的代价了保证公平和社会稳定运行）</li>
-<li>注意，作为一个用户，你不能立马相信你所听到的最新区块，而是应该等待多几个区块被创建过后，再确认这的确是世界所有人都在使用的区块链</li>
+<li>注意，作为一个用户，你不能立马相信你所听到的最新区块，而是应该等待多几个区块被创建过后，再确认这的确是世界所有人都在使用的区块链（比特币的原则中，<strong>等待6个区块</strong>，才确认）</li>
 </ul>
 <h2 id="发明过程中的关键点"><a href="#发明过程中的关键点" class="headerlink" title="发明过程中的关键点"></a>发明过程中的关键点</h2><ul>
 <li>电子签名 Digital Signatures</li>
@@ -454,6 +454,8 @@
 <p>那么肯定会问，这个难度值如何动态调整？由谁调整？</p>
 <h3 id="难度调整方式"><a href="#难度调整方式" class="headerlink" title="难度调整方式"></a>难度调整方式</h3><p>难度的调整实在每个完整节点中自动发生的。如果网络发现区块产生速率比10分钟要快时会增加难度。如果发现比10分钟慢时则降低难度。</p>
 <p>例如比特币中的是这样定义的：每2016个区块后计算生成它们花费的时长，比上20160（14天）调整一次。有人可能会问，如果在这十四天内计算能力暴涨怎么办，其实这个10分钟的区块新建间隔的规定也只是一个估计要求，真实情况下，<strong>这个时间会偏离10分钟这个设定值很多，但是这种偏差并不会对整个区块链的运行产生影响</strong></p>
+<p>但是有人会问，这个过程是靠脚本（代码）来实现的，还是自己手动调整的呢？答案是，本地挖矿节点根据自己看到的链上信息自己调整。</p>
+<p>问题又来了，为何我不自己降低难度，让自己更加容易新建区块呢？其实，因为链上所有节点确认新的区块（只有确认了你才能得到回报）是按照最长链并且计算难度最大来判断的，你如果用很小的难度新加的区块，是肯定跑不赢全网的其他矿工的</p>
 <h2 id="比特币总量的由来"><a href="#比特币总量的由来" class="headerlink" title="比特币总量的由来"></a>比特币总量的由来</h2><p>我们已经知道，矿工没新建一个区块就可以得到一定数量的比特币作为奖励，最开始，一个区块可以得到<code>50BTC</code>的奖励，之后每210000个区块，奖励减半，直到2140年，所有的比特币将会发放完毕，可以得到公式<br>$$<br>Total = 210000 \times(50 + 25 + 12.5 + \ldots) = 20999999980 \approx \text{2100万}<br>$$<br>而这个规则不同的竞争币种都可以自由设置。但是因为<strong>交易费的存在</strong>，挖矿的人还是会有收益，否则无法建立新的区块，那么整个比特币网络就瘫痪了</p>
 <h2 id="比特币的交易处理能力"><a href="#比特币的交易处理能力" class="headerlink" title="比特币的交易处理能力"></a>比特币的交易处理能力</h2><h3 id="现在比特币区块链的区块信息"><a href="#现在比特币区块链的区块信息" class="headerlink" title="现在比特币区块链的区块信息"></a>现在比特币区块链的区块信息</h3><p>我现在直接从<a href="https://blockchain.info/" target="_blank" rel="noopener">BLOCKCHAIN</a>上，在我写下这句话的时候，最新的区块是情况</p>
 <table>
@@ -694,7 +696,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-04-01T23:39:56.022Z" itemprop="dateUpdated">2018-04-01 16:39:56</time>
+    Last updated: <time datetime="2018-04-02T08:15:10.530Z" itemprop="dateUpdated">2018-04-02 01:15:10</time>
 </span><br>
 
 
