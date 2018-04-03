@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/PBFT.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BlockChain.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/CA.png">
-<meta property="og:updated_time" content="2018-04-03T20:38:49.303Z">
+<meta property="og:updated_time" content="2018-04-03T20:45:42.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】共识算法与如何解决拜占庭将军问题">
 <meta name="twitter:description" content="【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结">
@@ -262,6 +262,7 @@
 <h2 id="分布式一致性算法"><a href="#分布式一致性算法" class="headerlink" title="分布式一致性算法"></a>分布式一致性算法</h2><p>即这篇文章前面提到的<strong>拜占庭容错</strong>。在此基础上，发展出的Paxos是理论上的高效算法，很难实现。而Raft是由Google牵头开发一个Paxos理论实现版本</p>
 <p>【去中心化】【大规模节点无法支持】【效率低】</p>
 <h2 id="投票机制"><a href="#投票机制" class="headerlink" title="投票机制"></a>投票机制</h2><p>其中有两个比较有名的【RPCA Ripple共识】【DPOS 股权代理人共识】，在规则和协议上稍有不同，但是核心的Idea还是使用类似人大代表选举的制度来保证<strong>新区块的产生不会由同一个人控制</strong>，即代表轮流挖矿</p>
+<p>NEO使用的是【DBFT】，投票的拜占庭容错算法，算是结合了几个算法的优势和思路，也很有想法！容错能力和PBFT一样，但是效率更高，信道使用冗余更低</p>
 <p>【半中心化】【大规模节点支持】【效率高】</p>
 <h2 id="PoW-工作量证明"><a href="#PoW-工作量证明" class="headerlink" title="PoW 工作量证明"></a>PoW 工作量证明</h2><p>最早的共识算法，使用算力来资源消耗来实现共识，详细方法见<a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E8%AE%B0%E8%B4%A6%EF%BC%88%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%89">一步一步发明比特币</a></p>
 <p>为了对抗ASIC矿机等专业化HASH算力硬件，也有一些PoW引入了内存HASH等禁止ASIC算力的方法。但是万变不离其中，最终还是归一化到一个【每Hash Rate/法币花费】博弈和平衡中</p>
@@ -278,7 +279,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-04-03T20:38:49.303Z" itemprop="dateUpdated">2018-04-03 13:38:49</time>
+    Last updated: <time datetime="2018-04-03T20:45:42.799Z" itemprop="dateUpdated">2018-04-03 13:45:42</time>
 </span><br>
 
 
