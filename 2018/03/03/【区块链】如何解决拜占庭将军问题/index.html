@@ -35,8 +35,9 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/PBFT.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BlockChain.png">
-<meta property="og:updated_time" content="2018-03-27T01:53:18.632Z">
+<meta property="og:updated_time" content="2018-04-03T19:37:12.967Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【区块链】如何解决拜占庭将军问题">
 <meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分">
@@ -175,7 +176,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是拜占庭将军问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是拜占庭将军问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">问题总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#传统解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">传统解决方案</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">区块链解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例拆解"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">案例拆解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是拜占庭将军问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是拜占庭将军问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">问题总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#传统解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">传统解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PBFT概述"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">PBFT概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白话PBFT"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">白话PBFT</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">区块链解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例拆解"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">案例拆解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -225,8 +226,15 @@
 <p>推广到计算机系统内，【将军】类比为【计算机】，而计算机因为物理或被感染等其他原因造成的【运行异常】就是【叛徒】，其实整个问题也是为了保证分布式系统的<strong>一致性</strong>和<strong>可用性</strong></p>
 <h1 id="传统解决方案"><a href="#传统解决方案" class="headerlink" title="传统解决方案"></a>传统解决方案</h1><p>在区块链之前，有两种解决方案：口头协议（又称为拜占庭容错算法）和书面协议，在这里就不赘述</p>
 <p>通常来说，大多数分布式系统使用的是书面协议确保一致性，中心机构背书。其中有实用拜占庭容错算法（PBFT）最为有名。</p>
-<p>这个算法说起来也不难理解，他的核心思想是：<strong>对于每一个收到命令的将军，都要去询问其他人，他们收到的命令是什么</strong></p>
+<h2 id="PBFT概述"><a href="#PBFT概述" class="headerlink" title="PBFT概述"></a>PBFT概述</h2><p>这个算法说起来也不难理解，他的核心思想是：<strong>对于每一个收到命令的将军，都要去询问其他人，他们收到的命令是什么</strong>。也就是说利用不断的信息交换<strong>让可行的节点确认哪一个记录选择是正确的，即发现其中的背叛者</strong></p>
 <p>采用PBFT方法，本质上就是<strong>利用通信次数换取信用</strong>。每个命令的执行都需要节点间两两交互去核验消息，通信代价是非常高的。通常采用PBFT算法，节点间的通信复杂度是节点数的平方级的</p>
+<h2 id="白话PBFT"><a href="#白话PBFT" class="headerlink" title="白话PBFT"></a>白话PBFT</h2><p>还是用上面的将军的例子来举例，但为了方便我们把问题的定义稍作修改</p>
+<p>【问题定义】总共4个将军，有1个是叛徒，每个将军需要在自己的战斗计划中添加一行内容 <code>&lt;什么时间&gt;进攻</code></p>
+<p>【目标】只需要3个将军达成一致在<strong>同一时间</strong>进攻，就可以<strong>攻占城市</strong>，否则<strong>进攻者全军覆没</strong>。最终目标还是<strong>统一一个一致的战斗计划，并按照计划同时实施</strong>（在去中心化系统中，即【记录】的一致性）</p>
+<p>【方法】对于每一个收到命令的将军，都要去询问其他人，他们收到的命令是什么。在判断不出判断者的情况，执行更多的那个命令</p>
+<p>【可视化直观】</p>
+<p><div align="center"><img src="//charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/PBFT.png" alt="" width="1000"></div></p>
+<p>可以看到，无论是什么情况，都可以防止不一致的决定被执行</p>
 <h1 id="区块链解决方案"><a href="#区块链解决方案" class="headerlink" title="区块链解决方案"></a>区块链解决方案</h1><p>我们知道，区块链最强的地方就在于它的一致性（了解区块链原理，可移步另一篇博客 <a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/">一文看懂区块链：一步一步发明比特币</a>），同时这正是拜占庭问题的核心</p>
 <h2 id="案例拆解"><a href="#案例拆解" class="headerlink" title="案例拆解"></a>案例拆解</h2><p>我们先假设你已经完全了解了比特币区块链的运行原理，那么我们一步一步<strong>建立一个场景</strong>看一看区块链是如何解决拜占庭将军问题？</p>
 <p>我们先假设信道一定是可靠的，传令兵死亡之类的事情我们不考虑，毕竟在一个非常复杂的网络中，还可以通过多条的方式连接任意两个节点，可靠性还是值得相信。<strong>主要破坏一致性的还是心怀不轨的【间谍】</strong>，或者总结为：如何防止【间谍】对整体决策（进攻还是撤退）进行破坏？</p>
@@ -254,7 +262,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-03-27T01:53:18.632Z" itemprop="dateUpdated">2018-03-26 18:53:18</time>
+    Last updated: <time datetime="2018-04-03T19:37:12.967Z" itemprop="dateUpdated">2018-04-03 12:37:12</time>
 </span><br>
 
 
