@@ -18,29 +18,30 @@
     
     
     
-    <title>【区块链】如何解决拜占庭将军问题 | Go Further | Stay Hungry, Stay Foolish</title>
+    <title>【区块链】共识算法与如何解决拜占庭将军问题 | Go Further | Stay Hungry, Stay Foolish</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="Theory,BlockChain,BGP">
-    <meta name="description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分">
+    <meta name="description" content="【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结">
 <meta name="keywords" content="Theory,BlockChain,BGP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【区块链】如何解决拜占庭将军问题">
+<meta property="og:title" content="【区块链】共识算法与如何解决拜占庭将军问题">
 <meta property="og:url" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分">
+<meta property="og:description" content="【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BGP.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/PBFT.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BlockChain.png">
-<meta property="og:updated_time" content="2018-04-03T19:37:12.967Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/CA.png">
+<meta property="og:updated_time" content="2018-04-03T20:17:27.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【区块链】如何解决拜占庭将军问题">
-<meta name="twitter:description" content="【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分">
+<meta name="twitter:title" content="【区块链】共识算法与如何解决拜占庭将军问题">
+<meta name="twitter:description" content="【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -129,7 +130,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">【区块链】如何解决拜占庭将军问题</div>
+        <div class="flex-col header-title ellipsis">【区块链】共识算法与如何解决拜占庭将军问题</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -151,7 +152,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">【区块链】如何解决拜占庭将军问题</h1>
+        <h1 class="title">【区块链】共识算法与如何解决拜占庭将军问题</h1>
         <h5 class="subtitle">
             
                 <time datetime="2018-03-03T22:17:06.000Z" itemprop="datePublished" class="page-time">
@@ -176,7 +177,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是拜占庭将军问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是拜占庭将军问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">问题总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#传统解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">传统解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PBFT概述"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">PBFT概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白话PBFT"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">白话PBFT</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">区块链解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例拆解"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">案例拆解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是拜占庭将军问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是拜占庭将军问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题总结"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">问题总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#传统解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">传统解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PBFT概述"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">PBFT概述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#白话PBFT"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">白话PBFT</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">区块链解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#案例拆解"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">案例拆解</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#区块链共识算法"><span class="post-toc-number">4.</span> <span class="post-toc-text">区块链共识算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分布式一致性算法"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">分布式一致性算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#投票机制"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">投票机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PoW-工作量证明"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">PoW 工作量证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#PoS-权益证明"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">PoS 权益证明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#总结-1"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -185,7 +186,7 @@
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">【区块链】如何解决拜占庭将军问题</h1>
+        <h1 class="post-card-title">【区块链】共识算法与如何解决拜占庭将军问题</h1>
         <div class="post-meta">
             <time class="post-time" title="2018-03-03 14:17:06" datetime="2018-03-03T22:17:06.000Z"  itemprop="datePublished">2018-03-03</time>
 
@@ -202,10 +203,10 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】5min 1051 words<br>【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分</p>
+            <p>【阅读时间】10min 3183 words<br>【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中<strong>常见的共识算法</strong>总结</p>
 <a id="more"></a>
 <p>首先，这个问题属于<strong>计算机科学领域</strong>。解决这个问题才是区块链最大的价值所在，因为这个问题一直是<strong>分布式系统</strong>的重要难题之一</p>
-<h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1><p>这个问题的定义者是<strong>图灵奖</strong>获得者，Lamport大神，分布式系统的关键性奠基人之一，有面包店算法，拜占庭将军问题，Paxos算法等著名成果</p>
+<h1 id="什么是拜占庭将军问题"><a href="#什么是拜占庭将军问题" class="headerlink" title="什么是拜占庭将军问题"></a>什么是拜占庭将军问题</h1><p>这个问题的定义者是<strong>图灵奖</strong>获得者，Lamport大神，分布式系统的关键性奠基人之一。有面包店算法，拜占庭将军问题，Paxos算法等著名成果</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><div align="center"><img src="//charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/BG1.png" alt="" width="400"></div>
 
 <p><code>9个将军</code>带领<code>9支军队</code>，打一场攻城战役。假设每个将军都能<strong>独立</strong>根据眼前战况做出两种判断：<strong>进攻</strong>或<strong>撤退</strong>，要求（或者最终目的是）如何让这9个将军的<strong>命令</strong>是<strong>一致的</strong>（一致性，即共识）？要么一起进攻，要么一起撤退（每个将军之间也是互不信任的，也有消灭对方的动机）</p>
@@ -253,6 +254,20 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>互联网技术的存在，让传输过程中，基本没有延迟（或说延迟很小可以基本忽略），<strong>解决了通讯延迟的问题</strong></p>
 <p>区块链使用<strong>链型数据结构</strong> + <strong>算力互相制约</strong>使得<strong>作假的成本</strong>随着时间的加长<strong>呈指数上升</strong>，<strong>解决了一致性问题</strong>。当然非对称秘钥部分的密码学，解决了<strong>身份确认问题</strong></p>
 <p>至少这个系统解决的问题不仅仅是金融领域，去中心化银行系统的问题所在，交易，其实只是其中很小的一部分</p>
+<h1 id="区块链共识算法"><a href="#区块链共识算法" class="headerlink" title="区块链共识算法"></a>区块链共识算法</h1><p>因为技术还在不断发展，可能有其他的算法被建立，但是只要谈到共识这个问题，<strong>核心一定是【中心化】和【去中心化】的权衡（Trade-off）</strong>，而对应的就是效率，可以这么说，一致（信任）是需要成本的，这是本源法则，和线性向量空间的定义处在同一个层级</p>
+<p>中本聪很厉害的地方就在于，之前的分布式一致性算法（PBFT）对大体谅节点系统的支持非常差，效率上来说，基本和无法实现是等等同的</p>
+<p>下面的思维导图展示了现在基本的区块链共识算法总结</p>
+<p><div align="center"><img src="//charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/CA.png" alt="" width="400"></div></p>
+<h2 id="分布式一致性算法"><a href="#分布式一致性算法" class="headerlink" title="分布式一致性算法"></a>分布式一致性算法</h2><p>即这篇文章前面提到的<strong>拜占庭容错</strong>。在此基础上，发展出的Paxos是理论上的高效算法，很难实现。而Raft是由Google牵头开发一个Paxos理论实现版本</p>
+<p>【去中心化】【大规模节点无法支持】【效率低】</p>
+<h2 id="投票机制"><a href="#投票机制" class="headerlink" title="投票机制"></a>投票机制</h2><p>其中有两个比较有名的【RPCA Ripple共识】【DPOS 股权代理人共识】，在规则和协议上稍有不同，但是核心的Idea还是使用类似人大代表选举的制度来保证<strong>新区块的产生不会由同一个人控制</strong>，即代表轮流挖矿</p>
+<p>【半中心化】【大规模节点支持】【效率高】</p>
+<h2 id="PoW-工作量证明"><a href="#PoW-工作量证明" class="headerlink" title="PoW 工作量证明"></a>PoW 工作量证明</h2><p>最早的共识算法，使用算力来资源消耗来实现共识，详细方法见<a href="https://charlesliuyx.github.io/2017/09/24/%E4%B8%80%E6%96%87%E5%BC%84%E6%87%82%E5%8C%BA%E5%9D%97%E9%93%BE-%E4%BB%A5%E6%AF%94%E7%89%B9%E5%B8%81%E4%B8%BA%E4%BE%8B/#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E8%AE%B0%E8%B4%A6%EF%BC%88%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%EF%BC%89">一步一步发明比特币</a></p>
+<p>为了对抗ASIC矿机等专业化HASH算力硬件，也有一些PoW引入了内存HASH等禁止ASIC算力的方法。但是万变不离其中，最终还是归一化到一个【每Hash Rate/法币花费】博弈和平衡中</p>
+<p>【去中心化】【大规模检点支持】【效率低】【资源消耗高】</p>
+<h2 id="PoS-权益证明"><a href="#PoS-权益证明" class="headerlink" title="PoS 权益证明"></a>PoS 权益证明</h2><p>新建区块和你拥有的币的数量呈正相关，类似于利息的激励方式，可以参看<a href="https://charlesliuyx.github.io/2017/09/25/%E7%8E%B0%E4%BB%A3%E5%8C%BA%E5%9D%97%E9%93%BE%E4%B8%8E%E6%96%B0%E6%8A%80%E6%9C%AF/#%E6%9D%83%E7%9B%8A%E8%AF%81%E6%98%8E">权益证明</a></p>
+<p>【去中心化】【大规模节点支持】【效率中】</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>欢迎各位读者留言提示更多的不同共识算法，讨论交流，共同进步！</p>
 <p>【完】</p>
 
         </div>
@@ -262,7 +277,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-04-03T19:37:12.967Z" itemprop="dateUpdated">2018-04-03 12:37:12</time>
+    Last updated: <time datetime="2018-04-03T20:17:27.433Z" itemprop="dateUpdated">2018-04-03 13:17:27</time>
 </span><br>
 
 
@@ -298,7 +313,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -308,7 +323,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -318,7 +333,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【区块链】如何解决拜占庭将军问题》 — Go Further&url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -373,7 +388,7 @@
     <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
     <script>
         var gitment = new Gitment({
-            id: '【区块链】如何解决拜占庭将军问题',
+            id: '【区块链】共识算法与如何解决拜占庭将军问题',
             owner: 'CharlesLiuyx',
             repo: 'BlogComment',
             oauth: {
@@ -462,7 +477,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -472,7 +487,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】5min 1051 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系 | 3/26更新【区块链解决方案】部分" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&title=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&source=【阅读时间】10min 3183 words【阅读内容】什么是拜占庭问题，以及它和区块链的关系，现代区块链技术中常见的共识算法总结" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -482,7 +497,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【区块链】如何解决拜占庭将军问题》 — Go Further&url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【区块链】共识算法与如何解决拜占庭将军问题》 — Go Further&url=https://charlesliuyx.github.io/2018/03/03/【区块链】如何解决拜占庭将军问题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
