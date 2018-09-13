@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-06-26T00:45:33.303Z</updated>
+  <updated>2018-08-14T02:45:48.903Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>支持币与去中心化商业模式</title>
+    <link href="https://charlesliuyx.github.io/2018/08/11/%E6%94%AF%E6%8C%81%E5%B8%81%E4%B8%8E%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://charlesliuyx.github.io/2018/08/11/支持币与去中心化商业模式/</id>
+    <published>2018-08-11T20:23:07.000Z</published>
+    <updated>2018-08-14T02:45:48.903Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】本文阐述了一种全新的支持币区中心话商业模式，以人为本，从人与人的关联出发，辅以各类动态平衡算法，构造一个基于互联网工具的知识经济系统</p><a id="more"></a><h1 id="结构化笔记软件：幕布"><a href="#结构化笔记软件：幕布" class="headerlink" title="结构化笔记软件：幕布"></a>结构化笔记软件：幕布</h1><div align="center"><img src="//charlesliuyx.github.io/2018/08/11/支持币与去中心化商业模式/mubu.png" alt="幕布Logo" width="400"></div><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p><strong>提升信息承载物的表意维度，掀起结构化记录的清单革命</strong></p><h3 id="表意维度"><a href="#表意维度" class="headerlink" title="表意维度"></a>表意维度</h3><p>语言，文字，图片，音频，视频都是<strong>信息的载体</strong>。但语言和文字有一定局限性，具有<strong>认知方言特性</strong></p><p><code>【认知方言】有着不同认知的人在看待同一个表意词汇，句子，段落时可能理解出来的重点，含义是不同的</code></p><ul><li>苏格拉底一生未留下文字，他的著作都是由学生柏拉图等进行转述和记录。他认为写作是不可信的</li><li>孔子的学生子贡也说：“夫子之言性与天道，不可得而不闻也”。一些思维，一旦写成文字或多或少会产生一些误解和歧义</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】本文阐述了一种全新的支持币区中心话商业模式，以人为本，从人与人的关联出发，辅以各类动态平衡算法，构造一个基于互联网工具的知识经济系统&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MuBu" scheme="https://charlesliuyx.github.io/categories/MuBu/"/>
+    
+    
+      <category term="BlockChain" scheme="https://charlesliuyx.github.io/tags/BlockChain/"/>
+    
+      <category term="MuBu" scheme="https://charlesliuyx.github.io/tags/MuBu/"/>
+    
+  </entry>
   
   <entry>
     <title>科普OpenAI5v5机器人的表现和算法思路</title>
@@ -187,9 +211,9 @@
     
       <category term="Dota2" scheme="https://charlesliuyx.github.io/tags/Dota2/"/>
     
-      <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
-    
       <category term="Data Analysis" scheme="https://charlesliuyx.github.io/tags/Data-Analysis/"/>
+    
+      <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
     
   </entry>
   
@@ -581,9 +605,9 @@
     
       <category term="Dota2" scheme="https://charlesliuyx.github.io/tags/Dota2/"/>
     
-      <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
-    
       <category term="Data Analysis" scheme="https://charlesliuyx.github.io/tags/Data-Analysis/"/>
+    
+      <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
     
   </entry>
   
