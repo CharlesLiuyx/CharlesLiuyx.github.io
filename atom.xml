@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-08-14T02:45:48.903Z</updated>
+  <updated>2018-09-21T21:19:35.076Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【直观详解】什么是黎曼猜想</title>
+    <link href="https://charlesliuyx.github.io/2018/09/20/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3/"/>
+    <id>https://charlesliuyx.github.io/2018/09/20/【直观详解】什么是黎曼猜想/</id>
+    <published>2018-09-21T06:49:58.000Z</published>
+    <updated>2018-09-21T21:19:35.076Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】一文让搞懂什么是<strong>黎曼猜想</strong>，几何可视化 $\zeta()$ 函数（读作<code>/zita/</code>），附带也解释了什么是<strong>解析延拓</strong>（analytic continuation）<br><a id="more"></a></p><h1 id="聊聊黎曼"><a href="#聊聊黎曼" class="headerlink" title="聊聊黎曼"></a>聊聊黎曼</h1><div align="center"><img src="//charlesliuyx.github.io/2018/09/20/【直观详解】什么是黎曼猜想/Riemann.jpeg" alt="黎曼头像" width="400"></div><p>黎曼全名<code>波恩哈德·黎曼</code>（1826 - 1866），德国数学家。黎曼的父亲是个牧师，在他长大之后，就读于哥本哈根大学（德国西南部）的<strong>神学系</strong></p><p>后来听了一场<code>高斯</code>有关<strong>最小二乘法</strong>的讲座，发现了命中天赋所在，征得父亲同意后，转到<strong>柏林大学</strong>改修数学，拜入<a href="https://zh.wikipedia.org/wiki/%E9%9B%85%E5%8F%AF%E6%AF%94" target="_blank" rel="noopener">雅可比</a>和<a href="https://zh.wikipedia.org/wiki/%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7" target="_blank" rel="noopener">狄利克雷</a>门下（雅克比行列式，玩椭圆的第一人；狄利克雷噪声，证明了费马大定理的人；没错就是这两个大牛）</p><h2 id="历史背景"><a href="#历史背景" class="headerlink" title="历史背景"></a>历史背景</h2><p>不谈历史背景的人物介绍都是耍流氓，好，回过头来看看黎曼生长的德国当时在干啥</p><p>1806年拿破仑覆灭统治几百年的<a href="https://zh.wikipedia.org/wiki/%E7%A5%9E%E8%81%96%E7%BE%85%E9%A6%AC%E5%B8%9D%E5%9C%8B" target="_blank" rel="noopener">神圣罗马帝国</a>，1815年以日耳曼民族为主的<a href="https://zh.wikipedia.org/wiki/%E5%BE%B7%E6%84%8F%E5%BF%97%E9%82%A6%E8%81%94" target="_blank" rel="noopener">德意志邦联</a>成立，在这个联邦中，以<a href="https://zh.wikipedia.org/wiki/%E6%99%AE%E9%AD%AF%E5%A3%AB" target="_blank" rel="noopener">普鲁士</a>和<a href="https://zh.wikipedia.org/wiki/%E5%A5%A7%E5%9C%B0%E5%88%A9" target="_blank" rel="noopener">奥地利</a>最为强大，两大势力得争个高下。一直到1862年脾斯麦执政，才走向一统，最终，1871年，<a href="https://zh.wikipedia.org/wiki/%E5%BE%B7%E6%84%8F%E5%BF%97%E5%B8%9D%E5%9B%BD" target="_blank" rel="noopener">德意志帝国</a>成立，黎曼也没能见到这一天</p><p>19世纪5、60年代普鲁士完成了工业革命，这必定伴随着思想和科学的发展，黎曼是生在一个好时代的，在这个时代，名家辈出，一片蓝海</p><h2 id="成就"><a href="#成就" class="headerlink" title="成就"></a>成就</h2><p>最有名的当然是<strong>黎曼几何（积分）</strong>，黎曼流形和复分析，当然本篇文章的主人公，1859年被黎曼大神提出的<strong>黎曼猜想</strong>也是其中之一</p><p><strong>黎曼猜想</strong>被收录进1900年希尔伯特（Hilbert）提出的23个重大难题，21世纪又被列为<a href="https://baike.baidu.com/item/%E5%8D%83%E7%A6%A7%E5%B9%B4%E5%A4%A7%E5%A5%96%E9%9A%BE%E9%A2%98/3890057" target="_blank" rel="noopener">千年7道难题</a>之一</p><h1 id="黎曼猜想定义"><a href="#黎曼猜想定义" class="headerlink" title="黎曼猜想定义"></a>黎曼猜想定义</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】一文让搞懂什么是&lt;strong&gt;黎曼猜想&lt;/strong&gt;，几何可视化 $\zeta()$ 函数（读作&lt;code&gt;/zita/&lt;/code&gt;），附带也解释了什么是&lt;strong&gt;解析延拓&lt;/strong&gt;（analytic continuation）&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Math" scheme="https://charlesliuyx.github.io/categories/Math/"/>
+    
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+  </entry>
   
   <entry>
     <title>支持币与去中心化商业模式</title>
@@ -309,9 +331,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
       <category term="Linear Algebra" scheme="https://charlesliuyx.github.io/tags/Linear-Algebra/"/>
     
@@ -335,9 +357,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -359,9 +381,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -385,9 +407,9 @@
     
       <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Library" scheme="https://charlesliuyx.github.io/tags/Library/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -481,9 +503,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -505,9 +527,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -553,9 +575,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -578,9 +600,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   
@@ -629,9 +651,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
     
   </entry>
   

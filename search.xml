@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【直观详解】什么是黎曼猜想]]></title>
+    <url>%2F2018%2F09%2F20%2F%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3%2F</url>
+    <content type="text"><![CDATA[【阅读时间】【阅读内容】一文让搞懂什么是黎曼猜想，几何可视化 $\zeta()$ 函数（读作/zita/），附带也解释了什么是解析延拓（analytic continuation） 聊聊黎曼 黎曼全名波恩哈德·黎曼（1826 - 1866），德国数学家。黎曼的父亲是个牧师，在他长大之后，就读于哥本哈根大学（德国西南部）的神学系 后来听了一场高斯有关最小二乘法的讲座，发现了命中天赋所在，征得父亲同意后，转到柏林大学改修数学，拜入雅可比和狄利克雷门下（雅克比行列式，玩椭圆的第一人；狄利克雷噪声，证明了费马大定理的人；没错就是这两个大牛） 历史背景不谈历史背景的人物介绍都是耍流氓，好，回过头来看看黎曼生长的德国当时在干啥 1806年拿破仑覆灭统治几百年的神圣罗马帝国，1815年以日耳曼民族为主的德意志邦联成立，在这个联邦中，以普鲁士和奥地利最为强大，两大势力得争个高下。一直到1862年脾斯麦执政，才走向一统，最终，1871年，德意志帝国成立，黎曼也没能见到这一天 19世纪5、60年代普鲁士完成了工业革命，这必定伴随着思想和科学的发展，黎曼是生在一个好时代的，在这个时代，名家辈出，一片蓝海 成就最有名的当然是黎曼几何（积分），黎曼流形和复分析，当然本篇文章的主人公，1859年被黎曼大神提出的黎曼猜想也是其中之一 黎曼猜想被收录进1900年希尔伯特（Hilbert）提出的23个重大难题，21世纪又被列为千年7道难题之一 黎曼猜想定义]]></content>
+      <categories>
+        <category>Math</category>
+      </categories>
+      <tags>
+        <tag>Theory</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[支持币与去中心化商业模式]]></title>
     <url>%2F2018%2F08%2F11%2F%E6%94%AF%E6%8C%81%E5%B8%81%E4%B8%8E%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E5%95%86%E4%B8%9A%E6%A8%A1%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[【阅读时间】【阅读内容】本文阐述了一种全新的支持币区中心话商业模式，以人为本，从人与人的关联出发，辅以各类动态平衡算法，构造一个基于互联网工具的知识经济系统 结构化笔记软件：幕布 介绍愿景提升信息承载物的表意维度，掀起结构化记录的清单革命 表意维度语言，文字，图片，音频，视频都是信息的载体。但语言和文字有一定局限性，具有认知方言特性 【认知方言】有着不同认知的人在看待同一个表意词汇，句子，段落时可能理解出来的重点，含义是不同的 苏格拉底一生未留下文字，他的著作都是由学生柏拉图等进行转述和记录。他认为写作是不可信的 孔子的学生子贡也说：“夫子之言性与天道，不可得而不闻也”。一些思维，一旦写成文字或多或少会产生一些误解和歧义]]></content>
@@ -145,8 +156,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
         <tag>Linear Algebra</tag>
       </tags>
   </entry>
@@ -158,8 +169,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -170,8 +181,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -183,8 +194,8 @@
       </categories>
       <tags>
         <tag>Wiki</tag>
-        <tag>Machine Learning</tag>
         <tag>Library</tag>
+        <tag>Machine Learning</tag>
       </tags>
   </entry>
   <entry>
@@ -231,8 +242,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -243,8 +254,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -267,8 +278,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -279,8 +290,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
@@ -304,8 +315,8 @@
         <category>Machine Learning</category>
       </categories>
       <tags>
-        <tag>Theory</tag>
         <tag>Machine Learning</tag>
+        <tag>Theory</tag>
       </tags>
   </entry>
   <entry>
