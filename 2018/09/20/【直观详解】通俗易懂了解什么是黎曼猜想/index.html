@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/20-critical.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/Prime_number_theorem_ratio_convergence.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/21-deri.gif">
-<meta property="og:updated_time" content="2018-09-27T17:54:28.354Z">
+<meta property="og:updated_time" content="2018-09-27T17:57:29.975Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】通俗易懂了解什么是黎曼猜想">
 <meta name="twitter:description" content="【阅读时间】15min - 20min | 9000+字 | 23张动图 | 11张图片【阅读内容】一文搞懂什么是黎曼猜想。在复数域直观可视化黎曼$\zeta$函数（读作/zita/），解释什么是解析延拓（analytic continuation），探究黎曼猜想和素数的关系">
@@ -296,8 +296,12 @@
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/complex-plane.png" alt="" width="200"></div>
 
 <p><strong>研究复数有什么意义？</strong>其中有一点和我们这个主题有关，$i$ 虚数单位和幂指数函数勾连起来在复分析中能连接上<strong>旋转</strong>这个概念。具体来说，参看我的这篇<a href="https://charlesliuyx.github.io/2018/02/18/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E8%AE%A9%E4%BD%A0%E6%B0%B8%E8%BF%9C%E5%BF%98%E4%B8%8D%E4%BA%86%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E8%A7%A3%E6%9E%90/#%E6%AC%A7%E6%8B%89%E5%85%AC%E5%BC%8F%E4%B8%8E%E6%97%8B%E8%BD%AC">【直观详解】让你永远忘不了的傅里叶变换解析</a>博文</p>
-<h3 id="虚数单位为幂指数"><a href="#虚数单位为幂指数" class="headerlink" title="虚数单位为幂指数"></a>虚数单位为幂指数</h3><p>$2^x$ ，这个 $x$ 就是<strong>幂指数</strong>，$2^i$ 即虚数单位为幂指数</p>
-<p>第二个问题，我们可以把 $\left(\cfrac{1}{2}\right)^{2+i}$ <strong>拆开</strong>写成 $\left(\cfrac{1}{2}\right)^{2}× \left(\cfrac{1}{2}\right)^{i}$ ，前面一半很好理解，关键是后面一半怎么理解</p>
+<h3 id="虚数单位为幂指数"><a href="#虚数单位为幂指数" class="headerlink" title="虚数单位为幂指数"></a>虚数单位为幂指数</h3><blockquote>
+ <font color="red">这一小节的思路非常重要，不仅仅对理解黎曼猜想有帮助，对信号分析，傅里叶变换等也非常有帮助</font>
+
+</blockquote>
+<p>$2^x$ ，这个 $x$ 就是<strong>幂指数</strong>，$2^i$ 即虚数单位为幂指数</p>
+<p>第二个问题，我们可以把 $\left(\cfrac{1}{2}\right)^{2+i}​$ <strong>拆开</strong>写成 $\left(\cfrac{1}{2}\right)^{2}× \left(\cfrac{1}{2}\right)^{i}​$ ，前面一半很好理解，关键是后面一半怎么理解</p>
 <p>这里涉及到一个<strong>非常基础并且十分重要</strong>的理念：<font color="red"><strong>复平面中，纵轴（虚数部分）的幂指数函数的映射关系代表的是旋转</strong></font>。一下子不懂没关系，下面有通过两幅动图来帮助理解，如果还是有疑惑并且十分想了解，参看博文<a href="https://charlesliuyx.github.io/2018/02/18/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E8%AE%A9%E4%BD%A0%E6%B0%B8%E8%BF%9C%E5%BF%98%E4%B8%8D%E4%BA%86%E7%9A%84%E5%82%85%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2%E8%A7%A3%E6%9E%90/#%E5%A4%8D%E5%B9%B3%E9%9D%A2-Complex-Plane">复平面和旋转</a></p>
 <p>首先，下面这副动图表示，假设我们把指数 $i$ 前加一个自变量 $t$ ，就构造了一个函数 $f(t) = \left(\cfrac{1}{2}\right)^{ti}$ ，可以看到左边的<strong>黄色点在纵轴（虚轴）上移动</strong>，表示的就是引入一个自变量</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/5-complex.gif" alt="" width="500"></div>
@@ -430,7 +434,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-09-27T17:54:28.354Z" itemprop="dateUpdated">2018-09-27 10:54:28</time>
+    Last updated: <time datetime="2018-09-27T17:57:29.975Z" itemprop="dateUpdated">2018-09-27 10:57:29</time>
 </span><br>
 
 
