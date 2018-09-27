@@ -66,7 +66,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/20-critical.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/Prime_number_theorem_ratio_convergence.svg">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/21-deri.gif">
-<meta property="og:updated_time" content="2018-09-27T17:26:17.093Z">
+<meta property="og:updated_time" content="2018-09-27T17:32:02.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】通俗易懂了解什么是黎曼猜想">
 <meta name="twitter:description" content="【阅读时间】7000+字 | 22张动图 | 10张图片 | 12min - 18min【阅读内容】一文让搞懂什么是黎曼猜想，在复数域几何可视化 $\zeta()$ 函数（读作/zita/），附带也解释了什么是解析延拓（analytic continuation）">
@@ -404,7 +404,7 @@
 <h3 id="素数定理"><a href="#素数定理" class="headerlink" title="素数定理"></a>素数定理</h3><p>假设有这么一个表达式 <strong>$\pi(x)$ 表示小于 $x$ 素数的个数</strong>，有这么一个规律，参见下图</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/20/【直观详解】通俗易懂了解什么是黎曼猜想/Prime_number_theorem_ratio_convergence.svg" alt="" width="500"></div>
 
-<p>啥意思呢，横坐标就是自变量 $x$ 的取值，蓝色的线是 $\cfrac{\pi(x)}{\frac{x}{\ln(x)}}$ ，红色的线是  $\cfrac{\pi(x)}{\int_{2}^{x}\frac{1}{\ln t} dt}$ （底下的 $\int_{2}^{x}\cfrac{1}{\ln t} dt$ 有个名称叫做 $Li(x)$ ）</p>
+<p>啥意思呢，横坐标就是自变量 $x$ 的取值，蓝色的线是 $\cfrac{\pi(x)}{\frac{x}{\ln(x)}}$ ，红色的线是  $\cfrac{\pi(x)}{\int_{2}^{x}\frac{1}{\ln t} dt}$ ，分母的 $\int_{2}^{x}\cfrac{1}{\ln t} dt$ 又被简写成 $Li(x)$ </p>
 <p>可以看到，当 $x \to +\infty $ ，这个 $\pi(x)$ 函数是可以写出表达式的</p>
 <p>好的，二号神人<a href="https://zh.wikipedia.org/zh-hans/%E5%8D%A1%E7%88%BE%C2%B7%E5%BC%97%E9%87%8C%E5%BE%B7%E9%87%8C%E5%B8%8C%C2%B7%E9%AB%98%E6%96%AF" target="_blank" rel="noopener">高斯</a>（1777-1855）来了，他研究了一下关于素数密度 $\rho$ 的问题，也就是<strong>1000个数里面，有多少个素数</strong>。对的，上面蓝线的规律是高斯<strong>最早发现</strong>，但当时高斯觉得这哥发现貌似并不重要，就没有展开来研究。后来1798年<a href="https://zh.wikipedia.org/zh-hans/%E9%98%BF%E5%BE%B7%E9%87%8C%E5%AE%89-%E9%A9%AC%E9%87%8C%C2%B7%E5%8B%92%E8%AE%A9%E5%BE%B7" target="_blank" rel="noopener">勒让德</a>（1752-1833）发现了下面那个红色曲线的表达式，在学界有个涟漪，高斯在1849年就告诉勒让德，你这不行，是我先发现的啊，所以这公式被称为<code>高斯-勒让德公式</code><br>$$<br>\pi(x) \sim \frac{x}{\ln x} \iff \pi(x) = \int_{0}^{x} \frac{dt}{\ln t} + C<br>$$<br>$\sim$ 符号表示趋近于，也就是当 $x \to +\infty $ 的意思。 $C$ 是一个常数，这个常数随着 $x$ 的<strong>变大而越来越小</strong></p>
 <p>再观察上面的图，明显发现<strong>红色的线收敛到1的速度更快</strong>，所以后面<a href="https://zh.wikipedia.org/wiki/%E6%B5%B7%E9%87%8C%E6%A0%BC%C2%B7%E9%A6%AE%C2%B7%E7%A7%91%E8%B5%AB" target="_blank" rel="noopener">科勒</a>（1870-1924）进行改进和提高。他说，<font color="red"><strong>如果黎曼猜想成立</strong></font>（写到这句话可是真不容易），那么这个关系误差式子可以更加精确，可以<strong>大大改善素数定理误差的估计</strong><br>$$<br>\pi(x) = Li（x）+ O(\sqrt{x}\ln x)<br>$$<br>$O()$ 被称为<strong>渐进符号</strong>，一般用来描述<strong>无穷级数的余项</strong>。在<strong>计算和表示算法复杂度</strong>方面也很用，比如$O(n^2)$ 其实就是忽略 $n$ 一次项和常数项的意思。因为在 $n$ 非常大时， $n$ 一次项对数值的贡献在量级上远小于 $n^2$ 二次项。这个余项的常数项的具体数值还<strong>没有算出来</strong></p>
@@ -429,7 +429,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-09-27T17:26:17.093Z" itemprop="dateUpdated">2018-09-27 10:26:17</time>
+    Last updated: <time datetime="2018-09-27T17:32:02.137Z" itemprop="dateUpdated">2018-09-27 10:32:02</time>
 </span><br>
 
 
