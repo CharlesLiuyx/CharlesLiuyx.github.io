@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-09-29T20:04:00.287Z</updated>
+  <updated>2018-09-30T04:33:45.874Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://charlesliuyx.github.io/2018/09/29/README/"/>
-    <id>https://charlesliuyx.github.io/2018/09/29/README/</id>
-    <published>2018-09-29T20:04:00.287Z</published>
-    <updated>2018-09-29T20:04:00.287Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="My-personal-Blog"><a href="#My-personal-Blog" class="headerlink" title="My personal Blog"></a>My personal Blog</h1><p><a href="https://charlesliuyx.github.io/">Charlesliuyx</a></p><p>This is the _posts folder of my blog, for multi-platform editting</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;My-personal-Blog&quot;&gt;&lt;a href=&quot;#My-personal-Blog&quot; class=&quot;headerlink&quot; title=&quot;My personal Blog&quot;&gt;&lt;/a&gt;My personal Blog&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>TensorSpace-3D神经网络可视化框架</title>
