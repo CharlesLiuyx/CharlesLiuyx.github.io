@@ -33,14 +33,17 @@
 <meta property="og:site_name" content="Go Further">
 <meta property="og:description" content="【阅读时间】文档介绍类文章【阅读内容】TensorSpace - 是一款3D模型可视化框架，支持多种模型，帮助你可视化层间输出，更直观的展示模型的输入输出，帮助理解模型结构，输出方法">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://placehold.it/15/fc3c3c/000000?text=+">
-<meta property="og:image" content="https://placehold.it/15/fc3c3c/000000?text=+">
+<meta property="og:image" content="https://placehold.it/15/FFFF2E/000000?text=+">
+<meta property="og:image" content="https://placehold.it/15/FFFF2E/000000?text=+">
+<meta property="og:image" content="https://placehold.it/15/FFFF2E/000000?text=+">
 <meta property="og:image" content="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2D.png">
-<meta property="og:updated_time" content="2018-09-28T23:08:25.414Z">
+<meta property="og:image" content="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2d-open.gif">
+<meta property="og:image" content="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2d-close.gif">
+<meta property="og:updated_time" content="2018-09-30T04:33:45.874Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorSpace-3D神经网络可视化框架">
 <meta name="twitter:description" content="【阅读时间】文档介绍类文章【阅读内容】TensorSpace - 是一款3D模型可视化框架，支持多种模型，帮助你可视化层间输出，更直观的展示模型的输入输出，帮助理解模型结构，输出方法">
-<meta name="twitter:image" content="https://placehold.it/15/fc3c3c/000000?text=+">
+<meta name="twitter:image" content="https://placehold.it/15/FFFF2E/000000?text=+">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
@@ -175,7 +178,13 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Conv2d"><span class="post-toc-number">1.</span> <span class="post-toc-text">Conv2d</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输出和使用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">输出和使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用场景"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">使用场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用效果"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">使用效果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#输入和参数"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">输入和参数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#star-必要参数"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">:star:必要参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#hammer-推荐参数"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">:hammer:推荐参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#art-外观参数"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">:art:外观参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#cinema-动画控制参数"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">:cinema:动画控制参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#heavy-check-mark-可选参数"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">:heavy_check_mark:可选参数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#openLayer-void"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">openLayer() : void</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#closeLayer-void"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">closeLayer() : void</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用样例"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">使用样例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加层"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">添加层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#效果"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">效果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">源码</span></a></li></ol></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Conv2d"><span class="post-toc-number">1.</span> <span class="post-toc-text">Conv2d 
+                
+                    
+                    
+                
+                #FFFF2E
+            </span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#构造器"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">构造器</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数列表"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">参数列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#⭐️-必要参数"><span class="post-toc-number">1.1.1.1.</span> <span class="post-toc-text">⭐️ 必要参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#🔧-推荐参数"><span class="post-toc-number">1.1.1.2.</span> <span class="post-toc-text">🔧 推荐参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#⚙️可选参数"><span class="post-toc-number">1.1.1.3.</span> <span class="post-toc-text">⚙️可选参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#🎨-外观参数"><span class="post-toc-number">1.1.1.4.</span> <span class="post-toc-text">🎨 外观参数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#🎦-动画控制参数"><span class="post-toc-number">1.1.1.5.</span> <span class="post-toc-text">🎦 动画控制参数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数列表-1"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">参数列表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标签详情"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">标签详情</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调用结果"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">调用结果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#属性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#inputShape-Int"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">.inputShape : [Int]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#outputShape-Int"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">.outputShape : [Int]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#neuralValue-float32"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">.neuralValue : [float32]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#name-string"><span class="post-toc-number">1.2.4.</span> <span class="post-toc-text">.name : string</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#layerType-string"><span class="post-toc-number">1.2.5.</span> <span class="post-toc-text">.layerType : string</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#openLayer-void"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">.openLayer() : void</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#closeLayer-void"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">.closeLayer() : void</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用样例"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">使用样例</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加层"><span class="post-toc-number">1.4.1.</span> <span class="post-toc-text">添加层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么时候用"><span class="post-toc-number">1.4.2.</span> <span class="post-toc-text">什么时候用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源码"><span class="post-toc-number">1.4.3.</span> <span class="post-toc-text">源码</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
 
@@ -203,105 +212,250 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>【阅读时间】文档介绍类文章<br>【阅读内容】TensorSpace - 是一款3D模型可视化框架，支持多种模型，帮助你可视化层间输出，更直观的展示模型的输入输出，帮助理解模型结构，输出方法</p>
 <a id="more"></a>
-<h1 id="Conv2d"><a href="#Conv2d" class="headerlink" title="Conv2d"></a>Conv2d</h1><p><code>TSP.layers.Conv2d</code> <figure class="image-bubble">
+<h1 id="Conv2d"><a href="#Conv2d" class="headerlink" title="Conv2d "></a>Conv2d <figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="https://placehold.it/15/fc3c3c/000000?text=+" alt="#fc3c3c" title="">
+                    <img src="https://placehold.it/15/FFFF2E/000000?text=+" alt="#FFFF2E" title="">
                 </div>
-                <div class="image-caption">#fc3c3c</div>
-            </figure> </p>
-<h2 id="输出和使用"><a href="#输出和使用" class="headerlink" title="输出和使用"></a>输出和使用</h2><h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>当你的<code>Keras</code>或<code>Tensorflow</code>模型结构中某层为<strong>卷积层</strong><code>Conv2D</code>，使用此API</p>
+                <div class="image-caption">#FFFF2E</div>
+            </figure></h1><h2 id="构造器"><a href="#构造器" class="headerlink" title="构造器"></a>构造器</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TSP.layers.Conv2d( &#123; <span class="attr">fileter</span> : Int &#125; )</span><br></pre></td></tr></table></figure>
+<h3 id="参数列表"><a href="#参数列表" class="headerlink" title="参数列表"></a>参数列表</h3><h4 id="⭐️-必要参数"><a href="#⭐️-必要参数" class="headerlink" title="⭐️ 必要参数"></a>⭐️ 必要参数</h4><blockquote>
+<p>使用时必须提供，不能为空<br>只要提供了这些参数，就能正常创建实例，控制参数使用<code>默认值</code></p>
+</blockquote>
+<p><a href="">filters</a> : <code>Int</code> 特征提取过滤器的数量</p>
+<h4 id="🔧-推荐参数"><a href="#🔧-推荐参数" class="headerlink" title="🔧 推荐参数"></a>🔧 推荐参数</h4><blockquote>
+<p>使用时推荐给定，未给定可以运行，但在体验和易用性上有隐患</p>
+</blockquote>
+<p><a href="">name</a> : <code>string</code> 层的命名，强烈建议添加</p>
+<p><a href="">padding</a> : <code>string</code> 是否使用padding</p>
+<ul>
+<li><code>valid</code>(default) 不使用padding，丢弃无法提取特征的部分，会改变输出的形状</li>
+<li><code>same</code> 使用padding，在不够的位置补零 ，输出的形状不变</li>
+</ul>
+<h4 id="⚙️可选参数"><a href="#⚙️可选参数" class="headerlink" title="⚙️可选参数"></a>⚙️可选参数</h4><blockquote>
+<p>根据模型配置参数<strong>选择性添加</strong><br>这里的参数对于层的结构（3D可视化外观）没有影响</p>
+</blockquote>
+<p><a href="">shape</a> : <code>[Int]</code> </p>
+<ul>
+<li>有此参数，会覆盖除了<code>filters</code>的其他参数的影响，Dataformat默认通道值在最后</li>
+<li>例如，令<code>shape = [ 28, 28, 6 ]</code>，则表示输出为6个特征图，每幅图大小<code>28*28</code> </li>
+</ul>
+<p><a href="">kernelSize</a> : <code>Int</code> 卷积核的尺寸，2d卷积核为正方形</p>
+<p><a href="">strides</a> : <code>Int</code> 卷积移动框的移动步长，在不同方向的步长相等</p>
+<h4 id="🎨-外观参数"><a href="#🎨-外观参数" class="headerlink" title="🎨 外观参数"></a>🎨 外观参数</h4><blockquote>
+<p>可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></p>
+</blockquote>
+<p><a href="">color</a> : <code>color format</code> 层的颜色，默认颜色是<strong>亮黄色</strong> #FFFF2E</p>
+<p><code>closeButton</code> : <code>Dict</code> 层关闭按钮外观控制列表</p>
+<ul>
+<li><a href="">display</a> : <code>Bool</code> <code>true</code> 显示按钮 | <code>false</code> 隐藏按钮</li>
+<li><a href="">ratio</a> : <code>Int</code> 为正常大小的几倍.例如，设为2为正常大小的2倍大<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">closeButton &#123;</span><br><span class="line">    display: <span class="literal">false</span>,</span><br><span class="line">    ratio: <span class="number">2</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="🎦-动画控制参数"><a href="#🎦-动画控制参数" class="headerlink" title="🎦 动画控制参数"></a>🎦 动画控制参数</h4><blockquote>
+<p>可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></p>
+</blockquote>
+<p><a href="">initStatus</a> : <code>string</code> 初始化时，本层是否收缩</p>
+<ul>
+<li><code>close</code>(default) : 收缩</li>
+<li><code>open</code> : 展开</li>
+</ul>
+<p><a href="">animationTimeRatio</a> : <code>Int</code> 张开和伸缩的调整速度，呈倍速关系，例如2就是2倍，<strong>数字越大速度越快</strong></p>
+<h3 id="参数列表-1"><a href="#参数列表-1" class="headerlink" title="参数列表"></a>参数列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">参数名<br>标签</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">简介</th>
+<th style="text-align:center">具体用法细节和例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><a href="">filters</a> <br>⭐️📦</td>
+<td style="text-align:center"><code>Int</code></td>
+<td style="text-align:center">特征提取过滤器的数量</td>
+<td style="text-align:center"><code>filters: 16</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">name</a> <br>🔧</td>
+<td style="text-align:center"><code>String</code></td>
+<td style="text-align:center">层的命名，强烈建议添加</td>
+<td style="text-align:center"><code>name: &quot;layerName&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">padding</a> <br>🔧📦</td>
+<td style="text-align:center"><code>String</code></td>
+<td style="text-align:center">是否使用padding</td>
+<td style="text-align:center"><code>valid</code>[default] 不使用padding，丢弃无法提取特征的部分，会改变输出的形状<br><code>same</code> 使用padding，在不够的位置补零 ，输出的形状不变</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">shape</a> <br>⚙️📦</td>
+<td style="text-align:center"><code>[Int]</code></td>
+<td style="text-align:center">当前层的输出形状</td>
+<td style="text-align:center">有此参数，会覆盖除了<code>filters</code>的其他参数的影响<br>Dataformat默认通道值在最后<br>例如，<code>shape = [ 28, 28, 6 ]</code>，则表示输出为6个特征图，每幅图大小<code>28*28</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">kernelSize</a> <br>⚙️📦</td>
+<td style="text-align:center"><code>Int</code></td>
+<td style="text-align:center">卷积核的尺寸</td>
+<td style="text-align:center">2d卷积核为正方形 <code>kernelSize: 3</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">strides</a> <br>⚙️📦</td>
+<td style="text-align:center"><code>[Int]</code></td>
+<td style="text-align:center">卷积移动框的移动步长</td>
+<td style="text-align:center">在不同方向的步长相等，默认情况自动推断 <code>strides = [1, 1]</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">color</a> <br>⚙️🎨</td>
+<td style="text-align:center"><code>color format</code></td>
+<td style="text-align:center">层的颜色</td>
+<td style="text-align:center"><code>Conv2d</code>默认颜色是<strong>亮黄色</strong> #FFFF2E<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://placehold.it/15/FFFF2E/000000?text=+" alt="#FFFF2E" title="">
+                </div>
+                <div class="image-caption">#FFFF2E</div>
+            </figure></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>closeButton</code>* <br>⚙️🎨</td>
+<td style="text-align:center"><code>Dict</code></td>
+<td style="text-align:center">层关闭按钮外观控制<strong>列表</strong></td>
+<td style="text-align:center"><a href="">display</a> : <code>Bool</code>  <code>true</code> [default] 显示按钮 <code>false</code> 隐藏按钮<br><a href="">ratio</a> : <code>Int</code> 为正常大小的几倍，默认为1倍<br>例如，设为2为正常大小的2倍大</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">initStatus</a> <br>⚙️🎦</td>
+<td style="text-align:center"><code>String</code></td>
+<td style="text-align:center">初始化时，本层是否收缩</td>
+<td style="text-align:center"><code>close</code>[default] : 收缩</td>
+<td><code>open</code> : 展开</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="">animationTimeRatio</a> <br>⚙️🎦</td>
+<td style="text-align:center"><code>Int</code></td>
+<td style="text-align:center">张开和伸缩的调整速度，呈倍速关系</td>
+<td style="text-align:center">例如2就是2倍，<strong>数字越大速度越快</strong></td>
+</tr>
+</tbody>
+</table>
+<p>*<code>closeButton</code> 例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">closeButton &#123;</span><br><span class="line">    display: <span class="literal">false</span>,</span><br><span class="line">    ratio: <span class="number">2</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="标签详情"><a href="#标签详情" class="headerlink" title="标签详情"></a>标签详情</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">符号</th>
+<th style="text-align:center">参数性质</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">⭐️</td>
+<td style="text-align:center">必要</td>
+<td style="text-align:center">使用时必须提供，不能为空<br>只要提供了这些参数，就能正常创建实例，控制参数使用<code>默认值</code></td>
+</tr>
+<tr>
+<td style="text-align:center">🔧</td>
+<td style="text-align:center">推荐</td>
+<td style="text-align:center">使用时推荐给定，未给定也可以运行，但在体验和易用性上有隐患</td>
+</tr>
+<tr>
+<td style="text-align:center">⚙️</td>
+<td style="text-align:center">可选</td>
+<td style="text-align:center">根据模型配置参数<strong>选择性添加</strong><br>这里的参数对于层的结构（3D可视化外观）没有影响</td>
+</tr>
+<tr>
+<td style="text-align:center">📦</td>
+<td style="text-align:center">模型</td>
+<td style="text-align:center">配置卷积层的相关属性，并对输出特征图形状有影响</td>
+</tr>
+<tr>
+<td style="text-align:center">🎨</td>
+<td style="text-align:center">外观</td>
+<td style="text-align:center">可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></td>
+</tr>
+<tr>
+<td style="text-align:center">🎦</td>
+<td style="text-align:center">动画控制</td>
+<td style="text-align:center">可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="调用结果"><a href="#调用结果" class="headerlink" title="调用结果"></a>调用结果</h3><ul>
+<li>创建一个新的对象，往3D场景中添加一个新的<strong>3D可视化卷积层</strong></li>
+<li>默认颜色: #FFFF2E  <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://placehold.it/15/FFFF2E/000000?text=+" alt="#FFFF2E" title="">
+                </div>
+                <div class="image-caption">#FFFF2E</div>
+            </figure> </li>
+</ul>
+<div align="left"><img src="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2D.png" alt="" width="700"></div>
+
+
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="inputShape-Int"><a href="#inputShape-Int" class="headerlink" title=".inputShape : [Int]"></a><a href="">.inputShape</a> : [Int]</h3><blockquote>
+<p>在 <code>model.init()</code> 后才可拿到数据，否则为<code>undefined</code></p>
+</blockquote>
+<p>本层<strong>输入Tensor</strong>的形状，Dataformat默认通道值在最后，例如<code>inputShape = [ 28, 28, 2 ]</code> 表示输入为<code>3</code>个特征图，每个图大小为<code>28*28</code></p>
+<h3 id="outputShape-Int"><a href="#outputShape-Int" class="headerlink" title=".outputShape : [Int]"></a><a href="">.outputShape</a> : [Int]</h3><blockquote>
+<p>在 <code>model.init()</code> 后才可拿到数据，否则为<code>undefined</code></p>
+</blockquote>
+<p>本层<strong>输出Tensor</strong>的形状，Dataformat默认通道值在最后，例如<code>outputShape = [ 32, 32, 4 ]</code>  表示经过此层处理后，有<code>4</code>个特征图，每个图大小为<code>32*32</code></p>
+<h3 id="neuralValue-float32"><a href="#neuralValue-float32" class="headerlink" title=".neuralValue : [float32]"></a><a href="">.neuralValue</a> : [float32]</h3><blockquote>
+<p>载入模型，在 <code>model.predict()</code> 后才可以拿到数据，否则为<code>undefined</code></p>
+</blockquote>
+<p>本层的<strong>层间输出</strong>值数组</p>
+<h3 id="name-string"><a href="#name-string" class="headerlink" title=".name : string"></a><a href="">.name</a> : string</h3><blockquote>
+<p>创建后即可取到</p>
+</blockquote>
+<p>本层的自定义名称</p>
+<h3 id="layerType-string"><a href="#layerType-string" class="headerlink" title=".layerType : string"></a><a href="">.layerType</a> : string</h3><blockquote>
+<p>创建后即可取到</p>
+</blockquote>
+<p>本层的类型，返回一个定值，字符串<code>Conv2d</code></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="openLayer-void"><a href="#openLayer-void" class="headerlink" title=".openLayer() : void"></a><a href="">.openLayer()</a> : void</h3><p>（1）通过直接和3d场景中物体交互<code>直接点击层</code>打开</p>
+<div align="left"><img src="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2d-open.gif" alt="" width="400"></div>
+
+<p>（2）代码中通过调用方法打开</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.init();</span><br><span class="line">TSP.layers.Conv2d.openLayer()</span><br></pre></td></tr></table></figure>
+<h3 id="closeLayer-void"><a href="#closeLayer-void" class="headerlink" title=".closeLayer() : void"></a><a href="">.closeLayer()</a> : void</h3><p>（1）通过直接和3d场景中物体交互<code>点击按钮</code>关闭</p>
+<div align="left"><img src="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2d-close.gif" alt="" width="400"></div>
+
+<p>（2）代码中通过调用方法打开</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">model.init();</span><br><span class="line"><span class="comment">// if this layer already opened</span></span><br><span class="line">TSP.layers.Conv2d.closeLayer()</span><br></pre></td></tr></table></figure>
+<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><h3 id="添加层"><a href="#添加层" class="headerlink" title="添加层"></a>添加层</h3><p>（1）声明一个<code>Conv2D</code>的实例，方便复用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> convLayer = <span class="keyword">new</span> TSP.layers.Conv2d(&#123;</span><br><span class="line">    kernelSize: <span class="number">5</span>,</span><br><span class="line">    filters: <span class="number">6</span>,</span><br><span class="line">    strides: <span class="number">1</span>,</span><br><span class="line">    animationTimeRatio: <span class="number">2</span>,</span><br><span class="line">    name: <span class="string">"conv2d1"</span>,</span><br><span class="line">    initStatus: <span class="string">"open"</span>,</span><br><span class="line">&#125;);</span><br><span class="line">model.add(convLayer);</span><br></pre></td></tr></table></figure>
+<p>（2）直接添加<code>Conv2D</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model.add(<span class="keyword">new</span> TSP.layers.Conv2d(&#123;</span><br><span class="line">    kernelSize: <span class="number">5</span>,</span><br><span class="line">    filters: <span class="number">16</span>,</span><br><span class="line">    strides: <span class="number">1</span>,</span><br><span class="line">    name: <span class="string">"conv2d2"</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+<h3 id="什么时候用"><a href="#什么时候用" class="headerlink" title="什么时候用"></a>什么时候用</h3><p>如果你是<code>Keras</code> | <code>TensorFlow</code> | <code>tfjs</code> 框架的使用者，构建模型时使用了<strong>卷积层</strong><code>Conv2D</code>（下表列出了可能的使用情景）。一一对应的，在<code>TensorSpace</code>中，你应该使用此API</p>
 <table>
 <thead>
 <tr>
 <th style="text-align:center">框架名称</th>
-<th style="text-align:center">框架中对应层的语法</th>
-<th style="text-align:center">对应框架的代码段</th>
+<th style="text-align:center">文档格式</th>
+<th style="text-align:center">样例代码段</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center"><a href="https://keras.io/layers/convolutional/" target="_blank" rel="noopener">Keras</a></td>
-<td style="text-align:center"><code>keras.layers.Conv2D(filters, kernel_size, strides=(1, 1))</code></td>
-<td style="text-align:center"><code>model.add(Conv2D(32, (3, 3)))</code></td>
+<td style="text-align:center">keras.layers.Conv2D(<a href="">filters</a>, <a href="">kernel_size</a>, <a href="">strides</a>=(1, 1))</td>
+<td style="text-align:center">model.add(Conv2D(32, (3, 3)))</td>
 </tr>
 <tr>
-<td style="text-align:center"><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d" target="_blank" rel="noopener">Tensorflow</a></td>
-<td style="text-align:center"><code>tf.nn.conv2d(input, filter, strides, padding)</code></td>
-<td style="text-align:center"><code>x = tf.nn.conv2d(x, W, strides=[1, strides, strides, 1], padding=&#39;SAME&#39;)</code></td>
+<td style="text-align:center"><a href="https://www.tensorflow.org/api_docs/python/tf/nn/conv2d" target="_blank" rel="noopener">TensorFlow</a></td>
+<td style="text-align:center">tf.nn.conv2d(input, <a href="">filter</a>, <a href="">strides</a>, <a href="">padding</a>)</td>
+<td style="text-align:center">x = tf.nn.conv2d(x, W, strides=[1, strides, strides, 1], padding=’SAME’)</td>
 </tr>
 <tr>
-<td style="text-align:center"><a href="https://js.tensorflow.org/api/0.13.0/#layers.conv2d" target="_blank" rel="noopener">Tensorflowjs</a></td>
-<td style="text-align:center"><code>tf.layers.conv2d (filters, inputShape)</code></td>
-<td style="text-align:center"><code>model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: &#39;relu&#39;}));</code></td>
+<td style="text-align:center"><a href="https://js.tensorflow.org/api/0.13.0/#layers.conv2d" target="_blank" rel="noopener">TensorFlow.js</a></td>
+<td style="text-align:center">tf.layers.conv2d (<a href="">filters</a>, <a href="">kernelSize</a>)</td>
+<td style="text-align:center">model.add(tf.layers.conv2d({kernelSize: 3, filters: 32, activation: ‘relu’}));</td>
 </tr>
 </tbody>
 </table>
-<h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><ul>
-<li>创建一个新的对象，往画布内添加一个新<strong>3D可视化卷积层</strong></li>
-<li>默认颜色: #fc3c3c  <figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://placehold.it/15/fc3c3c/000000?text=+" alt="#fc3c3c" title="">
-                </div>
-                <div class="image-caption">#fc3c3c</div>
-            </figure> </li>
-</ul>
-<h2 id="输入和参数"><a href="#输入和参数" class="headerlink" title="输入和参数"></a>输入和参数</h2><h3 id="star-必要参数"><a href="#star-必要参数" class="headerlink" title=":star:必要参数"></a>:star:必要参数</h3><blockquote>
-<p>使用时必须提供</p>
-</blockquote>
-<ul>
-<li><code>filters</code> : <code>Int</code> 特征提取过滤器的数量</li>
-</ul>
-<h3 id="hammer-推荐参数"><a href="#hammer-推荐参数" class="headerlink" title=":hammer:推荐参数"></a>:hammer:推荐参数</h3><blockquote>
-<p>使用时推荐给定，未给定可以运行，但是在体验和易用性上有隐患</p>
-</blockquote>
-<ul>
-<li><code>name</code> : <code>string</code> 层的命名</li>
-<li><code>padding</code> : <code>string</code> 是否使用padding<ul>
-<li><code>valid</code>(default) 使用padding </li>
-<li><code>same</code> 不使用padding </li>
-</ul>
-</li>
-</ul>
-<h3 id="art-外观参数"><a href="#art-外观参数" class="headerlink" title=":art:外观参数"></a>:art:外观参数</h3><blockquote>
-<p>可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></p>
-</blockquote>
-<ul>
-<li><code>color</code> : <code>color format</code> 层的颜色，默认为红色</li>
-</ul>
-<h3 id="cinema-动画控制参数"><a href="#cinema-动画控制参数" class="headerlink" title=":cinema:动画控制参数"></a>:cinema:动画控制参数</h3><blockquote>
-<p>可覆盖<code>TSP.model.Sequential</code>下的属性进行细调，<a href="">详情点击</a></p>
-</blockquote>
-<ul>
-<li><code>initStatus</code> : <code>string</code> 初始状态层是否收缩<ul>
-<li><code>close</code>(default) : 收缩</li>
-<li><code>open</code> : 展开</li>
-</ul>
-</li>
-</ul>
-<h3 id="heavy-check-mark-可选参数"><a href="#heavy-check-mark-可选参数" class="headerlink" title=":heavy_check_mark:可选参数"></a>:heavy_check_mark:可选参数</h3><blockquote>
-<p>使用时作为辅助调整参数，根据具体情况<strong>选择性添加</strong></p>
-<p>:package:标记：这些参数对3D可视化的层<strong>形状没有影响</strong></p>
-</blockquote>
-<ul>
-<li><code>shape</code> : <code>[Int]</code> 有此参数，会覆盖除了<code>filters</code>的其他参数的影响</li>
-<li>:package: <code>kernelSize</code> : <code>Int</code> 卷积核的尺寸</li>
-<li>:package: <code>strides</code> : <code>Int</code> 卷积移动框的移动步长</li>
-</ul>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="openLayer-void"><a href="#openLayer-void" class="headerlink" title="openLayer() : void"></a>openLayer() : void</h3><p>打开此卷积层</p>
-<h3 id="closeLayer-void"><a href="#closeLayer-void" class="headerlink" title="closeLayer() : void"></a>closeLayer() : void</h3><p>关闭此卷积层</p>
-<h2 id="使用样例"><a href="#使用样例" class="headerlink" title="使用样例"></a>使用样例</h2><h3 id="添加层"><a href="#添加层" class="headerlink" title="添加层"></a>添加层</h3><p>（1）声明一个<code>Conv2D</code>的实例，方便复用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> convLayer = <span class="keyword">new</span> TSP.layers.Conv2d(&#123;</span><br><span class="line">    kernelSize: <span class="number">5</span>,</span><br><span class="line">    filters: <span class="number">6</span>,</span><br><span class="line">    strides: <span class="number">1</span>,</span><br><span class="line">    animationTimeRatio: <span class="number">2</span>,</span><br><span class="line">    name: <span class="string">"conv2d1"</span>,</span><br><span class="line">    opacityRatio: <span class="number">2</span></span><br><span class="line">    initStatus: <span class="string">"open"</span></span><br><span class="line">&#125;);</span><br><span class="line">model.add(convLayer);</span><br></pre></td></tr></table></figure>
-<p>（2）直接添加<code>Conv2D</code>，和<code>Keras</code>语法类似</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">model.add(<span class="keyword">new</span> TSP.layers.Conv2d(&#123;</span><br><span class="line">    kernelSize: <span class="number">5</span>,</span><br><span class="line">    filters: <span class="number">16</span>,</span><br><span class="line">    strides: <span class="number">1</span>,</span><br><span class="line">    name: <span class="string">"conv2d2"</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><figure class="image-bubble">
-                <div class="img-lightbox">
-                    <div class="overlay"></div>
-                    <img src="https://github.com/zchholmes/tsp_image/blob/master/Document/Conv2D.png" alt="" title="">
-                </div>
-                <div class="image-caption"></div>
-            </figure>
 <h3 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h3><p><a href="https://github.com/syt123450/tensorspace/blob/master/src/layer/intemediate/Conv2d.js" target="_blank" rel="noopener">tensorspace/src/layer/intemediate/Conv2d.js</a></p>
 
         </div>
@@ -311,7 +465,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-09-28T23:08:25.414Z" itemprop="dateUpdated">2018-09-28 16:08:25</time>
+    Last updated: <time datetime="2018-09-30T04:33:45.874Z" itemprop="dateUpdated">2018-09-29 21:33:45</time>
 </span><br>
 
 
@@ -392,7 +546,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/09/29/README/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">[no title]</h4>
+      </a>
+    </div>
   
 
   
