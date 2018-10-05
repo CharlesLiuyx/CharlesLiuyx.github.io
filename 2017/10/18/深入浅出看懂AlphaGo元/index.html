@@ -271,6 +271,8 @@ $$
 
 <blockquote>
 <p>【a图】表示自对弈过程 $s_1,\ldots,s_T$。在每一个位置 $s_t$ ，使用最新的神经网络 $f_\theta$ 执行一次MCTS搜索 $\alpha_\theta$ 。根据搜索得出的概率 $a_t \sim \boldsymbol \pi_i$ 进行落子。终局 $s_T$ 时根据围棋规则计算胜者 $z$<br>$\pi_i$ 是每一步时执行MCTS搜索得出的结果（柱状图表示概率的高低）</p>
+</blockquote>
+<blockquote>
 <p>【b图】表示更新神经网络参数过程。使用原始落子状态 $\vec s_t$ 作为输入，得到此棋盘状态 $\vec s_t$ 下<strong>下一步所有可能落子位置的概率分布</strong> $\mathbf p_t$ 和<strong>当前状态  $\vec s_t$ 下选手的赢棋评估值</strong> $v_t$ </p>
 <p><strong>以最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ （详见公式1）</strong> ，更新参数 $\theta$ ，下一轮迭代中使用新神经网络进行自我对弈</p>
 </blockquote>
