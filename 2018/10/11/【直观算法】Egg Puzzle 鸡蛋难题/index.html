@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-19T11:24:30.868Z">
+<meta property="og:updated_time" content="2018-10-19T22:58:07.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -247,8 +247,32 @@
 <blockquote>
 <p>在上面的例子中，需要体会<strong>最坏情况下的最小值</strong>的意义，或者说，尝试的<strong>最大步数的最小值</strong>。如何判断对一道题目有没有完全吃透，看能否清晰的走完每一个例子，就能一窥一二</p>
 </blockquote>
-<h3 id="最优解的情况证明"><a href="#最优解的情况证明" class="headerlink" title="最优解的情况证明"></a>最优解的情况证明</h3><p>⭐️ 接下里就是确定树形状了，从<strong>直觉</strong>来看，这棵树，如果树的形状倾向于类似<strong>满二叉树</strong>，那么树的<strong>高度最小</strong>。❓ 但如何证明<strong>这个直觉</strong>的正确性呢？既然要计算树高，那么就把每一个<strong>叶子节点的树高</strong>一个一个<strong>列出来</strong><br>$$<br>\left.<br>\begin{array}{l}<br>k_1 \<br>k_2 -k_1 +1 \<br>k_3-k_2 +2 \<br>\cdots \<br>k_p - k_{p-1} +{p-1} \<br>N- k_p + p \<br>\end{array}<br>\right} \sum = N + \frac{(1+p)p}{2} \tag{2}<br>$$<br>经过计算发现，他们的和是个<strong>定值</strong>。那么使用<strong>反证法</strong>，假设这棵树不是满树，因为高度和为定值，那么必定有一个<strong>高于平均值得树</strong>存在，记为 $T$ ，根据最高树的最小值的要求 $H_a ＜ H_T$ （$H_a$为满树的高度），答案是$H_a$ 。所以，必定是满树的高满足最大值的最小值的题目条件。证毕</p>
-<p>则有（对照上面的树形结构图更加直观）<br>$$<br>\begin{array} \<br>k_1 = k_2 - k_1 + 1 &amp;\implies &amp;k_2 = 2k_1 + 1 = k_1 + (k_1 - 1) \<br>k_2 -k_1 +1 = k_3-k_2 +2 &amp;\implies &amp;k_3 = 3k_1 -3 = k_1 + (k_1 -1) + (k_1 -2) \<br>\cdots \<br>\end{array} \<br>k_p = N = 100 = k_1 + (k_1-1) + (k_1-2) + \cdots + 1 = \frac{k_1(k_1 + 1)}{2} \tag{3}<br>$$<br>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次的<strong>尝试区间</strong>需要超过 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
+<h3 id="最优解的情况证明"><a href="#最优解的情况证明" class="headerlink" title="最优解的情况证明"></a>最优解的情况证明</h3><p>⭐️ 接下里就是确定树形状了，从<strong>直觉</strong>来看，这棵树，如果树的形状倾向于类似<strong>满二叉树</strong>，那么树的<strong>高度最小</strong>。❓ 但如何证明<strong>这个直觉</strong>的正确性呢？既然要计算树高，那么就把每一个<strong>叶子节点的树高</strong>一个一个<strong>列出来</strong><br> 
+$$
+\left.
+\begin{array}{l}
+k_1 \\
+k_2 -k_1 +1 \\
+k_3-k_2 +2 \\
+\cdots \\
+k_p - k_{p-1} +{p-1} \\
+N- k_p + p \\
+\end{array}
+\right\} \sum = N + \frac{(1+p)p}{2} \tag{2}
+$$
+</p>
+<p>经过计算发现，他们的和是个<strong>定值</strong>。那么使用<strong>反证法</strong>，假设这棵树不是满树，因为高度和为定值，那么必定有一个<strong>高于平均值得树</strong>存在，记为 $T$ ，根据最高树的最小值的要求 $H_a ＜ H_T$ （$H_a$为满树的高度），答案是$H_a$ 。所以，必定是满树的高满足最大值的最小值的题目条件。证毕</p>
+<p>则有（对照上面的树形结构图更加直观）<br>
+$$
+\begin{array} \\
+k_1 = k_2 - k_1 + 1 &\implies &k_2 = 2k_1 + 1 = k_1 + (k_1 - 1) \\
+k_2 -k_1 +1 = k_3-k_2 +2 &\implies &k_3 = 3k_1 -3 = k_1 + (k_1 -1) + (k_1 -2) \\
+\cdots \\
+\end{array} \\
+k_p = N = 100 = k_1 + (k_1-1) + (k_1-2) + \cdots + 1 = \frac{k_1(k_1 + 1)}{2} \tag{3}
+$$
+</p>
+<p>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次的<strong>尝试区间</strong>需要超过 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
 <p>有了 $k_1$ ，带回去（2）式，可以知道第一个鸡蛋的扔下楼层策略为 $14,27,39,50,60,69,77,84, 90,95,99$ 。使用这个策略，带回（1）式，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可以得到 $r = 14$  </p>
 <p>到此为止，我们已经解决了<code>2</code>个鸡蛋的问题，找到了一个很明确的函数，利用<code>抽象思维</code>，可以写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求 $\frac{x(x+1)}{2} = N$ 正数解 $x$ 的 $\lceil x \rceil$</p>
 <h1 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>N</code>层楼<code>M</code>个鸡蛋的问题呢？</p>
@@ -394,7 +418,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-19T11:24:30.868Z" itemprop="dateUpdated">2018-10-19 04:24:30</time>
+    Last updated: <time datetime="2018-10-19T22:58:07.923Z" itemprop="dateUpdated">2018-10-19 15:58:07</time>
 </span><br>
 
 
