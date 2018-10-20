@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-20T18:23:44.558Z">
+<meta property="og:updated_time" content="2018-10-20T18:28:52.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -265,7 +265,7 @@ $$
 <p>经过计算发现，他们的和是个<strong>定值</strong>。那么使用<strong>反证法</strong>，假设这棵树不是满树，因为高度和为定值，那么必定有一个<strong>高于平均值得树</strong>存在，记为 $T$ ，根据最高树的最小值的要求 $H_a ＜ H_T$ （$H_a$为满树的高度），答案是$H_a$ 。所以，必定是满树的高满足最大值的最小值的题目条件。证毕</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="400"></div>
 
-<p>再参考树的示意图，所谓类似满二叉树是指每一棵树的树高相等吗，列出下面等式<br>
+<p>再参考树的示意图，所谓类似满二叉树是指<strong>每一棵子树的树高相等</strong>，比如列出下面等式（每一行都是左右两颗子树相等）<br>
 $$
 \begin{array} \\
 k_1 = k_2 - k_1 + 1 &\implies &k_2 = 2k_1 + 1 = k_1 + (k_1 - 1) \\
@@ -421,7 +421,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-20T18:23:44.558Z" itemprop="dateUpdated">2018-10-20 11:23:44</time>
+    Last updated: <time datetime="2018-10-20T18:28:52.282Z" itemprop="dateUpdated">2018-10-20 11:28:52</time>
 </span><br>
 
 
