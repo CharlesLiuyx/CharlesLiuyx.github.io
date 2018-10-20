@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-20T18:21:05.660Z">
+<meta property="og:updated_time" content="2018-10-20T18:23:44.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -278,7 +278,7 @@ $$
 <p>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次的<strong>尝试区间</strong>需要超过 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
 <p>有了 $k_1$ ，带回去（2）式，可以知道第一个鸡蛋的扔下楼层策略为 $14,27,39,50,60,69,77,84, 90,95,99$ 。使用这个策略，带回（1）式，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可以得到 $r = 14$  </p>
 <p>到此为止，我们已经解决了<code>2</code>个鸡蛋的问题，找到了一个很明确的函数，利用<code>抽象思维</code>，可以写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求 $\frac{x(x+1)}{2} = N$ 正数解 $x$ 的 $\lceil x \rceil$</p>
-<h1 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>N</code>层楼<code>M</code>个鸡蛋的问题呢？</p>
+<h1 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>N</code>层楼<code>M</code>个鸡蛋的问题呢？Leetcode有这道题：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">887. Super Egg Drop</a></p>
 <blockquote>
 <p>算法题如果刷题多的读者会<strong>快速反应出</strong>，这个问题可能可以用<strong>动态规划</strong>来解，但是在这里我还是想用一种<strong>推理的思维</strong>来尝试分析一个这个问题，<strong>逻辑链上最关键点才是一个知识的精华</strong></p>
 <p>如果说你通过观察题目，快速反映出来这个问题可以用动态规划求解，这种能力是一种<strong>熟练能力</strong>，类似于弹钢琴的熟能生巧，背书的死记硬背。与之相对的，就是<strong>分析能力</strong>。很有趣的是，这两种能力的分野十分明显，即<strong>高效和求知</strong>。如果你需要<strong>快速通过面试</strong>，拿到工作或<strong>通过考试</strong>，那大量做题才是最短路径，可学习的目的不止是为了获得生存手段，还有一种<strong>更高级的快乐来自于钻研本身</strong></p>
@@ -421,7 +421,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-20T18:21:05.660Z" itemprop="dateUpdated">2018-10-20 11:21:05</time>
+    Last updated: <time datetime="2018-10-20T18:23:44.558Z" itemprop="dateUpdated">2018-10-20 11:23:44</time>
 </span><br>
 
 
