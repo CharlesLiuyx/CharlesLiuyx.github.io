@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-20T20:23:01.223Z">
+<meta property="og:updated_time" content="2018-10-21T04:07:09.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -277,7 +277,7 @@ $$
 </p>
 <p>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次的<strong>尝试区间</strong>需要超过 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
 <p>有了 $k_1$ ，带回去（2）式，可以知道第一个鸡蛋的扔下楼层策略为 $14,27,39,50,60,69,77,84, 90,95,99$ 。使用这个策略，带回（1）式，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可以得到 $r = 14$  </p>
-<p>到此为止，我们已经解决了<code>2</code>个鸡蛋的问题，找到了一个很明确的函数，利用<code>抽象思维</code>，可以写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求 $\frac{x(x+1)}{2} = N$ 解 $x$ 的 $\lceil x \rceil​$</p>
+<p>到此为止，我们已经解决了<code>2</code>个鸡蛋的问题，找到了一个很明确的函数，利用<code>抽象思维</code>，可以写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求 $\frac{x(x+1)}{2} = N$ 解 $x$ 的 q$\lceil x \rceil$</p>
 <h1 id="问题拓展"><a href="#问题拓展" class="headerlink" title="问题拓展"></a>问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>N</code>层楼<code>M</code>个鸡蛋的问题呢？Leetcode有这道题：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">887. Super Egg Drop</a></p>
 <blockquote>
 <p>算法题如果刷题多的读者会<strong>快速反应出</strong>，这个问题可能可以用<strong>动态规划</strong>来解，但是在这里我还是想用一种<strong>推理的思维</strong>来尝试分析一个这个问题，<strong>逻辑链上最关键点才是一个知识的精华</strong></p>
@@ -327,7 +327,7 @@ $$
 <li>我的机会是什么？</li>
 </ul>
 <p>而选择这三者的<strong>交集</strong>作为一辈子努力的方向大概率是没什么问题的。作为程序员，可能只是你开始职业生涯的第一步，后面如何发展，<strong>需要对自己的追求和个人能力做一个更深入的挖掘</strong>，才能有个定论</p>
-<p>下面即将提及的优化过程完美的<strong>说明了</strong>作为一个<code>伟大</code>的程序员需要什么样的基础能力（至少在算法优化这个小领域），这需要<strong>长时间的训练和极强的天赋</strong>。如果你觉得做出这些解答非常吃力，相对应的，你又想<strong>这辈子有所作为</strong>，<strong>追逐伟大</strong>。那么应该尝试去找一个跨界学科开拓自己的人生版图。毕竟，<strong>计算机思维，数据分析和机器学习未来会称为像数学一样的基础能力</strong>，无论在哪一行都会对解决问题有极大的帮助</p>
+<p>下面即将提及的优化过程完美的<strong>说明了</strong>作为一个<code>伟大</code>的程序员需要什么样的基础能力（至少在算法优化这个小领域），这需要<strong>长时间的训练和极强的天赋</strong>。如果你觉得做出这些解答非常吃力，相对应的，你又想<strong>这辈子有所作为</strong>，<strong>追逐伟大</strong>。那么应该尝试去找一个跨界学科开拓自己的人生版图。毕竟，<strong>计算机思维，数据分析和机器学习未来会成为像数学一样的基础能力</strong>，无论在哪一行都会对解决问题有极大的帮助</p>
 <h2 id="基础版"><a href="#基础版" class="headerlink" title="基础版"></a>基础版</h2><p>根据思路直接写出的最直观的代码，如果对递归理解的深，比较易懂直观。用我能想到最直白的语言来描述就是：<strong>假设子状态的结果已知，现在需要做些什么操作，就能得到此状态的答案，并且把这个答案返回给函数即可</strong>（借鉴知乎回答的答案，加上了lru_cache）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="comment"># python3的functools的一个自带函数, 可以对函数返回结果进行LRU cache, 下次以相同参数调用就不重复计算了</span></span><br><span class="line"><span class="comment"># maxsize=None 不限制大小, 其实就变成是全部都cache下来, 不考虑LRU了</span></span><br><span class="line"><span class="meta">@functools.lru_cache(maxsize=None) # 装饰器 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> m == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> h</span><br><span class="line"></span><br><span class="line">    result = min ( [ max ( [ f( i - <span class="number">1</span>, m - <span class="number">1</span> ), f( h - i, m ) ] ) <span class="keyword">for</span> i <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ) ] ) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
 <p>〔优化〕Recursive（递归）的写法虽然清晰明了漂亮，但在工程上有调用函数的开销，系统栈深度限制等弊端，所以需要写成<strong>循环版本</strong>，否则在工程上是一定会返工，过不了Code review</p>
@@ -405,12 +405,17 @@ $$
 <h3 id="粗条细调思维"><a href="#粗条细调思维" class="headerlink" title="粗条细调思维"></a>粗条细调思维</h3><p>对于这道题目，首先考察的是程序员的粗条细调思维。考虑中经常有对精读的需求，那么是如何做的？比如常见的千分尺，首先是一个横向的卡尺来接近目标值，然后用一个滚轮形的第二级继续细调。同样，显微镜也有对应的调整方法。都可以总结为<code>粗条细调思维</code></p>
 <p>首先大步接近最优解，再调整迭代速度，更加细微的接近最优解。机器学习中的，Adam优化器也是用的类似的思维来设计的</p>
 <h3 id="拆分思维"><a href="#拆分思维" class="headerlink" title="拆分思维"></a>拆分思维</h3><p>问题是否能拆分几个黑盒，只给输入输出，里面的逻辑链做到精简，或者<strong>有已经可用的轮子</strong>和<strong>算法</strong>可以直接应用的能力。</p>
-<h2 id="工程应用"><a href="#工程应用" class="headerlink" title="工程应用"></a>工程应用</h2><p>到了这一步，基本压榨了本题所有的潜力。但是，下一个值得思考的问题就是，这道题目对应的算法在<strong>实际工程和解决问题的具体情况</strong>中有没有什么应用呢？以博主浅薄的工程经验，没有找到一个应用这个算法的案例，如果有，欢迎各位大神留言，共同讨论交流和进步！</p>
+<blockquote>
+<p>能看到这的读者我衷心感谢您的求知欲和耐心（我写的比较啰嗦，为了权衡不同背景的读者），下面的一部分个人认为<strong>才是最重要的</strong></p>
+</blockquote>
+<h2 id="工程应用"><a href="#工程应用" class="headerlink" title="工程应用"></a>工程应用</h2><p>到了这一步，基本压榨了本题所有的潜力。但是，下一个值得思考的问题就是，这道题目对应的算法在<strong>实际工程和解决问题的具体情况</strong>中有没有什么应用呢？答案是肯定的</p>
+<p>如果要找学科分类，鸡蛋难题属于<strong>运筹学问题</strong>，典型应用是破坏性试验，如测试汽车、飞机、火箭等的若干极限性能。举个例子，汽车保全乘客安全的最高碰撞末速，那么为了保证能找这个值，一定会用类似的思路来解决问题。</p>
+<p>你可能也已经发现，具体问题一定还是具体分析，但这道题目对应的工程思维更像是工具箱里面的一种<strong>更强大的工具。</strong>记得罗辑思维中提到，为什么物理学老一辈的物理学家现在拿奖的人越来越少，其中一个重要的原因即使他们的物理学工具没有新生一辈的能力强大的，不同于数学这类逻辑学科，物理学是可验证学科，实验和测量工具，理论工具等都是必不可少的。</p>
 <p>博主笃定，算法<strong>80%是要为解决问题服务的</strong>，勾起人们学习的最佳动力就是<strong>举实际生活中遇到的难题是如何用这个算法解决的</strong>。从这个侧面，有关字符串的算法就非常能勾起学习的兴趣，正是因为涉及到字符串处理的情景太多。</p>
 <p>总得看下来，完美的诠释了直观 ➜ 抽象的思维链条。所有高效的，精简的算法，就是要<strong>找到事物或者逻辑发生的本质规律</strong>，如果不谈完备性的证明，用<strong>图表和直观的性质来描述</strong>，这道题目的优化思路并不难（相对的，完备性时间复杂度的证明才是难点）</p>
 <p>关于剩下的20%，此时又想起了<a href="https://charlesliuyx.github.io/2018/09/20/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3/">黎曼猜想</a>，<strong>所有</strong>非平凡零点的有关性质。<code>趋向于无穷</code>、<code>所有</code>、<code>任意</code>这些定义方式是人类为了<strong>寻找边界</strong>而设计的工具。趋向于无穷大，趋向于无穷小都还有很多问题没有解决。罗振宇说，创业者是在开垦商业的边疆，那么理论科学家就是拿着这些强大的工具开拓<strong>逻辑和思维的边疆</strong>，在一片荒芜上安营扎寨，仰望星空。这可能就是人类群体中<strong>最有魅力的事业</strong>吧？</p>
 <p>【参考文献】</p>
-<p>非常感谢计算机信息学奥赛国家队朱前辈的论文，对这道题目做了完美的剖析，也勾起了我的好奇心，一探究竟，才有了这篇万字长文</p>
+<p>非常感谢计算机信息学奥赛国家队朱前辈的论文，对这道题目做了完美的剖析，也勾起了我的好奇心，一探究竟，才有了这篇<strong>万字长文</strong></p>
 <p><a href="https://www.zhihu.com/question/19690210/answer/18079633" target="_blank" rel="noopener">吴育昕的回答 - 知乎</a></p>
 <p><a href="https://github.com/ericliu859/AcmPaper/tree/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E4%BC%98%E5%8C%96/2004%20-%20%E6%9C%B1%E6%99%A8%E5%85%89%EF%BC%9A%E3%80%8A%E4%BC%98%E5%8C%96%EF%BC%8C%E5%86%8D%E4%BC%98%E5%8C%96%EF%BC%81%E2%80%94%E2%80%94%E4%BB%8E%E3%80%8A%E9%B9%B0%E8%9B%8B%E3%80%8B%E4%B8%80%E9%A2%98%E6%B5%85%E6%9E%90%E5%AF%B9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%E3%80%8B" target="_blank" rel="noopener">参考文献：朱晨光：《优化，再优化！——从《鹰蛋》一题浅析对动态规划算法的优化》</a></p>
 
@@ -421,7 +426,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-20T20:23:01.223Z" itemprop="dateUpdated">2018-10-20 13:23:01</time>
+    Last updated: <time datetime="2018-10-21T04:07:09.330Z" itemprop="dateUpdated">2018-10-20 21:07:09</time>
 </span><br>
 
 
