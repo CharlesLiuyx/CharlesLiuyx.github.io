@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-21T04:07:09.330Z">
+<meta property="og:updated_time" content="2018-10-21T04:43:57.177Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -399,12 +399,12 @@ $$
 <h3 id="等价思维"><a href="#等价思维" class="headerlink" title="等价思维"></a>等价思维</h3><p><strong>沟通的效率和信息的冗余度成正比</strong>，所以一个人能否把同一个概念，<strong>从不同的角度，用不同的案例类比，抑或各类精彩直观的比喻</strong>表达出来，这个能力很重要，它可以让人们更加<strong>准确快速的</strong>理解你想表达的意思</p>
 <p>⭐️ <strong>学习的真正本质</strong>：<strong>是在一个领域内不断的去建立这种沟通共识的框架</strong>。举个例子，学过线性代数的人，只要<strong>提到矩阵，就能想到变换</strong>。这就是都学过线性代数的人交流密码，如矩阵的逆 = 一个具体的反向变换。没学过这门课的人是无法和<strong>学过的人</strong>进行沟通的。这也从很大程度加强了人们沟通的效率，所以，<strong>学习带来的终极成效</strong>其实是降低了<strong>人类社会的沟通时间，提高了效率</strong></p>
 <p>再举个例子：机器学习中，提到<strong>正则化</strong>，必须建立一套与之相关的知识架构，包括，<strong>过拟合，最优化函数曲面空间理解，范数</strong>等，成<strong>树状结构</strong>继续推而广之，这每一个名词，背后也对应了一个<strong>更加直观，更加易懂的描述方式</strong>。但是我们需要知道，如果我为了表达正则化，为了让你明白我的意思，我需要用一大堆描述性语言，那我们两人的<strong>沟通效率就十分低下了</strong></p>
-<p>这也就是知识体系，一门学科，一门专业的最终含义，学习是为了<strong>构建这门学科的通识沟通框架</strong>，降低同行之间的沟通成本。当然，这有一个<strong>必要前提</strong>，把<strong>学习的目的</strong>理解降<strong>低沟通成本</strong>必须是你做的工作<strong>是规模化的</strong>，涉及<strong>协作</strong>。如果你是爱因斯坦，是开拓学科的那类0级工程师（来自于吴军老师谷歌方法论）。独自想象钻研，那么，学习的本质可能在于给你更多的角度（认知能力），更多的工具（锤子锯子）去更好的<strong>探索这个世界的本质和规则</strong>，在这样的条件下，关于学习的本质的描述就需要调整了</p>
+<p>这也就是知识体系，一门学科，一门专业的最终含义，学习是为了<strong>构建这门学科的通识沟通框架</strong>，降低同行之间的沟通成本。当然，这有一个<strong>必要前提</strong>，把<strong>学习的目的</strong>理解降<strong>低沟通成本</strong>必须是你做的工作<strong>是规模化的</strong>，涉及<strong>协作</strong>。如果你是爱因斯坦，是开拓学科的那类<strong>0级工程师</strong>（来自于吴军老师谷歌方法论）。独自想象钻研，那么，学习的本质可能在于给你更多的角度（认知能力），更多的工具（锤子锯子）去更好的<strong>探索这个世界的本质和规则</strong>，在这样的条件下，关于<strong>学习本质的描述</strong>就需要调整了</p>
 <h3 id="反推思维"><a href="#反推思维" class="headerlink" title="反推思维"></a>反推思维</h3><p>从结论出发反推逻辑链</p>
 <h3 id="归纳思维"><a href="#归纳思维" class="headerlink" title="归纳思维"></a>归纳思维</h3><p>数学归纳法，使用已有的条件信息，归纳推出待求的内容</p>
-<h3 id="粗条细调思维"><a href="#粗条细调思维" class="headerlink" title="粗条细调思维"></a>粗条细调思维</h3><p>对于这道题目，首先考察的是程序员的粗条细调思维。考虑中经常有对精读的需求，那么是如何做的？比如常见的千分尺，首先是一个横向的卡尺来接近目标值，然后用一个滚轮形的第二级继续细调。同样，显微镜也有对应的调整方法。都可以总结为<code>粗条细调思维</code></p>
-<p>首先大步接近最优解，再调整迭代速度，更加细微的接近最优解。机器学习中的，Adam优化器也是用的类似的思维来设计的</p>
-<h3 id="拆分思维"><a href="#拆分思维" class="headerlink" title="拆分思维"></a>拆分思维</h3><p>问题是否能拆分几个黑盒，只给输入输出，里面的逻辑链做到精简，或者<strong>有已经可用的轮子</strong>和<strong>算法</strong>可以直接应用的能力。</p>
+<h3 id="粗条细调思维"><a href="#粗条细调思维" class="headerlink" title="粗条细调思维"></a>粗条细调思维</h3><p>对于这道题，首先考察的是程序员的粗条细调思维。工程中经常会有对<strong>测量精度</strong>的要求，那么是如何做的？比如常见的<strong>千分尺</strong>，首先是一个横向的卡尺来接近目标值，然后用一个滚轮形的第二级继续细调。同样，显微镜也有对应的调整方法。都可以总结为<code>粗条细调思维</code></p>
+<p>首先大步接近最优解，再调整迭代速度，更加细微的接近最优解。机器学习中的，Adam优化器也是用类似的思维来设计的</p>
+<h3 id="拆分思维"><a href="#拆分思维" class="headerlink" title="拆分思维"></a>拆分思维</h3><p>问题是否能拆分几个黑盒，只给输入输出，里面的逻辑链做到精简，或者<strong>有已经可用的轮子</strong>和<strong>算法</strong>直接应用的能力。</p>
 <blockquote>
 <p>能看到这的读者我衷心感谢您的求知欲和耐心（我写的比较啰嗦，为了权衡不同背景的读者），下面的一部分个人认为<strong>才是最重要的</strong></p>
 </blockquote>
@@ -426,7 +426,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-21T04:07:09.330Z" itemprop="dateUpdated">2018-10-20 21:07:09</time>
+    Last updated: <time datetime="2018-10-21T04:43:57.177Z" itemprop="dateUpdated">2018-10-20 21:43:57</time>
 </span><br>
 
 
