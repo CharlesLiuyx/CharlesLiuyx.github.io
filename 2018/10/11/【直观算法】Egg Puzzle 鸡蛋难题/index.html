@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-22T01:43:39.484Z">
+<meta property="og:updated_time" content="2018-10-22T17:17:48.234Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -237,7 +237,7 @@
 <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="700"></div>
 
 <p>图最上方的数轴就是一个<strong>横放的楼</strong>，$k_0 = 1$ 是第一层</p>
-<p>解释一下这棵树。在每一层扔下一个鸡蛋时，都有两种可能，<code>碎了</code>和<code>没碎</code>，分别对应了两个分支。一旦<code>碎了</code>，那么就使用<code>1</code>个鸡蛋的问题思路来解题，直到找到<strong>临界层</strong>。在 $k_1$层没碎，那么需要在 $k_2$ 层继续尝试，直到最高层 $N​$ 找到<strong>临界层</strong>（上图的标注不是树高，是灰色设置的子树高）</p>
+<p>解释一下这棵树。在每一层扔下一个鸡蛋时，都有两种可能，<code>碎了</code>和<code>没碎</code>，分别对应了两个分支。一旦<code>碎了</code>，那么就使用<code>1</code>个鸡蛋的问题思路来解题，直到找到<strong>临界层</strong>。在 $k_1$层没碎，那么需要在 $k_2$ 层继续尝试，直到最高层 $N$ 找到<strong>临界层</strong>（上图的标注不是树高，是灰色图例标识出的的<strong>子树高</strong>）</p>
 <p>观察这个树状图，怎样从树中获得我们希望得到的答案呢？〔输入自变量〕 $k_1, k_2,\cdots,k_p$ 〔待求〕最小的尝试次数（即所有策略中<strong>最大值的最小值</strong>）➜ 等价于，求一个策略组合 $k_1, k_2,\cdots,k_p$，使得<strong>树的高度最小</strong></p>
 <p>如果还是有些无法理解，此时，最好的方法就是<strong>看特例（举例子）</strong></p>
 <p>比如 $k_1 = 50$，意思是在<code>50层</code>扔下第一个鸡蛋</p>
@@ -426,7 +426,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-22T01:43:39.484Z" itemprop="dateUpdated">2018-10-21 18:43:39</time>
+    Last updated: <time datetime="2018-10-22T17:17:48.234Z" itemprop="dateUpdated">2018-10-22 10:17:48</time>
 </span><br>
 
 
