@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-21T04:43:57.177Z">
+<meta property="og:updated_time" content="2018-10-22T01:43:39.484Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -233,11 +233,11 @@
 <li>看到决策结果<strong>有分叉</strong>，用<strong>〔树形结构〕</strong></li>
 <li>若在推理过程中，产生了<strong>交汇</strong>，则用<strong>〔图结构〕</strong></li>
 </ul>
-<h3 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h3><p>假设第一个鸡蛋的楼层策略是 $k_1, k_2,\cdots,k_p$ ，其中 $p$ 是<code>仍的总次数</code>，楼高记为 $N$ 。比如如果你选择在 $20,40,60,80$ 层仍，那么 $p=4$ ，根据题意，有 $1 \lt k_1 \lt k_2 \lt \cdots \lt k_{p-1} \lt k_p \lt 100$ 。画出树形示意图，如下图所示</p>
+<h3 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h3><p>假设第一个鸡蛋的楼层策略是 $k_1, k_2,\cdots,k_p$ ，其中 $p$ 是<code>仍的总次数</code>，楼高记为 $N$ 。比如如果你选择在 $20,40,60,80$ 层仍，那么 $p=4$ ，根据题意，有 $1 \lt k_1 \lt k_2 \lt \cdots \lt k_{p-1} \lt k_p =N$ 。画出树形示意图，如下图所示</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="700"></div>
 
 <p>图最上方的数轴就是一个<strong>横放的楼</strong>，$k_0 = 1$ 是第一层</p>
-<p>解释一下这棵树。在每一层扔下一个鸡蛋时，都有两种可能，<code>碎了</code>和<code>没碎</code>，分别对应了两个分支。一旦<code>碎了</code>，那么就使用<code>1</code>个鸡蛋的问题思路来解题，直到找到<strong>临界层</strong>。在 $k_1$层没碎，那么需要在 $k_2$ 层继续尝试，直到最高层 $N$ 找到<strong>临界层</strong></p>
+<p>解释一下这棵树。在每一层扔下一个鸡蛋时，都有两种可能，<code>碎了</code>和<code>没碎</code>，分别对应了两个分支。一旦<code>碎了</code>，那么就使用<code>1</code>个鸡蛋的问题思路来解题，直到找到<strong>临界层</strong>。在 $k_1$层没碎，那么需要在 $k_2$ 层继续尝试，直到最高层 $N​$ 找到<strong>临界层</strong>（上图的标注不是树高，是灰色设置的子树高）</p>
 <p>观察这个树状图，怎样从树中获得我们希望得到的答案呢？〔输入自变量〕 $k_1, k_2,\cdots,k_p$ 〔待求〕最小的尝试次数（即所有策略中<strong>最大值的最小值</strong>）➜ 等价于，求一个策略组合 $k_1, k_2,\cdots,k_p$，使得<strong>树的高度最小</strong></p>
 <p>如果还是有些无法理解，此时，最好的方法就是<strong>看特例（举例子）</strong></p>
 <p>比如 $k_1 = 50$，意思是在<code>50层</code>扔下第一个鸡蛋</p>
@@ -268,7 +268,7 @@ $$
 <p>再参考树的示意图，所谓类似满二叉树是指<strong>每一棵子树的树高相等</strong>，比如列出下面等式（每一行都是左右两颗子树相等）<br>
 $$
 \begin{array} \\
-k_1 = k_2 - k_1 + 1 &\implies &k_2 = 2k_1 + 1 = k_1 + (k_1 - 1) \\
+k_1 = k_2 - k_1 + 1 &\implies &k_2 = 2k_1 - 1 = k_1 + (k_1 - 1) \\
 k_2 -k_1 +1 = k_3-k_2 +2 &\implies &k_3 = 3k_1 -3 = k_1 + (k_1 -1) + (k_1 -2) \\
 \cdots \\
 \end{array} \\
@@ -426,7 +426,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-21T04:43:57.177Z" itemprop="dateUpdated">2018-10-20 21:43:57</time>
+    Last updated: <time datetime="2018-10-22T01:43:39.484Z" itemprop="dateUpdated">2018-10-21 18:43:39</time>
 </span><br>
 
 
