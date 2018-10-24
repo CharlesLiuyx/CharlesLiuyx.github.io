@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-10-22T17:17:48.234Z</updated>
+  <updated>2018-10-23T04:01:43.759Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【直观算法】树的基本操作</title>
+    <link href="https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <id>https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/</id>
+    <published>2018-10-22T22:53:27.000Z</published>
+    <updated>2018-10-23T04:01:43.759Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法</p><a id="more"></a><h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="https://charlesliuyx.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Tree" scheme="https://charlesliuyx.github.io/tags/Tree/"/>
+    
+      <category term="Optimization" scheme="https://charlesliuyx.github.io/tags/Optimization/"/>
+    
+  </entry>
   
   <entry>
     <title>【直观算法】Egg Puzzle 鸡蛋难题</title>
@@ -34,9 +58,9 @@
       <category term="Algorithm" scheme="https://charlesliuyx.github.io/categories/Algorithm/"/>
     
     
-      <category term="DP" scheme="https://charlesliuyx.github.io/tags/DP/"/>
-    
       <category term="Optimization" scheme="https://charlesliuyx.github.io/tags/Optimization/"/>
+    
+      <category term="DP" scheme="https://charlesliuyx.github.io/tags/DP/"/>
     
   </entry>
   
@@ -410,9 +434,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
       <category term="Linear Algebra" scheme="https://charlesliuyx.github.io/tags/Linear-Algebra/"/>
     
@@ -436,9 +460,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -460,9 +484,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -486,9 +510,9 @@
     
       <category term="Wiki" scheme="https://charlesliuyx.github.io/tags/Wiki/"/>
     
-      <category term="Library" scheme="https://charlesliuyx.github.io/tags/Library/"/>
-    
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Library" scheme="https://charlesliuyx.github.io/tags/Library/"/>
     
   </entry>
   
@@ -582,9 +606,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -606,9 +630,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -654,9 +678,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -679,9 +703,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
@@ -730,9 +754,9 @@
       <category term="Machine Learning" scheme="https://charlesliuyx.github.io/categories/Machine-Learning/"/>
     
     
-      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
-    
       <category term="Theory" scheme="https://charlesliuyx.github.io/tags/Theory/"/>
+    
+      <category term="Machine Learning" scheme="https://charlesliuyx.github.io/tags/Machine-Learning/"/>
     
   </entry>
   
