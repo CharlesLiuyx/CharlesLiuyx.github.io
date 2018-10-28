@@ -25,18 +25,24 @@
     
     
     <meta name="keywords" content="Tree,Optimization">
-    <meta name="description" content="【阅读时间】【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
+    <meta name="description" content="【阅读时间】【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
 <meta name="keywords" content="Tree,Optimization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观算法】树的基本操作">
 <meta property="og:url" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
+<meta property="og:description" content="【阅读时间】【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-10-23T04:01:43.759Z">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Pre-Order.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/In-Order.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Post-Order.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Breadth-First.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Deep-First.png">
+<meta property="og:updated_time" content="2018-10-28T03:55:13.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】树的基本操作">
-<meta name="twitter:description" content="【阅读时间】【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
+<meta name="twitter:description" content="【阅读时间】【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Pre-Order.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
     
@@ -171,7 +177,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遍历"><span class="post-toc-number">1.</span> <span class="post-toc-text">遍历</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遍历"><span class="post-toc-number">1.</span> <span class="post-toc-text">遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#先序遍历"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">先序遍历</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#二叉搜索树"><span class="post-toc-number">2.</span> <span class="post-toc-text">二叉搜索树</span></a></li></ol>
         </nav>
     </aside>
 
@@ -197,9 +203,55 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】<br>【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法</p>
+            <p>【阅读时间】<br>【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法</p>
 <a id="more"></a>
-<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1>
+<h1 id="遍历"><a href="#遍历" class="headerlink" title="遍历"></a>遍历</h1><p>遍历的含义就是把树的所有节点（Node）按照<strong>某种顺序</strong>访问一遍。包括<strong>前序</strong>，<strong>中序</strong>，<strong>后续</strong>，<strong>广度优先</strong>（队列），<strong>深度优先</strong>（栈）5中遍历方法</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">遍历方法</th>
+<th style="text-align:center">顺序</th>
+<th style="text-align:center">示意图</th>
+<th style="text-align:center">应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">前序</td>
+<td style="text-align:center"><strong>根 ➜ 左 ➜ 右</strong></td>
+<td style="text-align:center"><div align="center"><img src="//charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Pre-Order.png" alt="" width="150"></div></td>
+<td style="text-align:center">想在节点上直接执行操作（或输出结果）使用先序</td>
+</tr>
+<tr>
+<td style="text-align:center">中序</td>
+<td style="text-align:center"><strong>左 ➜ 根 ➜ 右</strong></td>
+<td style="text-align:center"><div align="center"><img src="//charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/In-Order.png" alt="" width="150"></div></td>
+<td style="text-align:center">在<strong>二分搜索树</strong>中，中序遍历的顺序符合从小到大（或从大到小）顺序的，要输出排序好的结果使用中序</td>
+</tr>
+<tr>
+<td style="text-align:center">后序</td>
+<td style="text-align:center"><strong>右 ➜ 根 ➜ 左</strong></td>
+<td style="text-align:center"><div align="center"><img src="//charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Post-Order.png" alt="" width="150"></div></td>
+<td style="text-align:center">后续遍历的特点是在执行操作时，肯定<strong>已经遍历过该节点的左右子节点</strong>，适用于进行破坏性操作，比如删除所有节点，比如判断树中是否存在相同子树</td>
+</tr>
+<tr>
+<td style="text-align:center">广度优先</td>
+<td style="text-align:center"><strong>层序，横向访问</strong></td>
+<td style="text-align:center"><div align="center"><img src="//charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Breadth-First.png" alt="" width="150"></div></td>
+<td style="text-align:center">当<strong>树的高度非常高</strong>（非常瘦），使用广度优先剑节省空间</td>
+</tr>
+<tr>
+<td style="text-align:center">深度优先</td>
+<td style="text-align:center"><strong>纵向，探底到叶子节点</strong></td>
+<td style="text-align:center"><div align="center"><img src="//charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Deep-First.png" alt="" width="150"></div></td>
+<td style="text-align:center">当<strong>每个节点的子节点非常多</strong>（非常胖），使用深度优先遍历节省空间</td>
+</tr>
+</tbody>
+</table>
+<p>关于应用部分，选择遍历方法的基本的原则：<span style="font-weight:bold;color: red">更快的访问到你想访问的节点</span>。先序会先访问根节点，后序会先访问叶子节点</p>
+<p>需要说明的是，递归是一种<code>拆分思维</code>的具体问题类别的思维方法，其核心的思维我觉得和动态规划非常类似，都是假设，子节点搞定了我现在应该干什么这个问题。</p>
+<h2 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h2><p>如果想练手，见<a href="https://leetcode.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">Leetcode 44. Binary Tree Preorder Traversal</a>，给一个表示树形状的数据结构，按照要求进行输出遍历结果</p>
+<h1 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h1>
         </div>
 
         <blockquote class="post-copyright">
@@ -207,7 +259,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-23T04:01:43.759Z" itemprop="dateUpdated">2018-10-22 21:01:43</time>
+    Last updated: <time datetime="2018-10-28T03:55:13.669Z" itemprop="dateUpdated">2018-10-27 20:55:13</time>
 </span><br>
 
 
@@ -253,7 +305,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】树的基本操作》 — Go Further&source=【阅读时间】【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】树的基本操作》 — Go Further&source=【阅读时间】【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -417,7 +469,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】树的基本操作》 — Go Further&source=【阅读时间】【阅读内容】有关树的遍历（前序中序后序）结合应用场景，给出二叉查找树，附带提及一些自平衡二分查找树（红黑树AVL树）的概念和用法" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】树的基本操作》 — Go Further&source=【阅读时间】【阅读内容】结合应用场景，总结有关树的遍历（前序中序后序），二叉搜索树的算法解法和面试题，附带提及一些自平衡二分查找树（红黑树AVL树）的概念..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
