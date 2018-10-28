@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-22T17:17:48.234Z">
+<meta property="og:updated_time" content="2018-10-28T03:54:34.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】9500+字 | 15 - 20 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -224,7 +224,7 @@
 </blockquote>
 <h2 id="两个鸡蛋"><a href="#两个鸡蛋" class="headerlink" title="两个鸡蛋"></a>两个鸡蛋</h2><h3 id="粗调和细调"><a href="#粗调和细调" class="headerlink" title="粗调和细调"></a>粗调和细调</h3><p>依据<code>粗条细调思维</code>，我们有一次试错的机会。那么可以思考，假设第一个鸡蛋在 $k$ 层<code>碎了</code>，意味着什么？意味着，待求的<strong>临界层</strong> $x$ 一定满足 $1 \leqslant x \lt k$ ，或者记为 $[1,k)$ ，就把待求量限制到了一个更小的范围内，可以提高找到目标值的效率</p>
 <p>我们已经知道要用第一个鸡蛋做<strong>粗调</strong>，<code>碎了</code>之后，使用第二个鸡蛋，参照<code>1</code>个鸡蛋的原则进行<strong>细调</strong>。下一步，问题就变成了一个策略问题，即<strong>❓第一个鸡蛋应该在哪些层数仍</strong>的问题</p>
-<p>在一层楼，丢了一个鸡蛋，除了<code>碎了</code>这个结果，还有另一种可能性，即<code>没碎</code>。这句话是一个<strong>极为关键的信号</strong>，背后在告诉我们这是一个<strong>树形结构</strong>问题，下面就把这条树形结构链分析出来</p>
+<p>在一层楼，丢了一个鸡蛋，除了<code>碎了</code>这个结果，还有另一种可能性，即<code>没碎</code>。这句话是一个<strong>极为关键的信号</strong>，背后在告诉我们这是一个<strong>树形结构</strong>问题</p>
 <blockquote>
 <p><strong>将数据结构与问题描述的勾连能力</strong>是衡量算法能力的重要指标</p>
 </blockquote>
@@ -233,6 +233,7 @@
 <li>看到决策结果<strong>有分叉</strong>，用<strong>〔树形结构〕</strong></li>
 <li>若在推理过程中，产生了<strong>交汇</strong>，则用<strong>〔图结构〕</strong></li>
 </ul>
+<p>下面一节主要分析这条树形结构链</p>
 <h3 id="树形结构"><a href="#树形结构" class="headerlink" title="树形结构"></a>树形结构</h3><p>假设第一个鸡蛋的楼层策略是 $k_1, k_2,\cdots,k_p$ ，其中 $p$ 是<code>仍的总次数</code>，楼高记为 $N$ 。比如如果你选择在 $20,40,60,80$ 层仍，那么 $p=4$ ，根据题意，有 $1 \lt k_1 \lt k_2 \lt \cdots \lt k_{p-1} \lt k_p =N$ 。画出树形示意图，如下图所示</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="700"></div>
 
@@ -426,7 +427,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-22T17:17:48.234Z" itemprop="dateUpdated">2018-10-22 10:17:48</time>
+    Last updated: <time datetime="2018-10-28T03:54:34.979Z" itemprop="dateUpdated">2018-10-27 20:54:34</time>
 </span><br>
 
 
