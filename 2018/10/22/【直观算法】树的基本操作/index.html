@@ -24,24 +24,24 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Tree,Optimization">
-    <meta name="description" content="【阅读时间】【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
-<meta name="keywords" content="Tree,Optimization">
+    <meta name="keywords" content="Optimization,Tree">
+    <meta name="description" content="【阅读时间】7 - 10 min | 4300字【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
+<meta name="keywords" content="Optimization,Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【直观算法】二叉树遍历算法总结">
 <meta property="og:url" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/index.html">
 <meta property="og:site_name" content="Go Further">
-<meta property="og:description" content="【阅读时间】【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
+<meta property="og:description" content="【阅读时间】7 - 10 min | 4300字【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Pre-Order.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/In-Order.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Post-Order.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Breadth-First.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Deep-First.png">
-<meta property="og:updated_time" content="2018-10-28T07:18:49.899Z">
+<meta property="og:updated_time" content="2018-10-30T21:45:52.172Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】二叉树遍历算法总结">
-<meta name="twitter:description" content="【阅读时间】【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
+<meta name="twitter:description" content="【阅读时间】7 - 10 min | 4300字【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头，让你永远忘不了这几个遍历算法">
 <meta name="twitter:image" content="https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/Pre-Order.png">
     
         <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
@@ -177,7 +177,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遍历算法总览"><span class="post-toc-number">1.</span> <span class="post-toc-text">遍历算法总览</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#先序遍历"><span class="post-toc-number">2.</span> <span class="post-toc-text">先序遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">迭代算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#中序遍历"><span class="post-toc-number">3.</span> <span class="post-toc-text">中序遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">迭代算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后续遍历"><span class="post-toc-number">4.</span> <span class="post-toc-text">后续遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-1"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">迭代算法 1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-2"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">迭代算法 2</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#广度遍历"><span class="post-toc-number">5.</span> <span class="post-toc-text">广度遍历</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#遍历算法总览"><span class="post-toc-number">1.</span> <span class="post-toc-text">遍历算法总览</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#先序遍历"><span class="post-toc-number">2.</span> <span class="post-toc-text">先序遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">迭代算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#中序遍历"><span class="post-toc-number">3.</span> <span class="post-toc-text">中序遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法-1"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-1"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">迭代算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#后续遍历"><span class="post-toc-number">4.</span> <span class="post-toc-text">后续遍历</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法-2"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-1"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">迭代算法 1</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-2"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">迭代算法 2</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#广度遍历"><span class="post-toc-number">5.</span> <span class="post-toc-text">广度遍历</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Brew作者被拒的题"><span class="post-toc-number">6.</span> <span class="post-toc-text">Brew作者被拒的题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#递归算法-3"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">递归算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#迭代算法-2"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">迭代算法</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a></li></ol>
         </nav>
     </aside>
 
@@ -203,7 +203,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>【阅读时间】<br>【阅读内容】结合应用场景，总结有关<strong>二叉树遍历</strong>的所有算法和对应Leetcode题目编号。基于<code>Python</code>代码，给出完整逻辑链。<strong>希望给读者一个线头，让你永远忘不了这几个遍历算法</strong></p>
+            <p>【阅读时间】7 - 10 min | 4300字<br>【阅读内容】结合应用场景，总结有关<strong>二叉树遍历</strong>的所有算法和对应Leetcode题目编号。基于<code>Python</code>代码，给出完整逻辑链。<strong>希望给读者一个线头，让你永远忘不了这几个遍历算法</strong></p>
 <a id="more"></a>
 <h1 id="遍历算法总览"><a href="#遍历算法总览" class="headerlink" title="遍历算法总览"></a>遍历算法总览</h1><p>遍历的含义就是把树的所有节点（Node）按照<strong>某种顺序</strong>访问一遍。包括<strong>前序</strong>，<strong>中序</strong>，<strong>后续</strong>，<strong>广度优先</strong>（队列），<strong>深度优先</strong>（栈）5中遍历方法</p>
 <table>
@@ -295,6 +295,12 @@
 <p>广度遍历的核心思路就是使用队列，即<code>先进先出 First-in First-out</code>，这里很关键的一点就是以<code>层</code>来作为入队和出队的判断条件。并且因为按照层的顺序，是<strong>从左到右</strong>，所以遍历顺序（入队顺序）为<code>左 ➜ 右</code></p>
 <p>基本思路参看代码注释，逻辑比较简单。实现上，使用<code>Python</code>中的自带类<code>deque</code>来实现，新建为<code>queue = deque([])</code>，入队为<code>queue.append()</code>，出队为<code>queue.popleft()</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">levelOrder</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: List[List[int]]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>: <span class="keyword">return</span> []</span><br><span class="line">        result, queue = [], deque([root])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> queue:</span><br><span class="line">            level_len = len(queue) <span class="comment"># 记录现在队列中的节点数量</span></span><br><span class="line">            level_nodes = [] <span class="comment"># 每层输出</span></span><br><span class="line">            <span class="keyword">while</span> level_len &gt; <span class="number">0</span>: <span class="comment"># 具体出队入队操作，保证本层所有节点的子节点都入队</span></span><br><span class="line">                cur_node = queue.popleft()</span><br><span class="line">                level_nodes.append(cur_node.val)</span><br><span class="line">                <span class="keyword">if</span> cur_node.left:</span><br><span class="line">                    queue.append(cur_node.left)</span><br><span class="line">                <span class="keyword">if</span> cur_node.right:</span><br><span class="line">                    queue.append(cur_node.right)</span><br><span class="line">                level_len -= <span class="number">1</span></span><br><span class="line">            result.append(level_nodes)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h1 id="Brew作者被拒的题"><a href="#Brew作者被拒的题" class="headerlink" title="Brew作者被拒的题"></a>Brew作者被拒的题</h1><p><a href="https://leetcode.com/problems/invert-binary-tree" target="_blank" rel="noopener">226. Invert Binary Tree</a>，就是一道基本的树的遍历题。有故事说<code>Mac</code>包管理工具<code>Brew</code>的作者<code>Max</code>在Google被面试这道题，没写出来，被拒了。之后<code>Max</code>去了Apple。个人感觉，对于遍历的理解，如果是真的根据<strong>逻辑链理解</strong>，且对<strong>递归有着深刻的理解</strong>，那实在不应该写不出这道题，因为真的很简单</p>
+<p>题目是这样说的，要求把一颗二叉树的所有左右子树互换位置</p>
+<h2 id="递归算法-3"><a href="#递归算法-3" class="headerlink" title="递归算法"></a>递归算法</h2><p>假设左右子树都搞定了，那么当前节点需要的操作为：把当前节点的左右孩子互换即可，写成递归非常简洁</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invertTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>: <span class="keyword">return</span> []</span><br><span class="line">        <span class="comment"># 在本节点的操作，左右孩子互换</span></span><br><span class="line">        root.left, root.right = root.right, root.left</span><br><span class="line">        <span class="comment"># 已经搞定的左右孩子，使用递归的思路写出函数表达式  </span></span><br><span class="line">        self.invertTree(root.right) <span class="comment"># 下面两句的顺序并不重要</span></span><br><span class="line">        self.invertTree(root.left)</span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
+<h2 id="迭代算法-2"><a href="#迭代算法-2" class="headerlink" title="迭代算法"></a>迭代算法</h2><p>因为对于每一个节点，只需要把它的左右孩子互换位置，并且依次遍历即可，使用<code>DFS</code>或<code>BFS</code>都是一样的，这里用使用栈的<strong>深度优先搜索</strong>举例</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">invertTree</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type root: TreeNode</span></span><br><span class="line"><span class="string">        :rtype: TreeNode</span></span><br><span class="line"><span class="string">        """</span>   </span><br><span class="line">        <span class="keyword">if</span> root <span class="keyword">is</span> <span class="keyword">None</span>: <span class="keyword">return</span> []</span><br><span class="line">        stack = [root]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> stack:</span><br><span class="line">            cur_node = stack.pop()</span><br><span class="line">            <span class="comment"># 对当前节点进行操作</span></span><br><span class="line">            cur_node.left, cur_node.right = cur_node.right, cur_node.left</span><br><span class="line">            <span class="comment"># 进行入栈操作，保证访问到每一个节点</span></span><br><span class="line">            <span class="keyword">if</span> cur_node.left: stack.append(cur_node.left)</span><br><span class="line">            <span class="keyword">if</span> cur_node.right: stack.append(cur_node.right)</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>二叉树遍历问题最关键的<strong>逻辑链记忆点</strong>如下</p>
 <ol>
 <li><p>遍历顺序</p>
@@ -317,7 +323,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-28T07:18:49.899Z" itemprop="dateUpdated">2018-10-28 00:18:49</time>
+    Last updated: <time datetime="2018-10-30T21:45:52.172Z" itemprop="dateUpdated">2018-10-30 14:45:52</time>
 </span><br>
 
 
@@ -363,7 +369,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】二叉树遍历算法总结》 — Go Further&source=【阅读时间】【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】二叉树遍历算法总结》 — Go Further&source=【阅读时间】7 - 10 min | 4300字【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -398,7 +404,14 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/28/【直观算法】二叉搜索树算法总结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观算法】二叉搜索树算法总结</h4>
+      </a>
+    </div>
   
 
   
@@ -527,7 +540,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】二叉树遍历算法总结》 — Go Further&source=【阅读时间】【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码，给出完整逻辑链。希望给读者一个线头..." data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/22/【直观算法】树的基本操作/&title=《【直观算法】二叉树遍历算法总结》 — Go Further&source=【阅读时间】7 - 10 min | 4300字【阅读内容】结合应用场景，总结有关二叉树遍历的所有算法和对应Leetcode题目编号。基于Python代码..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
