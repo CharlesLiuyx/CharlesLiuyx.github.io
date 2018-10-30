@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-30T21:45:52.171Z">
+<meta property="og:updated_time" content="2018-10-30T23:35:16.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -247,8 +247,8 @@
 <p>如果还是有些无法理解，此时，最好的方法就是<strong>看特例（举例子）</strong></p>
 <p>🌰 比如 $k_1 = 50$，意思是在<code>50层</code>扔下第一个鸡蛋</p>
 <ul>
-<li>如果<code>碎了</code>，那么接下来的尝试方法就是从第<code>1</code>层开始<strong>一个一个往上</strong>尝试，直到<code>49</code>层，所以我们的答案 $r = 50$ （不记得如何计算这个值可以参考<a href="#2.1 一个鸡蛋">一个鸡蛋</a>） </li>
-<li>如果<code>没碎</code>，那么第一个鸡蛋继续在 $k_2 = 75$ 层扔，假设还是<code>没碎</code>，继续从 $k_3 = 90$ 层的地方扔下，此时碎了，那么第二课鸡蛋就需要从<code>76</code>层开始，一层一层往上尝试直到<code>89</code>层，需要 $89-76+1=24$ 次，第一个鸡蛋已经扔了<code>3</code>次，最后得到<code>没碎</code>情况下的例子的答案 $r=27$ 次</li>
+<li>如果<code>碎了</code>，那么接下来的尝试方法就是从第<code>1</code>层开始<strong>一个一个往上</strong>尝试，直到<code>49</code>层，所以我们的答案 r = 50 （不记得如何计算这个值可以参考<a href="#2-1-一个鸡蛋">一个鸡蛋</a>） </li>
+<li>如果<code>没碎</code>，那么第一个鸡蛋继续在 k_2 = 75 层扔，假设还是<code>没碎</code>，继续从 k_3 = 90 层的地方扔下，此时碎了，那么第二课鸡蛋就需要从<code>76</code>层开始，一层一层往上尝试直到<code>89</code>层，需要 89-76+1=24 次，第一个鸡蛋已经扔了<code>3</code>次，最后得到<code>没碎</code>情况下的例子的答案 r=27 次</li>
 </ul>
 <blockquote>
 <p>在上面的例子中，$k_1=50,k_2=75, k_3=90$ 就是一个可选策略</p>
@@ -284,8 +284,8 @@ $$
 <p>根据上述推倒发现规律：要满足条件<strong>每颗子树的树高相等</strong>，$k_p$ 的表达式是一个<strong>递减等差数列</strong>，最终必须在第 $N$ 层尝试（最后一次尝试走 $N - k_p$ 步，必须覆盖最后一层 $N$） 。即<strong>在最小可分割的整数等差递减数列中</strong>，令 $k_p \sim N$ （趋近于），前半句加粗的话翻译成公式为</p>
 <p>$$<br>k_1 + (k_1-1) + (k_1-2) + \cdots + 1 \sim N \implies \frac{k_1(k_1 + 1)}{2} = N \tag{4}<br>$$</p>
 <p>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次<code>1</code>颗鸡蛋的<strong>尝试区间</strong>需包含第 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
-<p>有了 $k_1$ ，带回<a href="#2.2.3 最优解的情况证明">（2）式</a>，可以知道<strong>第一个鸡蛋</strong>的<strong>尝试楼层策略</strong>为 $14,27,39,50,60,69,77,84, 90,95,99$ </p>
-<p>使用这个策略，带回<a href="#2.1 一个鸡蛋">（1）式</a>，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可得 $r = 14$ </p>
+<p>有了 $k_1$ ，带回<a href="#2-2-3-最优解的情况证明">（2）式</a>，可以知道<strong>第一个鸡蛋</strong>的<strong>尝试楼层策略</strong>为 $14,27,39,50,60,69,77,84, 90,95,99$ </p>
+<p>使用这个策略，带回<a href="#2-1-一个鸡蛋">（1）式</a>，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可得 $r = 14$ </p>
 <p>如果楼高 $N=200$，可计算得 $r = k_1 = 20$，策略为：第一次从<code>20</code>层开始尝试，没多一次尝试递减<code>1</code> </p>
 <p>⭐️ 到此为止，<code>2</code>个鸡蛋问题解决：找到了一个明确的函数，利用<code>抽象思维</code>，写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求方程 $\frac{x(x+1)}{2} = N$ 解 $x$ 的上整数 $\lceil x \rceil$</p>
 <h1 id="3-问题拓展"><a href="#3-问题拓展" class="headerlink" title="3. 问题拓展"></a>3. 问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>H</code>层楼<code>M</code>个鸡蛋的问题呢？Leetcode有这道题：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">887. Super Egg Drop</a></p>
@@ -294,7 +294,7 @@ $$
 <p>如果说你通过观察题目，快速确定此题<strong>可用动态规划求解</strong>，这种能力是<strong>熟练能力</strong>，类似于弹钢琴的熟能生巧，背书的死记硬背。与之相对的，即<strong>分析能力</strong>。很有趣的是，这两种能力的分野十分明显，即<strong>高效和求知</strong></p>
 <p>如果你需要<strong>快速通过面试</strong>，拿到工作或<strong>通过考试</strong>，那大量做题才是最短路径，可学习的目的不止是谋生，还有一种<strong>更高级的快乐</strong>来自于<strong>钻研本身</strong>，心理学管这种快乐为<strong>心流</strong></p>
 </blockquote>
-<p>回到问题，总结一下，通过<a href="#2. 解题思路">上面的解答</a>我们有了什么一些什么<strong>直观的结论</strong></p>
+<p>回到问题，总结一下，通过<a href="#2-解题思路">上面的解答</a>我们有了什么一些什么<strong>直观的结论</strong></p>
 <p>① <code>1</code>个和<code>2</code>个鸡蛋的问题已经解决</p>
 <p>② 理解了<strong>最大值的最小值</strong>在本题中的含义</p>
 <p>③ 答案的值只和<strong>楼层高度</strong>有关，和最低楼层与最高楼层无关</p>
@@ -314,7 +314,7 @@ $$
 <p>2️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>碎了</code>后的<strong>最少尝试步数</strong>：$f(k-1, m-1)$</p>
 <p>3️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>没碎</code>后的<strong>最少尝试步数</strong>：$f(h-k, m)$ </p>
 <p>那么，假设2️⃣3️⃣的表达式的<strong>答案已知</strong>，是否能用这二者<strong>推出</strong>1️⃣？如果上述逻辑链成立，就可以用<code>归纳思维</code>（数学归纳法）算出任意 $f(h, m)$ 。因为1️⃣只能从2️⃣3️⃣推出</p>
-<p>〔推倒 $a$〕考虑到2️⃣3️⃣是一种<strong>策略选择后的可能性</strong>，根据<a href="#2.1 一个鸡蛋">上面的分析</a>（最大值的最小值原理）两种策略中临界层 $x$ 可能在任何一层。遍历所有 $x$ 的情况时，最终尝试步数的结果是<strong>其中的最大值</strong>，所以选择2️⃣3️⃣中<strong>值更大的那个</strong></p>
+<p>〔推倒 $a$〕考虑到2️⃣3️⃣是一种<strong>策略选择后的可能性</strong>，根据<a href="#2-1-一个鸡蛋">上面的分析</a>（最大值的最小值原理）两种策略中临界层 $x$ 可能在任何一层。遍历所有 $x$ 的情况时，最终尝试步数的结果是<strong>其中的最大值</strong>，所以选择2️⃣3️⃣中<strong>值更大的那个</strong></p>
 <p>〔推倒 $b$〕1️⃣需要仍一次鸡蛋，尝试步数 $+1$</p>
 <p>〔推倒 $c$〕$k$ 是一个自变量，在这个情况下，可取到 $[1, h)$ 中的任意值，⭐️假设2️⃣3️⃣已知，只要在定义域内<strong>穷举</strong>出所有 $k$ 的可能值，并找出<strong>最大尝试步数中的最小值</strong>即可</p>
 <p>接下来就可以把这个逻辑链的用<strong>抽象化的公式</strong>表达出来<br>$$<br>f(h, m) = \underbrace{\min_{1 \leqslant k \leqslant h} {\overbrace{\overbrace{\max [f(k-1, m-1), f(h-k,m)]}^{a}+1}^{b}}}_{c}\tag{5}<br>$$</p>
@@ -323,7 +323,7 @@ $$
 <h3 id="3-2-2-边界条件"><a href="#3-2-2-边界条件" class="headerlink" title="3.2.2 边界条件"></a>3.2.2 边界条件</h3><p>$f(h, 1) = h$ ，当剩余鸡蛋数为<code>1</code>的时候，答案为现在的楼高</p>
 <p>$f(0, m) = 0$ ，当楼高为<code>0</code>时，无法尝试，答案<strong>记为</strong><code>0</code> ，或者 $f(1,m) = 1$，表示楼高为<code>1</code>时，最小尝试次数为<code>1</code> </p>
 <h2 id="3-3-动态规划"><a href="#3-3-动态规划" class="headerlink" title="3.3 动态规划"></a>3.3 动态规划</h2><p>现在反过头来再看，计算机学科中，有一部分专门研究这类问题的工具，即<strong>动态规划</strong></p>
-<p>上面的<code>符号化描述</code>被称为<a href="#define_status">定义状态</a>，<code>构造逻辑链</code>被称为<a href="#3.2 构造逻辑链">构造状态转移方程</a>，而背后的工程思维是<code>拆分思维</code>、<code>抽象思维</code>和<code>归纳思维</code>。再究竟一些，动态规划是一类特殊的<code>图算法</code>。</p>
+<p>上面的<code>符号化描述</code>被称为<a href="#define_status">定义状态</a>，<code>构造逻辑链</code>被称为<a href="#3-2-构造逻辑链">构造状态转移方程</a>，而背后的工程思维是<code>拆分思维</code>、<code>抽象思维</code>和<code>归纳思维</code>。再究竟一些，动态规划是一类特殊的<code>图算法</code>。</p>
 <ul>
 <li>〔拆分思维〕<strong>拆分问题</strong>的能力。大问题化小问题，无后效性，当前状态与未来状态无关。</li>
 <li>〔抽象思维〕<strong>使用状态来描述问题</strong>的能力，或说用抽象符号或状态机来描述问题的能力</li>
@@ -361,7 +361,7 @@ $$
 <p>另外，<strong>观察和总结答案的分布规律</strong>也是非常重要的思考手段，你会发现，这简单的一句话说开去，是一个新的学科，名叫<strong>统计学</strong></p>
 </blockquote>
 <h2 id="4-5-单调性优化"><a href="#4-5-单调性优化" class="headerlink" title="4.5 单调性优化"></a>4.5 单调性优化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveBinarySearch</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f_cur = f_pre = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m_i <span class="keyword">in</span> range(<span class="number">2</span>, m + <span class="number">1</span>):</span><br><span class="line">            f_cur[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> h_j <span class="keyword">in</span> range(<span class="number">1</span>, h + <span class="number">1</span>):</span><br><span class="line">                f_cur[h_j] = <span class="number">1000000</span></span><br><span class="line">                start, stop = <span class="number">1</span>, h_j</span><br><span class="line">                <span class="comment"># 二分查找</span></span><br><span class="line">                <span class="keyword">while</span> start &lt;= stop:</span><br><span class="line">                    mid = (start + stop) // <span class="number">2</span></span><br><span class="line">                    <span class="keyword">if</span> f_pre[mid - <span class="number">1</span>] &gt; f_cur[h_j - mid]:</span><br><span class="line">                        <span class="keyword">if</span> f_pre[mid - <span class="number">1</span>] + <span class="number">1</span> &lt; f_cur[h_j]:</span><br><span class="line">                            f_cur[h_j] = f_pre[mid - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                        stop = mid - <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> f_pre[mid - <span class="number">1</span>] &lt; f_cur[ h_j - mid]:</span><br><span class="line">                        <span class="keyword">if</span> f_cur[h_j - mid] + <span class="number">1</span> &lt; f_cur[h_j]:</span><br><span class="line">                            f_cur[h_j] = f_cur[h_j - mid] + <span class="number">1</span></span><br><span class="line">                        start = mid + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        f_cur[h_j] = f_cur[h_j - mid] + <span class="number">1</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            f_pre = f_cur[:]</span><br><span class="line">        <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
-<p>🔄 结果的简单特性部分挖掘完了，继续观察上面的<strong>状态转移图</strong>，发现<strong>很多项是相等的</strong>，那么可不可以找到，在某种条件满足时，状态可以直接推出，而不用进行 $k$ 的<strong>遍历搜索</strong>？这个时候就需要从状态转移方程本身入手是挖掘其中的数学特性，<a href="#4.6 状态转移方程优化">这部分不是非常关键，较难，可直接跳过</a></p>
+<p>🔄 结果的简单特性部分挖掘完了，继续观察上面的<strong>状态转移图</strong>，发现<strong>很多项是相等的</strong>，那么可不可以找到，在某种条件满足时，状态可以直接推出，而不用进行 $k$ 的<strong>遍历搜索</strong>？这个时候就需要从状态转移方程本身入手是挖掘其中的数学特性，<a href="#4-6-状态转移方程优化">这部分不是非常关键，较难，可直接跳过</a></p>
 
 $$
 \begin{array}&
@@ -438,7 +438,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-30T21:45:52.171Z" itemprop="dateUpdated">2018-10-30 14:45:52</time>
+    Last updated: <time datetime="2018-10-30T23:35:16.178Z" itemprop="dateUpdated">2018-10-30 16:35:16</time>
 </span><br>
 
 
