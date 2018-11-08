@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/InData.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/Flow.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/LeNet-Model.png">
-<meta property="og:updated_time" content="2018-11-08T08:16:32.286Z">
+<meta property="og:updated_time" content="2018-11-08T08:17:40.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TensorSpace 一个3D神经网络可视化框架">
 <meta name="twitter:description" content="【阅读时间】文档介绍类文章【阅读内容】TensorSpace - 是一款3D模型可视化框架，支持多种模型，帮助你可视化层间输出，更直观的展示模型的输入输出，帮助理解模型结构，输出方法。Github">
@@ -216,7 +216,7 @@
 <p>但面向一般的<strong>计算机工程师</strong>和<strong>非技术类人才（市场，营销，产品）</strong>，一片空白，没有一个优秀的工具来帮助他们理解<span sytle="font-weight:bold; color: red">❓机器学习模型到底做了什么，能解决一个什么问题</span></p>
 <p>机器学习开发和工程使用并不是那么遥不可及，<code>TensorSpace</code>搭了个桥去链接<strong>实际问题</strong>和<strong>机器学习模型</strong></p>
 <h2 id="3D可视化的信息密度更高更直观"><a href="#3D可视化的信息密度更高更直观" class="headerlink" title="3D可视化的信息密度更高更直观"></a>3D可视化的信息密度更高更直观</h2><p>市面上常见的机器学习可视化框架都是<strong>基于图表</strong>（2d），这是由它们的<strong>应用领域</strong>（训练调试）决定的。但3D可视化<strong>不仅能同时表示层间信息，更能直观的展示模型结构</strong>，这一点是2D可视化不具备的。例如在何凯明大神的Mask-RCNN中：</p>
-<div align="center"><img src="//charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/Show.png" alt="" width="800"></div>
+<div align="center"><img src="//charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/Show.png" alt="" width="600"></div>
 
 <p>有这么一幅图来描述模型结构（当然很多模型类论文都会有这么一副图）而<code>TensoSpace</code>可以让用户使用浏览器方便的构建出一个可交互的神经网络3D结构。更进一步的，利用3D模型的表意能力特点，结合<a href="https://js.tensorflow.org/" target="_blank" rel="noopener">Tensorflow.js</a>，可在<strong>浏览器中进行模型预测</strong>（跑已经训练好的模型看输入输出分别是什么），帮助理解模型</p>
 <h2 id="【模型结构】黑盒子的真面目是什么？"><a href="#【模型结构】黑盒子的真面目是什么？" class="headerlink" title="【模型结构】黑盒子的真面目是什么？"></a>【模型结构】黑盒子的真面目是什么？</h2><p>模型就像是一个盛水的容器，而预训练模型就给这个容器装满了水，可以用来解决实际问题。<strong>搞明白一个模型的输入是什么，输出是什么，如何转化成我们可理解的数据结构格式</strong>（比如输出的是一个物体标识框的左上角左下角目标）就可以方便的理解某个模型具体做了什么</p>
@@ -224,9 +224,11 @@
 <p>如下图所示，模型层间的链接信息可通过直接鼠标悬停具体查看</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/ShowStruc.png" alt="" width="1000"></div>
 
+<p><br></p>
 <h2 id="【层间数据】神经网络的每一层都做了什么？"><a href="#【层间数据】神经网络的每一层都做了什么？" class="headerlink" title="【层间数据】神经网络的每一层都做了什么？"></a>【层间数据】神经网络的每一层都做了什么？</h2><p>3D模型不仅仅可以直观的展示出神经网络的结构特征（哪些层相连，每一层的数据和计算是从哪里来），结合<a href="https://js.tensorflow.org/" target="_blank" rel="noopener">Tensorflow.js</a>，可在<strong>浏览器中进行模型预测</strong>。由于我们已经有了模型结果，所有的层间数据直观可见，如下图所示</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/InData.png" alt="" width="1000"></div>
 
+<p><br></p>
 <h1 id="怎么建（How）"><a href="#怎么建（How）" class="headerlink" title="怎么建（How）"></a>怎么建（How）</h1><p>首先你需要有一个使用常用框架训练好的的<strong>预训练模型</strong>，常见的模型都是只有<strong>输入输出</strong>两个暴露给用户的接口。如果你想全面的<strong>展示层间数据</strong>，必须将模型转换成<strong>多输出的模型</strong>，过程详见<a href="https://tensorspace.org/html/docs/preIntro_zh.html" target="_blank" rel="noopener">此文档</a>。具体流程如下图所示：</p>
 <div align="center"><img src="//charlesliuyx.github.io/2018/09/28/TensorSpace-3D神经网络可视化框架/Flow.png" alt="" width="900"></div>
 
@@ -266,7 +268,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-11-08T08:16:32.286Z" itemprop="dateUpdated">2018-11-08 00:16:32</time>
+    Last updated: <time datetime="2018-11-08T08:17:40.961Z" itemprop="dateUpdated">2018-11-08 00:17:40</time>
 </span><br>
 
 
