@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
-<meta property="og:updated_time" content="2018-10-30T23:35:16.178Z">
+<meta property="og:updated_time" content="2018-11-26T22:33:32.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
 <meta name="twitter:description" content="【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
@@ -277,7 +277,7 @@ $$
 k_1 &= k_2 - k_1 + 1 &\implies &k_2 = 2k_1 - 1 = k_1 + (k_1 - 1) \\
 k_2 -k_1 +1 &= k_3-k_2 +2 &\implies &k_3 = 3k_1 -3 = k_1 + (k_1 -1) + (k_1 -2) \\
 \cdots \\
-k_{p-1} -k_{p-2} +p-2 &= k_{p}-k_{p-1}+ p &\implies &k_p = \underbrace{ k_1 + (k_1-1) + (k_1-2) + \cdots }_{p项}
+k_{p-1} -k_{p-2} +p-2 &= k_{p}-k_{p-1}+ p - 1 &\implies &k_p = \underbrace{ k_1 + (k_1-1) + (k_1-2) + \cdots }_{p项}
 \end{array} \tag{3}
 $$
 </p>
@@ -291,16 +291,16 @@ $$
 <h1 id="3-问题拓展"><a href="#3-问题拓展" class="headerlink" title="3. 问题拓展"></a>3. 问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>H</code>层楼<code>M</code>个鸡蛋的问题呢？Leetcode有这道题：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">887. Super Egg Drop</a></p>
 <blockquote>
 <p>刷题多的读者会<strong>快速反应出</strong>，这个问题是一道<strong>动态规划</strong>题，但在这里我还是想用一种<strong>推理的思维</strong>来尝试分析一遍，<strong>逻辑链上的关键锚点才是知识的精华</strong></p>
-<p>如果说你通过观察题目，快速确定此题<strong>可用动态规划求解</strong>，这种能力是<strong>熟练能力</strong>，类似于弹钢琴的熟能生巧，背书的死记硬背。与之相对的，即<strong>分析能力</strong>。很有趣的是，这两种能力的分野十分明显，即<strong>高效和求知</strong></p>
-<p>如果你需要<strong>快速通过面试</strong>，拿到工作或<strong>通过考试</strong>，那大量做题才是最短路径，可学习的目的不止是谋生，还有一种<strong>更高级的快乐</strong>来自于<strong>钻研本身</strong>，心理学管这种快乐为<strong>心流</strong></p>
+<p>如果你通过观察题目，快速确定此题<strong>可用动态规划求解</strong>，这种能力是<strong>熟练能力</strong>，类似弹钢琴的熟能生巧，背书的死记硬背。与之相对，即<strong>分析能力</strong>。很有趣的是，这两种能力的分野十分明显，前者对应<strong>高效</strong>，后者对应<strong>求知</strong></p>
+<p>如果你需要<strong>快速通过面试</strong>，<strong>找工作</strong>或<strong>通过考试</strong>，那大量做题才是最短路径，可学习的目的不止是谋生，还有一种<strong>更高级的快乐</strong>来自于<strong>钻研本身</strong>，心理学管这种快乐为<strong>心流</strong></p>
 </blockquote>
 <p>回到问题，总结一下，通过<a href="#2-解题思路">上面的解答</a>我们有了什么一些什么<strong>直观的结论</strong></p>
 <p>① <code>1</code>个和<code>2</code>个鸡蛋的问题已经解决</p>
 <p>② 理解了<strong>最大值的最小值</strong>在本题中的含义</p>
 <p>③ 答案的值只和<strong>楼层高度</strong>有关，和最低楼层与最高楼层无关</p>
-<p>以这三个结论为基石，想一想这道更加一般化的问题怎么解决</p>
+<p>以这三个结论为基石，想一想这道更一般化的问题怎么解决</p>
 <h2 id="3-1-符号化描述"><a href="#3-1-符号化描述" class="headerlink" title="3.1 符号化描述"></a>3.1 符号化描述</h2><p>首先，最容易想到的思考链条来自一个设问：❓我们能不能尝试把<strong>鸡蛋的数量减少</strong>？即不断的往<code>2</code>个鸡蛋的问题上靠拢？有一个很简单的办法，就是<strong>扔</strong> ➜ 扔碎一个，鸡蛋数量就减少一个</p>
-<p>照0这个思路，进行一个<strong>抽象推演</strong>：假设在某一个时刻，我们拥有 $m$ 个鸡蛋，需要实验的层高为 $h$ （h for height），此刻在 $k \in [1, h]$ 层楼扔下一个鸡蛋</p>
+<p>照这个思路，进行一个<strong>抽象推演</strong>：假设在某一个时刻，我们拥有 $m$ 个鸡蛋，需要实验的层高为 $h$ （h for height），此刻在 $k \in [1, h]$ 层楼扔下一个鸡蛋</p>
 <h3 id="〔情况-1〕-碎了"><a href="#〔情况-1〕-碎了" class="headerlink" title="〔情况 1〕 碎了"></a>〔情况 1〕 碎了</h3><p>假设我们已经知道 $1$ 到 $k-1$ 层楼<strong>最优解的值</strong>，❓ 那怎么用<strong>一个函数</strong>来表示这个值呢？首先看我们需要的自变量有哪些</p>
 <ul>
 <li>1）此时<strong>剩下的鸡蛋数</strong>，这个非常明显，符号化记为 $m$ 个鸡蛋</li>
@@ -313,7 +313,7 @@ $$
 <p>1️⃣ 楼高为 $h$ ，剩下 $m$ 个鸡蛋时的<strong>最少尝试步数</strong>：$f(h, m)$ </p>
 <p>2️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>碎了</code>后的<strong>最少尝试步数</strong>：$f(k-1, m-1)$</p>
 <p>3️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>没碎</code>后的<strong>最少尝试步数</strong>：$f(h-k, m)$ </p>
-<p>那么，假设2️⃣3️⃣的表达式的<strong>答案已知</strong>，是否能用这二者<strong>推出</strong>1️⃣？如果上述逻辑链成立，就可以用<code>归纳思维</code>（数学归纳法）算出任意 $f(h, m)$ 。因为1️⃣只能从2️⃣3️⃣推出</p>
+<p>那么，假设2️⃣3️⃣的表达式的<strong>答案已知</strong>，是否能用这二者<strong>推出</strong>1️⃣？如果上述逻辑链成立，就可以用<code>归纳思维</code>（数学归纳法）算出任意 $f(h, m)​$ 。因为1️⃣只能从2️⃣3️⃣推出</p>
 <p>〔推倒 $a$〕考虑到2️⃣3️⃣是一种<strong>策略选择后的可能性</strong>，根据<a href="#2-1-一个鸡蛋">上面的分析</a>（最大值的最小值原理）两种策略中临界层 $x$ 可能在任何一层。遍历所有 $x$ 的情况时，最终尝试步数的结果是<strong>其中的最大值</strong>，所以选择2️⃣3️⃣中<strong>值更大的那个</strong></p>
 <p>〔推倒 $b$〕1️⃣需要仍一次鸡蛋，尝试步数 $+1$</p>
 <p>〔推倒 $c$〕$k$ 是一个自变量，在这个情况下，可取到 $[1, h)$ 中的任意值，⭐️假设2️⃣3️⃣已知，只要在定义域内<strong>穷举</strong>出所有 $k$ 的可能值，并找出<strong>最大尝试步数中的最小值</strong>即可</p>
@@ -329,7 +329,7 @@ $$
 <li>〔抽象思维〕<strong>使用状态来描述问题</strong>的能力，或说用抽象符号或状态机来描述问题的能力</li>
 <li>〔归纳思维〕数学归纳法，<strong>逻辑推导</strong>能力。由 $\lt i$ 的所有状态推倒出 $i$ 时刻状态的能力</li>
 </ul>
-<p>之所以要研究这类问题和<strong>计算机本身是一个巨大的状态机</strong>有关。动态规划提供了一套<strong>工具</strong>和<strong>思维框架</strong>去优化问题，找到最优解。<strong>思维框架和优化方法</strong>才是最厉害最有价值的，后面优化部分详解你就能直观的体会到这一点。</p>
+<p>之所以要研究这类问题和<strong>计算机本身是一个巨大的状态机</strong>有关。动态规划提供了一套<strong>工具</strong>和<strong>思维框架</strong>去优化问题，找到最优解。<strong>思维框架和优化方法</strong>才是最厉害最有价值的，看到后面优化部分的详解你就能直观的体会到这点。</p>
 <h1 id="4-实现优化和分析"><a href="#4-实现优化和分析" class="headerlink" title="4. 实现优化和分析"></a>4. 实现优化和分析</h1><p>这部分，通过一步一步<strong>剖析优化思路</strong>，和对应的代码实现（使用<code>python</code>，所有代码可在Leetcode题目中AC），希望能直观的说明一个问题，<code>❓ 到底高级程序员和一般的码农程序员区分在哪里？</code></p>
 <p>每个人都有自己擅长的领域，管理大师<strong>吉姆·柯林斯</strong>的第一本畅销书《基业长青》，书内研究了18家企业成功的秘密。</p>
 <p>后来，他又出了一本书《从平庸到伟大》，对这个变化的界定是非常严格的。<code>平庸</code>意味着这家公司的业绩低于市场的平均水准，<code>变得伟大</code>意味着业绩保持在平均水准的3倍以上，并持续至少15年。他研究了1435家公司，只找到了11家</p>
@@ -339,7 +339,7 @@ $$
 <p>下面即将<strong>剖析的优化过程</strong>完美的阐述了作为一个<code>伟大</code>的程序员需要什么样的<strong>基础能力</strong>（至少在算法优化这个小领域），这需要<strong>长时间的训练和极强的天赋</strong>。如果你感觉想出这些解答很吃力，相对应的，你又想<strong>这辈子有所作为</strong>，<strong>追逐伟大</strong>。那么应该尝试去找一条<strong>非程序员的路努力一生</strong>。毕竟，<strong>计算机思维，数据分析和机器学习未来会成为像数学一样的基础能力</strong>，无论在哪一行都<strong>对解决问题有极大的助益</strong></p>
 <h2 id="4-1-基础版"><a href="#4-1-基础版" class="headerlink" title="4.1 基础版"></a>4.1 基础版</h2><p>根据思路直接写出的最直观代码。如果对<a href="">递归</a>理解的深，容易读懂。用我能想到最直白的语言来描述就是：<strong>假设子状态的结果已知，现在需要做些什么操作，就能得到此状态的答案，并且把这个答案返回给函数</strong>（借鉴知乎回答的答案，加上了<code>lru_cache</code>装饰器用于优化）</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="comment"># python3的functools的一个自带函数, 可以对函数返回结果进行LRU cache, 下次以相同参数调用就不重复计算了</span></span><br><span class="line"><span class="comment"># maxsize=None 不限制大小, 其实就变成是全部都cache下来, 不考虑LRU了</span></span><br><span class="line"><span class="meta">@functools.lru_cache(maxsize=None) # 装饰器 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> m == <span class="number">1</span>: <span class="keyword">return</span> h</span><br><span class="line"></span><br><span class="line">    result = min ( [ max ( [ f( i - <span class="number">1</span>, m - <span class="number">1</span> ), f( h - i, m ) ] ) <span class="keyword">for</span> i <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ) ] ) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
-<p>🔄〔优化〕Recursive（递归）的写法虽然清晰明漂亮，但在工程上有调用函数的开销，系统栈深度限制等弊端，所以最好写成<strong>循环版本</strong>，否则在工作中可能返工</p>
+<p>🔄〔优化〕Recursive（递归）的写法虽然清晰明了，但在工程上有调用函数的开销，系统栈深度限制等弊端，所以最好写成<strong>循环版本</strong>，否则在工作中可能返工</p>
 <h2 id="4-2-循环版本"><a href="#4-2-循环版本" class="headerlink" title="4.2 循环版本"></a>4.2 循环版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    f = [ [ i <span class="keyword">for</span> i <span class="keyword">in</span> range(h+<span class="number">1</span>) ] <span class="keyword">for</span> j <span class="keyword">in</span> range(m+<span class="number">1</span>) ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m_i <span class="keyword">in</span> range( <span class="number">2</span>, m + <span class="number">1</span> ):</span><br><span class="line">        <span class="keyword">for</span> h_j <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range( <span class="number">1</span>, h_j ):</span><br><span class="line">                f[m_i][h_j]= min ( f[m_i][h_j], <span class="number">1</span> + max( f[m_i <span class="number">-1</span>][k - <span class="number">1</span>], f[m_i][h_j - k]) )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> f[m][h]</span><br></pre></td></tr></table></figure>
 <p>🔄〔优化〕分析一下时间复杂度和空间复杂度，时间复杂度为 $O(mh^2)$ ，空间复杂度为 $O(hn)$ ，很明显，空间上可以优化到 $O(h)$，原因是状态转移方程只和 $m$ 与 $m-1$ 有关，使用两个数组滚动即可</p>
 <h2 id="4-3-空间优化版本"><a href="#4-3-空间优化版本" class="headerlink" title="4.3 空间优化版本"></a>4.3 空间优化版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveSpace</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    f_pre = f_cur = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m_i <span class="keyword">in</span> range( <span class="number">2</span>, m + <span class="number">1</span> ):</span><br><span class="line">        <span class="keyword">for</span> h_j <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range ( <span class="number">1</span>, h_j ):</span><br><span class="line">                f_cur[h_j] = min ( f_cur[h_j], <span class="number">1</span> + max( f_pre[k - <span class="number">1</span>] , f_cur[h_j - k]) )</span><br><span class="line">        f_pre = f_cur[:]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
@@ -356,7 +356,8 @@ $$
  <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/f.png" alt="" width="1000"></div>
 
 <p>🔄 观察发现，有一个很重要的规律，即<strong>单调性</strong>，写成公式为 $f(m, h) \geqslant f(m, h-1)$ 当 $h \geqslant 1$ 。如果满足<strong>单调性</strong>，那么又可以在搜索时使用<strong>二分查找</strong>。先姑且不考虑<strong>如何证明单调性</strong>，工程上，在<strong>资源允许</strong>的情况下，先尝试，看看能不能得到<strong>正确结果</strong>（用正确算法和这个尝试算法进行验证）直到验证在很大的定义域内<strong>都正确</strong>，可大胆猜测这个<strong>猜测性质</strong>是对的（不严谨，但效率较高）</p>
-<p>通过这一层优化，体现出了<strong>理论和工程的分野</strong>，即你猜想出了一个优化方法，当然可以先直接尝试，<strong>不管这个猜测的条件是不是正确</strong>，总是心里不踏实的（可能出现<strong>特殊情况</strong>就让整个算法崩溃）此时，<strong>理论出山</strong>，用严谨的数学逻辑去证明这些结论，让算法具有完备性（本题单调性是正确的，证明过程参见参考文献）</p>
+<p>通过这一层优化，体现出了<strong>理论和工程的分野</strong>，即你猜想出了一个优化方法，当然可以先直接尝试，<strong>不管这个猜测的条件是不是正确</strong>。</p>
+<p>反过头来仔细一寻摸，总是心里不踏实（可能出现<strong>特殊情况</strong>就让整个算法崩溃）此时，<strong>理论出山</strong>，用严谨的数学逻辑去证明这些结论，让算法具有完备性（本题单调性是正确的，证明过程参见参考文献）</p>
 <blockquote>
 <p>另外，<strong>观察和总结答案的分布规律</strong>也是非常重要的思考手段，你会发现，这简单的一句话说开去，是一个新的学科，名叫<strong>统计学</strong></p>
 </blockquote>
@@ -402,12 +403,12 @@ $$
 
 <p>从形式上来说，不需要滚动数组，在转移过程中，使用一个 $g$ 函数即可。在最后输出的时候，只需要判断<code>g[m]</code>的情况输出 $i$  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gOptimization</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        g = [ <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m + <span class="number">1</span>) ]</span><br><span class="line">        g[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> g[m] &gt;= h: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> h == <span class="number">1</span>: <span class="keyword">return</span> h</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, h + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range( m, <span class="number">1</span>, <span class="number">-1</span>):</span><br><span class="line">                    g[j] = g[j - <span class="number">1</span>] + g[j] + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> j == m <span class="keyword">and</span> g[j] &gt;= h:</span><br><span class="line">                        <span class="keyword">return</span> i</span><br><span class="line">                g[<span class="number">1</span>] = i</span><br><span class="line">                <span class="keyword">if</span> m == <span class="number">1</span> <span class="keyword">and</span> g[<span class="number">1</span>] &gt;= h:</span><br><span class="line">                    <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
-<p>要分析时间复杂度，这个问题非常难，通过证明可以有一个结论（具体证明详见参考文献）$xM \leqslant H$ ，再通过一系列骚操作，可以证明时间复杂度为 $O(\sqrt{h})$，空间复杂度 $O(m)$ </p>
+<p>要分析时间复杂度，挺难的。通过证明可以有一个结论（具体证明详见参考文献）$xM \leqslant H$ ，再通过一系列骚操作，可以证明时间复杂度为 $O(\sqrt{h})$，空间复杂度 $O(m)$ </p>
 <p>至此，Leetcode上这道题目的执行时间<strong>打败了85.7%的答案</strong>（虽然Leetcode时间并不靠谱），做这道题的人不多，前面只有一个答案，思路类似，代码写的更漂亮</p>
-<h1 id="5-工程思维总结和感悟"><a href="#5-工程思维总结和感悟" class="headerlink" title="5. 工程思维总结和感悟"></a>5. 工程思维总结和感悟</h1><h2 id="5-1-工程思维"><a href="#5-1-工程思维" class="headerlink" title="5.1 工程思维"></a>5.1 工程思维</h2><p>⭐️ 这一部分是【直观算法】系列的最终目的。求同遵异，寻找每一道算法题背后的工程思维，提升自己真正解决工程问题的能力。博主对自己的定位是【机器学习+区块链产品经理】，但同时对技术也有好奇心，喜欢钻研，才开坑写【直观算法】系列</p>
+<h1 id="5-工程思维总结和感悟"><a href="#5-工程思维总结和感悟" class="headerlink" title="5. 工程思维总结和感悟"></a>5. 工程思维总结和感悟</h1><h2 id="5-1-工程思维"><a href="#5-1-工程思维" class="headerlink" title="5.1 工程思维"></a>5.1 工程思维</h2><p>⭐️ 这一部分是【直观算法】系列的最终目的。<strong>求同遵异</strong>，寻找每一道算法题背后的工程思维，提升自己真正解决工程问题的能力。博主对自己的定位是【机器学习+区块链产品经理】，但同时对技术也有好奇心，喜欢钻研，才开坑写【直观算法】系列</p>
 <h3 id="5-1-1-抽象思维"><a href="#5-1-1-抽象思维" class="headerlink" title="5.1.1 抽象思维"></a>5.1.1 抽象思维</h3><p>把语言描述转化为符号描述的能力，符号是信息和逻辑的纽带</p>
 <h3 id="5-1-2-等价思维"><a href="#5-1-2-等价思维" class="headerlink" title="5.1.2 等价思维"></a>5.1.2 等价思维</h3><p><strong>沟通的效率和信息的冗余度成正比</strong>，所以一个人能否把同一个概念，<strong>从不同的角度，用不同的案例类比，抑或各类精彩直观的比喻</strong>表达出来，这个能力很重要，它可以让人们更加<strong>准确快速的</strong>理解你想表达的意思</p>
-<p>⭐️ <strong>学习的真正本质</strong>：<strong>是在一个领域内不断的去建立这种沟通共识的框架</strong>。举个例子，学过线性代数的人，只要<strong>提到矩阵，就能想到变换</strong>。这就是都学过线性代数的人交流密码，如矩阵的逆 = 一个具体的反向变换。没学过这门课的人是无法和<strong>学过的人</strong>进行沟通的。这也从很大程度加强了人们沟通的效率，所以，<strong>学习带来的终极成效</strong>其实是降低了<strong>人类社会的沟通时间，提高了效率</strong></p>
+<p>⭐️ <strong>学习的真正本质</strong>：<strong>是在一个领域内不断的去建立这种沟通共识的框架</strong>。举个例子，学过线性代数的人，只要<strong>提到矩阵，就能想到变换</strong>。这就是都学过线性代数的人交流密码，如矩阵的逆 = 一个具体的反向变换。没学过这门课的人是无法和<strong>学过的人</strong>进行沟通的。这也从很大程度加强了人们沟通的效率，所以，<strong>学习带来的终极成效之一</strong>其实是降低了<strong>人类社会的沟通时间，提高了效率</strong></p>
 <p>再举个例子：机器学习中，提到<strong>正则化</strong>，必须建立一套与之相关的知识架构，包括，<strong>过拟合，最优化函数曲面空间理解，范数</strong>等，成<strong>树状结构</strong>继续推而广之，这每一个名词，背后也对应了一个<strong>更加直观，更加易懂的描述方式</strong>。但是我们需要知道，如果我为了表达正则化，为了让你明白我的意思，我需要用一大堆描述性语言，那我们两人的<strong>沟通效率就十分低下了</strong></p>
 <p>这也就是知识体系，一门学科，一门专业的最终含义，学习是为了<strong>构建这门学科的通识沟通框架</strong>，降低同行之间的沟通成本。当然，这有一个<strong>必要前提</strong>，把<strong>学习的目的</strong>理解<strong>降低沟通成本</strong>必须是你做的工作<strong>是规模化的</strong>，涉及<strong>协作</strong></p>
 <p>如果你是爱因斯坦，是能<strong>开拓学科新领域</strong>的<code>0</code>级工程师（来自于吴军老师谷歌方法论），独自想象钻研。那么，学习的本质可能在于给你更多的角度（认知能力），更多的工具（锤子锯子）去更好的<strong>探索这个世界的本质和规则</strong>，在这样的条件下，关于<strong>学习本质的描述</strong>就需要调整了</p>
@@ -422,10 +423,10 @@ $$
 <h2 id="5-2-工程应用"><a href="#5-2-工程应用" class="headerlink" title="5.2 工程应用"></a>5.2 工程应用</h2><p>到了这一步，基本压榨了本题所有的潜力。但是，下一个值得思考的问题就是，这道题目对应的算法在<strong>实际工程和解决问题的具体情况</strong>中有没有什么应用呢？答案是肯定的</p>
 <p>🌰 如果要找学科分类，鸡蛋难题属于<strong>运筹学问题</strong>，典型应用是破坏性试验，如测试汽车、飞机、火箭等的若干极限性能。举个例子，汽车保全乘客安全的最高碰撞末速，那么为了保证能找这个值，一定会用类似的思路来解决问题。</p>
 <p>你可能也已经发现，<strong>具体问题一定还是具体分析</strong>，但这道题目对应的工程思维更像是工具箱里面的一种<strong>更强大的工具。</strong></p>
-<p>记得罗辑思维中提过一个问题：为什么物理学领域老一辈的物理学家现在拿奖的人越来越少，其中一个重要的原因是他们<strong>熟悉的物理学工具</strong>没有新生一辈的能力强大的。不同于数学这类逻辑学科，物理学是可验证学科，实验，测量工具和理论工具等都必不可少</p>
+<p>记得罗辑思维中提过一个问题：为什么物理学领域老一辈的物理学家现在拿奖的人越来越少？其中一个重要的原因是他们<strong>熟悉的物理学工具</strong>没有新生一辈的能力强大的。不同于数学这类逻辑学科，物理学是可验证学科，实验，测量工具和理论工具等都必不可少</p>
 <p>博主笃定，算法<strong>80%是要为解决问题服务的</strong>，勾起人们学习的最佳动力就是<strong>举实际生活中遇到的难题是如何用这个算法解决</strong>。从这个侧面，有关<strong>字符串的算法</strong>就非常能勾起学习的兴趣，正是因为涉及到字符串处理的情景太多。</p>
 <p>关于鸡蛋难题，总的看下来，完美的诠释了直观 ➜ 抽象的思维链条。所有高效的，精简的算法，就是要<strong>找到事物或者逻辑发生的本质规律</strong>，如果不谈完备性的证明，用<strong>图表和直观的性质来描述</strong>，这道题目的优化思路并不难（相对的，完备性时间复杂度的证明才是难点）</p>
-<p>关于剩下的20%，此时又想起<a href="https://charlesliuyx.github.io/2018/09/20/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3/">黎曼猜想</a>，<strong>所有</strong>非平凡零点的有关性质。<code>趋向于无穷</code>、<code>所有</code>、<code>任意</code>这些定义方式是人类为了<strong>寻找边界</strong>而设计的工具。趋向于无穷大，趋向于无穷小都还有很多问题没有解决。罗胖说，创业者是在开垦商业的边疆，那么理论科学家就是拿着这些强大的工具开拓<strong>逻辑和思维的边疆</strong>，在一片荒芜上安营扎寨，仰望星空。这可能就是人类群体中<strong>最有魅力的事业</strong>吧？</p>
+<p>关于剩下的20%，此时又想起<a href="https://charlesliuyx.github.io/2018/09/20/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3/">黎曼猜想</a>，<strong>所有</strong>非平凡零点的有关性质。<code>趋向于无穷</code>、<code>所有</code>、<code>任意</code>这些定义方式是人类为了<strong>寻找边界</strong>而设计的工具。趋向于无穷大，趋向于无穷小都还有很多问题没有解决。罗胖说，创业者是在<strong>开垦商业的边疆</strong>，那么理论科学家就是拿着这些强大的工具开拓<strong>逻辑和思维的边疆</strong>，在一片荒芜上<strong>安营扎寨，仰望星空</strong>。这可能就是人类群体中<strong>最有魅力的事业</strong>吧？</p>
 <p>【参考文献】</p>
 <p>非常感谢计算机信息学奥赛国家队朱前辈的论文，对这道题目做了完美的剖析，也勾起了我的好奇心，一探究竟，才有了这篇<strong>万字长文</strong></p>
 <p><a href="https://www.zhihu.com/question/19690210/answer/18079633" target="_blank" rel="noopener">吴育昕的回答 - 知乎</a></p>
@@ -438,7 +439,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-10-30T23:35:16.178Z" itemprop="dateUpdated">2018-10-30 16:35:16</time>
+    Last updated: <time datetime="2018-11-26T22:33:32.687Z" itemprop="dateUpdated">2018-11-26 14:33:32</time>
 </span><br>
 
 
