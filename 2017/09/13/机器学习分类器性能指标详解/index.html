@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】机器学习分类器性能指标详解 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Machine Learning">
+    <meta name="description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+<meta name="keywords" content="Theory,Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】机器学习分类器性能指标详解">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/ROCfig.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/score-ranking.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png">
+<meta property="og:updated_time" content="2017-10-06T01:34:47.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】机器学习分类器性能指标详解">
+<meta name="twitter:description" content="【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Recall、F1值、ROC曲线、AUC曲线、误差 - Error、偏差 - Bias、方差 - Variance及Bias-Variance Tradeoff">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】机器学习分类器性能指标详解</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】机器学习分类器性能指标详解</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-12T20:05:32.000Z" itemprop="datePublished" class="page-time">
+  2017-09-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#混淆矩阵-Confusion-Matrix"><span class="post-toc-number">1.</span> <span class="post-toc-text">混淆矩阵 - Confusion Matrix</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ROC-Curve"><span class="post-toc-number">2.</span> <span class="post-toc-text">ROC Curve</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是ROC曲线"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">什么是ROC曲线</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为什么使用ROC曲线"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">为什么使用ROC曲线</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#PRC-Curve"><span class="post-toc-number">3.</span> <span class="post-toc-text">PRC Curve</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#AUC-Value"><span class="post-toc-number">4.</span> <span class="post-toc-text">AUC Value</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Bias-Variance-Tradeoff"><span class="post-toc-number">5.</span> <span class="post-toc-text">Bias-Variance Tradeoff</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#三个名词表示了什么"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">三个名词表示了什么</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#推导过程"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">推导过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">6.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-机器学习分类器性能指标详解"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】机器学习分类器性能指标详解</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-13 04:05:32" datetime="2017-09-12T20:05:32.000Z"  itemprop="datePublished">2017-09-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】16 - 26 min<br>【内容简介】系统详解分类器性能指标，什么是<code>准确率 - Accuracy</code>、<code>精确率 - Precision</code>、<code>召回率 - Recall</code>、<code>F1值</code>、<code>ROC曲线</code>、<code>AUC曲线</code>、<code>误差 - Error</code>、<code>偏差 - Bias</code>、<code>方差 - Variance</code>及<code>Bias-Variance Tradeoff</code></p>
+<a id="more"></a>
+<p>在任何领域，评估（Evaluation）都是一项很重要的工作。在Machine Learning领域，定义了许多概念并有很多手段进行评估工作</p>
+<h1 id="混淆矩阵-Confusion-Matrix"><a href="#混淆矩阵-Confusion-Matrix" class="headerlink" title="混淆矩阵 - Confusion Matrix"></a>混淆矩阵 - Confusion Matrix</h1><p><strong>准确率</strong>定义：对于给定的测试数据集，分类器<strong>正确分类的样本数</strong>与<strong>总样本数</strong>的之比</p>
+<p>通过准确率，的确可以在一些场合，从某种意义上得到一个分类器是否有效，但它并不总是能有效的评价一个分类器的工作。一个例子，Google抓取了100个特殊页面，它的索引中有10000000页面。随机抽取一个页面，这是不是特殊页面呢？如果我们的分类器确定一个分类规则：“只要来一个页面就判断为【不是特殊页面】”，这么做的效率非常高，如果计算按照准确率的定义来计算的话，是(9,999,900/10,000,000) = 99.999%。虽然高，但是这不是我们并不是我们真正需要的值，就需要新的定义标准了</p>
+<p>对于一个二分类问题来说，将实例分为<strong>正类（Positive/+）</strong>或<strong>负类（Negative/-）</strong>，但在使用分类器进行分类时会有四种情况</p>
+<ul>
+<li>一个实例是正类，并被预测为正类，记为真正类（True Positive <strong>TP/T+</strong>）</li>
+<li>一个实例是正类，但被预测为负类，记为假负类（False Negative <strong>FN/F-</strong>）</li>
+<li>一个实例是负类，但被预测为正类，记为假正类（False Positive <strong>FP/F+</strong>）</li>
+<li>一个实例是负类，但被预测为负类，记为真负类（True Negative <strong>TN/F-</strong>）</li>
+</ul>
+<p><strong>TP和TN中的真表示分类正确，同理FN和FP表示分类错误的</strong></p>
+<p>为了全面的表达所有二分问题中的指标参数，下列矩阵叫做<strong>混淆矩阵 - Confusion Matrix</strong>，目的就是看懂它，搞清楚它，所有模型评价参数就很清晰了</p>
+
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewbox="0 5.5 96 48">
+ <title>DiagnosticTesting Diagram</title>
+ <desc>Relationships between various measures of diagnostic testing by CMG Lee. In the SVG image, hover over a block or relation to highlight it.</desc>
+ <style type="text/css">
+  #mainsvg         { font-family:Helvetica,Arial,sans-serif; font-size:6px; text-anchor:middle;
+                  stroke-linejoin:round; stroke-linecap:round; stroke-width:0.7; fill:none;
+                  stroke-opacity:1;    fill-opacity:1;    }
+  #mainsvg:hover   { stroke-opacity:0.25; fill-opacity:0.25; }
+  .active:hover { stroke-opacity:1;    fill-opacity:1;    }
+  text          { fill:#000000; cursor:default; }
+  .label        { stroke:none; fill:#000000 }
+  .op           { stroke-width:0.15; font-size:5px; font-weight:bold; }
+ </style>
+ <defs>
+  <rect id="box" x="-6" y="-1.3" width="12" height="2.6" stroke-width="2.8" stroke-opacity="1"/>
+  <g id="top"><path d="M  0, 0 q  0,-4  5,-4 h  30 q  5, 0   5, 4 m -20,  0 q  0,-4 -5,-4" stroke-dasharray="0.1,1"/><text class="op" x="8" y="-3" dy="0.7ex">+</text></g>
+  <g id="bottom1"><path d="M  0, 0 q  0, 4 -5, 4 h -50 q -5, 0  -5,-4 m  20,  0 q  0, 4  5, 4" stroke-dasharray="2,1"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="bottom2"><path d="M  0, 0 q  0, 5 -5, 5 h -69 q -5, 0  -5,-5 m  40,  0 q  0, 5  5, 5"/><text class="op" x="0" y="4.5" dy="0.7ex">&#247;</text></g>
+  <g id="bottom3"><path d="M  0, 0 q  0, 4 -5, 4 h -30 q -5, 0  -5,-4 m  20,  0 q  0, 4  5, 4"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="left"><path d="M  0, 0 q -9, 0 -9, 5 v  10 q  0, 5   9, 5 m   0,-10 q -9, 0 -9,-5" stroke-dasharray="0.1,1"/><text class="op" x="-8.5" y="1" dy="0.7ex">+</text></g>
+  <g id="right1"><path d="M  0, 0 q  9, 0  9,-5 v -20 q  0,-5  -9,-5 m   0, 10 q  9, 0  9, 5" stroke-dasharray="2,1"/><text class="op" x="8.5" y="-1" dy="0.7ex">&#247;</text></g>
+  <g id="right2"><path d="M  0, 0 q 10, 0 10,-5 v -30 q  0,-5 -10,-5 m   0, 20 q 10, 0 10, 5"/><text class="op" x="8.5" y="0" dy="0.7ex">&#247;</text></g>
+  <g id="acc"><path d="M  0, 0 q  0, 5 -5, 5 h -69 q -5, 0  -5,-5 m  22, 10 q  0,-5  5,-5
+                           M  0, 0 q  0, 5 -5, 5 h -17 q -5, 0  -5, 5 v       5 q  0, 1 -1, 1 h -5 q -4,0 -4,4"/><text class="op" x="2.5" y="4.5" dy="0.7ex">+,&#247;</text></g>
+  <g id="dor"><path d="M  0, 0 q  0, 4 -5, 4 h  -5 q -5, 0  -5,-4 m   0,  8 q  0,-4  5,-4" stroke-dasharray="4,1"/><text class="op" x="0" y="4" dy="0.7ex">&#247;</text></g>
+  <g id="f1"><path d="M  0, 0 q -10,0 -9,-4 v -22 q  0,-2  -2,-2
+                           M -9,-3 q -1,-1 -2,-1 h -43 q -5, 0  -5,-5" stroke-dasharray="0.1,1"/></g>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#999999"/>
+ <g id="mainsvg">
+  <g class="active" transform="translate(88,48)" stroke="#ddffdd"><use xlink:href="#f1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">F1 s.</text><title>F1 score = 2 / (1 / Recall + 1 / Precision)</title></g>
+  <g class="active" transform="translate(88,10)" stroke="#cceecc"><use xlink:href="#acc"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">ACC</text><title>Accuracy = (&#931; True positive + &#931; True negative) / &#931; Total population</title></g>
+  <g class="active" transform="translate(88,39)" stroke="#dddddd"><use xlink:href="#dor"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">DOR</text><title>Diagnostic odds ratio = Positive likelihood ratio / Negative likelihood ratio</title></g>
+  <g class="active" transform="translate(70,39)" stroke="#eeeeee"><use xlink:href="#bottom3"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">LR+</text><title>Positive likelihood ratio = True positive rate / False positive rate</title></g>
+  <g class="active" transform="translate(70,48)" stroke="#cccccc"><use xlink:href="#bottom3"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">LR&#8722;</text><title>Negative likelihood ratio = False negative rate / True negative rate</title></g>
+  <g class="active" transform="translate(88,20)" stroke="#cceeff"><use xlink:href="#bottom2"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">FDR</text><title>False discovery rate = &#931; False positive / &#931; Predicted condition positive</title></g>
+  <g class="active" transform="translate(70,20)" stroke="#ccffee"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">PPV</text><title>Positive predictive value, Precision = &#931; True positive / &#931; Predicted condition positive</title></g>
+  <g class="active" transform="translate(88,30)" stroke="#aaddcc"><use xlink:href="#bottom2"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">NPV</text><title>Negative predictive value = &#931; True negative / &#931; Predicted condition negative</title></g>
+  <g class="active" transform="translate(70,30)" stroke="#eeddee"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">FOR</text><title>False omission rate = &#931; False negative / &#931; Predicted condition negative</title></g>
+  <g class="active" transform="translate(30,39)" stroke="#eeffcc"><use xlink:href="#right1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">TPR</text><title>True positive rate, Recall, Sensitivity, probability of detection = &#931; True positive / &#931; Condition positive</title></g>
+  <g class="active" transform="translate(30,48)" stroke="#ffeecc"><use xlink:href="#right2"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">FNR</text><title>False negative rate, Miss rate = &#931; False negative / &#931; Condition positive</title></g>
+  <g class="active" transform="translate(50,39)" stroke="#eeddbb"><use xlink:href="#right1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">FPR</text><title>False positive rate, Fall-out, probability of false alarm = &#931; False positive / &#931; Condition negative</title></g>
+  <g class="active" transform="translate(50,48)" stroke="#ddeebb"><use xlink:href="#right2"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">TNR</text><title>True negative rate, Specificity = &#931; True negative / &#931; Condition negative</title></g>
+  <g class="active" transform="translate(70,10)" stroke="#eeeecc"><use xlink:href="#bottom1"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">prev.</text><title>Prevalence = &#931; Condition positive / &#931; Total population</title></g>
+  <g class="active" transform="translate(10,10)" stroke="#dddddd"><use xlink:href="#top"/><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.4ex">pop.</text><title>Total population = Condition positive + Condition negative
+ = Predicted condition positive + Predicted condition negative
+ 样本空间 = 正类 + 负类 = 预测结果正类 + 预测结果负类</title></g>
+
+  <g class="active" transform="translate(10,30)" stroke="#aadddd"><use xlink:href="#top"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">Pc&#8722;</text><title>Predicted condition negative = False negative + True negative</title></g>
+  <g class="active" transform="translate(10,20)" stroke="#ccffff"><use xlink:href="#top"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">Pc+</text><title>Predicted condition positive = True positive + False positive</title></g>
+  <g class="active" transform="translate(30,10)" stroke="#ffffcc"><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">C+</text><title>Condition positive = True positive + False negative</title></g>
+  <g class="active" transform="translate(50,10)" stroke="#ddddaa"><use xlink:href="#left"/><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">C&#8722;</text><title>Condition negative = False positive + True negative</title></g>
+  <g class="active" transform="translate(50,30)" stroke="#bbeebb"><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">T&#8722;</text><title>负类中预测正确的部分</title></g>
+  <g class="active" transform="translate(30,30)" stroke="#ffdddd"><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">F&#8722;</text><title>负类中预测错误的部分</title></g>
+  <g class="active" transform="translate(50,20)" stroke="#eedddd"><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">F+</text><title>正类中预测错误的部分</title></g>
+  <g class="active" transform="translate(30,20)" stroke="#ccffcc"><use xlink:href="#box"/><text class="label" x="0" y="0.5ex">T+</text><title>正类中预测正确的部分</title></g>
+ </g>
+</svg>
+
+
+<p>通过上面的的讨论已经有<code>T+:TP</code> <code>F+:FP</code> <code>T-:TN</code> <code>F-:FN</code> <code>C+:样本正类</code> <code>C-:样本负类</code> <code>Pc+:预测正类</code> <code>Pc-:预测负类</code> </p>
+<p>用样本中的正类和负类进行计算的定义</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">等价称呼</th>
+<th style="text-align:center">计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TPR</td>
+<td style="text-align:center">True Positive Rate</td>
+<td style="text-align:center">真正类率 <code>Recall</code> <code>Sensitivity</code></td>
+<td style="text-align:center">$ \frac {\sum T+}{\sum C+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FNR</td>
+<td style="text-align:center">False Negative Rate</td>
+<td style="text-align:center">假负类率<code>Miss rate</code> <code>Type rs  error</code></td>
+<td style="text-align:center">$ \frac {\sum F-}{\sum C+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FPR</td>
+<td style="text-align:center">False Positive Rate</td>
+<td style="text-align:center">假正类率<code>fall-out</code> <code>Type 1 error</code></td>
+<td style="text-align:center">$ \frac {\sum F+}{\sum C-}$</td>
+</tr>
+<tr>
+<td style="text-align:center">TNR</td>
+<td style="text-align:center">Tre Negative Rate</td>
+<td style="text-align:center">真负类率<code>Specificity</code></td>
+<td style="text-align:center">$ \frac {\sum T-}{\sum C-}$</td>
+</tr>
+</tbody>
+</table>
+<p>用预测结果的正类和负类进行计算的定义</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">等价称呼</th>
+<th style="text-align:center">计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PPV</td>
+<td style="text-align:center">Positive Predictive Value</td>
+<td style="text-align:center">正类预测率<code>Precision</code></td>
+<td style="text-align:center">$ \frac {\sum T+}{\sum Pc+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FOR</td>
+<td style="text-align:center">False Omission Rata</td>
+<td style="text-align:center">假错误率</td>
+<td style="text-align:center">$ \frac {\sum F-}{\sum Pc-}$</td>
+</tr>
+<tr>
+<td style="text-align:center">FDR</td>
+<td style="text-align:center">False Discovery Rate</td>
+<td style="text-align:center">假发现率</td>
+<td style="text-align:center">$ \frac {\sum F+}{\sum Pc+}$</td>
+</tr>
+<tr>
+<td style="text-align:center">NPV</td>
+<td style="text-align:center">Negative Predictive Value</td>
+<td style="text-align:center">负类预测率</td>
+<td style="text-align:center">$ \frac {\sum T-}{\sum Pc-}$</td>
+</tr>
+</tbody>
+</table>
+<p>其他定义概念</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">缩写</th>
+<th style="text-align:center">全称</th>
+<th style="text-align:center">等价称呼</th>
+<th style="text-align:center">计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ACC</td>
+<td style="text-align:center">Accuracy</td>
+<td style="text-align:center">准确率</td>
+<td style="text-align:center">$ \frac {\sum (T+) + \sum {T-}}{样本空间}$</td>
+</tr>
+<tr>
+<td style="text-align:center">LR+</td>
+<td style="text-align:center">Positive Likelihood Ratio</td>
+<td style="text-align:center">正类似然比</td>
+<td style="text-align:center">$ \frac {TPR}{FPR}$</td>
+</tr>
+<tr>
+<td style="text-align:center">LR-</td>
+<td style="text-align:center">Negative likelihood ratio</td>
+<td style="text-align:center">负类似然比</td>
+<td style="text-align:center">$ \frac {FNR}{TNR}$</td>
+</tr>
+<tr>
+<td style="text-align:center">DOR</td>
+<td style="text-align:center">Diagnostic odds ratio</td>
+<td style="text-align:center">诊断胜算比</td>
+<td style="text-align:center">$ \frac {LR+}{LR-}$</td>
+</tr>
+<tr>
+<td style="text-align:center">F1 score</td>
+<td style="text-align:center">$F_1$ test measure</td>
+<td style="text-align:center">F1值</td>
+<td style="text-align:center">$\frac{2}{\frac{1}{recall}+\frac{1}{precision}}$</td>
+</tr>
+<tr>
+<td style="text-align:center">MCC</td>
+<td style="text-align:center">Matthews Correlation coefficient</td>
+<td style="text-align:center">马修斯相关性系数</td>
+<td style="text-align:center">$\frac{TP \times TN - FP \times FN}{\sqrt {(TP + FP)(TP + FN)(TN + FP)(TN +FN)}}$</td>
+</tr>
+</tbody>
+</table>
+<p><code>LR+/-</code>指的是似然比，<strong>LR+ 越大表示模型对正类的分类越好，LR-越大表示模型对负类的分类效果越好</strong></p>
+<p><code>F1值</code>是精确值和召回率的调和均值，其实原公式是 $F_\beta = (1 + \beta^2)\frac{precision \times recall}{(\beta^2recall)+recall}$，这里的β表示：<strong>召回率的权重是准确率的β倍</strong>。即F值是一种精确率和召回率的综合指标，权重由β决定</p>
+<p><code>MCC</code>值在[-1,1]之间，靠近1表示完全预测正确，靠近-1表示完全悖论，0表示随机预测</p>
+<p>最终为了不那么麻烦，说人话，还是<strong>一图胜千言</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/Precisionrecall.png" alt="Precision - Recall" title="">
+                </div>
+                <div class="image-caption">Precision - Recall</div>
+            </figure>
+<p>图片详解：</p>
+<blockquote>
+<p>左边暗一些部分的点都是<strong>真正的正类</strong>，右边亮一些部分的点都是<strong>真正的负类</strong></p>
+<p>中间的一个圆圈就是我们的<strong>正类分类器</strong>：注意，这个<strong>圈是的预测结果都是正类</strong>，也就是说在这个分类器看来，它选择的这些元素都是它所认为的<strong>正类</strong>，对应的，当然是圈以外的部分，也就是<strong>预测结果是负类的部分</strong></p>
+<p>底下的Precision和Recall示意图也相当的直观，看一下就能明白</p>
+</blockquote>
+<h1 id="ROC-Curve"><a href="#ROC-Curve" class="headerlink" title="ROC Curve"></a>ROC Curve</h1><p>ROC - Receiver Operating Characteristic Curve，接受者操作特征曲线，ROC曲线</p>
+<p>这个曲线乍看下为啥名称那么奇怪呢，原来这个曲线最早是由二战中的电子工程师和雷达工程师发明的，用来侦测战场上的敌军飞机，舰艇等，是一种信号检测理论，还被应用到心理学领域做知觉检测。</p>
+<h2 id="什么是ROC曲线"><a href="#什么是ROC曲线" class="headerlink" title="什么是ROC曲线"></a>什么是ROC曲线</h2><p>ROC曲线和混淆矩阵息息相关，上一部分已经详细解释了相关内容，这里直接说明ROC曲线的横坐标和纵坐标分别是什么</p>
+<p>横坐标：FPR假正类率，纵坐标：TPR真正类率</p>
+<p>初看之下你不懂一个曲线表示的什么意思，那么看几个特征点或特殊曲线是一个非常好的方法。按照这种方法来分析ROC曲线：</p>
+<ul>
+<li>第一个点：(0,1)，<code>FPR=0</code> <code>TPR=1</code> ，这意味着所有的正类全部分类正确，或者说<strong>这是一个完美的分类器</strong>，将所有的样本都分类正确了</li>
+<li>第二个点：(1,0)， <code>FPR=1</code> <code>TPR=0</code> ，和第一个点比较，这是第一个点的完全反面，意味着是个<strong>最糟糕的分类器</strong>，将所有的样本都分类错误了（但其实可以直接取反，就是最好的模型，因为是二分类问题）</li>
+<li>第三个点：(0,0)，<code>FPR=0</code> <code>TPR=0</code> 也就是原点，这个点表示的意思是，<strong>分类器预测所有的样本都为负类</strong></li>
+<li>第四个点：(1,1)，<code>FPR=1</code> <code>TPR=1</code>，和第三个点对应，表示<strong>分类器预测所有的样本都为正类</strong></li>
+<li>一条线：y=x。这<strong>条对角线上的点</strong>实际上就是一个<strong>采用随机猜测策略的分类器的结果</strong></li>
+</ul>
+<p>总结来说，ROC曲线的面积越大，模型的效果越好；ROC曲线光滑以为着Overfitting越少</p>
+<p>还是一图胜千言</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/ROCfig.png" alt="ROC曲线解释" title="">
+                </div>
+                <div class="image-caption">ROC曲线解释</div>
+            </figure>
+<p>$TPR = \frac{TP}{TP+FN}$ $FPR = \frac{FP}{FP+TN}$ 蓝色图像是正类分类器的概率分布，红色图像负类分类器的概率分布，竖直的黑线是阈值（Threshold），<strong>二分类分类器的输出就是一个取值在[0,1]间的值（概率）</strong>，我们将黑线从0移动到1，就能得出一条曲线，这条线就是ROC曲线</p>
+<p>如果问这个<strong>分类器画成的图像为</strong>何是一个类似帽子的形状，例子是最佳的说明方法，我们就来算一个ROC曲线看看，下图是20个测试样本的结果，“Class”一栏表示每个测试样本真正的标签（p表示正类，n表示负类），“Score”表示每个测试样本属于正样本的概率，Inst#是序号数</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/score-ranking.png" alt="example-data" title="">
+                </div>
+                <div class="image-caption">example-data</div>
+            </figure>
+<p>接下来，我们从高到低，<strong>依次将“Score”值作为阈值threshold</strong>，当测试样本属于正样本的概率大于或等于这个threshold时，我们认为它为正样本，否则为负样本。举例来说，对于图中的<strong>第4个样本</strong>，其“Score”值为0.6，那么样本1，2，3，4都被认为是正样本，因为它们的“Score”值都大于等于0.6，而其他样本则都认为是负样本。<strong>每次选取一个不同的threshold，我们就可以得到一组FPR和TPR，即ROC曲线上的一点。</strong>这样一来，我们一共得到了<strong>20组FPR和TPR的值（和你的测试样本的数量有关）</strong>，将它们画在ROC曲线的结果如下图：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-example.png" alt="example-roc-curve" title="">
+                </div>
+                <div class="image-caption">example-roc-curve</div>
+            </figure>
+<p>当然我们也可以曲很多个阈值画曲线，不一定非要从测试样本的结果中取20个</p>
+<h2 id="为什么使用ROC曲线"><a href="#为什么使用ROC曲线" class="headerlink" title="为什么使用ROC曲线"></a>为什么使用ROC曲线</h2><p>ROC曲线有一个很好的特性：当测试集中的<strong>正负样本的分布变化</strong>的时候，ROC曲线能够保持不变。在实际的数据集中经常会出现<strong>类不平衡（class imbalance）现象</strong>，即<strong>负样本比正样本多很多（或者相反）</strong>，而且<strong>测试数据中的正负样本的分布也可能随着时间变化</strong>。下图是ROC曲线和Precision-Recall曲线的对比：</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/roc-and-precall.png" alt="ROC-PrecisionRecall" title="">
+                </div>
+                <div class="image-caption">ROC-PrecisionRecall</div>
+            </figure>
+<p>在上图中，<strong>(a)和(c)为ROC曲线</strong>，<strong>(b)和(d)为Precision-Recall曲线</strong>。</p>
+<p>(a)和(b)展示的是<strong>分类其在原始测试集（正负样本分布平衡）的结果</strong>，(c)和(d)是将测试集中<strong>负样本的数量增加到原来的10倍后</strong>，分类器的结果。可以明显的看出，<strong>ROC曲线基本保持原貌，而Precision-Recall曲线则变化较大</strong>，记住这个结论即可</p>
+<h1 id="PRC-Curve"><a href="#PRC-Curve" class="headerlink" title="PRC Curve"></a>PRC Curve</h1><p>在上面提到了一个指标，PRC - Precision-Recall 曲线，画法和ROC很相似，但是使用值是Precision和Recall</p>
+<h1 id="AUC-Value"><a href="#AUC-Value" class="headerlink" title="AUC Value"></a>AUC Value</h1><p>AUC - Area Under Curve被定义为ROC曲线下的面积</p>
+<p>AUC在[0.5,1]之间，这是因为ROC曲线一般都处于y=x这条直线的上方（否则这个做分类器的人连简单的取非都不会真可以去死了）</p>
+<p>AUC值越大，证明这个模型越好</p>
+<h1 id="Bias-Variance-Tradeoff"><a href="#Bias-Variance-Tradeoff" class="headerlink" title="Bias-Variance Tradeoff"></a>Bias-Variance Tradeoff</h1><p>三个名词，<code>Error误差</code> <code>Bisa偏差</code> <code>Variance方差</code></p>
+<h2 id="三个名词表示了什么"><a href="#三个名词表示了什么" class="headerlink" title="三个名词表示了什么"></a>三个名词表示了什么</h2><p>再来一次，一图胜千言</p>
+<div align="center"><br><br><img src="//charlesliuyx.github.io/2017/09/12/机器学习分类器性能指标详解/BV-Tradeoff.png" alt="Bias-Variance-Tradeoff" width="450px"><br><br></div>
+
+<ul>
+<li><strong>准</strong>：Bias 描述的是<strong>根据样本</strong>训练的模型的<strong>输出预测结果的期望</strong>与<strong>样本真实结果</strong>的差距，说人话，这个模型对样本拟合的好不好。想在Bias上表现好，降低Bias，就是复杂化模型，增加模型的参数，但这样容易过拟合（Overfitting）<strong>Low Bias对应的就是点都在靶心附近，所以瞄的都是准的，但手不一定稳</strong></li>
+<li><strong>确</strong>：Variance 描述的是<strong>根据样本</strong>训练的模型在<strong>测试集上的表现（泛化能力） </strong>，想在Variance上表现好，降低Variance，需要简化模型，减少模型的参数，这样做容易欠拟合，对应上图的High Bias，点偏离的中心。<strong>Low Variance对应的是点打的都很集中，但不一定在靶心附近，手很稳，但是瞄的不准</strong></li>
+</ul>
+<p>要准确表达这两个定义的含义必须要使用公式化的语言，不得不感叹，<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
+<p>我们假设有这样的一个函数，$y=f(x) + \epsilon$ ，其中噪声 $\epsilon$ 均值为0，<strong>方差为 $\sigma^2$</strong> </p>
+<p>我们的目的是去找到一个函数 $\hat {f}(x)$ <strong>尽可能接近</strong> $f(x)$ ，我们可以用<strong>均方误差（MSE）或者交叉熵，或者DL散度</strong>来表示这个接近程度，我们希望 $(y - \hat f(x) )^2$ 对样本空间内的所有样本和测试集中的所有样本都<strong>最小</strong></p>
+<p>机器学习核心就是用各种不同的算法去找这个 $\hat f$，希望最小，那就使用一个公式来表征这个值得大小，<strong>即期望，<font color="#FF0000">也称Total Error（误差），在机器学习的训练中，这个值是评判模型好坏最重要：</font></strong><br>$$<br>E[(y - \hat f(x))^2] = Bias[\hat f(x)]^2 + Var[\hat f(x)] + \sigma^2<br>$$</p>
+<p>其中 $Bias[\hat f(x)] = E[\hat f(x) - f(x)]$，且 $Var[\hat f(x)] = E[\hat f(x)^2] - E[\hat f(x)]^2$</p>
+<p><code>Bias-Variance Tradeoff</code>作为机器学习一个核心训练的观点或者说概念，<strong>推导觉得还是十分重要</strong>，整理如下</p>
+<h2 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h2><p>为了公式简介，把 $f(x)$ 与 $\hat f(x)$ 简写为 $f$ 与 $\hat f$ ，记随机变量为 $X$，有<br>$$<br>Var[X] = E[X^2] - E[X]^2 \implies E[X^2] = Var[X] + E[X]^2<br>$$</p>
+<p>因为 $f$ 是一个已经确定的函数，所以 $E[f] = f$ 成立 </p>
+<p>根据 $y = f + \epsilon$ 和 $E[\epsilon] = 0$ 有<br>$$<br>E[y] = E[f + \epsilon] = E[f] = f<br>$$<br>噪声的方差 $ Var[\epsilon] = \sigma^2$<br>
+$$
+Var[y] = E[(y-E[y])^2] = E[(y - f)^2] = E[(f + \epsilon - f)^2] = E[\epsilon^2] = Var[\epsilon] + E[\epsilon]^2 = \sigma^2
+$$
+由于 $\epsilon$ 和 $\hat f$ 互相独立
+$$
+\begin{align}
+E[(y - \hat f)^2] & = E[y^2 + \hat f^2 - 2y\hat f] \\ 
+& = E[y^2] + E[\hat f^2] - E[2y\hat f] \\
+& = Var[y] + E[y]^2 + Var[\hat f] + E[\hat f]^2 - 2fE[\hat f] \\
+& = Var[y] + Var[\hat f] + (f^2 - 2fE[\hat f] + E[\hat f]^2) \\
+& = Var[y] + Var[\hat f] + (f - E[\hat f])^2 \\
+& = \sigma^2 + Var[\hat f] + Bias[\hat f]^2
+\end{align}
+$$
+</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>感觉在实际使用中，你不需要去自己写代码来画这些曲线，只要是框架是一定整合了这些值得结果，但是知其然知其所以然，越了解它是如何画的，越能<strong>处理奇怪的特殊情况</strong></p>
+<p>常见的处理方式是记下来所有指标的结果，即这些指标怎么变，表示了模型的那些方面好或者坏的结论，但是如果在特殊的问题出现了不在你看的结果中的情况可能还是会捉襟见肘，还是脚踏实地，能看见更大的世界！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-10-06T01:34:47.217Z" itemprop="dateUpdated">2017-10-06 09:34:47</time>
+</span><br>
+
+
+        
+        <a href="/2017/09/13/机器学习分类器性能指标详解/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&title=《【直观详解】机器学习分类器性能指标详解》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&title=《【直观详解】机器学习分类器性能指标详解》 — Go Further&source=【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Re..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】机器学习分类器性能指标详解》 — Go Further&url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/19/Dota2伤害类型详解/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Dota2伤害类型详解</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/11/什么是信息熵、交叉熵和相对熵/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观详解】信息熵、交叉熵和相对熵</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '【直观详解】机器学习分类器性能指标详解',
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&title=《【直观详解】机器学习分类器性能指标详解》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&title=《【直观详解】机器学习分类器性能指标详解》 — Go Further&source=【阅读时间】16 - 26 min【内容简介】系统详解分类器性能指标，什么是准确率 - Accuracy、精确率 - Precision、召回率 - Re..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】机器学习分类器性能指标详解》 — Go Further&url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/13/机器学习分类器性能指标详解/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsUlEQVR42u3awY7rMAgF0P7/T3e2T+okvYDp9EknqyixEh8vDAI/HvH1fLn+fX51/zr+6u3rmOQ7xy48PDy88dSvGMm0qk/yt7354OHh4e3xrnbU+zH3u3ESBpKlzOeDh4eH9528fOr5EuRZMR4eHt7/yLt/Mt/WvyLu4eHh4QW8/NPVVDj5y32S/aFaCx4eHl7M6xUX/vZ+pb+Hh4eHN+6q56lt7xBAHgx6Fx4eHt4GL99w84T1fkzvCEL173h4eHjbvEmzPy9A9FpiEyQeHh7eBq+aEOfbfe+gQC+tL38ODw8P7xAv34jz59XWVN54i8bj4eHhLfAKg8btsWTkJPkerRkeHh7eoM9+v6FPChZJCt4LA4XwgIeHhzfm5Y38ZBLVowMbwenNyQg8PDy8Ma+6+fbCxqkkvrdweHh4eGd51ZJonl5XU/BJo+5ynnh4eHjLvF4Tq1qKzSeXh5w3xQg8PDy8o7wkAFQn2gsSeUG5fDQBDw8Pb5mXU/NSbz7FPFQUChZ4eHh4H+ElRdjeVHr/mgQPPDw8vLO85+2Vl1/z7+QhpBdgHr1p4eHh4cW8AwlrMSmflCfyEPJL3MPDw8Nb4yVbfL4E82bY/GABHh4e3jZvXsDtBZIkdS4n03h4eHhrvI3EN1m4PPDk4y/f4uHh4R3l9VLnZIufNMmqRwqiMi4eHh7eUV61BZUA8pJEtaBcWDg8PDy8j/CqBYteIWNewI3KH3h4eHhHec/ilRdzqwe5qg2zKL3Gw8PDW+D12vOH68dxsTi5b4YZPDw8vCKv154/VbCo/iX5Ph4eHt5neMlmXeX1vlyNXVFgwMPDw/syXq+VlSfNEzweHh7eN/Dycm1votUC8Zu/4OHh4a3xqi2rSQMsL+P2lhsPDw9vm1fNSyeJbxV8mIGHh4c35f0Aw5gNAX2jneMAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
