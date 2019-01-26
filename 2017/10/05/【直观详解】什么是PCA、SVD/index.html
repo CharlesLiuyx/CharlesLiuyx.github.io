@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】什么是PCA、SVD | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Machine Learning">
+    <meta name="description" content="【阅读时间】【内容简介】">
+<meta name="keywords" content="Theory,Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】什么是PCA、SVD">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】【内容简介】">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCA.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCAani.gif">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/SVD.svg">
+<meta property="og:updated_time" content="2017-10-17T17:43:59.682Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】什么是PCA、SVD">
+<meta name="twitter:description" content="【阅读时间】【内容简介】">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCA.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】什么是PCA、SVD</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】什么是PCA、SVD</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-05T10:31:12.000Z" itemprop="datePublished" class="page-time">
+  2017-10-05
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-PCA（主成分分析）"><span class="post-toc-number">1.</span> <span class="post-toc-text">What &amp; Why PCA（主成分分析）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#What-amp-Why-SVD（奇异值分解）"><span class="post-toc-number">2.</span> <span class="post-toc-text">What &amp; Why SVD（奇异值分解）</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-PCA"><span class="post-toc-number">3.</span> <span class="post-toc-text">How PCA</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【直观详解】什么是PCA、SVD"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】什么是PCA、SVD</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-05 18:31:12" datetime="2017-10-05T10:31:12.000Z"  itemprop="datePublished">2017-10-05</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】<br>【内容简介】</p>
+<a id="more"></a>
+<p>在说明一个解释型内容的过程中，我一直坚信，<strong>带有思考的重复的是获取的知识的唯一捷径</strong>，所以会加入很多括号的内容，即<strong>另一种说法（从不同角度或其他称呼等）</strong>，这样有助于理解。加粗的地方我也认为是比较重要的关键字或者逻辑推导，学习有一个途径就是划重点，做笔记。</p>
+<h1 id="What-amp-Why-PCA（主成分分析）"><a href="#What-amp-Why-PCA（主成分分析）" class="headerlink" title="What &amp; Why PCA（主成分分析）"></a>What &amp; Why PCA（主成分分析）</h1><p>PCA，Principal components analyses，主成分分析。广泛应用于降维，有损数据压缩，特征提取和数据可视化。也被称为<strong>Karhunen-Loeve变换</strong></p>
+<p>从<strong>降维的方法</strong>角度来看，有<strong>两种PCA的定义方式</strong>，这里需要有一个直观的理解：什么是变换（线性代数基础），想整理一下自己线性代数的可以移步我的另一篇文章：<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">【直观详解】线性代数的本质</a></p>
+<p>但是总的来说，PCA的核心目的是<strong>寻找一个方向（找到这个方向意味着二维中的点可以被压缩到一条直线上，即降维）</strong>，这个方向可以：</p>
+<ul>
+<li><strong>最大化</strong>正交投影后数据的方差（让数据在经过变换后<strong>更加分散</strong>）</li>
+</ul>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCA.png" alt="往低维度的投影直观表示图" width="500px"></div>
+
+<blockquote>
+<p>紫色的直线 $u_1$ 即是关于 ${x_1,x_2}$ 二维的正交投影的对应一维表示<br>PCA定义为使<strong>绿色点集的方差最小</strong>（方差是尽量让绿色所有点都<strong>聚在一坨</strong>）<br>其中的蓝线是原始数据集（红点）到<strong>低纬度的距离</strong>，这可以引出第二种定义方式</p>
+</blockquote>
+<ul>
+<li><strong>最小化</strong>投影造成的损失（下图中<strong>所有红线（投影造成的损失）</strong>加起来最小）</li>
+</ul>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/PCAani.gif" alt="投影造成的损失" title="">
+                </div>
+                <div class="image-caption">投影造成的损失</div>
+            </figure>
+<p>PCA 主成分分析主要目的是为了<strong>减少数据维数</strong>，其中Auto-encoder也是一种精巧的降维手段</p>
+<h1 id="What-amp-Why-SVD（奇异值分解）"><a href="#What-amp-Why-SVD（奇异值分解）" class="headerlink" title="What &amp; Why SVD（奇异值分解）"></a>What &amp; Why SVD（奇异值分解）</h1><p>SVD，Singular Value Decomposition，奇异值分解。最直观的解释如下图所示</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/SVD.svg" alt="往低维度的投影直观表示图" width="500px"></div>
+
+<p>我们知道，<strong>矩阵描述的是一种变换</strong>（如果对这个概念有疑惑的，欢迎移步我的博客笔记：<a href="https://charlesliuyx.github.io/2017/10/06/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E7%9A%84%E6%9C%AC%E8%B4%A8/">线性代数的本质</a>）奇异值分解是矩阵分解的其中一种。换句话说，从上图的圆<strong>变换</strong>为右边的椭圆，通过一个 $\mathbf M$ 矩阵就可以做到，但是，我们知道，非方阵是很不好处理的，<strong>我们希望，可以把 $\mathbf M$ 矩阵表示的变换，分解为其他几种变换的组合（注意，分解之后，被分解的分量包含 $\mathbf M$ 的信息，我们可以使用这些分量来进行操作），这几个变换我们希望是方阵，或者有特殊的性质。</strong></p>
+
+$$
+\mathbf M = \mathbf U \cdot \mathbf \Sigma \cdot \mathbf V^*
+$$
+
+<blockquote>
+<p>$\mathbf M$ 是一个<code>m×n</code>阶矩阵（输入为<code>n</code>维向量，输出为<code>m</code>维向量</p>
+<p>$\mathbf U$ 的列组成一套基向量，<code>m×m</code>阶矩阵，为$\mathbf M \mathbf M^*$ 的<strong>特征向量</strong></p>
+<p>$\mathbf \Sigma$ 对角矩阵，对角线上的值称为奇异值，可视为在输入与输出之间进行的标量的“伸缩尺度控制”。为 $\mathbf M \mathbf M^*$ 或 $\mathbf M^* \mathbf M$ 的非零<strong>特征值</strong>的平方根</p>
+<p>$\mathbf V^*$ 是 $\mathbf V$ 的共轭转置（实数域即 $\mathbf V^T$），<code>n×n</code>阶矩阵，$\mathbf V$ 的列组成一套基向量，为 $\mathbf M^* \mathbf M$ 的<strong>特征向量</strong></p>
+</blockquote>
+<p>这里我们发现这个 $\mathbf U$ 还有 $\mathbf V$ 都是<strong>方阵</strong>，恰好满足之前的需求</p>
+<p>且有 $\mathbf U \mathbf U^T = \mathbf I_n$ 同时 $\mathbf V \mathbf V^T = \mathbf I_m$ ，所以 $\mathbf U$ 和 $\mathbf V$ 是<strong>正交矩阵</strong>，而我们知道，正交矩阵对应的变换，就是<strong>旋转变换</strong></p>
+<p>对于 $\mathbf \Sigma$ 来说，我们知道特征值就是表示的度量伸缩程度的因子，即上图中的<strong>伸缩压缩程度</strong>（图中很直观的体现了这一点）</p>
+<p>总结，SVD就是把一个非方阵（压缩变换）分解为一个旋转➜伸缩压缩➜旋转三个变换（矩阵），如上图所示</p>
+<h1 id="How-PCA"><a href="#How-PCA" class="headerlink" title="How PCA"></a>How PCA</h1>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-10-17T17:43:59.682Z" itemprop="dateUpdated">2017-10-18 01:43:59</time>
+</span><br>
+
+
+        
+        <a href="/2017/10/05/【直观详解】什么是PCA、SVD/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&title=《【直观详解】什么是PCA、SVD》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&title=《【直观详解】什么是PCA、SVD》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】什么是PCA、SVD》 — Go Further&url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/06/【直观详解】线性代数的本质/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观详解】线性代数的本质</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/03/【直观详解】什么是正则化/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观详解】什么是正则化</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '【直观详解】什么是PCA、SVD',
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&title=《【直观详解】什么是PCA、SVD》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&title=《【直观详解】什么是PCA、SVD》 — Go Further&source=【阅读时间】【内容简介】" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】什么是PCA、SVD》 — Go Further&url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/05/【直观详解】什么是PCA、SVD/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3ay04DMQwFUP7/p4vECgla3WsnPKQzqwramZwsYo/tt7f4enxcnz9//svX7+R3yO/z+v6rCw8PD2+09GdXzktgCe/1r/I14+Hh4d3mJUd5cuomj8+f+HqLo+CBh4eH96u8U4A8QcfDw8P777zkMZtv5iQ8PDy8v8BLihFJ+TUpPeTBY5ay4+Hh4d3mzRpgv/v5en8PDw8Pb9RVz8sNm1ZZG3KKteHh4eFd4G1GAVp8XrbIW25RwMDDw8M7ykuO+NkAQV5EyBP3euPw8PDwLvDy5lN7NLeDBbNGV5S+4+Hh4V3g5WNVCSYfDoiO9bhsUb834OHh4Y14s1bTrJj7M+WMb5JpPDw8vAu8TfmgTXM3yXQdTvDw8PAu8FZ9s0Pl1zzMJBsdVVzw8PDw1rzNwZ0vPU/N22GsKPrh4eHhHeXlQwNtSt02tNptLQIYHh4e3iFe8rDZ0bxJjofvBF//i4eHh3eB1x7fsyO7LTdsChlFSo2Hh4d3iNf++FQAaAsN9dADHh4e3gVefhy3b/pJgCmGAMoyCh4eHt5Z3qlW/QyTh4o2NT8QtfDw8PBe8jYPbkvAbZE3+fvTz3h4eHjXeG1Jok2+8+JCuzV1fw8PDw/vKG/T1D+VWCclj3ysAQ8PD+8GL0+gZxuxAc+C0DfrwcPDw7vAa69TZdakQJwEiQMkPDw8vJLXDkXly22DR9t4S1aIh4eHd4+Xp8IHWlNxqp1Es+KNAQ8PD2/Ne5TXpvU1KyK0W/l0MgIPDw/vEK8tQCS32GzELKi04wV4eHh4e14eDHJYkii3Zdm2DYaHh4d3mzc7oHNGnhC3aTEeHh7e/+XtiwVJISMvXuDh4eH9BV7e1N905JJkOgfj4eHh3eNtml45sl3ogaYXHh4e3gXevQZYTp2FjbyphoeHh3eI9w7PVe9kl7V1GgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>

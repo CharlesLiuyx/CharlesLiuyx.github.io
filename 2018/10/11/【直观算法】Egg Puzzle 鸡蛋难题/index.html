@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观算法】Egg Puzzle 鸡蛋难题 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Optimization,DP">
+    <meta name="description" content="【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
+<meta name="keywords" content="Optimization,DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
+<meta property="og:url" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/Tree.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/Tree.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/FullTree.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/f.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/g.png">
+<meta property="og:updated_time" content="2018-11-26T22:33:32.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观算法】Egg Puzzle 鸡蛋难题">
+<meta name="twitter:description" content="【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg%20Puzzle%20鸡蛋难题/Tree.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观算法】Egg Puzzle 鸡蛋难题</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观算法】Egg Puzzle 鸡蛋难题</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-10-11T14:39:43.000Z" itemprop="datePublished" class="page-time">
+  2018-10-11
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Algorithm/">Algorithm</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-题目描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 题目描述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-1-求什么？"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1.1 求什么？</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-解题思路"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 解题思路</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-一个鸡蛋"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 一个鸡蛋</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-2-两个鸡蛋"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.2 两个鸡蛋</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-1-粗调和细调"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">2.2.1 粗调和细调</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-2-树形结构"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">2.2.2 树形结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-2-3-最优解的情况证明"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">2.2.3 最优解的情况证明</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-问题拓展"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 问题拓展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-符号化描述"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 符号化描述</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#〔情况-1〕-碎了"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">〔情况 1〕 碎了</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#〔情况-2〕没碎"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">〔情况 2〕没碎</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-构造逻辑链"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 构造逻辑链</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-1-自变量的定义域"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">3.2.1 自变量的定义域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-2-2-边界条件"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">3.2.2 边界条件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-3-动态规划"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3.3 动态规划</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-实现优化和分析"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 实现优化和分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-基础版"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 基础版</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-循环版本"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 循环版本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-3-空间优化版本"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">4.3 空间优化版本</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-4-下界优化"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4.4 下界优化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-5-单调性优化"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">4.5 单调性优化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-6-状态转移方程优化"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">4.6 状态转移方程优化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-7-不同角度看问题"><span class="post-toc-number">4.7.</span> <span class="post-toc-text">4.7 不同角度看问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-1-状态定义"><span class="post-toc-number">4.7.1.</span> <span class="post-toc-text">4.7.1 状态定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-2-边界条件"><span class="post-toc-number">4.7.2.</span> <span class="post-toc-text">4.7.2 边界条件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-3-状态转移方程"><span class="post-toc-number">4.7.3.</span> <span class="post-toc-text">4.7.3 状态转移方程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-4-代码实现"><span class="post-toc-number">4.7.4.</span> <span class="post-toc-text">4.7.4 代码实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-7-5-继续优化"><span class="post-toc-number">4.7.5.</span> <span class="post-toc-text">4.7.5 继续优化</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-工程思维总结和感悟"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 工程思维总结和感悟</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-1-工程思维"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 工程思维</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-1-抽象思维"><span class="post-toc-number">5.1.1.</span> <span class="post-toc-text">5.1.1 抽象思维</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-2-等价思维"><span class="post-toc-number">5.1.2.</span> <span class="post-toc-text">5.1.2 等价思维</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-3-反推思维"><span class="post-toc-number">5.1.3.</span> <span class="post-toc-text">5.1.3 反推思维</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-4-归纳思维"><span class="post-toc-number">5.1.4.</span> <span class="post-toc-text">5.1.4 归纳思维</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-5-粗条细调思维"><span class="post-toc-number">5.1.5.</span> <span class="post-toc-text">5.1.5 粗条细调思维</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-1-6-拆分思维"><span class="post-toc-number">5.1.6.</span> <span class="post-toc-text">5.1.6 拆分思维</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-2-工程应用"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">5.2 工程应用</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【直观算法】Egg Puzzle 鸡蛋难题"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观算法】Egg Puzzle 鸡蛋难题</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-10-11 22:39:43" datetime="2018-10-11T14:39:43.000Z"  itemprop="datePublished">2018-10-11</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Algorithm/">Algorithm</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】10000+字 | 17 - 22 min<br>【阅读内容】Google面试题：100层楼，两个鸡蛋<strong>最少用多少次</strong>能测出鸡蛋的<strong>会在哪一层碎</strong></p>
+<a id="more"></a>
+<p>分享者是最大的受益者，感谢您的阅读！<a href="https://zhuanlan.zhihu.com/p/47184570" target="_blank" rel="noopener">知乎文章链接，走过路过求个赞</a>，<a href="">相关问题答案</a></p>
+<h1 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="1. 题目描述"></a>1. 题目描述</h1><p>有栋楼高<code>100层</code>，一个鸡蛋从<code>第x层</code>以上($&gt;$)的楼层落下来会<strong>摔碎</strong>， 在<code>第x层</code>和以下($\leqslant$)的楼层落下<strong>不会摔碎</strong>。给你<code>2</code>个鸡蛋，<strong>设计方案</strong>找出<code>x</code>，保证在<strong>最坏情况</strong>下， <strong>最小扔鸡蛋尝试的次数</strong></p>
+<p>有时候仍的东西会变，比如<strong>瓶子</strong></p>
+<p>这道题目的整个解答过程涉及给类<strong>逻辑思维</strong>，<strong>工程思维</strong>，当真是一道海纳百川的面试题，也难怪Goolge会以这道题做了多年的试金石</p>
+<h2 id="1-1-求什么？"><a href="#1-1-求什么？" class="headerlink" title="1.1 求什么？"></a>1.1 求什么？</h2><p>利用<code>抽象思维</code>，<strong>符号化</strong>题目描述</p>
+<p>⭐️〔题目要求〕找到 $x$ 层落下不会碎，$x+1$ 层落下会碎的<strong>临界层</strong>所需要的最少尝试次数 $r$ (r for result)</p>
+<h1 id="2-解题思路"><a href="#2-解题思路" class="headerlink" title="2. 解题思路"></a>2. 解题思路</h1><p>使用<code>等价思维</code>，如何<strong>计算出</strong>最小的尝试次数？使用函数方法表示为：<strong>如何计算出这个结果</strong>，找出公式 $r = f()$</p>
+<h2 id="2-1-一个鸡蛋"><a href="#2-1-一个鸡蛋" class="headerlink" title="2.1 一个鸡蛋"></a>2.1 一个鸡蛋</h2><p>假设最后结果设为 $r$ 次（r for result）。使用<code>归纳思维</code>，先看只拥有<code>1</code>个鸡蛋的情况，思考什么是<code>最坏情况</code>。你可能说可以直接使用二分法，请注意，只有<code>1</code>个鸡蛋，必须保证找到<strong>临界层</strong>。所以，<code>1</code>个鸡蛋的情况下，<strong>最坏情况</strong>为 $r = 100$ （楼高）</p>
+<blockquote>
+<p>大多数情况下，我们都低估了<strong>理解题意</strong>的重要性</p>
+</blockquote>
+<p>这么思考<strong>还不够究竟</strong>，缺乏<code>抽象思维</code></p>
+<p>通过逻辑思考，可得 $r =100$ ，但有没有一个抽象的<strong>公式化结论</strong>？或者说，如何通过<strong>一个公式</strong>算出 $r$ ？接下来就来解决这个问题</p>
+<p>假设<strong>临界层</strong>分别为 $x = 1,2,3 \dots 100$ ，因为你只有<code>1</code>个鸡蛋，不知道会在哪层碎，所以唯一<strong>策略</strong>是从<code>1</code>层开始<strong>一层一层</strong>试，对应的每个策略都有一个<strong>尝试步数</strong>（比如 $x = 95$ ，从<code>1</code>层开始尝试为<code>95</code>次），可得到<strong>临界层</strong> $x$ 在<strong>所有可能取值下</strong>对应的 $r = 1,2,3 \dots 99,100$，最终选择<strong>最坏情况</strong>，即 $r = 100$ </p>
+<p>可抽象化得到<strong>待求的符号表达式</strong><br>$$<br>r = \max_{1 \leqslant x \leqslant N}(\forall S_i(x)) \tag{1}<br>$$<br>公式的<strong>语言型描述</strong>是：对于每一个可能的<strong>临界层</strong> $x$，得到使用可选择策略 $S_i()$ 需要的<strong>尝试步数</strong>。在每一轮 $x$ 的遍历中，取<strong>最大值</strong>（即<strong>最坏情况</strong>），为 $r$。无论<strong>临界层</strong> $x$ 在哪一层，<strong>只有一个鸡蛋的情况下</strong>，总需考虑<strong>最坏情况</strong></p>
+<blockquote>
+<p>这道题，对<code>1</code>个鸡蛋问题的深刻理解异常重要。只有深刻理解基石逻辑才能更好的解决问题</p>
+</blockquote>
+<h2 id="2-2-两个鸡蛋"><a href="#2-2-两个鸡蛋" class="headerlink" title="2.2 两个鸡蛋"></a>2.2 两个鸡蛋</h2><h3 id="2-2-1-粗调和细调"><a href="#2-2-1-粗调和细调" class="headerlink" title="2.2.1 粗调和细调"></a>2.2.1 粗调和细调</h3><p>依据<code>粗条细调思维</code>，我们有一次试错的机会。可以思考，假设第一个鸡蛋在 $k$ 层<code>碎了</code>，意味着什么？意味着，待求的<strong>临界层</strong> $x$ 一定满足 $1 \leqslant x \lt k$ ，记为 $[1,k)$ ，就把待求量<strong>限制到了一个更小的范围</strong>内，可以提高找到目标值的效率</p>
+<p>也就是说，使用第一个鸡蛋做<strong>粗调</strong>，<code>碎了</code>后，用第二个鸡蛋，参照<code>1</code>个鸡蛋的尝试策略<strong>细调</strong>。下一步，问题就变成了一个策略问题，即<strong>❓第一个鸡蛋应该在哪些层仍</strong></p>
+<p>在某层楼，丢一个鸡蛋，有两种结果：<code>碎了</code>和<code>没碎</code>。这句话是一个<strong>极为关键的信号</strong>，背后告诉我们这是一个<strong>树形结构</strong>问题</p>
+<blockquote>
+<p>把<strong>数据结构与问题描述的勾连能力</strong>是衡量算法能力的重要指标</p>
+</blockquote>
+<ul>
+<li>没有分叉，一路推理 ➜ <strong>〔线性结构〕</strong></li>
+<li>看到决策结果<strong>有分叉</strong> ➜ <strong>〔树形结构〕</strong></li>
+<li>若在推理过程中，产生<strong>交汇</strong> ➜ <strong>〔图结构〕</strong></li>
+</ul>
+<p>下一节主要<strong>分析这条树形结构链</strong></p>
+<h3 id="2-2-2-树形结构"><a href="#2-2-2-树形结构" class="headerlink" title="2.2.2 树形结构"></a>2.2.2 树形结构</h3><p>假设第一个鸡蛋的楼层策略是 $k_1, k_2,\cdots,k_p$ ，其中 $p$ 是<code>仍的总次数</code>，楼高记为 $N$ 。比如如果你选择在 $20,40,60,80$ 层仍，那么 $p=4$ ，根据题意，有 $1 \lt k_1 \lt k_2 \lt \cdots \lt k_{p-1} \lt k_p \lt N$ 。画出树形示意图，如下图所示</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="700"></div>
+
+<blockquote>
+<p>图最上方的数轴就是一个<strong>横放的楼</strong>，$k_0 = 1$ 为第一层</p>
+<p><strong>〔解释这棵树〕</strong>在每一层扔下一个鸡蛋时，都有两种可能，<code>碎了</code>和<code>没碎</code>，分别对应了两个子树。一旦<code>碎了</code>，那么就使用<code>1</code>个鸡蛋的问题思路来解题，直到找到<strong>临界层</strong>。在 $k_1$层<code>没碎</code>，那么需在 $k_2$ 层继续尝试，直到最高层 $N$ 找到<strong>临界层</strong>（上图的标注不是树高，是<strong>灰色图例标识出部分</strong>的<strong>树高</strong>）</p>
+</blockquote>
+<p>观察这颗树，怎样从树中得到对应问题的答案呢？</p>
+<p>〔输入自变量〕 $k_1, k_2,\cdots,k_p$ 〔待求〕最小的尝试次数（即所有策略中<strong>最大值的最小值</strong>）等价于➜  求一个策略组合 $k_1, k_2,\cdots,k_p$，使得<strong>树的高度最小</strong></p>
+<p>如果还是有些无法理解，此时，最好的方法就是<strong>看特例（举例子）</strong></p>
+<p>🌰 比如 $k_1 = 50$，意思是在<code>50层</code>扔下第一个鸡蛋</p>
+<ul>
+<li>如果<code>碎了</code>，那么接下来的尝试方法就是从第<code>1</code>层开始<strong>一个一个往上</strong>尝试，直到<code>49</code>层，所以我们的答案 r = 50 （不记得如何计算这个值可以参考<a href="#2-1-一个鸡蛋">一个鸡蛋</a>） </li>
+<li>如果<code>没碎</code>，那么第一个鸡蛋继续在 k_2 = 75 层扔，假设还是<code>没碎</code>，继续从 k_3 = 90 层的地方扔下，此时碎了，那么第二课鸡蛋就需要从<code>76</code>层开始，一层一层往上尝试直到<code>89</code>层，需要 89-76+1=24 次，第一个鸡蛋已经扔了<code>3</code>次，最后得到<code>没碎</code>情况下的例子的答案 r=27 次</li>
+</ul>
+<blockquote>
+<p>在上面的例子中，$k_1=50,k_2=75, k_3=90$ 就是一个可选策略</p>
+<p>体会<strong>最坏情况下的最小值</strong>的意义非常重要，或者说，尝试的<strong>最大步数的最小值</strong>。如何判断对一道题目有没有完全吃透，看能否清晰的走完每一个例子，就能一窥一二</p>
+</blockquote>
+<h3 id="2-2-3-最优解的情况证明"><a href="#2-2-3-最优解的情况证明" class="headerlink" title="2.2.3 最优解的情况证明"></a>2.2.3 最优解的情况证明</h3><p>⭐️ 接下里需要<strong>确定树的形状（同时也是确定策略的过程）</strong>。从<strong>直觉</strong>来看，如果树的形状倾向于<strong>满二叉树</strong>，那么树的<strong>高度最小</strong>。❓ 如何证明<strong>这个直觉</strong>的正确性呢？既然要计算树高，那么就把每一个<strong>叶子节点的树高</strong>一个一个<strong>列出来</strong><br> 
+$$
+\left.
+\begin{array}{l}
+k_1 \\
+k_2 -k_1 +1 \\
+k_3-k_2 +2 \\
+\cdots \\
+k_p - k_{p-1} +{p-1} \\
+N- k_p + p \\
+\end{array}
+\right\} \sum = N + \frac{(1+p)p}{2} \tag{2}
+$$
+</p>
+<p>经计算发现，<strong>所有树高的和</strong>是个<strong>定值</strong>。那么使用<strong>反证法</strong>，假设这棵树不是满树，因为高度和为定值，那么必定有一个<strong>高于平均值得树</strong>存在，记为 $T$ 。根据最高树的最小值的要求 $H_a ＜ H_T$ （$H_a$为满树的高度），答案是$H_a$ ，与不是满树的假设矛盾 。所以，是满树。证毕</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/Tree.png" alt="" width="400"></div>
+
+<p>再参考树的示意图，所谓<strong>类似满二叉树</strong>是指<strong>每棵子树的树高相等</strong>，比如列出下面等式（每一行都是左右两颗子树相等，比如 $k_2$ 那棵树的树高即 $k_2 - k_1 -1 +2$），一层一层带入，都换成 $k_1$ 的表达式<br>
+$$
+\begin{array} \\
+k_1 &= k_2 - k_1 + 1 &\implies &k_2 = 2k_1 - 1 = k_1 + (k_1 - 1) \\
+k_2 -k_1 +1 &= k_3-k_2 +2 &\implies &k_3 = 3k_1 -3 = k_1 + (k_1 -1) + (k_1 -2) \\
+\cdots \\
+k_{p-1} -k_{p-2} +p-2 &= k_{p}-k_{p-1}+ p - 1 &\implies &k_p = \underbrace{ k_1 + (k_1-1) + (k_1-2) + \cdots }_{p项}
+\end{array} \tag{3}
+$$
+</p>
+<p>根据上述推倒发现规律：要满足条件<strong>每颗子树的树高相等</strong>，$k_p$ 的表达式是一个<strong>递减等差数列</strong>，最终必须在第 $N$ 层尝试（最后一次尝试走 $N - k_p$ 步，必须覆盖最后一层 $N$） 。即<strong>在最小可分割的整数等差递减数列中</strong>，令 $k_p \sim N$ （趋近于），前半句加粗的话翻译成公式为</p>
+<p>$$<br>k_1 + (k_1-1) + (k_1-2) + \cdots + 1 \sim N \implies \frac{k_1(k_1 + 1)}{2} = N \tag{4}<br>$$</p>
+<p>解得 $k_1 \approx 13.65$ ，考虑到，所有<strong>尝试楼层都是整数</strong>，第一颗鸡蛋最后一次<code>1</code>颗鸡蛋的<strong>尝试区间</strong>需包含第 $N$ 层，所以 $k_1 = \lceil k_1\rceil = 14$ 。如果不明白为什么取上整数不取下整数，试试 $k_1 = 13$ 或 $k_1 = 14$ 对比一下答案，看看谁的尝试次数少即可</p>
+<p>有了 $k_1$ ，带回<a href="#2-2-3-最优解的情况证明">（2）式</a>，可以知道<strong>第一个鸡蛋</strong>的<strong>尝试楼层策略</strong>为 $14,27,39,50,60,69,77,84, 90,95,99$ </p>
+<p>使用这个策略，带回<a href="#2-1-一个鸡蛋">（1）式</a>，假设<strong>临界层</strong>从<code>1</code>到<code>N</code>层，<strong>分别计算</strong>所需要的<strong>最多尝试次数</strong>，可得 $r = 14$ </p>
+<p>如果楼高 $N=200$，可计算得 $r = k_1 = 20$，策略为：第一次从<code>20</code>层开始尝试，没多一次尝试递减<code>1</code> </p>
+<p>⭐️ 到此为止，<code>2</code>个鸡蛋问题解决：找到了一个明确的函数，利用<code>抽象思维</code>，写出它的表达式 $r = f(2, N)$，而这个 $f()$ 即求方程 $\frac{x(x+1)}{2} = N$ 解 $x$ 的上整数 $\lceil x \rceil$</p>
+<h1 id="3-问题拓展"><a href="#3-问题拓展" class="headerlink" title="3. 问题拓展"></a>3. 问题拓展</h1><p><code>2</code>个鸡蛋<code>100</code>层楼已经解决，深究下去，<code>H</code>层楼<code>M</code>个鸡蛋的问题呢？Leetcode有这道题：<a href="https://leetcode.com/problems/super-egg-drop/description/" target="_blank" rel="noopener">887. Super Egg Drop</a></p>
+<blockquote>
+<p>刷题多的读者会<strong>快速反应出</strong>，这个问题是一道<strong>动态规划</strong>题，但在这里我还是想用一种<strong>推理的思维</strong>来尝试分析一遍，<strong>逻辑链上的关键锚点才是知识的精华</strong></p>
+<p>如果你通过观察题目，快速确定此题<strong>可用动态规划求解</strong>，这种能力是<strong>熟练能力</strong>，类似弹钢琴的熟能生巧，背书的死记硬背。与之相对，即<strong>分析能力</strong>。很有趣的是，这两种能力的分野十分明显，前者对应<strong>高效</strong>，后者对应<strong>求知</strong></p>
+<p>如果你需要<strong>快速通过面试</strong>，<strong>找工作</strong>或<strong>通过考试</strong>，那大量做题才是最短路径，可学习的目的不止是谋生，还有一种<strong>更高级的快乐</strong>来自于<strong>钻研本身</strong>，心理学管这种快乐为<strong>心流</strong></p>
+</blockquote>
+<p>回到问题，总结一下，通过<a href="#2-解题思路">上面的解答</a>我们有了什么一些什么<strong>直观的结论</strong></p>
+<p>① <code>1</code>个和<code>2</code>个鸡蛋的问题已经解决</p>
+<p>② 理解了<strong>最大值的最小值</strong>在本题中的含义</p>
+<p>③ 答案的值只和<strong>楼层高度</strong>有关，和最低楼层与最高楼层无关</p>
+<p>以这三个结论为基石，想一想这道更一般化的问题怎么解决</p>
+<h2 id="3-1-符号化描述"><a href="#3-1-符号化描述" class="headerlink" title="3.1 符号化描述"></a>3.1 符号化描述</h2><p>首先，最容易想到的思考链条来自一个设问：❓我们能不能尝试把<strong>鸡蛋的数量减少</strong>？即不断的往<code>2</code>个鸡蛋的问题上靠拢？有一个很简单的办法，就是<strong>扔</strong> ➜ 扔碎一个，鸡蛋数量就减少一个</p>
+<p>照这个思路，进行一个<strong>抽象推演</strong>：假设在某一个时刻，我们拥有 $m$ 个鸡蛋，需要实验的层高为 $h$ （h for height），此刻在 $k \in [1, h]$ 层楼扔下一个鸡蛋</p>
+<h3 id="〔情况-1〕-碎了"><a href="#〔情况-1〕-碎了" class="headerlink" title="〔情况 1〕 碎了"></a>〔情况 1〕 碎了</h3><p>假设我们已经知道 $1$ 到 $k-1$ 层楼<strong>最优解的值</strong>，❓ 那怎么用<strong>一个函数</strong>来表示这个值呢？首先看我们需要的自变量有哪些</p>
+<ul>
+<li>1）此时<strong>剩下的鸡蛋数</strong>，这个非常明显，符号化记为 $m$ 个鸡蛋</li>
+<li>2）根据<code>2个鸡蛋</code>难题时的结论可知，第二个自变量是此时<strong>未知情况楼层的层高</strong>（未知情况只楼层范围内还从来没有用鸡蛋尝试过，无法缩小范围），符号化记为 $h$ 层（h for height）</li>
+</ul>
+<p><span id="define_status">⭐️ 用一个表达式 $r = f(h, m)$ 表示<strong>楼高</strong>为 $h$ 时，还<strong>剩下 $m$ 个鸡蛋</strong>时的<strong>最少尝试步数</strong></span></p>
+<p>因为在 $k$ 层碎了，所以不用考虑<code>[k+1, N]</code>层的情况（肯定都碎），并且因为此刻这一个鸡蛋<code>碎了</code>，剩下 $m-1$ 个鸡蛋，用式子 $f(k-1, m-1)$ 表示已经知道的 $1$ 到 $k-1$ 层楼<strong>最少尝试步数</strong>的值，总最小尝试次数为 $f(k-1, m-1)+1$</p>
+<h3 id="〔情况-2〕没碎"><a href="#〔情况-2〕没碎" class="headerlink" title="〔情况 2〕没碎"></a>〔情况 2〕没碎</h3><p>在 $k$ 层没碎，直接不用考虑<code>[1, k]</code>情况了（肯定都不碎），同理，计算出<strong>此时楼高</strong> $h_{now} = h - (k+1) + 1 = h - k$，且因为此刻这个鸡蛋<code>没碎</code>，剩下 $m$ 个鸡蛋，即 $f(h-k, m)$ ，总最小尝试次数为 $f(h-k, m)+1$</p>
+<h2 id="3-2-构造逻辑链"><a href="#3-2-构造逻辑链" class="headerlink" title="3.2 构造逻辑链"></a>3.2 构造逻辑链</h2><p>此时，我们已经有了三个表达式</p>
+<p>1️⃣ 楼高为 $h$ ，剩下 $m$ 个鸡蛋时的<strong>最少尝试步数</strong>：$f(h, m)$ </p>
+<p>2️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>碎了</code>后的<strong>最少尝试步数</strong>：$f(k-1, m-1)$</p>
+<p>3️⃣ 在第 $k$ 层扔下<code>1</code>个鸡蛋<code>没碎</code>后的<strong>最少尝试步数</strong>：$f(h-k, m)$ </p>
+<p>那么，假设2️⃣3️⃣的表达式的<strong>答案已知</strong>，是否能用这二者<strong>推出</strong>1️⃣？如果上述逻辑链成立，就可以用<code>归纳思维</code>（数学归纳法）算出任意 $f(h, m)​$ 。因为1️⃣只能从2️⃣3️⃣推出</p>
+<p>〔推倒 $a$〕考虑到2️⃣3️⃣是一种<strong>策略选择后的可能性</strong>，根据<a href="#2-1-一个鸡蛋">上面的分析</a>（最大值的最小值原理）两种策略中临界层 $x$ 可能在任何一层。遍历所有 $x$ 的情况时，最终尝试步数的结果是<strong>其中的最大值</strong>，所以选择2️⃣3️⃣中<strong>值更大的那个</strong></p>
+<p>〔推倒 $b$〕1️⃣需要仍一次鸡蛋，尝试步数 $+1$</p>
+<p>〔推倒 $c$〕$k$ 是一个自变量，在这个情况下，可取到 $[1, h)$ 中的任意值，⭐️假设2️⃣3️⃣已知，只要在定义域内<strong>穷举</strong>出所有 $k$ 的可能值，并找出<strong>最大尝试步数中的最小值</strong>即可</p>
+<p>接下来就可以把这个逻辑链的用<strong>抽象化的公式</strong>表达出来<br>$$<br>f(h, m) = \underbrace{\min_{1 \leqslant k \leqslant h} {\overbrace{\overbrace{\max [f(k-1, m-1), f(h-k,m)]}^{a}+1}^{b}}}_{c}\tag{5}<br>$$</p>
+<p>有了具体的公式，为了锻炼工程思维，要时刻<strong>保持严谨</strong>，思考全集和完备性，再来看看<strong>边界条件</strong>和<strong>自变量定义域</strong></p>
+<h3 id="3-2-1-自变量的定义域"><a href="#3-2-1-自变量的定义域" class="headerlink" title="3.2.1 自变量的定义域"></a>3.2.1 自变量的定义域</h3><p>依据题意楼高 $h \geqslant 1$ 且为整数，剩余鸡蛋数 $m \geqslant 1$ 且为整数 </p>
+<h3 id="3-2-2-边界条件"><a href="#3-2-2-边界条件" class="headerlink" title="3.2.2 边界条件"></a>3.2.2 边界条件</h3><p>$f(h, 1) = h$ ，当剩余鸡蛋数为<code>1</code>的时候，答案为现在的楼高</p>
+<p>$f(0, m) = 0$ ，当楼高为<code>0</code>时，无法尝试，答案<strong>记为</strong><code>0</code> ，或者 $f(1,m) = 1$，表示楼高为<code>1</code>时，最小尝试次数为<code>1</code> </p>
+<h2 id="3-3-动态规划"><a href="#3-3-动态规划" class="headerlink" title="3.3 动态规划"></a>3.3 动态规划</h2><p>现在反过头来再看，计算机学科中，有一部分专门研究这类问题的工具，即<strong>动态规划</strong></p>
+<p>上面的<code>符号化描述</code>被称为<a href="#define_status">定义状态</a>，<code>构造逻辑链</code>被称为<a href="#3-2-构造逻辑链">构造状态转移方程</a>，而背后的工程思维是<code>拆分思维</code>、<code>抽象思维</code>和<code>归纳思维</code>。再究竟一些，动态规划是一类特殊的<code>图算法</code>。</p>
+<ul>
+<li>〔拆分思维〕<strong>拆分问题</strong>的能力。大问题化小问题，无后效性，当前状态与未来状态无关。</li>
+<li>〔抽象思维〕<strong>使用状态来描述问题</strong>的能力，或说用抽象符号或状态机来描述问题的能力</li>
+<li>〔归纳思维〕数学归纳法，<strong>逻辑推导</strong>能力。由 $\lt i$ 的所有状态推倒出 $i$ 时刻状态的能力</li>
+</ul>
+<p>之所以要研究这类问题和<strong>计算机本身是一个巨大的状态机</strong>有关。动态规划提供了一套<strong>工具</strong>和<strong>思维框架</strong>去优化问题，找到最优解。<strong>思维框架和优化方法</strong>才是最厉害最有价值的，看到后面优化部分的详解你就能直观的体会到这点。</p>
+<h1 id="4-实现优化和分析"><a href="#4-实现优化和分析" class="headerlink" title="4. 实现优化和分析"></a>4. 实现优化和分析</h1><p>这部分，通过一步一步<strong>剖析优化思路</strong>，和对应的代码实现（使用<code>python</code>，所有代码可在Leetcode题目中AC），希望能直观的说明一个问题，<code>❓ 到底高级程序员和一般的码农程序员区分在哪里？</code></p>
+<p>每个人都有自己擅长的领域，管理大师<strong>吉姆·柯林斯</strong>的第一本畅销书《基业长青》，书内研究了18家企业成功的秘密。</p>
+<p>后来，他又出了一本书《从平庸到伟大》，对这个变化的界定是非常严格的。<code>平庸</code>意味着这家公司的业绩低于市场的平均水准，<code>变得伟大</code>意味着业绩保持在平均水准的3倍以上，并持续至少15年。他研究了1435家公司，只找到了11家</p>
+<p>通过研究，他总结了这些企业的6个秘诀。其中一个就是著名的<strong>三环理论</strong>，如果把企业的三环理论推广到个人，就是问自己下面<strong>三个问题</strong>：<code>我的擅长是什么？我的热爱是什么？我的机会是什么？</code></p>
+<p>而选择三者<strong>交集</strong>作为一辈子的<strong>努力方向</strong>大概率就算是走对了路</p>
+<p>作为程序员，可能只是你开始职业生涯的第一步，后面如何发展，<strong>需要对自己的追求和个人能力做一个更深入的挖掘</strong>，才能有个定论</p>
+<p>下面即将<strong>剖析的优化过程</strong>完美的阐述了作为一个<code>伟大</code>的程序员需要什么样的<strong>基础能力</strong>（至少在算法优化这个小领域），这需要<strong>长时间的训练和极强的天赋</strong>。如果你感觉想出这些解答很吃力，相对应的，你又想<strong>这辈子有所作为</strong>，<strong>追逐伟大</strong>。那么应该尝试去找一条<strong>非程序员的路努力一生</strong>。毕竟，<strong>计算机思维，数据分析和机器学习未来会成为像数学一样的基础能力</strong>，无论在哪一行都<strong>对解决问题有极大的助益</strong></p>
+<h2 id="4-1-基础版"><a href="#4-1-基础版" class="headerlink" title="4.1 基础版"></a>4.1 基础版</h2><p>根据思路直接写出的最直观代码。如果对<a href="">递归</a>理解的深，容易读懂。用我能想到最直白的语言来描述就是：<strong>假设子状态的结果已知，现在需要做些什么操作，就能得到此状态的答案，并且把这个答案返回给函数</strong>（借鉴知乎回答的答案，加上了<code>lru_cache</code>装饰器用于优化）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> functools</span><br><span class="line"><span class="comment"># python3的functools的一个自带函数, 可以对函数返回结果进行LRU cache, 下次以相同参数调用就不重复计算了</span></span><br><span class="line"><span class="comment"># maxsize=None 不限制大小, 其实就变成是全部都cache下来, 不考虑LRU了</span></span><br><span class="line"><span class="meta">@functools.lru_cache(maxsize=None) # 装饰器 </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> m == <span class="number">1</span>: <span class="keyword">return</span> h</span><br><span class="line"></span><br><span class="line">    result = min ( [ max ( [ f( i - <span class="number">1</span>, m - <span class="number">1</span> ), f( h - i, m ) ] ) <span class="keyword">for</span> i <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ) ] ) + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<p>🔄〔优化〕Recursive（递归）的写法虽然清晰明了，但在工程上有调用函数的开销，系统栈深度限制等弊端，所以最好写成<strong>循环版本</strong>，否则在工作中可能返工</p>
+<h2 id="4-2-循环版本"><a href="#4-2-循环版本" class="headerlink" title="4.2 循环版本"></a>4.2 循环版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    f = [ [ i <span class="keyword">for</span> i <span class="keyword">in</span> range(h+<span class="number">1</span>) ] <span class="keyword">for</span> j <span class="keyword">in</span> range(m+<span class="number">1</span>) ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m_i <span class="keyword">in</span> range( <span class="number">2</span>, m + <span class="number">1</span> ):</span><br><span class="line">        <span class="keyword">for</span> h_j <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range( <span class="number">1</span>, h_j ):</span><br><span class="line">                f[m_i][h_j]= min ( f[m_i][h_j], <span class="number">1</span> + max( f[m_i <span class="number">-1</span>][k - <span class="number">1</span>], f[m_i][h_j - k]) )</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> f[m][h]</span><br></pre></td></tr></table></figure>
+<p>🔄〔优化〕分析一下时间复杂度和空间复杂度，时间复杂度为 $O(mh^2)$ ，空间复杂度为 $O(hn)$ ，很明显，空间上可以优化到 $O(h)$，原因是状态转移方程只和 $m$ 与 $m-1$ 有关，使用两个数组滚动即可</p>
+<h2 id="4-3-空间优化版本"><a href="#4-3-空间优化版本" class="headerlink" title="4.3 空间优化版本"></a>4.3 空间优化版本</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveSpace</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    f_pre = f_cur = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> m_i <span class="keyword">in</span> range( <span class="number">2</span>, m + <span class="number">1</span> ):</span><br><span class="line">        <span class="keyword">for</span> h_j <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ):</span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range ( <span class="number">1</span>, h_j ):</span><br><span class="line">                f_cur[h_j] = min ( f_cur[h_j], <span class="number">1</span> + max( f_pre[k - <span class="number">1</span>] , f_cur[h_j - k]) )</span><br><span class="line">        f_pre = f_cur[:]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
+<p>基本到这，对美国<code>FAANG</code>的入门级SDE，就十分优秀了。后面的所有的内容，属于<code>高手</code>的领域（博主完全不是高手，只是好奇，所以阅读了<strong>其他人的牛逼的解题报告</strong>，重新做了理解和整理）</p>
+<p>对于这一套状态描述和状态转移方程，优化方向在<strong>时间复杂度</strong>上。思考，❓是否有一些数学定理可以提供答案<strong>取值的下界</strong>呢？<strong>（找边界是剪枝的有效方法）</strong></p>
+<p>🔄〔优化〕这里需要使用数据结构中<a href="https://blog.csdn.net/qq_28409193/article/details/50484638" target="_blank" rel="noopener">折半查找判定树</a>理论。假设我们对鸡蛋的数量不做限制，那么这棵树</p>
+<div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/FullTree.png" alt="" width="700"></div>
+
+<p>就会变为一个<strong>满二叉树</strong>，而叶子节点数量有 $h+1$ 个（因为最大尝试步数能取到的总数就是 $h+1$ 种，需包含0次）树的高度至少为 $\lceil \log_2(h+1)\rceil$。假设鸡蛋 $m$ 的数量大于 $\lceil \log_2(h+1)\rceil $ ，那么上面的树<strong>变成满树</strong>，无论怎么尝试，答案（树高）都有一个下界（不可能大于这个值）</p>
+<p>如果还不明白，即在 $m \geqslant \lceil \log_2(h+1)\rceil $ 时，这道题会变成<strong>二分查找</strong>（鸡蛋太多，随便扔，就当楼层是排序好的即可）最终答案直接取 $\lceil \log_2(h+1)\rceil$ </p>
+<p>🌰 如果还是不明白，上终极杀招，<strong>举例子</strong>。假设<code>16</code>层楼，但有<code>4</code>个鸡蛋。<strong>根本不用设计，二分查找即可</strong>，效率肯定最高。比如<code>16</code>层楼，只要鸡蛋数大于<code>4</code>，最大尝试次数就是<code>4</code>，可以直接算出答案</p>
+<h2 id="4-4-下界优化"><a href="#4-4-下界优化" class="headerlink" title="4.4 下界优化"></a>4.4 下界优化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveBoundary</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    f_pre = f_cur = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> m_i <span class="keyword">in</span> range( <span class="number">2</span>, m + <span class="number">1</span> ):</span><br><span class="line">        <span class="keyword">for</span> h_j <span class="keyword">in</span> range( <span class="number">1</span>, h + <span class="number">1</span> ):</span><br><span class="line">            t = math.ceil( math.log2( h_j + <span class="number">1</span> ) )</span><br><span class="line">            <span class="keyword">if</span> m_i &gt;= t:</span><br><span class="line">                f_cur[h_j] = t</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range ( <span class="number">1</span>, h_j ):</span><br><span class="line">                    f_cur[h_j] = min ( f_cur[h_j], <span class="number">1</span> + max( f_pre[k - <span class="number">1</span>] , f_cur[h_j - k]) )</span><br><span class="line">        f_pre = f_cur[:]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
+<p>这时候时间复杂度优化为 $O(mhlog_2(h))$。此时，如果列出所有状态转移的过程（行为鸡蛋数 $m$，从2开始；列为楼高 $h$ ，从1开始），如下图（红色框表示 $k$ 的移动，蓝色双向箭头表示 $\max$ 操作，然后还需要加1后和之前的 $f(m,h)$ 进行 $\min$ 操作。下图展示的是 $m_i=2,h_j=11,k=5$ 时的情况）（这幅图也能帮助理解下界优化，注意 $m_i=5$ 和 $m_i=4$ 在 $h &lt; 20$ 的情况）</p>
+ <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/f.png" alt="" width="1000"></div>
+
+<p>🔄 观察发现，有一个很重要的规律，即<strong>单调性</strong>，写成公式为 $f(m, h) \geqslant f(m, h-1)$ 当 $h \geqslant 1$ 。如果满足<strong>单调性</strong>，那么又可以在搜索时使用<strong>二分查找</strong>。先姑且不考虑<strong>如何证明单调性</strong>，工程上，在<strong>资源允许</strong>的情况下，先尝试，看看能不能得到<strong>正确结果</strong>（用正确算法和这个尝试算法进行验证）直到验证在很大的定义域内<strong>都正确</strong>，可大胆猜测这个<strong>猜测性质</strong>是对的（不严谨，但效率较高）</p>
+<p>通过这一层优化，体现出了<strong>理论和工程的分野</strong>，即你猜想出了一个优化方法，当然可以先直接尝试，<strong>不管这个猜测的条件是不是正确</strong>。</p>
+<p>反过头来仔细一寻摸，总是心里不踏实（可能出现<strong>特殊情况</strong>就让整个算法崩溃）此时，<strong>理论出山</strong>，用严谨的数学逻辑去证明这些结论，让算法具有完备性（本题单调性是正确的，证明过程参见参考文献）</p>
+<blockquote>
+<p>另外，<strong>观察和总结答案的分布规律</strong>也是非常重要的思考手段，你会发现，这简单的一句话说开去，是一个新的学科，名叫<strong>统计学</strong></p>
+</blockquote>
+<h2 id="4-5-单调性优化"><a href="#4-5-单调性优化" class="headerlink" title="4.5 单调性优化"></a>4.5 单调性优化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveBinarySearch</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f_cur = f_pre = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m_i <span class="keyword">in</span> range(<span class="number">2</span>, m + <span class="number">1</span>):</span><br><span class="line">            f_cur[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> h_j <span class="keyword">in</span> range(<span class="number">1</span>, h + <span class="number">1</span>):</span><br><span class="line">                f_cur[h_j] = <span class="number">1000000</span></span><br><span class="line">                start, stop = <span class="number">1</span>, h_j</span><br><span class="line">                <span class="comment"># 二分查找</span></span><br><span class="line">                <span class="keyword">while</span> start &lt;= stop:</span><br><span class="line">                    mid = (start + stop) // <span class="number">2</span></span><br><span class="line">                    <span class="keyword">if</span> f_pre[mid - <span class="number">1</span>] &gt; f_cur[h_j - mid]:</span><br><span class="line">                        <span class="keyword">if</span> f_pre[mid - <span class="number">1</span>] + <span class="number">1</span> &lt; f_cur[h_j]:</span><br><span class="line">                            f_cur[h_j] = f_pre[mid - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                        stop = mid - <span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> f_pre[mid - <span class="number">1</span>] &lt; f_cur[ h_j - mid]:</span><br><span class="line">                        <span class="keyword">if</span> f_cur[h_j - mid] + <span class="number">1</span> &lt; f_cur[h_j]:</span><br><span class="line">                            f_cur[h_j] = f_cur[h_j - mid] + <span class="number">1</span></span><br><span class="line">                        start = mid + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        f_cur[h_j] = f_cur[h_j - mid] + <span class="number">1</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            f_pre = f_cur[:]</span><br><span class="line">        <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
+<p>🔄 结果的简单特性部分挖掘完了，继续观察上面的<strong>状态转移图</strong>，发现<strong>很多项是相等的</strong>，那么可不可以找到，在某种条件满足时，状态可以直接推出，而不用进行 $k$ 的<strong>遍历搜索</strong>？这个时候就需要从状态转移方程本身入手是挖掘其中的数学特性，<a href="#4-6-状态转移方程优化">这部分不是非常关键，较难，可直接跳过</a></p>
+
+$$
+\begin{array}&
+f(h, m) = \min\limits_{1 \leqslant k \leqslant h} \{\max [f(k-1, m-1), f(h-k,m)]+1\} \\
+f(h, m) \leqslant \max [f(k-1, m-1), f(h-k,m)]+1 \quad(1 \leqslant k \leqslant h) \\
+令\; k = 1 \implies f(h, m) \leqslant f(h - 1, m) + 1
+\end{array} \tag{6}
+$$
+
+<p>又因为 $f$ 具有单调性，可得 $f(h - 1, m) \leqslant f(h, m) \leqslant f(h - 1, m) +1$ 其中 $h\geqslant 1$  </p>
+<p>上面的式子非常有意思，使用标准的逻辑推理来看</p>
+<ul>
+<li><p>若某个决策 $k$ 可使得 $f(h - 1, m) = f(h, m)$ ，则一定 $f(h, m) = f(h-1, m)$</p>
+</li>
+<li><p>若所有决策 $k$ 都<strong>不能</strong>使 $f(h - 1, m) = f(h, m)$ ，则一定 $f(h, m) = f(h - 1, m) + 1$ </p>
+</li>
+</ul>
+<p>那么，是否可以构造这样一个决策，使得状态转移直接计算呢？<strong>具体过程略过</strong>，有兴趣的读者详见参考文献</p>
+<p>假设这个决策的楼高 $h = p$ ，推倒出当 $f(m, p)&lt;f（m-1， h-p-1)$ 时，无论任何决策都不能使 $f(m, h) = f(m, h-1)$，所以，此时 $f(m, h) = f(m, h-1) + 1$ </p>
+<p>也就是说，根据 $f(m, p)$ 和 $f(m-1,h-p-1)$ 的大小关系就可以直接确定 $f(m, h)$ </p>
+<h2 id="4-6-状态转移方程优化"><a href="#4-6-状态转移方程优化" class="headerlink" title="4.6 状态转移方程优化"></a>4.6 状态转移方程优化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solveTransferFunction</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span>  </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        f_cur = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line">        f_pre = [i <span class="keyword">for</span> i <span class="keyword">in</span> range(h + <span class="number">1</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m_i <span class="keyword">in</span> range(<span class="number">2</span>, m + <span class="number">1</span>):</span><br><span class="line">            p = f_cur[<span class="number">0</span>], f_cur[<span class="number">1</span>] = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>, h + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> f_cur[p] &gt;= f_pre[j - p - <span class="number">1</span>]:</span><br><span class="line">                    f_cur[j] = f_cur[j - <span class="number">1</span>]</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    f_cur[j] = f_cur[j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                    p = j - <span class="number">1</span></span><br><span class="line">            f_pre = f_cur[:]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> f_cur[h]</span><br></pre></td></tr></table></figure>
+<p>此时，<strong>状态转移过程时间复杂度</strong>变成 $O(1)$，整体时间复杂度随之变成 $O(m\log_2{h})$ </p>
+<p>在这种依照题意<strong>直接定义状态</strong>并<strong>找到状态转移方程</strong>的方法已经<strong>优化到极致</strong>了。那么，❓ <strong>如果从不同的角度定义问题</strong>呢？</p>
+<h2 id="4-7-不同角度看问题"><a href="#4-7-不同角度看问题" class="headerlink" title="4.7 不同角度看问题"></a>4.7 不同角度看问题</h2><h3 id="4-7-1-状态定义"><a href="#4-7-1-状态定义" class="headerlink" title="4.7.1 状态定义"></a>4.7.1 状态定义</h3><p>改变对问题的状态描述方法，用 $h(i,j)$ [h for height]表示用 $j$ 个鸡蛋尝试 $i$ 次在<strong>最坏情况下</strong>能找到的<strong>最小尝试次数</strong>的<strong>楼高</strong>。</p>
+<h3 id="4-7-2-边界条件"><a href="#4-7-2-边界条件" class="headerlink" title="4.7.2 边界条件"></a>4.7.2 边界条件</h3><p>当尝试次数 $i=1$ 时，$h(1,j)=1\quad(j \geqslant 1)$ </p>
+<p>当使用 $j = 1$ 个鸡蛋时，尝试 $i$ 次可以尝试 $i$ 层楼，即 $h(i,1)=i$</p>
+<h3 id="4-7-3-状态转移方程"><a href="#4-7-3-状态转移方程" class="headerlink" title="4.7.3 状态转移方程"></a>4.7.3 状态转移方程</h3><p>核心思路：每一次 $h()$ 所能<strong>尝试的楼高</strong>必须要<strong>尽可能的大</strong>，这样才能做到<strong>尝试次数最小</strong></p>
+<p>在某层扔下一个鸡蛋</p>
+<ul>
+<li>〔碎了〕那么在后面的 $i-1$ 次里，需用 $j-1$ 个鸡蛋在下面的楼层中确定<strong>楼高</strong>。为了使 $h(i,j)$ 达到最大，希望下面的楼层数（楼高）最大，根据状态定义，记为 $h(i-1, j-1)$ </li>
+<li>〔没碎〕那么在后面的 $i-1$ 次里，需用 $j$ 个鸡蛋在上面的楼层中确定<strong>楼高</strong>。同理，需要楼层数达到最大，记为 $h(i-1,j)$ </li>
+</ul>
+<p>综上，状态转移方程写为 $h(i,j) = h(i-1, j-1)+h(i-1,j) + 1$</p>
+<p>而最终结果可以写为，找到一个 $x$ ，使得 $x$ 满足 $h(x-1, M) &lt; H$ 且 $h(x, M) \geqslant H$ （$M$ 为鸡蛋总数，$H$ 为楼层总高度），其实也就是用公式描述的临界层的具体含义</p>
+<h3 id="4-7-4-代码实现"><a href="#4-7-4-代码实现" class="headerlink" title="4.7.4 代码实现"></a>4.7.4 代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">g</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span> </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        g_cur = g_pre = [ <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m + <span class="number">1</span>) ]</span><br><span class="line">        g_cur[<span class="number">0</span>] = g_pre[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> g_cur[m] &gt;= h: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> h == <span class="number">1</span>: <span class="keyword">return</span> h</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, h + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range( m, <span class="number">1</span>, <span class="number">-1</span>):</span><br><span class="line">                    g_cur[j] = g_pre[j - <span class="number">1</span>] + g_pre[j] + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> g_pre[j] &lt; h <span class="keyword">and</span> g_cur[j] &gt;= h:</span><br><span class="line">                        <span class="keyword">return</span> i</span><br><span class="line">                g_cur[<span class="number">1</span>] = i</span><br><span class="line">                <span class="keyword">if</span> m == <span class="number">1</span> <span class="keyword">and</span> g_cur[<span class="number">1</span>] &gt;= h:</span><br><span class="line">                    <span class="keyword">return</span> i</span><br><span class="line">                print( g_cur, end=<span class="string">"\n"</span>)</span><br><span class="line">                g_pre = g_cur[:]</span><br></pre></td></tr></table></figure>
+<h3 id="4-7-5-继续优化"><a href="#4-7-5-继续优化" class="headerlink" title="4.7.5 继续优化"></a>4.7.5 继续优化</h3><p>这又是一个全新的状态定义和状态转移方程，同理，可尝试<strong>输出整个转移矩阵的具体值</strong>，先观察一下总没有错，如下图所示 </p>
+ <div align="center"><img src="//charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/g.png" alt="" width="400"></div>
+
+<p>从形式上来说，不需要滚动数组，在转移过程中，使用一个 $g$ 函数即可。在最后输出的时候，只需要判断<code>g[m]</code>的情况输出 $i$  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gOptimization</span><span class="params">(h, m)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> h &lt; <span class="number">1</span> <span class="keyword">and</span> m &lt; <span class="number">1</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    t = math.floor( math.log2( h ) ) + <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> m &gt;= t: <span class="keyword">return</span> t</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        g = [ <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(m + <span class="number">1</span>) ]</span><br><span class="line">        g[<span class="number">0</span>] = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> g[m] &gt;= h: <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> h == <span class="number">1</span>: <span class="keyword">return</span> h</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, h + <span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range( m, <span class="number">1</span>, <span class="number">-1</span>):</span><br><span class="line">                    g[j] = g[j - <span class="number">1</span>] + g[j] + <span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> j == m <span class="keyword">and</span> g[j] &gt;= h:</span><br><span class="line">                        <span class="keyword">return</span> i</span><br><span class="line">                g[<span class="number">1</span>] = i</span><br><span class="line">                <span class="keyword">if</span> m == <span class="number">1</span> <span class="keyword">and</span> g[<span class="number">1</span>] &gt;= h:</span><br><span class="line">                    <span class="keyword">return</span> i</span><br></pre></td></tr></table></figure>
+<p>要分析时间复杂度，挺难的。通过证明可以有一个结论（具体证明详见参考文献）$xM \leqslant H$ ，再通过一系列骚操作，可以证明时间复杂度为 $O(\sqrt{h})$，空间复杂度 $O(m)$ </p>
+<p>至此，Leetcode上这道题目的执行时间<strong>打败了85.7%的答案</strong>（虽然Leetcode时间并不靠谱），做这道题的人不多，前面只有一个答案，思路类似，代码写的更漂亮</p>
+<h1 id="5-工程思维总结和感悟"><a href="#5-工程思维总结和感悟" class="headerlink" title="5. 工程思维总结和感悟"></a>5. 工程思维总结和感悟</h1><h2 id="5-1-工程思维"><a href="#5-1-工程思维" class="headerlink" title="5.1 工程思维"></a>5.1 工程思维</h2><p>⭐️ 这一部分是【直观算法】系列的最终目的。<strong>求同遵异</strong>，寻找每一道算法题背后的工程思维，提升自己真正解决工程问题的能力。博主对自己的定位是【机器学习+区块链产品经理】，但同时对技术也有好奇心，喜欢钻研，才开坑写【直观算法】系列</p>
+<h3 id="5-1-1-抽象思维"><a href="#5-1-1-抽象思维" class="headerlink" title="5.1.1 抽象思维"></a>5.1.1 抽象思维</h3><p>把语言描述转化为符号描述的能力，符号是信息和逻辑的纽带</p>
+<h3 id="5-1-2-等价思维"><a href="#5-1-2-等价思维" class="headerlink" title="5.1.2 等价思维"></a>5.1.2 等价思维</h3><p><strong>沟通的效率和信息的冗余度成正比</strong>，所以一个人能否把同一个概念，<strong>从不同的角度，用不同的案例类比，抑或各类精彩直观的比喻</strong>表达出来，这个能力很重要，它可以让人们更加<strong>准确快速的</strong>理解你想表达的意思</p>
+<p>⭐️ <strong>学习的真正本质</strong>：<strong>是在一个领域内不断的去建立这种沟通共识的框架</strong>。举个例子，学过线性代数的人，只要<strong>提到矩阵，就能想到变换</strong>。这就是都学过线性代数的人交流密码，如矩阵的逆 = 一个具体的反向变换。没学过这门课的人是无法和<strong>学过的人</strong>进行沟通的。这也从很大程度加强了人们沟通的效率，所以，<strong>学习带来的终极成效之一</strong>其实是降低了<strong>人类社会的沟通时间，提高了效率</strong></p>
+<p>再举个例子：机器学习中，提到<strong>正则化</strong>，必须建立一套与之相关的知识架构，包括，<strong>过拟合，最优化函数曲面空间理解，范数</strong>等，成<strong>树状结构</strong>继续推而广之，这每一个名词，背后也对应了一个<strong>更加直观，更加易懂的描述方式</strong>。但是我们需要知道，如果我为了表达正则化，为了让你明白我的意思，我需要用一大堆描述性语言，那我们两人的<strong>沟通效率就十分低下了</strong></p>
+<p>这也就是知识体系，一门学科，一门专业的最终含义，学习是为了<strong>构建这门学科的通识沟通框架</strong>，降低同行之间的沟通成本。当然，这有一个<strong>必要前提</strong>，把<strong>学习的目的</strong>理解<strong>降低沟通成本</strong>必须是你做的工作<strong>是规模化的</strong>，涉及<strong>协作</strong></p>
+<p>如果你是爱因斯坦，是能<strong>开拓学科新领域</strong>的<code>0</code>级工程师（来自于吴军老师谷歌方法论），独自想象钻研。那么，学习的本质可能在于给你更多的角度（认知能力），更多的工具（锤子锯子）去更好的<strong>探索这个世界的本质和规则</strong>，在这样的条件下，关于<strong>学习本质的描述</strong>就需要调整了</p>
+<h3 id="5-1-3-反推思维"><a href="#5-1-3-反推思维" class="headerlink" title="5.1.3 反推思维"></a>5.1.3 反推思维</h3><p>从结论出发反推逻辑链</p>
+<h3 id="5-1-4-归纳思维"><a href="#5-1-4-归纳思维" class="headerlink" title="5.1.4 归纳思维"></a>5.1.4 归纳思维</h3><p>数学归纳法，使用已有的条件信息，归纳推出待求的内容</p>
+<h3 id="5-1-5-粗条细调思维"><a href="#5-1-5-粗条细调思维" class="headerlink" title="5.1.5 粗条细调思维"></a>5.1.5 粗条细调思维</h3><p>对于这道题，首先考察的是程序员的粗条细调思维。工程中经常会有对<strong>测量精度</strong>的要求，那么是如何做的？比如常见的<strong>千分尺</strong>，首先是一个横向的卡尺来接近目标值，然后用一个滚轮形的第二级继续细调。同样，显微镜也有对应的调整方法。都可以总结为<code>粗条细调思维</code></p>
+<p>首先大步接近最优解，再调整迭代速度，更加细微的接近最优解。机器学习中的，Adam优化器也是用类似的思维来设计的</p>
+<h3 id="5-1-6-拆分思维"><a href="#5-1-6-拆分思维" class="headerlink" title="5.1.6 拆分思维"></a>5.1.6 拆分思维</h3><p>问题是否能拆分几个黑盒，只给输入输出，里面的逻辑链做到精简，或者<strong>有已经可用的轮子</strong>和<strong>算法</strong>直接应用的能力。</p>
+<blockquote>
+<p>能看到这的读者我衷心感谢您的求知欲和耐心（我写的比较啰嗦，为了权衡不同背景的读者），下面的一部分个人认为<strong>才是最重要的</strong></p>
+</blockquote>
+<h2 id="5-2-工程应用"><a href="#5-2-工程应用" class="headerlink" title="5.2 工程应用"></a>5.2 工程应用</h2><p>到了这一步，基本压榨了本题所有的潜力。但是，下一个值得思考的问题就是，这道题目对应的算法在<strong>实际工程和解决问题的具体情况</strong>中有没有什么应用呢？答案是肯定的</p>
+<p>🌰 如果要找学科分类，鸡蛋难题属于<strong>运筹学问题</strong>，典型应用是破坏性试验，如测试汽车、飞机、火箭等的若干极限性能。举个例子，汽车保全乘客安全的最高碰撞末速，那么为了保证能找这个值，一定会用类似的思路来解决问题。</p>
+<p>你可能也已经发现，<strong>具体问题一定还是具体分析</strong>，但这道题目对应的工程思维更像是工具箱里面的一种<strong>更强大的工具。</strong></p>
+<p>记得罗辑思维中提过一个问题：为什么物理学领域老一辈的物理学家现在拿奖的人越来越少？其中一个重要的原因是他们<strong>熟悉的物理学工具</strong>没有新生一辈的能力强大的。不同于数学这类逻辑学科，物理学是可验证学科，实验，测量工具和理论工具等都必不可少</p>
+<p>博主笃定，算法<strong>80%是要为解决问题服务的</strong>，勾起人们学习的最佳动力就是<strong>举实际生活中遇到的难题是如何用这个算法解决</strong>。从这个侧面，有关<strong>字符串的算法</strong>就非常能勾起学习的兴趣，正是因为涉及到字符串处理的情景太多。</p>
+<p>关于鸡蛋难题，总的看下来，完美的诠释了直观 ➜ 抽象的思维链条。所有高效的，精简的算法，就是要<strong>找到事物或者逻辑发生的本质规律</strong>，如果不谈完备性的证明，用<strong>图表和直观的性质来描述</strong>，这道题目的优化思路并不难（相对的，完备性时间复杂度的证明才是难点）</p>
+<p>关于剩下的20%，此时又想起<a href="https://charlesliuyx.github.io/2018/09/20/%E3%80%90%E7%9B%B4%E8%A7%82%E8%AF%A6%E8%A7%A3%E3%80%91%E9%80%9A%E4%BF%97%E6%98%93%E6%87%82%E4%BA%86%E8%A7%A3%E4%BB%80%E4%B9%88%E6%98%AF%E9%BB%8E%E6%9B%BC%E7%8C%9C%E6%83%B3/">黎曼猜想</a>，<strong>所有</strong>非平凡零点的有关性质。<code>趋向于无穷</code>、<code>所有</code>、<code>任意</code>这些定义方式是人类为了<strong>寻找边界</strong>而设计的工具。趋向于无穷大，趋向于无穷小都还有很多问题没有解决。罗胖说，创业者是在<strong>开垦商业的边疆</strong>，那么理论科学家就是拿着这些强大的工具开拓<strong>逻辑和思维的边疆</strong>，在一片荒芜上<strong>安营扎寨，仰望星空</strong>。这可能就是人类群体中<strong>最有魅力的事业</strong>吧？</p>
+<p>【参考文献】</p>
+<p>非常感谢计算机信息学奥赛国家队朱前辈的论文，对这道题目做了完美的剖析，也勾起了我的好奇心，一探究竟，才有了这篇<strong>万字长文</strong></p>
+<p><a href="https://www.zhihu.com/question/19690210/answer/18079633" target="_blank" rel="noopener">吴育昕的回答 - 知乎</a></p>
+<p><a href="https://github.com/ericliu859/AcmPaper/tree/master/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E4%BC%98%E5%8C%96/2004%20-%20%E6%9C%B1%E6%99%A8%E5%85%89%EF%BC%9A%E3%80%8A%E4%BC%98%E5%8C%96%EF%BC%8C%E5%86%8D%E4%BC%98%E5%8C%96%EF%BC%81%E2%80%94%E2%80%94%E4%BB%8E%E3%80%8A%E9%B9%B0%E8%9B%8B%E3%80%8B%E4%B8%80%E9%A2%98%E6%B5%85%E6%9E%90%E5%AF%B9%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E5%8C%96%E3%80%8B" target="_blank" rel="noopener">参考文献：朱晨光：《优化，再优化！——从《鹰蛋》一题浅析对动态规划算法的优化》</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-11-26T22:33:32.687Z" itemprop="dateUpdated">2018-11-27 06:33:32</time>
+</span><br>
+
+
+        
+        <a href="/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/" target="_blank" rel="external">https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Optimization/">Optimization</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&title=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&title=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&source=【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/10/22/【直观算法】树的基本操作/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观算法】二叉树遍历算法总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/04/博客文章总目录/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">博客文章总目录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '【直观算法】Egg Puzzle 鸡蛋难题',
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&title=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&title=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&source=【阅读时间】10000+字 | 17 - 22 min【阅读内容】Google面试题：100层楼，两个鸡蛋最少用多少次能测出鸡蛋的会在哪一层碎" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观算法】Egg Puzzle 鸡蛋难题》 — Go Further&url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/10/11/【直观算法】Egg Puzzle 鸡蛋难题/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwElEQVR42u3aQW7CQAwFUO5/6XZXVSqQb3scUellhQKEeVnE5nsej/j4+nO8Ov/73d+feX+dV5/8+63HxoGHh4c3XnqPkSz0/a8nyHzNeHh4eNu8fInJ6x6gervfrxkPDw/vc3jVW5AUj7wrxsPDw/uPvPcNd14M8pLQu914eHh427xeC5ssdxJ85HHwgawFDw8PL+blTe3nvF6Z7+Hh4eGNp+r5mD8/n4zWemt7ch08PDy8BV41cq3GEL14Im+yo+YeDw8P7yhv3uDmW68m2wiSX3xyHTw8PLwFXvLon0QS1TOTAdhF2cDDw8O7hXcqquhtGqiu8wKJh4eHd4g3CQ6qgUJSZvIRV/RJPDw8vDVePtBK6kzemk+i3ui38PDw8G7hJS1vHh9MWuq8SLxcPx4eHt4CL98mlb87H6RNhmoX5QEPDw9vzMvHSNWC0WuCq414FOPi4eHhHeWNJmbF21ENO/KAuDwGw8PDwxvz8hFUHuPm26Sqw7a8mOHh4eFt8HobAqr4yWM9D4gv/jHg4eHhHeVVh1j5Q7/XQOfR7UXDjYeHh7fA6w2W5mOtybfyAoOHh4e3wTu1uHyDVD7cyotQYU8ZHh4e3lFeoT2NP5mz59u8ntwCPDw8vAVedaHVjQUJo1oS8qKFh4eHdw+vGtEmjfh8MFaNiV8WBjw8PLyjvGqzm5eQahM8x0f5Bx4eHt5RXvVx3zt6Zal8Hg8PD2+Z14skqsHEqVAj+i4eHh7eUV7vUV7dsDXZdFW9uU+2DuDh4eEd5U2G+tUbkQcTeWSc/CXAw8PD2+DlkUF10fNouDcSw8PDw7uHlz+Ue3HGgerUmnDh4eHhfQKv+tDvBQe9G1pIefHw8PBu5yXBRL7Q/ArlX8HDw8Nb4/W2h1aj28mIq1m08PDw8BZ4B/7wx/FuEtdOBmY7eQYeHh7ez/ENTHJK366HVVYAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>

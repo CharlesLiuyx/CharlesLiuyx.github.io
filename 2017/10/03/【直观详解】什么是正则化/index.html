@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】什么是正则化 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Theory,Machine Learning">
+    <meta name="description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
+<meta name="keywords" content="Theory,Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】什么是正则化">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png">
+<meta property="og:updated_time" content="2018-03-06T22:14:44.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】什么是正则化">
+<meta name="twitter:description" content="【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】什么是正则化</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】什么是正则化</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-03T10:10:12.000Z" itemprop="datePublished" class="page-time">
+  2017-10-03
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Why-amp-What-正则化"><span class="post-toc-number">1.</span> <span class="post-toc-text">Why &amp; What 正则化</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-线性模型角度"><span class="post-toc-number">2.</span> <span class="post-toc-text">How 线性模型角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二次正则项"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">二次正则项</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一般正则项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">一般正则项</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#How-神经网络模型角度"><span class="post-toc-number">3.</span> <span class="post-toc-text">How 神经网络模型角度</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#范数"><span class="post-toc-number">4.</span> <span class="post-toc-text">范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#向量范数"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">向量范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#p-范数"><span class="post-toc-number">4.1.1.</span> <span class="post-toc-text">p-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数"><span class="post-toc-number">4.1.2.</span> <span class="post-toc-text">$-\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数"><span class="post-toc-number">4.1.3.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数"><span class="post-toc-number">4.1.4.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-1"><span class="post-toc-number">4.1.5.</span> <span class="post-toc-text">$\infty$-范数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#矩阵范数"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">矩阵范数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-范数-1"><span class="post-toc-number">4.2.1.</span> <span class="post-toc-text">1-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#infty-范数-2"><span class="post-toc-number">4.2.2.</span> <span class="post-toc-text">$\infty$-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-范数-1"><span class="post-toc-number">4.2.3.</span> <span class="post-toc-text">2-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#F-范数"><span class="post-toc-number">4.2.4.</span> <span class="post-toc-text">F-范数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#核范数"><span class="post-toc-number">4.2.5.</span> <span class="post-toc-text">核范数</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结"><span class="post-toc-number">5.</span> <span class="post-toc-text">总结</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【直观详解】什么是正则化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】什么是正则化</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-03 18:10:12" datetime="2017-10-03T10:10:12.000Z"  itemprop="datePublished">2017-10-03</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】7min - 9min<br>【内容简介】主要解决<strong>什么是正则化，为什么使用正则化，如何实现正则化</strong>，外加一些对<strong>范数</strong>的直观理解并进行知识整理以供查阅</p>
+<a id="more"></a>
+<h1 id="Why-amp-What-正则化"><a href="#Why-amp-What-正则化" class="headerlink" title="Why &amp; What 正则化"></a>Why &amp; What 正则化</h1><p>我们总会在各种地方遇到<strong>正则化</strong>这个看起来很难理解的名词，其实它并没有那么高冷，是很好理解的</p>
+<p>首先，从<strong>使用正则化解决了一个什么问题</strong>的角度来看：<strong>正则化是为了防止过拟合， 进而增强泛化能力</strong>。用白话文转义，<strong>泛化误差</strong>（generalization error）= 测试误差（test error），其实就是使用训练数据训练的模型在测试集上的表现（或说性能 performance）好不好</p>
+<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Overfitting.png" alt="过拟合" width="500"></p>
+<p>如上图，红色这条“想象力”过于丰富上下横跳的曲线就是过拟合情形。结合上图和正则化的英文 Regularizaiton-Regular-Regularize，<strong>直译应该是：规则化</strong>（加个“化”字变动词，自豪一下中文还是强）。什么是规则？你妈喊你6点前回家吃饭，这就是规则，一个<strong>限制</strong>。同理，在这里，<strong>规则化就是说给需要训练的目标函数加上一些规则（限制），让他们不要自我膨胀</strong>。正则化，看起来，挺不好理解的，追其根源，还是“正则”这两字在中文中实在没有一个直观的对应，如果能翻译成<strong>规则化</strong>，更好理解。但我们一定要明白，搞<strong>学术，概念名词的准确是十分重要</strong>，对于一个<strong>重要唯一确定的概念</strong>，为它安上一个不会产生歧义的名词是必须的，正则化的名称没毛病，只是从如何理解的角度，要灵活和类比。</p>
+<p>我的思考模式的中心有一个理念：<strong>每一个概念</strong>，<strong>被定义</strong>就是为了去<strong>解决一个实际问题（问Why&amp;What），接着寻找解决问题的方法（问How）</strong>，这个“方法”在计算机领域被称为“算法”（非常多的人在研究）。我们无法真正衡量到底是提出问题重要，还是解决问题重要，但我们可以从不同的<strong>解决问题的角度</strong>来思考问题。一方面，<strong>重复</strong>以加深印象。另一方面，具有<strong>多角度的视野</strong>，能让我们获得更多的灵感，真正做到<strong>链接并健壮自己的知识图谱</strong></p>
+<h1 id="How-线性模型角度"><a href="#How-线性模型角度" class="headerlink" title="How 线性模型角度"></a>How 线性模型角度</h1><p><strong>对于线性模型来说，无论是Logistic Regression、SVM或是简单的线性模型，都有一个基函数 $\phi()$，其中有很多 $\mathbf w$ （参数）需要通过对损失函数 $E()$ 求极小值（或最大似然估计）来确定，求的过程，也就是使用训练集的训练过程：梯度下降到最小值点。最终，找到最合适的 $\mathbf w$ 确定模型。</strong>从这个角度来看，正则化是怎么做的呢？</p>
+<h2 id="二次正则项"><a href="#二次正则项" class="headerlink" title="二次正则项"></a>二次正则项</h2><p>我们看一个线性的<strong>损失函数（真实值和预测值的误差）</strong><br>
+$$
+E(\mathbf w) =\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 \tag{1}
+$$
+</p>
+<blockquote>
+<p>$E(\mathbf w)$ 是<strong>损失函数（又称误差函数）</strong>，<code>E</code>即Evaluate，有时候写成<code>L</code>即Loss<br>$t_n$ 是测试集的真实输出，又称目标变量【对应第一幅图中的蓝色点】<br>$\mathbf w$ 是权重（需要训练的部分，未知数）<br>$\phi()$ 是<strong>基函数</strong>，例如多项式函数，核函数<br>测试样本有<code>n</code>个数据<br>整个函数直观解释就是<strong>误差方差和</strong>，$\frac{1}{2}$ 只是为了<strong>求导后消去方便计算</strong></p>
+</blockquote>
+<p>加<strong>正则化项</strong>，得到最终的<strong>误差函数（Error function）</strong><br>
+$$
+\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 + \frac{\lambda}{2} \mathbf w^T \mathbf w \tag{2}
+$$
+</p>
+<blockquote>
+<p>(2)式被称为目标函数（评价函数）= 误差函数（损失函数） + 正则化项<br>$\lambda$ 被称为正则化系数，<strong>越大，这个限制越强</strong></p>
+</blockquote>
+<p>2式对 $\mathbf w$ 求导，并令为0（<strong>使误差最小</strong>），可以解得</p>
+
+$$
+\mathbf w = (\lambda \mathbf I + \Phi^T \Phi)^{-1}\Phi^T\mathbf t
+$$
+
+<p>这是<strong>最小二乘法的解形式</strong>，所以在题目中写的是从“最小二乘角度”。至于为何正则化项是 $\frac{\lambda}{2} \mathbf w^T \mathbf w$ 在之后马上解释</p>
+<h2 id="一般正则项"><a href="#一般正则项" class="headerlink" title="一般正则项"></a>一般正则项</h2><p>直观的详解为什么要选择二次正则项。首先，需要从一般推特例，然后分析特例情况的互相优劣条件，可洞若观火。<strong>一般正则项</strong>是以下公式的形式</p>
+
+$$
+\frac{1}{2} \sum_{n=1}^{N}\{t_n-\mathbf w^T \phi (\mathbf x_n)\}^2 + \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q \tag{3}
+$$
+
+<blockquote>
+<p><code>M</code>是模型的阶次（表现形式是数据的维度），比如<code>M=2</code>，就是一个平面（二维）内的点</p>
+</blockquote>
+<p>若<code>q=2</code>就是二次正则项。高维度没有图像表征非常难以理解，那就使用二维作为特例来理解。这里令<code>M=2</code>，即 $\mathbf x =\{x_1,x_2\} \;\mathbf w=\{w_1,w_2\}$  ，令<code>q=0.5</code> <code>q=1</code> <code>q=2</code> <code>q=4</code> 有</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
+
+<blockquote>
+<p>横坐标是$w_1$<br>纵坐标是$w_2$<br>绿线是<strong>等高线的其中一条</strong>，换言之是一个<strong>俯视图</strong>，而<strong>z轴代表</strong>的是 $ \frac{\lambda}{2} \sum_{j=1}^{M} {\vert w_j \vert}^q$ 的值</p>
+</blockquote>
+<p>空间想象力不足无法理解的读者希望下方的三维图像能给你一个直观的领悟（与绿线图一一对应）</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/qAll.png" alt="正则项的边缘直观表示"></div>
+
+<p><code>q=2</code>是一个圆非常好理解，考虑  $z = w_1^2 + w_2^2 $  就是抛物面，俯视图是一个圆。其他几项同理（必须强调<strong>俯视图和等高线的概念</strong>，z轴表示的是正则项项的值）</p>
+<p><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq2.png" alt="正则项的边缘直观表示"></p>
+<blockquote>
+<p>蓝色的圆圈表示没有经过限制的<strong>损失函数在寻找最小值过程</strong>中，$\mathbf w$的不断迭代（随最小二乘法，最终目的还是使损失函数最小）变化情况，<strong>表示的方法是等高线，z轴的值就是</strong> $E(\mathbf w)$<br>$w^*$ 最小值取到的点</p>
+</blockquote>
+<p>可以直观的理解为（帮助理解正则化），我们的目标函数（误差函数）就是<strong>求蓝圈+红圈的和的最小值</strong>（回想等高线的概念并参照3式），而这个值通在很多情况下是<strong>两个曲面相交的地方</strong></p>
+<p>可以看到<strong>二次正则项</strong>的优势，处处可导，方便计算，<strong>限制模型的复杂度，即 $\mathbf w$ 中<code>M</code>的大小，<code>M</code>是模型的阶次</strong>，<code>M</code>越大意味着需要决定的权重越多，所以模型越复杂。在多项式模型多，直观理解是每一个不同幂次的 $x$ 前的系数，0（或很小的值）越多，模型越简单。这就<strong>从数学角度解释了，为什么正则化（规则化）可以限制模型的复杂度，进而避免过拟合</strong></p>
+<p>不知道有没有人发现<strong>一次正则项</strong>的优势，$w^*$ 的位置恰好是 $w_1=0$ 的位置，意味着从另一种角度来说，使用一次正则项可以<strong>降低维度（降低模型复杂度，防止过拟合）二次正则项也做到了这一点，但是一次正则项做的更加彻底</strong>，更稀疏。不幸的是，<strong>一次正则项有拐点</strong>，不是处处可微，给计算带来了难度，很多厉害的论文都是巧妙的使用了一次正则项写出来的，效果十分强大</p>
+<h1 id="How-神经网络模型角度"><a href="#How-神经网络模型角度" class="headerlink" title="How 神经网络模型角度"></a>How 神经网络模型角度</h1><p>我们已经知道，最简单的单层神经网，可以实现简单的线性模型。而多隐含层的神经网络模型如何来<strong>实现正则化</strong>？（毕竟神经网络模型没有目标函数）</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/NNhiden.png" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<blockquote>
+<p><code>M</code>表示单层神经网中隐含层中的神经元的数量</p>
+</blockquote>
+<p>上图展示了神经网络模型过拟合的直观表示</p>
+<p>我们可以通过一系列的推导得知，未来保持神经网络的一致性（即输出的值不能被尺缩变换，或平移变换），在线性模型中的<strong>加入正则项</strong>无法奏效</p>
+<p><strong>所以我们只能通过建立验证集（Validation Set），拉网搜索来确定<code>M</code>的取值（迭代停止的时间），又称为【提前停止】</strong></p>
+<p>这里有一个尾巴，即<strong>神经网络的不变量（invariance）</strong>，我们并不希望加入正则项后出现不在掌控范围内的变化（即所谓图像还是那个图像，不能乱变）。而<strong>机器学习的其中一个核心目的也是去寻找不同事物（对象）的中包含信息的这个不变量（特征）</strong>。卷积神经网络从结构上恰恰实现了这种<strong>不变性</strong>，这也是它强大的一个原因</p>
+<h1 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h1><p>我并不是数学专业的学生，但是我发现在讲完线性模型角度后，有几个概念可以很轻松的解答，就在这里献丑把它们串联起来，并做一些总结以供查阅和对照。</p>
+<p>我们知道，<strong>范数（norm）</strong>的概念来源于<strong>泛函分析与测度理论</strong>，wiki中的定义相当简单明了：<strong>范数是具有“长度”概念的函数</strong>，用于衡量一个<strong>矢量的大小</strong>（测量矢量的测度）</p>
+<p>我们常说测度测度，测量长度，也就是为了表征这个长度。而如何表达“长度”这个概念也是不同的，也就对应了不同的<strong>范数</strong>，本质上说，还是<strong>观察问题的方式和角度不同</strong>，比如那个经典问题，<strong>为什么矩形的面积是长乘以宽？</strong>这背后的关键是欧式空间的<strong>平移不变性</strong>，换句话说，就是面积和长成正比，所以才有这个</p>
+<p>没有<strong>测度论就没有（现代）概率论</strong>。而概率论也是整个机器学习学科的基石之一。测度<strong>就像尺子</strong>，由于测量对象不同，我们需要直尺量布匹、皮尺量身披、卷尺量房间、游标卡尺量工件等等。<strong>注意，“尺子”与刻度（寸、米等）是两回事，不能混淆。</strong></p>
+<p>范数分为<strong>向量范数</strong>（二维坐标系）和<strong>矩阵范数</strong>（多维空间，一般化表达），如果不希望太数学化的解释，那么可以直观的理解为：<strong>0-范数：向量中非零元素的数量；1-范数：向量的元素的绝对值；2-范数：是通常意义上的模（距离）</strong></p>
+<h2 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h2><p>关于向量范数，先再把这个图放着，让大家体会到构建知识图谱并串联知识间的本质（根）联系的好处</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/Dq.png" alt="正则项的边缘直观表示"></div>
+
+<h3 id="p-范数"><a href="#p-范数" class="headerlink" title="p-范数"></a>p-范数</h3> 
+$$
+\Vert\mathbf x \Vert_p =(\sum\limits_{i=1}^{N}\vert x_i \vert^p)^{\frac{1}{p}}
+$$
+
+<p>向量元素绝对值的p次方和的 $\frac{1}{p}$ 次幂。可以敏捷的发现，这个<code>p</code>和之前的<code>q</code>从是一个东西，<strong>随着<code>p</code>越大，等高线图越接近正方形（正无穷范数）；越小，曲线弯曲越接近原点（负无穷范数）</strong></p>
+<p>而之前已经说明，<code>q</code>的含义是<strong>一般化正则项的幂指数</strong>，也就是我们常说的2范数，两者在形式上是完全等同的。结合范数的定义，我们可以解释<strong>一般化正则项为一种对待求参数 $\mathbf w$ 的测度</strong>，可以用来限制模型不至于过于复杂</p>
+<h3 id="infty-范数"><a href="#infty-范数" class="headerlink" title="$-\infty$-范数"></a>$-\infty$-范数</h3> 
+$$
+\Vert \mathbf x \Vert_{-\infty} = arg \operatorname*{min}_{i}{\vert x_i \vert}
+$$
+ 
+<p>所有<strong>向量元素中绝对值的最小值</strong></p>
+<h3 id="1-范数"><a href="#1-范数" class="headerlink" title="1-范数"></a>1-范数</h3> 
+$$
+\Vert \mathbf x \Vert_1 = \sum\limits_{i=1}^{N}\vert x_i \vert
+$$
+ 
+<p>向量元素<strong>绝对值之和</strong>，也称街区距离（city-block）</p>
+
+$$
+\begin{matrix}
+4 & 3 & 2 & 3 & 4 \\
+3 & 2 & 1 & 2 &  3\\
+2 & 1 & 0 & 1 & 2 \\
+3 & 2 & 1 & 2 &3  \\
+4&3 & 2 &3 &4  \\
+\end{matrix}
+$$
+
+<h3 id="2-范数"><a href="#2-范数" class="headerlink" title="2-范数"></a>2-范数</h3> $\Vert\mathbf x \Vert_2 = \sqrt{\sum\limits_{i=1}^{N} x_i^2}$  ：向量元素的<strong>平方和再开方</strong>。<strong>Euclid范数</strong>，也称<strong>欧几里得范数，欧氏距离</strong><br><br>
+$$
+\begin{matrix}
+2.8&2.2&2&2.2&2.8 \\
+2.2&1.4&1&1.4&2.2 \\
+2&1&0&1&2 \\
+2.2&1.4&1&1.4&2.2 \\
+2.8&2.2&2&2.2&2.8 \\
+\end{matrix}
+$$
+
+<h3 id="infty-范数-1"><a href="#infty-范数-1" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> $\Vert \mathbf x \Vert_{\infty} = arg \operatorname*{max}_{i}{\vert x_i \vert}$  ：所有<strong>向量元素中绝对值的最大值</strong>，也称<strong>棋盘距离（chessboard），切比雪夫距离</strong><br><br>
+$$
+\begin{matrix}
+2 & 3 & 2 & 2 & 2 \\
+2 & 1 & 1 & 1 &  2\\
+2 & 1 & 0 & 1 & 2 \\
+2 & 1 & 1 & 1 &2  \\
+2&2 & 2 &2 &2 \\
+\end{matrix}
+$$
+
+<h2 id="矩阵范数"><a href="#矩阵范数" class="headerlink" title="矩阵范数"></a>矩阵范数</h2><h3 id="1-范数-1"><a href="#1-范数-1" class="headerlink" title="1-范数"></a>1-范数</h3> 
+$$
+\Vert \mathbf A \Vert_{1} = arg \operatorname*{max}_{1 \leqslant j \leqslant n}\sum\limits_{i=1}^m{\vert a_{i,j} \vert}
+$$
+
+<p><strong>列和范数</strong>，即所有<strong>矩阵列向量</strong>绝对值之和的最大值</p>
+<h3 id="infty-范数-2"><a href="#infty-范数-2" class="headerlink" title="$\infty$-范数"></a>$\infty$-范数</h3> 
+$$
+\Vert \mathbf A \Vert_{\infty} = arg \operatorname*{max}_{1 \leqslant i \leqslant n}\sum\limits_{j=1}^m{\vert a_{i,j} \vert}
+$$
+
+<p><strong>行和范数</strong>，即所有<strong>矩阵行向量</strong>绝对值之和的最大值</p>
+<h3 id="2-范数-1"><a href="#2-范数-1" class="headerlink" title="2-范数"></a>2-范数</h3> $\Vert \mathbf A \Vert_{2} = \sqrt{\lambda_{max}(\mathbf A^* \mathbf A) }$ 
+<p><code>p=2</code><strong>且<code>m=n</code>方阵</strong>时，称为谱范数。矩阵 $\mathbf A$ 的<strong>谱范数</strong>是 $\mathbf A$ 最大的<strong>奇异值</strong>或半正定矩阵 $\mathbf A^T \mathbf A$ 的<strong>最大特征值的平方根</strong></p>
+<blockquote>
+<p>$\mathbf A^*$ 为 $\mathbf A$ 的共轭转置，实数域等同于 $\mathbf A^T$</p>
+</blockquote>
+<h3 id="F-范数"><a href="#F-范数" class="headerlink" title="F-范数"></a>F-范数</h3> $\Vert \mathbf A \Vert_{F} = \sqrt{ \sum\limits_{i=1}^m \sum\limits_{j=1}^n \vert a_{i,j}\vert^2 }$ 
+<p>Frobenius范数（希尔伯特-施密特范数，这个称呼只在希尔伯特空间），即<strong>矩阵元素绝对值的平方和再开平方</strong></p>
+<h3 id="核范数"><a href="#核范数" class="headerlink" title="核范数"></a>核范数</h3><p> $\Vert \mathbf A \Vert_{*} =  \sum\limits_{i=1}^n \lambda_i$ ：$\lambda_i$ 若 $\mathbf A$ <strong>矩阵是方阵，称为本征值</strong>。若<strong>不是方阵，称为奇异值</strong>，即<strong>奇异值/本征值之和</strong></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>相信每个人在学习过程中都有过看书时，遇到0-范数正则化，或者1-范数正则化，2-范数正则化的表达时很迷惑。写到这里，希望大家能对这些看起来无法理解的晦涩名词有一个融会贯通的理解和感知！</p>
+<p>Learning with intuitive and get Insight</p>
+<p>以上！鞠躬！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-03-06T22:14:44.327Z" itemprop="dateUpdated">2018-03-07 06:14:44</time>
+</span><br>
+
+
+        
+        <a href="/2017/10/03/【直观详解】什么是正则化/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&title=《【直观详解】什么是正则化》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&title=《【直观详解】什么是正则化》 — Go Further&source=【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】什么是正则化》 — Go Further&url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/05/【直观详解】什么是PCA、SVD/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观详解】什么是PCA、SVD</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/30/Pandas-Wiki/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Pandas-Wiki</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            id: '【直观详解】什么是正则化',
+            owner: 'CharlesLiuyx',
+            repo: 'BlogComment',
+            oauth: {
+                client_id: '2c1daf79f5a857cab513',
+                client_secret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2019</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&title=《【直观详解】什么是正则化》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&title=《【直观详解】什么是正则化》 — Go Further&source=【阅读时间】7min - 9min【内容简介】主要解决什么是正则化，为什么使用正则化，如何实现正则化，外加一些对范数的直观理解并进行知识整理以供查阅" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】什么是正则化》 — Go Further&url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/03/【直观详解】什么是正则化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqklEQVR42u3aQW7DMAwEwPz/0y3Qa6F0SYpJCoxPRZPYGh9EYsXHI76+fq7ff58+/f2d0z2f3y35/4ULDw8Pr7X00/UckH//+W8TTHUNeHh4eNu8vBjkG3TCyAtMsgY8PDy8T+M9f2SCP93hdB88PDy8/86bBBO9b+Lh4eF9Mi8JFybbdzWGyNdzLWvBw8PDi3mTA7B3/f2i8z08PDy84hbc23arC0qe0lwnHh4e3gKvOiaVHG7lUW8vDk5+G8124eHh4bV4vWggeTWTaKMa8h7vg4eHh7fAyzflwoFTzJsMeOVUPDw8vA3erUGr5DAsjx7mrwwPDw9vg5c/ID+87w0Q3GrBowAXDw8Pb4FXHauaRK55M10uJ3h4eHgLvF6zm5Am5SH/fnSYh4eHh7fMq8YTScJRLTzVYaxR9cPDw8Mr8m5tzfkibh2JRfk0Hh4e3gt5k4P/3vhUtVBFn+Lh4eEt8PJrHuNW4+C8CFVbfDw8PLwJr3f0VV1WLxTuHZXh4eHhvYs3b2qrS8xj3zxoxsPDw9vmTQLWpFvPt/682BQKAx4eHt4ar7cd58vtNdlV2LEw4OHh4Y15vcXlQcZk9KqXQx+/g4eHh3eJV41W5ydsSbN+raHHw8PDW+BVH1ltiyclpDpGcKx7eHh4eAu8PIzoxanzga1JGcPDw8Pb4FUf31ti8mryBr0QlODh4eG9nFctFb0iUR3tKrxuPDw8vKu8r+LVi1OrzXH1Kcdf4eHh4S3w7o5Y9RaUkPLWPy8neHh4eBNeHhY8xlc1Ysjb9z/CCDw8PLwFXnVaqRrXTsazqq8MDw8P79N4eXAwaceTZ0V3xsPDw3srb77dJy8raaZzMB4eHt4eLx+KKje149BhdOiFh4eHt8CbHIBNHlwdF+g1+nh4eHhXed/f27GGdrvkqQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
