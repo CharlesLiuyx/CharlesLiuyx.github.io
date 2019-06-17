@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[【教程】manim动画制作工具]]></title>
+    <url>%2F2019%2F04%2F21%2F%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91manim%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[【阅读时间】【阅读内容】3B1B 自用动画生成神器教程 Github链接 教程英文版链接 manim文档 1 安装 manim首先参考Github链接 2 做一个简单的视频2.1 场景和动画 Scenes ＆ Animation 3 更多可以使用的形状3.1 方向矢量 Direction Vectors 3.2 制作一个简单的动画4 添加文字 Text 4.1 文字变形4.2 文字的旋转和高亮5 数学公式5.1 给对象上色6 对齐文本并使用大括号7 坐标轴和绘图7.1 配置文件8 更高级的绘图9 向量场9.1 简单向量场9.2 带有变量的向量场10 运动电荷场例子10.1 更进一步的优化11 3D场景12 SVG格式支持]]></content>
+      <categories>
+        <category>Math</category>
+      </categories>
+      <tags>
+        <tag>3B1B</tag>
+        <tag>manim</tag>
+        <tag>Tutorial</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[【直观算法】二叉搜索树算法总结]]></title>
     <url>%2F2018%2F10%2F28%2F%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%AE%97%E6%B3%95%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[【阅读时间】【阅读内容】结合Leetcode相关算法题总结二叉搜索树的相关算法，包括基本的二叉搜索构建和应用，附带一些关于AVL树，红黑树的基本概念梳理 是什么二叉搜索树（Binary Search Tree）BST是大名鼎鼎的搜索算法。在算法界，$O(n)$ 到 $O(\log_2 n)$ 的效率优化大多和BST有关 用白话文来说，二叉搜索树是一颗对于所有节点左孩子 ＜ 根，右子树 ＞ 根的二叉树 基本操作构建相关例题：108. Convert Sorted Array to Binary Search Tree 已经给出了定义，Leetcode中有一道将升序数组转换成平衡二叉搜索树的题目。根据二叉树遍历一节的内容，中序遍历的顺序是左 ➜ 根 ➜ 右，再结合二叉搜索树的定义。观察知，二叉搜索树的中序遍历就是一个升序数组。那么问题就转换成了，哪颗平衡二叉树的中序遍历是这个升序数组 因为题目要求平衡二叉树，保证所有子树的高度一样，必须二分输入序列 假设输入序列为[-10,-3,0,5,9]，根节点一定在mid = (start + end) // 2 位置，由递归思维：假设再次调用的函数的返回值是已经完成的子树，也就是说只需把[0, mid-1]代表的树作为左子树，和[mid+1, end]代表的树作为右子树即可 1234567891011121314class Solution: def sortedArrayToBST(self, nums): """ :type nums: List[int] :rtype: TreeNode """ if not nums: return None mid = len(nums) // 2 root = TreeNode(nums[mid]) root.left = self.sortedArrayToBST(nums[ : mid]) root.right = self.sortedArrayToBST(nums[mid+1 : ]) return root 查找相关例题：700. Search in a Binary Search Tree 最常见的二叉树操作，查找一个对应节点，平均查找长度为 $\log_2(n)$ 。二叉搜索树性质，左孩子＜根＜右孩子，按照规律进行递归即可。省略迭代写法，只需要按照顺序进行一个节点一个节点顺下即可，非常简单 12345678910class Solution: def searchBST(self, root, val): """ :type root: TreeNode :type val: int :rtype: TreeNode """ if not root or root.val == val: return root return self.searchBST(root.left, val) if val &lt; root.val else self.searchBST(root.right, val) 判断相关例题：98. Validate Binary Search Tree 【输入】给定一个树的结构【操作】判断这颗树是不是二叉搜索树【输出】True or False ① 使用中序遍历，结果是升序序列则为二叉搜索树（前面讲定义的时候已经讲解的原因） ② 去重复操作。①中在遍历过程就可做判断，不需要重新再做一次升序判断 这里实现使用迭代写法，递归写法比较简单 1234567891011121314151617181920212223class Solution(object): def isValidBST(self, root): """ :type root: TreeNode :rtype: bool """ if root is None: return True stack, inorder = [], [] p_node = root pre_node_val = float("-inf") while stack or p_node: while p_node: stack.append(p_node) p_node = p_node.left cur_node = stack.pop() inorder.append(cur_node.val) if pre_node_val &gt;= cur_node.val: return False pre_node_val = cur_node.val if cur_node.right: p_node = cur_node.right return True 删除二叉查找树中的删除节点操作，详见链接 需要分为3种情况进行讨论 没有孩子的节点 ➜ 直接将它删除即可，它的父节点的孩子替换成空 只有一个孩子的节点 ➜ 直接上升孩子的位子替代被删除的即可 有两个孩子的节点 ➜ 此种情况比较麻烦，需要参看详细链接 相关题目]]></content>
@@ -106,19 +119,6 @@
       <tags>
         <tag>Note</tag>
         <tag>TEDTalk</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[【教程】manim动画制作工具]]></title>
-    <url>%2F2018%2F04%2F21%2F%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91manim%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7%2F</url>
-    <content type="text"><![CDATA[【阅读时间】【阅读内容】3B1B 自用动画生成神器教程 Github链接 教程英文版链接 manim文档 1 安装 manim首先参考Github链接 2 做一个简单的视频2.1 场景和动画 Scenes ＆ Animation 3 更多可以使用的形状3.1 方向矢量 Direction Vectors 3.2 制作一个简单的动画4 添加文字 Text 4.1 文字变形4.2 文字的旋转和高亮5 数学公式5.1 给对象上色6 对齐文本并使用大括号7 坐标轴和绘图7.1 配置文件8 更高级的绘图9 向量场9.1 简单向量场9.2 带有变量的向量场10 运动电荷场例子10.1 更进一步的优化11 3D场景12 SVG格式支持]]></content>
-      <categories>
-        <category>Math</category>
-      </categories>
-      <tags>
-        <tag>3B1B</tag>
-        <tag>manim</tag>
-        <tag>Tutorial</tag>
       </tags>
   </entry>
   <entry>

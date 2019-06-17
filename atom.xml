@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://charlesliuyx.github.io/"/>
-  <updated>2018-11-26T22:32:27.327Z</updated>
+  <updated>2019-06-17T13:02:36.549Z</updated>
   <id>https://charlesliuyx.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【教程】manim动画制作工具</title>
+    <link href="https://charlesliuyx.github.io/2019/04/21/%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91manim%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/"/>
+    <id>https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/</id>
+    <published>2019-04-21T04:06:00.000Z</published>
+    <updated>2019-06-17T13:02:36.549Z</updated>
+    
+    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】3B1B 自用动画生成神器教程<br><a id="more"></a></p><p><a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a> <a href="https://talkingphysics.wordpress.com/2019/01/08/getting-started-animating-with-manim-and-python-3-7/" target="_blank" rel="noopener">教程英文版链接</a> <a href="https://manim.readthedocs.io/" target="_blank" rel="noopener">manim文档</a></p><h1 id="1-安装-manim"><a href="#1-安装-manim" class="headerlink" title="1 安装 manim"></a>1 安装 manim</h1><p>首先参考<a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a></p><h1 id="2-做一个简单的视频"><a href="#2-做一个简单的视频" class="headerlink" title="2 做一个简单的视频"></a>2 做一个简单的视频</h1><h2 id="2-1-场景和动画"><a href="#2-1-场景和动画" class="headerlink" title="2.1 场景和动画"></a>2.1 场景和动画</h2><blockquote><p>Scenes ＆ Animation</p></blockquote><h1 id="3-更多可以使用的形状"><a href="#3-更多可以使用的形状" class="headerlink" title="3 更多可以使用的形状"></a>3 更多可以使用的形状</h1><h2 id="3-1-方向矢量"><a href="#3-1-方向矢量" class="headerlink" title="3.1 方向矢量"></a>3.1 方向矢量</h2><blockquote><p>Direction Vectors</p></blockquote><h2 id="3-2-制作一个简单的动画"><a href="#3-2-制作一个简单的动画" class="headerlink" title="3.2 制作一个简单的动画"></a>3.2 制作一个简单的动画</h2><h1 id="4-添加文字"><a href="#4-添加文字" class="headerlink" title="4 添加文字"></a>4 添加文字</h1><blockquote><p>Text</p></blockquote><h2 id="4-1-文字变形"><a href="#4-1-文字变形" class="headerlink" title="4.1 文字变形"></a>4.1 文字变形</h2><h2 id="4-2-文字的旋转和高亮"><a href="#4-2-文字的旋转和高亮" class="headerlink" title="4.2 文字的旋转和高亮"></a>4.2 文字的旋转和高亮</h2><h1 id="5-数学公式"><a href="#5-数学公式" class="headerlink" title="5 数学公式"></a>5 数学公式</h1><h2 id="5-1-给对象上色"><a href="#5-1-给对象上色" class="headerlink" title="5.1 给对象上色"></a>5.1 给对象上色</h2><h1 id="6-对齐文本并使用大括号"><a href="#6-对齐文本并使用大括号" class="headerlink" title="6 对齐文本并使用大括号"></a>6 对齐文本并使用大括号</h1><h1 id="7-坐标轴和绘图"><a href="#7-坐标轴和绘图" class="headerlink" title="7 坐标轴和绘图"></a>7 坐标轴和绘图</h1><h2 id="7-1-配置文件"><a href="#7-1-配置文件" class="headerlink" title="7.1 配置文件"></a>7.1 配置文件</h2><h1 id="8-更高级的绘图"><a href="#8-更高级的绘图" class="headerlink" title="8 更高级的绘图"></a>8 更高级的绘图</h1><h1 id="9-向量场"><a href="#9-向量场" class="headerlink" title="9 向量场"></a>9 向量场</h1><h2 id="9-1-简单向量场"><a href="#9-1-简单向量场" class="headerlink" title="9.1 简单向量场"></a>9.1 简单向量场</h2><h2 id="9-2-带有变量的向量场"><a href="#9-2-带有变量的向量场" class="headerlink" title="9.2 带有变量的向量场"></a>9.2 带有变量的向量场</h2><h1 id="10-运动电荷场例子"><a href="#10-运动电荷场例子" class="headerlink" title="10 运动电荷场例子"></a>10 运动电荷场例子</h1><h2 id="10-1-更进一步的优化"><a href="#10-1-更进一步的优化" class="headerlink" title="10.1 更进一步的优化"></a>10.1 更进一步的优化</h2><h1 id="11-3D场景"><a href="#11-3D场景" class="headerlink" title="11 3D场景"></a>11 3D场景</h1><h1 id="12-SVG格式支持"><a href="#12-SVG格式支持" class="headerlink" title="12 SVG格式支持"></a>12 SVG格式支持</h1>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】3B1B 自用动画生成神器教程&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Math" scheme="https://charlesliuyx.github.io/categories/Math/"/>
+    
+    
+      <category term="3B1B" scheme="https://charlesliuyx.github.io/tags/3B1B/"/>
+    
+      <category term="manim" scheme="https://charlesliuyx.github.io/tags/manim/"/>
+    
+      <category term="Tutorial" scheme="https://charlesliuyx.github.io/tags/Tutorial/"/>
+    
+  </entry>
   
   <entry>
     <title>【直观算法】二叉搜索树算法总结</title>
@@ -236,32 +262,6 @@
       <category term="Note" scheme="https://charlesliuyx.github.io/tags/Note/"/>
     
       <category term="TEDTalk" scheme="https://charlesliuyx.github.io/tags/TEDTalk/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【教程】manim动画制作工具</title>
-    <link href="https://charlesliuyx.github.io/2018/04/21/%E3%80%90%E6%95%99%E7%A8%8B%E3%80%91manim%E5%8A%A8%E7%94%BB%E5%88%B6%E4%BD%9C%E5%B7%A5%E5%85%B7/"/>
-    <id>https://charlesliuyx.github.io/2018/04/21/【教程】manim动画制作工具/</id>
-    <published>2018-04-21T04:06:00.000Z</published>
-    <updated>2019-04-21T11:34:14.660Z</updated>
-    
-    <content type="html"><![CDATA[<p>【阅读时间】<br>【阅读内容】3B1B 自用动画生成神器教程<br><a id="more"></a></p><p><a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a> <a href="https://talkingphysics.wordpress.com/2019/01/08/getting-started-animating-with-manim-and-python-3-7/" target="_blank" rel="noopener">教程英文版链接</a> <a href="https://manim.readthedocs.io/" target="_blank" rel="noopener">manim文档</a></p><h1 id="1-安装-manim"><a href="#1-安装-manim" class="headerlink" title="1 安装 manim"></a>1 安装 manim</h1><p>首先参考<a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a></p><h1 id="2-做一个简单的视频"><a href="#2-做一个简单的视频" class="headerlink" title="2 做一个简单的视频"></a>2 做一个简单的视频</h1><h2 id="2-1-场景和动画"><a href="#2-1-场景和动画" class="headerlink" title="2.1 场景和动画"></a>2.1 场景和动画</h2><blockquote><p>Scenes ＆ Animation</p></blockquote><h1 id="3-更多可以使用的形状"><a href="#3-更多可以使用的形状" class="headerlink" title="3 更多可以使用的形状"></a>3 更多可以使用的形状</h1><h2 id="3-1-方向矢量"><a href="#3-1-方向矢量" class="headerlink" title="3.1 方向矢量"></a>3.1 方向矢量</h2><blockquote><p>Direction Vectors</p></blockquote><h2 id="3-2-制作一个简单的动画"><a href="#3-2-制作一个简单的动画" class="headerlink" title="3.2 制作一个简单的动画"></a>3.2 制作一个简单的动画</h2><h1 id="4-添加文字"><a href="#4-添加文字" class="headerlink" title="4 添加文字"></a>4 添加文字</h1><blockquote><p>Text</p></blockquote><h2 id="4-1-文字变形"><a href="#4-1-文字变形" class="headerlink" title="4.1 文字变形"></a>4.1 文字变形</h2><h2 id="4-2-文字的旋转和高亮"><a href="#4-2-文字的旋转和高亮" class="headerlink" title="4.2 文字的旋转和高亮"></a>4.2 文字的旋转和高亮</h2><h1 id="5-数学公式"><a href="#5-数学公式" class="headerlink" title="5 数学公式"></a>5 数学公式</h1><h2 id="5-1-给对象上色"><a href="#5-1-给对象上色" class="headerlink" title="5.1 给对象上色"></a>5.1 给对象上色</h2><h1 id="6-对齐文本并使用大括号"><a href="#6-对齐文本并使用大括号" class="headerlink" title="6 对齐文本并使用大括号"></a>6 对齐文本并使用大括号</h1><h1 id="7-坐标轴和绘图"><a href="#7-坐标轴和绘图" class="headerlink" title="7 坐标轴和绘图"></a>7 坐标轴和绘图</h1><h2 id="7-1-配置文件"><a href="#7-1-配置文件" class="headerlink" title="7.1 配置文件"></a>7.1 配置文件</h2><h1 id="8-更高级的绘图"><a href="#8-更高级的绘图" class="headerlink" title="8 更高级的绘图"></a>8 更高级的绘图</h1><h1 id="9-向量场"><a href="#9-向量场" class="headerlink" title="9 向量场"></a>9 向量场</h1><h2 id="9-1-简单向量场"><a href="#9-1-简单向量场" class="headerlink" title="9.1 简单向量场"></a>9.1 简单向量场</h2><h2 id="9-2-带有变量的向量场"><a href="#9-2-带有变量的向量场" class="headerlink" title="9.2 带有变量的向量场"></a>9.2 带有变量的向量场</h2><h1 id="10-运动电荷场例子"><a href="#10-运动电荷场例子" class="headerlink" title="10 运动电荷场例子"></a>10 运动电荷场例子</h1><h2 id="10-1-更进一步的优化"><a href="#10-1-更进一步的优化" class="headerlink" title="10.1 更进一步的优化"></a>10.1 更进一步的优化</h2><h1 id="11-3D场景"><a href="#11-3D场景" class="headerlink" title="11 3D场景"></a>11 3D场景</h1><h1 id="12-SVG格式支持"><a href="#12-SVG格式支持" class="headerlink" title="12 SVG格式支持"></a>12 SVG格式支持</h1>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;【阅读时间】&lt;br&gt;【阅读内容】3B1B 自用动画生成神器教程&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Math" scheme="https://charlesliuyx.github.io/categories/Math/"/>
-    
-    
-      <category term="3B1B" scheme="https://charlesliuyx.github.io/tags/3B1B/"/>
-    
-      <category term="manim" scheme="https://charlesliuyx.github.io/tags/manim/"/>
-    
-      <category term="Tutorial" scheme="https://charlesliuyx.github.io/tags/Tutorial/"/>
     
   </entry>
   
