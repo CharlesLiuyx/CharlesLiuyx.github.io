@@ -65,7 +65,7 @@
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relation2.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/relationAll.gif">
 <meta property="og:image" content="https://charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/seeF.gif">
-<meta property="og:updated_time" content="2021-05-13T07:55:04.976Z">
+<meta property="og:updated_time" content="2021-05-13T08:34:02.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【直观详解】让你永远忘不了的傅里叶变换解析">
 <meta name="twitter:description" content="【阅读时间】15-20min 7930 words【阅读内容】使用联想链条和几何直观，辅以从实际需求衍生概念的思考模式，详解什么是傅立叶变换，为什么要做傅立叶变换等，帮助记忆和理解，目的当然是标题所说：让你永远忘不了傅里叶变换这个公式。另，这篇博客还从侧面一定程度上回答了另一个问题：为什么要研究复数">
@@ -389,21 +389,31 @@ $$
 <p>另外，可以自己思索一下，比如无穷时间的周期时域信号呢？又比如一个恒定振幅（一个电平）的时域信号呢？其实这里就给出了一个提示有关为什么傅立叶变换有那么多需要考虑的变形了，因为在缠绕这件事情发生的过程中，有<strong>几种情况是特别的</strong>（这部分3B1B视频并没有讲解，可能需要未来再更新了）</p>
 <h1 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h1><p>讲了这么长，至此全部结束。估计读者都已经晕了，那么，在这里为【看到】傅立叶变换做一个总结，就来总得说说我们从头到尾都干了些啥？参看下面动图</p>
 <p> <div align="center"><img src="//charlesliuyx.github.io/2018/02/18/【直观详解】让你永远忘不了的傅里叶变换解析/seeF.gif" alt="" width="550"></div></p>
-<ul>
-<li>（1）$e^{2\pi i}$ 表示单位圆，添加自变量即可表示<strong>旋转</strong></li>
-<li>（2）与原函数相乘<strong>缠绕到单位圆</strong>上</li>
-<li>（3）为求<strong>质心</strong>的特征，进行<strong>积分</strong>计算</li>
-</ul>
+<ol>
+<li><p>$e^{2\pi i}$ 表示单位圆，添加自变量即可表示<strong>旋转</strong></p>
+</li>
+<li><p>与原函数相乘<strong>缠绕到单位圆</strong>上</p>
+</li>
+<li><p>为求<strong>质心</strong>的特征，进行<strong>积分</strong>计算</p>
+</li>
+</ol>
 <p>一步一步写出傅立叶变换公式的<strong>联想链条</strong></p>
-<ul>
-<li>一个逆时针旋转360°画成的圆 ➜ $e^{2\pi i}$ </li>
-<li>表示运动，需要原函数的自变量，时间 $t$ ➜ $e^{2 \pi i t}$</li>
-<li>表示<strong>旋转速度</strong>，需要自变量，频率 $f$ ➜ $e^{2 \pi i f t}$</li>
-<li>规定变换的采样方向为顺时针，加负号 ➜ $e^{-2 \pi ift}$</li>
-<li><strong>乘以原函数</strong>缠绕到单位圆并记录 ➜ $g(t) e^{-2 \pi ift}$ （此处使用g符号标识原函数是为了和频率符号区分）</li>
-<li>为了计算<strong>质心</strong>特征，<strong>积分</strong> ➜  $\int_{-\infty}^{+\infty} g(t)e^{-2\pi it \color{red}{f}}dt$    </li>
-<li>自变量为频率 $f$，写出函数表达式 ➜  $\hat g(\color{red}{f} \color{black}{) = \int_{-\infty}^{+\infty} g(t)e^{-2\pi it \color{red}{f}}dt}$ </li>
-</ul>
+<ol>
+<li><p>一个逆时针旋转360°画成的圆 ➜ $e^{2\pi i}$ </p>
+</li>
+<li><p>表示运动，需要原函数的自变量，时间 $t$ ➜ $e^{2 \pi i t}$</p>
+</li>
+<li><p>表示<strong>旋转速度</strong>，需要自变量，频率 $f$ ➜ $e^{2 \pi i f t}$</p>
+</li>
+<li><p>规定变换的采样方向为顺时针，加负号 ➜ $e^{-2 \pi ift}$</p>
+</li>
+<li><p><strong>乘以原函数</strong>缠绕到单位圆并记录 ➜ $g(t) e^{-2 \pi ift}$ （此处使用 $g$ 符号标识原函数是为了和频率符号 $f$ 做区分）</p>
+</li>
+<li><p>为了计算<strong>质心</strong>特征，<strong>积分</strong> ➜  $\int_{-\infty}^{+\infty} g(t)e^{-2\pi it \color{red}{f}}dt$    </p>
+</li>
+<li><p>自变量为频率 $f$，写出函数表达式 ➜  $\hat g(\color{red}{f} \color{black}{) = \int_{-\infty}^{+\infty} g(t)e^{-2\pi it \color{red}{f}}dt}$ </p>
+</li>
+</ol>
 
         </div>
 
@@ -412,7 +422,7 @@ $$
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2021-05-13T07:55:04.976Z" itemprop="dateUpdated">2021-05-13 15:55:04</time>
+    Last updated: <time datetime="2021-05-13T08:34:02.978Z" itemprop="dateUpdated">2021-05-13 16:34:02</time>
 </span><br>
 
 
