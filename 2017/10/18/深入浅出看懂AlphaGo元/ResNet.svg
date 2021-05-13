@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="83 192 1101 187" width="1101pt" height="187pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.3 
+    <dc:date>2017-10-28 05:02:07 +0000</dc:date>
+  </metadata>
+  <defs>
+    <font-face font-family="PingFang SC" font-size="24" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Andale Mono" font-size="16" panose-1="2 11 5 9 0 0 0 0 0 4" units-per-em="1000" underline-position="-100.09766" underline-thickness="49.80469" slope="0" x-height="514.64844" cap-height="695.3125" ascent="907.2266" descent="-217.77344" font-weight="500">
+      <font-face-src>
+        <font-face-name name="AndaleMono"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="black">
+      <g>
+        <path d="M 3.7333333 0 L 0 -1.4 L 0 1.4 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="Andale Mono" font-size="20" panose-1="2 11 5 9 0 0 0 0 0 4" units-per-em="1000" underline-position="-100.09766" underline-thickness="49.80469" slope="0" x-height="514.64844" cap-height="695.3125" ascent="907.2266" descent="-217.77344" font-weight="500">
+      <font-face-src>
+        <font-face-name name="AndaleMono"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g>
+      <title>Layer 1</title>
+      <path d="M 259.5 207 L 499.5 207 C 503.9183 207 507.5 210.58172 507.5 215 L 507.5 344 C 507.5 348.41828 503.9183 352 499.5 352 L 259.5 352 C 255.08172 352 251.5 348.41828 251.5 344 L 251.5 215 C 251.5 210.58172 255.08172 207 259.5 207 Z" fill="white"/>
+      <path d="M 259.5 207 L 499.5 207 C 503.9183 207 507.5 210.58172 507.5 215 L 507.5 344 C 507.5 348.41828 503.9183 352 499.5 352 L 259.5 352 C 255.08172 352 251.5 348.41828 251.5 344 L 251.5 215 C 251.5 210.58172 255.08172 207 259.5 207 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(256.5 212)" fill="black">
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="0" y="25" textLength="96">输入模块</tspan>
+      </text>
+      <path d="M 271.596 255.5 L 374.54 255.5 C 378.9583 255.5 382.54 259.08172 382.54 263.5 L 382.54 324 C 382.54 328.41828 378.9583 332 374.54 332 L 271.596 332 C 267.17772 332 263.596 328.41828 263.596 324 L 263.596 263.5 C 263.596 259.08172 267.17772 255.5 271.596 255.5 Z" fill="#ffffc0"/>
+      <path d="M 271.596 255.5 L 374.54 255.5 C 378.9583 255.5 382.54 259.08172 382.54 263.5 L 382.54 324 C 382.54 328.41828 378.9583 332 374.54 332 L 271.596 332 C 267.17772 332 263.596 328.41828 263.596 324 L 263.596 263.5 C 263.596 259.08172 267.17772 255.5 271.596 255.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(268.596 257.75)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="35.268875" y="15" textLength="48.00781">Conv </tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="1.6634062" y="33" textLength="105.61719">filters=256</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="6.4641875" y="51" textLength="96.01562">kernel=3*3</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="16.06575" y="69" textLength="76.8125">stride=1</tspan>
+      </text>
+      <path d="M 390.2057 255.5 L 436.1977 255.5 C 440.616 255.5 444.1977 259.08172 444.1977 263.5 L 444.1977 324 C 444.1977 328.41828 440.616 332 436.1977 332 L 390.2057 332 C 385.78744 332 382.2057 328.41828 382.2057 324 L 382.2057 263.5 C 382.2057 259.08172 385.78744 255.5 390.2057 255.5 Z" fill="#c0ffc0"/>
+      <path d="M 390.2057 255.5 L 436.1977 255.5 C 440.616 255.5 444.1977 259.08172 444.1977 263.5 L 444.1977 324 C 444.1977 328.41828 440.616 332 436.1977 332 L 390.2057 332 C 385.78744 332 382.2057 328.41828 382.2057 324 L 382.2057 263.5 C 382.2057 259.08172 385.78744 255.5 390.2057 255.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(387.2057 275.75)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="1.9920937" y="15" textLength="48.00781">Batch</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="6.792875" y="33" textLength="38.40625">Norm</tspan>
+      </text>
+      <path d="M 452.1977 255.5 L 485.0857 255.5 C 489.504 255.5 493.0857 259.08172 493.0857 263.5 L 493.0857 324 C 493.0857 328.41828 489.504 332 485.0857 332 L 452.1977 332 C 447.77944 332 444.1977 328.41828 444.1977 324 L 444.1977 263.5 C 444.1977 259.08172 447.77944 255.5 452.1977 255.5 Z" fill="#c0ffff"/>
+      <path d="M 452.1977 255.5 L 485.0857 255.5 C 489.504 255.5 493.0857 259.08172 493.0857 263.5 L 493.0857 324 C 493.0857 328.41828 489.504 332 485.0857 332 L 452.1977 332 C 447.77944 332 444.1977 328.41828 444.1977 324 L 444.1977 263.5 C 444.1977 259.08172 447.77944 255.5 452.1977 255.5 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(449.1977 284.75)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x=".240875" y="15" textLength="38.40625">ReLU</tspan>
+      </text>
+      <line x1="213.5" y1="279.5" x2="235.1" y2="279.5" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path d="M 92 207 L 205 207 C 209.41828 207 213 210.58172 213 215 L 213 344 C 213 348.41828 209.41828 352 205 352 L 92 352 C 87.58172 352 84 348.41828 84 344 L 84 215 C 84 210.58172 87.58172 207 92 207 Z" fill="white"/>
+      <path d="M 92 207 L 205 207 C 209.41828 207 213 210.58172 213 215 L 213 344 C 213 348.41828 209.41828 352 205 352 L 92 352 C 87.58172 352 84 348.41828 84 344 L 84 215 C 84 210.58172 87.58172 207 92 207 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(89 212)" fill="black">
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="0" y="25" textLength="48">数据</tspan>
+      </text>
+      <rect x="136.56778" y="248" width="50" height="50" fill="white"/>
+      <rect x="136.56778" y="248" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="134.56778" y="250" width="50" height="50" fill="white"/>
+      <rect x="134.56778" y="250" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="132.56778" y="252" width="50" height="50" fill="white"/>
+      <rect x="132.56778" y="252" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="130.56778" y="254" width="50" height="50" fill="white"/>
+      <rect x="130.56778" y="254" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="128.82037" y="255.8" width="50" height="50" fill="white"/>
+      <rect x="128.82037" y="255.8" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="126.82037" y="257.8" width="50" height="50" fill="white"/>
+      <rect x="126.82037" y="257.8" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="124.82037" y="259.8" width="50" height="50" fill="white"/>
+      <rect x="124.82037" y="259.8" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="122.82037" y="261.8" width="50" height="50" fill="white"/>
+      <rect x="122.82037" y="261.8" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="120.8983" y="263.63475" width="50" height="50" fill="white"/>
+      <rect x="120.8983" y="263.63475" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="118.8983" y="265.63475" width="50" height="50" fill="white"/>
+      <rect x="118.8983" y="265.63475" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="116.8983" y="267.63475" width="50" height="50" fill="white"/>
+      <rect x="116.8983" y="267.63475" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="114.8983" y="269.63475" width="50" height="50" fill="white"/>
+      <rect x="114.8983" y="269.63475" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="112.56778" y="272" width="50" height="50" fill="white"/>
+      <rect x="112.56778" y="272" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <rect x="110.43222" y="274.07115" width="50" height="50" fill="white"/>
+      <rect x="110.43222" y="274.07115" width="50" height="50" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(110 328.5)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x=".09375" y="15" textLength="76.8125">19×19×17</tspan>
+      </text>
+      <path d="M 532 193 L 1114 193 C 1118.4183 193 1122 196.58172 1122 201 L 1122 370 C 1122 374.4183 1118.4183 378 1114 378 L 532 378 C 527.5817 378 524 374.4183 524 370 L 524 201 C 524 196.58172 527.5817 193 532 193 Z" fill="white"/>
+      <path d="M 532 193 L 1114 193 C 1118.4183 193 1122 196.58172 1122 201 L 1122 370 C 1122 374.4183 1118.4183 378 1114 378 L 532 378 C 527.5817 378 524 374.4183 524 370 L 524 201 C 524 196.58172 527.5817 193 532 193 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(529 198)" fill="black">
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" fill="black" x="0" y="25" textLength="477.504">残差模块 * 19（20版本）or * 39（40版本）</tspan>
+      </text>
+      <path d="M 579.5 242.1696 L 682.444 242.1696 C 686.8623 242.1696 690.444 245.7513 690.444 250.1696 L 690.444 310.6696 C 690.444 315.08787 686.8623 318.6696 682.444 318.6696 L 579.5 318.6696 C 575.0817 318.6696 571.5 315.08787 571.5 310.6696 L 571.5 250.1696 C 571.5 245.7513 575.0817 242.1696 579.5 242.1696 Z" fill="#ffffc0"/>
+      <path d="M 579.5 242.1696 L 682.444 242.1696 C 686.8623 242.1696 690.444 245.7513 690.444 250.1696 L 690.444 310.6696 C 690.444 315.08787 686.8623 318.6696 682.444 318.6696 L 579.5 318.6696 C 575.0817 318.6696 571.5 315.08787 571.5 310.6696 L 571.5 250.1696 C 571.5 245.7513 575.0817 242.1696 579.5 242.1696 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(576.5 244.4196)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="35.268875" y="15" textLength="48.00781">Conv </tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="1.6634063" y="33" textLength="105.61719">filters=256</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="6.4641875" y="51" textLength="96.01562">kernel=3*3</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" fill="black" x="16.06575" y="69" textLength="76.8125">stride=1</tspan>
+      </text>
+      <path d="M 698.1097 242.1696 L 744.1017 242.1696 C 748.52 242.1696 752.1017 245.7513 752.1017 250.1696 L 752.1017 310.6696 C 752.1017 315.08787 748.52 318.6696 744.1017 318.6696 L 698.1097 318.6696 C 693.6914 318.6696 690.1097 315.08787 690.1097 310.6696 L 690.1097 250.1696 C 690.1097 245.7513 693.6914 242.1696 698.1097 242.1696 Z" fill="#c0ffc0"/>
+      <path d="M 698.1097 242.1696 L 744.1017 242.1696 C 748.52 242.1696 752.1017 245.7513 752.1017 250.1696 L 752.1017 310.6696 C 752.1017 315.08787 748.52 318.6696 744.1017 318.6696 L 698.1097 318.6696 C 693.6914 318.6696 690.1097 315.08787 690.1097 310.6696 L 690.1097 250.1696 C 690.1097 245.7513 693.6914 242.1696 698.1097 242.1696 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(695.1097 262.4196)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="1.9920938" y="15" textLength="48.00781">Batch</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="6.792875" y="33" textLength="38.40625">Norm</tspan>
+      </text>
+      <text transform="translate(721.3889 345.83333)" fill="black">
+        <tspan font-family="Andale Mono" font-size="20" font-weight="500" x=".49316406" y="18" textLength="84.01367">Highway</tspan>
+      </text>
+      <path d="M 760.1017 242.1696 L 792.9897 242.1696 C 797.408 242.1696 800.9897 245.7513 800.9897 250.1696 L 800.9897 310.6696 C 800.9897 315.08787 797.408 318.6696 792.9897 318.6696 L 760.1017 318.6696 C 755.6834 318.6696 752.1017 315.08787 752.1017 310.6696 L 752.1017 250.1696 C 752.1017 245.7513 755.6834 242.1696 760.1017 242.1696 Z" fill="#c0ffff"/>
+      <path d="M 760.1017 242.1696 L 792.9897 242.1696 C 797.408 242.1696 800.9897 245.7513 800.9897 250.1696 L 800.9897 310.6696 C 800.9897 315.08787 797.408 318.6696 792.9897 318.6696 L 760.1017 318.6696 C 755.6834 318.6696 752.1017 315.08787 752.1017 310.6696 L 752.1017 250.1696 C 752.1017 245.7513 755.6834 242.1696 760.1017 242.1696 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(757.1017 271.4196)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x=".240875" y="15" textLength="38.40625">ReLU</tspan>
+      </text>
+      <path d="M 808.9897 242.1696 L 911.9337 242.1696 C 916.352 242.1696 919.9337 245.7513 919.9337 250.1696 L 919.9337 310.6696 C 919.9337 315.08787 916.352 318.6696 911.9337 318.6696 L 808.9897 318.6696 C 804.5714 318.6696 800.9897 315.08787 800.9897 310.6696 L 800.9897 250.1696 C 800.9897 245.7513 804.5714 242.1696 808.9897 242.1696 Z" fill="#ffffc0"/>
+      <path d="M 808.9897 242.1696 L 911.9337 242.1696 C 916.352 242.1696 919.9337 245.7513 919.9337 250.1696 L 919.9337 310.6696 C 919.9337 315.08787 916.352 318.6696 911.9337 318.6696 L 808.9897 318.6696 C 804.5714 318.6696 800.9897 315.08787 800.9897 310.6696 L 800.9897 250.1696 C 800.9897 245.7513 804.5714 242.1696 808.9897 242.1696 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(805.9897 244.4196)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="35.268875" y="15" textLength="48.00781">Conv </tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="1.6634063" y="33" textLength="105.61719">filters=256</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="6.4641875" y="51" textLength="96.01562">kernel=3*3</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="16.06575" y="69" textLength="76.8125">stride=1</tspan>
+      </text>
+      <path d="M 927.802 242.15617 L 973.794 242.15617 C 978.2123 242.15617 981.794 245.7379 981.794 250.15617 L 981.794 310.65617 C 981.794 315.07445 978.2123 318.65617 973.794 318.65617 L 927.802 318.65617 C 923.3837 318.65617 919.802 315.07445 919.802 310.65617 L 919.802 250.15617 C 919.802 245.7379 923.3837 242.15617 927.802 242.15617 Z" fill="#c0ffc0"/>
+      <path d="M 927.802 242.15617 L 973.794 242.15617 C 978.2123 242.15617 981.794 245.7379 981.794 250.15617 L 981.794 310.65617 C 981.794 315.07445 978.2123 318.65617 973.794 318.65617 L 927.802 318.65617 C 923.3837 318.65617 919.802 315.07445 919.802 310.65617 L 919.802 250.15617 C 919.802 245.7379 923.3837 242.15617 927.802 242.15617 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(924.802 262.40617)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="1.9920938" y="15" textLength="48.00781">Batch</tspan>
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x="6.792875" y="33" textLength="38.40625">Norm</tspan>
+      </text>
+      <path d="M 1051 242.15617 L 1083.888 242.15617 C 1088.3063 242.15617 1091.888 245.7379 1091.888 250.15617 L 1091.888 310.65617 C 1091.888 315.07445 1088.3063 318.65617 1083.888 318.65617 L 1051 318.65617 C 1046.5817 318.65617 1043 315.07445 1043 310.65617 L 1043 250.15617 C 1043 245.7379 1046.5817 242.15617 1051 242.15617 Z" fill="#c0ffff"/>
+      <path d="M 1051 242.15617 L 1083.888 242.15617 C 1088.3063 242.15617 1091.888 245.7379 1091.888 250.15617 L 1091.888 310.65617 C 1091.888 315.07445 1088.3063 318.65617 1083.888 318.65617 L 1051 318.65617 C 1046.5817 318.65617 1043 315.07445 1043 310.65617 L 1043 250.15617 C 1043 245.7379 1046.5817 242.15617 1051 242.15617 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(1048 271.40617)" fill="black">
+        <tspan font-family="Andale Mono" font-size="16" font-weight="500" x=".240875" y="15" textLength="38.40625">ReLU</tspan>
+      </text>
+      <path d="M 981.794 280.3336 L 1009.0921 280.26967 L 1043 280.349" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="508" y1="279.9699" x2="555.6001" y2="280.14397" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <path d="M 1009.0921 280.26967 L 1009.0921 343.5113 L 538.7225 343.5113 L 538.2854 280.08065" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      <line x1="1091.888" y1="280.40617" x2="1145.7536" y2="280.40617" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="-1 -2 212 213" width="212pt" height="213pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.3 
+    <dc:date>2017-09-24 23:19:25 +0000</dc:date>
+  </metadata>
+  <defs>
+    <font-face font-family="PingFang SC" font-size="25" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="19" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g>
+      <title>Layer 1</title>
+      <path d="M 30 -14210855e-21 L 180 -14210855e-21 C 196.56854 -13196324e-21 210 13.431458 210 30 L 210 180 C 210 196.56854 196.56854 210 180 210 L 30 210 C 13.431458 210 20290613e-22 196.56854 0 180 L 10658141e-21 30 C 12687202e-21 13.431458 13.431458 -10145306e-22 30 0 Z" fill="#00a8ff" fill-opacity=".21993288"/>
+      <path d="M 30 -14210855e-21 L 180 -14210855e-21 C 196.56854 -13196324e-21 210 13.431458 210 30 L 210 180 C 210 196.56854 196.56854 210 180 210 L 30 210 C 13.431458 210 20290613e-22 196.56854 0 180 L 10658141e-21 30 C 12687202e-21 13.431458 13.431458 -10145306e-22 30 0 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <circle cx="55" cy="55" r="50.00008" fill="#c0ffc0"/>
+      <circle cx="55" cy="55" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(20 37)" fill="black">
+        <tspan font-family="PingFang SC" font-size="25" font-weight="500" x="10" y="27" textLength="50">钱包</tspan>
+      </text>
+      <circle cx="155" cy="155" r="50.00008" fill="#ffff40"/>
+      <circle cx="155" cy="155" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(120 129)" fill="black">
+        <tspan font-family="PingFang SC" font-size="19" font-weight="500" fill="black" x=".0305" y="20" textLength="69.939">Stratum</tspan>
+        <tspan font-family="PingFang SC" font-size="19" font-weight="500" fill="black" x="6.5" y="46" textLength="57">服务器</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

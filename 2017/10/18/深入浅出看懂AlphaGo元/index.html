@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>深入浅出看懂AlphaGo元 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="AlphaGo,Deep Learning">
+    <meta name="description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta name="keywords" content="AlphaGo,Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出看懂AlphaGo元">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure3.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure4.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/DG.svg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/structure.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/ResNet.svg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png">
+<meta property="og:updated_time" content="2017-10-31T23:31:42.824Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入浅出看懂AlphaGo元">
+<meta name="twitter:description" content="【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/atom.xml" target="_blank" >
+                <i class="icon icon-lg icon-rss"></i>
+                RSS
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">深入浅出看懂AlphaGo元</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">深入浅出看懂AlphaGo元</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-18T12:54:32.000Z" itemprop="datePublished" class="page-time">
+  2017-10-18
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文正文内容详细解析"><span class="post-toc-number">1.</span> <span class="post-toc-text">论文正文内容详细解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero-的强化学习"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">AlphaGo Zero 的强化学习</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络结构"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">网络结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#改进的强化学习算法"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">改进的强化学习算法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练步骤总结"><span class="post-toc-number">1.1.4.</span> <span class="post-toc-text">训练步骤总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero训练过程中的经验"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">AlphaGo Zero训练过程中的经验</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero学到的知识"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">AlphaGo Zero学到的知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#AlphaGo-Zero的最终实力"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">AlphaGo Zero的最终实力</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#论文附录内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">论文附录内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#围棋领域先验知识"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">围棋领域先验知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#围棋基本规则"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">围棋基本规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Tromp-Taylor规则"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">Tromp-Taylor规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#旋转与镜面"><span class="post-toc-number">2.1.3.</span> <span class="post-toc-text">旋转与镜面</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自对弈训练工作流"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">自对弈训练工作流</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优化参数"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">优化参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#评估器"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">评估器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#自对弈"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">自对弈</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#监督学习"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">监督学习</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MCTS搜索算法"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">MCTS搜索算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Selcet-Figure2a"><span class="post-toc-number">2.4.1.</span> <span class="post-toc-text">Selcet - Figure2a</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Expand-and-evaluate-Figure-2b"><span class="post-toc-number">2.4.2.</span> <span class="post-toc-text">Expand and evaluate - Figure 2b</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Backup-Figure-2c"><span class="post-toc-number">2.4.3.</span> <span class="post-toc-text">Backup - Figure 2c</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Play-Figure-2d"><span class="post-toc-number">2.4.4.</span> <span class="post-toc-text">Play - Figure 2d</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MCTS搜索总结"><span class="post-toc-number">2.4.5.</span> <span class="post-toc-text">MCTS搜索总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#网络结构-1"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">网络结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#网络输入数据"><span class="post-toc-number">2.5.1.</span> <span class="post-toc-text">网络输入数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#深度神经网结构"><span class="post-toc-number">2.5.2.</span> <span class="post-toc-text">深度神经网结构</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#数据集"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">数据集</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#图5更多细节"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">图5更多细节</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#总结与随想"><span class="post-toc-number">3.</span> <span class="post-toc-text">总结与随想</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题与个人答案"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">问题与个人答案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-中的策略迭代法是如何工作的？"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">AlphaGo Zero 中的策略迭代法是如何工作的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AlphaGo-Zero-最精彩的部分哪部分？"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">AlphaGo Zero 最精彩的部分哪部分？</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#随想和评论"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">随想和评论</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-深入浅出看懂AlphaGo元"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">深入浅出看懂AlphaGo元</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-18 20:54:32" datetime="2017-10-18T12:54:32.000Z"  itemprop="datePublished">2017-10-18</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】21min - 24min 10999字<br>【内容简介】<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">AlphaGo1.0详解链接</a>，这篇AlphaGo Zero论文原文超详细翻译，并且总结了AlphaGo Zero的算法核心思路，附带收集了网上的相关评论<br><a id="more"></a></p>
+<p>在之前的详解：<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/">深入浅出看懂AlphaGo</a>中，详细定义的DeepMind团队定义围棋问题的结构，并且深入解读了AlphaGo1.0每下一步都发生了什么事，就在最近，AlphaGo Zero横空出世。个人观点是，如果你看了之前的文章，你就会觉得这是一个水到渠成的事情</p>
+<p>另，如果你只对这个事件感兴趣的，而不想了解论文和技术细节，链接奉上，欢迎跳过到<a href="#总结与随想">最后评论和总结部分</a>（但这部分网上的大牛太多了，知乎答案内最高票对结合围棋的分析很漂亮！建议阅读）</p>
+<p><strong>上限置信区间算法（UCT），一种博弈树搜索算法</strong>，是AlphaGo中一个重要组成部分：<strong>MCTS搜索算法</strong>中的核心</p>
+<p>法国南巴黎大学的数学家西尔万·热利(SylvainGelly)与巴黎技术学校的王毅早(YizaoWang，音译)将<strong>UCT</strong>集成到一个他们称之为<strong>MoGo</strong>的程序中。该程序的胜率竟然比先前最先进的蒙特卡罗扩展算法<strong>几乎高出了一倍</strong>。</p>
+<p><strong>2007年春季</strong>，MoGo在大棋盘比赛中也击败了实力稍弱的业余棋手，充分展示了能力。<strong>科奇什（UCT算法发明者）预言，10年以后，计算机就能攻克最后的壁垒，终结人类职业棋手对围棋的统治</strong>。今年是2017年，AlphaGo系列横空出世。10年，总有着天才的人具有先知般的远见。<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060" target="_blank" rel="noopener">详见UTC算法</a></p>
+<p>【小发现】看完论文发现，这篇文章的<strong>接受时间是2017年4月7号</strong>，审核完成时间是2017年9月13号，而在<strong>乌镇对阵柯洁（2017年5月23号）</strong>用的可能是AlphaGo Master（这里没法证据来证明到底是AlphaGo Zero还是AlphaGo Master）。这个团队也是无情啊，人类再一次感觉被耍了，根据Elo得分，Deepmind团队可能在赛前就透露过吧，即使是Master也有4858分啊，对于一个棋手来说，我感受到的是<strong>风萧萧兮易水寒决绝的背影</strong>。<strong>为柯洁的勇气打Call，当真围棋第一人，天下无双</strong></p>
+<h1 id="论文正文内容详细解析"><a href="#论文正文内容详细解析" class="headerlink" title="论文正文内容详细解析"></a>论文正文内容详细解析</h1><p>先上干货论文：<a href="https://deepmind.com/documents/119/agz_unformatted_nature.pdf" target="_blank" rel="noopener">Mastering the Game of Go without Human Knowledge</a> ，之后会主要<strong>以翻译论文</strong>为主，在语言上<strong>尽量易懂，避免翻译腔</strong></p>
+<p>AlphaGo Zero，从本质上来说完全不同于打败樊麾和李世石的版本</p>
+<ul>
+<li>算法上，<strong>自对弈强化学习，完全从随机落子开始</strong>，不用人类棋谱。之前使用了大量棋谱学习人类的下棋风格）</li>
+<li>数据结构上，只有<strong>黑子白子两种状态</strong>。之前包含这个点的气等相关棋盘信息</li>
+<li>模型上，使用<strong>一个</strong>神经网络。之前使用了<strong>策略网络（基于深度卷积神经网）</strong>学习人类的下棋风格，<strong>局面网络</strong>（基于左右互搏生成的棋谱，为什么这里需要使用左右互搏是因为现有的数据集不够，没法判断落子胜率这一更难的问题）来计算在<strong>当前局面下每一个不同落子的胜率</strong></li>
+<li>策略上，基于训练好的这个神经网，进行简单的<strong>树形搜索</strong>。之前会使用蒙特卡洛算法实时演算并且<strong>加权得出落子的位置</strong></li>
+</ul>
+<h2 id="AlphaGo-Zero-的强化学习"><a href="#AlphaGo-Zero-的强化学习" class="headerlink" title="AlphaGo Zero 的强化学习"></a>AlphaGo Zero 的强化学习</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在开始之前，必须再过一遍如何符号化的定义一个围棋问题</p>
+<p>围棋问题，棋盘 <code>19×19=361</code> 个交叉点可供落子，每个点三种状态，白（用<code>1</code>表示），黑（用<code>-1</code>表示），无子（用<code>0</code>表示），用 $\vec s$ <strong>描述</strong>此时<strong>棋盘的状态</strong>，即棋盘的<strong>状态向量</strong>记为 $ \vec s$ （state首字母）<br>$$<br>\vec s = (\underbrace{1,0,-1,\ldots}_{\text{361}})<br>$$<br>假设状态 $\vec s$ 下，暂不考虑不能落子的情况， 那么下一步可走的位置空间也是361个。将下一步的<strong>落子行动</strong>也用一个361维的向量来表示，记为 $\vec a$ （action首字母）<br>$$<br>\vec a = (0,\ldots,0,1,0,\ldots)<br>$$<br>公式1.2 假设其中<code>1</code>在向量中位置为<code>39</code>，则  $\vec a$ 表示在棋盘<code>3行1列</code>位置落<strong>白子</strong>，黑白交替进行</p>
+<p>有以上定义，我们就把围棋问题转化为。</p>
+<blockquote>
+<p>任意给定一个状态  $\vec s$ ，寻找最优的应对策略  $\vec a$ ，最终可以获得棋盘上的最大地盘</p>
+</blockquote>
+<p>简而言之</p>
+<blockquote>
+<p>看到 $\vec s$ ，脑海中就是<strong>一个棋盘，上面有很多黑白子</strong></p>
+<p>看到 $\vec a$ ，脑海中就想象一个人<strong>潇洒的落子</strong></p>
+</blockquote>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>新的网络中，使用了一个参数为 $\theta$ （需要通过训练来不断调整） 的<strong>深度神经网络</strong>$f_\theta$ </p>
+<ul>
+<li>【<strong>网络输入</strong>】<code>19×19×17</code>0/1值：现在棋盘状态的 $\vec s$ 以及<strong>7步历史落子记录</strong>。最后一个位置记录黑白，0白1黑，<a href="#网络结构">详见</a></li>
+<li>【<strong>网络输出</strong>】两个输出：<strong>落子概率（<code>362</code>个输出值）</strong>和<strong>一个评估值（[-1,1]之间）</strong>记为  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$ <ul>
+<li>【落子概率 $\mathbf p$】 向量表示下一步在每一个可能位置<strong>落子的概率，又称先验概率</strong> （加上不下的选择），即  $p_a = Pr(\vec a|\mathbf {\vec s})$  （公式表示在当前输入条件下在每个可能点落子的概率）</li>
+<li>【评估值 $v$】 表示现在准备下当前这步棋的选手<strong>在输入的这八步历史局面 $\vec s$ 下的胜率</strong>（我这里强调局面是因为网络的输入其实包含历史对战过程）</li>
+</ul>
+</li>
+<li>【<strong>网络结构</strong>】基于<strong>Residual Network</strong>（大名鼎鼎ImageNet冠军ResNet）的卷积网络，包含20或40个Residual Block（残差模块），加入<strong>批量归一化</strong>Batch normalisation与<strong>非线性整流器</strong>rectifier non-linearities模块</li>
+</ul>
+<h3 id="改进的强化学习算法"><a href="#改进的强化学习算法" class="headerlink" title="改进的强化学习算法"></a>改进的强化学习算法</h3><p>自对弈强化学习算法（<a href="https://mubu.com/doc/WNKomuDNl" target="_blank" rel="noopener">什么是强化学习</a>，非常建议先看看强化学习的一些基本思想和步骤，有利于理解下面策略、价值的概念，推荐<a href="http://www.cnblogs.com/steven-yang/p/6481772.html" target="_blank" rel="noopener">系列笔记</a>）</p>
+<p>在每一个状态  $\vec s$ ，利用<strong>深度神经网络 $f_\theta$ 预测作为参照</strong>执行MCTS搜索（<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">蒙特卡洛搜索树算法</a>），<strong>MCTS搜索的输出是每一个状态下在不同位置对应的概率 $\boldsymbol \pi$ （注意这里是一个向量，里面的值是MCTS搜索得出的概率值）</strong>，一种策略，从人类的眼光来看，就是看到现在局面，选择下在每个不同的落子的点的概率。如下面公式的例子，下在$(1,3)$位置的概率是<code>0.92</code>，有很高概率选这个点作为<strong>落子点</strong><br>
+$$
+\boldsymbol \pi_i = (\underbrace{0.01,0.02,0.92,\ldots}_{\text{361}})
+$$
+</p>
+<p>MCTS搜索得出的<strong>落子概率</strong>比 $f_\theta$ 输出的<strong>仅使用神经网络输出的落子概率  $\mathbf p$ </strong>更强，因此，MCTS可以被视为一个强力的<strong>策略改善（policy improvement）过程</strong></p>
+<p>使用基于MCTS提升后的策略（policy）来进行落子，然后用自对弈最终对局的胜者 $z$ 作为价值（Value），作为一个强力的<strong>策略评估（policy evaluation）过程</strong></p>
+<p>并用上述的规则，完成一个<strong>通用策略迭代</strong>算法去更新神经网络的<strong>参数</strong> $\theta$ ，使得神经网络输出的<strong>落子概率和评估值</strong>，即  $f_{\theta}(\mathbf {\vec s}) = (\mathbf p,v)$  更加贴近<strong>能把这盘棋局赢下的落子方式（使用不断提升的MCST搜索落子策略$\boldsymbol \pi$ 和自对弈的胜者 $z$ 作为调整依据）</strong>。并且，在下轮迭代中使用<strong>新的参数</strong>来进行自对弈</p>
+<p>在这里补充<strong>强化学习</strong>的<strong>通用策略迭代</strong>（Generalized Policy Iteration）方法</p>
+<ul>
+<li><p>从策略 $\pi_0$ 开始</p>
+</li>
+<li><p><strong>策略评估（Policy Evaluation）</strong>- 得到策略 $\pi_0$ 的价值 $v_{\pi_0}$ （对于围棋问题，即这一步棋是好棋还是臭棋）</p>
+</li>
+<li><p><strong>策略改善（Policy Improvement）</strong>- 根据价值 $v_{\pi_0}$，优化策略为 $\pi_{0+1}$ （即人类学习的过程，加强对棋局的判断能力，做出更好的判断）</p>
+</li>
+<li><p>迭代上面的步骤2和3，直到找到最优价值 $v_*$ ，可以得到最优策略 $\pi_*$ </p>
+<p><a name="Figure1"></a></p>
+</li>
+</ul>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure1.png" alt="Figure 1" width="600px"></div>
+
+<blockquote>
+<p>【a图】表示自对弈过程 $s_1,\ldots,s_T$。在每一个位置 $s_t$ ，使用最新的神经网络 $f_\theta$ 执行一次MCTS搜索 $\alpha_\theta$ 。根据搜索得出的概率 $a_t \sim \boldsymbol \pi_i$ 进行落子。终局 $s_T$ 时根据围棋规则计算胜者 $z$<br>$\pi_i$ 是每一步时执行MCTS搜索得出的结果（柱状图表示概率的高低）</p>
+</blockquote>
+<blockquote>
+<p>【b图】表示更新神经网络参数过程。使用原始落子状态 $\vec s_t$ 作为输入，得到此棋盘状态 $\vec s_t$ 下<strong>下一步所有可能落子位置的概率分布</strong> $\mathbf p_t$ 和<strong>当前状态  $\vec s_t$ 下选手的赢棋评估值</strong> $v_t$ </p>
+<p><strong>以最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ （详见公式1）</strong> ，更新参数 $\theta$ ，下一轮迭代中使用新神经网络进行自我对弈</p>
+</blockquote>
+<p>我们知道，最初的蒙特卡洛树搜索算法是<strong>使用随机</strong>来进行模拟，在AlphaGo1.0中<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#利用强化学习增强棋力">使用<strong>局面函数</strong>辅助<strong>策略函数</strong>作为落子的参考</a>进行模拟。在<strong>最新的模型中，蒙特卡洛搜索树使用神经网络 $f_\theta$ 的输出来作为落子的参考</strong>（详见下图Figure 2）</p>
+<p>每一条边 $(\vec s,\vec a)$ （每个状态下的落子选择）保存的是三个值：先验概率 $P(\vec s,\vec a)$，访问次数 $N(\vec s,\vec a)$，行动价值 $Q(\vec s,\vec a)$。</p>
+<p>每次<strong>模拟</strong>（模拟一盘棋，直到分出胜负）从根状态开始，每次落子最大化<a href="https://baike.baidu.com/item/UCT%E7%AE%97%E6%B3%95/19451060?fr=aladdin" target="_blank" rel="noopener">上限置信区间</a> $Q(\vec s,\vec a) + U(\vec s,\vec a)$ 其中 $U(\vec s,\vec a) \propto \frac{P(\vec s,\vec a)}{1 + N(\vec s,\vec a)}$ 直到遇到叶子节点 $s’$</p>
+<p>叶子节点（终局）只会被产生一次用于产生<strong>先验概率和评估值</strong>，符号表示即 $f_\theta(s’) = (P(s’,\cdot), V(s’))$ </p>
+<p>模拟过程中<strong>遍历每条边</strong> $(\vec s, \vec a)$ 时更新<strong>记录的统计数据</strong>。访问次数加一 $N(\vec s,\vec a) += 1$；更新行动价值为整个模拟过程的平均值，即  $Q(\vec s, \vec a) = \frac {1}{N(\vec s, \vec a)}\Sigma_{\vec s'|\vec s, \vec a \Rightarrow \vec s'}V(\vec s')$ ，$\vec s’|\vec s, \vec a \Rightarrow \vec s’$ 表示在模拟过程中从 $\vec s$ 走到 $\vec s’$的所有落子行动 $\vec a$<br><a name="Figure2"></a></p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure2.png" alt="Figure 2" width="800px"></div>
+
+<blockquote>
+<p>【a图】表示模拟过程中遍历时选 $Q+U$ 更大的作为落子点</p>
+<p>【b图】叶子节点 $s_L$ 的扩展和评估。<strong>使用神经网络对状态 $s_L$ 进行评估</strong>，即 $f_\theta(s_L) = (P(s_L,\cdot), V(s_L))$ ，<strong>其中 $\mathbf P$ 的值存储在叶子节点扩展的边中</strong></p>
+<p>【c图】更新<strong>行动价值</strong> $Q$ 等于此时根状态 $\vec s$ 所有子树评估值 $V$ 的平均值</p>
+<p>【d图】当MCTS搜索完成后，<strong>返回这个状态 $\vec s$ 下每一个位置的落子概率</strong> $\boldsymbol \pi$，成比例于 $N^{1/\tau}$（$N$为访问次数，$\tau$ 为控温常数）</p>
+<p>更加具体的详解见：<a href="#搜索算法">搜索算法</a></p>
+</blockquote>
+<p>MCTS搜索可以看成一个自对弈过程中决定每一步如何下的依据，根据神经网络的参数 $\theta$ 和根的状态 $\vec s$ 去计算<strong>每个状态下落子位置的先验概率</strong>，记为 $\boldsymbol \pi  = \alpha_\theta(\vec s)$ ，幂指数<strong>正比于</strong>访问次数 $\pi_{\vec a} \propto N(\vec s, \vec a)^{1/\tau}$，$\tau$ 是温度常数</p>
+<h3 id="训练步骤总结"><a href="#训练步骤总结" class="headerlink" title="训练步骤总结"></a>训练步骤总结</h3><p>使用MCTS下每一步棋，进行自对弈，<strong>强化学习算法（必须了解通用策略迭代的基本方法）的迭代过程中</strong>训练神经网络</p>
+<ul>
+<li>神经网络参数<strong>随机初始化</strong> $\theta_0$</li>
+<li>每<strong>一轮迭代</strong> $i \geqslant 1$ ，都<strong>自对弈一盘</strong>（见<a href="#Figure1">Figure-1a</a>）</li>
+<li>第 $t$ 步：MCTS搜索 $\boldsymbol \pi_t = \alpha_{\theta_{i-1}}(s_t)$ 使用<strong>前一次迭代的神经网络</strong> $f_{\theta_{i-1}}$，根据MCTS结构计算出的<strong>落子策略 $\boldsymbol \pi_t$ 的联合分布进行【采样】再落子</strong></li>
+<li>在 $T$ 步 ：双方都选择跳过；搜索时评估值低于投降线；棋盘无地落子。根据胜负得到<strong>奖励值</strong>Reward $r_T \in \{-1,+1\}$。</li>
+<li>MCTS搜索下至中盘的过程的每一个第 $t$ 步的数据存储为  $\vec s_t,\mathbf \pi_t, z_t$  ，其中 $z_t = \pm r_T$ 表示在第 $t$ 步时的胜者</li>
+<li>同时，从上一步 $\vec s$ 迭代时自对弈棋局过程中产生的数据 $(\vec s, \boldsymbol \pi, z)$ （<strong>$\vec s$ 为训练数据，$\boldsymbol \pi, z$ 为标签</strong>）中<strong>采样</strong>（这里的采样是指选Mini-Batch）来训练网络参数 $\theta_i$，</li>
+<li>神经网络 $f_{\theta_i}(\vec s) = (\mathbf p, v)$以<strong>最大化 $\mathbf p_t$ 与 $\pi_t$ 相似度和最小化预测的胜者 $v_t$ 和局终胜者 $z$ 的误差来更新神经网络参数 $\theta$ </strong>，损失函数公式如下</li>
+</ul>
+
+$$
+l = (z - v)^2 - \boldsymbol {\pi}^T \log(\mathbf p) + c \Vert \theta \Vert ^2 \tag 1
+$$
+
+<blockquote>
+<p>其中 $c$ 是<code>L2</code>正则化的系数</p>
+</blockquote>
+<h2 id="AlphaGo-Zero训练过程中的经验"><a href="#AlphaGo-Zero训练过程中的经验" class="headerlink" title="AlphaGo Zero训练过程中的经验"></a>AlphaGo Zero训练过程中的经验</h2><p>最开始，使用完全的随机落子<strong>训练持续了大概3天</strong>。训练过程中，产生490万场自对弈，每次MCTS大约1600次模拟，每一步使用的时间0.4秒。使用了2048个位置的70万个Mini-Batches来进行训练。</p>
+<p>训练结果如下，图3</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure3.png" alt="Figure 3" width="1200px"></div>
+
+<blockquote>
+<p>【a图】表示随时间AlphaGo Zero棋力的增长情况，<strong>显示了每一个不同的棋手 $\alpha_{\theta_i}$ 在每一次强化学习迭代时的表现</strong>，可以看到，它的增长曲线非常平滑，没有很明显的震荡，稳定性很好</p>
+<p>【b图】表示的是<strong>预测准确率</strong>基于不同迭代第$i$轮的 $f_{\theta_i}$</p>
+<p>【c图】表示的MSE（平方误差）</p>
+</blockquote>
+<p>在24小时的学习后，无人工因素的强化学习方案就打败了通过模仿人类棋谱的监督学习方法</p>
+<p>为了分别评估结构和算法对结构的影响，得到了，下图4</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure4.png" alt="Figure 4" width="1200px"></div>
+
+<blockquote>
+<p>【dual-res】表示 AlphaGo Zero（20个模块），策略头和评估值头由一个网络产生<br>【sep-res】表示使用20个残差模块，策略头和评估值头被分成两个不同的网络<br>【dual-conv】表示不用ResNet，使用<strong>12层卷积网</strong>，同时包括策略头和评估值头<br>【sep-conv】表示 AlphaGo Lee（击败李世乭的）使用的网络结构，策略头和评估值头被分成两个不同的网络</p>
+</blockquote>
+<p><a href="#深度神经网结构">头的概念详见网络结构</a></p>
+<h2 id="AlphaGo-Zero学到的知识"><a href="#AlphaGo-Zero学到的知识" class="headerlink" title="AlphaGo Zero学到的知识"></a>AlphaGo Zero学到的知识</h2><p>在训练过程中，AlphaGo Zero可以一步步的学习到一些<strong>特殊的围棋技巧（定式）</strong>，如图5</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5.png" alt="Figure 5" width="800px"></div>
+
+<blockquote>
+<p>中间的黑色横轴表示的是学习时间</p>
+<p>【a图】对应的5张棋谱展现的是不同阶段AlphaGo Zero在自对弈过过程中展现出来的<strong>围棋定式</strong>上的新发现</p>
+<p>【b图】展示在右星位上的定式下法的进化。可以看到训练到50小时，<strong>点三三出现了</strong>，但再往后训练，b图中的<strong>第五种定式</strong>高频率出现，在AlphGa Zero看来，这一种形式似乎更加强大</p>
+<p>【c图】展现了前80手自对弈的棋谱伴随时间，明显有很大的提升，在第三幅图中，已经展现出了比较明显的<strong>围</strong>的倾向性</p>
+<p>具体频率图见：<a href="#图5更多细节">出现频率随训练时间分布图</a></p>
+</blockquote>
+<h2 id="AlphaGo-Zero的最终实力"><a href="#AlphaGo-Zero的最终实力" class="headerlink" title="AlphaGo Zero的最终实力"></a>AlphaGo Zero的最终实力</h2><p>之后，最终的AlphaGo Zero 使用40个残差模块，训练接近40天。在训练过程中，产生了2900万盘的自对弈棋谱，使用了310万个Mini-Batches来训练神经网络，每一个Mini-Batch包含了2048个不同的状态。（覆盖的状态数是63亿（$10^{10}$），但和围棋的解空间 $2^{361} \approx 10^{108}$ 相比真的很小，也从侧面反映出，<strong>围棋中大部分选择都是冗余的</strong>。在一个棋盘局面下，根据<strong>先验概率</strong>，估计只有15-20种下法是<strong>值得考虑</strong>的）</p>
+<p>被评测不同版本使用计算力的情况，AlphaGo Zero和AlphaGo Master被部署到有<strong>4个TPUs</strong>的单机上运行（主要用于做<strong>模型的输出预测Inference和MCTS搜索</strong>），AlphaGo Fan（打败樊麾版本）和AlphaGo Lee（打败李世乭版本） <strong>分布式部署到机器群</strong>里，总计有176GPUs和48GPUs（Goolge真有钱）。还加入了<strong>raw network，它是每一步的仅仅使用训练好的深度学习神经网的输出 $\mathbf p_a$ 为依据选择最大概率点来落子，不使用MCTS搜索</strong>（Raw Network裸用深度神经网络的输出已经十分强大，甚至已经接近了AlphaGo Fan）</p>
+<p>下图6展示不同种AlphaGo版本的棋力情况</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure6.png" alt="Figure 6" width="900px"></div>
+
+<blockquote>
+<p>【a图】随着训练时间棋力的增强曲线</p>
+<p>【b图】裸神经网络得分3055，AlphaGo Zero得分5185，AlphaGo Master得分4858，AlphaGo Lee得分3738，AlphaGo Fan得分3144</p>
+</blockquote>
+<p>最终，AlphaGo Zero 与 AlphaGo Master的<strong>对战比分为89：11</strong>，对局中限制一场比赛在2小时之内（新闻中的零封是对下赢李世乭的AlphaGo Lee）</p>
+<h1 id="论文附录内容"><a href="#论文附录内容" class="headerlink" title="论文附录内容"></a>论文附录内容</h1><p>我们知道，Nature上的文章一般都是很强的可读性和严谨性，每一篇文章的正文可能只有4-5页，但是附录一般会远长于正文。基本所有你的<strong>技术细节疑惑</strong>都可以在其中找到结果，这里值列举一些我自己比较感兴趣的点，如果你是专业人士，甚至想复现AlphaGo Zero，读原文更好更精确</p>
+<h2 id="围棋领域先验知识"><a href="#围棋领域先验知识" class="headerlink" title="围棋领域先验知识"></a>围棋领域先验知识</h2><p>AlphaGo Zero最主要的贡献是<strong>证明了没有人类的先验知识机器也可以在性能上超越人类</strong>。为了阐释清楚这种贡献来自于何处，我们列举一些AlphaGo Zero使用到的<strong>知识</strong>，无论是训练过工程中的还是MCTS搜索中的。如果你想把AlphaGo Zero的思路<strong>应用的到解决其他游戏问题</strong>上，这些内容可能需要被替换</p>
+<h3 id="围棋基本规则"><a href="#围棋基本规则" class="headerlink" title="围棋基本规则"></a>围棋基本规则</h3><p>无论实在MCTS搜索中的模拟还是自对弈的过程，都依赖游戏最终的胜负规则，并且在落子过程中，根据规则还可以<strong>排除一部分不可以落子的点</strong>（比如已经落子的点，无法确认在AlphaGo Zero还有气为零的点不能下这个规则，因为<strong>不记录气的信息</strong>了。但可以<strong>写一个函数来判断</strong>当前局面 $\vec s$ 下<strong>下一步所有可能的落子点</strong>，不一定非得计算这个信息，这个过程可以<strong>完全多线程</strong>）</p>
+<h3 id="Tromp-Taylor规则"><a href="#Tromp-Taylor规则" class="headerlink" title="Tromp-Taylor规则"></a>Tromp-Taylor规则</h3><p>在AlphaGo Zero中使用的是PSK（Positional Superko）禁全同规则（中国，韩国及日本使用），只要这一手（不包括跳过）会导致再现之前的局面，就禁止。</p>
+<h3 id="旋转与镜面"><a href="#旋转与镜面" class="headerlink" title="旋转与镜面"></a>旋转与镜面</h3><p>对于围棋来说，<strong>几个状态 $\vec s$ 在经过旋转或反射后是完全相同的</strong>，这种规律可以用来优化训练数据和MCTS搜索中的子树替换策略。并且因为<strong>贴目（黑棋先下优势贴目7目半）规则</strong>存在，不同状态 $\vec s$ <strong>换颜色也是相同的</strong>。这个规则可以用来使用当前下子的棋手的角度来表示棋盘</p>
+<p>除了以上的三个规则，AlphaGo Zero <strong>没有使用其他任何先验知识</strong>，它仅仅使用深度神经网络对叶子节点进行评估并选择落子位置。它没有使用任何Rollout Policy(这里指的应该是AlphaGo之前版本的快速走子策略)或者树形规则，MCTS搜索也没有使用<strong>其他的标准启发式规则</strong>或者<strong>先验常识规则</strong>去进行增强</p>
+<p>整个算法从随机初始化神经网络参数开始。<a href="">网络结构</a>和<a href="#优化参数">超参数选择</a> 见下一节。MCTS搜索的超参数 $c_{puct}$ 由<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="noopener">高斯过程优化</a>决定，为了<strong>优化自对弈的性能</strong>，使用了一个神经网络进行<strong>预训练</strong>。对于一个大规模网络的训练过程（40个残差模块，40天），使用一个小规模网络（20个残差模块，3天）来<strong>反复优化MCTS搜索的超参数</strong> $c_{puct}$。整个<strong>训练过程没有任何人工干预</strong></p>
+<h2 id="自对弈训练工作流"><a href="#自对弈训练工作流" class="headerlink" title="自对弈训练工作流"></a>自对弈训练工作流</h2><p>AlphaGo Zero的工作流由三个模块构成，可以异步多线程进行：</p>
+<ul>
+<li>深度神经网络<strong>参数</strong> $\theta_i$ 根据自对弈数据<strong>持续优化</strong></li>
+<li>持续对棋手 $\alpha_{\theta_i}$ <strong>棋力值</strong>进行<strong>评估</strong></li>
+<li>使用表现最好的 $\alpha_{\theta_*}$ 用来产生新的<strong>自对弈数据</strong></li>
+</ul>
+<h3 id="优化参数"><a href="#优化参数" class="headerlink" title="优化参数"></a>优化参数</h3><p>每一个神经网络 $f_{\theta_i}$ 在<strong>64个GPU工作节点</strong>和<strong>19个CPU参数服务器</strong>上进行优化。</p>
+<p><strong>每个工作节点的批次（Batch）大小是32</strong>，每一个<strong>mini-batch大小为2048</strong>。每一个 <strong>mini-batch 的数据</strong>从最近<strong>50万盘</strong>的自对弈棋谱的状态中联合随机采样。</p>
+<p><strong>神经网络权重</strong>更新使用带有<strong>动量（momentum）和学习率退火（learning rate annealing）的随机梯度下降法（SGD）</strong>，损失函数见公式1</p>
+<p>学习率退火比率见下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">步数（千）</th>
+<th style="text-align:center">强化学习率</th>
+<th style="text-align:center">监督学习率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0-200</td>
+<td style="text-align:center">$10^{-2}$</td>
+<td style="text-align:center">$10^{-1}$</td>
+</tr>
+<tr>
+<td style="text-align:center">200-400</td>
+<td style="text-align:center">$10^{-2}$</td>
+<td style="text-align:center">$10^{-2}$</td>
+</tr>
+<tr>
+<td style="text-align:center">400-600</td>
+<td style="text-align:center">$10^{-3}$</td>
+<td style="text-align:center">$10^{-3}$</td>
+</tr>
+<tr>
+<td style="text-align:center">600-700</td>
+<td style="text-align:center">$10^{-4}$</td>
+<td style="text-align:center">$10^{-4}$</td>
+</tr>
+<tr>
+<td style="text-align:center">700-800</td>
+<td style="text-align:center">$10^{-4}$</td>
+<td style="text-align:center">$10^{-5}$</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;800</td>
+<td style="text-align:center">$10^{-4}$</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<p>动量参数设置为<strong>0.9</strong></p>
+<p>方差项和交叉项的权重相同，原因是奖励值被归一化到 $r \in [-1,+1]$</p>
+<p>L2正则化系数设置为 $c = 10^{-4}$</p>
+<p><strong>优化过程每1000个训练步数</strong>执行一次，并使用这个<strong>新模型</strong>来生成下一个Batch的<strong>自对弈棋谱</strong></p>
+<h3 id="评估器"><a href="#评估器" class="headerlink" title="评估器"></a>评估器</h3><p>为了保证生成数据的质量（不至于棋力反而下降），在使用<strong>新的神经网络去生成自对弈棋谱前</strong>，用<strong>现有的最好网络</strong> $f_{\theta_*}$ 来对它进行评估</p>
+<p>【评估神经网络 $f_{\theta_i}$ 的方法】使用  $f_{\theta_i}$ 进行MCTS搜索得出的 $\alpha_{\theta_i}$ 的<strong>性能</strong>（得到 $\alpha_{\theta_i}$ 的MCTS搜索过程中使用 $f_{\theta_i}$ 去估计<strong>叶子节点的位置</strong>和<strong>先验概率</strong>，<a href="#MCTS搜索算法">详见MCTS搜索这一节</a>）</p>
+<p>每一个评估由<strong>400盘对局</strong>组成，MCTS搜索使用<strong>1600次模拟</strong>，将温度参数设为无穷小 $\tau \Rightarrow 0$（目的是为了使用<strong>最多访问次数</strong>的落子下法去下，追求最强的棋力），如果新的选手 $\alpha_{\theta_i}$ 在这400盘中胜率<strong>大于55%</strong>，将这个选手更新为最佳选手 $\alpha_{\theta_*}$ ，用来产生下一轮的自对弈棋谱，并且设为下一轮的比较对象</p>
+<h3 id="自对弈"><a href="#自对弈" class="headerlink" title="自对弈"></a>自对弈</h3><p>通过评估器，现在已经有一个<strong>当前的最好棋手</strong> $\alpha_{\theta_*}$，使用它来<strong>产生数据</strong>。<strong>每次迭代</strong>中， $\alpha_{\theta_*}$ 自对弈<strong>25000盘</strong>，其中每一步MCTS搜索模拟1600次（模拟的每次落子大约<strong>0.4秒</strong>，这里的一次表示的就是MCTS搜索中走到叶子节点，得出胜负结果）</p>
+<p><strong>前30步</strong>，温度 $\tau = 1$，与MCTS搜索中的访问次数成正比，目的是保证<strong>前30步下法的多样性</strong>。在之后的棋局中，温度设为无穷小。并在<strong>先验概率中加入狄利克雷噪声</strong>  $P(\vec s, \vec a) = (1 - \epsilon) p_{\vec a} + \epsilon \eta_{\vec a}$ ，其中 $\eta \sim Dir(0.03)$ 且 $\epsilon = 0.25$。这个噪声保证所有的落子可能都会被尝试，但也可能下出臭棋</p>
+<p><strong>投降阈值</strong> $v_{rerign}$ 自动设为<strong>错误正类率（如果AlphaGo没有投降可以赢的比例）</strong>小于5%，为了测量错误正类(false positives)，在10%的自对弈中关闭投降机制，必须下完</p>
+<h2 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h2><p>为了进行对比，我们还<strong>使用监督学习</strong>训练了一个参数为 $\theta_{SL}$ 神经网络。神经网络的结构和AlphaGo Zero相同。数据集 $(\vec s, \boldsymbol \pi, z)$ 随机采样自KGS数据集，人类的落子策略位置即设置 $\pi_a = 1$ 。使用同样的超参数和损失函数，但是平方误差的系数为0.01，学习率图参照上表的第二列。其他超参数和上一节相同</p>
+<p>比AlphaGo1.0z中使用两种网络，使用这种结构的网络，可以有效的防止过拟合。并且实验也证明这个<strong>网络结构的</strong>的效果要<strong>好于之前的网络</strong></p>
+<h2 id="MCTS搜索算法"><a href="#MCTS搜索算法" class="headerlink" title="MCTS搜索算法"></a>MCTS搜索算法</h2><p>这一部分详解的AlphaGo Zero的算法核心示意图<a href="#Figure2">Figure2</a></p>
+<p>AlphaGo Zero使用的是<strong>比AlphaGo1.0中更简单</strong>的<strong>异步策略价值MCTS搜索算法</strong>（APV-MCTS）的变种</p>
+<p>搜索树中的<strong>节点</strong> $\vec s$ 包含一条边 $(\vec s,\vec a)$ 对应所有<strong>可能的落子</strong> $\vec a \in \mathcal A(\vec s)$ ，每一条边中<strong>存储一个数据</strong>，包含下列公式的四个值<br>$$<br>{N(\vec s,\vec a), W(\vec s,\vec a), Q(\vec s,\vec a), P(\vec s,\vec a)}<br>$$</p>
+<blockquote>
+<p>$N(\vec s,\vec a)$ 表示<strong>MCST搜索模拟走到叶子节点的过程中的访问次数</strong><br>$W(\vec s,\vec a)$ 表示<strong>行动价值（由路径上所有的 $v$ 组成）的总和</strong><br>$Q(\vec s,\vec a)$ 表示<strong>行动价值的均值</strong><br>$P(\vec s,\vec a)$ 表示选择这条边的<strong>先验概率</strong>（一个单独的值）</p>
+</blockquote>
+<p><strong>多线程（并行）执行多次模拟</strong>，每一次迭代过程先重复执行1600次Figure 2中的前3个步骤，计算出一个 $\boldsymbol \pi$ ，根据这个向量下现在的这一步棋</p>
+<h3 id="Selcet-Figure2a"><a href="#Selcet-Figure2a" class="headerlink" title="Selcet - Figure2a"></a>Selcet - Figure2a</h3><p>MCTS中的<strong>选择步骤</strong>和之前的版本相似，详见<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo之前的详解文章</a>，这篇博文<strong>详细通俗</strong>的解读了这个过程。概括来说，假设<code>L</code>步走到叶子节点，当走第 $t &lt; L$ 步时，根据<strong>搜索树的统计概率落子</strong><br>
+$$
+\vec a_t = \operatorname*{argmax}_{\vec a}(Q(\vec s_t, \vec a) + U (\vec s_t, \vec a))
+$$
+</p>
+<p>其中计算 $U (\vec s_t, \vec a)$ 使用PUCT算法的变体</p>
+
+$$
+U(\vec s, \vec a) = c_{puct}P(\vec s, \vec a) \frac{\sqrt{\Sigma_{\vec b} N(\vec s, \vec b)}}{1 + N(\vec s, \vec a)}
+$$
+
+<p>其中 $c_{puct}$ 是一个常数。这种搜索策略落子选择<strong>最开始</strong>更趋向于<strong>高先验概率</strong>和<strong>低访问次数</strong>的，但逐渐的会更加趋向于选择有着<strong>更高行动价值</strong>的落子</p>
+<p> $c_{puct}$ 使用<a href="http://ieeexplore.ieee.org/document/7352306/?reload=true" target="_blank" rel="noopener">贝叶斯高斯过程优化</a>来确定</p>
+<h3 id="Expand-and-evaluate-Figure-2b"><a href="#Expand-and-evaluate-Figure-2b" class="headerlink" title="Expand and evaluate - Figure 2b"></a>Expand and evaluate - Figure 2b</h3><p>将叶子节点 $\vec s_L$ 加到<strong>队列</strong>中等待输入至神经网络<strong>进行评估</strong>， $f_\theta(d_i(\vec s_L)) = (d_i(p), v)$ ，其中 $d_i$ 表示一个<strong>1至8的随机数</strong>来表示<strong>双方向镜面</strong>和<strong>旋转</strong>（从8个不同的方向进行评估，如下图所示，围棋棋型在很多情况如果<strong>从视觉角度来提取特征</strong>来说是同一个节点，极大的缩小了搜索空间）</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/DG.svg" alt="Figure 6" width="200px"></div>
+
+<p>队列中<strong>8个不同位置</strong>组成一个<strong>大小为8的mini-batch</strong>输入到神经网络中<strong>进行评估</strong>。整个<strong>MCTS搜索线程被锁死</strong>直到评估过程完成（这个锁死是保证并行运算间同步）。叶子节点被<strong>展开</strong>(Expand)，每一条边 $(\vec s_L,\vec a)$被初始化为 </p>
+
+$$
+{N(\vec s_L,\vec a) = 0 ;\; W(\vec s_L,\vec a) = 0; \; Q(\vec s_L,\vec a) = 0\\P(\vec s_L,\vec a) = p_a}
+$$
+
+<p>这里的 $p_a$ 由将 $\vec s$ <strong>输入神经网络</strong>得出 $\mathbf p$ （包括所有落子可能的概率值 $p_a$），然后将<strong>神经网络的输出值 $v$ 传回（backed up）</strong></p>
+<h3 id="Backup-Figure-2c"><a href="#Backup-Figure-2c" class="headerlink" title="Backup - Figure 2c"></a>Backup - Figure 2c</h3><p>沿着<strong>扩展到叶子节点的路线回溯</strong>将边的统计数据更新（如下列公式所示）</p>
+
+$$
+N(\vec s_t, \vec a_t) = N(\vec s_t, \vec a_t)  + 1 \\
+W(\vec s_t, \vec a_t)  = W(\vec s_t, \vec a_t)  + v \\
+Q(\vec s_t, \vec a_t)  = \frac{W(\vec s_t, \vec a_t) }{N(\vec s_t, \vec a_t) }
+$$
+
+<blockquote>
+<p>注解：在 $W(\vec s_t, \vec a_t)$ 的更新中，使用了神经网络的输出 $v$，而最后的价值就是策略评估中的这一状态的价值 $Q(\vec s, \vec a)$</p>
+</blockquote>
+<p>使用虚拟损失（virtual loss）确保每一个线程评估不同的节点。实现方法概括为<strong>把其他节点减去一个很大的值</strong>，避免其他搜索进程走相同的路，<a href="https://link.springer.com/chapter/10.1007/978-3-642-17928-0_4" target="_blank" rel="noopener">详见</a></p>
+<h3 id="Play-Figure-2d"><a href="#Play-Figure-2d" class="headerlink" title="Play - Figure 2d"></a>Play - Figure 2d</h3><p>完成MCTS搜索（并行重复1-3步1600次，花费0.4s）后，AlphaGo Zero才从 $\vec s_0$ 状态下走出第一步 $\vec a_0$，与访问次数成幂指数比例</p>
+
+$$
+\boldsymbol \pi(\vec a|\vec s_0) = \frac {N(\vec s_0,a)^{1/\tau}}{\Sigma_{\vec b} N(\vec s_0, \vec b)^{1/\tau}}
+$$
+
+<p>其中 $\tau$ 是一个温度常数用来控制探索等级（level of exploration）。它是热力学玻尔兹曼分布的一种变形。温度较高的时候，分布更加<strong>均匀（走子多样性强）</strong>；温度降低的时候，分布更加<strong>尖锐（多样性弱，追求最强棋力）</strong></p>
+<p>搜索树会在接下来的<strong>自对弈走子</strong>中<strong>复用</strong>，如果孩子节点和落子的位置吻合，它就成为新的根节点，保留子树的所有统计数据，同时丢弃其他的树。<strong>如果根的评价值和它最好孩子的评价值都低于 $v_{resign}$ AlphaGo Zero就认输</strong></p>
+<h3 id="MCTS搜索总结"><a href="#MCTS搜索总结" class="headerlink" title="MCTS搜索总结"></a>MCTS搜索总结</h3><p>与之前的版本的MCTS相比，<strong>AlphaGo Zero最大的不同是没有使用走子网络（Rollout），而是使用一个整合的深度神经网络</strong>；叶子节点总会被扩展，而不是动态扩展；每一次MCTS搜索线程需要<strong>等待</strong>神经网络的评估，之前的版本性能评估（evaluate）和返回（backup）是异步的；没有树形策略</p>
+<p>至于很重要的一个关键点<strong>：每一次模拟的中的叶子节点<code>L</code>的深度</strong></p>
+<p>【个人分析】是由时间来决定，根据论文提到的数据，<strong>0.4秒执行1600次模拟</strong>，<strong>多线程模拟</strong>，在<strong>时限内</strong>能走到的深度有多深就是这个<strong>叶子节点</strong>。可以类比为AlphaGo 1.0中的局面函数（用来判断某个局面下的胜率的），也就是说不用模拟到终盘，在<strong>叶子节点的状态</strong>下，使用深度神经网的输出 $v$ 来判断现在落子的棋手的胜率</p>
+<h2 id="网络结构-1"><a href="#网络结构-1" class="headerlink" title="网络结构"></a>网络结构</h2><h3 id="网络输入数据"><a href="#网络输入数据" class="headerlink" title="网络输入数据"></a>网络输入数据</h3><p>输入数据的维度 <code>19×19×17</code>，其中存储的两个值0/1，$X_t^i = 1$表示这个交叉点有子，$0$ 表示这个交叉点没有子或是对手的子或 $t&lt;0$。使用 $Y_t$ 来记录对手的落子情况。</p>
+<p>从状态 $\vec s$ 开始，记录了倒退回去的15步，双方棋手交替。最后一个<code>19×19</code>的存储了前面16步每一个状态对应的棋子的黑白颜色。1黑0白</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/structure.png" alt="Figure 6" width="300px"></div>
+
+<p>【个人理解】为了<strong>更加直观的解释</strong>，如果是上面的局部棋盘状态 $\vec s$，接下里一步是黑棋落子，走了4步，那么<strong>输入数据</strong>是什么样的呢？</p>
+
+$$
+\mathbf X_2=  \begin{pmatrix}
+& \vdots & \vdots & \\ 
+\cdots & 0 & 1 & \cdots \\
+\cdots & 1 & 0 & \cdots \\ 
+& \vdots & \vdots &\end{pmatrix} 
+\mathbf Y_2=  \begin{pmatrix}
+& \vdots & \vdots & \\ 
+\cdots & 1 & 0 & \cdots \\
+\cdots & 0 & 1 & \cdots \\ 
+& \vdots & \vdots &\end{pmatrix} \\
+\mathbf X_1=  \begin{pmatrix}
+& \vdots & \vdots & \\ 
+\cdots & 0 & 0 & \cdots \\
+\cdots & 1 & 0 & \cdots \\ 
+& \vdots & \vdots &\end{pmatrix}
+\mathbf Y_1=  \begin{pmatrix}
+& \vdots & \vdots & \\ 
+\cdots & 0 & 0 & \cdots \\
+\cdots & 0 & 1 & \cdots \\ 
+& \vdots & \vdots &\end{pmatrix} \\
+\mathbf C =  \begin{pmatrix}
+& \vdots & \vdots & \\ 
+\cdots & 1 & 0 & \cdots \\
+\cdots & 0 & 1 & \cdots \\ 
+& \vdots & \vdots &\end{pmatrix}
+$$
+
+<p>同理，如果有8步的话，也就是16个对应的 $X$ 和 $Y$ 加一个 $C$ 来表示现在的棋盘状态（注意，这里面包含的历史状态）。这里的数据类型是Boolean，非常高效，并且表达的信息也足够</p>
+<p>至于使用<strong>八步</strong>的原因。个人理解，一方面是为了<strong>避免循环劫</strong>，另一方面，选择八步也可能是<strong>性能和效果权衡的结果</strong>（从感知上来说当然信息记录的越多神经网络越强，奥卡姆剃刀定理告诉我们，简单即有效，一味的追求复杂，并不是解决问题的最佳途径）</p>
+<h3 id="深度神经网结构"><a href="#深度神经网结构" class="headerlink" title="深度神经网结构"></a>深度神经网结构</h3><p>整个残差塔使用单独的卷机模块组成，其中包含了19或39个残差模块，详细结构参数如下图所示</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/ResNet.svg" alt="Figure 6" width="800px"></div>
+
+<p>过了深度卷积神经网络后接<strong>策略输出</strong>与<strong>评估值输出</strong>，详细结构参数如下图所示</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/VPoutput.svg" alt="Figure 6" width="800px"></div>
+
+<h2 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h2><p><a href="http://gokifu.com/" target="_blank" rel="noopener">GoKifu数据集</a>，和<a href="https://u-go.net/gamerecords/" target="_blank" rel="noopener">KGS数据集</a></p>
+<h2 id="图5更多细节"><a href="#图5更多细节" class="headerlink" title="图5更多细节"></a>图5更多细节</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5a.png" alt="Figure 5a中每种定式出现的频率图" title="">
+                </div>
+                <div class="image-caption">Figure 5a中每种定式出现的频率图</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/Figure5b.png" alt="Figure 5b中每种定式出现的频率图" title="">
+                </div>
+                <div class="image-caption">Figure 5b中每种定式出现的频率图</div>
+            </figure>
+<h1 id="总结与随想"><a href="#总结与随想" class="headerlink" title="总结与随想"></a>总结与随想</h1><p><strong>AlphaGo Zero = 启发式搜索 + 强化学习 + 深度神经网络</strong>，你中有我，我中有你，互相对抗，不断自我进化。使用<strong>深度神经网络的训练作为策略改善</strong>，<strong>蒙特卡洛搜索树作为策略评价</strong>的<strong>强化学习算法</strong></p>
+<p>之后提出一些我在看论文时带着的问题，最后给出我仔细看完每一行论文后得出的回答，如有错误，请批评指正！</p>
+<h2 id="问题与个人答案"><a href="#问题与个人答案" class="headerlink" title="问题与个人答案"></a>问题与个人答案</h2><h3 id="训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"><a href="#训练好的Alpha-Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？" class="headerlink" title="训练好的Alpha Zero在真实对弈时，在面对一个局面时如何决定下在哪个位置？"></a>训练好的Alpha Zero在真实对弈时，在面对一个局面时<strong>如何决定下在哪个位置</strong>？</h3><p><a href="#评估器">评估器</a>的落子过程即最终对弈时的落子过程（自对弈中的落子就是真实最终对局时的落子方式）：使用<strong>神经网络的输出</strong> $\mathbf p$ <strong>作为先验概率</strong>进行MCTS搜索，每步1600次（最后应用的版本可能和<strong>每一步的给的时间</strong>有关）模拟，前30步<strong>采样落子</strong>，剩下棋局使用最多访问次数来落子，得到 $\boldsymbol \pi$ ，然后选择落子策略中最大的一个位置落子</p>
+<h3 id="AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？"><a href="#AlphaGo-Zero的MCTS搜索算法和和上个版本的有些什么区别？" class="headerlink" title="AlphaGo Zero的MCTS搜索算法和和上个版本的有些什么区别？"></a>AlphaGo Zero的<strong>MCTS搜索算法</strong>和和上个版本的<strong>有些什么区别</strong>？</h3><p><a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#MCTS-蒙特卡洛搜索树——走子演算（Rollout）">最原始MCTS解析</a>，<a href="https://charlesliuyx.github.io/2017/05/27/AlphaGo%E8%BF%90%E8%A1%8C%E5%8E%9F%E7%90%86%E8%A7%A3%E6%9E%90/#AlphaGo">AlphaGo Lee加上策略函数和局面函数改进后的MCTS解析</a></p>
+<p>对于AlphaGo Zero来说</p>
+<ul>
+<li>最大的区别在于，<strong>模拟过程</strong>中依据神经网络的输出 $\mathbf p$ 的概率分布<strong>采样</strong>落子。<strong>采样是关键词</strong>，首先采样保证一定的随机特性，不至于下的步数过于集中，其次，如果模拟的盘数足够多，那这一步就会越来越强</li>
+<li>其次，在<a href="https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/#Backup-Figure-2c">返回（Bakcup）部分</a>每一个点的价值（得分），使用了神经网络的输出 $v$。这个值也是<strong>策略评估</strong>的重要依据</li>
+</ul>
+<h3 id="AlphaGo-Zero-中的策略迭代法是如何工作的？"><a href="#AlphaGo-Zero-中的策略迭代法是如何工作的？" class="headerlink" title="AlphaGo Zero 中的策略迭代法是如何工作的？"></a>AlphaGo Zero 中的策略迭代法是如何工作的？</h3><p>策略迭代法（Policy Iteration）是强化学习中的一种算法，简单来说：以某种<strong>策略</strong>（ $\pi_0$ ）开始，计算当前策略下的<strong>价值函数</strong>（ $v_{\pi_0}$ ）；然后<strong>利用这个价值函数，找到更好的策略</strong>（<strong>E</strong>valuate和<strong>I</strong>mprove）；接下来再用这个<strong>更好的策略</strong>继续前行，更新价值函数……这样经过若干轮的计算，如果一切顺利，我们的策略会收敛到<strong>最优的策略</strong>（ $\pi_*$ ），问题也就得到了解答。</p>
+
+$$
+\pi_0 \xrightarrow{E} v_{\pi_0} \xrightarrow{I} \pi_1 \xrightarrow{E} v_{\pi_1} \xrightarrow{I} \pi_2 \xrightarrow{E} \cdots \xrightarrow{I} \pi_* \xrightarrow{E} v_*
+$$
+
+<p>对于AlphaGo Zero来说，<a href="#改进的强化学习算法">详细可见论文</a>，简单总结如下</p>
+<ul>
+<li>策略评估过程，即使用MCTS搜索<strong>每一次模拟</strong>的<strong>对局胜者</strong>，胜者的<strong>所有落子</strong>（$\vec s$）都获得<strong>更好的评估值</strong></li>
+<li>策略提升过程，即使用MCTS搜索返回的<strong>更好策略</strong> $\boldsymbol \pi$</li>
+<li>迭代过程，即神经网络输出 $\mathbf p$ 和 $v$ 与策略评估和策略提升返回值的对抗（即神经网络的训练过程）</li>
+</ul>
+<p>总的来说，有点像一个嵌套过程，MCST算法可以用来解决围棋问题，这个深度神经网络也可以用来解决围棋问题，而AlphaGo Zero将两者<strong>融合</strong>，你中有我，我中有你，不断对抗，不对自我进化</p>
+<h3 id="AlphaGo-Zero-最精彩的部分哪部分？"><a href="#AlphaGo-Zero-最精彩的部分哪部分？" class="headerlink" title="AlphaGo Zero 最精彩的部分哪部分？"></a>AlphaGo Zero 最精彩的部分哪部分？</h3>
+$$
+l = (z - v)^2 - \boldsymbol {\pi}^T \log(\mathbf p) + c \Vert \theta \Vert ^2
+$$
+
+<p>毫无悬念的，我会选择这个漂亮的公式，看懂公式<strong>每一项的来历，即产生的过程</strong>，就读懂了AlphaGo Zero。这个公式<strong>你中有我，我中有你</strong>，这是一个完美的对抗，完美的自我进化</p>
+<p>第二我觉得很精彩的点子是将<strong>深度神经网络作为一个模块</strong>嵌入到了<strong>强化学习的策略迭代法中</strong>。最关键的是，<strong>收敛速度快，效果好，解决各种复杂的局面</strong>（比如一个关于围棋棋盘的观看角度可以从八个方向来看的细节处理的很好，又如神经网络的输入状态选择了使用<strong>历史八步</strong>）</p>
+<h2 id="随想和评论"><a href="#随想和评论" class="headerlink" title="随想和评论"></a>随想和评论</h2><p><a href="https://zhuanlan.zhihu.com/p/30325845?group_id=905063580597968896" target="_blank" rel="noopener">量子位汇集各家评论</a></p>
+<ul>
+<li>不是<strong>无监督学习</strong>，带有明显胜负规则的强化学习是<strong>强监督</strong>的范畴</li>
+<li>无需<strong>担心快速的攻克其他领域</strong>，核心还是<strong>启发式搜索</strong></li>
+<li><strong>模型简约漂亮，充满整合哲学的优雅</strong>，可怕的是效果和效率也同样极高</li>
+<li>AlphaGo项目在经历了<strong>把书读厚</strong>的过程后，已经取得了瞩目的成就依旧不满足现状，现通过AlphaGo Zero<strong>把书读薄</strong>，简约而不简单，大道至简，九九归一，已然位列仙班了</li>
+</ul>
+<p>随着AlphaGo Zero的归隐，DeepMind已经正式转移精力到其他的任务上了。期待这个天才的团队还能搞出什么大新闻！</p>
+<p>对于围棋这项运动的影响可能是：以后的学围棋手段会发生变化，毕竟世界上能复现AlphaGo Zero的绝对很多，那么AlphaGo Zero的实力那就是棋神的感觉，向AlphaGo Zero直接学习不是更加高效嘛？另，围棋受到的关注也应该涨了一波，是利好</p>
+<p>感觉强化学习会越来越热，对于和环境交互这个领域，强化学习更加贴近于人类做决策的学习方式。个人预测，强化学习会在未来会有更多进展！AlphaGo Zero 可能仅仅是一个开头</p>
+<p>以上！鞠躬！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-10-31T23:31:42.824Z" itemprop="dateUpdated">2017-11-01 07:31:42</time>
+</span><br>
+
+
+        
+        <a href="/2017/10/18/深入浅出看懂AlphaGo元/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AlphaGo/">AlphaGo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Deep-Learning/">Deep Learning</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了A..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo元》 — Go Further&url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/11/05/Dota2-A帐效果/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Dota2-A帐效果</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/10/17/【直观详解】线性代数中的正交正规正定转置/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观详解】线性代数中的转置正交正规正定</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+                id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+                clientID: '2c1daf79f5a857cab513',
+                clientSecret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+                repo: 'BlogComment',
+                owner: 'CharlesLiuyx',
+                admin: ['CharlesLiuyx'],
+                id: id,      // Ensure uniqueness and length less than 50
+                title: document.title.split('|')[0],
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&title=《深入浅出看懂AlphaGo元》 — Go Further&source=【阅读时间】21min - 24min 10999字【内容简介】AlphaGo1.0详解链接，这篇AlphaGo Zero论文原文超详细翻译，并且总结了A..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《深入浅出看懂AlphaGo元》 — Go Further&url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/10/18/深入浅出看懂AlphaGo元/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACs0lEQVR42u3ay07dQBAFQP7/p5MtUXJ9T7+ASOUVMsie8mKmOd0fH/H169P16v7fv/38N69+fv7t89vXLjw8PLzB0l8t95mRL7QHTu6//AR4eHh4Z7zqht57ffKW52fma8bDw8P7mbz8xdFS4oIeDw8P7//iJUVtHjokz/zSgwEPDw8v5uWPToKD/E5+SJxnLXh4eHgxr1r+/oSfT/p7eHh4eOOu+rzpNSm7eyv84zl4eHh4B7xqOTtpg+2W5oXhMDw8PLxVXr4dz0esquFsFfmP5+Dh4eGd8ZI2Un6nWjRvRcnNzh4eHh5ekZcPUfUOg4TdK68LQwl4eHh4Z7xqwToJf5OFloer8jYYHh4e3gGv2rJaCA4Gx8Cb4wEPDw9vlfe8veb//Odldy8abh5veHh4eAe8HHNREFef1htrwMPDw9vlVbf4fHOvFt+91lrU+sLDw8M74G099GLpozYYHh4e3gGvGkPkUey8hVYNi8stMTw8PLwWb1IoT2LfXoBb/eh4eHh4F7xk465u62stq2JAXGiA4eHh4Q14k0BhEl70YoXyM/Hw8PCOeZPXTGKL6udozpTh4eHhrfKqsGohnhfcW5EHHh4e3h2vGgpUW1950FBtm0XRLR4eHt4Zr9p2qoa5WyFFfvy8Sanx8PDwxrxJ8z4fq+oBeuC12QQ8PDy81XmkPFBIDoO8TC8fZnh4eHhnvN4m3jta8mB34cLDw8M7huWRQbURVS2aq5/mTX8PDw8Pb4m3e3jkR0KvqdYbaMDDw8O74FVbU8lwQK9czg+kZPwLDw8P75qXD1old7aC2vyjRCk1Hh4e3jfxevFElZ2TFqbJ8PDw8L6ElxfQyRHSG1+Iols8PDy8M141CMgbWsl232uwRQU6Hh4e3gFvXsJWX5Y30gql81aegYeHh/d0/QaM4V/0Z8OoMAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
