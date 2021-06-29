@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【教程】manim动画制作工具 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="3B1B,manim,Tutorial">
+    <meta name="description" content="【阅读时间】【阅读内容】3B1B 自用动画生成神器教程">
+<meta name="keywords" content="3B1B,manim,Tutorial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【教程】manim动画制作工具">
+<meta property="og:url" content="https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】【阅读内容】3B1B 自用动画生成神器教程">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-17T13:02:36.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【教程】manim动画制作工具">
+<meta name="twitter:description" content="【阅读时间】【阅读内容】3B1B 自用动画生成神器教程">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/atom.xml" target="_blank" >
+                <i class="icon icon-lg icon-rss"></i>
+                RSS
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【教程】manim动画制作工具</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【教程】manim动画制作工具</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-04-21T04:06:00.000Z" itemprop="datePublished" class="page-time">
+  2019-04-21
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Math/">Math</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-安装-manim"><span class="post-toc-number">1.</span> <span class="post-toc-text">1 安装 manim</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-做一个简单的视频"><span class="post-toc-number">2.</span> <span class="post-toc-text">2 做一个简单的视频</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-1-场景和动画"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">2.1 场景和动画</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-更多可以使用的形状"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 更多可以使用的形状</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-1-方向矢量"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">3.1 方向矢量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-2-制作一个简单的动画"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">3.2 制作一个简单的动画</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#4-添加文字"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 添加文字</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-1-文字变形"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">4.1 文字变形</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-2-文字的旋转和高亮"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">4.2 文字的旋转和高亮</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#5-数学公式"><span class="post-toc-number">5.</span> <span class="post-toc-text">5 数学公式</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-1-给对象上色"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">5.1 给对象上色</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#6-对齐文本并使用大括号"><span class="post-toc-number">6.</span> <span class="post-toc-text">6 对齐文本并使用大括号</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#7-坐标轴和绘图"><span class="post-toc-number">7.</span> <span class="post-toc-text">7 坐标轴和绘图</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-1-配置文件"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">7.1 配置文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#8-更高级的绘图"><span class="post-toc-number">8.</span> <span class="post-toc-text">8 更高级的绘图</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#9-向量场"><span class="post-toc-number">9.</span> <span class="post-toc-text">9 向量场</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-1-简单向量场"><span class="post-toc-number">9.1.</span> <span class="post-toc-text">9.1 简单向量场</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-2-带有变量的向量场"><span class="post-toc-number">9.2.</span> <span class="post-toc-text">9.2 带有变量的向量场</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#10-运动电荷场例子"><span class="post-toc-number">10.</span> <span class="post-toc-text">10 运动电荷场例子</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-1-更进一步的优化"><span class="post-toc-number">10.1.</span> <span class="post-toc-text">10.1 更进一步的优化</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#11-3D场景"><span class="post-toc-number">11.</span> <span class="post-toc-text">11 3D场景</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#12-SVG格式支持"><span class="post-toc-number">12.</span> <span class="post-toc-text">12 SVG格式支持</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-【教程】manim动画制作工具"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【教程】manim动画制作工具</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-04-21 12:06:00" datetime="2019-04-21T04:06:00.000Z"  itemprop="datePublished">2019-04-21</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Math/">Math</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】<br>【阅读内容】3B1B 自用动画生成神器教程<br><a id="more"></a></p>
+<p><a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a> <a href="https://talkingphysics.wordpress.com/2019/01/08/getting-started-animating-with-manim-and-python-3-7/" target="_blank" rel="noopener">教程英文版链接</a> <a href="https://manim.readthedocs.io/" target="_blank" rel="noopener">manim文档</a></p>
+<h1 id="1-安装-manim"><a href="#1-安装-manim" class="headerlink" title="1 安装 manim"></a>1 安装 manim</h1><p>首先参考<a href="https://github.com/3b1b/manim" target="_blank" rel="noopener">Github链接</a></p>
+<h1 id="2-做一个简单的视频"><a href="#2-做一个简单的视频" class="headerlink" title="2 做一个简单的视频"></a>2 做一个简单的视频</h1><h2 id="2-1-场景和动画"><a href="#2-1-场景和动画" class="headerlink" title="2.1 场景和动画"></a>2.1 场景和动画</h2><blockquote>
+<p>Scenes ＆ Animation</p>
+</blockquote>
+<h1 id="3-更多可以使用的形状"><a href="#3-更多可以使用的形状" class="headerlink" title="3 更多可以使用的形状"></a>3 更多可以使用的形状</h1><h2 id="3-1-方向矢量"><a href="#3-1-方向矢量" class="headerlink" title="3.1 方向矢量"></a>3.1 方向矢量</h2><blockquote>
+<p>Direction Vectors</p>
+</blockquote>
+<h2 id="3-2-制作一个简单的动画"><a href="#3-2-制作一个简单的动画" class="headerlink" title="3.2 制作一个简单的动画"></a>3.2 制作一个简单的动画</h2><h1 id="4-添加文字"><a href="#4-添加文字" class="headerlink" title="4 添加文字"></a>4 添加文字</h1><blockquote>
+<p>Text</p>
+</blockquote>
+<h2 id="4-1-文字变形"><a href="#4-1-文字变形" class="headerlink" title="4.1 文字变形"></a>4.1 文字变形</h2><h2 id="4-2-文字的旋转和高亮"><a href="#4-2-文字的旋转和高亮" class="headerlink" title="4.2 文字的旋转和高亮"></a>4.2 文字的旋转和高亮</h2><h1 id="5-数学公式"><a href="#5-数学公式" class="headerlink" title="5 数学公式"></a>5 数学公式</h1><h2 id="5-1-给对象上色"><a href="#5-1-给对象上色" class="headerlink" title="5.1 给对象上色"></a>5.1 给对象上色</h2><h1 id="6-对齐文本并使用大括号"><a href="#6-对齐文本并使用大括号" class="headerlink" title="6 对齐文本并使用大括号"></a>6 对齐文本并使用大括号</h1><h1 id="7-坐标轴和绘图"><a href="#7-坐标轴和绘图" class="headerlink" title="7 坐标轴和绘图"></a>7 坐标轴和绘图</h1><h2 id="7-1-配置文件"><a href="#7-1-配置文件" class="headerlink" title="7.1 配置文件"></a>7.1 配置文件</h2><h1 id="8-更高级的绘图"><a href="#8-更高级的绘图" class="headerlink" title="8 更高级的绘图"></a>8 更高级的绘图</h1><h1 id="9-向量场"><a href="#9-向量场" class="headerlink" title="9 向量场"></a>9 向量场</h1><h2 id="9-1-简单向量场"><a href="#9-1-简单向量场" class="headerlink" title="9.1 简单向量场"></a>9.1 简单向量场</h2><h2 id="9-2-带有变量的向量场"><a href="#9-2-带有变量的向量场" class="headerlink" title="9.2 带有变量的向量场"></a>9.2 带有变量的向量场</h2><h1 id="10-运动电荷场例子"><a href="#10-运动电荷场例子" class="headerlink" title="10 运动电荷场例子"></a>10 运动电荷场例子</h1><h2 id="10-1-更进一步的优化"><a href="#10-1-更进一步的优化" class="headerlink" title="10.1 更进一步的优化"></a>10.1 更进一步的优化</h2><h1 id="11-3D场景"><a href="#11-3D场景" class="headerlink" title="11 3D场景"></a>11 3D场景</h1><h1 id="12-SVG格式支持"><a href="#12-SVG格式支持" class="headerlink" title="12 SVG格式支持"></a>12 SVG格式支持</h1>
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-06-17T13:02:36.549Z" itemprop="dateUpdated">2019-06-17 21:02:36</time>
+</span><br>
+
+
+        
+        <a href="/2019/04/21/【教程】manim动画制作工具/" target="_blank" rel="external">https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3B1B/">3B1B</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tutorial/">Tutorial</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/manim/">manim</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&title=《【教程】manim动画制作工具》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&title=《【教程】manim动画制作工具》 — Go Further&source=【阅读时间】【阅读内容】3B1B 自用动画生成神器教程" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【教程】manim动画制作工具》 — Go Further&url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/10/28/【直观算法】二叉搜索树算法总结/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">【直观算法】二叉搜索树算法总结</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            var id = location.pathname
+            if (location.pathname.length > 50) {
+                id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+                clientID: '2c1daf79f5a857cab513',
+                clientSecret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+                repo: 'BlogComment',
+                owner: 'CharlesLiuyx',
+                admin: ['CharlesLiuyx'],
+                id: id,      // Ensure uniqueness and length less than 50
+                title: document.title.split('|')[0],
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&title=《【教程】manim动画制作工具》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&title=《【教程】manim动画制作工具》 — Go Further&source=【阅读时间】【阅读内容】3B1B 自用动画生成神器教程" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【教程】manim动画制作工具》 — Go Further&url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2019/04/21/【教程】manim动画制作工具/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3awW4bMQwEUP//T6dATy0SuzOk5ATF25PhrCU9BRAJUo9H/Hz8fj5//vzOn8+zv75+P3nn8IOHh4c3WvqzJ59y9ttks/JxvhgNDw8P7xovDwbPDv02VLwe4fU3yZrx8PDwfgIvP8pnxz0eHh7e/8dL8G3weDZCG5zw8PDw3s9LihEJ4PX37UbkhY8DtRY8PDy8mLdpgH3X5zf19/Dw8PDKrnpy7OapcF7CaMPA09/i4eHhXeAl058txc6S7NnseHh4eDd4yUGfXHtqYW26nJdI/hoNDw8P7wIvb1DlS0zGSUq9m8sNj3y/8fDw8Ba891Q+k6Za20Ir/j14eHh4F3jJ8b1pnm0uBGyKxXh4eHg3eG0BIsG3C8ovddVbj4eHh3eU15ZiZyFhtmWzltsXVwfw8PDwDvFmQ7fpb5LLt2l3FIrw8PDwLvCSQ3yT7OYp9exXdX0aDw8Pb83Ly6lt274NOe0F1lVKjYeHh7fm5aEiv1CVt7Xaku6BKgseHh7egpcjk+VuRsjDRl3excPDw7vM2xzN0TF9oaf/jwCGh4eHd5SXN5nawsRs0fkaoq3Hw8PDu8BrD/SWl5QhNqGiRuLh4eGteWcbXW2zat/fH/b38PDw8Ba8NrGepcJteWJ/bavYPzw8PLw1bzZlPnFbkpgVcJ8GBjw8PLxDvFNDt1uzT+XrhhkeHh7eId4mzZ21xNorrW05o76Ti4eHh7fgJUXVGWZW4GgveOHh4eHd5n2Uz6w4OwsVmwIHHh4e3j1e/pya+HZrrb1qgIeHhzfj7YPB6507FWbydB8PDw/vPbz2UM6Rs21qgxYeHh7eT+Yl5YNZEysv5haz4OHh4X0rL09nZ+Fhk5Tj4eHhvZ+XD9Fepcq3LD/ui6YXHh4e3gXevgE2a3Hl1wXazcLDw8O7xvsFN1TuA7Z+kQ0AAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
