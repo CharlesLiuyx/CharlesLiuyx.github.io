@@ -827,7 +827,7 @@
         <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
-            var id = location.pathname
+            var id = location.pathname.split("/").pop().substring(0, 49) //gittalk 插件要求 id 长度小于等于 50
             if (location.pathname.length > 50) {
                 id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
             }
