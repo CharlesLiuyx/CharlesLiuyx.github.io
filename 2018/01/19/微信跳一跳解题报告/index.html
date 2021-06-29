@@ -510,7 +510,7 @@
         <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
         <script>
             if (location.pathname.length > 50) {
-                id = location.pathname.replace(/\/\d+\/\d+\/\d+\//, '').replace('/', '').substring(0, 50)
+                id = location.pathname.replace(/\//g, '').substring(0, 50)
             }
             const gitalk = new Gitalk({
                 clientID: '2c1daf79f5a857cab513',
