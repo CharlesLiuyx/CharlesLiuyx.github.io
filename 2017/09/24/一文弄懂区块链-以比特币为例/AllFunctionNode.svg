@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="-1 -11 212 222" width="212pt" height="222pt" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata> Produced by OmniGraffle 7.3 
+    <dc:date>2017-09-24 22:44:07 +0000</dc:date>
+  </metadata>
+  <defs>
+    <font-face font-family="PingFang SC" font-size="25" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="24" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="22" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="PingFang SC" font-size="23" panose-1="2 11 4 0 0 0 0 0 0 0" units-per-em="1000" underline-position="-150" underline-thickness="58" slope="0" x-height="600" cap-height="860" ascent="1060.0021" descent="-340.0007" font-weight="500">
+      <font-face-src>
+        <font-face-name name="PingFangSC-Regular"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Courier" font-size="100" units-per-em="1000" underline-position="-178.22266" underline-thickness="57.61719" slope="0" x-height="462.40234" cap-height="594.72656" ascent="753.90625" descent="-246.09375" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Courier"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <g>
+      <title>Layer 1</title>
+      <path d="M 30 -14210855e-21 L 180 -14210855e-21 C 196.56854 -13196324e-21 210 13.431458 210 30 L 210 180 C 210 196.56854 196.56854 210 180 210 L 30 210 C 13.431458 210 20290613e-22 196.56854 0 180 L 10658141e-21 30 C 12687202e-21 13.431458 13.431458 -10145306e-22 30 0 Z" fill="#00a8ff" fill-opacity=".21993288"/>
+      <path d="M 30 -14210855e-21 L 180 -14210855e-21 C 196.56854 -13196324e-21 210 13.431458 210 30 L 210 180 C 210 196.56854 196.56854 210 180 210 L 30 210 C 13.431458 210 20290613e-22 196.56854 0 180 L 10658141e-21 30 C 12687202e-21 13.431458 13.431458 -10145306e-22 30 0 Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <circle cx="55" cy="55" r="50.00008" fill="#c0ffc0"/>
+      <circle cx="55" cy="55" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(20 37)" fill="black">
+        <tspan font-family="PingFang SC" font-size="25" font-weight="500" x="10" y="27" textLength="50">钱包</tspan>
+      </text>
+      <circle cx="155" cy="55" r="50.00008" fill="#333"/>
+      <circle cx="155" cy="55" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(120 37)" fill="white">
+        <tspan font-family="PingFang SC" font-size="25" font-weight="500" fill="white" x="10" y="27" textLength="50">矿工</tspan>
+      </text>
+      <circle cx="155" cy="155" r="50.00008" fill="#ff9300"/>
+      <circle cx="155" cy="155" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(120 112.5)" fill="black">
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="25" textLength="48">网络</tspan>
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="51" textLength="48">路由</tspan>
+        <tspan font-family="PingFang SC" font-size="24" font-weight="500" x="11" y="77" textLength="48">节点</tspan>
+      </text>
+      <circle cx="55" cy="154.57143" r="50.00008" fill="#0432ff" fill-opacity=".60329555"/>
+      <circle cx="55" cy="154.57143" r="50.00008" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(20 123.57143)" fill="black">
+        <tspan font-family="PingFang SC" font-size="22" font-weight="500" x="13" y="23" textLength="44">完整</tspan>
+        <tspan font-family="PingFang SC" font-size="23" font-weight="500" x=".5" y="54" textLength="69">区块链</tspan>
+      </text>
+      <text transform="translate(5 -10)" fill="white" fill-opacity=".39953785">
+        <tspan font-family="Courier" font-size="100" font-weight="500" fill="white" fill-opacity=".39953785" x="19.995117" y="95" textLength="60.009766">W</tspan>
+      </text>
+      <text transform="translate(105 -10)" fill="white" fill-opacity=".39953785">
+        <tspan font-family="Courier" font-size="100" font-weight="500" fill="white" fill-opacity=".39953785" x="19.995117" y="95" textLength="60.009766">M</tspan>
+      </text>
+      <text transform="translate(105 90)" fill="white" fill-opacity=".39953785">
+        <tspan font-family="Courier" font-size="100" font-weight="500" fill="white" fill-opacity=".39953785" x="19.995117" y="95" textLength="60.009766">N</tspan>
+      </text>
+      <text transform="translate(5 89.57143)" fill="white" fill-opacity=".39953785">
+        <tspan font-family="Courier" font-size="100" font-weight="500" fill="white" fill-opacity=".39953785" x="19.995117" y="95" textLength="60.009766">B</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

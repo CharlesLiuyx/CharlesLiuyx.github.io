@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】支持向量机SVM | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="description" content="【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
+<meta name="keywords" content="Machine Learning,Theory">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】支持向量机SVM">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png">
+<meta property="og:updated_time" content="2017-09-21T23:32:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】支持向量机SVM">
+<meta name="twitter:description" content="【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/atom.xml" target="_blank" >
+                <i class="icon icon-lg icon-rss"></i>
+                RSS
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】支持向量机SVM</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】支持向量机SVM</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-19T10:23:39.000Z" itemprop="datePublished" class="page-time">
+  2017-09-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#什么是支持向量机-SVM"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是支持向量机-SVM</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#如何求解支持向量机"><span class="post-toc-number">2.</span> <span class="post-toc-text">如何求解支持向量机</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#硬间隔"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">硬间隔</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#软间隔"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">软间隔</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#支持向量机扩展"><span class="post-toc-number">3.</span> <span class="post-toc-text">支持向量机扩展</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#核方法"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">核方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多类问题"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">多类问题</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-支持向量机SVM学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】支持向量机SVM</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-19 18:23:39" datetime="2017-09-19T10:23:39.000Z"  itemprop="datePublished">2017-09-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】13min - 19min<br>【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读</p>
+<a id="more"></a>
+<h1 id="什么是支持向量机-SVM"><a href="#什么是支持向量机-SVM" class="headerlink" title="什么是支持向量机-SVM"></a>什么是支持向量机-SVM</h1><p>支持向量机-SVM(Support Vector Machine)从本质来说是一种：<strong>用一条线（方程）分类两种事物</strong></p>
+<p>SVM的任务是找到这条分界线<strong>使得它到两边的<code>margin</code>都最大</strong>，<font color="FF00000">注意，这里的横坐标是 $x_1$ 纵坐标为 $x_2$</font>，如下图所示</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-margin.jpg" alt="margin" title="">
+                </div>
+                <div class="image-caption">margin</div>
+            </figure>
+<p>有了直观的感知，在定义这一节在做一些深入的思考，分解名词（Support Vector Machine）并尝试解释：</p>
+<ul>
+<li><strong>Machine</strong> - Classification Machine 说明它的本质是一个<strong>分类器</strong></li>
+<li><strong>Support Vector</strong> - 如上图所示，在<code>Maximum Margin</code>上的<strong>这些点</strong>就是<strong>支持向量</strong>，具体说即最终分类器表达式中<strong>只含有这些支持向量</strong>的信息，而与其他数据点无关。在下面的公式中，只有<strong>支持向量的系数</strong> $\alpha_i$ 不等于0。说人话，<strong>上图中两个红色的点，一个蓝色的点，合起来就是支持向量</strong>
+$$
+\mathbf w \cdot \varphi (\mathbf x) = \sum_i \lambda_i y_i k(\mathbf x_i,\mathbf x)
+$$
+
+</li>
+</ul>
+<blockquote>
+<p>公式中每一个符号的含义在后文有说明</p>
+</blockquote>
+<h1 id="如何求解支持向量机"><a href="#如何求解支持向量机" class="headerlink" title="如何求解支持向量机"></a>如何求解支持向量机</h1><p>对于我们需要求解的这个超平面（直线）来说，我们知道</p>
+<ul>
+<li>它离<strong>两边一样远</strong>（待分类的两个部分的样本点）</li>
+<li><strong>最近的距离</strong>就是到<strong>支持向量中的点</strong>的距离</li>
+</ul>
+<p>根据这两点，抽象SVM的直接表达（Directly Representation）</p>
+<blockquote>
+<p>注：$arg \operatorname*{max}_{x} f(x)$ 表示当 $f(x)$ <strong>取最大值时，x的取值</strong></p>
+</blockquote>
+
+$$
+arg \operatorname*{max}_{boundary} margin(boundary) \\ \text{所有正确归类的两类到boundary的距离} \ge margin \tag{1}
+$$
+
+<p>其实这个公式是一点也不抽象，需要更进一步的用符号来表达。</p>
+<p>我们知道<strong>在准确描述世界运行的规律这件事上，数学比文字要准确并且无歧义的多，文字（例子）直观啰嗦，数学（公式）准确简介</strong></p>
+<h2 id="硬间隔"><a href="#硬间隔" class="headerlink" title="硬间隔"></a>硬间隔</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SVM-Intuitive.jpg" alt="SVM支持向量机" title="">
+                </div>
+                <div class="image-caption">SVM支持向量机</div>
+            </figure>
+<blockquote>
+<p>注：公式中加粗或者带有向量箭头的都<strong>表达一个向量</strong></p>
+</blockquote>
+<ul>
+<li>假设这些数据<strong>线性可分</strong>，也可称为<strong>硬间隔</strong>（Hard Margin）</li>
+<li>首先定义超平面：$\mathbf w^T \vec x_i + b = 0$，接下来为了方便，设  $\vec x = (x_1,x_2)$  即一条直线</li>
+<li>任意点 $\vec x_i$ 到该直线的距离为 $\frac{1}{\lVert \mathbf w \lVert} (\mathbf w^T \vec x_i + b)$</li>
+<li>对于空间内所有训练点的坐<strong>标记为</strong> $(\vec x_i,y_i)$，其中 $y_i$ = 1 or -1， 表示点 $\vec x_i$ <strong>所属的类</strong></li>
+<li>如果这些训练数据是线性可分的，选出两条直线（上图中的虚线），使得他们的距离尽可能的大，这两条直线的中央就是<strong>待求的超平面</strong>（直线）</li>
+<li><p>为了表达直观，我们定义这两个超平面（直线）分别为 $\mathbf w^T \vec x_i + b = 1$ 和 $\mathbf w^T \vec x_i + b = -1$，两个超平面（直线）之间的距离为 $\gamma = \frac{2}{\lVert \mathbf w \lVert}$</p>
+<blockquote>
+<p>注：选择<code>1</code>的好处是，<code>w</code> 和<code>b</code>进行尺缩变换（<code>kw</code>和<code>kb</code>）不改变距离，方便计算</p>
+</blockquote>
+</li>
+<li><p>为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong>，我们需要保证对于所有的 $i$ 满足下列的条件</p>
+<ul>
+<li>$\mathbf w^T \vec x_i + b \geqslant 1$ 若 $y_i = 1$</li>
+<li>$\mathbf w^T \vec x_i + b \leqslant -1$ 若 $y_i = -1$</li>
+</ul>
+</li>
+<li>上述两个条件可以写作  $y_i(\mathbf w^T \vec x_i + b) \geqslant 1, \;\text{for all 1}\; 1\leqslant i \leqslant n$  这里的<code>n</code>指样本点的数量</li>
+<li><p>上面的表达（Directly Representation）可以被写成</p>
+
+$$
+arg \operatorname*{max}_{\mathbf w,b} \left\{ {\frac{1}{\lVert \mathbf w \lVert} \operatorname*{min}_{n} [y_i(\mathbf w^T\vec x_i}+b)]\right\} \tag{2}
+$$
+
+</li>
+<li><p>最终目的是<strong>找到具有“最大间隔”（Maximum Margin）的划分超平面（直线），找到参数 $\mathbf w$ 和 $b$ 使得 $\gamma$ 最大</strong></p>
+</li>
+<li>则可以对(2)式进行形式变换，得到 canonical representation
+$$
+arg \operatorname*{max}_{\mathbf w,b} \frac{2}{\lVert \mathbf w \lVert} \implies  arg \operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert \mathbf w \lVert ^2 \\ s.t.\; y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m  \tag{3}
+$$
+
+</li>
+</ul>
+<blockquote>
+<p>注：<code>s.t.</code> ：subject to 表示约束条件，表达的意思等价于：为了使得所有<strong>样本数据都在间隔区（两条虚线）以外</strong></p>
+</blockquote>
+<p>为了解(3)式，需要用到<strong>拉格朗日乘子法</strong>（Method of lagrange multiplier），它是用来求解在约束条件目标函数的极值的，<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a></p>
+<blockquote>
+<p>注：以下解算过程希望完全看懂强烈建议理解阅读<a href="https://charlesliuyx.github.io/2017/09/20/%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E4%B9%98%E6%B3%95%E5%92%8CKKT%E6%9D%A1%E4%BB%B6/">详细直观详解</a>，很多地方推导过程只写必要过程及结论</p>
+</blockquote>
+<p>根据约束的形式，我们引入<code>m</code>个拉格朗日乗法子，记为  $\boldsymbol \lambda = (\lambda_1,\ldots,\lambda_m)^T$ ，原因是，有<code>m</code>个约束，所以需要<code>m</code>个拉格朗日乗法子。可以得出拉格朗日方程如下：<br>
+$$
+\mathcal{L}(\mathbf w,b,\boldsymbol \lambda) = \frac{1}{2}\lVert \mathbf w \lVert ^2  - \sum_{i=1}^m \lambda_i \{  y_i(\mathbf w^T\vec x_i+b) -1 \} \tag{4}
+$$
+</p>
+<p>解这个拉格朗日方程，对 $\mathbf w$ 和 $b$ 求偏导数，可以得到以下两个条件<br>
+$$
+\mathbf w = \sum_{i=1}^m \lambda_i y_i \vec x_i \\
+0 = \sum_{i=1}^m \lambda_i y_i
+$$
+</p>
+<p>将这两个条件带回公式(4)，可以得到<strong>对偶形式（dual representaiton）</strong>，我们的目的也变为最大化 $\mathcal{L}(\boldsymbol \lambda)$，表达式如下<br>
+$$
+arg \operatorname*{max}_{\boldsymbol \lambda}\mathcal{L}(\boldsymbol \lambda)  = \sum_{i=1}^m \lambda_i - \frac{1}{2} \sum_{i=1}^m \sum_{j=1}^m \lambda_i \lambda_j \vec x_i \vec x_j \mathbf x_i^T \mathbf x_j \\
+s.t. \qquad \lambda_i \geqslant 0, \forall i\;;\quad \sum_{i=1}^m \lambda_i y_i = 0 \tag{5}
+$$
+</p>
+<p>以上表达式可以通过<strong>二次规划</strong>算法解出 $\boldsymbol \lambda$ 后，带回，求出$\mathbf w$ 和 $b$，即可得到模型<br>
+$$
+f(\mathbf x) = \mathbf w^T\mathbf x + b = \sum_{i=1}^m \lambda_i y_i \mathbf x_i^T \mathbf x + b \tag{6}
+$$
+</p>
+<p>补充一些关于<strong>二次规划</strong>算法的相关，(3)式的约束是一个不等式约束，所以我们可以使用KKT条件得到三个条件：<br>
+$$
+\lambda_i \geqslant0 ;\quad y_i f(\mathbf x_i)-1 \geqslant0; \quad \lambda_i\{ y_i f(\mathbf x_i)-1 \}=0
+$$
+</p>
+<p>使用这些条件，可以构建高效算法来解这个方程，比如<strong>SMO（Sequential Minimal Optimization）</strong>就是其中一个比较著名的。至于SMO是如何做的，考虑到现代很多SVM的Pakage都是直接拿来用，秉承着<strong>前人付出了努力造了轮子就不重复造的核心精神</strong>，直接调用就好</p>
+<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>已经说明了如何求得方程，以上的推导形式都是建立在<strong>样本数据线性可分</strong>的基础上，如果样本数据<strong>你中有我我中有你</strong>（线性不可分），应该如何处理呢？这里就需要引入<strong>软间隔（Soft Margin）</strong>，意味着，<strong>允许支持向量机在一定程度上出错</strong></p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/SoftMargin.png" width="450px" alt="SoftMargin"></div>
+
+<p>由上一节我们得知，约束为： $y_i(\mathbf w^T\vec x_i+b) \geqslant1,\;i = 1,2,\ldots,m$ ，目标是<strong>使目标函数可以在一定程度不满足这个约束条件</strong>，我们引入常数 $C$ 和 损失函数 $\ell_{0/1}(z)$ 为<code>0/1损失函数</code>，当z小于0函数值为1，否则函数值为0<br>
+$$
+\operatorname*{min}_{\mathbf w,b} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \ell_{0/1}(y_i(\mathbf w^T\vec x_i+b) -1) \tag {7}
+$$
+</p>
+<p>对于(7)式来说 $C \geqslant 0$ 是个常数，<strong>当C无穷大时，迫使所有样本均满足约束；当C取有限值时，允许一些样本不满足约束</strong></p>
+<p>但 $\ell_{0/1}(z)$ 损失函数<strong>非凸、非连续</strong>，数学性质不好，<strong>不易直接求解</strong>，我们用其他一些函数来代替它，叫做<code>替代损失函数（surrogate loss）</code><br>
+$$
+\begin{align}
+& \text{hinge损失:} \ell_{hinge}(z) = max(0,1-z)\\
+& \text{指数损失:} \ell_{exp}(z) =  e^{-z}\\
+& \text{对数损失:} \ell_{log}(z) = log(1+e^{-z})\\
+\end{align}
+$$
+<br>三种常见损失函数如下图</p>
+<div align="center"><img src="//charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/lossfunction.png" alt="损失函数" width="450px"></div>
+
+<p>为了书写方便，我们引入<strong>松弛变量（slack variables）</strong>: $\xi_i \geqslant 0$，可将(7)式重写为<br>
+$$
+\operatorname*{min}_{\mathbf w,b,\xi_i} \frac{1}{2}\lVert w \lVert^2 + C \sum_{i=1}^m \xi_i \\ s.t. \quad y_i(\mathbf w^T\vec x_i+b) \geqslant 1 - \xi_i ;\; \xi_i \geqslant 0,\; i = 1,2,\ldots,m \tag{8}
+$$
+<br>(8)式就是常见的<strong>软间隔支持向量机</strong>，其中，每一个样本都有一个对应的松弛变量，用以<strong>表征该样本不满足约束的程度</strong>，求解的方法同理硬间隔支持向量机</p>
+<h1 id="支持向量机扩展"><a href="#支持向量机扩展" class="headerlink" title="支持向量机扩展"></a>支持向量机扩展</h1><h2 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h2><p>以上我们求解的支持向量机都是在<strong>线性情况下</strong>的，那么<strong>非线性情况</strong>下如何处理？这里就引入：核方法</p>
+<p>对于这样的问题，可以将<strong>样本从原始空间映射到一个更高为的特征空间，使得样本在这个特征空间内线性可分</strong>，<a href="https://v.qq.com/x/page/k05170ntgzc.html" target="_blank" rel="noopener">直观可视化解释</a></p>
+<p>为了完成这个目的，令 $\phi(\mathbf x)$ 表示将 $\mathbf x$ <strong>映射后的特征向量</strong>，于是，在特征空间<strong>划分超平面</strong>所对应的模型可表示为：<br>
+$$
+f(\mathbf x) = \mathbf w^T \phi(\mathbf x) + b
+$$
+</p>
+<p>同理上文中引入拉格朗日乘子，求解整个方程后可得<br>
+$$
+\begin{align}
+f(\mathbf x) &=   \mathbf w^T \phi(\mathbf x) + b \\
+&= \sum_{i=1}^m \lambda_i y_i \phi(\mathbf x_i)^T \phi(\mathbf x) + b \\
+&= \sum_{i=1}^m \lambda_i y_i k(\mathbf x,\mathbf x_i)+ b
+\end{align}
+$$
+</p>
+<p>这里的函数 $k(\cdot,\cdot)$ 就是<strong>核函数（kernel function）</strong>，常见的核函数见下表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">表达式</th>
+<th style="text-align:center">参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">线性核</td>
+<td style="text-align:center"> $\boldsymbol x_i^T \boldsymbol x_j$ </td>
+<td style="text-align:center">无</td>
+</tr>
+<tr>
+<td style="text-align:center">多项式核</td>
+<td style="text-align:center"> $(\boldsymbol x_i^T \boldsymbol x_j)^d$ </td>
+<td style="text-align:center">$d \geqslant 1$ 多项式次数</td>
+</tr>
+<tr>
+<td style="text-align:center">高斯核</td>
+<td style="text-align:center"> $exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{2\sigma^2})$ </td>
+<td style="text-align:center">$\sigma&gt;0$  高斯核带宽</td>
+</tr>
+<tr>
+<td style="text-align:center">拉普拉斯核</td>
+<td style="text-align:center"> $exp(-\frac{\lVert\boldsymbol x_i - \boldsymbol x_j \lVert^2}{\sigma})$ </td>
+<td style="text-align:center">$\sigma&gt;0$</td>
+</tr>
+<tr>
+<td style="text-align:center">Sigmoid核</td>
+<td style="text-align:center"> $tanh(\beta \boldsymbol x_i^T\boldsymbol x_j + \theta)$ </td>
+<td style="text-align:center">$\beta&gt;0$ $\theta&gt;0$</td>
+</tr>
+</tbody>
+</table>
+<p>也可以通过<strong>函数组合</strong>得到这些值</p>
+<h2 id="多类问题"><a href="#多类问题" class="headerlink" title="多类问题"></a>多类问题</h2><p>多类问题可以使用两两做支持向量机，再由所有的支持向量机投票选出这个类别的归属，被称为<code>one-versus-one approace</code>。</p>
+<p>Reference<br><a href="https://www.zhihu.com/question/21094489" target="_blank" rel="noopener">知乎各类回答</a><br><a href="https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA" target="_blank" rel="noopener">Wiki百科</a><br>PRML<br>周志华-机器学习</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-09-21T23:32:45.000Z" itemprop="dateUpdated">2017-09-22 07:32:45</time>
+</span><br>
+
+
+        
+        <a href="/2017/09/19/支持向量机SVM学习笔记/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&title=《【直观详解】支持向量机SVM》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&title=《【直观详解】支持向量机SVM》 — Go Further&source=【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】支持向量机SVM》 — Go Further&url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/20/拉格朗日乘法和KKT条件/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观详解】拉格朗日乘法和KKT条件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/09/18/Dota2伤害类型详解/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Dota2伤害类型详解</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            if (location.pathname.length > 50) {
+                id = location.pathname.replace(/\//g, '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+                clientID: '2c1daf79f5a857cab513',
+                clientSecret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+                repo: 'BlogComment',
+                owner: 'CharlesLiuyx',
+                admin: ['CharlesLiuyx'],
+                id: id,      // Ensure uniqueness and length less than 50
+                title: document.title.split('|')[0],
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&title=《【直观详解】支持向量机SVM》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&title=《【直观详解】支持向量机SVM》 — Go Further&source=【阅读时间】13min - 19min【内容简介】详解解读什么是支持向量机，如何解支持向量以及涉及的拉普拉斯乘子法，还有核方法的解读" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】支持向量机SVM》 — Go Further&url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/19/支持向量机SVM学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACt0lEQVR42u3awW4bMQwEUP//T6dATjnU9gwpuSnw9mTYqaSnw5Il+XjEz9f38+zzz29ef//s19drvl7twIOHh4c3OvqzJ+E9u4j2ama/PjszHh4e3m1eHgzy4BFtH6yQnwcPDw/vt/GSMHB2ZTw8PLz/nXeqnJEEkjaVx8PDw/s8LylG5Bsnr/s8yX59nmO1Fjw8PLxJNWDYAPv854/29/Dw8PDikNC2xPZjBPnfROfEw8PDu8A7MNJUBo+24Ns2xt6EBzw8PLw1L2lr5YOkbbEgOehqFAwPDw/vGi8vsLYl17zYmiDbgISHh4d3g3fjWHnBor3EPEjg4eHh3ea1h5sNVO0HAtrLxcPDw7vHa4sFZ9mzRlrxKx4eHt5l3iw53o9qzUYHop4XHh4e3lFe28pq0+XZ2EHLfvoNHh4e3gXebFiqjjyLa9oXPvDw8PDu8ZLl8rZTMRrV1pvbq8fDw8O7xsuXmBV52wbbZrDgMYsweHh4eOU7s10uKS7sx7k2QQgPDw/vM7xZqMivZnXc8lrx8PDwbvDyVLhNfGctsXaMNboCPDw8vKO8NjDsk+/ZOFey418+4+Hh4V3gJenvqWLr5sryAVk8PDy8z/BmI6ftlsnre3ahb06Ch4eHd4E3e6En7avksvJ/m4efqDyBh4eHt+a1/9XPx0nrKbCybPFoIxIeHh7empckrPlrOi9VnOrgFbEODw8P7wKvZefFgnzfvJ0WhSI8PDy8o7yv8pml2gm4LWokq+Hh4eHd4M1eu+3Gs5bV7FrrGgweHh7eiDcLBptxqH2xo0ji8fDw8K7xZgNS+UhWfh2zQS48PDy838zLh59W1eW4wPGmZIyHh4f3T3ntZnlRI0fWpQ08PDy8a7x8ibbI2ybZs3T8zdAVHh4e3lHeJvHdpNezcYF2cAEPDw/vKO8PbFVUueDx0uEAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>

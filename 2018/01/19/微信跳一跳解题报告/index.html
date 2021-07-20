@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>微信跳一跳解题报告 | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,Web,CNN">
+    <meta name="description" content="【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案两部分">
+<meta name="keywords" content="Machine Learning,Web,CNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信跳一跳解题报告">
+<meta property="og:url" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案两部分">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Prob.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Method.jpg">
+<meta property="og:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/JumpToJump.png">
+<meta property="og:updated_time" content="2018-01-21T19:32:08.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信跳一跳解题报告">
+<meta name="twitter:description" content="【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案两部分">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Prob.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/atom.xml" target="_blank" >
+                <i class="icon icon-lg icon-rss"></i>
+                RSS
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">微信跳一跳解题报告</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">微信跳一跳解题报告</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-19T04:00:21.000Z" itemprop="datePublished" class="page-time">
+  2018-01-19
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#游戏机制"><span class="post-toc-number">2.</span> <span class="post-toc-text">游戏机制</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加分机制"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">加分机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#按压时间与跳跃距离"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">按压时间与跳跃距离</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计原则"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">设计原则</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">3.</span> <span class="post-toc-text">解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#技巧"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">技巧</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#用纸贴住分数"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">用纸贴住分数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建立自己的模型"><span class="post-toc-number">3.1.2.</span> <span class="post-toc-text">建立自己的模型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#小墩"><span class="post-toc-number">3.1.3.</span> <span class="post-toc-text">小墩</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多跳"><span class="post-toc-number">3.1.4.</span> <span class="post-toc-text">多跳</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#正常方案"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">正常方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#听音法"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">听音法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#滑动屏幕法"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">滑动屏幕法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#程序方案"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">程序方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#手机和电脑交互方法"><span class="post-toc-number">3.3.1.</span> <span class="post-toc-text">手机和电脑交互方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#算法流程图"><span class="post-toc-number">3.3.2.</span> <span class="post-toc-text">算法流程图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#多尺度搜索"><span class="post-toc-number">3.3.3.</span> <span class="post-toc-text">多尺度搜索</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#机器学习方案"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">机器学习方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输入"><span class="post-toc-number">3.4.1.</span> <span class="post-toc-text">输入</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#输出"><span class="post-toc-number">3.4.2.</span> <span class="post-toc-text">输出</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型结构"><span class="post-toc-number">3.4.3.</span> <span class="post-toc-text">模型结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#训练数据"><span class="post-toc-number">3.4.4.</span> <span class="post-toc-text">训练数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模型增强"><span class="post-toc-number">3.4.5.</span> <span class="post-toc-text">模型增强</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Pipeline示意图"><span class="post-toc-number">3.4.6.</span> <span class="post-toc-text">Pipeline示意图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最终结果"><span class="post-toc-number">3.4.7.</span> <span class="post-toc-text">最终结果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Trick"><span class="post-toc-number">3.4.8.</span> <span class="post-toc-text">Trick</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-微信跳一跳解题报告"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">微信跳一跳解题报告</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-19 12:00:21" datetime="2018-01-19T04:00:21.000Z"  itemprop="datePublished">2018-01-19</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】5min - 7min 2810 words<br>【内容简介】本文<strong>总结了</strong>解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案两部分</p>
+<a id="more"></a>
+<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>对于微信跳一跳来说，问题描述很直观</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Prob.png" alt="问题描述" title="">
+                </div>
+                <div class="image-caption">问题描述</div>
+            </figure>
+<ul>
+<li>【玩游戏的心态】游戏本身有没有什么小技巧？<ul>
+<li>特殊的加分技巧有哪些？</li>
+<li>如何才能不紧张？</li>
+</ul>
+</li>
+<li>【解题目的心态】每一次【跳跃】如何不掉下去？<ul>
+<li>每一跳，看到目标墩后，需要按多久？</li>
+<li>目标墩和小人的距离是多少？</li>
+</ul>
+</li>
+</ul>
+<h1 id="游戏机制"><a href="#游戏机制" class="headerlink" title="游戏机制"></a>游戏机制</h1><p>考虑到这是一个【按得时间越久，跳的距离越远的游戏】，也就是说：<strong>不摔死才是王道！</strong><a href="#问题描述">问题描述</a>已经如此明了，依次解决就好</p>
+<h2 id="加分机制"><a href="#加分机制" class="headerlink" title="加分机制"></a>加分机制</h2><p>【1】特殊墩。停留2s，可加对应分数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">墩类型</th>
+<th style="text-align:center">加分</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">井盖</td>
+<td style="text-align:center">+5</td>
+</tr>
+<tr>
+<td style="text-align:center">魔方</td>
+<td style="text-align:center">+10</td>
+</tr>
+<tr>
+<td style="text-align:center">便利店</td>
+<td style="text-align:center">+15</td>
+</tr>
+<tr>
+<td style="text-align:center">音乐盒（注意，有一层透明玻璃的才是）</td>
+<td style="text-align:center">+30</td>
+</tr>
+</tbody>
+</table>
+<p>【2】连击跳。连续中心点，+2 +4 …… （是个人都知道）</p>
+<p>【3】快速跳。落地之后马上起跳，可以在下一次落地即使也从+1变为+2</p>
+<h2 id="按压时间与跳跃距离"><a href="#按压时间与跳跃距离" class="headerlink" title="按压时间与跳跃距离"></a>按压时间与跳跃距离</h2><p>直说结论，<strong>微信跳一跳的按压时间和跳跃距离是大约线性关系</strong>（根据其他大神的验证和精确测试，并不是完美线性关系）</p>
+<p>打开声音，在蓄力的过程会有嘟嘟声，两次声音之间0.105秒左右，而每次跳跃的距离可以用尺子量出来。拟合（找一条直线看看是否能正好通过所有的点）后是个直线</p>
+<p>写成公式的话为<br>$$<br>按压时间 = k \times 目标墩中心和小人的距离<br>$$<br>其实只要针对你的手机把这个k拟合出来就好（iOS，非Plus系列，k = 2.045）</p>
+<h2 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h2><p>对于游戏设计来说，一款优秀的【休闲游戏】一定要满足三点</p>
+<ul>
+<li><strong>核心规则简单</strong></li>
+<li><strong>容易失误</strong></li>
+<li><strong>回报和难度成正比 + 随机奖励</strong></li>
+</ul>
+<p>所以，跳一跳能火爆，除了好友圈（这里包含微信强大的整合推广能力）之中的攀比心理，更是<strong>在这三点都做的相当出色</strong></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>不是每个人都闲着没事做去搞得那么复杂来玩这个游戏，只有两种人会这么做，一种好胜心装逼心爆炸的，另一种就是吃饱了撑着（估计我是两者兼而有之），所以根据现根据前一种人来说，给出的解决方案就是【技巧上】</p>
+<h2 id="技巧"><a href="#技巧" class="headerlink" title="技巧"></a>技巧</h2><p>游戏技巧当然是利用【比较容易达成】的手段来减少失误的方法，这款游戏考验的核心<strong>节奏感</strong>，<strong>控制力</strong></p>
+<p>【节奏感】</p>
+<p>大家都知道默数一分钟这个游戏吧</p>
+<p>能完美默数60s，并且每一秒差距都不大的同学，在这部分就有很高的天赋了。当然还有学乐器，长时间锻炼的同学也是</p>
+<p>【控制力】</p>
+<p>也叫手残部分。你的APM（每分钟操作次数）速度，控制自己手的能力都考虑其中。</p>
+<p>有个游戏是掉尺子抓住，看谁抓的位置更靠上，控制力包含对手的掌控力+反应速度，在这个游戏能取得很棒成绩的同学，你的得分肯定不会低</p>
+<p>当然，所有这两点，都是可以通过<strong>不断的锻炼（花时间疯狂跳）</strong>来提高（这和花时间练琴才能弹的越来越好是一个道理）。只是有些人提高的快，有些同学可能提高的慢，而且很不幸，这种提升是一个Logistic曲线（有天花板）</p>
+<p>天赋这东西就是这样，你在这里不擅长，太正常不过。每个人天赋都在不同的领域，所以放宽心才是王道，别太较真（跳一跳跳出一场轰轰烈烈的人生，我的天）</p>
+<p>以下就是一些小技巧</p>
+<h3 id="用纸贴住分数"><a href="#用纸贴住分数" class="headerlink" title="用纸贴住分数"></a>用纸贴住分数</h3><p>紧张和手不稳是【失误】的最大元凶，所以<strong>贴住分数有奇效</strong></p>
+<h3 id="建立自己的模型"><a href="#建立自己的模型" class="headerlink" title="建立自己的模型"></a>建立自己的模型</h3><p>个人建议自己把距离分为4类</p>
+<ul>
+<li>很近（人和墩基本贴起来，一看就觉得好近）</li>
+<li>很远（看起来就远的那种）</li>
+<li>介于两者之间但是靠很近</li>
+<li>介于两者之间但是靠很远</li>
+</ul>
+<p>在新墩出现的时候，先用0.5秒分一个类</p>
+<p>【4类】原则，宁愿多按一点不少按</p>
+<p>【1类】原则，蜻蜓点水千万不多</p>
+<p>【2 3类】是最容易出问题的类别，如果失误，根据【第二设计原则】，太正常，如果太容易高分，成就感也会被压缩到很小，所以这是必须的，大侠从头来过就好</p>
+<h3 id="小墩"><a href="#小墩" class="headerlink" title="小墩"></a>小墩</h3><p>对于遇到看起来非常小的墩（小药瓶，天崩地裂）</p>
+<p>首先，不要虚，个人虽然没有验证，但是小的目标，感觉能跳上去的阈值也会大一些（或说磁铁or吸附效应），只要按照4分类模型来跳，上垒的可能性还是挺高的</p>
+<h3 id="多跳"><a href="#多跳" class="headerlink" title="多跳"></a>多跳</h3><p>用时间积累，就和练钢琴是一个套路，身体的肌肉根据你看的图像产生反应，如果已经成为一种自然反应，分数肯定不会低</p>
+<h2 id="正常方案"><a href="#正常方案" class="headerlink" title="正常方案"></a>正常方案</h2><p>解决这个问题，就是计算目标墩中心和小人的距离，那么目标墩的位置（目标位置），和小人的位置（起跳点位置）就是待求量</p>
+<p>但是这些<strong>正常方案</strong>都需要在每一跳花费一定时间，非大毅力者不可为</p>
+<h3 id="听音法"><a href="#听音法" class="headerlink" title="听音法"></a>听音法</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">听到嘟的次数</th>
+<th style="text-align:center">跳跃的距离范围 cm</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0 - 1.02</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">1.02 - 1.54</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">1.54 - 2.05</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">2.05 - 2.58</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2.58 - 3.09</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:center">3.09 - 3.61</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">3.61 - 4.12</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:center">4.12 - 4.64</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">大于 4.64</td>
+</tr>
+</tbody>
+</table>
+<p>量距离 ➜ 查表 ➜ 专心听 ➜ 数嘟嘟声 ➜ 到次数放</p>
+<p>（不做评价，累）优势是如果每次都很准，+32 +64 可能都不是梦想吧？</p>
+<h3 id="滑动屏幕法"><a href="#滑动屏幕法" class="headerlink" title="滑动屏幕法"></a>滑动屏幕法</h3><p><img src="//charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/Method.jpg" alt="滑动屏幕法" width="400"></p>
+<p>然后，匀速的速度是 5.1 cm/s</p>
+<p>（这个方法，感觉比靠感觉更容易失误）这个方法并没有每次都可以跳到中心的特点，个人感觉这个网站找到的方法有点做负功</p>
+<h2 id="程序方案"><a href="#程序方案" class="headerlink" title="程序方案"></a>程序方案</h2><p>市面上很多的【外挂】或者说【脚本】基本都是这个方案，还有一些直接截包的可能更加暴力一些</p>
+<h3 id="手机和电脑交互方法"><a href="#手机和电脑交互方法" class="headerlink" title="手机和电脑交互方法"></a>手机和电脑交互方法</h3><p>电脑手机连接起来，并且手机可以和电脑交换数据（API），比如电脑可以控制按压时间，电脑可以控制手机截图之类的基本交互操作</p>
+<p>Android有adb工具，iOS有<a href="https://testerhome.com/topics/7220" target="_blank" rel="noopener">WebDriverAgent</a></p>
+<h3 id="算法流程图"><a href="#算法流程图" class="headerlink" title="算法流程图"></a>算法流程图</h3><p>截图 ➜ 算出小人位置 ➜ 算出目标墩位置 ➜ 计算按压时间 ➜ 利用API操控手机按压 ➜ 跳</p>
+<p>其实流程图非常简单，直接单线程就搞定了（没有循环结构和分支结构，都不用用其他软件画了）</p>
+<p>主要如何计算小人位置，和计算目标墩位置两部分是关键</p>
+<h3 id="多尺度搜索"><a href="#多尺度搜索" class="headerlink" title="多尺度搜索"></a>多尺度搜索</h3><p>利用OpenCV，图像处理，可以把所有小人抠图出来和图像进行匹配，最后选取置信度最高的，找出小人位置。代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multi_scale_search</span><span class="params">(pivot, screen, range=<span class="number">0.3</span>, num=<span class="number">10</span>)</span>:</span></span><br><span class="line">    H, W = screen.shape[:<span class="number">2</span>]</span><br><span class="line">    h, w = pivot.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    found = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">for</span> scale <span class="keyword">in</span> np.linspace(<span class="number">1</span>-range, <span class="number">1</span>+range, num)[::<span class="number">-1</span>]:</span><br><span class="line">        resized = cv2.resize(screen, (int(W * scale), int(H * scale)))</span><br><span class="line">        r = W / float(resized.shape[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">if</span> resized.shape[<span class="number">0</span>] &lt; h <span class="keyword">or</span> resized.shape[<span class="number">1</span>] &lt; w:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        res = cv2.matchTemplate(resized, pivot, cv2.TM_CCOEFF_NORMED)</span><br><span class="line"></span><br><span class="line">        loc = np.where(res &gt;= res.max())</span><br><span class="line">        pos_h, pos_w = list(zip(*loc))[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> found <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> res.max() &gt; found[<span class="number">-1</span>]:</span><br><span class="line">            found = (pos_h, pos_w, r, res.max())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> found <span class="keyword">is</span> <span class="keyword">None</span>: <span class="keyword">return</span> (<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    pos_h, pos_w, r, score = found</span><br><span class="line">    start_h, start_w = int(pos_h * r), int(pos_w * r)</span><br><span class="line">    end_h, end_w = int((pos_h + h) * r), int((pos_w + w) * r)</span><br><span class="line">    <span class="keyword">return</span> [start_h, start_w, end_h, end_w, score]</span><br></pre></td></tr></table></figure>
+<p>目标墩也可以使用类似的方法。只是要想办法减小搜索空间，加速。因为目标墩的数量还是比较多的。还可以搜索那个中心的小白点，速度越快越准（主需要等那个白点出现就好）</p>
+<h2 id="机器学习方案"><a href="#机器学习方案" class="headerlink" title="机器学习方案"></a>机器学习方案</h2><p>为什么题都已经解了，还需要深究呢？这里主要目的是【提高用户体验感】，考虑到繁多的手机种类和尺寸，特别是iOS中截图的图像压缩问题，需要一套更加稳定的算法，机器学习算法就应运而生了</p>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>经过裁剪的<strong>截图</strong>，只保留小人和目标墩（包含关键信息即可，做法使用OpenCV颜色为界，和小人位置为界即可），最终图像大小为 640*720 像素点</p>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>两个值，<strong>目标墩的位置【x，y】</strong>（小人位置使用多尺度匹配搜索效率足够高了）</p>
+<h3 id="模型结构"><a href="#模型结构" class="headerlink" title="模型结构"></a>模型结构</h3><p>考虑是图像处理。选择卷积网 - CNN，5层，基本规模，训练完成模型体积约700M</p>
+<h3 id="训练数据"><a href="#训练数据" class="headerlink" title="训练数据"></a>训练数据</h3><p>根据跳一跳截图大约3000章，保证包含所有目标墩的形态，并且使用多尺度算法进行标注（所谓标注就是算出目标墩【x，y】值，并记录，和这幅图匹配起来）</p>
+<h3 id="模型增强"><a href="#模型增强" class="headerlink" title="模型增强"></a>模型增强</h3><p>第一层网络经过数据训练后误差在10像素以内。为了进一步提升精度，之后，以此点中心，根据原训练图，再截图320*320大小的图片，同时加入像素偏移（噪声，防止过拟合），再次利用另一个CNN来训练计算坐标</p>
+<h3 id="Pipeline示意图"><a href="#Pipeline示意图" class="headerlink" title="Pipeline示意图"></a>Pipeline示意图</h3><p><img src="//charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/JumpToJump.png" alt="" width="700"></p>
+<h3 id="最终结果"><a href="#最终结果" class="headerlink" title="最终结果"></a>最终结果</h3><p>小于1像素，Inference时间0.5秒左右</p>
+<h3 id="Trick"><a href="#Trick" class="headerlink" title="Trick"></a>Trick</h3><p>由于微信的反作弊系统，需要添加一些人为随机因素绕过反作弊系统，基本思路</p>
+<ul>
+<li>Target_pos + 正态分布随机数，保证连跳次数最多5-6次</li>
+<li>间隔时间为&gt;2s的随机数</li>
+<li>按压位置随机</li>
+</ul>
+<p>至此，微信跳一跳算是通关了。<strong>倒腾不息，生命不止</strong>。游戏中学习，兴趣中学习是我辈福气！</p>
+<p>游戏是放松的一种方式，这种休闲游戏的好处就是，上瘾不易，每个人都有自己的天花板，每周刷新后跳跳看看可能会变成常态，总之孔子说的好，<strong>过犹不及</strong></p>
+<p>【参考文献】</p>
+<p>思路借鉴于<a href="https://www.zhihu.com/question/264773435" target="_blank" rel="noopener">知乎相关问题下的回答</a></p>
+<p>代码借鉴<a href="">Prinsplield大神的AI跳一跳项目</a>，只添加绕过反作弊系统的代码</p>
+<p>感谢大神们提供的学习资料！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2018-01-21T19:32:08.651Z" itemprop="dateUpdated">2018-01-22 03:32:08</time>
+</span><br>
+
+
+        
+        <a href="/2018/01/19/微信跳一跳解题报告/" target="_blank" rel="external">https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CNN/">CNN</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Web/">Web</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&title=《微信跳一跳解题报告》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&title=《微信跳一跳解题报告》 — Go Further&source=【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微信跳一跳解题报告》 — Go Further&url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/16/【直观详解】泰勒级数/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">【直观详解】泰勒级数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/05/Dota2-A帐效果/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Dota2-A帐效果</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            if (location.pathname.length > 50) {
+                id = location.pathname.replace(/\//g, '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+                clientID: '2c1daf79f5a857cab513',
+                clientSecret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+                repo: 'BlogComment',
+                owner: 'CharlesLiuyx',
+                admin: ['CharlesLiuyx'],
+                id: id,      // Ensure uniqueness and length less than 50
+                title: document.title.split('|')[0],
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&title=《微信跳一跳解题报告》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&title=《微信跳一跳解题报告》 — Go Further&source=【阅读时间】5min - 7min 2810 words【内容简介】本文总结了解决问题{如何在跳一跳上快速取得高分的问题}，分为人类解决方案，机器解决方案..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《微信跳一跳解题报告》 — Go Further&url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2018/01/19/微信跳一跳解题报告/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvUlEQVR42u3a0WrrMBAE0Pz/T7dwny4UOzO7Fmnh5Mk4jqrjgrTM6vWKP1//Pj/v/H//5/XVt1fPXI1zNcJjHzw8PLzR1K8+ydST0e6fSWBXd+7/Fh4eHt453v1mkC/K95OYbTP5fPDw8PB+G292J2HcY/Dw8PD+Lm+2GdyX4JsiGw8PD++zvCSMSMKCVXBQsh/OWvDw8PDmY77yTeJT1wf7e3h4eHiLrnrbGIsK3HImm3ni4eHhneAlRwH2Ta9Zcys5mhC9RDw8PLwDvLzlP4tfk+dnvyqKbzw8PLxT/aNiqyhaUKOSelayF5sEHh4e3oKXtLXa59vmVltMFy8CDw8P7wBvH0kk05rFte2LfvM/xMPDw3uUl4SkSRSbH9XajN9+i4eHh3eCl+jzpTxZ0NsNow188fDw8M7x8qHzpX8TaiSzyjcnPDw8vBO8WazQxqz3z7RL/ywIxsPDwzvBy9tjedGckPKNpC368fDw8J7lbSKAvFm1iXdn8cfwrAEeHh7eiJeU0ZsFfVO+1205PDw8vAO8tphuN4YkvGgjj1kIgoeHh/cUbxOn5oHFfpxh6Y+Hh4d3mJenvJujV5tDWvU1Hh4e3mFe25rKp5g0q2aBxZvtBw8PD+8Ab3+sahNnPBWCFLPCw8PDe4jXtu33mfHmGEE+czw8PLxzvDxuaFv1+bLezmG2UeHh4eE9xWs3hlmEkS/0Lf7Nr/Dw8PAO8/LrWbgwCz7aA1jFeQQ8PDy8Rxtgw3o8Dmfb+OOxM2V4eHh4C96zk8ujijbkbTcqPDw8vNO8/dGrFpOMnL+UNzPBw8PDO8ZrN4O8qT8rf/O9Cw8PD+/389rSNq/l87C42Jzw8PDwPsprJ5ocGpgdrioacnh4eHjHeLMh2mI6eU35M1EJjoeHh3eANzyrFSziszZYG+xuDmnh4eHhlbxvpVtzqJI23CsAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>

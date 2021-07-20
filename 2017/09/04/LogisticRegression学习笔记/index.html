@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Baidu Tongji -->
+<script>var _hmt = _hmt || []</script>
+<script async src="//hm.baidu.com/hm.js?15d162fc8e4dd54f3980fc240cbb6b68"></script>
+<!-- End Baidu Tongji -->
+
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>【直观详解】Logistic Regression | Go Further | Stay Hungry, Stay Foolish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Machine Learning,Theory">
+    <meta name="description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
+<meta name="keywords" content="Machine Learning,Theory">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【直观详解】Logistic Regression">
+<meta property="og:url" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/index.html">
+<meta property="og:site_name" content="Go Further">
+<meta property="og:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png">
+<meta property="og:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png">
+<meta property="og:updated_time" content="2017-11-15T00:46:30.947Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【直观详解】Logistic Regression">
+<meta name="twitter:description" content="【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧">
+<meta name="twitter:image" content="https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png">
+    
+        <link rel="alternate" type="application/atom+xml" title="Go Further" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</head>
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">遥行 Go Further</h5>
+          <a href="mailto:297106286@qq.com" title="297106286@qq.com" class="mail">297106286@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/CharlesLiuyx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://weibo.com/u/6064451001?is_all=1" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/atom.xml" target="_blank" >
+                <i class="icon icon-lg icon-rss"></i>
+                RSS
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">【直观详解】Logistic Regression</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">【直观详解】Logistic Regression</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-09-03T16:21:50.000Z" itemprop="datePublished" class="page-time">
+  2017-09-04
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是【回归（Regression）】"><span class="post-toc-number">1.</span> <span class="post-toc-text">什么是【回归（Regression）】</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是及为什么【Logistic-Regression】"><span class="post-toc-number">2.</span> <span class="post-toc-text">什么是及为什么【Logistic Regression】</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概率论角度"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">概率论角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#问题描述"><span class="post-toc-number">2.1.1.</span> <span class="post-toc-text">问题描述</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#解决过程"><span class="post-toc-number">2.1.2.</span> <span class="post-toc-text">解决过程</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#统计学角度"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">统计学角度</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#动机-需要解决什么问题"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">动机 - 需要解决什么问题</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方案-如何解决这个问题"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">方案 - 如何解决这个问题</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#机器学习角度"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">机器学习角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生态学角度"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">生态学角度</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#总结"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">总结</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#重要概念"><span class="post-toc-number">3.</span> <span class="post-toc-text">重要概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#均方误差-Mean-Squre-Error-MSE"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">均方误差 Mean Squre Error MSE</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#交叉熵-Cross-Entropy"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">交叉熵 Cross Entropy</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#什么是熵"><span class="post-toc-number">3.2.1.</span> <span class="post-toc-text">什么是熵</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#似然函数"><span class="post-toc-number">3.2.2.</span> <span class="post-toc-text">似然函数</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy"><span class="post-toc-number">3.2.3.</span> <span class="post-toc-text">对于Logistic Regression 为什么要用LogLoss - Cross Entropy</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-LogisticRegression学习笔记"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">【直观详解】Logistic Regression</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-09-04 00:21:50" datetime="2017-09-03T16:21:50.000Z"  itemprop="datePublished">2017-09-04</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Machine-Learning/">Machine Learning</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>【阅读时间】17min - 22min<br>【内容简介】从不同角度解释<strong>为何使用Logistic回归模型</strong>，解读模型的<strong>现实意义</strong>，详细解读<strong>为何使用</strong>以及<strong>什么是</strong>交叉熵损失函数。并详细梳理符号表达，对公式不再恐惧</p>
+<a id="more"></a>
+<h2 id="什么是【回归（Regression）】"><a href="#什么是【回归（Regression）】" class="headerlink" title="什么是【回归（Regression）】"></a>什么是【回归（Regression）】</h2><p>回归（Regression）是一项模拟技术，用来从<strong>一个或多个解释变量</strong>中<u>预测</u><strong>输出变量的值</strong></p>
+<h2 id="什么是及为什么【Logistic-Regression】"><a href="#什么是及为什么【Logistic-Regression】" class="headerlink" title="什么是及为什么【Logistic Regression】"></a>什么是及为什么【Logistic Regression】</h2><p>回归（Regression）是用来预测的，比如给你一组虫子的腿长和翅膀长数据，让你判断虫子是A类虫还是B类虫。</p>
+<p><strong>逻辑回归</strong>则是用来预测<strong>二进制</strong>输出变量取值（如：<strong>是/不是</strong>）的预测技术</p>
+<blockquote>
+<p>即输出变量只有<strong>两个值</strong>得预测技术</p>
+</blockquote>
+<p>下文中将会从不同的角度</p>
+<h3 id="概率论角度"><a href="#概率论角度" class="headerlink" title="概率论角度"></a>概率论角度</h3><p>首先，需要回忆一下几个概念</p>
+<p>【大数定理】</p>
+
+$$
+\lim_{n\to\infty} \frac{1}{n} \sum_{i=1}^n {X_i} = \mu
+$$
+
+<p>不断的采样一个随机变量，得到n个值，当n趋向于<strong>正无穷</strong>的时候，这个<strong>平均值</strong>就收敛于随机变量的<strong>期望</strong></p>
+<p>【中心极限定理】</p>
+<p>大量<strong>相互独立{条件1</strong>}的随机变量，其均值的分布以<strong>正态分布{结论}</strong>为<strong>极限{条件2}</strong></p>
+<p>【贝叶斯公式】</p>
+<p>默认你已经对<strong>条件概率</strong>了若指掌（在某件事情已经发生的情况下另一件事发生的概率），关于<a href="https://mubu.com/doc/2pJ0IojsIl" target="_blank" rel="noopener">贝叶斯方法的前世今生</a>，这个链接或许可以帮到你。</p>
+<p>那贝叶斯公式是如何推出来的？</p>
+<h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>我们需要求的问题是：你在校园里面随机游走，遇到了<strong>N个穿长裤的人</strong>（但是可能因为你高度近视你无法看出他们的性别），<strong>问，这N个人里面有多少个女生，多少个男生</strong>，即，穿裤子的人里面有多少个女生</p>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4>
+$$
+穿裤子的人中的女生比例 = \frac{穿长裤的女生人数}{穿长裤的总人数} =\\  \frac {U\times P(Girl)\times P(Paints|Girl)}{U\times P(Boy)\times P(Paints|Boy) + U\times P(Girl)\times P(Paints|Girl)}\tag{1-1}
+$$
+化简上式，可以发现其实分母合起来就是 $P(Paints)$ ，分子其实就是既穿裤子又是女孩，整理得
+$$
+P(Girl|Paints) = \frac{P(Girl) \times P(Paints|Girl)}{P(Paints)}
+$$
+ 
+<p>再一般化，用A表示穿裤子的，B表示女生<br>$$<br>P(B|A) = \frac{P(B)\times P(A|B)}{P(A)} = \frac{P(AB)}{P(A)}\tag{1-2}<br>$$<br>上式就是贝叶斯公式的一般形式，我们在推导中发现，<strong>正常人类对频率的感知和理解速度要高于对概率的</strong>。</p>
+<p>比如“穿长裤的女生人数”这个概念，用总人数乘以<strong>女人比例</strong>，得出<strong>女生人数</strong>，再用女生人数乘以<strong>女生中穿裤子人数的比例</strong>得到<strong>穿裤子的女生人数</strong>。这一串推导感觉毫无困难。但如果读成：在A发生条件下，发成B的概率，会让人乍看下，感到有一定的理解困难。</p>
+<p>我们常说Sense，我觉得这就是一种敏感，对条件概率表达方式的敏感，在你看到的时候，抓住那个最关键的点，不存在任何的迷惑</p>
+<p>那Logistic Function和贝叶斯公式有什么联系呢？</p>
+<p>如果我们把公式（1-1）也符号化，$B_1$ 表示女生，$B_2$表示男生，$A$ 表示穿裤子<br>$$<br>P(B_1|A) = \frac {P(B_1)P(A|B_1)}{P(B_2)P(A|B_2) + P(B_1)P(A|B_1)}\tag{1-3}<br>$$<br>右边同时除以 $P(B_1)\times P(A|B_1)$ ，并定义 $a = \ln{\left( \frac{P(B_1)P(A|B_1)}{P(B_2)P(A|B_2)}\right)}$ 直接由公式(1-3)可得到<br>$$<br>f(a) = \frac{1}{1 + e^{-a}} \tag{1-4}<br>$$<br>很熟悉的形式，其实就是<code>logistic函数</code>的一般形式（对数几率函数），而这个函数的值就是 $f(a)$ ，很明显，<strong>是一个概率</strong></p>
+<p><strong>另一个很重要超级重要的常识就是：正态分布的的累计分布函数（就是从负无穷到x积分）和概率分布函数长得样子很像Logistic累计分布函数和概率密度函数</strong>，可能看到这句话很多人就已经真相大白了，应给无论从中心极限定理出发，还是从统计学概率论角度来看，<strong>概率分布存在的价值是为了描述自然界（现实）中的随机事件，构造函数本身就十分重要，不同的规律需要不同的函数去拟合</strong></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Normal_distribution.png" alt="正太分布概率密度函数（左）累计密度函数（右）" title="">
+                </div>
+                <div class="image-caption">正太分布概率密度函数（左）累计密度函数（右）</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Logistit_function.png" alt="Logistic函数概率密度函数（左）累计密度函数（右）" title="">
+                </div>
+                <div class="image-caption">Logistic函数概率密度函数（左）累计密度函数（右）</div>
+            </figure>
+<h3 id="统计学角度"><a href="#统计学角度" class="headerlink" title="统计学角度"></a>统计学角度</h3><h4 id="动机-需要解决什么问题"><a href="#动机-需要解决什么问题" class="headerlink" title="动机 - 需要解决什么问题"></a>动机 - 需要解决什么问题</h4><p>在现实生活中，有时候需要探究<strong>某一事件 $A$ 发生的概率 $P$ （0 - 1 之间的一个数）与某些因素 $\mathbf X = (X_1, X_2, \ldots, X_p)’$ 之间的关系</strong>。（其中1到p是各种不同的因素）</p>
+<p>☆ 【<strong>核心问题</strong>】考虑到很多情况下，$P$ 对 $\mathbf X$ 的变化并不敏感，即 $\mathbf X$ 需要发生<strong>很大的变化</strong>才能引起 $P$  的<strong>微弱改变</strong></p>
+<blockquote>
+<p>比如，<u>农药的用量</u>和<u>杀死害虫的概率</u>之间，在农药用量在很小的范围内增长的时候，因为药效不够，杀死害虫的概率增长很慢。</p>
+</blockquote>
+<p>因此，我们要构造一个关于 $P$ 的函数 $\theta(P)$ ，使得它在 $P = 0$ 或 $P = 1$ 附近，$P$ 的微小变化对应 $\theta(P)$ 的较大改变，同时，$\theta(P)$ 要尽可能的简单。于是，我们可以<strong>构造一个函数</strong>（注意：构造函数是数学中很有效的手段，我们需要什么特性就用什么方法来构造一个满足我们需求的函数）c<br>$$<br>\frac {\partial \theta(P)}{\partial P} =\frac{1}{P} +\frac{1}{1-P}<br>$$<br>根据上述公式可以<strong>解得</strong><br>$$<br>\theta(P) =\ln\left(\frac{P}{1-P}\right)<br>$$<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="//charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/Visualizaiton1.png" alt="可视化" title="">
+                </div>
+                <div class="image-caption">可视化</div>
+            </figure></p>
+<p>这个 $\theta(P)​$ 就是<code>Logit变换</code>，可以看到，这个函数很符合我们的要求： $P = 0​$ 或 $P = 1​$ 附近，$P​$ 的微小变化对应 $\theta(P)​$ 的较大改变</p>
+<h4 id="方案-如何解决这个问题"><a href="#方案-如何解决这个问题" class="headerlink" title="方案 - 如何解决这个问题"></a>方案 - 如何解决这个问题</h4><p>为了建立因变量 $P$ 与自变量 $\mathbf X$ 之间的<strong>合理变动关系</strong>，一个很自然的假设就是<strong>线性关系</strong>，也就是：<br>$$<br>P = \mathbf X’  \boldsymbol{\beta}<br>$$<br>其中 $\boldsymbol \beta = (\beta_1,\beta_1,\ldots,\beta_p)$ 表示每一个不同因素对最终概率 $P$ 产生的影响（这个也可以写作，权重weight）</p>
+<p>由需求可知，在某些情况下，$P = 0$ 或 $P = 1$ 附近，$P$ 对 $\mathbf X$ 的变化并不敏感，简单的线性关系<strong>不能反映这一特征</strong>。此时，构造的  $\theta(P)$ 就派上用场了<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X’  \boldsymbol{\beta}<br>$$<br>进行一系列的公式推导有<br>$$<br>\ln\left(\frac{P}{1-P}\right) = \mathbf X^\mathrm T \boldsymbol{\beta} \implies \frac{P}{1-P} = e^{\mathbf X^\mathrm T \boldsymbol{\beta}} \implies P = \frac{e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}{1 + e^{\mathbf X^\mathrm T \boldsymbol{\beta}}}<br>$$<br>则上述最后推出的就是<code>Logistic回归模型</code></p>
+<h3 id="机器学习角度"><a href="#机器学习角度" class="headerlink" title="机器学习角度"></a>机器学习角度</h3><p>周志华《机器学习》，3.3 对数几率回归笔记</p>
+<p>和统计学角度相同，我们的目的是依旧是完成一个<strong>二分类任务</strong>，输出标记 $y \in {0,1}$ ，而线性回归模型产生的预测值 $z = \boldsymbol w^{T}\boldsymbol x + b$ 是实值，于是，我们需要把 z 转换为0/1值，最理想的是<code>单位阶跃函数</code>（unit-step function z &gt; 0➜y=1，z&lt;0➜y=1）</p>
+<p>单单位阶跃函数<strong>不连续</strong>，不能微分，积分，求逆，于是我们希望找到能在一定程度上近似单位阶跃函数的<code>替代函数（surrogate function）</code>，并希望它单调可微，答案很明显，就是<code>对数几率函数（logistic function）</code><br>$$<br>y = \frac{1}{1+e^{-z}}<br>$$</p>
+<p>z 为预测值，y 为输出，<code>对数几率函数</code>是一种<code>Sigmoid函数</code>【一种形状类似S的函数】，将$z = \boldsymbol w^{T}\boldsymbol x + b$ 带入上面的公式</p>
+<p>$$<br>y = \frac{1}{1+e^{-(\boldsymbol w^{T}\boldsymbol x + b)}} \implies \ln(\frac{y}{1-y}) = \boldsymbol w^{T}\boldsymbol x + b<br>$$<br>如果将 $y$ 作为 $\mathbf x$ 作为正例的可能性，$1-y$ 为其反例的可能性<br>$$<br>\frac {y}{1-y}<br>$$<br>上面的式子成为“几率”(odds)：表示 $\mathbf x$ 是正例的<strong>相对可能性</strong>，对odds取对数得到“几率对数”(log odds，也就做logit)</p>
+<h3 id="生态学角度"><a href="#生态学角度" class="headerlink" title="生态学角度"></a>生态学角度</h3><p>可以换一个角度来解读这个问题的前世今生</p>
+<p>1798年的时候一个叫Malthus的英国牧师发现<strong>人口的变化率</strong>和<strong>人口的数目</strong>成正比，需要用数学的手法建立一个公式来表征这个现象，则，使用 $N(t)$ 这个函数来表示<code>t</code>时刻某个地区的<strong>总人口数</strong>（根据<strong>成正比</strong>）<br>$$<br>\frac{dN(t)}{dt} = {rN(t)}<br>$$</p>
+<blockquote>
+<p>其中，<code>r</code>是常数，表示 $N(t)$ 的变化率</p>
+</blockquote>
+<p>直接解出这个方程<br>$$<br>N(t) = N_0e^{rt}<br>$$<br>这很明显是一个指数增长函数，其实也是种群增长的函数表示</p>
+<p>但是问题也是很明显的：种群因为<strong>环境容量</strong>的限制一定是<strong>不能无限增长的</strong>，即，这个模型非常不靠谱，需要重新设计模型来复合现实中的情况。Pierre-François Verhulst 在1838年提出，<strong>构造一个函数</strong><br>$$<br>\frac{dN(t)}{dt} = {rN(t)}\left(1 - \frac{N(t)}{K}\right)<br>$$</p>
+<blockquote>
+<p>K是一个常数，表示系统的容量（capacity）</p>
+</blockquote>
+<p>令 $f(t) = \frac{N(t)}{K}$ ，在方程两边同时除以 $K$ ，上述方程变为：<br>$$<br>\frac{df(t)}{dt} = rf(1 - f)<br>$$<br>这也是<code>Logistic方程</code>的一般形式</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>从不同的角度来研究问题就会发现，其实很多时候我们解决一个问题具有一个<strong>相似的模式</strong>，包括<strong>大数定律</strong>，<strong>贝叶斯全概率公式</strong>是一切的基石和解决问题的主要工具</p>
+<p>一个模型的建立规则依据<strong>数据的分布特征</strong>，而这里依托的一个关键信息就是：<strong>在靠近输入0，1两点的时候，y随x的变化不明显</strong>，线性模型没法很好的反应这个特征，所以就构造了一个逻辑回归模型来表示这个特征</p>
+<p>并且<code>Logistic回归模型</code>的<strong>本质</strong>是一个<strong>概率模型</strong>，因为在描述该分类时，我们其实是以概率来衡量的</p>
+<h2 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h2><h3 id="均方误差-Mean-Squre-Error-MSE"><a href="#均方误差-Mean-Squre-Error-MSE" class="headerlink" title="均方误差 Mean Squre Error MSE"></a>均方误差 Mean Squre Error MSE</h3><p>指参数估计值与参数真值之差平方的<strong>期望值</strong>，是一种目标函数（Objective Function），常用于线性回归<br>$$<br>MSE = \frac{1}{n} \sum_{t = 1}^n{(observed_t - predicted_t)}^2<br>$$</p>
+<h3 id="交叉熵-Cross-Entropy"><a href="#交叉熵-Cross-Entropy" class="headerlink" title="交叉熵 Cross Entropy"></a>交叉熵 Cross Entropy</h3><p>又称为logloss，是Objective function的一种，也称Loss function or Coss Function</p>
+<h4 id="什么是熵"><a href="#什么是熵" class="headerlink" title="什么是熵"></a>什么是熵</h4><p>我觉得这个问题必须搞明白一件事就是：什么是<code>熵 Entropy</code></p>
+<ul>
+<li>广义的定义是：熵是描述一个系统的<strong>无序程度</strong>的变量；同样的表述还有，熵是系统混乱度的度量，一切自发的不可逆过程都是从<strong>有序</strong>到<strong>无序</strong>的变化过程，向熵增的方向进行</li>
+<li>有一个很神奇的解释是：熵字为火字旁加商。当时有位姓胡的学者作为普朗克的防疫。S(entropy)定义为热量Q与温度的<strong>比值</strong>，所以造字：熵</li>
+<li>至于信息论上熵的概念更有意思，有兴趣可以<a href="https://www.zhihu.com/question/22178202/answer/49929786" target="_blank" rel="noopener">转到</a></li>
+</ul>
+<p>要理解这个<code>Cross Entropy</code>，必须了解它是用来干啥的？</p>
+<p>延伸：<code>信息熵</code> <code>交叉熵</code> <code>相对熵</code>的理解，需要跳转到另一篇笔记：<a href="https://charlesliuyx.github.io/2017/09/11/%E4%BB%80%E4%B9%88%E6%98%AF%E4%BF%A1%E6%81%AF%E7%86%B5%E3%80%81%E4%BA%A4%E5%8F%89%E7%86%B5%E5%92%8C%E7%9B%B8%E5%AF%B9%E7%86%B5/">什么是信息熵、交叉熵和相对熵</a> </p>
+<p>简单来说<code>Cross Entropy</code>可以表示可以度量<strong>最终训练结果于测试集的差异程度</strong>，MSE也是同样的作用。</p>
+<p>换种更具体的说法：我们用p表示真实标记（训练样本标记）的分布，q是训练后的模型的预测标记（输出值标记）的分布，而<strong>交叉熵损失函数可以衡量p与q的相似性</strong>。</p>
+<h4 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h4><p>定义：给定联合样本值 $x$ 关于（未知 - 因为也是一边的自变量）参数 $\theta$ 的函数<br>$$<br>L(\theta|x) = f(x;\theta)<br>$$</p>
+<blockquote>
+<p>$x$ 指联合样本随机变量 $X$ 取到的值，比如天气取值 $X$ =【晴，阴，雨，雪】$x$ = 晴</p>
+<p>$\theta$ 指未知参数，属于参数空间，比如正态分布的均值，方差等</p>
+<p>$f(x;\theta)$ 是<strong>密度函数</strong>，<strong>表示 $\theta$ 参数下</strong>联合样本值 $x$ 的<strong>联合密度函数</strong>（所以这里不用|符号，|符号表达的意思是<strong>条件概率或条件分布</strong>）</p>
+</blockquote>
+<p>从定义上，似然函数和密度函数是完全不同的<strong>两个数学对象</strong>：前者是关于 $\theta$ 的函数，后者是关于 $x$ 的函数。中间的等号理解成<strong>函数值形式相等</strong></p>
+<p>这个等式表示的是对于事件发生的<strong>两种角度的看法</strong>。左边表示概率，右边表示可能性。要表达的含义都是：给定一个样本 $x$ 后，我们去测度这个样本出现的可能性到底有多大。说人话，比如样本空间是 $X =【晴，阴，雨，雪】$，函数表达的就是样本 $x$ = 晴在这个样本空间下发生的概率或可能性</p>
+<p>从<strong>统计学</strong>的角度来说，这个样本的出现一定是<strong>基于一个分布的</strong>（比如二项分布，只正态分布等等），那么我们假设这个分布为 $f(x;\theta)$ ，对于不同的 $\theta$ 样本的分布不一样。</p>
+<p>$f(x;\theta)$ 函数表示的就是在参数 $\theta$ 下 $x$ <strong>出现的概率</strong>有多大（可以带入天气例子思考）</p>
+<p>$L(\theta|x)$ 表示在<strong>给定样本</strong> $x$ ，哪个参数 $\theta$ 使得 $x$ 出现的可能性有多大。说人话，我们已经知道天气是晴天，哪个参数（可能是 $\theta_1$ $\theta_2$）使得这个<strong>函数值最大</strong></p>
+<h4 id="对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy"><a href="#对于Logistic-Regression-为什么要用LogLoss-Cross-Entropy" class="headerlink" title="对于Logistic Regression 为什么要用LogLoss - Cross Entropy"></a>对于Logistic Regression 为什么要用LogLoss - Cross Entropy</h4><p>了解了熵，和似然函数，我们可以开始看看在Logistic Regression的条件下为什么要用LogLoss，换句话也就是说，它一定有它的优势，我们采用，那么它有什么优势？</p>
+<p>Logistic Regression的本质还是一个二分类问题，即Y = 0，or Y = 1</p>
+<p>令 $P(Y=0|x) = \pi(x)$ $P(Y=1|x) = 1 - \pi(x)$ </p>
+<blockquote>
+<p>$y_i$ 表示i次试验，取值就是0 or 1（二分类问题）</p>
+<p>$\pi(x) = \frac{1}{1 + e^{-wx}}$  是Logistic Function的表现形式，其中w相当于似然函数一节提到的 $\theta$ 是需要求的参数（加深理解，其实在二分类问题中，Logistic函数就是一种形式上的概率分布的表现形式）</p>
+</blockquote>
+<p>所以使用基本概率方法可以求解二分类的问题的似然函数<br>
+$$
+\ell(w) = \prod_{i = 1}^{N} [\pi(x_i)]^{y_i}[1-\pi(x_i)]^{1-y_i}
+$$
+</p>
+<blockquote>
+<p>注解：说白就和算扔N次硬币，一个连续正反事件串的概率是多少一个含义</p>
+</blockquote>
+<p>看到乘法和指数，第一反应取对数，得到<strong>对数似然函数</strong><br>$$<br>L(w) = \sum_{i=1}^N{[y_ilog_a\pi(x_i) + (1-y_i)log_a(1-\pi(x_i))]}<br>$$</p>
+<p>如果跟随我的步伐走到这一步，你会发现，这个形式，<strong>前半部分是“正例成立”的交叉熵，后半部是“反例成立”的交叉熵</strong>，说实话，叫做交叉熵和二项分布，伯努利过程分不开联系。在上面不远的地方已经详细定义了这几个符号代表的意思</p>
+<p>我们发现，$-\frac{L(w)}{N}$ 就是我们一直使用的Objective function or Loss Function or Cost Function（加负号才是最终的形式）。总之，<strong>训练的目的就是要求能够使得这个函数达到最小的参数</strong>，最终的目的还是<strong>计算出模型参数</strong>，就是 $w$ ，这个参数在上方的统计学角度，和机器学习角度都进行的讨论，重复阅读可以链接这些知识点</p>
+<p>至于LogLoss的好处，一是取对数之后，<strong>乘法边加法，指数放下来</strong>，是凸函数，方便可以寻找最优解。二是<strong>加快了收敛速度</strong>，这里有个形象的步长比喻，可以想象成去了对数后，缩小了尺度，可以让最快梯度下降法要走的距离变短</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2017-11-15T00:46:30.947Z" itemprop="dateUpdated">2017-11-15 08:46:30</time>
+</span><br>
+
+
+        
+        <a href="/2017/09/04/LogisticRegression学习笔记/" target="_blank" rel="external">https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="https://charlesliuyx.github.io">
+            <img src="/img/avatar.jpg" alt="遥行 Go Further">
+            遥行 Go Further
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Theory/">Theory</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【直观详解】Logistic Regression》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【直观详解】Logistic Regression》 — Go Further&source=【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】Logistic Regression》 — Go Further&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/09/05/Dota2机制总结/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Dota2机制总结</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/08/28/Xpath使用指南/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Xpath-Wiki</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="comments" id="comments">
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+            if (location.pathname.length > 50) {
+                id = location.pathname.replace(/\//g, '').substring(0, 50)
+            }
+            const gitalk = new Gitalk({
+                clientID: '2c1daf79f5a857cab513',
+                clientSecret: 'd3ec6eb5ef61ef24dbfee8ee9645b70444292bcc',
+                repo: 'BlogComment',
+                owner: 'CharlesLiuyx',
+                admin: ['CharlesLiuyx'],
+                id: id,      // Ensure uniqueness and length less than 50
+                title: document.title.split('|')[0],
+                distractionFreeMode: false  // Facebook-like distraction free mode
+            })
+            gitalk.render('gitalk-container')
+        </script>
+    </section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        你的鼓励是我前进的力量
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>遥行 Go Further &copy; 2015 - 2021</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【直观详解】Logistic Regression》 — Go Further&pic=https://charlesliuyx.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&title=《【直观详解】Logistic Regression》 — Go Further&source=【阅读时间】17min - 22min【内容简介】从不同角度解释为何使用Logistic回归模型，解读模型的现实意义，详细解读为何使用以及什么是交叉熵损失..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《【直观详解】Logistic Regression》 — Go Further&url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/&via=https://charlesliuyx.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://charlesliuyx.github.io/2017/09/04/LogisticRegression学习笔记/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACxElEQVR42u3awU7rQAwFUP7/p0FixYIk1/aYFulkVb2WdE6eNONe++Mjvj6/r5+vf/7L1Wfu73b1+avvur/n6MLDw8NrLf3qul9u8lfJ0ifvPjwCPDw8vDVechhUj5Dq5n7/jfnjxsPDw3sf3uQYmBToeHh4eP+Xd5Y6CTjw8PDw3oGXL/e+aE6WWy2yk/UcyFrw8PDwYl6vAfba1+v9PTw8PLxWVz3ZdpOi+X7LTlpuzXXi4eHhLfDuy99ei6u3oZ8a2Ir+AA8PD2/Aq0YG1Zj1bMMs/2/45dzDw8PDW+D1gtpJDjAZ8EoKcTw8PLw9Xi+0zRtjk8Nm0jzDw8PD2+AlN00GpJLSuTcQUB3Jeggm8PDw8Ma86phUtYVfXVBe1kfv4uHh4S3w5gdDtSDOS+38MS2W1Hh4eHhxGz4piHubey8WSR5Z1N/Dw8PDG/OqP/V7zarkwU0OgyiSwMPDwzvEq/687xXWvdfVT15mLXh4eHhHefnBkGzZk8bYnHS5Zjw8PLw1Xq/d1duyq9FtEm1ErS88PDy8Ma/XiMoj17zUnvTuHn4x4OHh4R3lTbb7avyaLHqjNMfDw8P7e151XKBKTaLhU2U3Hh4e3lleEhPkm34eCif36Q1y4eHh4W3weudGvnHnxXpy5xz/kLXg4eHhDXjV6KG3xSfh76n74+Hh4f0Nr1p/Jg2wvNGVfEuThIeHh7fGywcC5sME1eX2vhcPDw/vtbx8I74vzfMDJnm3UJTj4eHhHeV9Fq9elHCqkVYt2fHw8PA2eNXBgnzTTxZULcero1p4eHh4e7zquFW1YVZddD4oEB08eHh4eGu8/DCobtO9Mr0aRuDh4eG9My/ZsnshbDWkiAa28PDw8F7Ky8vcarNq/vgewgg8PDy8BV4SRuSYfIm94ruQRuPh4eEt8EaDTUF8UA0d5iEIHh4e3hrvC3xb5Cl4dTrHAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+</body>
+</html>
